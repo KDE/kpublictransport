@@ -7,7 +7,13 @@ ecm_add_qml_module(kpublictransportquickplugin
     NO_GENERATE_PLUGIN_SOURCE
     CLASS_NAME "KPublicTransportUiQuickPlugin"
     IMPORTS "org.kde.kpublictransport"
-    DEPENDENCIES "QtQuick" "QtQuick.Controls" "org.kde.kirigami"
+    DEPENDENCIES
+        "QtQuick"
+        "QtQuick.Controls"
+        "org.kde.kirigami"
+        "org.kde.kirigamiaddons.delegates"
+        "org.kde.i18n.localeData"
+        "org.kde.kitemmodels"
 )
 
 target_sources(kpublictransportquickplugin PRIVATE
@@ -21,15 +27,24 @@ ecm_target_qml_sources(kpublictransportquickplugin SOURCES
     FeatureIcon.qml
     JourneyHorizontalBar.qml
     OccupancyIndicator.qml
+    StopPickerPage.qml
     TransportIcon.qml
     TransportNameControl.qml
     VehicleSectionItem.qml
+)
+
+ecm_target_qml_sources(kpublictransportquickplugin
+    PRIVATE
+    PATH private
+    SOURCES
+        private/CountryComboBox.qml
 )
 
 target_link_libraries(kpublictransportquickplugin
     PRIVATE
         KPublicTransport
         Qt::Quick
+        KF6::I18nLocaleData
 )
 
 ecm_finalize_qml_module(kpublictransportquickplugin DESTINATION ${KDE_INSTALL_QMLDIR})
