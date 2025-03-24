@@ -6,6 +6,8 @@ Dependencies:
   'require':
     'frameworks/extra-cmake-modules': '@latest-kf6'
     'frameworks/ki18n': '@latest-kf6'
+    'frameworks/kitemmodels': '@latest-kf6'
+    'libraries/kirigami-addons': '@latest-kf6'
 
 - 'on': ['Linux']
   'require':

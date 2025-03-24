@@ -25,6 +25,7 @@ include(KDECMakeSettings)
 include(GenerateExportHeader)
 include(ECMAddQch)
 include(ECMQmlModule)
+include(ECMFindQmlModule)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -65,6 +66,7 @@ if (ANDROID)
 endif()
 
 find_package(KF6 6.11 REQUIRED COMPONENTS I18n)
+find_package(KF6KirigamiAddons 1.6.0 REQUIRED)
 
 set(KPUBLICTRANSPORT_INSTALL_INCLUDEDIR ${KDE_INSTALL_INCLUDEDIR}/KPublicTransport)
 
@@ -78,6 +80,7 @@ if (BUILD_TESTING)
 endif()
 
 
+ecm_find_qmlmodule(org.kde.kitemmodels ${KF_MIN_VERSION})
 
 set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KPublicTransport")
 
