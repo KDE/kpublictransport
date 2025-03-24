@@ -54,7 +54,9 @@ Kirigami.Icon {
     QQC2.ToolTip.text: {
         let s = root.feature.displayName;
 
-        if (root.feature.availability === KPublicTransport.Feature.Unavailable) {
+        if (root.feature.availability === KPublicTransport.Feature.Unknown) {
+            s = i18nd("kpublictransport", "%1 (availability unknown)", s);
+        } else if (root.feature.availability === KPublicTransport.Feature.Unavailable) {
             s = i18nd("kpublictransport", "%1 (not available)", s);
         } else if (root.feature.quantity > 0) {
             s = i18ndp("kpublictransport", "%2 (one space)", "%2 (%1 spaces)", root.feature.quantity, s);
