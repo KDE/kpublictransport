@@ -2,12 +2,13 @@
 # This file is distributed under the same license as the kpublictransport package.
 #
 # SPDX-FileCopyrightText: 2024, 2025 giovanni <g.sora@tiscali.it>
+# giovanni <g.sora@tiscali.it>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-25 00:40+0000\n"
-"PO-Revision-Date: 2025-01-10 11:58+0100\n"
+"PO-Revision-Date: 2025-03-25 12:06+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -15,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
@@ -143,10 +144,9 @@ msgid "Rented car"
 msgstr "Auto de location"
 
 #: quick/FeatureIcon.qml:58
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "%1 (availability unknown)"
-msgstr "%1 (Non disponibile)"
+msgstr "%1 (disponibilitate incognoscite)"
 
 #: quick/FeatureIcon.qml:60
 #, kde-format
