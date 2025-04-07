@@ -1,13 +1,13 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kpublictransport package.
-# SPDX-FileCopyrightText: 2024 Shinjo Park <kde@peremen.name>
+# SPDX-FileCopyrightText: 2024, 2025 Shinjo Park <kde@peremen.name>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-25 00:40+0000\n"
-"PO-Revision-Date: 2024-08-19 23:56+0200\n"
+"PO-Revision-Date: 2025-04-07 00:04+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -99,54 +99,53 @@ msgstr "전원 콘센트"
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Bike"
-msgstr ""
+msgstr "자전거"
 
 #: lib/datatypes/individualtransport.cpp:75
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Car"
-msgstr ""
+msgstr "차량"
 
 #: lib/datatypes/individualtransport.cpp:77 lib/datatypes/journey.cpp:582
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Walk"
-msgstr ""
+msgstr "걷기"
 
 #: lib/datatypes/journey.cpp:584
 #, kde-format
 msgid "Wait"
-msgstr ""
+msgstr "대기"
 
 #: lib/datatypes/rentalvehicle.cpp:271
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented bike"
-msgstr ""
+msgstr "대여한 자전거"
 
 #: lib/datatypes/rentalvehicle.cpp:273
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented moped"
-msgstr ""
+msgstr "대여한 모페드"
 
 #: lib/datatypes/rentalvehicle.cpp:275
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented kick scooter"
-msgstr ""
+msgstr "대여한 킥 스쿠터"
 
 #: lib/datatypes/rentalvehicle.cpp:277
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"
-msgstr ""
+msgstr "렌터카"
 
 #: quick/FeatureIcon.qml:58
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "%1 (availability unknown)"
-msgstr "%1(사용할 수 없음)"
+msgstr "%1(사용 가능 여부 알 수 없음)"
 
 #: quick/FeatureIcon.qml:60
 #, kde-format
