@@ -110,6 +110,11 @@ Stopover Motis2Parser::parsePlace(const QJsonObject &obj, bool hasRealTime) cons
         s.setExpectedArrivalTime(parseTime(obj.value("arrival"_L1)));
     }
 
+    if (obj.value("cancelled"_L1).toBool()) {
+        s.setDisruptionEffect(Disruption::NoService);
+    }
+    // TODO dropoffType, pickupType
+
     return s;
 }
 
@@ -207,6 +212,10 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
                 stops.push_back(parsePlace(intermediateStop, hasRealTime));
             }
             s.setIntermediateStops(std::move(stops));
+
+            if (leg.value("cancelled"_L1).toBool()) {
+                s.setDisruptionEffect(Disruption::NoService);
+            }
         } else if (s.mode() == JourneySection::IndividualTransport) {
             IndividualTransport iv;
             iv.setMode((*it).ivMode);
