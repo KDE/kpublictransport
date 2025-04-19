@@ -6,6 +6,7 @@
             "motis": "ch-opentransportdataswiss_Parent8014228"
         },
         "latitude": 48.993515,
+        "locality": "Südweststadt",
         "longitude": 8.402185,
         "name": "Karlsruhe Hbf",
         "postalCode": "76137",
@@ -19,6 +20,7 @@
             "motis": "ch-opentransportdataswiss_Parent8014228"
         },
         "latitude": 48.993515,
+        "locality": "Südweststadt",
         "longitude": 8.402185,
         "name": "Karlsruhe Hbf",
         "postalCode": "76137",
@@ -32,6 +34,7 @@
             "motis": "ch-opentransportdataswiss_Parent8014228"
         },
         "latitude": 48.993515,
+        "locality": "Südweststadt",
         "longitude": 8.402185,
         "name": "Karlsruhe Hbf",
         "postalCode": "76137",
@@ -45,6 +48,7 @@
             "motis": "ch-opentransportdataswiss_Parent8014228"
         },
         "latitude": 48.993515,
+        "locality": "Südweststadt",
         "longitude": 8.402185,
         "name": "Karlsruhe Hbf",
         "postalCode": "76137",
@@ -70,6 +74,7 @@
             "motis": "node/5876433289"
         },
         "latitude": 49.0053102,
+        "locality": "Daxlanden",
         "longitude": 8.3335171,
         "name": "Karlsruher Hof",
         "postalCode": "76189",
@@ -82,6 +87,7 @@
             "motis": "way/483431081"
         },
         "latitude": 52.7029911,
+        "locality": "Oberkrämer",
         "longitude": 13.1329952,
         "name": "Karlsruher Feld",
         "postalCode": "16727",
@@ -95,6 +101,7 @@
             "motis": "way/137200489"
         },
         "latitude": 52.7017056,
+        "locality": "Oberkrämer",
         "longitude": 13.1108933,
         "name": "Karlsruher Feld",
         "postalCode": "16727",
@@ -108,6 +115,7 @@
             "motis": "way/483431086"
         },
         "latitude": 52.7055211,
+        "locality": "Oberkrämer",
         "longitude": 13.1184815,
         "name": "Karlsruher Feld",
         "postalCode": "16727",
@@ -121,6 +129,7 @@
             "motis": "way/483431082"
         },
         "latitude": 52.7021982,
+        "locality": "Oberkrämer",
         "longitude": 13.122589,
         "name": "Karlsruher Feld",
         "postalCode": "16727",

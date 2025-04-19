@@ -36,6 +36,9 @@ private Q_SLOTS:
         QTest::newRow("geo-lookup")
             << QStringLiteral(SOURCE_DIR "/data/motis2/location-geo-search.in.json")
             << QStringLiteral(SOURCE_DIR "/data/motis2/location-geo-search.out.json");
+        QTest::newRow("address")
+            << QStringLiteral(SOURCE_DIR "/data/motis2/location-addresses.in.json")
+            << QStringLiteral(SOURCE_DIR "/data/motis2/location-addresses.out.json");
     }
 
     void testParseLocation()

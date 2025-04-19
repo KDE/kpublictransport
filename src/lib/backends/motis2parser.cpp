@@ -356,12 +356,14 @@ std::vector<Location> Motis2Parser::parseLocations(const QByteArray &data) const
         l.setLatitude(locObj.value("lat"_L1).toDouble());
         l.setLongitude(locObj.value("lon"_L1).toDouble());
         l.setFloorLevel(locObj.value("level"_L1).toInt(std::numeric_limits<int>::lowest()));
-        const auto areas = locObj.value("area"_L1).toArray();
+        const auto areas = locObj.value("areas"_L1).toArray();
+        int cityLevel = std::numeric_limits<int>::max();
         for (const auto &areaV : areas) {
             const auto area = areaV.toObject();
-            if (const auto level = area.value("adminLevel"_L1).toInt(); level <= 8) {
+            if (const auto level = area.value("adminLevel"_L1).toInt(); level >= 8 && level < cityLevel) {
                 // TODO needs a proper country-specific admin-level mapping, for now taken from Motis v1 parser
                 // see https://wiki.openstreetmap.org/wiki/Key:admin_level
+                cityLevel = level;
                 l.setLocality(area.value("name"_L1).toString());
             }
         }

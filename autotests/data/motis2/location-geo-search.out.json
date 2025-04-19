@@ -6,6 +6,7 @@
             "motis": "ch-opentransportdataswiss_Parent8023179"
         },
         "latitude": 51.345474,
+        "locality": "Mitte",
         "longitude": 12.382064,
         "name": "Leipzig Hbf",
         "postalCode": "04109",
@@ -20,6 +21,7 @@
             "motis": "ch-opentransportdataswiss_Parent8023179"
         },
         "latitude": 51.345474,
+        "locality": "Mitte",
         "longitude": 12.382064,
         "name": "Leipzig Hbf",
         "postalCode": "04109",
@@ -34,6 +36,7 @@
             "motis": "node/3575061420"
         },
         "latitude": 51.3450271,
+        "locality": "Mitte",
         "longitude": 12.3817197,
         "name": "Deutsche Bahn",
         "postalCode": "04109",
@@ -47,6 +50,7 @@
             "motis": "node/3575061421"
         },
         "latitude": 51.3450365,
+        "locality": "Mitte",
         "longitude": 12.3816896,
         "name": "Deutsche Bahn",
         "postalCode": "04109",
@@ -60,6 +64,7 @@
             "motis": "node/2202309900"
         },
         "latitude": 51.3448745,
+        "locality": "Mitte",
         "longitude": 12.3819165,
         "name": "Deutsche Bahn",
         "postalCode": "04109",
@@ -73,6 +78,7 @@
             "motis": "node/6510099866"
         },
         "latitude": 51.3449263,
+        "locality": "Mitte",
         "longitude": 12.3815594,
         "name": "Thüringer Grill",
         "postalCode": "04109",
@@ -86,6 +92,7 @@
             "motis": "node/2140362880"
         },
         "latitude": 51.3452195,
+        "locality": "Mitte",
         "longitude": 12.3811144,
         "name": "Deutsche Bahn",
         "postalCode": "04109",
@@ -99,6 +106,7 @@
             "motis": "node/6510099867"
         },
         "latitude": 51.3450387,
+        "locality": "Mitte",
         "longitude": 12.3812945,
         "name": "Crepes-Express",
         "postalCode": "04109",
@@ -112,6 +120,7 @@
             "motis": "node/2140362881"
         },
         "latitude": 51.3452333,
+        "locality": "Mitte",
         "longitude": 12.3810763,
         "name": "Deutsche Bahn",
         "postalCode": "04109",
@@ -125,6 +134,7 @@
             "motis": "node/6510099869"
         },
         "latitude": 51.344935,
+        "locality": "Mitte",
         "longitude": 12.3814312,
         "name": "Bäcker Lukas",
         "postalCode": "04109",
