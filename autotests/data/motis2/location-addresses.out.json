@@ -1,0 +1,105 @@
+[
+    {
+        "country": "NL",
+        "latitude": 51.5267522,
+        "locality": "Goirle",
+        "longitude": 5.0755676,
+        "name": "Guido Gezellelaan 106",
+        "region": "NL-NB",
+        "streetAddress": "Guido Gezellelaan 106",
+        "type": "Address"
+    },
+    {
+        "country": "BE",
+        "latitude": 50.9369449,
+        "locality": "Roeselare",
+        "longitude": 3.1515325,
+        "name": "Guido Gezellelaan 106",
+        "postalCode": "8800",
+        "region": "BE-VLG",
+        "streetAddress": "Guido Gezellelaan 106",
+        "type": "Address"
+    },
+    {
+        "latitude": 50.8029964,
+        "locality": "Menin",
+        "longitude": 3.1099533,
+        "name": "Guido Gezellelaan 106",
+        "postalCode": "8930",
+        "streetAddress": "Guido Gezellelaan 106",
+        "type": "Address"
+    },
+    {
+        "country": "BE",
+        "latitude": 51.1760485,
+        "locality": "Mortsel",
+        "longitude": 4.4460617,
+        "name": "Guido Gezellelaan 106",
+        "postalCode": "2640",
+        "region": "BE-VLG",
+        "streetAddress": "Guido Gezellelaan 106",
+        "type": "Address"
+    },
+    {
+        "country": "BE",
+        "latitude": 50.8356444,
+        "locality": "Kortrijk",
+        "longitude": 3.2374619,
+        "name": "Guido Gezellelaan 106",
+        "postalCode": "8501",
+        "region": "BE-VLG",
+        "streetAddress": "Guido Gezellelaan 106",
+        "type": "Address"
+    },
+    {
+        "country": "BE",
+        "latitude": 51.0298863,
+        "locality": "Heusden-Zolder",
+        "longitude": 5.2735448,
+        "name": "Guido Gezellelaan 106",
+        "postalCode": "3550",
+        "region": "BE-VLG",
+        "streetAddress": "Guido Gezellelaan 106",
+        "type": "Address"
+    },
+    {
+        "country": "NL",
+        "latitude": 52.3460099,
+        "locality": "Harderwijk",
+        "longitude": 5.6386994,
+        "name": "Guido Gezellelaan 106",
+        "streetAddress": "Guido Gezellelaan 106",
+        "type": "Address"
+    },
+    {
+        "country": "NL",
+        "latitude": 52.2800496,
+        "locality": "Hillegom",
+        "longitude": 4.5847613,
+        "name": "Guido Gezellelaan 106",
+        "streetAddress": "Guido Gezellelaan 106",
+        "type": "Address"
+    },
+    {
+        "country": "BE",
+        "latitude": 50.9813402,
+        "locality": "Deinze",
+        "longitude": 3.5336731,
+        "name": "Guido Gezellelaan 106",
+        "postalCode": "9800",
+        "region": "BE-VLG",
+        "streetAddress": "Guido Gezellelaan 106",
+        "type": "Address"
+    },
+    {
+        "country": "BE",
+        "latitude": 51.0741563,
+        "locality": "Puurs-Sint-Amands",
+        "longitude": 4.2911523,
+        "name": "Guido Gezellelaan 106",
+        "postalCode": "2870",
+        "region": "BE-VLG",
+        "streetAddress": "Guido Gezellelaan 106",
+        "type": "Address"
+    }
+]
