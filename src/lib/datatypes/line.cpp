@@ -153,6 +153,11 @@ bool Line::modeIsRailBound(Line::Mode mode)
     }
 }
 
+bool Line::isRailBound() const
+{
+    return modeIsRailBound(d->mode);
+}
+
 QString Line::iconName() const
 {
     if (hasLogo()) {

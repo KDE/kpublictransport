@@ -100,6 +100,9 @@ public:
      *  are monochrome colorable Breeze SVG icons.
      */
     Q_PROPERTY(QString iconName READ iconName STORED false)
+
+    /** @c true if @p mode is bound to rail tracks. */
+    Q_PROPERTY(bool isRailBound READ isRailBound STORED false)
 public:
     [[nodiscard]] bool hasColor() const;
     [[nodiscard]] bool hasTextColor() const;
@@ -115,8 +118,9 @@ public:
      */
     Q_INVOKABLE [[nodiscard]] static QString modeIconName(KPublicTransport::Line::Mode mode);
 
-    /** @c true if @p mode is bounds to rail tracks. */
+    /** @c true if @p mode is bound to rail tracks. */
     [[nodiscard]] static bool modeIsRailBound(KPublicTransport::Line::Mode mode);
+    [[nodiscard]] bool isRailBound() const;
 
     /** Look up line meta data and apply what is found.
      *  @param location A location on or close to the line.
