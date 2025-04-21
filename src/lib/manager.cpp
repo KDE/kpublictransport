@@ -821,9 +821,10 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
 }
 
 // Check whether a given JourneySection matches a trip request in fallback journey query mode
-// This is essentially the same as JourneySection::isSame, with one special case for accepting
-// all specialized modes for an requested generic mode. Line::isSame takes care of most of this
-// on its own already, we just need to handle all rail-based modes explicitly here.
+// This is essentially the same as JourneySection::isSame, with a few special cases:
+// * accepting all specialized modes for an requested generic mode. Line::isSame takes care of most of this
+//   on its own already, we just need to handle all rail-based modes explicitly here.
+// * being more tolerant towards moved departure times if the route is assumed to be unique during a day
 [[nodiscard]] static bool isSameTrip(KPublicTransport::JourneySection req, const KPublicTransport::JourneySection &res)
 {
     if (req.route().line().mode() == Line::Train && Line::modeIsRailBound(res.route().line().mode())) {
@@ -832,6 +833,12 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
         line.setMode(res.route().line().mode());
         route.setLine(line);
         req.setRoute(route);
+    }
+    if (Route::isSame(req.route(), res.route()) && res.route().line().mode() == Line::Mode::LongDistanceTrain) {
+        const auto depDelta = std::abs(req.scheduledDepartureTime().secsTo(res.scheduledDepartureTime()));
+        if (depDelta < 30l * 60) {
+            req.setScheduledDepartureTime(res.scheduledDepartureTime());
+        }
     }
     return JourneySection::isSame(req, res);
 }
