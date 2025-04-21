@@ -783,7 +783,7 @@ bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs
 
     const auto sameTo = Location::isSame(lhs.to(), rhs.to());
     const auto toDist = Location::distance(lhs.to(), rhs.to());
-    result += sameTo ? Equal : toDist < 200 ? Compatible : Conflict;
+    result += sameTo ? Equal : toDist < 200 ? Compatible : (std::isnan(toDist) && arrTimeDist == 0) ? Compatible : Conflict;
 
     const auto sameRoute = Route::isSame(lhs.route(), rhs.route());
     const auto sameDir = Location::isSameName(lhs.route().direction(), rhs.route().direction());
