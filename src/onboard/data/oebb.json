@@ -4,7 +4,7 @@
         "script": "oebb.js",
         "positionEndpoint": "https://railnet.oebb.at/api/gps",
         "positionFunction": "parseGps",
-        "journeyEndpoint": "https://railnet.oebb.at/assets/modules/fis/combined.json",
+        "journeyEndpoint": "https://railnet.oebb.at/assets/media/fis/combined.json",
         "journeyFunction": "parseJourney"
     }
 }

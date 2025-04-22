@@ -117,6 +117,7 @@ private Q_SLOTS:
         QTest::newRow("sncf-inoui") << s("sncf-tgv") << s("sncf-inoui");
         QTest::newRow("sbb") << s("sbb") << s("sbb");
         QTest::newRow("oebb-railnet") << s("oebb") << s("oebb-railnet");
+        QTest::newRow("oebb-railnet-tracks") << s("oebb") << s("oebb-railnet-tracks");
 
         QTest::newRow("ana") << s("panasonic-inflight-v1") << s("ana");
         QTest::newRow("unite-panasonic") << s("panasonic-inflight-v1") << s("united-panasonic");

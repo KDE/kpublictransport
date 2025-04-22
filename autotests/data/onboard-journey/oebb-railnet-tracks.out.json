@@ -1,0 +1,206 @@
+{
+    "sections": [
+        {
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "expectedArrivalTime": "2025-04-22T23:47:00",
+                "expectedPlatform": "7",
+                "scheduledArrivalTime": "2025-04-22T22:46:00",
+                "stopPoint": {
+                    "identifier": {
+                        "ibnr": "8100147"
+                    },
+                    "name": "Villach Hbf",
+                    "type": "Stop"
+                }
+            },
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "expectedDepartureTime": "2025-04-22T19:19:00",
+                "expectedPlatform": "5A-B",
+                "route": {
+                    "line": {
+                        "mode": "LongDistanceTrain",
+                        "name": "RJ 633"
+                    }
+                },
+                "scheduledDepartureTime": "2025-04-22T18:24:00",
+                "stopPoint": {
+                    "identifier": {
+                        "ibnr": "8103000"
+                    },
+                    "name": "Wien Hbf",
+                    "type": "Stop"
+                }
+            },
+            "intermediateStops": [
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-04-22T19:27:00",
+                    "expectedDepartureTime": "2025-04-22T19:29:00",
+                    "expectedPlatform": "5",
+                    "scheduledArrivalTime": "2025-04-22T18:29:00",
+                    "scheduledDepartureTime": "2025-04-22T18:31:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8100514"
+                        },
+                        "name": "Wien Meidling",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-04-22T20:02:00",
+                    "expectedDepartureTime": "2025-04-22T20:05:00",
+                    "expectedPlatform": "4",
+                    "scheduledArrivalTime": "2025-04-22T18:54:00",
+                    "scheduledDepartureTime": "2025-04-22T18:56:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8100516"
+                        },
+                        "name": "Wiener Neustadt Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-04-22T21:24:00",
+                    "expectedDepartureTime": "2025-04-22T21:25:00",
+                    "expectedPlatform": "1",
+                    "scheduledArrivalTime": "2025-04-22T20:13:00",
+                    "scheduledDepartureTime": "2025-04-22T20:15:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8100032"
+                        },
+                        "name": "Bruck/Mur",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-04-22T21:34:00",
+                    "expectedDepartureTime": "2025-04-22T21:36:00",
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": "2025-04-22T20:24:00",
+                    "scheduledDepartureTime": "2025-04-22T20:26:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8100070"
+                        },
+                        "name": "Leoben Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-04-22T21:53:00",
+                    "expectedDepartureTime": "2025-04-22T21:55:00",
+                    "expectedPlatform": "2",
+                    "scheduledArrivalTime": "2025-04-22T20:45:00",
+                    "scheduledDepartureTime": "2025-04-22T20:47:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8100072"
+                        },
+                        "name": "Knittelfeld",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-04-22T22:05:00",
+                    "expectedDepartureTime": "2025-04-22T22:07:00",
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": "2025-04-22T20:58:00",
+                    "scheduledDepartureTime": "2025-04-22T20:59:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8100073"
+                        },
+                        "name": "Judenburg",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-04-22T22:19:00",
+                    "expectedDepartureTime": "2025-04-22T22:20:00",
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": "2025-04-22T21:12:00",
+                    "scheduledDepartureTime": "2025-04-22T21:13:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8100074"
+                        },
+                        "name": "Unzmarkt",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-04-22T22:55:00",
+                    "expectedDepartureTime": "2025-04-22T22:56:00",
+                    "expectedPlatform": "2",
+                    "scheduledArrivalTime": "2025-04-22T21:49:00",
+                    "scheduledDepartureTime": "2025-04-22T21:51:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8100096"
+                        },
+                        "name": "Treibach-Althofen",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-04-22T23:11:00",
+                    "expectedDepartureTime": "2025-04-22T23:13:00",
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": "2025-04-22T22:06:00",
+                    "scheduledDepartureTime": "2025-04-22T22:08:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8100078"
+                        },
+                        "name": "St. Veit/Glan",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-04-22T23:23:00",
+                    "expectedDepartureTime": "2025-04-22T23:25:00",
+                    "expectedPlatform": "1",
+                    "scheduledArrivalTime": "2025-04-22T22:19:00",
+                    "scheduledDepartureTime": "2025-04-22T22:21:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8100085"
+                        },
+                        "name": "Klagenfurt Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-04-22T23:37:00",
+                    "expectedDepartureTime": "2025-04-22T23:38:00",
+                    "expectedPlatform": "2",
+                    "scheduledArrivalTime": "2025-04-22T22:34:00",
+                    "scheduledDepartureTime": "2025-04-22T22:36:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8100081"
+                        },
+                        "name": "Velden am Wörthersee",
+                        "type": "Stop"
+                    }
+                }
+            ],
+            "mode": "PublicTransport"
+        }
+    ]
+}

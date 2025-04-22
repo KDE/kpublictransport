@@ -32,7 +32,7 @@ function parseJourney(response)
         stop.expectedDepartureTime = dt + s.departure.forecast;
         stop.scheduledArrivalTime = dt + s.arrival.scheduled;
         stop.expectedArrivalTime = dt + s.arrival.forecast;
-        stop.expectedPlatform = s.track;
+        stop.expectedPlatform = s.track?.de;
         section.intermediateStops.push(stop);
     }
 
