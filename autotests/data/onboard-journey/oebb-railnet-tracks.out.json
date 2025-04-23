@@ -1,37 +1,17 @@
 {
     "sections": [
         {
-            "arrival": {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalTime": "2025-04-22T23:47:00",
-                "expectedPlatform": "7",
-                "scheduledArrivalTime": "2025-04-22T22:46:00",
-                "stopPoint": {
-                    "identifier": {
-                        "ibnr": "8100147"
-                    },
-                    "name": "Villach Hbf",
-                    "type": "Stop"
-                }
-            },
-            "departure": {
-                "disruptionEffect": "NormalService",
-                "expectedDepartureTime": "2025-04-22T19:19:00",
-                "expectedPlatform": "5A-B",
-                "route": {
-                    "line": {
-                        "mode": "LongDistanceTrain",
-                        "name": "RJ 633"
-                    }
+            "disruptionEffect": "NormalService",
+            "expectedArrivalPlatform": "7",
+            "expectedArrivalTime": "2025-04-22T23:47:00",
+            "expectedDeparturePlatform": "5A-B",
+            "expectedDepartureTime": "2025-04-22T19:19:00",
+            "from": {
+                "identifier": {
+                    "ibnr": "8103000"
                 },
-                "scheduledDepartureTime": "2025-04-22T18:24:00",
-                "stopPoint": {
-                    "identifier": {
-                        "ibnr": "8103000"
-                    },
-                    "name": "Wien Hbf",
-                    "type": "Stop"
-                }
+                "name": "Wien Hbf",
+                "type": "Stop"
             },
             "intermediateStops": [
                 {
@@ -200,7 +180,22 @@
                     }
                 }
             ],
-            "mode": "PublicTransport"
+            "mode": "PublicTransport",
+            "route": {
+                "line": {
+                    "mode": "LongDistanceTrain",
+                    "name": "RJ 633"
+                }
+            },
+            "scheduledArrivalTime": "2025-04-22T22:46:00",
+            "scheduledDepartureTime": "2025-04-22T18:24:00",
+            "to": {
+                "identifier": {
+                    "ibnr": "8100147"
+                },
+                "name": "Villach Hbf",
+                "type": "Stop"
+            }
         }
     ]
 }
