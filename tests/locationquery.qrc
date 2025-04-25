@@ -6,7 +6,6 @@
     <qresource prefix="/">
         <file>locationquery.qml</file>
         <file>AttributionSheet.qml</file>
-        <file>BackendPage.qml</file>
         <file>IndoorMapPage.qml</file>
         <file>TestLocationsModel.qml</file>
     </qresource>

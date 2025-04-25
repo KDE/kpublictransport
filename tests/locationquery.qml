@@ -11,6 +11,7 @@ import QtQuick.Controls as QQC2
 import QtQuick.Dialogs as Dialogs
 import org.kde.kirigami as Kirigami
 import org.kde.kpublictransport
+import org.kde.kpublictransport.ui
 import org.kde.example
 
 Kirigami.ApplicationWindow {
