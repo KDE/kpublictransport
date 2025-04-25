@@ -40,7 +40,7 @@ Kirigami.ScrollablePage {
                 icon.name: "edit-clear-history-symbolic"
                 onTriggered: {
                     locationHistoryModel.clear();
-                    deleteConfirmDialog.close();
+                    clearConfirmDialog.close();
                 }
             }
         ]
