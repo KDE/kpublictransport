@@ -139,7 +139,7 @@ Kirigami.ScrollablePage {
         queryDelay: 500
     }
 
-    PublicTransport.LocationHistoryModel {
+    readonly property PublicTransport.LocationHistoryModel locationHistoryModel: PublicTransport.LocationHistoryModel {
         id: locationHistoryModel
     }
 
