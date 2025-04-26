@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-04-24 00:40+0000\n"
-"PO-Revision-Date: 2025-03-25 21:03+0300\n"
-"Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
+"PO-Revision-Date: 2025-04-25 09:40+0300\n"
+"Last-Translator: Emir SARI <emir_sari@îcloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.07.70\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
@@ -186,94 +186,95 @@ msgstr "Dolu"
 #: quick/private/CountryComboBox.qml:47
 #, kde-format
 msgid "Select country"
-msgstr ""
+msgstr "Ülke seç"
 
 #: quick/StopPickerPage.qml:34
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Clear History"
-msgstr ""
+msgstr "Geçmişi Temizle"
 
 #: quick/StopPickerPage.qml:35
 #, kde-format
 msgctxt "@info"
 msgid "Do you really want to remove all previously searched locations?"
 msgstr ""
+"Daha önceden aranmış tüm konumları kaldırmayı gerçekten istiyor musunuz?"
 
 #: quick/StopPickerPage.qml:39
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
-msgstr ""
+msgstr "Kaldır"
 
 #: quick/StopPickerPage.qml:53
 #, kde-format
 msgctxt "@action"
 msgid "Clear history"
-msgstr ""
+msgstr "Geçmişi Temizle"
 
 #: quick/StopPickerPage.qml:62
 #, kde-format
 msgctxt "@action"
 msgid "Sort by name"
-msgstr ""
+msgstr "Ada Göre Sırala"
 
 #: quick/StopPickerPage.qml:70
 #, kde-format
 msgctxt "@action"
 msgid "Most recently used"
-msgstr ""
+msgstr "Son Kullanılanlar"
 
 #: quick/StopPickerPage.qml:77
 #, kde-format
 msgctxt "@action"
 msgid "Most often used"
-msgstr ""
+msgstr "Sık Kullanılanlar"
 
 #: quick/StopPickerPage.qml:165
 #, kde-format
 msgctxt "locality, region, country"
 msgid "%1, %2, %3"
-msgstr ""
+msgstr "%1, %2, %3"
 
 #: quick/StopPickerPage.qml:170
 #, kde-format
 msgctxt "locality, country"
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: quick/StopPickerPage.qml:174
 #, kde-format
 msgctxt "region, country"
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: quick/StopPickerPage.qml:197
 #, kde-format
 msgctxt "location name, locality, region, country"
 msgid "%1, %2, %3, %4"
-msgstr ""
+msgstr "%1, %2, %3, %4"
 
 #: quick/StopPickerPage.qml:203
 #, kde-format
 msgctxt "location name, locality, country"
 msgid "%1, %2, %3"
-msgstr ""
+msgstr "%1, %2, %3"
 
 #: quick/StopPickerPage.qml:208
 #, kde-format
 msgctxt "location name, region, country"
 msgid "%1, %2, %3"
-msgstr ""
+msgstr "%1, %2, %3"
 
 #: quick/StopPickerPage.qml:240
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove history entry"
-msgstr ""
+msgstr "Geçmiş girdisini kaldır"
 
 #: quick/StopPickerPage.qml:297
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "No locations found"
-msgstr ""
+msgstr "Bulunan konum yok"
