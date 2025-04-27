@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-04-24 00:40+0000\n"
+"POT-Creation-Date: 2025-04-27 00:41+0000\n"
 "PO-Revision-Date: 2024-08-14 09:12+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -140,6 +140,32 @@ msgstr ""
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"
+msgstr ""
+
+#: quick/BackendPage.qml:21
+#, kde-format
+msgid "Public Transport Information Sources"
+msgstr ""
+
+#: quick/BackendPage.qml:98 quick/BackendPage.qml:110
+#, kde-format
+msgid "Global"
+msgstr ""
+
+#: quick/BackendPage.qml:100
+#, kde-format
+msgid "🇪🇺 European Union"
+msgstr ""
+
+#: quick/BackendPage.qml:103
+#, kde-format
+msgctxt "emoji flag, country name"
+msgid "%1 %2"
+msgstr ""
+
+#: quick/BackendPage.qml:112
+#, kde-format
+msgid "European Union"
 msgstr ""
 
 #: quick/FeatureIcon.qml:58
