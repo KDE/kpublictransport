@@ -11,7 +11,7 @@
         "name": "Leipzig Hbf",
         "postalCode": "04109",
         "region": "DE-SN",
-        "streetAddress": " ",
+        "streetAddress": "",
         "type": "Stop"
     },
     {
@@ -26,7 +26,7 @@
         "name": "Leipzig Hbf",
         "postalCode": "04109",
         "region": "DE-SN",
-        "streetAddress": " ",
+        "streetAddress": "",
         "type": "Stop"
     },
     {
@@ -41,7 +41,7 @@
         "name": "Deutsche Bahn",
         "postalCode": "04109",
         "region": "DE-SN",
-        "streetAddress": " "
+        "streetAddress": ""
     },
     {
         "country": "DE",
@@ -55,7 +55,7 @@
         "name": "Deutsche Bahn",
         "postalCode": "04109",
         "region": "DE-SN",
-        "streetAddress": " "
+        "streetAddress": ""
     },
     {
         "country": "DE",
@@ -69,7 +69,7 @@
         "name": "Deutsche Bahn",
         "postalCode": "04109",
         "region": "DE-SN",
-        "streetAddress": " "
+        "streetAddress": ""
     },
     {
         "country": "DE",
@@ -83,7 +83,7 @@
         "name": "Thüringer Grill",
         "postalCode": "04109",
         "region": "DE-SN",
-        "streetAddress": " "
+        "streetAddress": ""
     },
     {
         "country": "DE",
@@ -97,7 +97,7 @@
         "name": "Deutsche Bahn",
         "postalCode": "04109",
         "region": "DE-SN",
-        "streetAddress": " "
+        "streetAddress": ""
     },
     {
         "country": "DE",
@@ -111,7 +111,7 @@
         "name": "Crepes-Express",
         "postalCode": "04109",
         "region": "DE-SN",
-        "streetAddress": " "
+        "streetAddress": ""
     },
     {
         "country": "DE",
@@ -125,7 +125,7 @@
         "name": "Deutsche Bahn",
         "postalCode": "04109",
         "region": "DE-SN",
-        "streetAddress": " "
+        "streetAddress": ""
     },
     {
         "country": "DE",
@@ -139,6 +139,6 @@
         "name": "Bäcker Lukas",
         "postalCode": "04109",
         "region": "DE-SN",
-        "streetAddress": " "
+        "streetAddress": ""
     }
 ]

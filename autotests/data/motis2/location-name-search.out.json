@@ -10,7 +10,7 @@
         "longitude": 8.402185,
         "name": "Karlsruhe Hbf",
         "postalCode": "76137",
-        "streetAddress": " ",
+        "streetAddress": "",
         "type": "Stop"
     },
     {
@@ -24,7 +24,7 @@
         "longitude": 8.402185,
         "name": "Karlsruhe Hbf",
         "postalCode": "76137",
-        "streetAddress": " ",
+        "streetAddress": "",
         "type": "Stop"
     },
     {
@@ -38,7 +38,7 @@
         "longitude": 8.402185,
         "name": "Karlsruhe Hbf",
         "postalCode": "76137",
-        "streetAddress": " ",
+        "streetAddress": "",
         "type": "Stop"
     },
     {
@@ -52,7 +52,7 @@
         "longitude": 8.402185,
         "name": "Karlsruhe Hbf",
         "postalCode": "76137",
-        "streetAddress": " ",
+        "streetAddress": "",
         "type": "Stop"
     },
     {
@@ -65,7 +65,7 @@
         "longitude": -1.1485075,
         "name": "Karlsruhe House",
         "region": "GB-ENG",
-        "streetAddress": " "
+        "streetAddress": ""
     },
     {
         "country": "DE",
@@ -78,7 +78,7 @@
         "longitude": 8.3335171,
         "name": "Karlsruher Hof",
         "postalCode": "76189",
-        "streetAddress": " "
+        "streetAddress": ""
     },
     {
         "country": "DE",
@@ -92,7 +92,7 @@
         "name": "Karlsruher Feld",
         "postalCode": "16727",
         "region": "DE-BB",
-        "streetAddress": " "
+        "streetAddress": ""
     },
     {
         "country": "DE",
@@ -106,7 +106,7 @@
         "name": "Karlsruher Feld",
         "postalCode": "16727",
         "region": "DE-BB",
-        "streetAddress": " "
+        "streetAddress": ""
     },
     {
         "country": "DE",
@@ -120,7 +120,7 @@
         "name": "Karlsruher Feld",
         "postalCode": "16727",
         "region": "DE-BB",
-        "streetAddress": " "
+        "streetAddress": ""
     },
     {
         "country": "DE",
@@ -134,6 +134,6 @@
         "name": "Karlsruher Feld",
         "postalCode": "16727",
         "region": "DE-BB",
-        "streetAddress": " "
+        "streetAddress": ""
     }
 ]
