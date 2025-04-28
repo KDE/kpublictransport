@@ -948,7 +948,7 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
 {
     auto reply = d->makeReply<VehicleLayoutReply>(req);
     int pendingOps = 0;
-    int negativeCacheHit = 0;
+    int cacheHit = 0;
 
     // validate input
     if (!req.isValid()) {
@@ -973,10 +973,11 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
             auto cache = Cache::lookupVehicleLayout(backend.identifier(), req.cacheKey());
             switch (cache.type) {
                 case CacheHitType::Negative:
-                    ++negativeCacheHit;
+                    ++cacheHit;
                     qCDebug(Log) << "Negative cache hit for backend" << backend.identifier();
                     break;
                 case CacheHitType::Positive:
+                    ++cacheHit;
                     qCDebug(Log) << "Positive cache hit for backend" << backend.identifier();
                     if (cache.data.size() == 1) {
                         reply->addAttributions(std::move(cache.attributions));
@@ -997,7 +998,7 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
         }
     }
 
-    if (pendingOps == 0 && negativeCacheHit == 0) {
+    if (pendingOps == 0 && cacheHit == 0) {
         reply->addError(Reply::NoBackend, u"No viable backend found."_s);
     }
     reply->setPendingOps(pendingOps);
