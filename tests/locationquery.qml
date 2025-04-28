@@ -138,7 +138,12 @@ Kirigami.ApplicationWindow {
                         textFormat: Text.RichText
                     }
                     QQC2.Label {
-                        text: "Identifiers: " + ExampleUtil.locationIds(location)
+                        text: {
+                            let s = "Identifiers:";
+                            for (const type of location.identifierTypes)
+                                s += " " + type + ":" + location.identifier(type);
+                            return s;
+                        }
                     }
                 }
             }
