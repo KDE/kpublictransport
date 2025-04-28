@@ -1,6 +1,6 @@
 {
-    "description": "Upstream demo instance.",
-    "name": "MOTIS",
+    "description": "Transitous staging instance.",
+    "name": "Transitous (staging)",
     "coverage": {
         "anyCoverage": {
             "area": {
@@ -37,12 +37,9 @@
     },
     "options": {
         "cacheDays": 0,
-        "endpoint": "https://europe.motis-project.de/",
-        "locationIdentifierType": "motis"
+        "endpoint": "https://staging.api.transitous.org/",
+        "locationIdentifierType": "transitous-staging"
     },
-    "supportedLanguages": [
-        "en"
-    ],
     "type": {
         "motis2": true
     }
