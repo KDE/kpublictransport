@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-04-27 00:41+0000\n"
-"PO-Revision-Date: 2025-04-25 09:40+0300\n"
+"PO-Revision-Date: 2025-04-28 10:26+0300\n"
 "Last-Translator: Emir SARI <emir_sari@îcloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -145,28 +145,28 @@ msgstr "Kiralık araba"
 #: quick/BackendPage.qml:21
 #, kde-format
 msgid "Public Transport Information Sources"
-msgstr ""
+msgstr "Toplu Taşıma Bilgi Kaynakları"
 
 #: quick/BackendPage.qml:98 quick/BackendPage.qml:110
 #, kde-format
 msgid "Global"
-msgstr ""
+msgstr "Global"
 
 #: quick/BackendPage.qml:100
 #, kde-format
 msgid "🇪🇺 European Union"
-msgstr ""
+msgstr "🇪🇺 Avrupa Birliği"
 
 #: quick/BackendPage.qml:103
 #, kde-format
 msgctxt "emoji flag, country name"
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: quick/BackendPage.qml:112
 #, kde-format
 msgid "European Union"
-msgstr ""
+msgstr "Avrupa Birliği"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format

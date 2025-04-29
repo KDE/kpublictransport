@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-04-27 00:41+0000\n"
-"PO-Revision-Date: 2025-04-24 12:40+0200\n"
+"PO-Revision-Date: 2025-04-27 09:19+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.04.0\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
@@ -147,28 +147,28 @@ msgstr "Cotxe llogat"
 #: quick/BackendPage.qml:21
 #, kde-format
 msgid "Public Transport Information Sources"
-msgstr ""
+msgstr "Fonts d'informació de transport públic"
 
 #: quick/BackendPage.qml:98 quick/BackendPage.qml:110
 #, kde-format
 msgid "Global"
-msgstr ""
+msgstr "Global"
 
 #: quick/BackendPage.qml:100
 #, kde-format
 msgid "🇪🇺 European Union"
-msgstr ""
+msgstr "🇪🇺 Unió Europea"
 
 #: quick/BackendPage.qml:103
 #, kde-format
 msgctxt "emoji flag, country name"
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: quick/BackendPage.qml:112
 #, kde-format
 msgid "European Union"
-msgstr ""
+msgstr "Unió Europea"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format
