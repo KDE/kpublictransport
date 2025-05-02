@@ -6,8 +6,10 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls as QQC2
+import QtQuick.Dialogs as Dialogs
 import org.kde.kirigami as Kirigami
 import org.kde.kpublictransport as KPublicTransport
+import org.kde.example
 
 JourneySectionPage {
     id: root
@@ -16,6 +18,21 @@ JourneySectionPage {
     required property KPublicTransport.Manager ptMgr
     required property KPublicTransport.journeySection requestedJourneySection
     required property var backendIds
+
+    actions: [
+        Kirigami.Action {
+            text: "Save..."
+            onTriggered: fileDialog.open()
+        }
+    ]
+
+    Dialogs.FileDialog {
+        id: fileDialog
+        title: "Save Trip Data"
+        fileMode: Dialogs.FileDialog.SaveFile
+        nameFilters: ["JSON files (*.json)"]
+        onAccepted: ExampleUtil.saveTo(root.journeySection, fileDialog.selectedFile);
+    }
 
     QQC2.Label {
         id: errorMessage

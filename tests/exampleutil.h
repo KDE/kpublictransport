@@ -18,6 +18,7 @@
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QJsonObject>
 #include <QObject>
 #include <QUrl>
 
@@ -42,6 +43,16 @@ public:
         } else if (qobject_cast<LocationQueryModel*>(model)) {
             f.write(QJsonDocument(Location::toJson(qobject_cast<LocationQueryModel*>(model)->locations())).toJson());
         }
+    }
+
+    Q_INVOKABLE void saveTo(const KPublicTransport::JourneySection &jny, const QUrl &fileName)
+    {
+        QFile f(fileName.toLocalFile());
+        if (!f.open(QFile::WriteOnly)) {
+            qWarning() << f.errorString() << fileName;
+            return;
+        }
+        f.write(QJsonDocument(KPublicTransport::JourneySection::toJson(jny)).toJson());
     }
 };
 
