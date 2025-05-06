@@ -10,6 +10,7 @@
 
 #include <vector>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 // comments below are EFA names found in XML responses (usually translated)
@@ -62,4 +63,6 @@ void EfaModeOfTransport::lineModesToQuery(const std::vector<Line::Mode> &lineMod
             }
         }
     }
+
+    query.addQueryItem(u"includedMeans"_s, u"checkbox"_s);
 }
