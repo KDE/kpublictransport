@@ -145,28 +145,28 @@ msgstr ""
 #: quick/BackendPage.qml:21
 #, kde-format
 msgid "Public Transport Information Sources"
-msgstr ""
+msgstr "Zdroje informací o veřejné dopravě"
 
 #: quick/BackendPage.qml:98 quick/BackendPage.qml:110
 #, kde-format
 msgid "Global"
-msgstr ""
+msgstr "Globální"
 
 #: quick/BackendPage.qml:100
 #, kde-format
 msgid "🇪🇺 European Union"
-msgstr ""
+msgstr "🇪🇺 Evropská unie"
 
 #: quick/BackendPage.qml:103
 #, kde-format
 msgctxt "emoji flag, country name"
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: quick/BackendPage.qml:112
 #, kde-format
 msgid "European Union"
-msgstr ""
+msgstr "Evropská unie"
 
 #: quick/FeatureIcon.qml:58
 #, fuzzy, kde-format
@@ -214,7 +214,7 @@ msgstr "-Plný"
 #: quick/private/CountryComboBox.qml:47
 #, kde-format
 msgid "Select country"
-msgstr ""
+msgstr "Vyberte zemi"
 
 #: quick/StopPickerPage.qml:34
 #, kde-format
@@ -232,7 +232,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
-msgstr ""
+msgstr "Odstranit"
 
 #: quick/StopPickerPage.qml:53
 #, kde-format
