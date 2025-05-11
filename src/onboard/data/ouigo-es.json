@@ -1,0 +1,10 @@
+{
+    "backend": "ScriptedRestOnboardBackend",
+    "options": {
+        "script": "ouigo-es.js",
+        "positionEndpoint": "https://ouifun.ouigo.es:8082/v2/OuigoESPlugin/gps-data",
+        "positionFunction": "parsePosition",
+        "journeyEndpoint": "https://ouifun.ouigo.es:8082/v2/OuigoESPlugin/travel-infos",
+        "journeyFunction": "parseJourney"
+    }
+}

@@ -22,6 +22,7 @@
 
 #define s(x) QStringLiteral(x)
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 class OnboardStatusTest : public QObject
@@ -68,6 +69,7 @@ private Q_SLOTS:
         QTest::newRow("aegean") << s("aegean") << s("aegean.json") << 47.96723323f << 11.781437752f << 1007.0f << 137.0f << 7328.0f;
         QTest::newRow("eurowings") << s("lufthansa") << s("../onboard-journey/eurowings.in.json") << 51.58527374267578f << 12.357730865478516f << 637.087f << -137.6375f << 9018.42f;
         QTest::newRow("lufthansa") << s("lufthansa") << s("../onboard-journey/lufthansa.in.json") << 51.9423f << 12.4496f << 718.576f << -120.785f << 6491.63f;
+        QTest::newRow("ouigo-es") << u"ouigo-es"_s << u"ouigo-es.json"_s << 40.871605f << -2.768676667f << 277.614f << 245.4f << 1063.76f;
     }
 
     void testScriptedPositionParsers()
@@ -126,6 +128,7 @@ private Q_SLOTS:
         QTest::newRow("lufthansa") << s("lufthansa") << s("lufthansa");
         QTest::newRow("united") << s("united") << s("united");
         QTest::newRow("nstrein") << s("nstrein") << s("nstrein");
+        QTest::newRow("ouigo-es") << u"ouigo-es"_s << u"ouigo-es"_s;
     }
 
     void testScriptedJourneyParsers()
