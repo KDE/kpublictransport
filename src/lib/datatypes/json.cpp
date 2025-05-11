@@ -183,7 +183,10 @@ static QVariant variantFromJson(const QJsonValue &v, int mt)
             if (v.isString()) {
                 return v.toString().toDouble();
             }
-            return v.toDouble();
+            if (v.isDouble()) {
+                return v.toDouble();
+            }
+            return {};
         case QMetaType::Int:
             if (v.isString()) {
                 return v.toString().toInt();
