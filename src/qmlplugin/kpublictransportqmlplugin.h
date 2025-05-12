@@ -265,6 +265,7 @@ struct StopoverForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::Stopover)
     QML_VALUE_TYPE(stopover)
+    QML_STRUCTURED_VALUE
 };
 
 struct StopoverRequestForeign {
