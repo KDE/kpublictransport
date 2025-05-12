@@ -127,20 +127,26 @@ Kirigami.ApplicationWindow {
                     }
                     RowLayout {
                         QQC2.Label {
-                            text: "Arrival: " + departure.scheduledArrivalTime.toTimeString()
+                            text: "Arrival:"
+                            visible: arrivalTimeLabel.scheduledTime !== ""
+                        }
+                        ExpectedTimeLabel {
+                            id: arrivalTimeLabel
+                            stopover: departure
+                            scheduledTime: departure.scheduledArrivalTime.toTimeString()
+                            delay: departure.arrivalDelay
+                            hasExpectedTime: departure.hasExpectedArrivalTime
                         }
                         QQC2.Label {
-                            text: (departure.arrivalDelay >= 0 ? "+" : "") + departure.arrivalDelay
-                            color: departure.arrivalDelay > 1 ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.positiveTextColor
-                            visible: departure.hasExpectedArrivalTime
+                            text: "Departure:"
+                            visible: departureTimeLabel.scheduledTime !== ""
                         }
-                        QQC2.Label {
-                            text: "Departure: " + departure.scheduledDepartureTime.toTimeString()
-                        }
-                        QQC2.Label {
-                            text: (departure.departureDelay >= 0 ? "+" : "") + departure.departureDelay
-                            color: departure.departureDelay > 1 ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.positiveTextColor
-                            visible: departure.hasExpectedDepartureTime
+                        ExpectedTimeLabel {
+                            id: departureTimeLabel
+                            stopover: departure
+                            scheduledTime: departure.scheduledDepartureTime.toTimeString()
+                            delay: departure.departureDelay
+                            hasExpectedTime: departure.hasExpectedDepartureTime
                         }
                         QQC2.Label {
                             text: "<a href=\"#layout\">vehicle</a>"

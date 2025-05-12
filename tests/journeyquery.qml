@@ -159,12 +159,13 @@ Kirigami.ApplicationWindow {
                     }
                     RowLayout {
                         QQC2.Label {
-                            text: "Departure: " + modelData.scheduledDepartureTime.toTimeString()
+                            text: "Departure:"
                         }
-                        QQC2.Label {
-                            text: (modelData.departureDelay >= 0 ? "+" : "") + modelData.departureDelay
-                            color: modelData.departureDelay > 1 ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.positiveTextColor
-                            visible: modelData.hasExpectedDepartureTime
+                        ExpectedTimeLabel {
+                            stopover: modelData.departure
+                            scheduledTime:  modelData.scheduledDepartureTime.toTimeString()
+                            delay: modelData.departureDelay
+                            hasExpectedTime: modelData.hasExpectedDepartureTime
                         }
                         QQC2.Label {
                             text: "<a href=\"#layout\">vehicle</a>"
@@ -216,12 +217,13 @@ Kirigami.ApplicationWindow {
                     }
                     RowLayout {
                         QQC2.Label {
-                            text: "Arrival: " + modelData.scheduledArrivalTime.toTimeString()
+                            text: "Arrival:"
                         }
-                        QQC2.Label {
-                            text: (modelData.arrivalDelay >= 0 ? "+" : "") + modelData.arrivalDelay
-                            color: modelData.arrivalDelay > 1 ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.positiveTextColor
-                            visible: modelData.hasExpectedArrivalTime
+                        ExpectedTimeLabel {
+                            stopover: modelData.departure
+                            scheduledTime: modelData.scheduledArrivalTime.toTimeString()
+                            delay: modelData.arrivalDelay
+                            hasExpectedTime: modelData.hasExpectedArrivalTime
                         }
                         QQC2.Label {
                             text: "<a href=\"#layout\">vehicle</a>"
