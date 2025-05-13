@@ -169,10 +169,9 @@ msgid "European Union"
 msgstr "Evropská unie"
 
 #: quick/FeatureIcon.qml:58
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "%1 (availability unknown)"
-msgstr "%1 (Nedostupný)"
+msgstr ""
 
 #: quick/FeatureIcon.qml:60
 #, kde-format
