@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-04-27 00:41+0000\n"
+"POT-Creation-Date: 2025-05-14 00:42+0000\n"
 "PO-Revision-Date: 2025-04-07 00:04+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -166,6 +166,30 @@ msgstr ""
 #: quick/BackendPage.qml:112
 #, kde-format
 msgid "European Union"
+msgstr ""
+
+#: quick/ExpectedTimeLabel.qml:36
+#, kde-format
+msgctxt "a train/bus journey canceled by its operator"
+msgid "Canceled"
+msgstr ""
+
+#: quick/ExpectedTimeLabel.qml:38
+#, kde-format
+msgctxt "duration of the delay"
+msgid "Delayed %1"
+msgstr ""
+
+#: quick/ExpectedTimeLabel.qml:40
+#, kde-format
+msgctxt "earlier arrival/departure"
+msgid "%1 earlier"
+msgstr ""
+
+#: quick/ExpectedTimeLabel.qml:42
+#, kde-format
+msgctxt "@info"
+msgid "On time"
 msgstr ""
 
 #: quick/FeatureIcon.qml:58
