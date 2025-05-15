@@ -172,7 +172,7 @@ msgstr "Evropská unie"
 #, kde-format
 msgctxt "a train/bus journey canceled by its operator"
 msgid "Canceled"
-msgstr ""
+msgstr "Zrušeno"
 
 #: quick/ExpectedTimeLabel.qml:38
 #, kde-format
