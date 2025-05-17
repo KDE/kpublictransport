@@ -116,6 +116,15 @@ public:
 
     [[nodiscard]] Load::Category maximumOccupancy() const;
 
+    /** Backend-specific identifiers for the trip this stopover is on. */
+    [[nodiscard]] QString tripIdentifier(QAnyStringView identifierType) const;
+    [[nodiscard]] bool hasTripIdentifier(QAnyStringView identifierType) const;
+    void setTripIdentifier(const QString &identifierType, const QString &id);
+    /** Returns @c true if there is any trip identifier set at all.
+     *  This is usually a prerequisite for efficient trip queries.
+     */
+    [[nodiscard]] bool hasTripIdentifiers() const;
+
     /** Augment line meta data.
      *  @param download when set to @c true trigger download of missing assets.
      */
