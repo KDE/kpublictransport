@@ -17,6 +17,9 @@
                 "ibnr": "8089021"
             },
             "name": "Berlin Hbf (S-Bahn)"
+        },
+        "tripIdentifiers": {
+            "db": "2|#VN#1#ST#1733779122#PI#0#ZI#348663#TA#2#DA#141224#1S#8013064#1T#1549#LS#8089047#LT#1707#PU#80#RT#1#CA#s#ZE#5#ZB#S      5#PC#4#FR#8013064#FT#1549#TO#8089047#TT#1707#"
         }
     },
     {
@@ -35,6 +38,9 @@
                 "db": "730749"
             },
             "name": "Berlin Hauptbahnhof (S+U), Berlin"
+        },
+        "tripIdentifiers": {
+            "db": "2|#VN#1#ST#1733779122#PI#0#ZI#1202165#TA#41#DA#141224#1S#732994#1T#1559#LS#730759#LT#1657#PU#80#RT#1#CA#STR#ZE#M5#ZB#STR   M5#PC#8#FR#732994#FT#1559#TO#730759#TT#1657#"
         }
     },
     {
@@ -55,6 +61,9 @@
                 "ibnr": "8011160"
             },
             "name": "Berlin Hbf"
+        },
+        "tripIdentifiers": {
+            "db": "2|#VN#1#ST#1733779122#PI#0#ZI#224622#TA#0#DA#141224#1S#8010255#1T#1645#LS#8000207#LT#2141#PU#80#RT#1#CA#ICE#ZE#554#ZB#ICE  554#PC#0#FR#8010255#FT#1645#TO#8000207#TT#2141#"
         }
     },
     {
@@ -76,6 +85,9 @@
                 "ibnr": "8098160"
             },
             "name": "Berlin Hbf"
+        },
+        "tripIdentifiers": {
+            "db": "2|#VN#1#ST#1733779122#PI#0#ZI#237646#TA#0#DA#141224#1S#8010103#1T#1514#LS#8010334#LT#1842#PU#80#RT#1#CA#RE#ZE#3157#ZB#RE  3157#PC#3#FR#8010103#FT#1514#TO#8010334#TT#1842#"
         }
     },
     {
@@ -96,6 +108,9 @@
                 "ibnr": "8089021"
             },
             "name": "Berlin Hbf (S-Bahn)"
+        },
+        "tripIdentifiers": {
+            "db": "2|#VN#1#ST#1733779122#PI#0#ZI#345355#TA#1#DA#141224#1S#8089083#1T#1628#LS#8089181#LT#1741#PU#80#RT#1#CA#s#ZE#3#ZB#S      3#PC#4#FR#8089083#FT#1628#TO#8089181#TT#1741#"
         }
     },
     {
@@ -114,6 +129,9 @@
                 "db": "730749"
             },
             "name": "Berlin Hauptbahnhof (S+U), Berlin"
+        },
+        "tripIdentifiers": {
+            "db": "2|#VN#1#ST#1733779122#PI#0#ZI#1195698#TA#14#DA#141224#1S#730740#1T#1648#LS#732675#LT#1736#PU#80#RT#1#CA#STR#ZE#M10#ZB#STR  M10#PC#8#FR#730740#FT#1648#TO#732675#TT#1736#"
         }
     },
     {
@@ -132,6 +150,9 @@
                 "db": "730749"
             },
             "name": "Berlin Hauptbahnhof (S+U), Berlin"
+        },
+        "tripIdentifiers": {
+            "db": "2|#VN#1#ST#1733779122#PI#0#ZI#1203745#TA#36#DA#141224#1S#733140#1T#1558#LS#730759#LT#1659#PU#80#RT#1#CA#STR#ZE#M8#ZB#STR   M8#PC#8#FR#733140#FT#1558#TO#730759#TT#1659#"
         }
     },
     {
@@ -152,6 +173,9 @@
                 "ibnr": "8089021"
             },
             "name": "Berlin Hbf (S-Bahn)"
+        },
+        "tripIdentifiers": {
+            "db": "2|#VN#1#ST#1733779122#PI#0#ZI#351407#TA#1#DA#141224#1S#8089188#1T#1621#LS#8089184#LT#1732#PU#80#RT#1#CA#s#ZE#7#ZB#S      7#PC#4#FR#8089188#FT#1621#TO#8089184#TT#1732#"
         }
     },
     {
@@ -170,6 +194,9 @@
                 "db": "730749"
             },
             "name": "Berlin Hauptbahnhof (S+U), Berlin"
+        },
+        "tripIdentifiers": {
+            "db": "2|#VN#1#ST#1733779122#PI#0#ZI#1218766#TA#19#DA#141224#1S#732676#1T#1625#LS#730834#LT#1714#PU#80#RT#1#CA#Bus#ZE#142#ZB#Bus  142#PC#5#FR#732676#FT#1625#TO#730834#TT#1714#"
         }
     },
     {
@@ -190,6 +217,9 @@
                 "ibnr": "8089021"
             },
             "name": "Berlin Hbf (S-Bahn)"
+        },
+        "tripIdentifiers": {
+            "db": "2|#VN#1#ST#1733779122#PI#0#ZI#350082#TA#4#DA#141224#1S#8089184#1T#1621#LS#8089188#LT#1734#PU#80#RT#1#CA#s#ZE#7#ZB#S      7#PC#4#FR#8089184#FT#1621#TO#8089188#TT#1734#"
         }
     },
     {
@@ -211,6 +241,9 @@
                 "ibnr": "8011160"
             },
             "name": "Berlin Hbf"
+        },
+        "tripIdentifiers": {
+            "db": "2|#VN#1#ST#1733779122#PI#0#ZI#560396#TA#0#DA#141224#1S#8010224#1T#1512#LS#8010113#LT#1804#PU#80#RT#1#CA#DPN#ZE#73736#ZB#RE 73736#PC#3#FR#8010224#FT#1512#TO#8010113#TT#1804#"
         }
     },
     {
@@ -229,6 +262,9 @@
                 "db": "730749"
             },
             "name": "Berlin Hauptbahnhof (S+U), Berlin"
+        },
+        "tripIdentifiers": {
+            "db": "2|#VN#1#ST#1733779122#PI#0#ZI#1184759#TA#0#DA#141224#1S#730749#1T#1658#LS#733250#LT#1739#PU#80#RT#1#CA#U#ZE#5#ZB#U      5#PC#7#FR#730749#FT#1658#TO#733250#TT#1739#"
         }
     },
     {
@@ -247,6 +283,9 @@
                 "db": "730749"
             },
             "name": "Berlin Hauptbahnhof (S+U), Berlin"
+        },
+        "tripIdentifiers": {
+            "db": "2|#VN#1#ST#1733779122#PI#0#ZI#1219601#TA#2#DA#141224#1S#732676#1T#1631#LS#730834#LT#1710#PU#80#RT#1#CA#Bus#ZE#147#ZB#Bus  147#PC#5#FR#732676#FT#1631#TO#730834#TT#1710#"
         }
     },
     {
@@ -270,6 +309,9 @@
                 "ibnr": "8098160"
             },
             "name": "Berlin Hbf"
+        },
+        "tripIdentifiers": {
+            "db": "2|#VN#1#ST#1733779122#PI#0#ZI#222190#TA#0#DA#141224#1S#8098160#1T#1726#LS#8500010#LT#10105#PU#80#RT#1#CA#ICE#ZE#273#ZB#ICE  273#PC#0#FR#8098160#FT#1726#TO#8500010#TT#10105#"
         }
     }
 ]

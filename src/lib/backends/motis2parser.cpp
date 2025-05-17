@@ -317,6 +317,7 @@ std::vector<Stopover> Motis2Parser::parseStopTimes(const QByteArray &data)
 
         const auto hasRealTime = stop.value("realTime"_L1).toBool();
         auto s = parsePlace(stop.value("place"_L1).toObject(), hasRealTime);
+        s.setTripIdentifier(m_locIdentifierType, stop.value("tripId"_L1).toString());
         s.setRoute(route);
         result.push_back(std::move(s));
     }

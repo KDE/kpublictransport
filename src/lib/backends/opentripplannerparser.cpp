@@ -342,6 +342,7 @@ static QDateTime parseDepartureDateTime(qint64 baseTime, const QJsonValue &value
 Stopover OpenTripPlannerParser::parseDeparture(const QJsonObject &obj) const
 {
     Stopover dep;
+    dep.setTripIdentifier(m_identifierType, obj.value("trip"_L1).toObject().value("id"_L1).toString());
     const auto baseTime = obj.value("serviceDay"_L1).toInteger();
     dep.setScheduledArrivalTime(parseDepartureDateTime(baseTime, obj.value("scheduledArrival"_L1)));
     dep.setScheduledDepartureTime(parseDepartureDateTime(baseTime, obj.value("scheduledDeparture"_L1)));

@@ -42,6 +42,7 @@ query departures(
               realtimeDeparture
               realtime
               trip {
+                id: gtfsId
                 tripHeadsign
                 route {
                   type

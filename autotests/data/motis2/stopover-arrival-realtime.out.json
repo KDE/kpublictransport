@@ -20,6 +20,9 @@
             "longitude": 7.9878373,
             "name": "Brig, Bahnhof",
             "region": "CH-VS"
+        },
+        "tripIdentifiers": {
+            "motis": "20241106_16:41_ch-opentransportdataswiss_96.TA.96-666-j24-1.3.R"
         }
     },
     {
@@ -43,6 +46,9 @@
             "longitude": 7.9878373,
             "name": "Brig, Bahnhof",
             "region": "CH-VS"
+        },
+        "tripIdentifiers": {
+            "motis": "20241106_16:44_ch-opentransportdataswiss_50.TA.96-667-j24-1.2.R"
         }
     },
     {
@@ -66,6 +72,9 @@
             "longitude": 7.9878373,
             "name": "Brig, Bahnhof",
             "region": "CH-VS"
+        },
+        "tripIdentifiers": {
+            "motis": "20241106_16:45_ch-opentransportdataswiss_79.TA.96-654-j24-1.4.R"
         }
     },
     {
@@ -89,6 +98,9 @@
             "longitude": 7.9878373,
             "name": "Brig, Bahnhof",
             "region": "CH-VS"
+        },
+        "tripIdentifiers": {
+            "motis": "20241106_15:50_ch-opentransportdataswiss_118.TA.96-651-j24-1.49.R"
         }
     },
     {
@@ -112,6 +124,9 @@
             "longitude": 7.9878373,
             "name": "Brig, Bahnhof",
             "region": "CH-VS"
+        },
+        "tripIdentifiers": {
+            "motis": "20241106_16:56_ch-opentransportdataswiss_118.TA.96-666-j24-1.3.R"
         }
     },
     {
@@ -136,6 +151,9 @@
             "longitude": 7.9878373,
             "name": "Brig, Bahnhof",
             "region": "CH-VS"
+        },
+        "tripIdentifiers": {
+            "motis": "20241106_16:59_ch-opentransportdataswiss_34.TA.96-679-j24-1.3.R"
         }
     },
     {
@@ -159,6 +177,9 @@
             "longitude": 7.9878373,
             "name": "Brig, Bahnhof",
             "region": "CH-VS"
+        },
+        "tripIdentifiers": {
+            "motis": "20241106_16:44_ch-opentransportdataswiss_53.TA.96-655-j24-1.15.R"
         }
     },
     {
@@ -182,6 +203,9 @@
             "longitude": 7.9878373,
             "name": "Brig, Bahnhof",
             "region": "CH-VS"
+        },
+        "tripIdentifiers": {
+            "motis": "20241106_16:59_ch-opentransportdataswiss_50.TA.96-668-j24-1.2.R"
         }
     },
     {
@@ -205,6 +229,9 @@
             "longitude": 7.9878373,
             "name": "Brig, Bahnhof",
             "region": "CH-VS"
+        },
+        "tripIdentifiers": {
+            "motis": "20241106_16:59_ch-opentransportdataswiss_34.TA.96-679-j24-1.3.R"
         }
     },
     {
@@ -229,6 +256,9 @@
             "longitude": 7.9878373,
             "name": "Brig, Bahnhof",
             "region": "CH-VS"
+        },
+        "tripIdentifiers": {
+            "motis": "20241106_16:35_ch-opentransportdataswiss_68.TA.96-650-j24-1.33.R"
         }
     }
 ]

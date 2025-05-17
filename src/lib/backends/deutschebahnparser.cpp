@@ -96,6 +96,7 @@ std::vector<Stopover> DeutscheBahnParser::parseStopovers(const QJsonArray &stops
     for (const auto &stopV : stopsArray) {
         const auto stopObj = stopV.toObject();
         Stopover stop;
+        stop.setTripIdentifier(hafasParser.locationIdentifierType(), stopObj.value("journeyId"_L1).toString());
 
         if (isDeparture) {
             stop.setScheduledDepartureTime(QDateTime::fromString(stopObj.value("zeit"_L1).toString(), Qt::ISODate));
