@@ -301,7 +301,7 @@ bool DeutscheBahnBackend::queryTrip(const TripRequest &request, TripReply *reply
     logRequest(request, netReq);
     auto netReply = nam->get(netReq);
     netReply->setParent(reply);
-    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply, tripId]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
@@ -313,6 +313,7 @@ bool DeutscheBahnBackend::queryTrip(const TripRequest &request, TripReply *reply
 
         const auto responseObj = QJsonDocument::fromJson(data).object();
         auto jny = DeutscheBahnParser::parseTrip(responseObj, m_parser);
+        jny.setIdentifier(locationIdentifierType(), tripId); // not contained in the response
         addResult(reply, this, std::move(jny));
     });
 
