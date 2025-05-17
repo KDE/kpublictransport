@@ -5,7 +5,9 @@
 */
 
 #include "stopover.h"
+
 #include "datatypes_p.h"
+#include "identifier_p.h"
 #include "json_p.h"
 #include "loadutil_p.h"
 #include "mergeutil_p.h"
@@ -16,6 +18,7 @@
 #include <QDateTime>
 #include <QDebug>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
@@ -34,6 +37,7 @@ public:
     std::vector<LoadInfo> loadInformation;
     Vehicle vehicleLayout;
     Platform platformLayout;
+    IdentifierSet tripIds;
 };
 }
 
@@ -172,6 +176,27 @@ Load::Category Stopover::maximumOccupancy() const
     });
 }
 
+QString Stopover::tripIdentifier(QAnyStringView identifierType) const
+{
+    return d->tripIds.identifier(identifierType);
+}
+
+bool Stopover::hasTripIdentifier(QAnyStringView identifierType) const
+{
+    return d->tripIds.hasIdentifier(identifierType);
+}
+
+void Stopover::setTripIdentifier(const QString &identifierType, const QString &id)
+{
+    d.detach();
+    d->tripIds.setIdentifier(identifierType, id);
+}
+
+bool Stopover::hasTripIdentifiers() const
+{
+    return !d->tripIds.isEmpty();
+}
+
 void Stopover::applyMetaData(bool download)
 {
     auto line = d->route.line();
@@ -190,6 +215,12 @@ bool Stopover::isSame(const Stopover &lhs, const Stopover &rhs)
         && MergeUtil::distance(lhs.scheduledArrivalTime(), rhs.scheduledArrivalTime()) < 60;
     if (!departureTimeMatch && !arrivalTimeMatch) {
         return false;
+    }
+
+    switch (lhs.d->tripIds.compare(rhs.d->tripIds)) {
+        case IdentifierSet::NotEqual: return false;
+        case IdentifierSet::Equal: return true; // same trip id and same time has to be the same stopover
+        case IdentifierSet::NoIntersection: break;
     }
 
     // same route would be sufficient, if that's not the case, look for other hints
@@ -233,6 +264,8 @@ Stopover Stopover::merge(const Stopover &lhs, const Stopover &rhs)
     stopover.d->loadInformation = LoadUtil::merge(lhs.d->loadInformation, rhs.d->loadInformation);
     stopover.d->vehicleLayout = Vehicle::merge(lhs.d->vehicleLayout, rhs.d->vehicleLayout);
     stopover.d->platformLayout = Platform::merge(lhs.d->platformLayout, rhs.d->platformLayout);
+    stopover.d.detach();
+    stopover.d->tripIds.merge(rhs.d->tripIds);
     return stopover;
 }
 
@@ -256,6 +289,9 @@ QJsonObject Stopover::toJson(const Stopover &stopover)
     if (!stopover.platformLayout().isEmpty()) {
         obj.insert(QLatin1String("platformLayout"), Platform::toJson(stopover.platformLayout()));
     }
+    if (!stopover.d->tripIds.isEmpty()) {
+        obj.insert("tripIdentifiers"_L1, stopover.d->tripIds.toJson());
+    }
 
     if (obj.size() == 1) { // only the disruption enum, ie. this is an empty object
         return {};
@@ -276,6 +312,7 @@ Stopover Stopover::fromJson(const QJsonObject &obj)
     stopover.setLoadInformation(LoadInfo::fromJson(obj.value(QLatin1String("load")).toArray()));
     stopover.setVehicleLayout(Vehicle::fromJson(obj.value(QLatin1String("vehicleLayout")).toObject()));
     stopover.setPlatformLayout(Platform::fromJson(obj.value(QLatin1String("platformLayout")).toObject()));
+    stopover.d->tripIds.fromJson(obj.value("tripIdentifiers"_L1).toObject());
     stopover.applyMetaData(false);
     return stopover;
 }
