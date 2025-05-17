@@ -36,6 +36,9 @@
             "region": "DE-NW",
             "type": "Stop"
         },
+        "tripIdentifiers": {
+            "unit-test": "1|119674|0|80|9022020"
+        },
         "vehicleLayout": {
             "direction": "UnknownDirection",
             "features": [
@@ -89,6 +92,9 @@
             "region": "DE-NW",
             "type": "Stop"
         },
+        "tripIdentifiers": {
+            "unit-test": "1|119090|2|80|9022020"
+        },
         "vehicleLayout": {
             "direction": "UnknownDirection",
             "features": [
@@ -141,6 +147,9 @@
             "name": "Köln Hbf",
             "region": "DE-NW",
             "type": "Stop"
+        },
+        "tripIdentifiers": {
+            "unit-test": "1|151165|1|80|9022020"
         },
         "vehicleLayout": {
             "direction": "UnknownDirection",

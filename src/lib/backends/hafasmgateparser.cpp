@@ -500,6 +500,7 @@ std::vector<Stopover> HafasMgateParser::parseStationBoardResponse(const QJsonObj
         const auto stbStop = jnyObj.value(QLatin1String("stbStop")).toObject();
 
         Stopover dep;
+        dep.setTripIdentifier(locationIdentifierType(), jnyObj.value("jid"_L1).toString());
         Route route;
         const auto prodIdx = jnyObj.value(QLatin1String("prodX")).toInt(-1);
         if (prodIdx >= 0 && (unsigned int)prodIdx < products.size()) {

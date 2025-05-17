@@ -19,6 +19,9 @@
             "latitude": 53.55281,
             "longitude": 9.934827999999998,
             "name": "Hamburg-Altona"
+        },
+        "tripIdentifiers": {
+            "motis": "20241024_15:55_de-DELFI_2647769386"
         }
     },
     {
@@ -41,6 +44,9 @@
             "latitude": 53.55281,
             "longitude": 9.934827999999998,
             "name": "Hamburg-Altona"
+        },
+        "tripIdentifiers": {
+            "motis": "20241024_18:29_de-DELFI_2647774017"
         }
     },
     {
@@ -63,6 +69,9 @@
             "latitude": 53.55281,
             "longitude": 9.934827999999998,
             "name": "Hamburg-Altona"
+        },
+        "tripIdentifiers": {
+            "motis": "20241024_18:35_de-DELFI_2647755443"
         }
     },
     {
@@ -86,6 +95,9 @@
             "latitude": 53.553073999999995,
             "longitude": 9.935232000000001,
             "name": "Hamburg-Altona"
+        },
+        "tripIdentifiers": {
+            "motis": "20241024_19:56_at-Railway-Current-Reference-Data_35.TA.12-D3-j24-1.3.R"
         }
     },
     {
@@ -109,6 +121,9 @@
             "latitude": 53.553073999999995,
             "longitude": 9.935232000000001,
             "name": "Hamburg-Altona"
+        },
+        "tripIdentifiers": {
+            "motis": "20241024_19:56_at-Railway-Current-Reference-Data_65.TA.12-D3-j24-1.6.R"
         }
     },
     {
@@ -131,6 +146,9 @@
             "latitude": 53.55286399999999,
             "longitude": 9.93534,
             "name": "Hamburg-Altona"
+        },
+        "tripIdentifiers": {
+            "motis": "20241024_19:56_de-DELFI_2555728100"
         }
     },
     {
@@ -153,6 +171,9 @@
             "latitude": 53.55286399999999,
             "longitude": 9.93534,
             "name": "Hamburg-Altona"
+        },
+        "tripIdentifiers": {
+            "motis": "20241024_19:56_de-DELFI_2647698702"
         }
     },
     {
@@ -175,6 +196,9 @@
             "latitude": 53.55286399999999,
             "longitude": 9.93534,
             "name": "Hamburg-Altona"
+        },
+        "tripIdentifiers": {
+            "motis": "20241024_19:56_de-DELFI_2555727935"
         }
     },
     {
@@ -197,6 +221,9 @@
             "latitude": 53.55286399999999,
             "longitude": 9.93534,
             "name": "Hamburg-Altona"
+        },
+        "tripIdentifiers": {
+            "motis": "20241024_19:56_de-DELFI_2647698445"
         }
     },
     {
@@ -219,6 +246,9 @@
             "latitude": 53.55281,
             "longitude": 9.934827999999998,
             "name": "Hamburg-Altona"
+        },
+        "tripIdentifiers": {
+            "motis": "20241024_20:29_de-DELFI_2647773965"
         }
     }
 ]
