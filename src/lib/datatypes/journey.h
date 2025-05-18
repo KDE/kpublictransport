@@ -282,7 +282,7 @@ public:
     [[nodiscard]] bool hasIdentifiers() const;
 
     /** Retrieve stopover at index @p idx. */
-    [[nodiscard]] Stopover stopover(qsizetype idx) const;
+    Q_INVOKABLE [[nodiscard]] KPublicTransport::Stopover stopover(qsizetype idx) const;
     /** Set the stopover at index @p idx.
      *  If @p idx is not a valid index nothing is done.
      */
