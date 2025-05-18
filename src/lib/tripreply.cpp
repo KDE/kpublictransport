@@ -84,20 +84,39 @@ qsizetype TripReply::journeySectionEnd() const
     return d->endIdx;
 }
 
+Stopover TripReply::stopover() const
+{
+    Q_D(const TripReply);
+    return Stopover::merge(d->trip.stopover(d->beginIdx), d->request.stopover());
+}
+
+qsizetype TripReply::stopoverIndex() const
+{
+    Q_D(const TripReply);
+    return d->beginIdx;
+}
+
 void TripReply::addResult(const AbstractBackend *backend, JourneySection &&journeySection)
 {
     Q_D(TripReply);
     JourneyUtil::propagateTimeZones(journeySection);
 
-    if (JourneySection::isSame(journeySection, d->trip)) {
-        d->trip = JourneySection::merge(d->trip, journeySection);
+    if (d->request.journeySection().mode() != JourneySection::Invalid) {
+        if (JourneySection::isSame(journeySection, d->trip)) {
+            d->trip = JourneySection::merge(d->trip, journeySection);
+        } else {
+            auto route = Route::merge(d->trip.route(), journeySection.route());
+            d->trip = journeySection;
+            d->trip.setRoute(route);
+        }
+        d->beginIdx = d->trip.indexOfStopover(d->request.journeySection().departure());
+        d->endIdx = d->trip.indexOfStopover(d->request.journeySection().arrival());
     } else {
-        auto route = Route::merge(d->trip.route(), journeySection.route());
-        d->trip = journeySection;
+        auto route = Route::merge(journeySection.route(), d->request.stopover().route());
+        d->trip = (d->trip.mode() == JourneySection::Invalid) ? journeySection : JourneySection::merge(d->trip, journeySection);
         d->trip.setRoute(route);
+        d->beginIdx = d->trip.indexOfStopover(d->request.stopover());
     }
-    d->beginIdx = d->trip.indexOfStopover(d->request.journeySection().departure());
-    d->endIdx = d->trip.indexOfStopover(d->request.journeySection().arrival());
 
     JourneyUtil::postProcessPath(d->trip);
     d->trip.applyMetaData(request().downloadAssets());

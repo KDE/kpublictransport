@@ -12,6 +12,7 @@ namespace KPublicTransport {
 
 class AbstractBackend;
 class JourneySection;
+class Stopover;
 class TripReplyPrivate;
 class TripReplyTest;
 class TripRequest;
@@ -23,6 +24,11 @@ class KPUBLICTRANSPORT_EXPORT TripReply : public Reply
 {
     Q_OBJECT
     Q_PROPERTY(KPublicTransport::JourneySection trip READ trip NOTIFY finished)
+    Q_PROPERTY(KPublicTransport::JourneySection journeySection READ journeySection NOTIFY finished)
+    Q_PROPERTY(qsizetype journeySectionBegin READ journeySectionBegin NOTIFY finished)
+    Q_PROPERTY(qsizetype journeySectionEnd READ journeySectionEnd NOTIFY finished)
+    Q_PROPERTY(KPublicTransport::Stopover stopover READ stopover NOTIFY finished)
+    Q_PROPERTY(qsizetype stopoverIndex READ stopoverIndex NOTIFY finished)
 
 public:
     ~TripReply() override;
@@ -46,6 +52,17 @@ public:
     [[nodiscard]] qsizetype journeySectionBegin() const;
     /** Index at which journeySection() ends in trip(). */
     [[nodiscard]] qsizetype journeySectionEnd() const;
+
+    /** An updated version of the Stopover instance used in the request.
+     *  This is only meaningful for TripRequests created from a Stopover.
+     *  @since 25.08
+     */
+    [[nodiscard]] Stopover stopover() const;
+
+    /** Index at which stopover() is placed inside trip().
+     *  @since 25.08
+     */
+    [[nodiscard]] qsizetype stopoverIndex() const;
 
 private:
     friend class Manager;

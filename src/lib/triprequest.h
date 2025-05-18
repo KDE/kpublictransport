@@ -18,6 +18,7 @@ class QJsonObject;
 namespace KPublicTransport {
 
 class JourneySection;
+class Stopover;
 class TripRequestPrivate;
 
 /** Request for a single trip. That is, one specific run along a route.
@@ -28,8 +29,15 @@ class TripRequestPrivate;
 class KPUBLICTRANSPORT_EXPORT TripRequest
 {
     KPUBLICTRANSPORT_GADGET(TripRequest)
-    /** A JourneySection for which the full trip is requested. */
+    /** A JourneySection for which the full trip is requested.
+     *  Mutually exclusive with stopover.
+     */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::JourneySection, journeySection, setJourneySection)
+    /** A Stopover for which the full trip is requested.
+     *  Mutually exclusive with journeySection.
+     *  @since 25.08
+     */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Stopover, stopover, setStopover)
     /** Identifiers of backends that should be queried.
      *  Settings this is only needed when you want explicit control over this, leaving
      *  this empty picks suitable backends automatically.
@@ -43,7 +51,11 @@ class KPUBLICTRANSPORT_EXPORT TripRequest
 
 public:
     /** Create a TripRequest for @p journeySection. */
-    TripRequest(const JourneySection &journeySection);
+    explicit TripRequest(const JourneySection &journeySection);
+    /** Create a TripRequest for @p stopover.
+     *  @since 25.08
+     */
+    explicit TripRequest(const Stopover &stopover);
 
     /** Returns @c true if this is a valid request, that is it has enough parameters set to perform a query. */
     [[nodiscard]] bool isValid() const;

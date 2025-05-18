@@ -374,6 +374,7 @@ bool OpenTripPlannerGraphQLBackend::queryTrip(const TripRequest &req, TripReply 
     if (tripId.isEmpty()) {
         return false;
     }
+    const auto dt = req.journeySection().mode() != JourneySection::Invalid ? req.journeySection().scheduledDepartureTime() : req.stopover().scheduledDepartureTime();
 
     auto gqlReq = graphQLRequest();
     if (const auto &f = graphQLPath(u"trip.graphql"_s); !f.isEmpty()) {
@@ -383,7 +384,7 @@ bool OpenTripPlannerGraphQLBackend::queryTrip(const TripRequest &req, TripReply 
         return false;
     }
     gqlReq.setVariable(u"id"_s, tripId);
-    gqlReq.setVariable(u"serviceDate"_s, req.journeySection().scheduledDepartureTime().date().toString("yyyyMMdd"_L1));
+    gqlReq.setVariable(u"serviceDate"_s, dt.date().toString("yyyyMMdd"_L1));
     if (isLoggingEnabled()) {
         logRequest(req, gqlReq.networkRequest(), gqlReq.rawData());
     }
