@@ -52,7 +52,7 @@ JourneySectionPage {
             } else {
                 errorMessage.text = reply.errorString;
             }
-            // TODO we'd need to delete reply here?
+            reply.destroy();
         });
     }
 

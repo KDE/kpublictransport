@@ -46,7 +46,7 @@ Kirigami.ApplicationWindow {
     Dialogs.FileDialog {
         id: fileDialog
         title: "Save Departure Data"
-        fileMode: Dialog.FileDialog.SaveFile
+        fileMode: Dialogs.FileDialog.SaveFile
         nameFilters: ["JSON files (*.json)"]
         onAccepted: ExampleUtil.saveTo(departureModel, fileDialog.selectedFile);
     }
@@ -72,13 +72,6 @@ Kirigami.ApplicationWindow {
     StopoverQueryModel {
         id: departureModel
         manager: ptMgr
-    }
-
-    Component {
-        id: vehicleLayoutPage
-        VehicleLayoutPage {
-            publicTransportManager: ptMgr
-        }
     }
 
     Component {
@@ -148,13 +141,6 @@ Kirigami.ApplicationWindow {
                             delay: departure.departureDelay
                             hasExpectedTime: departure.hasExpectedDepartureTime
                         }
-                        QQC2.Label {
-                            text: "<a href=\"#layout\">vehicle</a>"
-                            visible: departure.route.line.mode == Line.LongDistanceTrain || departure.route.line.mode == Line.Train || departure.route.name !== ""
-                            onLinkActivated: applicationWindow().pageStack.push(vehicleLayoutPage, {"departure": departure });
-                            Layout.fillWidth: true
-                            horizontalAlignment: Text.Right
-                        }
                     }
                     RowLayout {
                         QQC2.Label {
@@ -175,10 +161,6 @@ Kirigami.ApplicationWindow {
                             visible: departure.hasExpectedPlatform && departure.scheduledPlatform != departure.expectedPlatform
                             color: Kirigami.Theme.negativeTextColor
                         }
-                    }
-                    QQC2.Label {
-                        text: departure.route.line.operatorName
-                        visible: text !== ""
                     }
                     RowLayout {
                         Repeater {
@@ -217,6 +199,8 @@ Kirigami.ApplicationWindow {
                     }
                 }
             }
+
+            onClicked: applicationWindow().pageStack.push(detailsPage, { stopover: departure, backendIds: []/*, backendIds: backendBox.checked ? [ backendSelector.currentText ] : []*/, ptMgr: ptMgr });
         }
     }
 
@@ -225,6 +209,10 @@ Kirigami.ApplicationWindow {
         BackendPage {
             publicTransportManager: ptMgr
         }
+    }
+    Component {
+        id: detailsPage
+        StopoverDetailsPage {}
     }
 
     Component {

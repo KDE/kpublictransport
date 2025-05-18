@@ -7,7 +7,11 @@
         <file>departurequery.qml</file>
         <file>AttributionSheet.qml</file>
         <file>IndoorMapPage.qml</file>
+        <file>JourneySectionPage.qml</file>
+        <file>JourneySectionStopDelegate.qml</file>
+        <file>JourneySectionMap.qml</file>
         <file>LocationDetailsSheet.qml</file>
+        <file>StopoverDetailsPage.qml</file>
         <file>TestLocationsModel.qml</file>
         <file>VehicleLayoutPage.qml</file>
     </qresource>
