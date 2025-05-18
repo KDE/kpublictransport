@@ -48,6 +48,15 @@ public:
     /** Returns @c true if this is a valid request, that is it has enough parameters set to perform a query. */
     [[nodiscard]] bool isValid() const;
 
+    /** Returns the requested trip id for a given identifier type.
+     *  @since 25.08
+     */
+    [[nodiscard]] QString identifier(QAnyStringView identifierType) const;
+    /** Checks whether there is any trip identifier set.
+     *  @since 25.08
+     */
+    [[nodiscard]] bool hasIdentifiers() const;
+
     ///@cond internal
     static QJsonObject toJson(const TripRequest &req);
     ///@endcond

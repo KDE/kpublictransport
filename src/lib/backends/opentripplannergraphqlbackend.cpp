@@ -370,7 +370,7 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
 
 bool OpenTripPlannerGraphQLBackend::queryTrip(const TripRequest &req, TripReply *reply, QNetworkAccessManager *nam) const
 {
-    const auto tripId = req.journeySection().identifier(backendId());
+    const auto tripId = req.identifier(backendId());
     if (tripId.isEmpty()) {
         return false;
     }

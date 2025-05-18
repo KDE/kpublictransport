@@ -285,7 +285,7 @@ bool DeutscheBahnBackend::queryTrip(const TripRequest &request, TripReply *reply
         return HafasMgateBackend::queryTrip(request, reply, nam);
     }
 
-    const auto tripId = request.journeySection().identifier(locationIdentifierType());
+    const auto tripId = request.identifier(locationIdentifierType());
     if (tripId.isEmpty()) {
         return false;
     }

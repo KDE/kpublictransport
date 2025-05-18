@@ -41,6 +41,16 @@ bool TripRequest::isValid() const
     return d->journeySection.mode() != JourneySection::Invalid;
 }
 
+QString TripRequest::identifier(QAnyStringView identifierType) const
+{
+    return d->journeySection.identifier(identifierType);
+}
+
+bool TripRequest::hasIdentifiers() const
+{
+    return d->journeySection.hasIdentifiers();
+}
+
 QJsonObject TripRequest::toJson(const TripRequest &req)
 {
     QJsonObject obj = Json::toJson(req);

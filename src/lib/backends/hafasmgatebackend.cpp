@@ -359,7 +359,7 @@ bool HafasMgateBackend::queryLocation(const LocationRequest &req, LocationReply 
 
 bool HafasMgateBackend::queryTrip(const TripRequest &req, TripReply *reply, QNetworkAccessManager *nam) const
 {
-    const auto tripId = req.journeySection().identifier(locationIdentifierType());
+    const auto tripId = req.identifier(locationIdentifierType());
     if (tripId.isEmpty()) {
         return false;
     }

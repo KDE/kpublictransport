@@ -350,7 +350,7 @@ bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
 
 bool Motis2Backend::queryTrip(const TripRequest &req, TripReply *reply, QNetworkAccessManager *nam) const
 {
-    const auto tripId = req.journeySection().identifier(m_locationIdentifierType);
+    const auto tripId = req.identifier(m_locationIdentifierType);
     if (tripId.isEmpty()) {
         return false;
     }
