@@ -570,11 +570,11 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
                 }
 
                 if (bothLocationMatch) {
-                    if (!coverage.coversLocation(req.from()) || !coverage.coversLocation(req.to())) {
+                    if (!backend.coversLocation(req.from(), coverageType) || !backend.coversLocation(req.to(), coverageType)) {
                         return;
                     }
                 } else {
-                    if (!coverage.coversLocation(req.from()) && !coverage.coversLocation(req.to())) {
+                    if (!backend.coversLocation(req.from(), coverageType) && !backend.coversLocation(req.to(), coverageType)) {
                         return;
                     }
                 }
