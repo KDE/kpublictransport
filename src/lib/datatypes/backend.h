@@ -41,6 +41,12 @@ public:
     bool isSecure() const;
 
     Q_INVOKABLE KPublicTransport::CoverageArea coverageArea(KPublicTransport::CoverageArea::Type coverageType) const;
+
+    /** Checks whether the given location is covered by this backend
+     *  with at least the given coverage type @p coverageType, ie. this
+     *  also checks all better coverage types.
+     */
+    [[nodiscard]] bool coversLocation(const Location &loc, KPublicTransport::CoverageArea::Type coverageType) const;
 };
 
 }

@@ -42,6 +42,21 @@ CoverageArea Backend::coverageArea(CoverageArea::Type coverageType) const
     return d->coverage[coverageType];
 }
 
+bool Backend::coversLocation(const Location &loc, KPublicTransport::CoverageArea::Type coverageType) const
+{
+    for (const auto c : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
+        const auto cov = coverageArea(c);
+        if (!cov.isEmpty() && cov.coversLocation(loc)) {
+            return true;
+        }
+        if (c == coverageType) {
+            break;
+        }
+    }
+
+    return false;
+}
+
 const AbstractBackend* BackendPrivate::impl(const Backend &b)
 {
     return b.d->m_backendImpl.get();
