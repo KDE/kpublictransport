@@ -857,54 +857,22 @@ TripReply* Manager::queryTrip(const TripRequest &req) const
 
     d->loadNetworks();
 
-    // try to find a viable backend that can do a trip query directly
-    QSet<QString> triedBackends;
-    for (const auto coverageType : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
-        const auto checkBackend = [&](const Backend &backend, bool bothLocationMatch) {
-            if (triedBackends.contains(backend.identifier()) || d->shouldSkipBackend(backend, req)) {
-                return;
+    // no need for coverage-based checks here, queryTrip() is identifier-based
+    // we only need coverage-based backend selection for the journey query fallback,
+    // but queryJourney as called below does that for us
+    if (req.hasIdentifiers()) {
+        for (const auto &backend : d->m_backends) {
+            if (d->shouldSkipBackend(backend, req)) {
+                continue;
             }
-            const auto coverage = backend.coverageArea(coverageType);
-            if (coverage.isEmpty()) {
-                return;
-            }
-
-            if (bothLocationMatch) {
-                if (!coverage.coversLocation(req.journeySection().from()) || !coverage.coversLocation(req.journeySection().to())) {
-                    return;
-                }
-            } else {
-                if (!coverage.coversLocation(req.journeySection().from()) && !coverage.coversLocation(req.journeySection().to())) {
-                    return;
-                }
-            }
-
-            triedBackends.insert(backend.identifier());
-
             if (BackendPrivate::impl(backend)->queryTrip(req, reply, d->nam())) {
                 ++pendingOps;
             }
-        };
-
-        // look for coverage areas which contain both locations first
-        for (const auto &backend: d->m_backends) {
-            checkBackend(backend, true);
-        }
-        if (pendingOps) {
-            break;
-        }
-
-        // if we didn't find one, try with just a single one
-        for (const auto &backend: d->m_backends) {
-            checkBackend(backend, false);
-        }
-        if (pendingOps) {
-            break;
         }
     }
 
     // emulate a trip query via a journey query
-    if (pendingOps == 0) {
+    if (pendingOps == 0 && req.journeySection().mode() != JourneySection::Invalid) {
         JourneyRequest jnyReq(req.journeySection().from(), req.journeySection().to());
         // start searching slightly earlier, so leading walking section because our coordinates
         // aren't exactly at the right spot wont make the routing service consider the train we
