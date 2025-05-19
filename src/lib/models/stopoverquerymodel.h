@@ -55,7 +55,8 @@ public:
     Q_INVOKABLE void queryPrevious();
 
     enum Roles {
-        DepartureRole = Qt::UserRole
+        DepartureRole [[deprecated("Use StopoverRole instead")]] = Qt::UserRole,
+        StopoverRole,
     };
     Q_ENUM(Roles)
 

@@ -205,6 +205,7 @@ QVariant StopoverQueryModel::data(const QModelIndex& index, int role) const
 
     switch (role) {
         case DepartureRole:
+        case StopoverRole:
             return QVariant::fromValue(d->m_departures[index.row()]);
     }
 
@@ -215,6 +216,7 @@ QHash<int, QByteArray> StopoverQueryModel::roleNames() const
 {
     auto r = QAbstractListModel::roleNames();
     r.insert(DepartureRole, "departure");
+    r.insert(StopoverRole, "stopover");
     return r;
 }
 
