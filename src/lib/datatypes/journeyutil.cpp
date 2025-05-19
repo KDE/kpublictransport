@@ -93,9 +93,10 @@ void JourneyUtil::postProcessPath(JourneySection &section)
     }
 
     // remove implausible paths
+    // NOTE: circular lines have pointDist 0, so the heuristic doesn't work for those
     const auto pointDist = Location::distance(section.from(), section.to());
     const auto pathDist = section.path().distance();
-    if (pathDist > pointDist * 10) {
+    if (pathDist > pointDist * 10 && pointDist != 0) {
         qCDebug(Log) << "Dropping implausibly long path:" << pointDist << pathDist;
         section.setPath({});
     }
