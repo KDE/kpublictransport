@@ -558,7 +558,7 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
     // first time/direct query
     if (req.contexts().empty()) {
         QSet<QString> triedBackends;
-        bool foundNonGlobalCoverage = false;
+        bool foundSymmetricNonGlobalCoverage = false;
         for (const auto coverageType : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
             const auto checkBackend = [&](const Backend &backend, bool bothLocationMatch) {
                 if (triedBackends.contains(backend.identifier()) || d->shouldSkipBackend(backend, req)) {
@@ -580,7 +580,7 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
                 }
 
                 triedBackends.insert(backend.identifier());
-                foundNonGlobalCoverage |= !coverage.isGlobal();
+                foundSymmetricNonGlobalCoverage |= !coverage.isGlobal() && bothLocationMatch;
 
                 if (d->queryJourney(BackendPrivate::impl(backend), req, reply)) {
                     ++pendingOps;
@@ -591,7 +591,7 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
             for (const auto &backend: d->m_backends) {
                 checkBackend(backend, true);
             }
-            if (pendingOps && foundNonGlobalCoverage) {
+            if (pendingOps && foundSymmetricNonGlobalCoverage) {
                 break;
             }
 
@@ -599,7 +599,7 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
             for (const auto &backend: d->m_backends) {
                 checkBackend(backend, false);
             }
-            if (pendingOps && foundNonGlobalCoverage) {
+            if (pendingOps && foundSymmetricNonGlobalCoverage) {
                 break;
             }
         }
