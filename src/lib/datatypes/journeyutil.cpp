@@ -20,6 +20,9 @@
 
 using namespace KPublicTransport;
 
+// threshold under which a start/end path distance will considered to be a circular line
+constexpr inline auto CIRCULAR_PATH_THRESHOLD = 400;
+
 QDateTime JourneyUtil::firstTransportDeparture(const Journey &jny)
 {
     for (const auto &section : jny.sections()) {
@@ -96,7 +99,7 @@ void JourneyUtil::postProcessPath(JourneySection &section)
     // NOTE: circular lines have pointDist 0, so the heuristic doesn't work for those
     const auto pointDist = Location::distance(section.from(), section.to());
     const auto pathDist = section.path().distance();
-    if (pathDist > pointDist * 10 && pointDist != 0) {
+    if (pathDist > pointDist * 10 && pointDist > CIRCULAR_PATH_THRESHOLD) {
         qCDebug(Log) << "Dropping implausibly long path:" << pointDist << pathDist;
         section.setPath({});
     }
