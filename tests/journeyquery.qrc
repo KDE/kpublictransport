@@ -9,6 +9,7 @@
         <file>IndoorMapPage.qml</file>
         <file>JourneyMapPage.qml</file>
         <file>JourneySectionPage.qml</file>
+        <file>JourneySectionStopDelegate.qml</file>
         <file>JourneySectionMapPage.qml</file>
         <file>LocationDetailsSheet.qml</file>
         <file>PathPage.qml</file>
