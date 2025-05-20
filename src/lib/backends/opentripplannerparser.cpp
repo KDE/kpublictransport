@@ -328,11 +328,11 @@ OpenTripPlannerParser::RouteData OpenTripPlannerParser::detectAndParseRoute(cons
     return parseInlineRoute(obj);
 }
 
-static QDateTime parseDepartureDateTime(uint64_t baseTime, const QJsonValue &value)
+static QDateTime parseDepartureDateTime(qint64 baseTime, const QJsonValue &value)
 {
     if (value.isDouble()) { // encoded as seconds offset to baseTime
         // UNIX timestamp of midnight in local timezone + UNIX timestamp of local time
-        auto dt = QDateTime::fromSecsSinceEpoch(baseTime + value.toDouble());
+        auto dt = QDateTime::fromSecsSinceEpoch(baseTime + value.toInteger());
         dt = dt.toTimeZone(QTimeZone::UTC);
         return dt;
     }
@@ -342,14 +342,14 @@ static QDateTime parseDepartureDateTime(uint64_t baseTime, const QJsonValue &val
 Stopover OpenTripPlannerParser::parseDeparture(const QJsonObject &obj) const
 {
     Stopover dep;
-    const auto baseTime = obj.value(QLatin1String("serviceDay")).toDouble(); // ### 64bit
-    dep.setScheduledArrivalTime(parseDepartureDateTime(baseTime, obj.value(QLatin1String("scheduledArrival"))));
-    dep.setScheduledDepartureTime(parseDepartureDateTime(baseTime, obj.value(QLatin1String("scheduledDeparture"))));
-    if (obj.value(QLatin1String("realtime")).toBool()) {
-        dep.setExpectedArrivalTime(parseDepartureDateTime(baseTime, obj.value(QLatin1String("realtimeArrival"))));
-        dep.setExpectedDepartureTime(parseDepartureDateTime(baseTime, obj.value(QLatin1String("realtimeDeparture"))));
+    const auto baseTime = obj.value("serviceDay"_L1).toInteger();
+    dep.setScheduledArrivalTime(parseDepartureDateTime(baseTime, obj.value("scheduledArrival"_L1)));
+    dep.setScheduledDepartureTime(parseDepartureDateTime(baseTime, obj.value("scheduledDeparture"_L1)));
+    if (obj.value("realtime"_L1).toBool()) {
+        dep.setExpectedArrivalTime(parseDepartureDateTime(baseTime, obj.value("realtimeArrival"_L1)));
+        dep.setExpectedDepartureTime(parseDepartureDateTime(baseTime, obj.value("realtimeDeparture"_L1)));
     }
-    dep.setScheduledPlatform(obj.value(QLatin1String("stop")).toObject().value(QLatin1String("platformCode")).toString());
+    dep.setScheduledPlatform(obj.value("stop"_L1).toObject().value("platformCode"_L1).toString());
     auto routeData = detectAndParseRoute(obj);
     dep.setRoute(routeData.route);
     dep.setFeatures(std::move(routeData.features));
@@ -400,7 +400,7 @@ static QDateTime parseJourneyDateTime(const QJsonValue &val)
 {
     if (val.isDouble()) {
         // timestamp, as UTC value
-        auto dt = QDateTime::fromMSecsSinceEpoch(val.toDouble()); // ### sic! double to get 64 bit precision...
+        auto dt = QDateTime::fromMSecsSinceEpoch(val.toInteger());
         dt = dt.toTimeZone(QTimeZone::UTC);
         return dt;
     }
