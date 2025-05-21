@@ -10,6 +10,8 @@
 #include "featureutil_p.h"
 #include "mergeutil_p.h"
 
+#include <KLocalizedString>
+
 #include <QDebug>
 #include <QMetaEnum>
 #include <QVariant>
@@ -59,6 +61,27 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Sides, connectedS
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, QString, platformSectionName, setPlatformSectionName)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, KPublicTransport::Disruption::Effect, disruptionEffect, setDisruptionEffect)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, KPublicTransport::Load::Category, load, setLoad)
+
+QString VehicleSection::typeName() const
+{
+    switch (d->type) {
+        case UnknownType:
+        case Engine:
+        case PowerCar:
+        case ControlCar:
+        case PassengerCar:
+            break;
+        case SleepingCar:
+            return i18nc("train coach type", "Sleeping car");
+        case CouchetteCar:
+            return i18nc("train coach type", "Couchette car");
+        case RestaurantCar:
+            return i18nc("train coach type", "Restaurant car");
+        case CarTransportCar:
+            return i18nc("train coach type", "Car transport car");
+    }
+    return {};
+}
 
 const std::vector<KPublicTransport::Feature>& VehicleSection::sectionFeatures() const
 {

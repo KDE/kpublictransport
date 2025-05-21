@@ -55,6 +55,12 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
     /** Type of this vehicle section. */
     KPUBLICTRANSPORT_PROPERTY(Type, type, setType)
 
+    /** Translated humand readable name of vehicle section type.
+     *  @since 25.08
+     */
+    Q_PROPERTY(QString typeName READ typeName STORED false)
+    [[nodiscard]] QString typeName() const;
+
     /** Classes available in a vehicle section. */
     enum Class {
         UnknownClass = 0,
