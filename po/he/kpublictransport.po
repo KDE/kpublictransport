@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-05-14 00:42+0000\n"
-"PO-Revision-Date: 2025-05-03 14:42+0300\n"
+"PO-Revision-Date: 2025-05-20 18:08+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 25.04.0\n"
+"X-Generator: Poedit 3.6\n"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
@@ -173,25 +173,25 @@ msgstr "האיחוד האירופי"
 #, kde-format
 msgctxt "a train/bus journey canceled by its operator"
 msgid "Canceled"
-msgstr ""
+msgstr "בוטל"
 
 #: quick/ExpectedTimeLabel.qml:38
 #, kde-format
 msgctxt "duration of the delay"
 msgid "Delayed %1"
-msgstr ""
+msgstr "מתעכב ב־%1"
 
 #: quick/ExpectedTimeLabel.qml:40
 #, kde-format
 msgctxt "earlier arrival/departure"
 msgid "%1 earlier"
-msgstr ""
+msgstr "מקדים ב־%1s"
 
 #: quick/ExpectedTimeLabel.qml:42
 #, kde-format
 msgctxt "@info"
 msgid "On time"
-msgstr ""
+msgstr "בזמן"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format
