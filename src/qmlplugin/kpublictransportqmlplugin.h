@@ -237,7 +237,12 @@ struct PlatformForeign {
     QML_FOREIGN(KPublicTransport::Platform)
     QML_VALUE_TYPE(platform)
 };
-FOREIGN_ENUM_GADGET(Platform)
+
+struct PlatformSectionForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::PlatformSection)
+    QML_VALUE_TYPE(platformSection)
+};
 
 struct RentalVehicleForeign {
     Q_GADGET
