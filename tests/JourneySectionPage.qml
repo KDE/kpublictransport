@@ -18,7 +18,17 @@ Kirigami.Page {
 
     Component {
         id: sectionMapPage
-        JourneySectionMapPage {}
+        Kirigami.Page {
+            property alias journey: map.journey
+            topPadding: 0
+            bottomPadding: 0
+            leftPadding: 0
+            rightPadding: 0
+            JourneySectionMap {
+                id: map
+                anchors.fill: parent
+            }
+        }
     }
 
     ColumnLayout {
