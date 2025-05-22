@@ -114,16 +114,7 @@ Kirigami.ScrollablePage {
                 y: section.platformPositionBegin * vehicleView.fullLength
                 height: section.platformPositionEnd * vehicleView.fullLength - y
                 width: vehicleView.sectionWidth
-                textColor: Kirigami.Theme.textColor
-                firstClassBackground: Kirigami.Theme.positiveTextColor
-                secondClassBackground: Kirigami.Theme.focusColor
-                inaccessibleBackground: Kirigami.Theme.disabledTextColor
-                restaurantBackground: Kirigami.Theme.neutralTextColor
-
-                QQC2.Label {
-                    anchors.centerIn: parent
-                    text: section.name
-                }
+                highlighted: true
 
                 ColumnLayout {
                     anchors.verticalCenter: parent.verticalCenter
@@ -147,8 +138,8 @@ Kirigami.ScrollablePage {
                         text: delegateRoot.section.classesName
                     }
                     QQC2.Label {
-                        visible: section.type == KPublicTransport.VehicleSection.SleepingCar || section.type == KPublicTransport.VehicleSection.CouchetteCar
-                        text: section.type == KPublicTransport.VehicleSection.SleepingCar ? "Sleeping car" : "Couchette car"
+                        visible: delegateRoot.section.type == KPublicTransport.VehicleSection.SleepingCar || delegateRoot.section.type == KPublicTransport.VehicleSection.CouchetteCar
+                        text: delegateRoot.section.typeName
                     }
                     OccupancyIndicator {
                         occupancy: section.load
