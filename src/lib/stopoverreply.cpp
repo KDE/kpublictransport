@@ -153,7 +153,16 @@ void StopoverReply::addResult(const AbstractBackend *backend, std::vector<Stopov
 
     // augment line information
     for (auto &dep : res) {
-        dep.applyMetaData(request().downloadAssets());
+        if (dep.stopPoint().hasCoordinate()) {
+            dep.applyMetaData(request().downloadAssets());
+        } else {
+            // workaround for backends not delivering coordinates in stopover replies (e.g. DB)
+            auto route = dep.route();
+            auto line = route.line();
+            line.applyMetaData(request().stop(), request().downloadAssets());
+            route.setLine(line);
+            dep.setRoute(route);
+        }
     }
 
     // apply static attributions if @p backend contributed to the results
