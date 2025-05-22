@@ -109,6 +109,7 @@ Kirigami.ScrollablePage {
             Layout.fillWidth: true
             model: vehicleModel
             delegate: VehicleSectionItem {
+                id: delegateRoot
                 section: model.vehicleSection
                 y: section.platformPositionBegin * vehicleView.fullLength
                 height: section.platformPositionEnd * vehicleView.fullLength - y
@@ -142,16 +143,8 @@ Kirigami.ScrollablePage {
                         }
                     }
                     QQC2.Label {
-                        visible: section.classes != KPublicTransport.VehicleSection.UnknownClass
-                        text: {
-                            if (section.classes == KPublicTransport.VehicleSection.FirstClass)
-                                return "First class";
-                            if (section.classes == KPublicTransport.VehicleSection.SecondClass)
-                                return "Second class";
-                            if (section.classes == (KPublicTransport.VehicleSection.FirstClass | KPublicTransport.VehicleSection.SecondClass))
-                                return "First/second class";
-                            return "Unknown class";
-                        }
+                        visible: delegateRoot.section.classes != KPublicTransport.VehicleSection.UnknownClass
+                        text: delegateRoot.section.classesName
                     }
                     QQC2.Label {
                         visible: section.type == KPublicTransport.VehicleSection.SleepingCar || section.type == KPublicTransport.VehicleSection.CouchetteCar

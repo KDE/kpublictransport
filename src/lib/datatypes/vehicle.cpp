@@ -83,6 +83,21 @@ QString VehicleSection::typeName() const
     return {};
 }
 
+QString VehicleSection::classesName() const
+{
+    if (d->classes == VehicleSection::FirstClass) {
+        return i18nc("train seating class", "First class");
+    }
+    if (d->classes == VehicleSection::SecondClass) {
+        return i18nc("train seating class", "Second class");
+    }
+    if (d->classes == (VehicleSection::FirstClass | VehicleSection::SecondClass)) {
+        return i18nc("train seating class", "First/second class");
+    }
+
+    return {};
+}
+
 const std::vector<KPublicTransport::Feature>& VehicleSection::sectionFeatures() const
 {
     return d->sectionFeatures;

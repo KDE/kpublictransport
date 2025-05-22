@@ -75,6 +75,12 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
      */
     KPUBLICTRANSPORT_PROPERTY(Classes, classes, setClasses)
 
+    /** Translated human readable names of the seating classes of this section.
+     *  @since 25.08
+     */
+    Q_PROPERTY(QString classesName READ classesName STORED false)
+    [[nodiscard]] QString classesName() const;
+
     /** Features of this section, for consumption by QML. */
     Q_PROPERTY(std::vector<KPublicTransport::Feature> sectionFeatures READ sectionFeatures STORED false)
 
