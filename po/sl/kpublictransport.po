@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-14 00:42+0000\n"
+"POT-Creation-Date: 2025-05-22 00:41+0000\n"
 "PO-Revision-Date: 2025-05-14 07:04+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <kde-i18n-doc@kde.org>\n"
@@ -143,6 +143,34 @@ msgstr "Najeto skiro"
 msgctxt "rental vehicle type"
 msgid "Rented car"
 msgstr "Najeti avtomobil"
+
+#: lib/datatypes/vehicle.cpp:75
+#, kde-format
+msgctxt "train coach type"
+msgid "Sleeping car"
+msgstr ""
+
+#: lib/datatypes/vehicle.cpp:77
+#, fuzzy, kde-format
+#| msgctxt "rental vehicle type"
+#| msgid "Rented car"
+msgctxt "train coach type"
+msgid "Couchette car"
+msgstr "Najeti avtomobil"
+
+#: lib/datatypes/vehicle.cpp:79
+#, fuzzy, kde-format
+#| msgctxt "rental vehicle type"
+#| msgid "Rented car"
+msgctxt "train coach type"
+msgid "Restaurant car"
+msgstr "Najeti avtomobil"
+
+#: lib/datatypes/vehicle.cpp:81
+#, kde-format
+msgctxt "train coach type"
+msgid "Car transport car"
+msgstr ""
 
 #: quick/BackendPage.qml:21
 #, kde-format

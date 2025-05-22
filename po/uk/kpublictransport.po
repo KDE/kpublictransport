@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-14 00:42+0000\n"
+"POT-Creation-Date: 2025-05-22 00:41+0000\n"
 "PO-Revision-Date: 2025-05-14 09:19+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -142,6 +142,34 @@ msgstr "Орендований самокат"
 msgctxt "rental vehicle type"
 msgid "Rented car"
 msgstr "Орендований автомобіль"
+
+#: lib/datatypes/vehicle.cpp:75
+#, kde-format
+msgctxt "train coach type"
+msgid "Sleeping car"
+msgstr ""
+
+#: lib/datatypes/vehicle.cpp:77
+#, fuzzy, kde-format
+#| msgctxt "rental vehicle type"
+#| msgid "Rented car"
+msgctxt "train coach type"
+msgid "Couchette car"
+msgstr "Орендований автомобіль"
+
+#: lib/datatypes/vehicle.cpp:79
+#, fuzzy, kde-format
+#| msgctxt "rental vehicle type"
+#| msgid "Rented car"
+msgctxt "train coach type"
+msgid "Restaurant car"
+msgstr "Орендований автомобіль"
+
+#: lib/datatypes/vehicle.cpp:81
+#, kde-format
+msgctxt "train coach type"
+msgid "Car transport car"
+msgstr ""
 
 #: quick/BackendPage.qml:21
 #, kde-format

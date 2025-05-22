@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-14 00:42+0000\n"
-"PO-Revision-Date: 2025-04-28 16:26+0200\n"
+"POT-Creation-Date: 2025-05-22 00:41+0000\n"
+"PO-Revision-Date: 2025-05-14 14:34+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.04.0\n"
+"X-Generator: Lokalize 25.04.1\n"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
@@ -142,6 +142,34 @@ msgctxt "rental vehicle type"
 msgid "Rented car"
 msgstr "Automobile a noleggio"
 
+#: lib/datatypes/vehicle.cpp:75
+#, kde-format
+msgctxt "train coach type"
+msgid "Sleeping car"
+msgstr ""
+
+#: lib/datatypes/vehicle.cpp:77
+#, fuzzy, kde-format
+#| msgctxt "rental vehicle type"
+#| msgid "Rented car"
+msgctxt "train coach type"
+msgid "Couchette car"
+msgstr "Automobile a noleggio"
+
+#: lib/datatypes/vehicle.cpp:79
+#, fuzzy, kde-format
+#| msgctxt "rental vehicle type"
+#| msgid "Rented car"
+msgctxt "train coach type"
+msgid "Restaurant car"
+msgstr "Automobile a noleggio"
+
+#: lib/datatypes/vehicle.cpp:81
+#, kde-format
+msgctxt "train coach type"
+msgid "Car transport car"
+msgstr ""
+
 #: quick/BackendPage.qml:21
 #, kde-format
 msgid "Public Transport Information Sources"
@@ -172,25 +200,25 @@ msgstr "Unione Europea"
 #, kde-format
 msgctxt "a train/bus journey canceled by its operator"
 msgid "Canceled"
-msgstr ""
+msgstr "Annullato"
 
 #: quick/ExpectedTimeLabel.qml:38
 #, kde-format
 msgctxt "duration of the delay"
 msgid "Delayed %1"
-msgstr ""
+msgstr "In ritardo di %1"
 
 #: quick/ExpectedTimeLabel.qml:40
 #, kde-format
 msgctxt "earlier arrival/departure"
 msgid "%1 earlier"
-msgstr ""
+msgstr "%1 in anticipo"
 
 #: quick/ExpectedTimeLabel.qml:42
 #, kde-format
 msgctxt "@info"
 msgid "On time"
-msgstr ""
+msgstr "In orario"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format

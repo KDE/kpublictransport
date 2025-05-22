@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-14 00:42+0000\n"
-"PO-Revision-Date: 2025-01-04 15:06+0100\n"
-"Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
+"POT-Creation-Date: 2025-05-22 00:41+0000\n"
+"PO-Revision-Date: 2025-05-21 09:03+0200\n"
+"Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.gal>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.12.0\n"
+"X-Generator: Lokalize 25.04.1\n"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
@@ -142,61 +142,88 @@ msgctxt "rental vehicle type"
 msgid "Rented car"
 msgstr "Coche alugado"
 
+#: lib/datatypes/vehicle.cpp:75
+#, kde-format
+msgctxt "train coach type"
+msgid "Sleeping car"
+msgstr ""
+
+#: lib/datatypes/vehicle.cpp:77
+#, fuzzy, kde-format
+#| msgctxt "rental vehicle type"
+#| msgid "Rented car"
+msgctxt "train coach type"
+msgid "Couchette car"
+msgstr "Coche alugado"
+
+#: lib/datatypes/vehicle.cpp:79
+#, fuzzy, kde-format
+#| msgctxt "rental vehicle type"
+#| msgid "Rented car"
+msgctxt "train coach type"
+msgid "Restaurant car"
+msgstr "Coche alugado"
+
+#: lib/datatypes/vehicle.cpp:81
+#, kde-format
+msgctxt "train coach type"
+msgid "Car transport car"
+msgstr ""
+
 #: quick/BackendPage.qml:21
 #, kde-format
 msgid "Public Transport Information Sources"
-msgstr ""
+msgstr "Fontes de información de transporte público"
 
 #: quick/BackendPage.qml:98 quick/BackendPage.qml:110
 #, kde-format
 msgid "Global"
-msgstr ""
+msgstr "Global"
 
 #: quick/BackendPage.qml:100
 #, kde-format
 msgid "🇪🇺 European Union"
-msgstr ""
+msgstr "🇪🇺 Unión Europea"
 
 #: quick/BackendPage.qml:103
 #, kde-format
 msgctxt "emoji flag, country name"
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: quick/BackendPage.qml:112
 #, kde-format
 msgid "European Union"
-msgstr ""
+msgstr "Unión Europea"
 
 #: quick/ExpectedTimeLabel.qml:36
 #, kde-format
 msgctxt "a train/bus journey canceled by its operator"
 msgid "Canceled"
-msgstr ""
+msgstr "Cancelouse"
 
 #: quick/ExpectedTimeLabel.qml:38
 #, kde-format
 msgctxt "duration of the delay"
 msgid "Delayed %1"
-msgstr ""
+msgstr "Atrasouse %1"
 
 #: quick/ExpectedTimeLabel.qml:40
 #, kde-format
 msgctxt "earlier arrival/departure"
 msgid "%1 earlier"
-msgstr ""
+msgstr "%1 antes"
 
 #: quick/ExpectedTimeLabel.qml:42
 #, kde-format
 msgctxt "@info"
 msgid "On time"
-msgstr ""
+msgstr "Puntual"
 
 #: quick/FeatureIcon.qml:58
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "%1 (availability unknown)"
-msgstr "%1 (non dispoñíbel)"
+msgstr "%1 (dispoñibilidade descoñecida)"
 
 #: quick/FeatureIcon.qml:60
 #, kde-format
@@ -237,94 +264,95 @@ msgstr "Completa"
 #: quick/private/CountryComboBox.qml:47
 #, kde-format
 msgid "Select country"
-msgstr ""
+msgstr "Seleccione un país"
 
 #: quick/StopPickerPage.qml:34
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Clear History"
-msgstr ""
+msgstr "Borrar o historial"
 
 #: quick/StopPickerPage.qml:35
 #, kde-format
 msgctxt "@info"
 msgid "Do you really want to remove all previously searched locations?"
 msgstr ""
+"Seguro que quere retirar todas as localizacións buscadas anteriormente?"
 
 #: quick/StopPickerPage.qml:39
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
-msgstr ""
+msgstr "Retirar"
 
 #: quick/StopPickerPage.qml:53
 #, kde-format
 msgctxt "@action"
 msgid "Clear history"
-msgstr ""
+msgstr "Borrar o historial"
 
 #: quick/StopPickerPage.qml:62
 #, kde-format
 msgctxt "@action"
 msgid "Sort by name"
-msgstr ""
+msgstr "Ordenar por nome"
 
 #: quick/StopPickerPage.qml:70
 #, kde-format
 msgctxt "@action"
 msgid "Most recently used"
-msgstr ""
+msgstr "Uso máis recente"
 
 #: quick/StopPickerPage.qml:77
 #, kde-format
 msgctxt "@action"
 msgid "Most often used"
-msgstr ""
+msgstr "Uso máis habitual"
 
 #: quick/StopPickerPage.qml:165
 #, kde-format
 msgctxt "locality, region, country"
 msgid "%1, %2, %3"
-msgstr ""
+msgstr "%1, %2, %3"
 
 #: quick/StopPickerPage.qml:170
 #, kde-format
 msgctxt "locality, country"
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: quick/StopPickerPage.qml:174
 #, kde-format
 msgctxt "region, country"
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: quick/StopPickerPage.qml:197
 #, kde-format
 msgctxt "location name, locality, region, country"
 msgid "%1, %2, %3, %4"
-msgstr ""
+msgstr "%1, %2, %3, %4"
 
 #: quick/StopPickerPage.qml:203
 #, kde-format
 msgctxt "location name, locality, country"
 msgid "%1, %2, %3"
-msgstr ""
+msgstr "%1, %2, %3"
 
 #: quick/StopPickerPage.qml:208
 #, kde-format
 msgctxt "location name, region, country"
 msgid "%1, %2, %3"
-msgstr ""
+msgstr "%1, %2, %3"
 
 #: quick/StopPickerPage.qml:240
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove history entry"
-msgstr ""
+msgstr "Retirar a entrada do historial"
 
 #: quick/StopPickerPage.qml:297
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "No locations found"
-msgstr ""
+msgstr "Non se atoparon localizacións."
