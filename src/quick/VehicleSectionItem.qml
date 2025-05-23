@@ -128,8 +128,12 @@ KPublicTransport.StyledFrameSvgItem {
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: Kirigami.Units.iconSizes.small
             Layout.preferredHeight: visible ? Kirigami.Units.iconSizes.small : 0
-            source: root.section.type !== KPublicTransport.VehicleSection.ControlCar ? root.section.iconName : ""
-            color: root.textColor
+            source: {
+                if (root.section.disruptionEffect === KPublicTransport.Disruption.NoService)
+                    return "dialog-cancel"
+                root.section.type !== KPublicTransport.VehicleSection.ControlCar ? root.section.iconName : ""
+            }
+            color: root.section.disruptionEffect === KPublicTransport.Disruption.NoService ? Kirigami.Theme.negativeTextColor : root.textColor
             isMask: true
             visible: source ? true : false
         }
