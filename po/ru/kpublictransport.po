@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-22 00:41+0000\n"
+"POT-Creation-Date: 2025-05-23 00:41+0000\n"
 "PO-Revision-Date: 2025-03-18 10:05+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
@@ -169,6 +169,24 @@ msgstr "Арендный автомобиль"
 #, kde-format
 msgctxt "train coach type"
 msgid "Car transport car"
+msgstr ""
+
+#: lib/datatypes/vehicle.cpp:89
+#, kde-format
+msgctxt "train seating class"
+msgid "First class"
+msgstr ""
+
+#: lib/datatypes/vehicle.cpp:92
+#, kde-format
+msgctxt "train seating class"
+msgid "Second class"
+msgstr ""
+
+#: lib/datatypes/vehicle.cpp:95
+#, kde-format
+msgctxt "train seating class"
+msgid "First/second class"
 msgstr ""
 
 #: quick/BackendPage.qml:21

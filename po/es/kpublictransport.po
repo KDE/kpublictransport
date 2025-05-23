@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-22 00:41+0000\n"
-"PO-Revision-Date: 2025-05-18 13:48+0100\n"
+"POT-Creation-Date: 2025-05-23 00:41+0000\n"
+"PO-Revision-Date: 2025-05-22 12:48+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -148,28 +148,42 @@ msgstr "Automóvil alquilado"
 #, kde-format
 msgctxt "train coach type"
 msgid "Sleeping car"
-msgstr ""
+msgstr "Coche cama"
 
 #: lib/datatypes/vehicle.cpp:77
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented car"
+#, kde-format
 msgctxt "train coach type"
 msgid "Couchette car"
-msgstr "Automóvil alquilado"
+msgstr "Coche litera"
 
 #: lib/datatypes/vehicle.cpp:79
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented car"
+#, kde-format
 msgctxt "train coach type"
 msgid "Restaurant car"
-msgstr "Automóvil alquilado"
+msgstr "Coche restaurante"
 
 #: lib/datatypes/vehicle.cpp:81
 #, kde-format
 msgctxt "train coach type"
 msgid "Car transport car"
+msgstr "Coche de transporte de autos"
+
+#: lib/datatypes/vehicle.cpp:89
+#, kde-format
+msgctxt "train seating class"
+msgid "First class"
+msgstr ""
+
+#: lib/datatypes/vehicle.cpp:92
+#, kde-format
+msgctxt "train seating class"
+msgid "Second class"
+msgstr ""
+
+#: lib/datatypes/vehicle.cpp:95
+#, kde-format
+msgctxt "train seating class"
+msgid "First/second class"
 msgstr ""
 
 #: quick/BackendPage.qml:21

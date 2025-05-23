@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-22 00:41+0000\n"
-"PO-Revision-Date: 2025-05-14 03:38+0200\n"
+"POT-Creation-Date: 2025-05-23 00:41+0000\n"
+"PO-Revision-Date: 2025-05-22 04:08+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -147,28 +147,42 @@ msgstr "ნაქირავები მანქანა"
 #, kde-format
 msgctxt "train coach type"
 msgid "Sleeping car"
-msgstr ""
+msgstr "საძილე მანქანა"
 
 #: lib/datatypes/vehicle.cpp:77
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented car"
+#, kde-format
 msgctxt "train coach type"
 msgid "Couchette car"
-msgstr "ნაქირავები მანქანა"
+msgstr "საძილე ვაგონიანი მანქანა"
 
 #: lib/datatypes/vehicle.cpp:79
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented car"
+#, kde-format
 msgctxt "train coach type"
 msgid "Restaurant car"
-msgstr "ნაქირავები მანქანა"
+msgstr "რესტორანი მანქანა"
 
 #: lib/datatypes/vehicle.cpp:81
 #, kde-format
 msgctxt "train coach type"
 msgid "Car transport car"
+msgstr "მანქანის სატრანსპორტო მანქანა"
+
+#: lib/datatypes/vehicle.cpp:89
+#, kde-format
+msgctxt "train seating class"
+msgid "First class"
+msgstr ""
+
+#: lib/datatypes/vehicle.cpp:92
+#, kde-format
+msgctxt "train seating class"
+msgid "Second class"
+msgstr ""
+
+#: lib/datatypes/vehicle.cpp:95
+#, kde-format
+msgctxt "train seating class"
+msgid "First/second class"
 msgstr ""
 
 #: quick/BackendPage.qml:21
