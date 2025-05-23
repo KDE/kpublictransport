@@ -108,45 +108,13 @@ Kirigami.ScrollablePage {
             id: vehicleRepeater
             Layout.fillWidth: true
             model: vehicleModel
-            delegate: VehicleSectionItem {
+            delegate: VehicleSectionDelegate {
                 id: delegateRoot
-                section: model.vehicleSection
-                y: section.platformPositionBegin * vehicleView.fullLength
-                height: section.platformPositionEnd * vehicleView.fullLength - y
+                y: delegateRoot.vehicleSection.platformPositionBegin * vehicleView.fullLength
+                height: delegateRoot.vehicleSection.platformPositionEnd * vehicleView.fullLength - y
                 width: vehicleView.sectionWidth
                 highlighted: true
-
-                ColumnLayout {
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.right
-                    anchors.leftMargin: Kirigami.Units.largeSpacing
-                    spacing: Kirigami.Units.smallSpacing
-
-                    RowLayout {
-                        spacing: Kirigami.Units.largeSpacing
-                        Repeater {
-                            model: section.sectionFeatures
-                            delegate: FeatureIcon {
-                                feature: modelData
-                                Layout.preferredHeight: Kirigami.Units.iconSizes.small
-                                Layout.preferredWidth: Kirigami.Units.iconSizes.small
-                            }
-                        }
-                    }
-                    QQC2.Label {
-                        visible: delegateRoot.section.classes != KPublicTransport.VehicleSection.UnknownClass
-                        text: delegateRoot.section.classesName
-                    }
-                    QQC2.Label {
-                        visible: delegateRoot.section.type == KPublicTransport.VehicleSection.SleepingCar || delegateRoot.section.type == KPublicTransport.VehicleSection.CouchetteCar
-                        text: delegateRoot.section.typeName
-                    }
-                    OccupancyIndicator {
-                        occupancy: section.load
-                        Layout.preferredHeight: Kirigami.Units.iconSizes.small
-                        Layout.preferredWidth: Kirigami.Units.iconSizes.small
-                    }
-                }
+                onTapped: console.log(delegateRoot.vehicleSection.name)
             }
         }
 

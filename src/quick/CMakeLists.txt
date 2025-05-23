@@ -32,6 +32,7 @@ ecm_target_qml_sources(kpublictransportquickplugin SOURCES
     StopPickerPage.qml
     TransportIcon.qml
     TransportNameControl.qml
+    VehicleSectionDelegate.qml
     VehicleSectionItem.qml
 )
 
