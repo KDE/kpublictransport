@@ -108,6 +108,10 @@ bool Motis2Backend::queryLocation(const LocationRequest &req, LocationReply *rep
     } else {
         query.addQueryItem(u"text"_s, req.name());
         query.addQueryItem(u"language"_s, preferredLanguage());
+        if (req.types() == Location::Stop) {
+            query.addQueryItem(u"type"_s, u"STOP"_s);
+        }
+
         netReply = makeRequest(req, reply, "geocode"_L1, query, nam);
     }
 
