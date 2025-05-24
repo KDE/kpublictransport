@@ -86,6 +86,13 @@ QString Location::region() const
 void Location::setCountry(const QString &countryCode)
 {
     d.detach();
+    if (countryCode.size() != 2 || std::ranges::any_of(countryCode, [](QChar c) { return c.row() != 0 || !c.isLetter() || !c.isUpper(); })) {
+        const auto c = KCountry::fromName(countryCode);
+        if (c.isValid()) {
+            d->country = c.alpha2();
+            return;
+        }
+    }
     d->country = countryCode;
 }
 
