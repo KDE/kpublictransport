@@ -361,7 +361,11 @@ std::vector<Location> Motis2Parser::parseLocations(const QByteArray &data) const
         int cityLevel = std::numeric_limits<int>::max();
         for (const auto &areaV : areas) {
             const auto area = areaV.toObject();
-            if (const auto level = area.value("adminLevel"_L1).toInt(); level >= 8 && level < cityLevel) {
+            const auto level = area.value("adminLevel"_L1).toInt();
+            if (level == 2) {
+                l.setCountry(area.value("name"_L1).toString());
+            }
+            if (level >= 8 && level < cityLevel) {
                 // TODO needs a proper country-specific admin-level mapping, for now taken from Motis v1 parser
                 // see https://wiki.openstreetmap.org/wiki/Key:admin_level
                 cityLevel = level;
