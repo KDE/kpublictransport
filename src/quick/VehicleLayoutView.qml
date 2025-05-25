@@ -31,7 +31,8 @@ Item {
 
     // internal
     readonly property real fullLength: model.platform.hasAbsoluteLength ? model.platform.length * 3.5 : 1600 // full length of the platform display
-    height: fullLength
+    readonly property real directionIndicatorSize: root.model.vehicle.direction === KPublicTransport.Vehicle.UnknownDirection ? 0 : (Kirigami.Units.iconSizes.small + Kirigami.Units.largeSpacing)
+    height: fullLength + 2 * directionIndicatorSize
     implicitHeight: height
 
     Repeater {
@@ -43,7 +44,7 @@ Item {
             required property int index
             property alias section: platformDelegateRoot.modelData
             width: parent.width
-            y: section.begin * root.fullLength
+            y: section.begin * root.fullLength + root.directionIndicatorSize
             height: section.end * root.fullLength - y
 
             Kirigami.Separator {
@@ -72,7 +73,7 @@ Item {
         width: Kirigami.Units.iconSizes.small
         height: width
         x: root.sectionWidth / 2 - width / 2
-        y: root.model.vehicle.platformPositionBegin * root.fullLength - height - Kirigami.Units.largeSpacing
+        y: root.model.vehicle.platformPositionBegin * root.fullLength - height - Kirigami.Units.largeSpacing + root.directionIndicatorSize
     }
     Repeater {
         id: vehicleRepeater
@@ -88,8 +89,8 @@ Item {
                 return section.name === root.highlightedVehicleSection
             }
 
-            y: delegateRoot.vehicleSection.platformPositionBegin * root.fullLength
-            height: delegateRoot.vehicleSection.platformPositionEnd * root.fullLength - y
+            y: delegateRoot.vehicleSection.platformPositionBegin * root.fullLength + root.directionIndicatorSize
+            height: (delegateRoot.vehicleSection.platformPositionEnd - delegateRoot.vehicleSection.platformPositionBegin) * root.fullLength
             width: root.sectionWidth
 
             onTapped: root.vehicleSectionTapped(delegateRoot.vehicleSection)
@@ -107,6 +108,6 @@ Item {
         width: Kirigami.Units.iconSizes.small
         height: width
         x: root.sectionWidth / 2 - width / 2
-        y: root.model.vehicle.platformPositionEnd * root.fullLength + Kirigami.Units.largeSpacing
+        y: root.model.vehicle.platformPositionEnd * root.fullLength + Kirigami.Units.largeSpacing + root.directionIndicatorSize
     }
 }
