@@ -147,6 +147,29 @@ private Q_SLOTS:
         QVERIFY(!resultJson.isEmpty());
         QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));
     }
+
+    void testParseTrip_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("outFileName");
+
+        QTest::newRow("limited-entry-exit")
+            << QStringLiteral(SOURCE_DIR "/data/motis2/trip-limited-entry-exit.in.json")
+            << QStringLiteral(SOURCE_DIR "/data/motis2/trip-limited-entry-exit.out.json");
+    }
+
+    void testParseTrip()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, outFileName);
+
+        Motis2Parser p(u"motis"_s);
+        const auto result = p.parseItinerary(QJsonDocument::fromJson(Test::readFile(inFileName)).object());
+        const auto resultJson = Journey::toJson(result);
+        const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).object();
+        QVERIFY(!resultJson.isEmpty());
+        QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));
+    }
 };
 
 QTEST_GUILESS_MAIN(Motis2ParserTest)

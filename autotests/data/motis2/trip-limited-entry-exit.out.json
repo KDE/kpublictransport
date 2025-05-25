@@ -1,0 +1,432 @@
+{
+    "sections": [
+        {
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "expectedArrivalTime": "2025-05-25T18:57:00Z",
+                "scheduledArrivalTime": "2025-05-25T18:57:00Z",
+                "stopPoint": {
+                    "country": "DE",
+                    "floorLevel": 0,
+                    "identifier": {
+                        "motis": "de-DELFI_de:02000:8002553:3:255305"
+                    },
+                    "latitude": 53.55281,
+                    "longitude": 9.934827999999998,
+                    "name": "Hamburg-Altona",
+                    "type": "Stop"
+                }
+            },
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "expectedDepartureTime": "2025-05-25T07:35:00Z",
+                "route": {
+                    "direction": "Hamburg-Altona",
+                    "line": {
+                        "mode": "LongDistanceTrain",
+                        "name": "ICE",
+                        "operatorName": "Österreichische Bundesbahnen"
+                    }
+                },
+                "scheduledDepartureTime": "2025-05-25T07:35:00Z",
+                "stopPoint": {
+                    "country": "AT",
+                    "floorLevel": 1,
+                    "identifier": {
+                        "motis": "de-DELFI_at:49:1349"
+                    },
+                    "latitude": 48.185100000000006,
+                    "longitude": 16.377113,
+                    "name": "Wien Hauptbahnhof",
+                    "type": "Stop"
+                }
+            },
+            "identifiers": {
+                "motis": "20250525_09:35_de-DELFI_2832676329"
+            },
+            "intermediateStops": [
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-05-25T07:40:00Z",
+                    "expectedDepartureTime": "2025-05-25T07:42:00Z",
+                    "scheduledArrivalTime": "2025-05-25T07:40:00Z",
+                    "scheduledDepartureTime": "2025-05-25T07:42:00Z",
+                    "stopPoint": {
+                        "country": "AT",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "de-DELFI_000008100514"
+                        },
+                        "latitude": 48.17445,
+                        "longitude": 16.333088000000004,
+                        "name": "Wien Meidling",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-05-25T08:40:00Z",
+                    "expectedDepartureTime": "2025-05-25T08:46:00Z",
+                    "scheduledArrivalTime": "2025-05-25T08:40:00Z",
+                    "scheduledDepartureTime": "2025-05-25T08:46:00Z",
+                    "stopPoint": {
+                        "country": "AT",
+                        "floorLevel": 1,
+                        "identifier": {
+                            "motis": "de-DELFI_at:43:4848"
+                        },
+                        "latitude": 48.20827500000001,
+                        "longitude": 15.624683,
+                        "name": "St Pölten Hauptbahnhof",
+                        "region": "AT-3",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-05-25T09:32:00Z",
+                    "expectedDepartureTime": "2025-05-25T09:34:00Z",
+                    "scheduledArrivalTime": "2025-05-25T09:32:00Z",
+                    "scheduledDepartureTime": "2025-05-25T09:34:00Z",
+                    "stopPoint": {
+                        "country": "AT",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "de-DELFI_000008100013"
+                        },
+                        "latitude": 48.29018000000001,
+                        "longitude": 14.292131,
+                        "name": "Linz Hbf",
+                        "region": "AT-4",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-05-25T10:31:00Z",
+                    "expectedDepartureTime": "2025-05-25T10:33:00Z",
+                    "expectedPlatform": "2",
+                    "scheduledArrivalTime": "2025-05-25T10:31:00Z",
+                    "scheduledDepartureTime": "2025-05-25T10:33:00Z",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "de-DELFI_de:09262:156:2:2"
+                        },
+                        "latitude": 48.57381,
+                        "longitude": 13.450304000000001,
+                        "name": "Passau Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NoService",
+                    "expectedArrivalTime": "2025-05-25T10:58:00Z",
+                    "expectedDepartureTime": "2025-05-25T10:59:00Z",
+                    "expectedPlatform": "4",
+                    "scheduledArrivalTime": "2025-05-25T10:58:00Z",
+                    "scheduledDepartureTime": "2025-05-25T10:59:00Z",
+                    "scheduledPlatform": "4",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "de-DELFI_de:09271:4445:4:1"
+                        },
+                        "latitude": 48.77957000000001,
+                        "longitude": 12.863830000000002,
+                        "name": "Plattling",
+                        "region": "DE-BY",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-05-25T11:10:00Z",
+                    "expectedDepartureTime": "2025-05-25T11:12:00Z",
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": "2025-05-25T11:10:00Z",
+                    "scheduledDepartureTime": "2025-05-25T11:12:00Z",
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "de-DELFI_de:09263:2600:2:3"
+                        },
+                        "latitude": 48.876938,
+                        "longitude": 12.574492000000001,
+                        "name": "Straubing",
+                        "region": "DE-BY",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-05-25T11:31:00Z",
+                    "expectedDepartureTime": "2025-05-25T11:33:00Z",
+                    "expectedPlatform": "5",
+                    "scheduledArrivalTime": "2025-05-25T11:31:00Z",
+                    "scheduledDepartureTime": "2025-05-25T11:33:00Z",
+                    "scheduledPlatform": "5",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "de-DELFI_de:09362:11090:42:47"
+                        },
+                        "latitude": 49.011739999999996,
+                        "longitude": 12.099741,
+                        "name": "Regensburg Hbf",
+                        "region": "DE-BY",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-05-25T12:30:00Z",
+                    "expectedDepartureTime": "2025-05-25T12:36:00Z",
+                    "expectedPlatform": "7",
+                    "scheduledArrivalTime": "2025-05-25T12:30:00Z",
+                    "scheduledDepartureTime": "2025-05-25T12:36:00Z",
+                    "scheduledPlatform": "7",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 1,
+                        "identifier": {
+                            "motis": "de-DELFI_de:09564:510:5:7"
+                        },
+                        "latitude": 49.44541,
+                        "longitude": 11.082291,
+                        "name": "Nürnberg Hbf",
+                        "region": "DE-BY",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-05-25T13:27:00Z",
+                    "expectedDepartureTime": "2025-05-25T13:29:00Z",
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": "2025-05-25T13:27:00Z",
+                    "scheduledDepartureTime": "2025-05-25T13:29:00Z",
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "de-DELFI_de:09463:72000:2:3"
+                        },
+                        "latitude": 50.263447,
+                        "longitude": 10.957201,
+                        "name": "Coburg",
+                        "region": "DE-BY",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-05-25T14:02:00Z",
+                    "expectedDepartureTime": "2025-05-25T14:05:00Z",
+                    "scheduledArrivalTime": "2025-05-25T14:02:00Z",
+                    "scheduledDepartureTime": "2025-05-25T14:05:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 1,
+                        "identifier": {
+                            "motis": "de-DELFI_de:16051:8010101"
+                        },
+                        "latitude": 50.97235500000001,
+                        "longitude": 11.037992999999998,
+                        "name": "Erfurt Hbf",
+                        "region": "DE-TH",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-05-25T14:38:00Z",
+                    "expectedDepartureTime": "2025-05-25T14:41:00Z",
+                    "scheduledArrivalTime": "2025-05-25T14:38:00Z",
+                    "scheduledDepartureTime": "2025-05-25T14:41:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "de-DELFI_de:15002:8010159"
+                        },
+                        "latitude": 51.47751,
+                        "longitude": 11.987085,
+                        "name": "Halle(Saale)Hbf",
+                        "region": "DE-ST",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-05-25T16:02:00Z",
+                    "expectedDepartureTime": "2025-05-25T16:08:00Z",
+                    "expectedPlatform": "7",
+                    "scheduledArrivalTime": "2025-05-25T16:02:00Z",
+                    "scheduledDepartureTime": "2025-05-25T16:08:00Z",
+                    "scheduledPlatform": "7",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "de-DELFI_de:11000:900058101:4:56"
+                        },
+                        "latitude": 52.475433,
+                        "longitude": 13.365603000000002,
+                        "name": "S Südkreuz Bhf (Berlin)",
+                        "region": "DE-BE",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-05-25T16:13:00Z",
+                    "expectedDepartureTime": "2025-05-25T16:18:00Z",
+                    "expectedPlatform": "5",
+                    "scheduledArrivalTime": "2025-05-25T16:13:00Z",
+                    "scheduledDepartureTime": "2025-05-25T16:18:00Z",
+                    "scheduledPlatform": "5",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": -2,
+                        "identifier": {
+                            "motis": "de-DELFI_de:11000:900003200:3:54"
+                        },
+                        "latitude": 52.52511000000001,
+                        "longitude": 13.369472000000002,
+                        "name": "S+U Berlin Hauptbahnhof",
+                        "region": "DE-BE",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-05-25T16:33:00Z",
+                    "expectedDepartureTime": "2025-05-25T16:35:00Z",
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": "2025-05-25T16:33:00Z",
+                    "scheduledDepartureTime": "2025-05-25T16:35:00Z",
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 1,
+                        "identifier": {
+                            "motis": "de-DELFI_de:11000:900029101:2:52"
+                        },
+                        "latitude": 52.534667999999996,
+                        "longitude": 13.197190999999998,
+                        "name": "S Spandau Bhf (Berlin)",
+                        "region": "DE-BE",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-05-25T18:35:00Z",
+                    "expectedDepartureTime": "2025-05-25T18:46:00Z",
+                    "expectedPlatform": "54",
+                    "scheduledArrivalTime": "2025-05-25T18:35:00Z",
+                    "scheduledDepartureTime": "2025-05-25T18:46:00Z",
+                    "scheduledPlatform": "54",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": -1,
+                        "identifier": {
+                            "motis": "de-DELFI_de:02000:10950:3:254905"
+                        },
+                        "latitude": 53.552517,
+                        "longitude": 10.007349,
+                        "name": "Hamburg Hbf",
+                        "type": "Stop"
+                    }
+                }
+            ],
+            "mode": "PublicTransport",
+            "path": {
+                "sections": [
+                    {
+                        "path": {
+                            "coordinates": [
+                                [
+                                    1.6377113,
+                                    4.81851
+                                ],
+                                [
+                                    1.6333088,
+                                    4.817445
+                                ],
+                                [
+                                    1.5624683,
+                                    4.8208275
+                                ],
+                                [
+                                    1.4292131,
+                                    4.829018
+                                ],
+                                [
+                                    1.3450776,
+                                    4.857363
+                                ],
+                                [
+                                    1.286394,
+                                    4.8779617
+                                ],
+                                [
+                                    1.257451,
+                                    4.887707
+                                ],
+                                [
+                                    1.2099617,
+                                    4.9011673
+                                ],
+                                [
+                                    1.1082989,
+                                    4.9445618
+                                ],
+                                [
+                                    1.0957328,
+                                    5.0262928
+                                ],
+                                [
+                                    1.1037993,
+                                    5.0972355
+                                ],
+                                [
+                                    1.1987085,
+                                    5.147751
+                                ],
+                                [
+                                    1.3365603,
+                                    5.2475433
+                                ],
+                                [
+                                    1.3368911,
+                                    5.252496
+                                ],
+                                [
+                                    1.3197191,
+                                    5.2534668
+                                ],
+                                [
+                                    1.0007026,
+                                    5.355271
+                                ],
+                                [
+                                    0.9934828,
+                                    5.355281
+                                ]
+                            ],
+                            "type": "LineString"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
