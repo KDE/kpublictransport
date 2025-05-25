@@ -29,11 +29,11 @@
                     "load": [
                         {
                             "load": "Medium",
-                            "seatingClass": "KLASSE_1"
+                            "seatingClass": "1"
                         },
                         {
                             "load": "Medium",
-                            "seatingClass": "KLASSE_2"
+                            "seatingClass": "2"
                         }
                     ],
                     "route": {
@@ -267,11 +267,11 @@
                     "load": [
                         {
                             "load": "Medium",
-                            "seatingClass": "KLASSE_1"
+                            "seatingClass": "1"
                         },
                         {
                             "load": "Medium",
-                            "seatingClass": "KLASSE_2"
+                            "seatingClass": "2"
                         }
                     ],
                     "route": {
@@ -475,11 +475,11 @@
                     "load": [
                         {
                             "load": "Medium",
-                            "seatingClass": "KLASSE_1"
+                            "seatingClass": "1"
                         },
                         {
                             "load": "Medium",
-                            "seatingClass": "KLASSE_2"
+                            "seatingClass": "2"
                         }
                     ],
                     "route": {

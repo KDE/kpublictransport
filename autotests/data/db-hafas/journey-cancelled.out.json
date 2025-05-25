@@ -26,7 +26,7 @@
                     "load": [
                         {
                             "load": "Low",
-                            "seatingClass": "KLASSE_2"
+                            "seatingClass": "2"
                         }
                     ],
                     "route": {
@@ -85,7 +85,7 @@
                         "load": [
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T07:48:00",
@@ -109,7 +109,7 @@
                         "load": [
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T07:52:00",
@@ -133,7 +133,7 @@
                         "load": [
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T07:56:00",
@@ -157,7 +157,7 @@
                         "load": [
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T08:00:00",
@@ -181,7 +181,7 @@
                         "load": [
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T08:06:00",
@@ -207,7 +207,7 @@
                         "load": [
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T08:12:00",
@@ -233,7 +233,7 @@
                         "load": [
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T08:15:00",
@@ -259,7 +259,7 @@
                         "load": [
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T08:20:00",
@@ -285,7 +285,7 @@
                         "load": [
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T08:24:00",
@@ -311,7 +311,7 @@
                         "load": [
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T08:28:00",
@@ -337,7 +337,7 @@
                         "load": [
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T08:31:00",
@@ -966,11 +966,11 @@
                     "load": [
                         {
                             "load": "High",
-                            "seatingClass": "KLASSE_1"
+                            "seatingClass": "1"
                         },
                         {
                             "load": "Medium",
-                            "seatingClass": "KLASSE_2"
+                            "seatingClass": "2"
                         }
                     ],
                     "route": {
@@ -1026,11 +1026,11 @@
                         "load": [
                             {
                                 "load": "High",
-                                "seatingClass": "KLASSE_1"
+                                "seatingClass": "1"
                             },
                             {
                                 "load": "Medium",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T11:12:00",
@@ -1058,11 +1058,11 @@
                         "load": [
                             {
                                 "load": "High",
-                                "seatingClass": "KLASSE_1"
+                                "seatingClass": "1"
                             },
                             {
                                 "load": "Medium",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T11:25:00",
@@ -1149,7 +1149,7 @@
                     "load": [
                         {
                             "load": "High",
-                            "seatingClass": "KLASSE_2"
+                            "seatingClass": "2"
                         }
                     ],
                     "route": {
@@ -1217,7 +1217,7 @@
                         "load": [
                             {
                                 "load": "High",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T12:32:00",
@@ -1245,7 +1245,7 @@
                         "load": [
                             {
                                 "load": "High",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T12:36:00",
@@ -1273,7 +1273,7 @@
                         "load": [
                             {
                                 "load": "High",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T12:38:00",
@@ -1658,11 +1658,11 @@
                     "load": [
                         {
                             "load": "Low",
-                            "seatingClass": "KLASSE_1"
+                            "seatingClass": "1"
                         },
                         {
                             "load": "Medium",
-                            "seatingClass": "KLASSE_2"
+                            "seatingClass": "2"
                         }
                     ],
                     "route": {
@@ -2151,11 +2151,11 @@
                     "load": [
                         {
                             "load": "Low",
-                            "seatingClass": "KLASSE_1"
+                            "seatingClass": "1"
                         },
                         {
                             "load": "Medium",
-                            "seatingClass": "KLASSE_2"
+                            "seatingClass": "2"
                         }
                     ],
                     "route": {
@@ -2267,7 +2267,7 @@
                     "load": [
                         {
                             "load": "High",
-                            "seatingClass": "KLASSE_2"
+                            "seatingClass": "2"
                         }
                     ],
                     "route": {
@@ -2335,7 +2335,7 @@
                         "load": [
                             {
                                 "load": "High",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T12:02:00",
@@ -2363,7 +2363,7 @@
                         "load": [
                             {
                                 "load": "High",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T12:06:00",
@@ -2391,7 +2391,7 @@
                         "load": [
                             {
                                 "load": "High",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2025-01-11T12:08:00",

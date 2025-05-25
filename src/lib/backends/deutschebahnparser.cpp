@@ -155,6 +155,9 @@ static std::vector<LoadInfo> parseOccupancyInformation(const QJsonObject &obj)
         LoadInfo load;
         load.setLoad(level);
         load.setSeatingClass(occupancyObj.value("klasse"_L1).toString());
+        if (load.seatingClass().startsWith("KLASSE_"_L1)) {
+            load.setSeatingClass(load.seatingClass().mid(7));
+        }
         occupancies.push_back(std::move(load));
     }
     return occupancies;

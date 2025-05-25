@@ -123,11 +123,11 @@
             "load": [
                 {
                     "load": "Medium",
-                    "seatingClass": "KLASSE_1"
+                    "seatingClass": "1"
                 },
                 {
                     "load": "Medium",
-                    "seatingClass": "KLASSE_2"
+                    "seatingClass": "2"
                 }
             ],
             "scheduledArrivalTime": "2025-02-02T19:36:00",
@@ -151,11 +151,11 @@
             "load": [
                 {
                     "load": "Low",
-                    "seatingClass": "KLASSE_1"
+                    "seatingClass": "1"
                 },
                 {
                     "load": "Medium",
-                    "seatingClass": "KLASSE_2"
+                    "seatingClass": "2"
                 }
             ],
             "scheduledArrivalTime": "2025-02-02T20:15:00",
@@ -181,11 +181,11 @@
             "load": [
                 {
                     "load": "Low",
-                    "seatingClass": "KLASSE_1"
+                    "seatingClass": "1"
                 },
                 {
                     "load": "Medium",
-                    "seatingClass": "KLASSE_2"
+                    "seatingClass": "2"
                 }
             ],
             "scheduledArrivalTime": "2025-02-02T20:33:00",

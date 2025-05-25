@@ -28,11 +28,11 @@
                     "load": [
                         {
                             "load": "Low",
-                            "seatingClass": "KLASSE_1"
+                            "seatingClass": "1"
                         },
                         {
                             "load": "Low",
-                            "seatingClass": "KLASSE_2"
+                            "seatingClass": "2"
                         }
                     ],
                     "route": {
@@ -94,11 +94,11 @@
                         "load": [
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_1"
+                                "seatingClass": "1"
                             },
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "notes": [
@@ -129,11 +129,11 @@
                         "load": [
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_1"
+                                "seatingClass": "1"
                             },
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2024-12-14T17:52:00",
@@ -186,11 +186,11 @@
                     "load": [
                         {
                             "load": "Low",
-                            "seatingClass": "KLASSE_1"
+                            "seatingClass": "1"
                         },
                         {
                             "load": "Low",
-                            "seatingClass": "KLASSE_2"
+                            "seatingClass": "2"
                         }
                     ],
                     "route": {
@@ -455,11 +455,11 @@
                     "load": [
                         {
                             "load": "Low",
-                            "seatingClass": "KLASSE_1"
+                            "seatingClass": "1"
                         },
                         {
                             "load": "Low",
-                            "seatingClass": "KLASSE_2"
+                            "seatingClass": "2"
                         }
                     ],
                     "route": {
@@ -521,11 +521,11 @@
                         "load": [
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_1"
+                                "seatingClass": "1"
                             },
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2024-12-14T19:46:00",
@@ -553,11 +553,11 @@
                         "load": [
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_1"
+                                "seatingClass": "1"
                             },
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2024-12-14T20:25:00",
@@ -585,11 +585,11 @@
                         "load": [
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_1"
+                                "seatingClass": "1"
                             },
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2024-12-14T21:01:00",
@@ -617,11 +617,11 @@
                         "load": [
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_1"
+                                "seatingClass": "1"
                             },
                             {
                                 "load": "Low",
-                                "seatingClass": "KLASSE_2"
+                                "seatingClass": "2"
                             }
                         ],
                         "scheduledArrivalTime": "2024-12-14T21:27:00",
