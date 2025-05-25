@@ -52,14 +52,9 @@ query journeys(
                             name
                         }
                         alerts {
-                            alertHeaderTextTranslations {
-                                language
-                                text
-                            }
-                            alertDescriptionTextTranslations {
-                                language
-                                text
-                            }
+                            alertHeaderText
+                            alertDescriptionText
+                            alertUrl
                             alertEffect
                             alertCause
                             alertSeverityLevel

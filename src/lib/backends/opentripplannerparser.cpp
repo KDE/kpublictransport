@@ -200,8 +200,19 @@ void OpenTripPlannerParser::parseAlerts(const QJsonArray& alertsArray) const
     m_alerts.reserve(alertsArray.size());
     for (const auto &alertValue : alertsArray) {
         const auto alertObj = alertValue.toObject();
-        const auto descsArray = alertObj.value(QLatin1String("alertDescriptionTextTranslations")).toArray();
+        const auto descsArray = alertObj.value("alertDescriptionTextTranslations"_L1).toArray();
         if (descsArray.empty()) {
+            // new OTP2 alerts API
+            const auto hdr = alertObj.value("alertHeaderText"_L1).toString();
+            const auto desc = alertObj.value("alertDescriptionText"_L1).toString();
+            if (hdr.isEmpty() && desc.isEmpty()) {
+            } else if (hdr == desc || desc.isEmpty()) {
+                m_alerts.push_back(hdr);
+            } else if (hdr.isEmpty() || desc.startsWith(hdr)) {
+                m_alerts.push_back(desc);
+            } else {
+                m_alerts.push_back("<b>"_L1 + hdr + "</b><br/>"_L1 + desc);
+            }
             continue;
         }
 
@@ -209,7 +220,7 @@ void OpenTripPlannerParser::parseAlerts(const QJsonArray& alertsArray) const
         const auto uiLangs = QLocale().uiLanguages();
         int minIdx = 0, minWeight = std::numeric_limits<int>::max();
         for (int i = 0; i < descsArray.size(); ++i) {
-            const auto lang = descsArray.at(i).toObject().value(QLatin1String("language")).toString();
+            const auto lang = descsArray.at(i).toObject().value("language"_L1).toString();
             for (int j = 0; j < uiLangs.size() && j < minWeight; ++j) {
                 if (uiLangs.at(j).startsWith(lang)) {
                     minIdx = i;
@@ -219,7 +230,7 @@ void OpenTripPlannerParser::parseAlerts(const QJsonArray& alertsArray) const
             }
         }
 
-        m_alerts.push_back(descsArray.at(minIdx).toObject().value(QLatin1String("text")).toString());
+        m_alerts.push_back(descsArray.at(minIdx).toObject().value("text"_L1).toString());
     }
 }
 

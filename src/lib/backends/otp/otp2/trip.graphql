@@ -42,14 +42,9 @@ query trip(
             points
         }
         alerts {
-            alertHeaderTextTranslations {
-                language
-                text
-            }
-            alertDescriptionTextTranslations {
-                language
-                text
-            }
+            alertHeaderText
+            alertDescriptionText
+            alertUrl
             alertEffect
             alertCause
             alertSeverityLevel
