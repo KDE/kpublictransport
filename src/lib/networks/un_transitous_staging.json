@@ -38,7 +38,8 @@
     "options": {
         "cacheDays": 0,
         "endpoint": "https://staging.api.transitous.org/",
-        "locationIdentifierType": "transitous-staging"
+        "locationIdentifierType": "transitous-staging",
+        "supportsStreetRouting": false
     },
     "type": {
         "motis2": true

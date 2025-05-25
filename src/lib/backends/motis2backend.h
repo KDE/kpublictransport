@@ -26,6 +26,7 @@ class Motis2Backend : public AbstractBackend
     Q_PROPERTY(QUrl endpoint MEMBER m_endpoint)
     Q_PROPERTY(QString locationIdentifierType MEMBER m_locationIdentifierType)
     Q_PROPERTY(int cacheDays MEMBER m_cacheDays)
+    Q_PROPERTY(bool supportsStreetRouting MEMBER m_supportsStreetRouting)
 
 public:
     explicit Motis2Backend();
@@ -43,9 +44,12 @@ private:
     template <typename Request>
     QNetworkReply* makeRequest(const Request &req, QObject *parent, QLatin1StringView command, const QUrlQuery &query, QNetworkAccessManager *nam) const;
 
+    [[nodiscard]] QString encodeLocation(const Location &loc) const;
+
     QUrl m_endpoint;
     QString m_locationIdentifierType;
     int m_cacheDays = 7;
+    bool m_supportsStreetRouting = true;
 };
 
 }

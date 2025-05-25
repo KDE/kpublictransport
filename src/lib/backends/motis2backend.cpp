@@ -47,7 +47,7 @@ AbstractBackend::Capabilities Motis2Backend::capabilities() const
 bool Motis2Backend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
     if (type == QueryType::Journey) {
-        return !loc.hasCoordinate() && !loc.hasIdentifier(m_locationIdentifierType);
+        return (!loc.hasCoordinate() || !m_supportsStreetRouting) && !loc.hasIdentifier(m_locationIdentifierType);
     }
     return !loc.hasIdentifier(m_locationIdentifierType);
 }
@@ -175,12 +175,12 @@ bool Motis2Backend::queryStopover(const StopoverRequest &req, StopoverReply *rep
     return true;
 }
 
-[[nodiscard]] static QString encodeLocation(const Location &loc, const QString &locationIdentifierType)
+QString Motis2Backend::encodeLocation(const Location &loc) const
 {
-    if (loc.hasCoordinate()) {
+    if (loc.hasCoordinate() && m_supportsStreetRouting) {
         return QString::number(loc.latitude()) + ','_L1 + QString::number(loc.longitude()) + ','_L1 + QString::number(loc.hasFloorLevel() ? loc.floorLevel() : 0);
     }
-    return loc.identifier(locationIdentifierType);
+    return loc.identifier(m_locationIdentifierType);
 }
 
 struct {
@@ -253,8 +253,8 @@ static void mapIndividualTransportFormFactors(const std::vector<IndividualTransp
 bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     QUrlQuery query;
-    query.addQueryItem(u"fromPlace"_s, encodeLocation(req.from(), m_locationIdentifierType));
-    query.addQueryItem(u"toPlace"_s, encodeLocation(req.to(), m_locationIdentifierType));
+    query.addQueryItem(u"fromPlace"_s, encodeLocation(req.from()));
+    query.addQueryItem(u"toPlace"_s, encodeLocation(req.to()));
     query.addQueryItem(u"time"_s, req.dateTime().toUTC().toString(Qt::ISODate));
     query.addQueryItem(u"detailedTransfers"_s, req.includePaths() ? u"true"_s : u"false"_s);
 
