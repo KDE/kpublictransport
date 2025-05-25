@@ -72,6 +72,33 @@ QString AbstractBackend::preferredLanguage() const
     return QStringLiteral("en");
 }
 
+QStringList AbstractBackend::preferredLanguages() const
+{
+    QStringList langs;
+    const auto localeLangs = QLocale().uiLanguages();
+    for (const auto &l : localeLangs) {
+        if (m_supportedLanguages.contains(l)) {
+            if (!langs.contains(l)) {
+                langs.push_back(l);
+            }
+            continue;
+        }
+        if (l.size() <= 2 || l[2] != '-'_L1) {
+            continue;
+        }
+        if (const auto l2 = QStringView(l).left(2); m_supportedLanguages.contains(l2) && !langs.contains(l2)) {
+            langs.push_back(l2.toString());
+        }
+    }
+
+    // ensure this is never empty
+    if (langs.empty() && !localeLangs.empty()) {
+        langs.push_back(localeLangs.front().left(2));
+    }
+
+    return langs;
+}
+
 void AbstractBackend::init()
 {
 }

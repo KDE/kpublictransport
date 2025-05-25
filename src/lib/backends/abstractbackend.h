@@ -121,6 +121,11 @@ public:
      *  language of the backend, or if that's not set, English by default.
      */
     [[nodiscard]] QString preferredLanguage() const;
+    /** Returns a subset of supported languages in order of locally configured preference.
+     *  Similar to the above, and usable e.g. in Accept-Language headers.
+     *  @since 25.08
+     */
+    [[nodiscard]] QStringList preferredLanguages() const;
 
     /** Called after all settings have been set on this backend. */
     virtual void init();

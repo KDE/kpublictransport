@@ -408,7 +408,9 @@ KGraphQLRequest OpenTripPlannerGraphQLBackend::graphQLRequest() const
     for (const auto &header : m_extraHeaders) {
         req.networkRequest().setRawHeader(header.first, header.second);
     }
+    applyUserAgent(req.networkRequest());
     applySslConfiguration(req.networkRequest());
+    req.networkRequest().setRawHeader("Accept-Language", preferredLanguages().join(", "_L1).toUtf8());
     return req;
 }
 
