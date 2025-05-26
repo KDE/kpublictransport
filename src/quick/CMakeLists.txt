@@ -26,6 +26,7 @@ target_sources(kpublictransportquickplugin PRIVATE
 ecm_target_qml_sources(kpublictransportquickplugin SOURCES
     BackendPage.qml
     ExpectedTimeLabel.qml
+    FeatureDelegate.qml
     FeatureIcon.qml
     JourneyHorizontalBar.qml
     OccupancyIndicator.qml
