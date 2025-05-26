@@ -41,6 +41,9 @@ query trip(
             length
             points
         }
+        occupancy {
+            occupancyStatus
+        }
         alerts {
             alertHeaderText
             alertDescriptionText

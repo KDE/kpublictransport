@@ -113,6 +113,9 @@
                     "realtime": false,
                     "trip": {
                     "tripHeadsign": "HELSINKI",
+                    "occupancy": {
+                        "occupancyStatus": "STANDING_ROOM_ONLY"
+                    },
                     "route": {
                         "type": 2,
                         "shortName": "160",

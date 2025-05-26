@@ -111,7 +111,10 @@
                   "alerts": []
                 },
                 "tripHeadsign": "KAJAANI",
-                "tripShortName": null
+                "tripShortName": null,
+                "occupancy": {
+                  "occupancyStatus": "FEW_SEATS_AVAILABLE"
+                }
               }
             },
             {
@@ -153,7 +156,10 @@
                   "alerts": []
                 },
                 "tripHeadsign": "KEMIJÄRVI",
-                "tripShortName": null
+                "tripShortName": null,
+                "occupancy": {
+                  "occupancyStatus": "NO_DATA_AVAILABLE"
+                }
               }
             },
             {
@@ -253,7 +259,10 @@
                   "alerts": []
                 },
                 "tripHeadsign": "Helsinki",
-                "tripShortName": null
+                "tripShortName": null,
+                "occupancy": {
+                  "occupancyStatus": "MANY_SEATS_AVAILABLE"
+                }
               }
             },
             {

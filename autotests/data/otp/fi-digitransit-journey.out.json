@@ -94,6 +94,11 @@
                 "departure": {
                     "disruptionEffect": "NormalService",
                     "expectedDepartureTime": "2020-01-09T17:36:58Z",
+                    "load": [
+                        {
+                            "load": "Medium"
+                        }
+                    ],
                     "route": {
                         "direction": "KAJAANI",
                         "line": {
@@ -245,6 +250,11 @@
                 "departure": {
                     "disruptionEffect": "NormalService",
                     "expectedDepartureTime": "2020-01-09T18:06:00Z",
+                    "load": [
+                        {
+                            "load": "Low"
+                        }
+                    ],
                     "route": {
                         "direction": "Helsinki",
                         "line": {

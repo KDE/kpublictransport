@@ -53,6 +53,11 @@
     },
     {
         "disruptionEffect": "NormalService",
+        "load": [
+            {
+                "load": "High"
+            }
+        ],
         "route": {
             "direction": "HELSINKI",
             "line": {

@@ -62,6 +62,9 @@ query journeys(
                     }
                     tripHeadsign
                     tripShortName
+                    occupancy {
+                        occupancyStatus
+                    }
                 }
                 intermediateStops: intermediatePlaces @include(if: $withIntermediateStops) {
                     stop {

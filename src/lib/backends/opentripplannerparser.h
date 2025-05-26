@@ -12,6 +12,7 @@
 
 #include <KPublicTransport/Feature>
 #include <KPublicTransport/Line>
+#include <KPublicTransport/Load>
 #include <KPublicTransport/Location>
 #include <KPublicTransport/RentalVehicle>
 
@@ -63,6 +64,7 @@ private:
     struct RouteData {
         Route route;
         std::vector<Feature> features;
+        Load::Category occupancy = Load::Unknown;
     };
     RouteData parseLine(const QJsonObject &obj) const;
     RouteData parseRoute(const QJsonObject &obj) const;
