@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-05-23 00:41+0000\n"
-"PO-Revision-Date: 2025-05-23 08:19+0200\n"
+"PO-Revision-Date: 2025-05-24 09:15+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
 "Language: fr\n"
@@ -167,19 +167,19 @@ msgstr "Plate-forme de transport de voitures"
 #, kde-format
 msgctxt "train seating class"
 msgid "First class"
-msgstr ""
+msgstr "Première classe"
 
 #: lib/datatypes/vehicle.cpp:92
 #, kde-format
 msgctxt "train seating class"
 msgid "Second class"
-msgstr ""
+msgstr "Seconde classe"
 
 #: lib/datatypes/vehicle.cpp:95
 #, kde-format
 msgctxt "train seating class"
 msgid "First/second class"
-msgstr ""
+msgstr "Première / deuxième classe"
 
 #: quick/BackendPage.qml:21
 #, kde-format
