@@ -21,6 +21,15 @@
 using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
+#ifdef Q_OS_LINUX
+void initLocale()
+{
+    qputenv("LANG", "en_US.utf-8");
+}
+
+Q_CONSTRUCTOR_FUNCTION(initLocale)
+#endif
+
 class Motis2ParserTest : public QObject
 {
     Q_OBJECT
