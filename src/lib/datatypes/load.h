@@ -45,6 +45,8 @@ class KPUBLICTRANSPORT_EXPORT LoadInfo
     KPUBLICTRANSPORT_PROPERTY(QString, seatingClass, setSeatingClass)
     // TODO vehicle section, once we have a backend reporting this (SBB has that in theory I think)
 public:
+    LoadInfo(Load::Category load); // implicit
+
     /** Serializes one load information object to JSON. */
     static QJsonObject toJson(const LoadInfo &info);
     /** Serializes a vector of load information objects to JSON. */

@@ -297,17 +297,39 @@ OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseLine(const QJsonObj
 
 struct {
     const char *name;
+    const char *enturName;
     Load::Category occupancy;
 } constexpr inline const occupancy_map[] = {
-    { "CRUSHED_STANDING_ROOM_ONLY", Load::High },
-    { "EMPTY", Load::Low },
-    { "FEW_SEATS_AVAILABLE", Load::Medium },
-    { "FULL", Load::Full },
-    { "MANY_SEATS_AVAILABLE", Load::Low },
-    { "NOT_ACCEPTING_PASSENGERS", Load::Full },
-    { "NO_DATA_AVAILABLE", Load::Unknown },
-    { "STANDING_ROOM_ONLY", Load::High },
+    { "CRUSHED_STANDING_ROOM_ONLY", "crushedStandingRoomOnly", Load::High },
+    { "EMPTY", "empty", Load::Low },
+    { "FEW_SEATS_AVAILABLE", "fewSeatsAvailable", Load::Medium },
+    { "FULL", "full", Load::Full },
+    { "MANY_SEATS_AVAILABLE", "manySeatsAvailable", Load::Low },
+    { "NOT_ACCEPTING_PASSENGERS", "notAcceptingPassengers", Load::Full },
+    { "NO_DATA_AVAILABLE", "noData", Load::Unknown },
+    { "STANDING_ROOM_ONLY", "standingRoomOnly", Load::High },
 };
+
+[[nodiscard]] static Load::Category parseOccupancy(const QJsonValue &v)
+{
+    QString occupancy;
+    if (v.isString()) {
+        occupancy = v.toString();
+    } else {
+        occupancy = v.toObject().value("occupancyStatus"_L1).toString();
+    }
+
+     for (const auto &m : occupancy_map) {
+        if (QLatin1StringView(m.name) == occupancy || QLatin1StringView(m.enturName) == occupancy) {
+            return m.occupancy;
+        }
+    }
+
+    if (!occupancy.isEmpty()) {
+        qDebug() << "Unknown OTP2 occupancy level:" << occupancy;
+    }
+    return Load::Unknown;
+}
 
 OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseRoute(const QJsonObject &obj) const
 {
@@ -319,18 +341,7 @@ OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseRoute(const QJsonOb
 
     data.route.setLine(line);
     data.route.setDirection(obj.value("tripHeadsign"_L1).toString());
-
-    const auto occupancy = obj.value("occupancy"_L1).toObject().value("occupancyStatus"_L1).toString();
-    if (!occupancy.isEmpty()) {
-        for (const auto &m : occupancy_map) {
-            if (QLatin1StringView(m.name) == occupancy) {
-                data.occupancy = m.occupancy;
-                return data;
-            }
-        }
-        qDebug() << "Unknown OTP2 occupancy level:" << occupancy;
-    }
-
+    data.occupancy = parseOccupancy(obj.value("occupancy"_L1));
     return data;
 }
 
@@ -387,13 +398,14 @@ Stopover OpenTripPlannerParser::parseDeparture(const QJsonObject &obj) const
         dep.setExpectedDepartureTime(parseDepartureDateTime(baseTime, obj.value("realtimeDeparture"_L1)));
     }
     dep.setScheduledPlatform(obj.value("stop"_L1).toObject().value("platformCode"_L1).toString());
+    if (const auto occupancy = parseOccupancy(obj.value("occupancyStatus"_L1)); occupancy != Load::Category::Unknown) {
+        dep.setLoadInformation({occupancy});
+    }
     auto routeData = detectAndParseRoute(obj);
     dep.setRoute(routeData.route);
     dep.setFeatures(std::move(routeData.features));
     if (routeData.occupancy != Load::Unknown) {
-        LoadInfo l;
-        l.setLoad(routeData.occupancy);
-        dep.setLoadInformation({l});
+        dep.setLoadInformation({routeData.occupancy});
     }
     dep.addNotes(m_alerts);
     m_alerts.clear();
@@ -493,13 +505,14 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
     if (obj.value(QLatin1String("transitLeg")).toBool()) {
         section.setMode(JourneySection::PublicTransport);
         section.setIdentifier(m_identifierType, obj.value("trip"_L1).toObject().value("id"_L1).toString());
+        if (const auto occupancy = parseOccupancy(obj.value("occupancy"_L1)); occupancy != Load::Category::Unknown) {
+            section.setLoadInformation({occupancy});
+        }
         auto routeData = detectAndParseRoute(obj);
         section.setRoute(routeData.route);
         section.setFeatures(std::move(routeData.features));
         if (routeData.occupancy != Load::Unknown) {
-            LoadInfo l;
-            l.setLoad(routeData.occupancy);
-            section.setLoadInformation({l});
+            section.setLoadInformation({routeData.occupancy});
         }
     } else {
         const auto mode = obj.value(QLatin1String("mode")).toString();
@@ -549,6 +562,9 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
         stop.setScheduledDepartureTime(parseJourneyDateTime(stopObj.value(QLatin1String("scheduledDepartureTime"))));
         stop.setExpectedArrivalTime(parseJourneyDateTime(stopObj.value(QLatin1String("expectedArrivalTime"))));
         stop.setExpectedDepartureTime(parseJourneyDateTime(stopObj.value(QLatin1String("expectedDepartureTime"))));
+        if (const auto occupancy = parseOccupancy(obj.value("occupancyStatus"_L1)); occupancy != Load::Category::Unknown) {
+            stop.setLoadInformation({occupancy});
+        }
 
         stops.push_back(stop);
     }

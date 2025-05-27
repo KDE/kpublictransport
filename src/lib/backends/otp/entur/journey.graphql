@@ -75,6 +75,7 @@ query journeys(
           expectedArrivalTime: actualArrivalTime
           scheduledDepartureTime: aimedDepartureTime
           expectedDepartureTime: actualDepartureTime
+          occupancyStatus
         }
         legGeometry: pointsOnLink @include(if: $withPaths) {
           length
@@ -85,6 +86,7 @@ query journeys(
             lon: longitude
             legStepText: streetName
         }
+        occupancy: fromEstimatedCall { occupancyStatus }
       }
     }
   }

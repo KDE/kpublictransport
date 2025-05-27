@@ -23,6 +23,12 @@ KPUBLICTRANSPORT_MAKE_GADGET(LoadInfo)
 KPUBLICTRANSPORT_MAKE_PROPERTY(LoadInfo, Load::Category, load, setLoad)
 KPUBLICTRANSPORT_MAKE_PROPERTY(LoadInfo, QString, seatingClass, setSeatingClass)
 
+LoadInfo::LoadInfo(Load::Category load)
+    : d(new LoadInfoPrivate)
+{
+    d->load = load;
+}
+
 QJsonObject LoadInfo::toJson(const LoadInfo &info)
 {
     return Json::toJson(info);
