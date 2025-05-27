@@ -83,6 +83,25 @@ struct {
     { "TRANSIT", Location::Stop },
 };
 
+template <typename T>
+void parseAlerts(T &elem, const QJsonArray &alerts)
+{
+    for (const auto &alertV : alerts) {
+        const auto alertObj = alertV.toObject();
+        const auto headline = alertObj.value("headerText"_L1).toString();
+        const auto desc = alertObj.value("descriptionText"_L1).toString();
+        if (!headline.isEmpty() && !desc.isEmpty()) {
+            elem.addNote("<b>"_L1 + headline + "</b><br/>"_L1 + desc);
+        } else {
+            elem.addNote(headline);
+            elem.addNote(desc);
+        }
+        if (alertObj.value("effect"_L1).toString() == "NO_SERVICE"_L1) {
+            elem.setDisruptionEffect(Disruption::NoService);
+        }
+    }
+}
+
 Stopover Motis2Parser::parsePlace(const QJsonObject &obj, bool hasRealTime) const
 {
     Location l;
@@ -116,6 +135,8 @@ Stopover Motis2Parser::parsePlace(const QJsonObject &obj, bool hasRealTime) cons
     if (pickupType == "NOT_ALLOWED"_L1 && dropoffType == "NOT_ALLOWED"_L1) {
         s.setDisruptionEffect(Disruption::NoService);
     }
+
+    parseAlerts(s, obj.value("alerts"_L1).toArray());
 
     return s;
 }
@@ -218,6 +239,8 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
             if (leg.value("cancelled"_L1).toBool()) {
                 s.setDisruptionEffect(Disruption::NoService);
             }
+
+            parseAlerts(s, leg.value("alerts"_L1).toArray());
         } else if (s.mode() == JourneySection::IndividualTransport) {
             IndividualTransport iv;
             iv.setMode((*it).ivMode);

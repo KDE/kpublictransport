@@ -1,0 +1,1462 @@
+{
+    "sections": [
+        {
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "scheduledArrivalTime": "2025-05-27T15:49:00Z",
+                "stopPoint": {
+                    "country": "FI",
+                    "floorLevel": 0,
+                    "identifier": {
+                        "motis": "fi-hsl_1020552"
+                    },
+                    "latitude": 60.172726000000004,
+                    "longitude": 24.939594,
+                    "name": "Helsinki",
+                    "region": "FI-18",
+                    "type": "Stop"
+                }
+            },
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "notes": [
+                    "<b>No train service west of Leppävaara on Thursday 29 May</b><br/>E, U, L and Y trains will not run on Thursday 29 May. Westbound train services from Leppävaara will be replaced by buses. For replacement service see <a href=\"https://hsl.fi/en/eska\">hsl.fi/en/eska</a> and the Journey Planner."
+                ],
+                "route": {
+                    "direction": "Helsinki",
+                    "line": {
+                        "mode": "RapidTransit",
+                        "name": "U",
+                        "operatorName": "Helsingin seudun liikenne"
+                    }
+                },
+                "scheduledDepartureTime": "2025-05-27T15:07:00Z",
+                "scheduledPlatform": "1-3",
+                "stopPoint": {
+                    "country": "FI",
+                    "floorLevel": 0,
+                    "identifier": {
+                        "motis": "fi-hsl_6010551"
+                    },
+                    "latitude": 60.11963,
+                    "longitude": 24.438908,
+                    "name": "Kirkkonummen asema",
+                    "region": "FI-18",
+                    "type": "Stop"
+                }
+            },
+            "identifiers": {
+                "motis": "20250527_18:07_fi-hsl_3002U_20250526_Ti_2_1807"
+            },
+            "intermediateStops": [
+                {
+                    "disruptionEffect": "NormalService",
+                    "notes": [
+                        "<b>No train service west of Leppävaara on Thursday 29 May</b><br/>E, U, L and Y trains will not run on Thursday 29 May. Westbound train services from Leppävaara will be replaced by buses. For replacement service see <a href=\"https://hsl.fi/en/eska\">hsl.fi/en/eska</a> and the Journey Planner."
+                    ],
+                    "scheduledArrivalTime": "2025-05-27T15:09:00Z",
+                    "scheduledDepartureTime": "2025-05-27T15:09:00Z",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "FI",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "fi-hsl_6010555"
+                        },
+                        "latitude": 60.11853800000001,
+                        "longitude": 24.472724999999997,
+                        "name": "Tolsan asema",
+                        "region": "FI-18",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "notes": [
+                        "<b>No train service west of Leppävaara on Thursday 29 May</b><br/>E, U, L and Y trains will not run on Thursday 29 May. Westbound train services from Leppävaara will be replaced by buses. For replacement service see <a href=\"https://hsl.fi/en/eska\">hsl.fi/en/eska</a> and the Journey Planner."
+                    ],
+                    "scheduledArrivalTime": "2025-05-27T15:12:00Z",
+                    "scheduledDepartureTime": "2025-05-27T15:12:00Z",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "FI",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "fi-hsl_6010554"
+                        },
+                        "latitude": 60.137394,
+                        "longitude": 24.511726,
+                        "name": "Jorvaksen asema",
+                        "region": "FI-18",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "notes": [
+                        "<b>No train service west of Leppävaara on Thursday 29 May</b><br/>E, U, L and Y trains will not run on Thursday 29 May. Westbound train services from Leppävaara will be replaced by buses. For replacement service see <a href=\"https://hsl.fi/en/eska\">hsl.fi/en/eska</a> and the Journey Planner."
+                    ],
+                    "scheduledArrivalTime": "2025-05-27T15:14:00Z",
+                    "scheduledDepartureTime": "2025-05-27T15:14:00Z",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "FI",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "fi-hsl_6010553"
+                        },
+                        "latitude": 60.158500000000004,
+                        "longitude": 24.539116,
+                        "name": "Masalan asema",
+                        "region": "FI-18",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "notes": [
+                        "<b>No train service west of Leppävaara on Thursday 29 May</b><br/>E, U, L and Y trains will not run on Thursday 29 May. Westbound train services from Leppävaara will be replaced by buses. For replacement service see <a href=\"https://hsl.fi/en/eska\">hsl.fi/en/eska</a> and the Journey Planner."
+                    ],
+                    "scheduledArrivalTime": "2025-05-27T15:19:00Z",
+                    "scheduledDepartureTime": "2025-05-27T15:19:00Z",
+                    "scheduledPlatform": "2-3",
+                    "stopPoint": {
+                        "country": "FI",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "fi-hsl_2511551"
+                        },
+                        "latitude": 60.189598000000004,
+                        "longitude": 24.60103,
+                        "name": "Kauklahden asema",
+                        "region": "FI-18",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "notes": [
+                        "<b>No train service west of Leppävaara on Thursday 29 May</b><br/>E, U, L and Y trains will not run on Thursday 29 May. Westbound train services from Leppävaara will be replaced by buses. For replacement service see <a href=\"https://hsl.fi/en/eska\">hsl.fi/en/eska</a> and the Journey Planner."
+                    ],
+                    "scheduledArrivalTime": "2025-05-27T15:23:00Z",
+                    "scheduledDepartureTime": "2025-05-27T15:23:00Z",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "FI",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "fi-hsl_2611552"
+                        },
+                        "latitude": 60.205093000000005,
+                        "longitude": 24.656446,
+                        "name": "Espoon asema",
+                        "region": "FI-18",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "notes": [
+                        "<b>No train service west of Leppävaara on Thursday 29 May</b><br/>E, U, L and Y trains will not run on Thursday 29 May. Westbound train services from Leppävaara will be replaced by buses. For replacement service see <a href=\"https://hsl.fi/en/eska\">hsl.fi/en/eska</a> and the Journey Planner."
+                    ],
+                    "scheduledArrivalTime": "2025-05-27T15:25:00Z",
+                    "scheduledDepartureTime": "2025-05-27T15:25:00Z",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "FI",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "fi-hsl_2612551"
+                        },
+                        "latitude": 60.206010000000006,
+                        "longitude": 24.68158,
+                        "name": "Tuomarilan asema",
+                        "region": "FI-18",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "notes": [
+                        "<b>No train service west of Leppävaara on Thursday 29 May</b><br/>E, U, L and Y trains will not run on Thursday 29 May. Westbound train services from Leppävaara will be replaced by buses. For replacement service see <a href=\"https://hsl.fi/en/eska\">hsl.fi/en/eska</a> and the Journey Planner."
+                    ],
+                    "scheduledArrivalTime": "2025-05-27T15:27:00Z",
+                    "scheduledDepartureTime": "2025-05-27T15:27:00Z",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "FI",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "fi-hsl_2161551"
+                        },
+                        "latitude": 60.206900000000005,
+                        "longitude": 24.702991,
+                        "name": "Koivuhovin asema",
+                        "region": "FI-18",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "notes": [
+                        "<b>No train service west of Leppävaara on Thursday 29 May</b><br/>E, U, L and Y trains will not run on Thursday 29 May. Westbound train services from Leppävaara will be replaced by buses. For replacement service see <a href=\"https://hsl.fi/en/eska\">hsl.fi/en/eska</a> and the Journey Planner."
+                    ],
+                    "scheduledArrivalTime": "2025-05-27T15:29:00Z",
+                    "scheduledDepartureTime": "2025-05-27T15:29:00Z",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "FI",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "fi-hsl_3010551"
+                        },
+                        "latitude": 60.212,
+                        "longitude": 24.732501999999997,
+                        "name": "Kauniaisten asema",
+                        "region": "FI-18",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "notes": [
+                        "<b>No train service west of Leppävaara on Thursday 29 May</b><br/>E, U, L and Y trains will not run on Thursday 29 May. Westbound train services from Leppävaara will be replaced by buses. For replacement service see <a href=\"https://hsl.fi/en/eska\">hsl.fi/en/eska</a> and the Journey Planner."
+                    ],
+                    "scheduledArrivalTime": "2025-05-27T15:31:00Z",
+                    "scheduledDepartureTime": "2025-05-27T15:31:00Z",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "FI",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "fi-hsl_2132552"
+                        },
+                        "latitude": 60.21604,
+                        "longitude": 24.75359,
+                        "name": "Keran asema",
+                        "region": "FI-18",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "notes": [
+                        "<b>No train service west of Leppävaara on Thursday 29 May</b><br/>E, U, L and Y trains will not run on Thursday 29 May. Westbound train services from Leppävaara will be replaced by buses. For replacement service see <a href=\"https://hsl.fi/en/eska\">hsl.fi/en/eska</a> and the Journey Planner."
+                    ],
+                    "scheduledArrivalTime": "2025-05-27T15:33:00Z",
+                    "scheduledDepartureTime": "2025-05-27T15:33:00Z",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "FI",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "fi-hsl_2131551"
+                        },
+                        "latitude": 60.217953,
+                        "longitude": 24.783292999999997,
+                        "name": "Kilon asema",
+                        "region": "FI-18",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2025-05-27T15:36:00Z",
+                    "scheduledDepartureTime": "2025-05-27T15:36:00Z",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "FI",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "fi-hsl_2111552"
+                        },
+                        "latitude": 60.21948,
+                        "longitude": 24.813225000000003,
+                        "name": "Leppävaaran asema",
+                        "region": "FI-18",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2025-05-27T15:40:00Z",
+                    "scheduledDepartureTime": "2025-05-27T15:40:00Z",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "FI",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "fi-hsl_1291551"
+                        },
+                        "latitude": 60.21837000000001,
+                        "longitude": 24.893425,
+                        "name": "Huopalahden asema",
+                        "region": "FI-18",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2025-05-27T15:44:00Z",
+                    "scheduledDepartureTime": "2025-05-27T15:44:00Z",
+                    "scheduledPlatform": "9",
+                    "stopPoint": {
+                        "country": "FI",
+                        "floorLevel": 2,
+                        "identifier": {
+                            "motis": "fi-hsl_1174554"
+                        },
+                        "latitude": 60.199474,
+                        "longitude": 24.932651999999997,
+                        "name": "Pasilan asema",
+                        "region": "FI-18",
+                        "type": "Stop"
+                    }
+                }
+            ],
+            "mode": "PublicTransport",
+            "notes": [
+                "<b>No train service west of Leppävaara on Thursday 29 May</b><br/>E, U, L and Y trains will not run on Thursday 29 May. Westbound train services from Leppävaara will be replaced by buses. For replacement service see <a href=\"https://hsl.fi/en/eska\">hsl.fi/en/eska</a> and the Journey Planner."
+            ],
+            "path": {
+                "sections": [
+                    {
+                        "path": {
+                            "coordinates": [
+                                [
+                                    2.4438908,
+                                    6.011963
+                                ],
+                                [
+                                    2.443889,
+                                    6.011963
+                                ],
+                                [
+                                    2.4442577,
+                                    6.0119583
+                                ],
+                                [
+                                    2.444468,
+                                    6.011943
+                                ],
+                                [
+                                    2.4446777,
+                                    6.0118996
+                                ],
+                                [
+                                    2.444959,
+                                    6.011815
+                                ],
+                                [
+                                    2.4451488,
+                                    6.0117577
+                                ],
+                                [
+                                    2.4453245,
+                                    6.0117184
+                                ],
+                                [
+                                    2.445511,
+                                    6.0116848
+                                ],
+                                [
+                                    2.445759,
+                                    6.0116577
+                                ],
+                                [
+                                    2.4460302,
+                                    6.0116306
+                                ],
+                                [
+                                    2.4463272,
+                                    6.0116512
+                                ],
+                                [
+                                    2.446657,
+                                    6.0116924
+                                ],
+                                [
+                                    2.4469814,
+                                    6.011745
+                                ],
+                                [
+                                    2.4472488,
+                                    6.011842
+                                ],
+                                [
+                                    2.4472725,
+                                    6.0118538
+                                ],
+                                [
+                                    2.447428,
+                                    6.011916
+                                ],
+                                [
+                                    2.4479202,
+                                    6.012116
+                                ],
+                                [
+                                    2.4487185,
+                                    6.0124557
+                                ],
+                                [
+                                    2.4489199,
+                                    6.0125774
+                                ],
+                                [
+                                    2.449029,
+                                    6.012655
+                                ],
+                                [
+                                    2.4491732,
+                                    6.0127865
+                                ],
+                                [
+                                    2.4493172,
+                                    6.012917
+                                ],
+                                [
+                                    2.4494608,
+                                    6.0130108
+                                ],
+                                [
+                                    2.4496473,
+                                    6.0131042
+                                ],
+                                [
+                                    2.4499788,
+                                    6.013242
+                                ],
+                                [
+                                    2.4502304,
+                                    6.013347
+                                ],
+                                [
+                                    2.4503483,
+                                    6.013396
+                                ],
+                                [
+                                    2.4504696,
+                                    6.0134483
+                                ],
+                                [
+                                    2.4505583,
+                                    6.013484
+                                ],
+                                [
+                                    2.4506416,
+                                    6.0135204
+                                ],
+                                [
+                                    2.450725,
+                                    6.0135544
+                                ],
+                                [
+                                    2.4508064,
+                                    6.0135887
+                                ],
+                                [
+                                    2.4509007,
+                                    6.013626
+                                ],
+                                [
+                                    2.4509766,
+                                    6.013658
+                                ],
+                                [
+                                    2.451051,
+                                    6.0136887
+                                ],
+                                [
+                                    2.4511162,
+                                    6.013715
+                                ],
+                                [
+                                    2.451172,
+                                    6.0137394
+                                ],
+                                [
+                                    2.4514042,
+                                    6.013839
+                                ],
+                                [
+                                    2.4514767,
+                                    6.013868
+                                ],
+                                [
+                                    2.4515598,
+                                    6.013901
+                                ],
+                                [
+                                    2.451636,
+                                    6.013934
+                                ],
+                                [
+                                    2.4517103,
+                                    6.0139706
+                                ],
+                                [
+                                    2.4517721,
+                                    6.0140053
+                                ],
+                                [
+                                    2.451852,
+                                    6.0140533
+                                ],
+                                [
+                                    2.4518812,
+                                    6.014073
+                                ],
+                                [
+                                    2.4519102,
+                                    6.014098
+                                ],
+                                [
+                                    2.4519905,
+                                    6.014166
+                                ],
+                                [
+                                    2.4520308,
+                                    6.0142
+                                ],
+                                [
+                                    2.452111,
+                                    6.0142696
+                                ],
+                                [
+                                    2.452175,
+                                    6.014327
+                                ],
+                                [
+                                    2.4522482,
+                                    6.0143982
+                                ],
+                                [
+                                    2.4523413,
+                                    6.0144787
+                                ],
+                                [
+                                    2.4524105,
+                                    6.0145424
+                                ],
+                                [
+                                    2.4524855,
+                                    6.0146103
+                                ],
+                                [
+                                    2.4525202,
+                                    6.0146416
+                                ],
+                                [
+                                    2.4525547,
+                                    6.0146717
+                                ],
+                                [
+                                    2.4526188,
+                                    6.0147316
+                                ],
+                                [
+                                    2.4526697,
+                                    6.0147762
+                                ],
+                                [
+                                    2.4527483,
+                                    6.0148453
+                                ],
+                                [
+                                    2.4528013,
+                                    6.0148888
+                                ],
+                                [
+                                    2.4528687,
+                                    6.0149414
+                                ],
+                                [
+                                    2.4529398,
+                                    6.014998
+                                ],
+                                [
+                                    2.4530018,
+                                    6.015044
+                                ],
+                                [
+                                    2.453082,
+                                    6.015111
+                                ],
+                                [
+                                    2.453144,
+                                    6.0151585
+                                ],
+                                [
+                                    2.453215,
+                                    6.0152122
+                                ],
+                                [
+                                    2.4532606,
+                                    6.0152477
+                                ],
+                                [
+                                    2.453359,
+                                    6.0153202
+                                ],
+                                [
+                                    2.4534193,
+                                    6.0153664
+                                ],
+                                [
+                                    2.4535177,
+                                    6.0154427
+                                ],
+                                [
+                                    2.4535633,
+                                    6.0154827
+                                ],
+                                [
+                                    2.4536692,
+                                    6.015564
+                                ],
+                                [
+                                    2.4537605,
+                                    6.015649
+                                ],
+                                [
+                                    2.4538082,
+                                    6.0156998
+                                ],
+                                [
+                                    2.4538359,
+                                    6.0157402
+                                ],
+                                [
+                                    2.4538748,
+                                    6.015801
+                                ],
+                                [
+                                    2.4539116,
+                                    6.01585
+                                ],
+                                [
+                                    2.4545992,
+                                    6.016917
+                                ],
+                                [
+                                    2.4546743,
+                                    6.016994
+                                ],
+                                [
+                                    2.4560122,
+                                    6.017915
+                                ],
+                                [
+                                    2.4562323,
+                                    6.0180424
+                                ],
+                                [
+                                    2.4563269,
+                                    6.0180893
+                                ],
+                                [
+                                    2.456483,
+                                    6.018162
+                                ],
+                                [
+                                    2.4565647,
+                                    6.0182034
+                                ],
+                                [
+                                    2.4566158,
+                                    6.018232
+                                ],
+                                [
+                                    2.4566957,
+                                    6.018271
+                                ],
+                                [
+                                    2.4567501,
+                                    6.018295
+                                ],
+                                [
+                                    2.4568247,
+                                    6.0183243
+                                ],
+                                [
+                                    2.4568827,
+                                    6.0183475
+                                ],
+                                [
+                                    2.4569551,
+                                    6.0183712
+                                ],
+                                [
+                                    2.4570402,
+                                    6.018396
+                                ],
+                                [
+                                    2.4571255,
+                                    6.0184174
+                                ],
+                                [
+                                    2.4572412,
+                                    6.0184444
+                                ],
+                                [
+                                    2.4573515,
+                                    6.0184647
+                                ],
+                                [
+                                    2.4574347,
+                                    6.0184776
+                                ],
+                                [
+                                    2.4575249,
+                                    6.018489
+                                ],
+                                [
+                                    2.457655,
+                                    6.0185013
+                                ],
+                                [
+                                    2.457803,
+                                    6.0185093
+                                ],
+                                [
+                                    2.45803,
+                                    6.0185146
+                                ],
+                                [
+                                    2.458223,
+                                    6.01852
+                                ],
+                                [
+                                    2.4584663,
+                                    6.0185272
+                                ],
+                                [
+                                    2.458654,
+                                    6.0185406
+                                ],
+                                [
+                                    2.4588547,
+                                    6.0185703
+                                ],
+                                [
+                                    2.4590263,
+                                    6.0186035
+                                ],
+                                [
+                                    2.459115,
+                                    6.018625
+                                ],
+                                [
+                                    2.4592457,
+                                    6.0186626
+                                ],
+                                [
+                                    2.4593798,
+                                    6.018708
+                                ],
+                                [
+                                    2.4595285,
+                                    6.0187603
+                                ],
+                                [
+                                    2.4597225,
+                                    6.0188286
+                                ],
+                                [
+                                    2.459866,
+                                    6.01888
+                                ],
+                                [
+                                    2.4599602,
+                                    6.0189137
+                                ],
+                                [
+                                    2.46006,
+                                    6.0189472
+                                ],
+                                [
+                                    2.4601,
+                                    6.0189613
+                                ],
+                                [
+                                    2.460156,
+                                    6.018982
+                                ],
+                                [
+                                    2.4602089,
+                                    6.0190006
+                                ],
+                                [
+                                    2.4603848,
+                                    6.0190617
+                                ],
+                                [
+                                    2.4605316,
+                                    6.019116
+                                ],
+                                [
+                                    2.4607695,
+                                    6.0191982
+                                ],
+                                [
+                                    2.4609364,
+                                    6.0192574
+                                ],
+                                [
+                                    2.4610706,
+                                    6.0193043
+                                ],
+                                [
+                                    2.4611832,
+                                    6.019345
+                                ],
+                                [
+                                    2.4614012,
+                                    6.0194374
+                                ],
+                                [
+                                    2.4616302,
+                                    6.0195377
+                                ],
+                                [
+                                    2.4617865,
+                                    6.019606
+                                ],
+                                [
+                                    2.461901,
+                                    6.0196568
+                                ],
+                                [
+                                    2.4620066,
+                                    6.019703
+                                ],
+                                [
+                                    2.4621737,
+                                    6.0197758
+                                ],
+                                [
+                                    2.4622953,
+                                    6.0198246
+                                ],
+                                [
+                                    2.462408,
+                                    6.019868
+                                ],
+                                [
+                                    2.4625479,
+                                    6.019921
+                                ],
+                                [
+                                    2.462644,
+                                    6.019954
+                                ],
+                                [
+                                    2.4627348,
+                                    6.0199825
+                                ],
+                                [
+                                    2.4628416,
+                                    6.0200096
+                                ],
+                                [
+                                    2.4629557,
+                                    6.0200344
+                                ],
+                                [
+                                    2.4630463,
+                                    6.020052
+                                ],
+                                [
+                                    2.4631582,
+                                    6.020069
+                                ],
+                                [
+                                    2.4633282,
+                                    6.020091
+                                ],
+                                [
+                                    2.4635723,
+                                    6.0201195
+                                ],
+                                [
+                                    2.4636736,
+                                    6.020136
+                                ],
+                                [
+                                    2.4637749,
+                                    6.020154
+                                ],
+                                [
+                                    2.4641893,
+                                    6.020233
+                                ],
+                                [
+                                    2.464392,
+                                    6.0202717
+                                ],
+                                [
+                                    2.4646002,
+                                    6.0203117
+                                ],
+                                [
+                                    2.464926,
+                                    6.020374
+                                ],
+                                [
+                                    2.4652464,
+                                    6.0204353
+                                ],
+                                [
+                                    2.465431,
+                                    6.02047
+                                ],
+                                [
+                                    2.4656084,
+                                    6.0205032
+                                ],
+                                [
+                                    2.4656427,
+                                    6.0205086
+                                ],
+                                [
+                                    2.466099,
+                                    6.020599
+                                ],
+                                [
+                                    2.466363,
+                                    6.0206528
+                                ],
+                                [
+                                    2.4664648,
+                                    6.0206722
+                                ],
+                                [
+                                    2.4666458,
+                                    6.0207073
+                                ],
+                                [
+                                    2.4667618,
+                                    6.0207302
+                                ],
+                                [
+                                    2.466825,
+                                    6.0207405
+                                ],
+                                [
+                                    2.4669228,
+                                    6.0207542
+                                ],
+                                [
+                                    2.467013,
+                                    6.020761
+                                ],
+                                [
+                                    2.4670834,
+                                    6.0207653
+                                ],
+                                [
+                                    2.4671665,
+                                    6.020767
+                                ],
+                                [
+                                    2.4672367,
+                                    6.0207645
+                                ],
+                                [
+                                    2.4673105,
+                                    6.0207596
+                                ],
+                                [
+                                    2.4673717,
+                                    6.020754
+                                ],
+                                [
+                                    2.4674637,
+                                    6.0207428
+                                ],
+                                [
+                                    2.4675354,
+                                    6.02073
+                                ],
+                                [
+                                    2.4676071,
+                                    6.020714
+                                ],
+                                [
+                                    2.4676987,
+                                    6.02069
+                                ],
+                                [
+                                    2.467828,
+                                    6.0206566
+                                ],
+                                [
+                                    2.4678799,
+                                    6.0206436
+                                ],
+                                [
+                                    2.467914,
+                                    6.0206364
+                                ],
+                                [
+                                    2.4679482,
+                                    6.0206287
+                                ],
+                                [
+                                    2.4679949,
+                                    6.0206215
+                                ],
+                                [
+                                    2.4680687,
+                                    6.0206112
+                                ],
+                                [
+                                    2.4681227,
+                                    6.0206066
+                                ],
+                                [
+                                    2.4681585,
+                                    6.020602
+                                ],
+                                [
+                                    2.4682793,
+                                    6.020596
+                                ],
+                                [
+                                    2.4683603,
+                                    6.0205956
+                                ],
+                                [
+                                    2.4684416,
+                                    6.020596
+                                ],
+                                [
+                                    2.4685192,
+                                    6.020601
+                                ],
+                                [
+                                    2.4686094,
+                                    6.0206085
+                                ],
+                                [
+                                    2.4686926,
+                                    6.020617
+                                ],
+                                [
+                                    2.4687777,
+                                    6.0206284
+                                ],
+                                [
+                                    2.4688662,
+                                    6.0206406
+                                ],
+                                [
+                                    2.469031,
+                                    6.020663
+                                ],
+                                [
+                                    2.4691738,
+                                    6.0206818
+                                ],
+                                [
+                                    2.469284,
+                                    6.0206966
+                                ],
+                                [
+                                    2.4693909,
+                                    6.020711
+                                ],
+                                [
+                                    2.469474,
+                                    6.0207207
+                                ],
+                                [
+                                    2.469548,
+                                    6.0207268
+                                ],
+                                [
+                                    2.4696293,
+                                    6.0207317
+                                ],
+                                [
+                                    2.469705,
+                                    6.0207348
+                                ],
+                                [
+                                    2.4697952,
+                                    6.0207344
+                                ],
+                                [
+                                    2.4698765,
+                                    6.020733
+                                ],
+                                [
+                                    2.4699663,
+                                    6.020728
+                                ],
+                                [
+                                    2.4700401,
+                                    6.0207214
+                                ],
+                                [
+                                    2.4701159,
+                                    6.0207138
+                                ],
+                                [
+                                    2.4701984,
+                                    6.0207035
+                                ],
+                                [
+                                    2.4702435,
+                                    6.0206978
+                                ],
+                                [
+                                    2.4702974,
+                                    6.02069
+                                ],
+                                [
+                                    2.4704628,
+                                    6.020667
+                                ],
+                                [
+                                    2.4706825,
+                                    6.020656
+                                ],
+                                [
+                                    2.4708073,
+                                    6.020668
+                                ],
+                                [
+                                    2.4710442,
+                                    6.020697
+                                ],
+                                [
+                                    2.4711529,
+                                    6.0207188
+                                ],
+                                [
+                                    2.47122,
+                                    6.0207436
+                                ],
+                                [
+                                    2.4718134,
+                                    6.0209854
+                                ],
+                                [
+                                    2.4720276,
+                                    6.0210484
+                                ],
+                                [
+                                    2.4722198,
+                                    6.0210957
+                                ],
+                                [
+                                    2.472522,
+                                    6.021138
+                                ],
+                                [
+                                    2.472878,
+                                    6.0211754
+                                ],
+                                [
+                                    2.4732485,
+                                    6.0211994
+                                ],
+                                [
+                                    2.4735989,
+                                    6.021226
+                                ],
+                                [
+                                    2.4741507,
+                                    6.0213013
+                                ],
+                                [
+                                    2.4743498,
+                                    6.0213287
+                                ],
+                                [
+                                    2.4745144,
+                                    6.021346
+                                ],
+                                [
+                                    2.475357,
+                                    6.0216022
+                                ],
+                                [
+                                    2.4754625,
+                                    6.021634
+                                ],
+                                [
+                                    2.4757053,
+                                    6.021676
+                                ],
+                                [
+                                    2.475942,
+                                    6.021697
+                                ],
+                                [
+                                    2.476139,
+                                    6.021711
+                                ],
+                                [
+                                    2.4768318,
+                                    6.0217194
+                                ],
+                                [
+                                    2.4772846,
+                                    6.021715
+                                ],
+                                [
+                                    2.4776855,
+                                    6.021738
+                                ],
+                                [
+                                    2.4779947,
+                                    6.0217613
+                                ],
+                                [
+                                    2.4783293,
+                                    6.021794
+                                ],
+                                [
+                                    2.4794163,
+                                    6.0219097
+                                ],
+                                [
+                                    2.4802505,
+                                    6.0219444
+                                ],
+                                [
+                                    2.4808968,
+                                    6.0219486
+                                ],
+                                [
+                                    2.481321,
+                                    6.0219475
+                                ],
+                                [
+                                    2.4815386,
+                                    6.0219337
+                                ],
+                                [
+                                    2.4818266,
+                                    6.0219097
+                                ],
+                                [
+                                    2.4829687,
+                                    6.0218433
+                                ],
+                                [
+                                    2.483254,
+                                    6.0218494
+                                ],
+                                [
+                                    2.4835526,
+                                    6.0218872
+                                ],
+                                [
+                                    2.4836832,
+                                    6.021917
+                                ],
+                                [
+                                    2.4838669,
+                                    6.0219677
+                                ],
+                                [
+                                    2.4841747,
+                                    6.022088
+                                ],
+                                [
+                                    2.4842604,
+                                    6.0221195
+                                ],
+                                [
+                                    2.484346,
+                                    6.0221523
+                                ],
+                                [
+                                    2.4846851,
+                                    6.0222874
+                                ],
+                                [
+                                    2.484896,
+                                    6.022352
+                                ],
+                                [
+                                    2.485003,
+                                    6.0223717
+                                ],
+                                [
+                                    2.48505,
+                                    6.0223778
+                                ],
+                                [
+                                    2.485337,
+                                    6.022384
+                                ],
+                                [
+                                    2.4856453,
+                                    6.0223675
+                                ],
+                                [
+                                    2.4859224,
+                                    6.0223362
+                                ],
+                                [
+                                    2.4860592,
+                                    6.0223244
+                                ],
+                                [
+                                    2.4862316,
+                                    6.0222946
+                                ],
+                                [
+                                    2.4869709,
+                                    6.0222107
+                                ],
+                                [
+                                    2.4874039,
+                                    6.0222008
+                                ],
+                                [
+                                    2.487641,
+                                    6.022213
+                                ],
+                                [
+                                    2.4878479,
+                                    6.0222122
+                                ],
+                                [
+                                    2.4880638,
+                                    6.0221893
+                                ],
+                                [
+                                    2.4884281,
+                                    6.0221195
+                                ],
+                                [
+                                    2.488643,
+                                    6.0220596
+                                ],
+                                [
+                                    2.489028,
+                                    6.021946
+                                ],
+                                [
+                                    2.4892103,
+                                    6.021888
+                                ],
+                                [
+                                    2.4893425,
+                                    6.021837
+                                ],
+                                [
+                                    2.489471,
+                                    6.0217896
+                                ],
+                                [
+                                    2.4898623,
+                                    6.021644
+                                ],
+                                [
+                                    2.4901432,
+                                    6.0215603
+                                ],
+                                [
+                                    2.4907106,
+                                    6.0214024
+                                ],
+                                [
+                                    2.4908447,
+                                    6.0213608
+                                ],
+                                [
+                                    2.491872,
+                                    6.0208782
+                                ],
+                                [
+                                    2.4921364,
+                                    6.020762
+                                ],
+                                [
+                                    2.4922817,
+                                    6.0206875
+                                ],
+                                [
+                                    2.4923223,
+                                    6.0206577
+                                ],
+                                [
+                                    2.4924824,
+                                    6.0205776
+                                ],
+                                [
+                                    2.4927628,
+                                    6.0204212
+                                ],
+                                [
+                                    2.4930138,
+                                    6.020303
+                                ],
+                                [
+                                    2.4931007,
+                                    6.020253
+                                ],
+                                [
+                                    2.49318,
+                                    6.020184
+                                ],
+                                [
+                                    2.4932562,
+                                    6.0199455
+                                ],
+                                [
+                                    2.4933767,
+                                    6.0197517
+                                ],
+                                [
+                                    2.4933504,
+                                    6.0195225
+                                ],
+                                [
+                                    2.4933357,
+                                    6.0193176
+                                ],
+                                [
+                                    2.4933628,
+                                    6.0191963
+                                ],
+                                [
+                                    2.4933872,
+                                    6.0191055
+                                ],
+                                [
+                                    2.4934828,
+                                    6.0189102
+                                ],
+                                [
+                                    2.4935669,
+                                    6.0187614
+                                ],
+                                [
+                                    2.4939346,
+                                    6.0178844
+                                ],
+                                [
+                                    2.493966,
+                                    6.017273
+                                ],
+                                [
+                                    2.4939594,
+                                    6.0172726
+                                ]
+                            ],
+                            "type": "LineString"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

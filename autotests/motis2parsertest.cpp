@@ -165,6 +165,9 @@ private Q_SLOTS:
         QTest::newRow("limited-entry-exit")
             << QStringLiteral(SOURCE_DIR "/data/motis2/trip-limited-entry-exit.in.json")
             << QStringLiteral(SOURCE_DIR "/data/motis2/trip-limited-entry-exit.out.json");
+        QTest::newRow("alerts")
+            << QStringLiteral(SOURCE_DIR "/data/motis2/trip-alerts.in.json")
+            << QStringLiteral(SOURCE_DIR "/data/motis2/trip-alerts.out.json");
     }
 
     void testParseTrip()
