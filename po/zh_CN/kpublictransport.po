@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-23 00:41+0000\n"
+"POT-Creation-Date: 2025-05-27 00:40+0000\n"
 "PO-Revision-Date: 2024-05-07 19:27\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -233,6 +233,27 @@ msgstr ""
 msgctxt "@info"
 msgid "On time"
 msgstr ""
+
+#: quick/FeatureDelegate.qml:37
+#, kde-format
+msgid "Availability unknown"
+msgstr ""
+
+#: quick/FeatureDelegate.qml:39
+#, kde-format
+msgid "Not available"
+msgstr ""
+
+#: quick/FeatureDelegate.qml:41
+#, kde-format
+msgid "Currently not available"
+msgstr ""
+
+#: quick/FeatureDelegate.qml:43
+#, kde-format
+msgid "One space"
+msgid_plural "%1 spaces"
+msgstr[0] ""
 
 #: quick/FeatureIcon.qml:58
 #, kde-format

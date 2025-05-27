@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-23 00:41+0000\n"
+"POT-Creation-Date: 2025-05-27 00:40+0000\n"
 "PO-Revision-Date: 2025-05-23 09:17+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -234,6 +234,35 @@ msgstr "%1, раніше"
 msgctxt "@info"
 msgid "On time"
 msgstr "Вчасно"
+
+#: quick/FeatureDelegate.qml:37
+#, fuzzy, kde-format
+#| msgid "%1 (availability unknown)"
+msgid "Availability unknown"
+msgstr "%1 (невідома доступність)"
+
+#: quick/FeatureDelegate.qml:39
+#, fuzzy, kde-format
+#| msgid "%1 (not available)"
+msgid "Not available"
+msgstr "%1 (недоступне)"
+
+#: quick/FeatureDelegate.qml:41
+#, fuzzy, kde-format
+#| msgid "%1 (not available)"
+msgid "Currently not available"
+msgstr "%1 (недоступне)"
+
+#: quick/FeatureDelegate.qml:43
+#, fuzzy, kde-format
+#| msgid "%2 (one space)"
+#| msgid_plural "%2 (%1 spaces)"
+msgid "One space"
+msgid_plural "%1 spaces"
+msgstr[0] "%2 (%1 простір)"
+msgstr[1] "%2 (%1 простори)"
+msgstr[2] "%2 (%1 просторів)"
+msgstr[3] "%2 (%1 простір)"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format

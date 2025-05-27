@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-23 00:41+0000\n"
+"POT-Creation-Date: 2025-05-27 00:40+0000\n"
 "PO-Revision-Date: 2024-08-24 12:05+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
@@ -233,6 +233,33 @@ msgstr ""
 msgctxt "@info"
 msgid "On time"
 msgstr ""
+
+#: quick/FeatureDelegate.qml:37
+#, fuzzy, kde-format
+#| msgid "%1 (not available)"
+msgid "Availability unknown"
+msgstr "%1 (not available)"
+
+#: quick/FeatureDelegate.qml:39
+#, fuzzy, kde-format
+#| msgid "%1 (not available)"
+msgid "Not available"
+msgstr "%1 (not available)"
+
+#: quick/FeatureDelegate.qml:41
+#, fuzzy, kde-format
+#| msgid "%1 (not available)"
+msgid "Currently not available"
+msgstr "%1 (not available)"
+
+#: quick/FeatureDelegate.qml:43
+#, fuzzy, kde-format
+#| msgid "%2 (one space)"
+#| msgid_plural "%2 (%1 spaces)"
+msgid "One space"
+msgid_plural "%1 spaces"
+msgstr[0] "%2 (one space)"
+msgstr[1] "%2 (%1 spaces)"
 
 #: quick/FeatureIcon.qml:58
 #, fuzzy, kde-format
