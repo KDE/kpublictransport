@@ -129,6 +129,10 @@ Stopover Motis2Parser::parsePlace(const QJsonObject &obj, bool hasRealTime) cons
         s.setExpectedArrivalTime(parseTime(obj.value("arrival"_L1)));
     }
 
+    if (obj.value("cancelled"_L1).toBool()) {
+        s.setDisruptionEffect(Disruption::NoService);
+    }
+
     // TODO full support for dropoffType, pickupType, once Stopover has API for that
     const auto pickupType = obj.value("pickupType"_L1).toString();
     const auto dropoffType = obj.value("dropoffType"_L1).toString();
