@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-05-27 00:40+0000\n"
-"PO-Revision-Date: 2025-05-23 12:26+0200\n"
+"PO-Revision-Date: 2025-05-27 11:25+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 25.04.1\n"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
@@ -237,31 +237,26 @@ msgid "On time"
 msgstr "A l'hora"
 
 #: quick/FeatureDelegate.qml:37
-#, fuzzy, kde-format
-#| msgid "%1 (availability unknown)"
+#, kde-format
 msgid "Availability unknown"
-msgstr "%1 (disponibilitat desconeguda)"
+msgstr "Disponibilitat desconeguda"
 
 #: quick/FeatureDelegate.qml:39
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Not available"
-msgstr "%1 (no disponible)"
+msgstr "No disponible"
 
 #: quick/FeatureDelegate.qml:41
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Currently not available"
-msgstr "%1 (no disponible)"
+msgstr "Actualment no és disponible"
 
 #: quick/FeatureDelegate.qml:43
-#, fuzzy, kde-format
-#| msgid "%2 (one space)"
-#| msgid_plural "%2 (%1 spaces)"
+#, kde-format
 msgid "One space"
 msgid_plural "%1 spaces"
-msgstr[0] "%2 (un espai)"
-msgstr[1] "%2 (%1 espais)"
+msgstr[0] "Un espai"
+msgstr[1] "%1 espais"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format

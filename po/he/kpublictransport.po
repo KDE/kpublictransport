@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-05-27 00:40+0000\n"
-"PO-Revision-Date: 2025-05-22 08:31+0300\n"
+"PO-Revision-Date: 2025-05-27 07:45+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -171,19 +171,19 @@ msgstr "קרון הובלת מכוניות"
 #, kde-format
 msgctxt "train seating class"
 msgid "First class"
-msgstr ""
+msgstr "מחלקה ראשונה"
 
 #: lib/datatypes/vehicle.cpp:92
 #, kde-format
 msgctxt "train seating class"
 msgid "Second class"
-msgstr ""
+msgstr "מחלקה שנייה"
 
 #: lib/datatypes/vehicle.cpp:95
 #, kde-format
 msgctxt "train seating class"
 msgid "First/second class"
-msgstr ""
+msgstr "מחלקה ראשונה/שנייה"
 
 #: quick/BackendPage.qml:21
 #, kde-format
@@ -236,33 +236,28 @@ msgid "On time"
 msgstr "בזמן"
 
 #: quick/FeatureDelegate.qml:37
-#, fuzzy, kde-format
-#| msgid "%1 (availability unknown)"
+#, kde-format
 msgid "Availability unknown"
-msgstr "%1 (זמינות לא ידועה)"
+msgstr "זמינות לא ידועה"
 
 #: quick/FeatureDelegate.qml:39
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Not available"
-msgstr "%1 (לא זמין)"
+msgstr "לא זמין"
 
 #: quick/FeatureDelegate.qml:41
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Currently not available"
-msgstr "%1 (לא זמין)"
+msgstr "לא זמין כרגע"
 
 #: quick/FeatureDelegate.qml:43
-#, fuzzy, kde-format
-#| msgid "%2 (one space)"
-#| msgid_plural "%2 (%1 spaces)"
+#, kde-format
 msgid "One space"
 msgid_plural "%1 spaces"
-msgstr[0] "%2 (מתחם אחד)"
-msgstr[1] "%2 (שני מתחמים)"
-msgstr[2] "%2 (%1 מתחמים)"
-msgstr[3] "%2 (%1 מתחמים)"
+msgstr[0] "מקום אחד"
+msgstr[1] "שני מקומות"
+msgstr[2] "%1 מקומות"
+msgstr[3] "%1 מקומות"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format

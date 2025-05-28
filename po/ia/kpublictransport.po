@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-05-27 00:40+0000\n"
-"PO-Revision-Date: 2025-05-09 17:21+0200\n"
+"PO-Revision-Date: 2025-05-27 12:01+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -147,47 +147,43 @@ msgstr "Auto de location"
 #, kde-format
 msgctxt "train coach type"
 msgid "Sleeping car"
-msgstr ""
+msgstr "Wagon Lecto"
 
 #: lib/datatypes/vehicle.cpp:77
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented car"
+#, kde-format
 msgctxt "train coach type"
 msgid "Couchette car"
-msgstr "Auto de location"
+msgstr "Wagon couchette"
 
 #: lib/datatypes/vehicle.cpp:79
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented car"
+#, kde-format
 msgctxt "train coach type"
 msgid "Restaurant car"
-msgstr "Auto de location"
+msgstr "Wagon Restaurante"
 
 #: lib/datatypes/vehicle.cpp:81
 #, kde-format
 msgctxt "train coach type"
 msgid "Car transport car"
-msgstr ""
+msgstr "Wagon de transporto auto"
 
 #: lib/datatypes/vehicle.cpp:89
 #, kde-format
 msgctxt "train seating class"
 msgid "First class"
-msgstr ""
+msgstr "Prime classe"
 
 #: lib/datatypes/vehicle.cpp:92
 #, kde-format
 msgctxt "train seating class"
 msgid "Second class"
-msgstr ""
+msgstr "Secunde classe"
 
 #: lib/datatypes/vehicle.cpp:95
 #, kde-format
 msgctxt "train seating class"
 msgid "First/second class"
-msgstr ""
+msgstr "Prime/secunde classe"
 
 #: quick/BackendPage.qml:21
 #, kde-format
@@ -219,52 +215,47 @@ msgstr "Union Europee"
 #, kde-format
 msgctxt "a train/bus journey canceled by its operator"
 msgid "Canceled"
-msgstr ""
+msgstr "Cancellate"
 
 #: quick/ExpectedTimeLabel.qml:38
 #, kde-format
 msgctxt "duration of the delay"
 msgid "Delayed %1"
-msgstr ""
+msgstr "Retardate %1"
 
 #: quick/ExpectedTimeLabel.qml:40
 #, kde-format
 msgctxt "earlier arrival/departure"
 msgid "%1 earlier"
-msgstr ""
+msgstr "%1 antecedente"
 
 #: quick/ExpectedTimeLabel.qml:42
 #, kde-format
 msgctxt "@info"
 msgid "On time"
-msgstr ""
+msgstr "Punctual"
 
 #: quick/FeatureDelegate.qml:37
-#, fuzzy, kde-format
-#| msgid "%1 (availability unknown)"
+#, kde-format
 msgid "Availability unknown"
-msgstr "%1 (disponibilitate incognoscite)"
+msgstr "Disponibilitate incognite"
 
 #: quick/FeatureDelegate.qml:39
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Not available"
-msgstr "%1 (Non disponibile)"
+msgstr "Non disponibile"
 
 #: quick/FeatureDelegate.qml:41
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Currently not available"
-msgstr "%1 (Non disponibile)"
+msgstr "Cuirrentemente non disponibile"
 
 #: quick/FeatureDelegate.qml:43
-#, fuzzy, kde-format
-#| msgid "%2 (one space)"
-#| msgid_plural "%2 (%1 spaces)"
+#, kde-format
 msgid "One space"
 msgid_plural "%1 spaces"
-msgstr[0] "%2 (un spatio)"
-msgstr[1] "%2 (%1 spatios)"
+msgstr[0] "Un spatio"
+msgstr[1] "%1 spatios"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format

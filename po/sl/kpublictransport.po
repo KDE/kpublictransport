@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-05-27 00:40+0000\n"
-"PO-Revision-Date: 2025-05-23 07:05+0200\n"
+"PO-Revision-Date: 2025-05-27 06:57+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <kde-i18n-doc@kde.org>\n"
 "Language: sl\n"
@@ -237,33 +237,28 @@ msgid "On time"
 msgstr "Pravočasno"
 
 #: quick/FeatureDelegate.qml:37
-#, fuzzy, kde-format
-#| msgid "%1 (availability unknown)"
+#, kde-format
 msgid "Availability unknown"
-msgstr "%1 (neznana razpoložljivost)"
+msgstr "Razpoložljivost neznana"
 
 #: quick/FeatureDelegate.qml:39
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Not available"
-msgstr "%1 (ni na voljo)"
+msgstr "Ni na voljo"
 
 #: quick/FeatureDelegate.qml:41
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Currently not available"
-msgstr "%1 (ni na voljo)"
+msgstr "Trenutno ni na voljo"
 
 #: quick/FeatureDelegate.qml:43
-#, fuzzy, kde-format
-#| msgid "%2 (one space)"
-#| msgid_plural "%2 (%1 spaces)"
+#, kde-format
 msgid "One space"
 msgid_plural "%1 spaces"
-msgstr[0] "%2 (%1 prostih mest)"
-msgstr[1] "%2 (%1 prosto mesto)"
-msgstr[2] "%2 (%1 prosti mesti)"
-msgstr[3] "%2 (%1 prosta mesta)"
+msgstr[0] "%1 mest"
+msgstr[1] "%1 mesto"
+msgstr[2] "%1 mesti"
+msgstr[3] "%1 mesta"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format

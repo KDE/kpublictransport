@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-05-27 00:40+0000\n"
-"PO-Revision-Date: 2025-05-23 12:59+0200\n"
+"PO-Revision-Date: 2025-05-27 15:40+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -235,31 +235,26 @@ msgid "On time"
 msgstr "Op tijd"
 
 #: quick/FeatureDelegate.qml:37
-#, fuzzy, kde-format
-#| msgid "%1 (availability unknown)"
+#, kde-format
 msgid "Availability unknown"
-msgstr "%1 (beschikbaarheid onbekend)"
+msgstr "Beschikbaarheid onbekend"
 
 #: quick/FeatureDelegate.qml:39
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Not available"
-msgstr "%1 (niet beschikbaar)"
+msgstr "Niet beschikbaar"
 
 #: quick/FeatureDelegate.qml:41
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Currently not available"
-msgstr "%1 (niet beschikbaar)"
+msgstr "Nu niet beschikbaar"
 
 #: quick/FeatureDelegate.qml:43
-#, fuzzy, kde-format
-#| msgid "%2 (one space)"
-#| msgid_plural "%2 (%1 spaces)"
+#, kde-format
 msgid "One space"
 msgid_plural "%1 spaces"
-msgstr[0] "%2 (één plaats)"
-msgstr[1] "%2 (%1 plaatsen)"
+msgstr[0] "Één plaats"
+msgstr[1] "%1 plaatsen"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format

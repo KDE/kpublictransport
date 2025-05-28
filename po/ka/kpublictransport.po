@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-05-27 00:40+0000\n"
-"PO-Revision-Date: 2025-05-23 04:01+0200\n"
+"PO-Revision-Date: 2025-05-27 05:25+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -236,31 +236,26 @@ msgid "On time"
 msgstr "დროზე"
 
 #: quick/FeatureDelegate.qml:37
-#, fuzzy, kde-format
-#| msgid "%1 (availability unknown)"
+#, kde-format
 msgid "Availability unknown"
-msgstr "%1 (ხელმისაწვდომობა უცნობია)"
+msgstr "ხელმისაწვდომობა უცნობია"
 
 #: quick/FeatureDelegate.qml:39
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Not available"
-msgstr "%1 (ხელმისაწვდომი არაა)"
+msgstr "ხელმისაწვდომი არაა"
 
 #: quick/FeatureDelegate.qml:41
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Currently not available"
-msgstr "%1 (ხელმისაწვდომი არაა)"
+msgstr "ამჟამად ხელმისაწვდომი არაა"
 
 #: quick/FeatureDelegate.qml:43
-#, fuzzy, kde-format
-#| msgid "%2 (one space)"
-#| msgid_plural "%2 (%1 spaces)"
+#, kde-format
 msgid "One space"
 msgid_plural "%1 spaces"
-msgstr[0] "%2 (ერთი სივრცე)"
-msgstr[1] "%2 (%1 სივრცე)"
+msgstr[0] "ერთი სივრცე"
+msgstr[1] "%1 სივრცე"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format
