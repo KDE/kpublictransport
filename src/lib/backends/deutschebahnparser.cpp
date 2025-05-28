@@ -46,6 +46,7 @@ struct {
     { "UBAHN", Line::Metro },
     { "TRAM", Line::Tramway },
     { "ANRUFPFLICHTIG", Line::Taxi },
+    { "ERSATZVERKEHR", Line::Bus },
 };
 
 [[nodiscard]] static Route parseRoute(const QJsonObject &lineObj)
