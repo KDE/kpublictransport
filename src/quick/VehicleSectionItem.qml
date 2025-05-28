@@ -117,7 +117,12 @@ KPublicTransport.StyledFrameSvgItem {
     borderBottom: 48 - borderTop - 2
 
     ColumnLayout {
-        anchors.centerIn: root
+        anchors {
+            horizontalCenter: root.horizontalCenter
+            verticalCenter: root.verticalCenter
+            verticalCenterOffset: (root.section.type === KPublicTransport.VehicleSection.ControlCar ? 12 : 0)
+                * (root.section.connectedSides === KPublicTransport.VehicleSection.Front ? -1 : 1)
+        }
         QQC2.Label {
             Layout.alignment: Qt.AlignCenter
             text: root.section.name
@@ -131,7 +136,7 @@ KPublicTransport.StyledFrameSvgItem {
             source: {
                 if (root.section.disruptionEffect === KPublicTransport.Disruption.NoService)
                     return "dialog-cancel"
-                root.section.type !== KPublicTransport.VehicleSection.ControlCar ? root.section.iconName : ""
+                return root.section.iconName;
             }
             color: root.section.disruptionEffect === KPublicTransport.Disruption.NoService ? Kirigami.Theme.negativeTextColor : root.textColor
             isMask: true
