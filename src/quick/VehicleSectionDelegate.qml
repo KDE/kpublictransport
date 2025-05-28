@@ -25,7 +25,7 @@ KPublicTransport.VehicleSectionItem {
     signal tapped(eventPoint: eventPoint, button: int)
 
     TapHandler {
-        enabled: delegateRoot.vehicleSection.sectionFeatures.length > 0 && delegateRoot.vehicleSection.disruptionEffect !== KPublicTransport.Disruption.NoService
+        enabled: (delegateRoot.vehicleSection.sectionFeatures.length > 0 || delegateRoot.vehicleSection.occupancy != KPublicTransport.Load.Unknown) && delegateRoot.vehicleSection.disruptionEffect !== KPublicTransport.Disruption.NoService
         onTapped: (eventPoint, button) => { delegateRoot.tapped(eventPoint, button); }
     }
 
@@ -49,8 +49,14 @@ KPublicTransport.VehicleSectionItem {
             }
         }
         QQC2.Label {
-            visible: delegateRoot.section.classes != KPublicTransport.VehicleSection.UnknownClass
-            text: delegateRoot.section.classesName
+            visible: text !== ""
+            text: {
+                if (delegateRoot.section.classes !== KPublicTransport.VehicleSection.UnknownClass)
+                    return delegateRoot.section.classesName;
+                if (delegateRoot.section.type === KPublicTransport.VehicleSection.SleepingCar || delegateRoot.section.type === KPublicTransport.VehicleSection.CouchetteCar || delegateRoot.section.type === KPublicTransport.VehicleSection.RestaurantCar)
+                    return delegateRoot.section.typeName;
+                return ""
+            }
             color: delegateRoot.vehicleSection.disruptionEffect === KPublicTransport.Disruption.NoService ?
                     Kirigami.Theme.disabledTextColor :  Kirigami.Theme.textColor
         }
@@ -61,7 +67,7 @@ KPublicTransport.VehicleSectionItem {
         }
 
         TapHandler {
-            enabled: delegateRoot.vehicleSection.sectionFeatures.length > 0 && delegateRoot.vehicleSection.disruptionEffect !== KPublicTransport.Disruption.NoService
+            enabled: (delegateRoot.vehicleSection.sectionFeatures.length > 0 || delegateRoot.vehicleSection.occupancy != KPublicTransport.Load.Unknown) && delegateRoot.vehicleSection.disruptionEffect !== KPublicTransport.Disruption.NoService
             onTapped: (eventPoint, button) => { delegateRoot.tapped(eventPoint, button); }
         }
     }
