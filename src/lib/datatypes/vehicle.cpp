@@ -5,6 +5,8 @@
 */
 
 #include "vehicle.h"
+
+#include "classutil.h"
 #include "json_p.h"
 #include "datatypes_p.h"
 #include "featureutil_p.h"
@@ -85,17 +87,7 @@ QString VehicleSection::typeName() const
 
 QString VehicleSection::classesName() const
 {
-    if (d->classes == VehicleSection::FirstClass) {
-        return i18nc("train seating class", "First class");
-    }
-    if (d->classes == VehicleSection::SecondClass) {
-        return i18nc("train seating class", "Second class");
-    }
-    if (d->classes == (VehicleSection::FirstClass | VehicleSection::SecondClass)) {
-        return i18nc("train seating class", "First/second class");
-    }
-
-    return {};
+    return ClassUtil::displayName(d->classes);
 }
 
 const std::vector<KPublicTransport::Feature>& VehicleSection::sectionFeatures() const

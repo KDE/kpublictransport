@@ -5,7 +5,10 @@
 */
 
 #include "kpublictransportqmlplugin.h"
+
 #include "linemetadatawrapper.h"
+
+#include <KPublicTransport/ClassUtil>
 
 #include <QQmlEngine>
 #include <QQmlContext>
@@ -29,5 +32,8 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     });
     qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "FeatureType", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
         return engine->toScriptValue(FeatureType());
+    });
+    qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "ClassUtil", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
+        return engine->toScriptValue(KPublicTransport::ClassUtil());
     });
 }

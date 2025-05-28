@@ -29,6 +29,7 @@ ecm_target_qml_sources(kpublictransportquickplugin SOURCES
     FeatureDelegate.qml
     FeatureIcon.qml
     JourneyHorizontalBar.qml
+    OccupancyDelegate.qml
     OccupancyIndicator.qml
     StopPickerPage.qml
     TransportIcon.qml

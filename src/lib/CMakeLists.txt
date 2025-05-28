@@ -68,6 +68,7 @@ target_sources(KPublicTransport PRIVATE
     datatypes/attribution.cpp
     datatypes/attributionutil.cpp
     datatypes/backend.cpp
+    datatypes/classutil.cpp
     datatypes/coveragearea.cpp
     datatypes/disruption.cpp
     datatypes/equipment.cpp
@@ -202,6 +203,7 @@ ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
     HEADER_NAMES
         Attribution
         Backend
+        ClassUtil
         CoverageArea
         Datatypes
         Disruption
