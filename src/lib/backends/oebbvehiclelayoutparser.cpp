@@ -23,22 +23,23 @@ struct {
     VehicleSection::Class coachClass;
     Feature::Availability postitive;
     Feature::Availability negative;
+    VehicleSection::Type type;
 } static constexpr const vehicle_section_feature_map[] = {
-    { "capacityBusinessClass", Feature::BusinessArea, VehicleSection::FirstClass, Feature::Available, Feature::Unknown },
-    { "capacityFirstClass", Feature::NoFeature, VehicleSection::FirstClass, Feature::Unknown, Feature::Unknown },
-    { "capacitySecondClass", Feature::NoFeature, VehicleSection::SecondClass, Feature::Unknown, Feature::Unknown },
-    { "capacityCouchette", Feature::NoFeature, VehicleSection::UnknownClass, Feature::Unknown, Feature::Unknown }, // TODO
-    { "capacitySleeper", Feature::NoFeature, VehicleSection::UnknownClass, Feature::Unknown, Feature::Unknown }, // TODO
-    { "capacityWheelChair", Feature::WheelchairAccessible, VehicleSection::UnknownClass, Feature::Available, Feature::Unknown }, // 0 capacity + isWheelChairAccessible = true occur
-    { "capacityBicycle", Feature::BikeStorage, VehicleSection::UnknownClass, Feature::Available, Feature::Unknown }, // any conflicting combination of those two occurs
-    { "isBicycleAllowed", Feature::BikeStorage, VehicleSection::UnknownClass, Feature::Available, Feature::Unknown },
-    { "isWheelChairAccessible", Feature::WheelchairAccessible, VehicleSection::UnknownClass, Feature::Available, Feature::Unknown },
-    { "hasWifi", Feature::WiFi, VehicleSection::UnknownClass, Feature::Available, Feature::Unavailable },
-    { "isInfoPoint", Feature::InformationPoint, VehicleSection::UnknownClass, Feature::Available, Feature::Unknown },
-    { "isPlayZone", Feature::FamilyArea, VehicleSection::UnknownClass, Feature::Available, Feature::Unknown },
-    { "isChildCinema", Feature::FamilyArea, VehicleSection::UnknownClass, Feature::Available, Feature::Unknown },
-    { "isDining", Feature::Restaurant, VehicleSection::UnknownClass, Feature::Available, Feature::Unknown },
-    { "isQuietZone", Feature::SilentArea, VehicleSection::UnknownClass, Feature::Available, Feature::Unknown },
+    { "capacityBusinessClass", Feature::BusinessArea, VehicleSection::FirstClass, Feature::Available, Feature::Unknown, VehicleSection::UnknownType },
+    { "capacityFirstClass", Feature::NoFeature, VehicleSection::FirstClass, Feature::Unknown, Feature::Unknown, VehicleSection::UnknownType },
+    { "capacitySecondClass", Feature::NoFeature, VehicleSection::SecondClass, Feature::Unknown, Feature::Unknown, VehicleSection::UnknownType },
+    { "capacityCouchette", Feature::NoFeature, VehicleSection::UnknownClass, Feature::Unknown, Feature::Unknown, VehicleSection::CouchetteCar },
+    { "capacitySleeper", Feature::NoFeature, VehicleSection::UnknownClass, Feature::Unknown, Feature::Unknown, VehicleSection::SleepingCar },
+    { "capacityWheelChair", Feature::WheelchairAccessible, VehicleSection::UnknownClass, Feature::Available, Feature::Unknown, VehicleSection::UnknownType }, // 0 capacity + isWheelChairAccessible = true occur
+    { "capacityBicycle", Feature::BikeStorage, VehicleSection::UnknownClass, Feature::Available, Feature::Unknown, VehicleSection::UnknownType }, // any conflicting combination of those two occurs
+    { "isBicycleAllowed", Feature::BikeStorage, VehicleSection::UnknownClass, Feature::Available, Feature::Unknown, VehicleSection::UnknownType },
+    { "isWheelChairAccessible", Feature::WheelchairAccessible, VehicleSection::UnknownClass, Feature::Available, Feature::Unknown, VehicleSection::UnknownType },
+    { "hasWifi", Feature::WiFi, VehicleSection::UnknownClass, Feature::Available, Feature::Unavailable, VehicleSection::UnknownType },
+    { "isInfoPoint", Feature::InformationPoint, VehicleSection::UnknownClass, Feature::Available, Feature::Unknown, VehicleSection::UnknownType },
+    { "isPlayZone", Feature::FamilyArea, VehicleSection::UnknownClass, Feature::Available, Feature::Unknown, VehicleSection::UnknownType },
+    { "isChildCinema", Feature::FamilyArea, VehicleSection::UnknownClass, Feature::Available, Feature::Unknown, VehicleSection::UnknownType },
+    { "isDining", Feature::Restaurant, VehicleSection::UnknownClass, Feature::Available, Feature::Unknown, VehicleSection::UnknownType },
+    { "isQuietZone", Feature::SilentArea, VehicleSection::UnknownClass, Feature::Available, Feature::Unknown, VehicleSection::UnknownType },
     // isLocked
 };
 
@@ -195,6 +196,9 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
                 }
                 if ((val.isBool() && val.toBool()) || (val.isDouble() && val.toInt() > 0)) {
                     cls |= map.coachClass;
+                    if (map.type != VehicleSection::UnknownType) {
+                        section.setType(map.type);
+                    }
                 }
                 if (map.feature != Feature::NoFeature) {
                     Feature f(map.feature, Feature::Unknown);

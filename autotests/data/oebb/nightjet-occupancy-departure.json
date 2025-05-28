@@ -1,0 +1,84 @@
+{
+    "disruptionEffect": "NormalService",
+    "expectedDepartureTime": "2025-05-29T07:13:00",
+    "platformLayout": {
+        "length": 158
+    },
+    "route": {
+        "line": {
+            "mode": "LongDistanceTrain",
+            "name": "NJ 457"
+        }
+    },
+    "scheduledDepartureTime": "2025-05-29T07:13:00",
+    "scheduledPlatform": "7",
+    "stopPoint": {
+        "name": "Wien Meidling Bahnhof",
+        "type": "Stop"
+    },
+    "vehicleLayout": {
+        "direction": "UnknownDirection",
+        "sections": [
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "load": "Medium",
+                "name": "255",
+                "platformPositionBegin": 0,
+                "platformPositionEnd": 0.1670885980129242,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "load": "Low",
+                "name": "254",
+                "platformPositionBegin": 0.1670885980129242,
+                "platformPositionEnd": 0.3341771960258484,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "load": "High",
+                "name": "253",
+                "platformPositionBegin": 0.3341771960258484,
+                "platformPositionEnd": 0.501265823841095,
+                "type": "CouchetteCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "load": "High",
+                "name": "252",
+                "platformPositionBegin": 0.501265823841095,
+                "platformPositionEnd": 0.6683543920516968,
+                "type": "CouchetteCar"
+            },
+            {
+                "classes": "UnknownClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "load": "High",
+                "name": "251",
+                "platformPositionBegin": 0.6683543920516968,
+                "platformPositionEnd": 0.8354430198669434,
+                "type": "SleepingCar"
+            },
+            {
+                "classes": "UnknownClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "load": "Medium",
+                "name": "250",
+                "platformPositionBegin": 0.8354430198669434,
+                "platformPositionEnd": 1.00253164768219,
+                "type": "SleepingCar"
+            }
+        ]
+    }
+}

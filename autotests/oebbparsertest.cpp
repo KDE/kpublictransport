@@ -73,6 +73,10 @@ private Q_SLOTS:
         QTest::newRow("rjx-double")
             << s(SOURCE_DIR "/data/oebb/rjx-double-input.json")
             << s(SOURCE_DIR "/data/oebb/rjx-double-departure.json");
+
+        QTest::newRow("nightjet-occupancy")
+            << s(SOURCE_DIR "/data/oebb/nightjet-occupancy-input.json")
+            << s(SOURCE_DIR "/data/oebb/nightjet-occupancy-departure.json");
     }
 
     void testVehicleLayoutParse()

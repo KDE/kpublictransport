@@ -1,0 +1,106 @@
+{
+  "id": "d651a43e-7082-4f67-adbd-4d84f1d8befb",
+  "timeTableInfo": {
+    "date": "2025-05-29",
+    "stationName": "Wien Meidling Bahnhof",
+    "platform": "7",
+    "time": "0.07:13",
+    "sector": "",
+    "renderedTrainName": "NJ 457"
+  },
+  "train": {
+    "wagons": [
+      {
+        "kind": 0,
+        "features": 0,
+        "ranking": 255,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 66,
+        "capacityCouchette": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "destinationName": "Graz Hbf ",
+        "lengthOverBuffers": 26.4,
+        "numPassengerIcons": 2
+      },
+      {
+        "kind": 0,
+        "features": 0,
+        "ranking": 254,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 66,
+        "capacityCouchette": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "destinationName": "Graz Hbf ",
+        "lengthOverBuffers": 26.4,
+        "numPassengerIcons": 1
+      },
+      {
+        "kind": 0,
+        "features": 0,
+        "ranking": 253,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 10,
+        "capacityCouchette": 50,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "destinationName": "Graz Hbf ",
+        "lengthOverBuffers": 26.4,
+        "numPassengerIcons": 3
+      },
+      {
+        "kind": 0,
+        "features": 0,
+        "ranking": 252,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 10,
+        "capacityCouchette": 50,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "destinationName": "Graz Hbf ",
+        "lengthOverBuffers": 26.4,
+        "numPassengerIcons": 3
+      },
+      {
+        "kind": 0,
+        "features": 0,
+        "ranking": 251,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 0,
+        "capacityCouchette": 0,
+        "capacitySleeper": 36,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "destinationName": "Graz Hbf ",
+        "lengthOverBuffers": 26.4,
+        "numPassengerIcons": 3
+      },
+      {
+        "kind": 0,
+        "features": 0,
+        "ranking": 250,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 0,
+        "capacityCouchette": 0,
+        "capacitySleeper": 36,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "destinationName": "Graz Hbf ",
+        "lengthOverBuffers": 26.4,
+        "numPassengerIcons": 2
+      }
+    ],
+    "displayLoadInfo": true
+  }
+}
