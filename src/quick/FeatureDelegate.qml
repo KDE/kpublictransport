@@ -20,6 +20,8 @@ RowLayout {
     /** The KPublicTransport::Feature to display. */
     required property KPublicTransport.feature feature
 
+    spacing: Kirigami.Units.largeSpacing
+
     KPublicTransport.FeatureIcon {
         id: featureIcon
         feature: delegateRoot.feature
