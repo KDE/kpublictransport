@@ -84,8 +84,11 @@ class KPUBLICTRANSPORT_EXPORT Stopover
      */
     Q_PROPERTY(std::vector<KPublicTransport::Feature> features READ features)
 
-    /** Maximum occpancy leaving this stop, over all classes. */
+    /** Maximum occupancy leaving this stop, over all classes. */
     Q_PROPERTY(KPublicTransport::Load::Category maximumOccupancy READ maximumOccupancy STORED false)
+
+    /** Aggregated occupancy information from both this stop and the vehicle layout, if present. */
+    Q_PROPERTY(std::vector<KPublicTransport::LoadInfo> aggregatedOccupancy READ aggregatedOccupancy STORED false)
 
 public:
     [[nodiscard]] bool hasExpectedArrivalTime() const;
@@ -115,6 +118,7 @@ public:
     void setFeatures(std::vector<KPublicTransport::Feature> &&features);
 
     [[nodiscard]] Load::Category maximumOccupancy() const;
+    [[nodiscard]] std::vector<LoadInfo> aggregatedOccupancy() const;
 
     /** Backend-specific identifiers for the trip this stopover is on. */
     [[nodiscard]] QString tripIdentifier(QAnyStringView identifierType) const;

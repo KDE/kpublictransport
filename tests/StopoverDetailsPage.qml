@@ -128,8 +128,9 @@ Kirigami.Page {
                     }
                     Repeater {
                         id: occupancyView
-                        model: root.stopover.loadInformation
+                        model: root.stopover.aggregatedOccupancy
                         KPublicTransport.OccupancyDelegate {
+                            Layout.fillWidth: true
                             required property KPublicTransport.loadInfo modelData
                             occupancyInfo: modelData
                         }

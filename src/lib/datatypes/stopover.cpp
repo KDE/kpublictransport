@@ -176,6 +176,14 @@ Load::Category Stopover::maximumOccupancy() const
     });
 }
 
+std::vector<LoadInfo> Stopover::aggregatedOccupancy() const
+{
+    if (!d->loadInformation.empty()) {
+        return d->loadInformation;
+    }
+    return d->vehicleLayout.aggregatedOccupancy();
+}
+
 QString Stopover::tripIdentifier(QAnyStringView identifierType) const
 {
     return d->tripIds.identifier(identifierType);

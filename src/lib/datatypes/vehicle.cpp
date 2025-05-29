@@ -358,4 +358,35 @@ std::vector<KPublicTransport::Feature> Vehicle::combinedFeatures() const
     return features;
 }
 
+std::vector<KPublicTransport::LoadInfo> Vehicle::aggregatedOccupancy() const
+{
+    std::vector<LoadInfo> l;
+    for (const auto &section : d->sections) {
+        if (section.load() == Load::Category::Unknown) {
+            continue;
+        }
+        LoadInfo o(section.load());
+        if (section.classes() == VehicleSection::FirstClass) {
+            o.setSeatingClass(u"1"_s);
+        } else if (section.classes() == VehicleSection::SecondClass) {
+            o.setSeatingClass(u"2"_s);
+        }
+        auto it = std::ranges::find_if(l, [&o](const auto &info) {
+            return info.seatingClass() == o.seatingClass();
+        });
+        if (it == l.end()) {
+            l.push_back(std::move(o));
+        } else {
+            (*it).setLoad(std::max((*it).load(), o.load()));
+        }
+    }
+
+    std::ranges::sort(l, [](const auto &lhs, const auto &rhs) { return lhs.seatingClass() < rhs.seatingClass(); });
+    if (l.size() > 1 && l[0].seatingClass().isEmpty()) {
+        l.erase(l.begin());
+    }
+
+    return l;
+}
+
 #include "moc_vehicle.cpp"

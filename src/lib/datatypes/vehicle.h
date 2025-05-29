@@ -199,7 +199,10 @@ class KPUBLICTRANSPORT_EXPORT Vehicle
     Q_PROPERTY(std::vector<KPublicTransport::Feature> features READ features)
 
     /** Features of the entire vehicle including a union of all features of the individual sections. */
-    Q_PROPERTY(std::vector<KPublicTransport::Feature> combinedFeatures READ combinedFeatures)
+    Q_PROPERTY(std::vector<KPublicTransport::Feature> combinedFeatures READ combinedFeatures STORED false)
+
+    /** Aggrgated occupancy information from all sections. */
+    Q_PROPERTY(std::vector<KPublicTransport::LoadInfo> aggregatedOccupancy READ aggregatedOccupancy STORED false)
 
 public:
     /** Returns @c true if this object contains no information beyond the default values. */
@@ -234,6 +237,9 @@ public:
 
     /** Combined vehicle features. */
     [[nodiscard]] std::vector<KPublicTransport::Feature> combinedFeatures() const;
+
+    /** Aggregated occupancy information. */
+    [[nodiscard]] std::vector<KPublicTransport::LoadInfo> aggregatedOccupancy() const;
 
     /** Merge two Vehicle instances. */
     [[nodiscard]] static Vehicle merge(const Vehicle &lhs, const Vehicle &rhs);
