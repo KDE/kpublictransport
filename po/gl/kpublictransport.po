@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-27 00:40+0000\n"
+"POT-Creation-Date: 2025-05-29 00:41+0000\n"
 "PO-Revision-Date: 2025-05-26 08:46+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.gal>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -16,6 +16,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 25.04.1\n"
+
+#: lib/datatypes/classutil.cpp:29
+#, kde-format
+msgctxt "train seating class"
+msgid "First class"
+msgstr "Primeira clase"
+
+#: lib/datatypes/classutil.cpp:32
+#, kde-format
+msgctxt "train seating class"
+msgid "Second class"
+msgstr "Segunda clase"
+
+#: lib/datatypes/classutil.cpp:35
+#, kde-format
+msgctxt "train seating class"
+msgid "First/second class"
+msgstr "Primeira ou segunda clase"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
@@ -142,47 +160,29 @@ msgctxt "rental vehicle type"
 msgid "Rented car"
 msgstr "Coche alugado"
 
-#: lib/datatypes/vehicle.cpp:75
+#: lib/datatypes/vehicle.cpp:77
 #, kde-format
 msgctxt "train coach type"
 msgid "Sleeping car"
 msgstr "Coche cama"
 
-#: lib/datatypes/vehicle.cpp:77
+#: lib/datatypes/vehicle.cpp:79
 #, kde-format
 msgctxt "train coach type"
 msgid "Couchette car"
 msgstr "Coche liteira"
 
-#: lib/datatypes/vehicle.cpp:79
+#: lib/datatypes/vehicle.cpp:81
 #, kde-format
 msgctxt "train coach type"
 msgid "Restaurant car"
 msgstr "Coche restaurante"
 
-#: lib/datatypes/vehicle.cpp:81
+#: lib/datatypes/vehicle.cpp:83
 #, kde-format
 msgctxt "train coach type"
 msgid "Car transport car"
 msgstr "Coche portacoches"
-
-#: lib/datatypes/vehicle.cpp:89
-#, kde-format
-msgctxt "train seating class"
-msgid "First class"
-msgstr "Primeira clase"
-
-#: lib/datatypes/vehicle.cpp:92
-#, kde-format
-msgctxt "train seating class"
-msgid "Second class"
-msgstr "Segunda clase"
-
-#: lib/datatypes/vehicle.cpp:95
-#, kde-format
-msgctxt "train seating class"
-msgid "First/second class"
-msgstr "Primeira ou segunda clase"
 
 #: quick/BackendPage.qml:21
 #, kde-format
@@ -277,6 +277,12 @@ msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
 msgstr[0] "%2 (1 espazo)"
 msgstr[1] "%2 (%1 espazos)"
+
+#: quick/OccupancyDelegate.qml:36
+#, kde-format
+msgctxt "seating class type: occupancy level"
+msgid "%1: %2"
+msgstr ""
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format

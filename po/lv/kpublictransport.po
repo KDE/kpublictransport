@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-27 00:40+0000\n"
+"POT-Creation-Date: 2025-05-29 00:41+0000\n"
 "PO-Revision-Date: 2025-05-03 14:45+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -17,6 +17,24 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 "X-Generator: Lokalize 25.04.0\n"
+
+#: lib/datatypes/classutil.cpp:29
+#, kde-format
+msgctxt "train seating class"
+msgid "First class"
+msgstr ""
+
+#: lib/datatypes/classutil.cpp:32
+#, kde-format
+msgctxt "train seating class"
+msgid "Second class"
+msgstr ""
+
+#: lib/datatypes/classutil.cpp:35
+#, kde-format
+msgctxt "train seating class"
+msgid "First/second class"
+msgstr ""
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
@@ -143,13 +161,13 @@ msgctxt "rental vehicle type"
 msgid "Rented car"
 msgstr "Nomāts automobilis"
 
-#: lib/datatypes/vehicle.cpp:75
+#: lib/datatypes/vehicle.cpp:77
 #, kde-format
 msgctxt "train coach type"
 msgid "Sleeping car"
 msgstr ""
 
-#: lib/datatypes/vehicle.cpp:77
+#: lib/datatypes/vehicle.cpp:79
 #, fuzzy, kde-format
 #| msgctxt "rental vehicle type"
 #| msgid "Rented car"
@@ -157,7 +175,7 @@ msgctxt "train coach type"
 msgid "Couchette car"
 msgstr "Nomāts automobilis"
 
-#: lib/datatypes/vehicle.cpp:79
+#: lib/datatypes/vehicle.cpp:81
 #, fuzzy, kde-format
 #| msgctxt "rental vehicle type"
 #| msgid "Rented car"
@@ -165,28 +183,10 @@ msgctxt "train coach type"
 msgid "Restaurant car"
 msgstr "Nomāts automobilis"
 
-#: lib/datatypes/vehicle.cpp:81
+#: lib/datatypes/vehicle.cpp:83
 #, kde-format
 msgctxt "train coach type"
 msgid "Car transport car"
-msgstr ""
-
-#: lib/datatypes/vehicle.cpp:89
-#, kde-format
-msgctxt "train seating class"
-msgid "First class"
-msgstr ""
-
-#: lib/datatypes/vehicle.cpp:92
-#, kde-format
-msgctxt "train seating class"
-msgid "Second class"
-msgstr ""
-
-#: lib/datatypes/vehicle.cpp:95
-#, kde-format
-msgctxt "train seating class"
-msgid "First/second class"
 msgstr ""
 
 #: quick/BackendPage.qml:21
@@ -284,6 +284,12 @@ msgid_plural "%2 (%1 spaces)"
 msgstr[0] "%2 (%1 vieta)"
 msgstr[1] "%2 (%1 vietas)"
 msgstr[2] "%2 (%1 vietu)"
+
+#: quick/OccupancyDelegate.qml:36
+#, kde-format
+msgctxt "seating class type: occupancy level"
+msgid "%1: %2"
+msgstr ""
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
