@@ -78,11 +78,11 @@ Kirigami.Page {
             QQC2.TabButton { text: "Information" }
             QQC2.TabButton {
                 text: "Trip"
-                enabled: tripView.count > 0
+                enabled: tripView.journeySection.mode !== KPublicTransport.JourneySection.Invalid
             }
             QQC2.TabButton {
                 text: "Trip Map"
-                enabled: tripView.count > 0
+                enabled: tripView.journeySection.mode !== KPublicTransport.JourneySection.Invalid
             }
             QQC2.TabButton {
                 text: "Vehicle"
