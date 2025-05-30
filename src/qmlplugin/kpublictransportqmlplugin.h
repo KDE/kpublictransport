@@ -232,6 +232,13 @@ struct PathSectionForeign {
 };
 FOREIGN_ENUM_GADGET(PathSection)
 
+namespace PickupDropoffForeign
+{
+Q_NAMESPACE
+QML_NAMED_ELEMENT(PickupDropoff)
+QML_FOREIGN_NAMESPACE(KPublicTransport::PickupDropoff)
+};
+
 struct PlatformForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::Platform)
