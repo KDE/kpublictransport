@@ -59,7 +59,7 @@ Kirigami.Icon {
         } else if (root.feature.availability === KPublicTransport.Feature.Unavailable) {
             s = i18nd("kpublictransport", "%1 (not available)", s);
         } else if (root.feature.quantity > 0) {
-            s = i18ndp("kpublictransport", "%2 (one space)", "%2 (%1 spaces)", root.feature.quantity, s);
+            s = i18ndcp("kpublictransport", "bike/wheelchair spaces on a train/bus", "%2 (one space)", "%2 (%1 spaces)", root.feature.quantity, s);
         }
 
         if (root.feature.description !== "") {

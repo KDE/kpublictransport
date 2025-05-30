@@ -42,7 +42,7 @@ RowLayout {
             if (delegateRoot.feature.disruptionEffect === KPublicTransport.Disruption.NoService)
                 return i18nd("kpublictransport", "Currently not available")
             if (delegateRoot.feature.quantity > 0)
-                return i18ndp("kpublictransport", "One space", "%1 spaces", delegateRoot.feature.quantity);
+                return i18ndcp("kpublictransport", "bike/wheelchair spaces on a train/bus", "One space", "%1 spaces", delegateRoot.feature.quantity);
             return "";
         }
     }
