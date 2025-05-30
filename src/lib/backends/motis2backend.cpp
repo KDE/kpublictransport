@@ -162,7 +162,7 @@ bool Motis2Backend::queryStopover(const StopoverRequest &req, StopoverReply *rep
         logReply(reply, netReply, data);
 
         Motis2Parser p(m_locationIdentifierType);
-        auto result = p.parseStopTimes(data);
+        auto result = p.parseStopTimes(data, reply->request().mode() == StopoverRequest::QueryArrival);
         if (netReply->error() == QNetworkReply::NoError) {
             setNextRequestContext(reply, p.m_nextPageCursor);
             setPreviousRequestContext(reply, p.m_previousPageCursor);

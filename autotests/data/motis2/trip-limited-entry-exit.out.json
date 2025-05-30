@@ -121,10 +121,12 @@
                     }
                 },
                 {
-                    "disruptionEffect": "NoService",
+                    "disruptionEffect": "NormalService",
+                    "dropoffType": "NotAllowed",
                     "expectedArrivalTime": "2025-05-25T10:58:00Z",
                     "expectedDepartureTime": "2025-05-25T10:59:00Z",
                     "expectedPlatform": "4",
+                    "pickupType": "NotAllowed",
                     "scheduledArrivalTime": "2025-05-25T10:58:00Z",
                     "scheduledDepartureTime": "2025-05-25T10:59:00Z",
                     "scheduledPlatform": "4",
@@ -331,6 +333,7 @@
                     "expectedArrivalTime": "2025-05-25T18:35:00Z",
                     "expectedDepartureTime": "2025-05-25T18:46:00Z",
                     "expectedPlatform": "54",
+                    "pickupType": "NotAllowed",
                     "scheduledArrivalTime": "2025-05-25T18:35:00Z",
                     "scheduledDepartureTime": "2025-05-25T18:46:00Z",
                     "scheduledPlatform": "54",

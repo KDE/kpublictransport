@@ -83,6 +83,8 @@ struct {
     { "TRANSIT", Location::Stop },
 };
 
+constexpr inline auto PICKUP_DROPOFF_NOT_ALLED = "NOT_ALLOWED"_L1;
+
 template <typename T>
 void parseAlerts(T &elem, const QJsonArray &alerts)
 {
@@ -133,11 +135,11 @@ Stopover Motis2Parser::parsePlace(const QJsonObject &obj, bool hasRealTime) cons
         s.setDisruptionEffect(Disruption::NoService);
     }
 
-    // TODO full support for dropoffType, pickupType, once Stopover has API for that
-    const auto pickupType = obj.value("pickupType"_L1).toString();
-    const auto dropoffType = obj.value("dropoffType"_L1).toString();
-    if (pickupType == "NOT_ALLOWED"_L1 && dropoffType == "NOT_ALLOWED"_L1) {
-        s.setDisruptionEffect(Disruption::NoService);
+    if (obj.value("pickupType"_L1).toString() == PICKUP_DROPOFF_NOT_ALLED) {
+        s.setPickupType(PickupDropoff::NotAllowed);
+    }
+    if (obj.value("dropoffType"_L1).toString() == PICKUP_DROPOFF_NOT_ALLED) {
+        s.setDropoffType(PickupDropoff::NotAllowed);
     }
 
     parseAlerts(s, obj.value("alerts"_L1).toArray());
@@ -319,7 +321,7 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
     return jny;
 }
 
-std::vector<Stopover> Motis2Parser::parseStopTimes(const QByteArray &data)
+std::vector<Stopover> Motis2Parser::parseStopTimes(const QByteArray &data, bool isArrivals)
 {
     std::vector<Stopover> result;
 
@@ -351,6 +353,9 @@ std::vector<Stopover> Motis2Parser::parseStopTimes(const QByteArray &data)
 
         if (stop.value("cancelled"_L1).toBool()) {
             s.setDisruptionEffect(Disruption::NoService);
+        }
+        if (stop.value("pickupDropoffType"_L1).toString() == PICKUP_DROPOFF_NOT_ALLED) {
+            isArrivals ? s.setDropoffType(PickupDropoff::NotAllowed) : s.setPickupType(PickupDropoff::NotAllowed);
         }
 
         result.push_back(std::move(s));

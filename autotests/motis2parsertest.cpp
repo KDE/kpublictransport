@@ -92,25 +92,30 @@ private Q_SLOTS:
     {
         QTest::addColumn<QString>("inFileName");
         QTest::addColumn<QString>("outFileName");
+        QTest::addColumn<bool>("arrival");
 
         QTest::newRow("departure")
             << QStringLiteral(SOURCE_DIR "/data/motis2/stopover-departure.in.json")
-            << QStringLiteral(SOURCE_DIR "/data/motis2/stopover-departure.out.json");
+            << QStringLiteral(SOURCE_DIR "/data/motis2/stopover-departure.out.json")
+            << false;
         QTest::newRow("arrival")
             << QStringLiteral(SOURCE_DIR "/data/motis2/stopover-arrival.in.json")
-            << QStringLiteral(SOURCE_DIR "/data/motis2/stopover-arrival.out.json");
+            << QStringLiteral(SOURCE_DIR "/data/motis2/stopover-arrival.out.json")
+            << true;
         QTest::newRow("arrival-realtime")
             << QStringLiteral(SOURCE_DIR "/data/motis2/stopover-arrival-realtime.in.json")
-            << QStringLiteral(SOURCE_DIR "/data/motis2/stopover-arrival-realtime.out.json");
+            << QStringLiteral(SOURCE_DIR "/data/motis2/stopover-arrival-realtime.out.json")
+            << true;
     }
 
     void testParseStopovers()
     {
         QFETCH(QString, inFileName);
         QFETCH(QString, outFileName);
+        QFETCH(bool, arrival);
 
         Motis2Parser p(u"motis"_s);
-        const auto result = p.parseStopTimes(Test::readFile(inFileName));
+        const auto result = p.parseStopTimes(Test::readFile(inFileName), arrival);
         QVERIFY(!result.empty());
         const auto resultJson = Stopover::toJson(result);
         const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).array();

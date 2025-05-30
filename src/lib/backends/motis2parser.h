@@ -29,7 +29,7 @@ public:
 
     [[nodiscard]] std::vector<Journey> parseItineraries(const QByteArray &data);
     [[nodiscard]] Journey parseItinerary(const QJsonObject &itinerary) const;
-    [[nodiscard]] std::vector<Stopover> parseStopTimes(const QByteArray &data);
+    [[nodiscard]] std::vector<Stopover> parseStopTimes(const QByteArray &data, bool isArrivals);
     [[nodiscard]] std::vector<Location> parseLocations(const QByteArray &data) const;
     [[nodiscard]] std::vector<Location> parseMapStops(const QByteArray &data) const;
 

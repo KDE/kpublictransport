@@ -3,6 +3,7 @@
         {
             "arrival": {
                 "disruptionEffect": "NormalService",
+                "pickupType": "NotAllowed",
                 "scheduledArrivalTime": "2025-05-27T15:49:00Z",
                 "stopPoint": {
                     "country": "FI",
@@ -19,6 +20,7 @@
             },
             "departure": {
                 "disruptionEffect": "NormalService",
+                "dropoffType": "NotAllowed",
                 "notes": [
                     "<b>No train service west of Leppävaara on Thursday 29 May</b><br/>E, U, L and Y trains will not run on Thursday 29 May. Westbound train services from Leppävaara will be replaced by buses. For replacement service see <a href=\"https://hsl.fi/en/eska\">hsl.fi/en/eska</a> and the Journey Planner."
                 ],
