@@ -38,6 +38,8 @@ public:
     Vehicle vehicleLayout;
     Platform platformLayout;
     IdentifierSet tripIds;
+    PickupDropoff::Type pickupType = PickupDropoff::Normal;
+    PickupDropoff::Type dropoffType = PickupDropoff::Normal;
 };
 }
 
@@ -52,6 +54,8 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, Disruption::Effect, disruptionEffect, s
 KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, QStringList, notes, setNotes)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, Vehicle, vehicleLayout, setVehicleLayout)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, Platform, platformLayout, setPlatformLayout)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, PickupDropoff::Type, pickupType, setPickupType)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, PickupDropoff::Type, dropoffType, setDropoffType)
 
 bool Stopover::hasExpectedArrivalTime() const
 {
@@ -274,28 +278,37 @@ Stopover Stopover::merge(const Stopover &lhs, const Stopover &rhs)
     stopover.d->platformLayout = Platform::merge(lhs.d->platformLayout, rhs.d->platformLayout);
     stopover.d.detach();
     stopover.d->tripIds.merge(rhs.d->tripIds);
+    stopover.d->pickupType = std::max(lhs.d->pickupType, rhs.d->pickupType);
+    stopover.d->dropoffType = std::max(lhs.d->dropoffType, rhs.d->dropoffType);
     return stopover;
 }
 
 QJsonObject Stopover::toJson(const Stopover &stopover)
 {
     auto obj = Json::toJson(stopover);
+    if (stopover.d->pickupType == PickupDropoff::Normal) {
+        obj.remove("pickupType"_L1);
+    }
+    if (stopover.d->dropoffType == PickupDropoff::Normal) {
+        obj.remove("dropoffType"_L1);
+    }
+
     const auto routeObj = Route::toJson(stopover.route());
     if (!routeObj.empty()) {
-        obj.insert(QLatin1String("route"), routeObj);
+        obj.insert("route"_L1, routeObj);
     }
     const auto locObj = Location::toJson(stopover.stopPoint());
     if (!locObj.empty()) {
-        obj.insert(QLatin1String("stopPoint"), locObj);
+        obj.insert("stopPoint"_L1, locObj);
     }
     if (!stopover.loadInformation().empty()) {
-        obj.insert(QLatin1String("load"), LoadInfo::toJson(stopover.loadInformation()));
+        obj.insert("load"_L1, LoadInfo::toJson(stopover.loadInformation()));
     }
     if (!stopover.vehicleLayout().isEmpty()) {
-        obj.insert(QLatin1String("vehicleLayout"), Vehicle::toJson(stopover.vehicleLayout()));
+        obj.insert("vehicleLayout"_L1, Vehicle::toJson(stopover.vehicleLayout()));
     }
     if (!stopover.platformLayout().isEmpty()) {
-        obj.insert(QLatin1String("platformLayout"), Platform::toJson(stopover.platformLayout()));
+        obj.insert("platformLayout"_L1, Platform::toJson(stopover.platformLayout()));
     }
     if (!stopover.d->tripIds.isEmpty()) {
         obj.insert("tripIdentifiers"_L1, stopover.d->tripIds.toJson());

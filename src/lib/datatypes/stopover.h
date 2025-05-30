@@ -19,6 +19,25 @@ class QDateTime;
 
 namespace KPublicTransport {
 
+/** Pickup/dropoff constraints for stops.
+ *  Matches GTFS' definitions.
+ *
+ *  @since 25.08
+ */
+namespace PickupDropoff
+{
+    Q_NAMESPACE_EXPORT(KPUBLICTRANSPORT_EXPORT)
+
+    /** Pickup and dropoff constraints. */
+    enum Type {
+        Normal, ///< pickup/dropoff allowed
+        CoordinateWithDriver, ///< dropoff on request
+        CallAgency, ///< pickup requires pre-aranged booking
+        NotAllowed, ///< pickup/dropoff not allowed at this stop
+    };
+    Q_ENUM_NS(Type)
+}
+
 class StopoverPrivate;
 
 /** Information about an arrival and/or departure of a vehicle at a stop area. */
@@ -89,6 +108,15 @@ class KPUBLICTRANSPORT_EXPORT Stopover
 
     /** Aggregated occupancy information from both this stop and the vehicle layout, if present. */
     Q_PROPERTY(std::vector<KPublicTransport::LoadInfo> aggregatedOccupancy READ aggregatedOccupancy STORED false)
+
+    /** Pickup type at this stop.
+     *  @since 25.08
+     */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::PickupDropoff::Type, pickupType, setPickupType)
+    /** Dropoff type at this stop.
+     *  @since 25.08
+     */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::PickupDropoff::Type, dropoffType, setDropoffType)
 
 public:
     [[nodiscard]] bool hasExpectedArrivalTime() const;
