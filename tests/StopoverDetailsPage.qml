@@ -302,11 +302,7 @@ Kirigami.Page {
     }
 
     function updateStopMap() {
-        if (!root.stopover.stopPoint.hasCoordinate)
-            return;
-
         // TODO platform, times, platform sections
-        stopMapView.mapLoader.loadForCoordinate(root.stopover.stopPoint.latitude, root.stopover.stopPoint.longitude);
         platformModel.departurePlatform.name = root.stopover.hasExpectedPlatform ? root.stopover.expectedPlatform : root.stopover.scheduledPlatform
         switch (root.stopover.route.line.mode) {
             case KPublicTransport.Line.Metro:
@@ -327,13 +323,20 @@ Kirigami.Page {
     // TODO trigger this only when opening the trip tab for the first time?
     Component.onCompleted: {
         errorMessage.text = "Loading..."
-        updateStopMap();
+
+        if (root.stopover.stopPoint.hasCoordinate) {
+            stopMapView.mapLoader.loadForCoordinate(root.stopover.stopPoint.latitude, root.stopover.stopPoint.longitude);
+            updateStopMap();
+        }
 
         let reply = ptMgr.queryTrip({ stopover: root.stopover, backendIds: root.backendIds, downloadAssets: true })
         reply.finished.connect(() => {
             if (reply.error === KPublicTransport.Reply.NoError) {
                 errorMessage.text = ""
                 tripView.journeySection = reply.trip;
+                if (!root.stopover.stopPoint.hasCoordinate && reply.stopover.stopPoint.hasCoordinate) {
+                    stopMapView.mapLoader.loadForCoordinate(reply.stopover.stopPoint.latitude, reply.stopover.stopPoint.longitude);
+                }
                 root.stopover = reply.stopover;
                 tripMapView.centerOnJourney();
                 vehicleModel.request.stopover = reply.stopover;
