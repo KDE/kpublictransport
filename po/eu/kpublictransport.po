@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-29 00:41+0000\n"
+"POT-Creation-Date: 2025-05-30 00:41+0000\n"
 "PO-Revision-Date: 2025-03-25 21:31+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -241,25 +241,25 @@ msgctxt "@info"
 msgid "On time"
 msgstr ""
 
-#: quick/FeatureDelegate.qml:37
+#: quick/FeatureDelegate.qml:39
 #, fuzzy, kde-format
 #| msgid "%1 (availability unknown)"
 msgid "Availability unknown"
 msgstr "%1 (eskuragarritasun ezezaguna)"
 
-#: quick/FeatureDelegate.qml:39
+#: quick/FeatureDelegate.qml:41
 #, fuzzy, kde-format
 #| msgid "%1 (not available)"
 msgid "Not available"
 msgstr "%1 (ez dago eskuragarri)"
 
-#: quick/FeatureDelegate.qml:41
+#: quick/FeatureDelegate.qml:43
 #, fuzzy, kde-format
 #| msgid "%1 (not available)"
 msgid "Currently not available"
 msgstr "%1 (ez dago eskuragarri)"
 
-#: quick/FeatureDelegate.qml:43
+#: quick/FeatureDelegate.qml:45
 #, fuzzy, kde-format
 #| msgid "%2 (one space)"
 #| msgid_plural "%2 (%1 spaces)"
@@ -284,12 +284,6 @@ msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
 msgstr[0] "%2 (leku bat)"
 msgstr[1] "%2 (%1 leku)"
-
-#: quick/OccupancyDelegate.qml:36
-#, kde-format
-msgctxt "seating class type: occupancy level"
-msgid "%1: %2"
-msgstr ""
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-29 00:41+0000\n"
-"PO-Revision-Date: 2025-05-27 17:29+0300\n"
+"POT-Creation-Date: 2025-05-30 00:41+0000\n"
+"PO-Revision-Date: 2025-05-29 17:30+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -235,22 +235,22 @@ msgctxt "@info"
 msgid "On time"
 msgstr "Вчасно"
 
-#: quick/FeatureDelegate.qml:37
+#: quick/FeatureDelegate.qml:39
 #, kde-format
 msgid "Availability unknown"
 msgstr "Невідома доступність"
 
-#: quick/FeatureDelegate.qml:39
+#: quick/FeatureDelegate.qml:41
 #, kde-format
 msgid "Not available"
 msgstr "Недоступне"
 
-#: quick/FeatureDelegate.qml:41
+#: quick/FeatureDelegate.qml:43
 #, kde-format
 msgid "Currently not available"
 msgstr "Зараз недоступне"
 
-#: quick/FeatureDelegate.qml:43
+#: quick/FeatureDelegate.qml:45
 #, kde-format
 msgid "One space"
 msgid_plural "%1 spaces"
@@ -277,12 +277,6 @@ msgstr[0] "%2 (%1 простір)"
 msgstr[1] "%2 (%1 простори)"
 msgstr[2] "%2 (%1 просторів)"
 msgstr[3] "%2 (%1 простір)"
-
-#: quick/OccupancyDelegate.qml:36
-#, kde-format
-msgctxt "seating class type: occupancy level"
-msgid "%1: %2"
-msgstr ""
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
@@ -402,3 +396,7 @@ msgstr "Вилучити запис журналу"
 msgctxt "@info:placeholder"
 msgid "No locations found"
 msgstr "Не знайдено жодного місця"
+
+#~ msgctxt "seating class type: occupancy level"
+#~ msgid "%1: %2"
+#~ msgstr "%1: %2"

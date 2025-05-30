@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-29 00:41+0000\n"
+"POT-Creation-Date: 2025-05-30 00:41+0000\n"
 "PO-Revision-Date: 2025-05-27 07:45+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -235,22 +235,22 @@ msgctxt "@info"
 msgid "On time"
 msgstr "בזמן"
 
-#: quick/FeatureDelegate.qml:37
+#: quick/FeatureDelegate.qml:39
 #, kde-format
 msgid "Availability unknown"
 msgstr "זמינות לא ידועה"
 
-#: quick/FeatureDelegate.qml:39
+#: quick/FeatureDelegate.qml:41
 #, kde-format
 msgid "Not available"
 msgstr "לא זמין"
 
-#: quick/FeatureDelegate.qml:41
+#: quick/FeatureDelegate.qml:43
 #, kde-format
 msgid "Currently not available"
 msgstr "לא זמין כרגע"
 
-#: quick/FeatureDelegate.qml:43
+#: quick/FeatureDelegate.qml:45
 #, kde-format
 msgid "One space"
 msgid_plural "%1 spaces"
@@ -277,12 +277,6 @@ msgstr[0] "%2 (מתחם אחד)"
 msgstr[1] "%2 (שני מתחמים)"
 msgstr[2] "%2 (%1 מתחמים)"
 msgstr[3] "%2 (%1 מתחמים)"
-
-#: quick/OccupancyDelegate.qml:36
-#, kde-format
-msgctxt "seating class type: occupancy level"
-msgid "%1: %2"
-msgstr ""
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format

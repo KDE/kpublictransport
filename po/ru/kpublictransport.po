@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-29 00:41+0000\n"
+"POT-Creation-Date: 2025-05-30 00:41+0000\n"
 "PO-Revision-Date: 2025-03-18 10:05+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
@@ -239,25 +239,25 @@ msgctxt "@info"
 msgid "On time"
 msgstr ""
 
-#: quick/FeatureDelegate.qml:37
+#: quick/FeatureDelegate.qml:39
 #, fuzzy, kde-format
 #| msgid "%1 (not available)"
 msgid "Availability unknown"
 msgstr "%1 (недоступно)"
 
-#: quick/FeatureDelegate.qml:39
+#: quick/FeatureDelegate.qml:41
 #, fuzzy, kde-format
 #| msgid "%1 (not available)"
 msgid "Not available"
 msgstr "%1 (недоступно)"
 
-#: quick/FeatureDelegate.qml:41
+#: quick/FeatureDelegate.qml:43
 #, fuzzy, kde-format
 #| msgid "%1 (not available)"
 msgid "Currently not available"
 msgstr "%1 (недоступно)"
 
-#: quick/FeatureDelegate.qml:43
+#: quick/FeatureDelegate.qml:45
 #, fuzzy, kde-format
 #| msgid "%2 (one space)"
 #| msgid_plural "%2 (%1 spaces)"
@@ -287,12 +287,6 @@ msgstr[0] "%2 (%1 место)"
 msgstr[1] "%2 (%1 места)"
 msgstr[2] "%2 (%1 мест)"
 msgstr[3] "%2 (одно место)"
-
-#: quick/OccupancyDelegate.qml:36
-#, kde-format
-msgctxt "seating class type: occupancy level"
-msgid "%1: %2"
-msgstr ""
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format

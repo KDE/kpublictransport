@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-29 00:41+0000\n"
-"PO-Revision-Date: 2025-05-27 05:25+0200\n"
+"POT-Creation-Date: 2025-05-30 00:41+0000\n"
+"PO-Revision-Date: 2025-05-29 04:33+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -235,22 +235,22 @@ msgctxt "@info"
 msgid "On time"
 msgstr "დროზე"
 
-#: quick/FeatureDelegate.qml:37
+#: quick/FeatureDelegate.qml:39
 #, kde-format
 msgid "Availability unknown"
 msgstr "ხელმისაწვდომობა უცნობია"
 
-#: quick/FeatureDelegate.qml:39
+#: quick/FeatureDelegate.qml:41
 #, kde-format
 msgid "Not available"
 msgstr "ხელმისაწვდომი არაა"
 
-#: quick/FeatureDelegate.qml:41
+#: quick/FeatureDelegate.qml:43
 #, kde-format
 msgid "Currently not available"
 msgstr "ამჟამად ხელმისაწვდომი არაა"
 
-#: quick/FeatureDelegate.qml:43
+#: quick/FeatureDelegate.qml:45
 #, kde-format
 msgid "One space"
 msgid_plural "%1 spaces"
@@ -273,12 +273,6 @@ msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
 msgstr[0] "%2 (ერთი სივრცე)"
 msgstr[1] "%2 (%1 სივრცე)"
-
-#: quick/OccupancyDelegate.qml:36
-#, kde-format
-msgctxt "seating class type: occupancy level"
-msgid "%1: %2"
-msgstr ""
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
@@ -398,3 +392,7 @@ msgstr "ისტორიის ჩანაწერის წაშლა"
 msgctxt "@info:placeholder"
 msgid "No locations found"
 msgstr "მდებარეობები ვერ მოიძებნა"
+
+#~ msgctxt "seating class type: occupancy level"
+#~ msgid "%1: %2"
+#~ msgstr "%1: %2"

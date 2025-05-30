@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-29 00:41+0000\n"
-"PO-Revision-Date: 2025-05-27 11:25+0200\n"
+"POT-Creation-Date: 2025-05-30 00:41+0000\n"
+"PO-Revision-Date: 2025-05-29 09:40+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.04.1\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
@@ -236,22 +236,22 @@ msgctxt "@info"
 msgid "On time"
 msgstr "A l'hora"
 
-#: quick/FeatureDelegate.qml:37
+#: quick/FeatureDelegate.qml:39
 #, kde-format
 msgid "Availability unknown"
 msgstr "Disponibilitat desconeguda"
 
-#: quick/FeatureDelegate.qml:39
+#: quick/FeatureDelegate.qml:41
 #, kde-format
 msgid "Not available"
 msgstr "No disponible"
 
-#: quick/FeatureDelegate.qml:41
+#: quick/FeatureDelegate.qml:43
 #, kde-format
 msgid "Currently not available"
 msgstr "Actualment no és disponible"
 
-#: quick/FeatureDelegate.qml:43
+#: quick/FeatureDelegate.qml:45
 #, kde-format
 msgid "One space"
 msgid_plural "%1 spaces"
@@ -274,12 +274,6 @@ msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
 msgstr[0] "%2 (un espai)"
 msgstr[1] "%2 (%1 espais)"
-
-#: quick/OccupancyDelegate.qml:36
-#, kde-format
-msgctxt "seating class type: occupancy level"
-msgid "%1: %2"
-msgstr ""
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
@@ -399,3 +393,7 @@ msgstr "Elimina l'entrada de l'historial"
 msgctxt "@info:placeholder"
 msgid "No locations found"
 msgstr "No s'ha trobat cap ubicació"
+
+#~ msgctxt "seating class type: occupancy level"
+#~ msgid "%1: %2"
+#~ msgstr "%1: %2"
