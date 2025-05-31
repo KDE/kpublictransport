@@ -375,6 +375,16 @@ OpenTripPlannerParser::RouteData OpenTripPlannerParser::detectAndParseRoute(cons
     return parseInlineRoute(obj);
 }
 
+struct {
+    const char *name;
+    PickupDropoff::Type type;
+} constexpr inline const pickupDropoff_map[] = {
+    { "CALL_AGENCY", PickupDropoff::CallAgency },
+    { "COORDINATE_WITH_DRIVER", PickupDropoff::CoordinateWithDriver },
+    { "NONE", PickupDropoff::NotAllowed },
+    { "SCHEDULED", PickupDropoff::Normal },
+};
+
 Stopover OpenTripPlannerParser::parseStoptime(const QJsonObject &obj) const
 {
     Stopover s;
@@ -389,6 +399,27 @@ Stopover OpenTripPlannerParser::parseStoptime(const QJsonObject &obj) const
     s.setFeatures(std::move(routeData.features));
     if (routeData.occupancy != Load::Unknown) {
         s.setLoadInformation({routeData.occupancy});
+    }
+
+    // OTP
+    const auto pickup = obj.value("pickupType"_L1).toString();
+    const auto dropoff = obj.value("dropoffType"_L1).toString();
+    for (const auto &m :pickupDropoff_map) {
+        if (QLatin1StringView(m.name) == pickup) {
+            s.setPickupType(m.type);
+        }
+        if (QLatin1StringView(m.name) == dropoff) {
+            s.setDropoffType(m.type);
+        }
+    }
+
+    // Entur
+    const auto requestStop = obj.value("requestStop"_L1).toBool(false);
+    if (const auto v = obj.value("forBoarding"_L1); v.isBool()) {
+        s.setPickupType(v.toBool() ? (requestStop ? PickupDropoff::CoordinateWithDriver : PickupDropoff::Normal) : PickupDropoff::NotAllowed);
+    }
+    if (const auto v = obj.value("forAlighting"_L1); v.isBool()) {
+        s.setDropoffType(v.toBool() ? (requestStop ? PickupDropoff::CoordinateWithDriver : PickupDropoff::Normal) : PickupDropoff::NotAllowed);
     }
 
     return s;

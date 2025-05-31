@@ -38,6 +38,8 @@ query journeys(
         rentedBike
         from: fromPlace { ...locationFragment }
         to: toPlace { ...locationFragment }
+        fromStoptime: fromEstimatedCall { ...estimatedCallFragment }
+        toStoptime: toEstimatedCall { ...estimatedCallFragment }
         line {
           presentation {
             color: colour
@@ -106,4 +108,10 @@ fragment locationFragment on Place {
         networks,
         bikesAvailable
     }
+}
+
+fragment estimatedCallFragment on EstimatedCall {
+    forBoarding
+    forAlighting
+    requestStop
 }

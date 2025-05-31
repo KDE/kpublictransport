@@ -36,6 +36,8 @@ query trip(
             departureDelay
             realtime
             serviceDay
+            pickupType
+            dropoffType
         }
         tripGeometry {
             length
