@@ -375,6 +375,25 @@ OpenTripPlannerParser::RouteData OpenTripPlannerParser::detectAndParseRoute(cons
     return parseInlineRoute(obj);
 }
 
+Stopover OpenTripPlannerParser::parseStoptime(const QJsonObject &obj) const
+{
+    Stopover s;
+    s.setStopPoint(parseLocation(obj));
+    s.setScheduledPlatform(obj.value("stop"_L1).toObject().value("platformCode"_L1).toString());
+
+    if (const auto occupancy = parseOccupancy(obj.value("occupancyStatus"_L1)); occupancy != Load::Category::Unknown) {
+        s.setLoadInformation({occupancy});
+    }
+    auto routeData = detectAndParseRoute(obj);
+    s.setRoute(routeData.route);
+    s.setFeatures(std::move(routeData.features));
+    if (routeData.occupancy != Load::Unknown) {
+        s.setLoadInformation({routeData.occupancy});
+    }
+
+    return s;
+}
+
 static QDateTime parseDepartureDateTime(qint64 baseTime, const QJsonValue &value)
 {
     if (value.isDouble()) { // encoded as seconds offset to baseTime
@@ -388,7 +407,7 @@ static QDateTime parseDepartureDateTime(qint64 baseTime, const QJsonValue &value
 
 Stopover OpenTripPlannerParser::parseDeparture(const QJsonObject &obj) const
 {
-    Stopover dep;
+    auto dep = parseStoptime(obj);
     dep.setTripIdentifier(m_identifierType, obj.value("trip"_L1).toObject().value("id"_L1).toString());
     const auto baseTime = obj.value("serviceDay"_L1).toInteger();
     dep.setScheduledArrivalTime(parseDepartureDateTime(baseTime, obj.value("scheduledArrival"_L1)));
@@ -396,16 +415,6 @@ Stopover OpenTripPlannerParser::parseDeparture(const QJsonObject &obj) const
     if (obj.value("realtime"_L1).toBool()) {
         dep.setExpectedArrivalTime(parseDepartureDateTime(baseTime, obj.value("realtimeArrival"_L1)));
         dep.setExpectedDepartureTime(parseDepartureDateTime(baseTime, obj.value("realtimeDeparture"_L1)));
-    }
-    dep.setScheduledPlatform(obj.value("stop"_L1).toObject().value("platformCode"_L1).toString());
-    if (const auto occupancy = parseOccupancy(obj.value("occupancyStatus"_L1)); occupancy != Load::Category::Unknown) {
-        dep.setLoadInformation({occupancy});
-    }
-    auto routeData = detectAndParseRoute(obj);
-    dep.setRoute(routeData.route);
-    dep.setFeatures(std::move(routeData.features));
-    if (routeData.occupancy != Load::Unknown) {
-        dep.setLoadInformation({routeData.occupancy});
     }
     dep.addNotes(m_alerts);
     m_alerts.clear();
@@ -553,18 +562,12 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
     stops.reserve(stopsA.size());
     for (const auto &stopV : stopsA) {
         const auto stopObj = stopV.toObject();
-        const auto loc = parseLocation(stopObj);
 
-        Stopover stop;
-        stop.setStopPoint(loc);
-        stop.setScheduledPlatform(stopObj.value(QLatin1String("platformCode")).toString());
+        auto stop = parseStoptime(stopObj);
         stop.setScheduledArrivalTime(parseJourneyDateTime(stopObj.value(QLatin1String("scheduledArrivalTime"))));
         stop.setScheduledDepartureTime(parseJourneyDateTime(stopObj.value(QLatin1String("scheduledDepartureTime"))));
         stop.setExpectedArrivalTime(parseJourneyDateTime(stopObj.value(QLatin1String("expectedArrivalTime"))));
         stop.setExpectedDepartureTime(parseJourneyDateTime(stopObj.value(QLatin1String("expectedDepartureTime"))));
-        if (const auto occupancy = parseOccupancy(obj.value("occupancyStatus"_L1)); occupancy != Load::Category::Unknown) {
-            stop.setLoadInformation({occupancy});
-        }
 
         stops.push_back(stop);
     }
@@ -677,9 +680,7 @@ JourneySection OpenTripPlannerParser::parseTrip(const QJsonObject &obj) const
     stops.reserve(stoptimesA.size());
     for (const auto &stoptimeV :stoptimesA) {
         const auto stopObj = stoptimeV.toObject();
-
-        Stopover stop;
-        stop.setStopPoint(parseLocation(stopObj));
+        auto stop = parseStoptime(stopObj);
         const auto serviceDay = stopObj.value("serviceDay"_L1).toInteger();
         stop.setScheduledDepartureTime(QDateTime::fromSecsSinceEpoch(serviceDay + stopObj.value("scheduledDeparture"_L1).toInteger()));
         stop.setScheduledArrivalTime(QDateTime::fromSecsSinceEpoch(serviceDay + stopObj.value("scheduledArrival"_L1).toInteger()));
