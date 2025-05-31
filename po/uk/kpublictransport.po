@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-30 00:41+0000\n"
+"POT-Creation-Date: 2025-05-31 00:41+0000\n"
 "PO-Revision-Date: 2025-05-29 17:30+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -251,7 +251,10 @@ msgid "Currently not available"
 msgstr "Зараз недоступне"
 
 #: quick/FeatureDelegate.qml:45
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "One space"
+#| msgid_plural "%1 spaces"
+msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "One space"
 msgid_plural "%1 spaces"
 msgstr[0] "%1 простір"
@@ -270,7 +273,10 @@ msgid "%1 (not available)"
 msgstr "%1 (недоступне)"
 
 #: quick/FeatureIcon.qml:62
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "%2 (one space)"
+#| msgid_plural "%2 (%1 spaces)"
+msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
 msgstr[0] "%2 (%1 простір)"

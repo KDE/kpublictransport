@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-30 00:41+0000\n"
+"POT-Creation-Date: 2025-05-31 00:41+0000\n"
 "PO-Revision-Date: 2024-05-07 19:27\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -251,6 +251,7 @@ msgstr ""
 
 #: quick/FeatureDelegate.qml:45
 #, kde-format
+msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "One space"
 msgid_plural "%1 spaces"
 msgstr[0] ""
@@ -267,6 +268,7 @@ msgstr ""
 
 #: quick/FeatureIcon.qml:62
 #, kde-format
+msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
 msgstr[0] ""

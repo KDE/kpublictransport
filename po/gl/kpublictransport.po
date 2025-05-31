@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-30 00:41+0000\n"
+"POT-Creation-Date: 2025-05-31 00:41+0000\n"
 "PO-Revision-Date: 2025-05-26 08:46+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.gal>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -256,6 +256,7 @@ msgstr "%1 (non dispoñíbel)"
 #, fuzzy, kde-format
 #| msgid "%2 (one space)"
 #| msgid_plural "%2 (%1 spaces)"
+msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "One space"
 msgid_plural "%1 spaces"
 msgstr[0] "%2 (1 espazo)"
@@ -272,7 +273,10 @@ msgid "%1 (not available)"
 msgstr "%1 (non dispoñíbel)"
 
 #: quick/FeatureIcon.qml:62
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "%2 (one space)"
+#| msgid_plural "%2 (%1 spaces)"
+msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
 msgstr[0] "%2 (1 espazo)"

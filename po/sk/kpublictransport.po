@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-30 00:41+0000\n"
+"POT-Creation-Date: 2025-05-31 00:41+0000\n"
 "PO-Revision-Date: 2024-11-11 17:48+0100\n"
 "Last-Translator: Roman Paholík <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -252,6 +252,7 @@ msgstr "%1 (nedostupné)"
 
 #: quick/FeatureDelegate.qml:45
 #, kde-format
+msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "One space"
 msgid_plural "%1 spaces"
 msgstr[0] ""
@@ -271,11 +272,12 @@ msgstr "%1 (nedostupné)"
 
 #: quick/FeatureIcon.qml:62
 #, kde-format
+msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
 msgstr[0] ""
-msgstr[1] "Medzery"
-msgstr[2] "Medzery"
+msgstr[1] ""
+msgstr[2] ""
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format

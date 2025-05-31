@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-30 00:41+0000\n"
+"POT-Creation-Date: 2025-05-31 00:41+0000\n"
 "PO-Revision-Date: 2025-04-07 00:04+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -260,6 +260,7 @@ msgstr "%1(사용할 수 없음)"
 #, fuzzy, kde-format
 #| msgid "%2 (one space)"
 #| msgid_plural "%2 (%1 spaces)"
+msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "One space"
 msgid_plural "%1 spaces"
 msgstr[0] "%2(%1석 남음)"
@@ -275,7 +276,10 @@ msgid "%1 (not available)"
 msgstr "%1(사용할 수 없음)"
 
 #: quick/FeatureIcon.qml:62
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "%2 (one space)"
+#| msgid_plural "%2 (%1 spaces)"
+msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
 msgstr[0] "%2(%1석 남음)"
