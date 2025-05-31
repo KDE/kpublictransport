@@ -70,6 +70,8 @@ private:
     RouteData parseRoute(const QJsonObject &obj) const;
     RouteData parseInlineRoute(const QJsonObject &obj) const;
     RouteData detectAndParseRoute(const QJsonObject &obj) const;
+    /// common part of parsing an OTP2 Stopover object (EstimatedCall for Entur)
+    [[nodiscard]] Stopover parseStoptime(const QJsonObject &obj) const;
     Stopover parseDeparture(const QJsonObject &obj) const;
     void parseDeparturesForStop(const QJsonObject &obj, std::vector<Stopover> &deps) const;
     JourneySection parseJourneySection(const QJsonObject &obj) const;
