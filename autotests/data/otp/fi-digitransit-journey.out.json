@@ -203,6 +203,7 @@
                 "arrival": {
                     "disruptionEffect": "NormalService",
                     "scheduledArrivalTime": "2020-01-09T18:06:00Z",
+                    "scheduledPlatform": "2",
                     "stopPoint": {
                         "country": "FI",
                         "identifier": {
@@ -218,7 +219,6 @@
                 "departure": {
                     "disruptionEffect": "NormalService",
                     "scheduledDepartureTime": "2020-01-09T18:03:55Z",
-                    "scheduledPlatform": "2",
                     "stopPoint": {
                         "country": "FI",
                         "latitude": 60.219459533691406,
@@ -235,6 +235,7 @@
                     "disruptionEffect": "NormalService",
                     "expectedArrivalTime": "2020-01-09T18:14:08Z",
                     "scheduledArrivalTime": "2020-01-09T18:13:34Z",
+                    "scheduledPlatform": "8",
                     "stopPoint": {
                         "country": "FI",
                         "identifier": {
@@ -263,7 +264,7 @@
                         }
                     },
                     "scheduledDepartureTime": "2020-01-09T18:06:00Z",
-                    "scheduledPlatform": "8",
+                    "scheduledPlatform": "2",
                     "stopPoint": {
                         "country": "FI",
                         "identifier": {
@@ -298,6 +299,7 @@
                 "departure": {
                     "disruptionEffect": "NormalService",
                     "scheduledDepartureTime": "2020-01-09T18:13:34Z",
+                    "scheduledPlatform": "8",
                     "stopPoint": {
                         "country": "FI",
                         "identifier": {

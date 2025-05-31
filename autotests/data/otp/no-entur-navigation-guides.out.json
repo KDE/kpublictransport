@@ -5,6 +5,7 @@
                 "arrival": {
                     "disruptionEffect": "NormalService",
                     "scheduledArrivalTime": "2021-10-07T17:37:16+02:00",
+                    "scheduledPlatform": "1",
                     "stopPoint": {
                         "country": "NO",
                         "identifier": {
@@ -21,7 +22,6 @@
                 "departure": {
                     "disruptionEffect": "NormalService",
                     "scheduledDepartureTime": "2021-10-07T17:32:33+02:00",
-                    "scheduledPlatform": "1",
                     "stopPoint": {
                         "country": "NO",
                         "latitude": 59.911190032958984,
@@ -242,6 +242,7 @@
                     "disruptionEffect": "NormalService",
                     "expectedArrivalTime": "2021-10-07T17:49:16+02:00",
                     "scheduledArrivalTime": "2021-10-07T17:48:00+02:00",
+                    "scheduledPlatform": "1",
                     "stopPoint": {
                         "country": "NO",
                         "identifier": {
@@ -1046,6 +1047,7 @@
                 "departure": {
                     "disruptionEffect": "NormalService",
                     "scheduledDepartureTime": "2021-10-07T17:49:16+02:00",
+                    "scheduledPlatform": "1",
                     "stopPoint": {
                         "country": "NO",
                         "identifier": {

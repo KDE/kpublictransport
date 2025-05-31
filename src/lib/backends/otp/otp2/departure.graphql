@@ -41,6 +41,8 @@ query departures(
               scheduledDeparture
               realtimeDeparture
               realtime
+              pickupType
+              dropoffType
               trip {
                 id: gtfsId
                 tripHeadsign

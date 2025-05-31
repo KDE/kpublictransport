@@ -35,6 +35,9 @@ query departures(
               realtimeDeparture: expectedDepartureTime
               realtime
               occupancyStatus
+              forBoarding
+              forAlighting
+              requestStop
               trip: serviceJourney {
                 route: line {
                   transportMode

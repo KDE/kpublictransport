@@ -5,6 +5,7 @@
                 "arrival": {
                     "disruptionEffect": "NormalService",
                     "scheduledArrivalTime": "2020-01-12T13:29:17+01:00",
+                    "scheduledPlatform": "1",
                     "stopPoint": {
                         "country": "NO",
                         "identifier": {
@@ -21,7 +22,6 @@
                 "departure": {
                     "disruptionEffect": "NormalService",
                     "scheduledDepartureTime": "2020-01-12T13:27:23+01:00",
-                    "scheduledPlatform": "1",
                     "stopPoint": {
                         "country": "NO",
                         "latitude": 59.94956970214844,
@@ -38,6 +38,7 @@
                     "disruptionEffect": "NormalService",
                     "expectedArrivalTime": "2020-01-12T13:40:17+01:00",
                     "scheduledArrivalTime": "2020-01-12T13:38:00+01:00",
+                    "scheduledPlatform": "1",
                     "stopPoint": {
                         "country": "NO",
                         "identifier": {
@@ -84,6 +85,7 @@
                 "arrival": {
                     "disruptionEffect": "NormalService",
                     "scheduledArrivalTime": "2020-01-12T13:44:29+01:00",
+                    "scheduledPlatform": "3",
                     "stopPoint": {
                         "country": "NO",
                         "identifier": {
@@ -100,7 +102,7 @@
                 "departure": {
                     "disruptionEffect": "NormalService",
                     "scheduledDepartureTime": "2020-01-12T13:40:17+01:00",
-                    "scheduledPlatform": "3",
+                    "scheduledPlatform": "1",
                     "stopPoint": {
                         "country": "NO",
                         "identifier": {
@@ -122,6 +124,7 @@
                     "disruptionEffect": "NormalService",
                     "expectedArrivalTime": "2020-01-12T14:17:00+01:00",
                     "scheduledArrivalTime": "2020-01-12T14:17:00+01:00",
+                    "scheduledPlatform": "1",
                     "stopPoint": {
                         "country": "NO",
                         "identifier": {
@@ -147,7 +150,7 @@
                         }
                     },
                     "scheduledDepartureTime": "2020-01-12T13:48:00+01:00",
-                    "scheduledPlatform": "1",
+                    "scheduledPlatform": "3",
                     "stopPoint": {
                         "country": "NO",
                         "identifier": {
@@ -179,6 +182,7 @@
                 "departure": {
                     "disruptionEffect": "NormalService",
                     "scheduledDepartureTime": "2020-01-12T14:17:00+01:00",
+                    "scheduledPlatform": "1",
                     "stopPoint": {
                         "country": "NO",
                         "identifier": {
@@ -203,6 +207,7 @@
                 "arrival": {
                     "disruptionEffect": "NormalService",
                     "scheduledArrivalTime": "2020-01-12T13:34:09+01:00",
+                    "scheduledPlatform": "1",
                     "stopPoint": {
                         "country": "NO",
                         "identifier": {
@@ -219,7 +224,6 @@
                 "departure": {
                     "disruptionEffect": "NormalService",
                     "scheduledDepartureTime": "2020-01-12T13:32:15+01:00",
-                    "scheduledPlatform": "1",
                     "stopPoint": {
                         "country": "NO",
                         "latitude": 59.94956970214844,
@@ -236,6 +240,7 @@
                     "disruptionEffect": "NormalService",
                     "expectedArrivalTime": "2020-01-12T13:45:09+01:00",
                     "scheduledArrivalTime": "2020-01-12T13:44:00+01:00",
+                    "scheduledPlatform": "1",
                     "stopPoint": {
                         "country": "NO",
                         "identifier": {
@@ -285,6 +290,7 @@
                 "arrival": {
                     "disruptionEffect": "NormalService",
                     "scheduledArrivalTime": "2020-01-12T13:49:21+01:00",
+                    "scheduledPlatform": "3",
                     "stopPoint": {
                         "country": "NO",
                         "identifier": {
@@ -301,7 +307,7 @@
                 "departure": {
                     "disruptionEffect": "NormalService",
                     "scheduledDepartureTime": "2020-01-12T13:45:09+01:00",
-                    "scheduledPlatform": "3",
+                    "scheduledPlatform": "1",
                     "stopPoint": {
                         "country": "NO",
                         "identifier": {
@@ -323,6 +329,7 @@
                     "disruptionEffect": "NormalService",
                     "expectedArrivalTime": "2020-01-12T14:22:00+01:00",
                     "scheduledArrivalTime": "2020-01-12T14:22:00+01:00",
+                    "scheduledPlatform": "2",
                     "stopPoint": {
                         "country": "NO",
                         "identifier": {
@@ -348,7 +355,7 @@
                         }
                     },
                     "scheduledDepartureTime": "2020-01-12T13:54:00+01:00",
-                    "scheduledPlatform": "2",
+                    "scheduledPlatform": "3",
                     "stopPoint": {
                         "country": "NO",
                         "identifier": {
@@ -380,6 +387,7 @@
                 "departure": {
                     "disruptionEffect": "NormalService",
                     "scheduledDepartureTime": "2020-01-12T14:22:00+01:00",
+                    "scheduledPlatform": "2",
                     "stopPoint": {
                         "country": "NO",
                         "identifier": {

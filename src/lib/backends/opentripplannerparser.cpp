@@ -375,6 +375,29 @@ OpenTripPlannerParser::RouteData OpenTripPlannerParser::detectAndParseRoute(cons
     return parseInlineRoute(obj);
 }
 
+struct {
+    const char *name;
+    PickupDropoff::Type type;
+} constexpr inline const pickupDropoff_map[] = {
+    { "CALL_AGENCY", PickupDropoff::CallAgency },
+    { "COORDINATE_WITH_DRIVER", PickupDropoff::CoordinateWithDriver },
+    { "NONE", PickupDropoff::NotAllowed },
+    { "SCHEDULED", PickupDropoff::Normal },
+};
+
+[[nodicard]] static PickupDropoff::Type parsePickupDropoffType(QStringView name)
+{
+    for (const auto &m :pickupDropoff_map) {
+        if (QLatin1StringView(m.name) == name) {
+            return m.type;
+        }
+    }
+    if (!name.isEmpty()) {
+        qDebug() << "Unknown pickup/dropoff value:" << name;
+    }
+    return PickupDropoff::Normal;
+}
+
 Stopover OpenTripPlannerParser::parseStoptime(const QJsonObject &obj) const
 {
     Stopover s;
@@ -389,6 +412,19 @@ Stopover OpenTripPlannerParser::parseStoptime(const QJsonObject &obj) const
     s.setFeatures(std::move(routeData.features));
     if (routeData.occupancy != Load::Unknown) {
         s.setLoadInformation({routeData.occupancy});
+    }
+
+    // OTP
+    s.setPickupType(parsePickupDropoffType(obj.value("pickupType"_L1).toString()));
+    s.setDropoffType(parsePickupDropoffType(obj.value("dropoffType"_L1).toString()));
+
+    // Entur
+    const auto requestStop = obj.value("requestStop"_L1).toBool(false);
+    if (const auto v = obj.value("forBoarding"_L1); v.isBool()) {
+        s.setPickupType(v.toBool() ? (requestStop ? PickupDropoff::CoordinateWithDriver : PickupDropoff::Normal) : PickupDropoff::NotAllowed);
+    }
+    if (const auto v = obj.value("forAlighting"_L1); v.isBool()) {
+        s.setDropoffType(v.toBool() ? (requestStop ? PickupDropoff::CoordinateWithDriver : PickupDropoff::Normal) : PickupDropoff::NotAllowed);
     }
 
     return s;
@@ -483,35 +519,48 @@ static RentalVehicle::VehicleType vehicleTypeFromTypes(RentalVehicle::VehicleTyp
 
 JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj) const
 {
-    JourneySection section;
-    section.setScheduledDepartureTime(parseJourneyDateTime(obj.value(QLatin1String("startTime"))));
-    section.setScheduledArrivalTime(parseJourneyDateTime(obj.value(QLatin1String("endTime"))));
-    if (obj.value(QLatin1String("realTime")).toBool()) {
-        section.setExpectedDepartureTime(parseJourneyDateTime(obj.value(QLatin1String("expectedStartTime"))));
-        if (!section.expectedDepartureTime().isValid()) {
-            section.setExpectedDepartureTime(section.scheduledDepartureTime().addSecs(obj.value(QLatin1String("departureDelay")).toInt()));
+    auto dep = parseStoptime(obj.value("fromStoptime"_L1).toObject()); // Entur only
+    auto arr = parseStoptime(obj.value("toStoptime"_L1).toObject());
+
+    dep.setScheduledDepartureTime(parseJourneyDateTime(obj.value("startTime"_L1)));
+    arr.setScheduledArrivalTime(parseJourneyDateTime(obj.value("endTime"_L1)));
+    if (obj.value("realTime"_L1).toBool()) {
+        dep.setExpectedDepartureTime(parseJourneyDateTime(obj.value("expectedStartTime"_L1)));
+        if (!dep.expectedDepartureTime().isValid()) {
+            dep.setExpectedDepartureTime(dep.scheduledDepartureTime().addSecs(obj.value("departureDelay"_L1).toInteger()));
         }
-        section.setExpectedArrivalTime(parseJourneyDateTime(obj.value(QLatin1String("expectedEndTime"))));
-        if (!section.expectedArrivalTime().isValid()) {
-            section.setExpectedArrivalTime(section.scheduledArrivalTime().addSecs(obj.value(QLatin1String("arrivalDelay")).toInt()));
+        arr.setExpectedArrivalTime(parseJourneyDateTime(obj.value("expectedEndTime"_L1)));
+        if (!arr.expectedArrivalTime().isValid()) {
+            arr.setExpectedArrivalTime(arr.scheduledArrivalTime().addSecs(obj.value("arrivalDelay"_L1).toInteger()));
         }
     }
 
-    const auto fromObj = obj.value(QLatin1String("from")).toObject();
-    const auto fromStop = fromObj.value(QLatin1String("stop")).toObject();
+    const auto fromObj = obj.value("from"_L1).toObject();
+    const auto fromStop = fromObj.value("stop"_L1).toObject();
     const auto from = parseLocation(fromObj);
-    section.setFrom(from);
-    section.setScheduledDeparturePlatform(fromStop.value(QLatin1String("platformCode")).toString());
+    dep.setStopPoint(from);
+    dep.setScheduledPlatform(fromStop.value("platformCode"_L1).toString());
 
-    const auto toObj = obj.value(QLatin1String("to")).toObject();
-    const auto toStop = toObj.value(QLatin1String("stop")).toObject();
+    const auto toObj = obj.value("to"_L1).toObject();
+    const auto toStop = toObj.value("stop"_L1).toObject();
     const auto to = parseLocation(toObj);
-    section.setTo(to);
-    section.setScheduledDeparturePlatform(toStop.value(QLatin1String("platformCode")).toString());
+    arr.setStopPoint(to);
+    arr.setScheduledPlatform(toStop.value("platformCode"_L1).toString());
 
-    section.setDistance(obj.value(QLatin1String("distance")).toDouble());
+    // OTP only
+    if (const auto pickup = obj.value("pickupType"_L1).toString(); !pickup.isEmpty()) {
+        dep.setPickupType(parsePickupDropoffType(pickup));
+    }
+    if (const auto dropoff = obj.value("dropoffType"_L1).toString(); !dropoff.isEmpty()) {
+        arr.setDropoffType(parsePickupDropoffType(dropoff));
+    }
 
-    if (obj.value(QLatin1String("transitLeg")).toBool()) {
+    JourneySection section;
+    section.setDeparture(dep);
+    section.setArrival(arr);
+    section.setDistance(obj.value("distance"_L1).toDouble());
+
+    if (obj.value("transitLeg"_L1).toBool()) {
         section.setMode(JourneySection::PublicTransport);
         section.setIdentifier(m_identifierType, obj.value("trip"_L1).toObject().value("id"_L1).toString());
         if (const auto occupancy = parseOccupancy(obj.value("occupancy"_L1)); occupancy != Load::Category::Unknown) {

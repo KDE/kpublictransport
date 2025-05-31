@@ -38,6 +38,8 @@ query journeys(
                 rentedBike
                 from { ...locationFragment }
                 to { ...locationFragment }
+                pickupType
+                dropoffType
                 trip {
                     id: gtfsId
                     route {
