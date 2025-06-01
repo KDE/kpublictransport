@@ -131,7 +131,7 @@ static QDateTime parseDateTime(ScopedXmlStreamReader &&reader)
 {
     QString opName;
     while (reader.readNextElement()) {
-        if (reader.name() == "name"_L1) {
+        if (opName.isEmpty() && reader.name() == "name"_L1) {
             opName = reader.readElementText();
         }
     }
