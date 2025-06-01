@@ -89,6 +89,7 @@
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
+                        "dropoffType": "NotAllowed",
                         "expectedArrivalTime": "2024-12-14T16:58:00",
                         "expectedDepartureTime": "2024-12-14T17:01:00",
                         "load": [
@@ -252,6 +253,7 @@
                         "notes": [
                             "Hält nur zum Aussteigen"
                         ],
+                        "pickupType": "NotAllowed",
                         "scheduledArrivalTime": "2024-12-14T19:41:00",
                         "scheduledDepartureTime": "2024-12-14T19:43:00",
                         "scheduledPlatform": "1",

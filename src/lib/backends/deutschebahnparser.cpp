@@ -4,6 +4,8 @@
 */
 
 #include "deutschebahnparser.h"
+
+#include "hafasconstants_p.h"
 #include "hafasmgateparser.h"
 #include "datatypes/featureutil_p.h"
 
@@ -138,6 +140,14 @@ static void applyRisNotes(T &obj, const QJsonArray &risNotesArray)
         const auto key = risNote.value("key"_L1).toString();
         if (key == "text.realtime.stop.cancelled"_L1) {
             obj.setDisruptionEffect(Disruption::NoService);
+        }
+        if constexpr (!std::is_same_v<T, JourneySection>) {
+            if (key == HAFAS_RT_ENTRY_DISABLED || key == HAFAS_RT_ENTRY_EXIT_DISABLED) {
+                obj.setPickupType(PickupDropoff::NotAllowed);
+            }
+            if (key == HAFAS_RT_EXIT_DISABLED || key == HAFAS_RT_ENTRY_EXIT_DISABLED) {
+                obj.setDropoffType(PickupDropoff::NotAllowed);
+            }
         }
     }
 }

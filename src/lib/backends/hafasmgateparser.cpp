@@ -5,7 +5,9 @@
 */
 
 #include "hafasmgateparser.h"
+
 #include "hafasconfiguration.h"
+#include "hafasconstants_p.h"
 #include "hafasvehiclelayoutparser.h"
 #include "logging.h"
 #include "datatypes/featureutil_p.h"
@@ -38,6 +40,8 @@ struct Message {
     Disruption::Effect effect = Disruption::NormalService;
     LoadInfo loadInfo;
     QString operatorName;
+    PickupDropoff::Type pickupType = PickupDropoff::Normal;
+    PickupDropoff::Type dropoffType = PickupDropoff::Normal;
 };
 
 struct HafasMgateParserContext {
@@ -266,9 +270,14 @@ static std::vector<Message> parseRemarks(const QJsonArray &remL)
                 } else {
                     // generic text
                     m.content = remObj.value("txtN"_L1).toString();
-                    if (code == "text.realtime.stop.cancelled"_L1 || code == "text.realtime.stop.entry.exit.disabled"_L1
-                    || code == "text.realtime.journey.cancelled"_L1) {
+                    if (code == HAFAS_RT_STOP_CANCELLED || code == HAFAS_RT_JOURNEY_CANCELLED) {
                         m.effect = Disruption::NoService;
+                    }
+                    if (code == HAFAS_RT_ENTRY_DISABLED || code == HAFAS_RT_ENTRY_EXIT_DISABLED) {
+                        m.pickupType = PickupDropoff::NotAllowed;
+                    }
+                    if (code == HAFAS_RT_ENTRY_DISABLED || code == HAFAS_RT_ENTRY_EXIT_DISABLED) {
+                        m.dropoffType = PickupDropoff::NotAllowed;
                     }
                 }
                 break;
@@ -345,6 +354,10 @@ static void applyMessage(T &elem, const Message &msg)
         line.setOperatorName(msg.operatorName);
         route.setLine(line);
         elem.setRoute(route);
+    }
+    if constexpr (!std::is_same_v<T, JourneySection>) {
+        elem.setPickupType(msg.pickupType);
+        elem.setDropoffType(msg.dropoffType);
     }
 }
 

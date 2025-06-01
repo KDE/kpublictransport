@@ -64,6 +64,7 @@
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
+                        "dropoffType": "NotAllowed",
                         "notes": [
                             "Hält nur zum Einsteigen"
                         ],
