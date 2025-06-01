@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-05-31 00:41+0000\n"
-"PO-Revision-Date: 2025-05-29 04:33+0200\n"
+"PO-Revision-Date: 2025-05-31 03:38+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -251,9 +251,7 @@ msgid "Currently not available"
 msgstr "ამჟამად ხელმისაწვდომი არაა"
 
 #: quick/FeatureDelegate.qml:45
-#, fuzzy, kde-format
-#| msgid "One space"
-#| msgid_plural "%1 spaces"
+#, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "One space"
 msgid_plural "%1 spaces"
@@ -271,9 +269,7 @@ msgid "%1 (not available)"
 msgstr "%1 (ხელმისაწვდომი არაა)"
 
 #: quick/FeatureIcon.qml:62
-#, fuzzy, kde-format
-#| msgid "%2 (one space)"
-#| msgid_plural "%2 (%1 spaces)"
+#, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"

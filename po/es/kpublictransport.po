@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-05-31 00:41+0000\n"
-"PO-Revision-Date: 2025-05-29 12:25+0100\n"
+"PO-Revision-Date: 2025-05-31 16:22+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -252,9 +252,7 @@ msgid "Currently not available"
 msgstr "No disponible en la actualidad"
 
 #: quick/FeatureDelegate.qml:45
-#, fuzzy, kde-format
-#| msgid "One space"
-#| msgid_plural "%1 spaces"
+#, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "One space"
 msgid_plural "%1 spaces"
@@ -272,13 +270,11 @@ msgid "%1 (not available)"
 msgstr "%1 (no disponible)"
 
 #: quick/FeatureIcon.qml:62
-#, fuzzy, kde-format
-#| msgid "%2 (one space)"
-#| msgid_plural "%2 (%1 spaces)"
+#, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
-msgstr[0] "%2 (un espacio)"
+msgstr[0] "%2 (1 espacio)"
 msgstr[1] "%2 (%1 espacios)"
 
 #: quick/OccupancyIndicator.qml:39
@@ -400,7 +396,3 @@ msgstr "Eliminar entrada del historial"
 msgctxt "@info:placeholder"
 msgid "No locations found"
 msgstr "No se ha encontrado ninguna ubicación"
-
-#~ msgctxt "seating class type: occupancy level"
-#~ msgid "%1: %2"
-#~ msgstr "%1: %2"

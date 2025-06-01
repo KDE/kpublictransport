@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-05-31 00:41+0000\n"
-"PO-Revision-Date: 2025-04-03 22:43+0200\n"
+"PO-Revision-Date: 2025-05-31 12:15+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -15,25 +15,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.12.3\n"
+"X-Generator: Lokalize 25.04.1\n"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
 msgctxt "train seating class"
 msgid "First class"
-msgstr ""
+msgstr "Första klass"
 
 #: lib/datatypes/classutil.cpp:32
 #, kde-format
 msgctxt "train seating class"
 msgid "Second class"
-msgstr ""
+msgstr "Andra klass"
 
 #: lib/datatypes/classutil.cpp:35
 #, kde-format
 msgctxt "train seating class"
 msgid "First/second class"
-msgstr ""
+msgstr "Första eller andra klass"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
@@ -164,107 +164,98 @@ msgstr "Hyrbil"
 #, kde-format
 msgctxt "train coach type"
 msgid "Sleeping car"
-msgstr ""
+msgstr "Sovvagn"
 
 #: lib/datatypes/vehicle.cpp:79
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented car"
+#, kde-format
 msgctxt "train coach type"
 msgid "Couchette car"
-msgstr "Hyrbil"
+msgstr "Liggvagn"
 
 #: lib/datatypes/vehicle.cpp:81
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented car"
+#, kde-format
 msgctxt "train coach type"
 msgid "Restaurant car"
-msgstr "Hyrbil"
+msgstr "Restaurangvagn"
 
 #: lib/datatypes/vehicle.cpp:83
 #, kde-format
 msgctxt "train coach type"
 msgid "Car transport car"
-msgstr ""
+msgstr "Biltransportvagn"
 
 #: quick/BackendPage.qml:21
 #, kde-format
 msgid "Public Transport Information Sources"
-msgstr ""
+msgstr "Informationskällor för kollektivtrafik"
 
 #: quick/BackendPage.qml:98 quick/BackendPage.qml:110
 #, kde-format
 msgid "Global"
-msgstr ""
+msgstr "Global"
 
 #: quick/BackendPage.qml:100
 #, kde-format
 msgid "🇪🇺 European Union"
-msgstr ""
+msgstr "🇪🇺 Europeiska unionen"
 
 #: quick/BackendPage.qml:103
 #, kde-format
 msgctxt "emoji flag, country name"
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: quick/BackendPage.qml:112
 #, kde-format
 msgid "European Union"
-msgstr ""
+msgstr "Europeiska unionen"
 
 #: quick/ExpectedTimeLabel.qml:36
 #, kde-format
 msgctxt "a train/bus journey canceled by its operator"
 msgid "Canceled"
-msgstr ""
+msgstr "Inställd"
 
 #: quick/ExpectedTimeLabel.qml:38
 #, kde-format
 msgctxt "duration of the delay"
 msgid "Delayed %1"
-msgstr ""
+msgstr "Fördröjd %1"
 
 #: quick/ExpectedTimeLabel.qml:40
 #, kde-format
 msgctxt "earlier arrival/departure"
 msgid "%1 earlier"
-msgstr ""
+msgstr "%1 tidigare"
 
 #: quick/ExpectedTimeLabel.qml:42
 #, kde-format
 msgctxt "@info"
 msgid "On time"
-msgstr ""
+msgstr "I tid"
 
 #: quick/FeatureDelegate.qml:39
-#, fuzzy, kde-format
-#| msgid "%1 (availability unknown)"
+#, kde-format
 msgid "Availability unknown"
-msgstr "%1 (tillgänglighet okänd)"
+msgstr "Tillgänglighet okänd"
 
 #: quick/FeatureDelegate.qml:41
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Not available"
-msgstr "%1 (Inte tillgänglig)"
+msgstr "Inte tillgänglig"
 
 #: quick/FeatureDelegate.qml:43
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Currently not available"
-msgstr "%1 (Inte tillgänglig)"
+msgstr "För närvarande inte tillgänglig"
 
 #: quick/FeatureDelegate.qml:45
-#, fuzzy, kde-format
-#| msgid "%2 (one space)"
-#| msgid_plural "%2 (%1 spaces)"
+#, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "One space"
 msgid_plural "%1 spaces"
-msgstr[0] "%2 (en plats)"
-msgstr[1] "%2 (%1 platser)"
+msgstr[0] "En plats"
+msgstr[1] "%1 platser"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format
@@ -277,9 +268,7 @@ msgid "%1 (not available)"
 msgstr "%1 (Inte tillgänglig)"
 
 #: quick/FeatureIcon.qml:62
-#, fuzzy, kde-format
-#| msgid "%2 (one space)"
-#| msgid_plural "%2 (%1 spaces)"
+#, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
@@ -313,94 +302,94 @@ msgstr "Fullt"
 #: quick/private/CountryComboBox.qml:47
 #, kde-format
 msgid "Select country"
-msgstr ""
+msgstr "Välj land"
 
 #: quick/StopPickerPage.qml:34
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Clear History"
-msgstr ""
+msgstr "Rensa historik"
 
 #: quick/StopPickerPage.qml:35
 #, kde-format
 msgctxt "@info"
 msgid "Do you really want to remove all previously searched locations?"
-msgstr ""
+msgstr "Vill du verkligen ta bort alla tidigare sökta platser?"
 
 #: quick/StopPickerPage.qml:39
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
-msgstr ""
+msgstr "Ta bort"
 
 #: quick/StopPickerPage.qml:53
 #, kde-format
 msgctxt "@action"
 msgid "Clear history"
-msgstr ""
+msgstr "Rensa historik"
 
 #: quick/StopPickerPage.qml:62
 #, kde-format
 msgctxt "@action"
 msgid "Sort by name"
-msgstr ""
+msgstr "Sortera enligt namn"
 
 #: quick/StopPickerPage.qml:70
 #, kde-format
 msgctxt "@action"
 msgid "Most recently used"
-msgstr ""
+msgstr "Senast använda"
 
 #: quick/StopPickerPage.qml:77
 #, kde-format
 msgctxt "@action"
 msgid "Most often used"
-msgstr ""
+msgstr "Oftast använda"
 
 #: quick/StopPickerPage.qml:165
 #, kde-format
 msgctxt "locality, region, country"
 msgid "%1, %2, %3"
-msgstr ""
+msgstr "%1, %2, %3"
 
 #: quick/StopPickerPage.qml:170
 #, kde-format
 msgctxt "locality, country"
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: quick/StopPickerPage.qml:174
 #, kde-format
 msgctxt "region, country"
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: quick/StopPickerPage.qml:197
 #, kde-format
 msgctxt "location name, locality, region, country"
 msgid "%1, %2, %3, %4"
-msgstr ""
+msgstr "%1, %2, %3, %4"
 
 #: quick/StopPickerPage.qml:203
 #, kde-format
 msgctxt "location name, locality, country"
 msgid "%1, %2, %3"
-msgstr ""
+msgstr "%1, %2, %3"
 
 #: quick/StopPickerPage.qml:208
 #, kde-format
 msgctxt "location name, region, country"
 msgid "%1, %2, %3"
-msgstr ""
+msgstr "%1, %2, %3"
 
 #: quick/StopPickerPage.qml:240
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove history entry"
-msgstr ""
+msgstr "Ta bort historikpost"
 
 #: quick/StopPickerPage.qml:297
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "No locations found"
-msgstr ""
+msgstr "Inga platser hittades"
