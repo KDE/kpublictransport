@@ -45,7 +45,13 @@ Kirigami.Page {
                 Layout.row: 0
                 Layout.column: 1
                 Layout.fillWidth: true
-                text: "<b>" + root.stopover.route.line.modeString + " " + root.stopover.route.line.name + "</b> at " + root.stopover.stopPoint.name + " · Platform: " + (root.stopover.hasExpectedPlatform ? root.stopover.expectedPlatform : root.stopover.scheduledPlatform)
+                text: {
+                    let s = "<b>" + root.stopover.route.line.modeString + " " + root.stopover.route.line.name;
+                    if (root.stopover.route.name !== "")
+                        s+= " (" + root.stopover.route.name + ")";
+                    s += "</b> at " + root.stopover.stopPoint.name + " · Platform: " + (root.stopover.hasExpectedPlatform ? root.stopover.expectedPlatform : root.stopover.scheduledPlatform)
+                    return s;
+                }
             }
 
             QQC2.Label {
