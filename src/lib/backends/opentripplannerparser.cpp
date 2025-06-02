@@ -444,7 +444,7 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
     const auto toStop = toObj.value(QLatin1String("stop")).toObject();
     const auto to = parseLocation(toObj);
     section.setTo(to);
-    section.setScheduledDeparturePlatform(toStop.value(QLatin1String("platformCode")).toString());
+    section.setScheduledArrivalPlatform(toStop.value(QLatin1String("platformCode")).toString());
 
     section.setDistance(obj.value(QLatin1String("distance")).toDouble());
 

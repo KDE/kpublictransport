@@ -216,8 +216,8 @@
                         }
                     ]
                 },
+                "scheduledArrivalPlatform": "1",
                 "scheduledArrivalTime": "2021-10-07T17:37:16+02:00",
-                "scheduledDeparturePlatform": "1",
                 "scheduledDepartureTime": "2021-10-07T17:32:33+02:00",
                 "to": {
                     "country": "NO",
@@ -1005,6 +1005,7 @@
                         "textColor": "#ffffff"
                     }
                 },
+                "scheduledArrivalPlatform": "1",
                 "scheduledArrivalTime": "2021-10-07T17:48:00+02:00",
                 "scheduledDeparturePlatform": "1",
                 "scheduledDepartureTime": "2021-10-07T17:36:00+02:00",
@@ -1158,6 +1159,7 @@
                     ]
                 },
                 "scheduledArrivalTime": "2021-10-07T17:51:13+02:00",
+                "scheduledDeparturePlatform": "1",
                 "scheduledDepartureTime": "2021-10-07T17:49:16+02:00",
                 "to": {
                     "country": "NO",

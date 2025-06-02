@@ -12,8 +12,8 @@
                     "region": "NO-03"
                 },
                 "mode": "Walking",
+                "scheduledArrivalPlatform": "1",
                 "scheduledArrivalTime": "2020-01-12T13:29:17+01:00",
-                "scheduledDeparturePlatform": "1",
                 "scheduledDepartureTime": "2020-01-12T13:27:23+01:00",
                 "to": {
                     "country": "NO",
@@ -54,6 +54,7 @@
                         "textColor": "#ffffff"
                     }
                 },
+                "scheduledArrivalPlatform": "1",
                 "scheduledArrivalTime": "2020-01-12T13:38:00+01:00",
                 "scheduledDeparturePlatform": "1",
                 "scheduledDepartureTime": "2020-01-12T13:27:00+01:00",
@@ -86,8 +87,9 @@
                     "type": "Stop"
                 },
                 "mode": "Walking",
+                "scheduledArrivalPlatform": "3",
                 "scheduledArrivalTime": "2020-01-12T13:44:29+01:00",
-                "scheduledDeparturePlatform": "3",
+                "scheduledDeparturePlatform": "1",
                 "scheduledDepartureTime": "2020-01-12T13:40:17+01:00",
                 "to": {
                     "country": "NO",
@@ -128,8 +130,9 @@
                         "textColor": "#ffffff"
                     }
                 },
+                "scheduledArrivalPlatform": "1",
                 "scheduledArrivalTime": "2020-01-12T14:17:00+01:00",
-                "scheduledDeparturePlatform": "1",
+                "scheduledDeparturePlatform": "3",
                 "scheduledDepartureTime": "2020-01-12T13:48:00+01:00",
                 "to": {
                     "country": "NO",
@@ -161,6 +164,7 @@
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-01-12T14:17:28+01:00",
+                "scheduledDeparturePlatform": "1",
                 "scheduledDepartureTime": "2020-01-12T14:17:00+01:00",
                 "to": {
                     "country": "NO",
@@ -185,8 +189,8 @@
                     "region": "NO-03"
                 },
                 "mode": "Walking",
+                "scheduledArrivalPlatform": "1",
                 "scheduledArrivalTime": "2020-01-12T13:34:09+01:00",
-                "scheduledDeparturePlatform": "1",
                 "scheduledDepartureTime": "2020-01-12T13:32:15+01:00",
                 "to": {
                     "country": "NO",
@@ -230,6 +234,7 @@
                         "textColor": "#ffffff"
                     }
                 },
+                "scheduledArrivalPlatform": "1",
                 "scheduledArrivalTime": "2020-01-12T13:44:00+01:00",
                 "scheduledDeparturePlatform": "1",
                 "scheduledDepartureTime": "2020-01-12T13:33:00+01:00",
@@ -262,8 +267,9 @@
                     "type": "Stop"
                 },
                 "mode": "Walking",
+                "scheduledArrivalPlatform": "3",
                 "scheduledArrivalTime": "2020-01-12T13:49:21+01:00",
-                "scheduledDeparturePlatform": "3",
+                "scheduledDeparturePlatform": "1",
                 "scheduledDepartureTime": "2020-01-12T13:45:09+01:00",
                 "to": {
                     "country": "NO",
@@ -304,8 +310,9 @@
                         "textColor": "#ffffff"
                     }
                 },
+                "scheduledArrivalPlatform": "2",
                 "scheduledArrivalTime": "2020-01-12T14:22:00+01:00",
-                "scheduledDeparturePlatform": "2",
+                "scheduledDeparturePlatform": "3",
                 "scheduledDepartureTime": "2020-01-12T13:54:00+01:00",
                 "to": {
                     "country": "NO",
@@ -337,6 +344,7 @@
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-01-12T14:22:18+01:00",
+                "scheduledDeparturePlatform": "2",
                 "scheduledDepartureTime": "2020-01-12T14:22:00+01:00",
                 "to": {
                     "country": "NO",

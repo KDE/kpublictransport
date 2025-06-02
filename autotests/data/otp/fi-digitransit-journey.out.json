@@ -180,8 +180,8 @@
                     "region": "FI-18"
                 },
                 "mode": "Walking",
+                "scheduledArrivalPlatform": "2",
                 "scheduledArrivalTime": "2020-01-09T18:06:00Z",
-                "scheduledDeparturePlatform": "2",
                 "scheduledDepartureTime": "2020-01-09T18:03:55Z",
                 "to": {
                     "country": "FI",
@@ -219,8 +219,9 @@
                         "name": "U"
                     }
                 },
+                "scheduledArrivalPlatform": "8",
                 "scheduledArrivalTime": "2020-01-09T18:13:34Z",
-                "scheduledDeparturePlatform": "8",
+                "scheduledDeparturePlatform": "2",
                 "scheduledDepartureTime": "2020-01-09T18:06:00Z",
                 "to": {
                     "country": "FI",
@@ -250,6 +251,7 @@
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-01-09T18:16:10Z",
+                "scheduledDeparturePlatform": "8",
                 "scheduledDepartureTime": "2020-01-09T18:13:34Z",
                 "to": {
                     "country": "FI",
