@@ -301,7 +301,7 @@ bool DeutscheBahnBackend::queryTrip(const TripRequest &request, TripReply *reply
     logRequest(request, netReq);
     auto netReply = nam->get(netReq);
     netReply->setParent(reply);
-    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply, tripId]() {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply, tripId, request]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
@@ -313,7 +313,17 @@ bool DeutscheBahnBackend::queryTrip(const TripRequest &request, TripReply *reply
 
         const auto responseObj = QJsonDocument::fromJson(data).object();
         auto jny = DeutscheBahnParser::parseTrip(responseObj, m_parser);
-        jny.setIdentifier(locationIdentifierType(), tripId); // not contained in the response
+        // retain information we likely have in the request but which are not contained in the response
+        jny.setIdentifier(locationIdentifierType(), tripId);
+        const auto requestedRoute = request.journeySection().mode() == JourneySection::Invalid
+            ? request.stopover().route()
+            : request.journeySection().route();
+        if (!requestedRoute.line().name().isEmpty()
+            && (jny.route().line().name() == requestedRoute.name() || jny.route().line().name().endsWith(requestedRoute.line().name())))
+        {
+            jny.setRoute(requestedRoute);
+        }
+
         addResult(reply, this, std::move(jny));
     });
 
