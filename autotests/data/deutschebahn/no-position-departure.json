@@ -9,8 +9,7 @@
         "direction": "Baden-Baden",
         "line": {
             "mode": "LongDistanceTrain",
-            "modeString": "ICE",
-            "name": "72"
+            "name": "ICE 72"
         }
     },
     "scheduledPlatform": "7",

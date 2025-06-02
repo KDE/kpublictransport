@@ -46,8 +46,7 @@
         "direction": "Freudenstadt Hbf",
         "line": {
             "mode": "LocalTrain",
-            "modeString": "RE",
-            "name": "15806"
+            "name": "RE 15806"
         }
     },
     "scheduledPlatform": "4",

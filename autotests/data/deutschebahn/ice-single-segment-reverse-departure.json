@@ -46,8 +46,7 @@
         "direction": "München Hbf",
         "line": {
             "mode": "LongDistanceTrain",
-            "modeString": "ICE",
-            "name": "509"
+            "name": "ICE 509"
         }
     },
     "scheduledPlatform": "1",

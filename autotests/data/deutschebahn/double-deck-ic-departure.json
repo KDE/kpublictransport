@@ -46,8 +46,7 @@
         "direction": "Warnemünde",
         "line": {
             "mode": "LongDistanceTrain",
-            "modeString": "IC",
-            "name": "2270"
+            "name": "IC 2270"
         }
     },
     "scheduledPlatform": "7 D - G",

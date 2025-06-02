@@ -60,13 +60,15 @@ Stopover DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
     if (vehiclesArray.size() == 1) {
         const auto transport = vehiclesArray[0].toObject().value("transport"_L1).toObject();
         Line line;
-        line.setModeString(transport.value("category"_L1).toString());
-        line.setMode(DeutscheBahnProducts::modeType(line.modeString()));
+        const auto modeStr = transport.value("category"_L1).toString();
+        line.setMode(DeutscheBahnProducts::modeType(modeStr));
         if (line.mode() == Line::Unknown) {
             line.setMode(Line::Train);
         }
         if (const auto num = transport.value("number"_L1).toInt(); num > 0) {
-            line.setName(QString::number(num));
+            line.setName(modeStr + ' '_L1 + QString::number(num));
+        } else {
+            line.setModeString(modeStr);
         }
         Route route;
         route.setDirection(transport.value("destination"_L1).toObject().value("name"_L1).toString());
