@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-05-31 00:41+0000\n"
-"PO-Revision-Date: 2025-05-27 07:45+0300\n"
+"PO-Revision-Date: 2025-06-01 20:51+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -251,9 +251,7 @@ msgid "Currently not available"
 msgstr "לא זמין כרגע"
 
 #: quick/FeatureDelegate.qml:45
-#, fuzzy, kde-format
-#| msgid "One space"
-#| msgid_plural "%1 spaces"
+#, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "One space"
 msgid_plural "%1 spaces"
@@ -273,16 +271,14 @@ msgid "%1 (not available)"
 msgstr "%1 (לא זמין)"
 
 #: quick/FeatureIcon.qml:62
-#, fuzzy, kde-format
-#| msgid "%2 (one space)"
-#| msgid_plural "%2 (%1 spaces)"
+#, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
-msgstr[0] "%2 (מתחם אחד)"
-msgstr[1] "%2 (שני מתחמים)"
-msgstr[2] "%2 (%1 מתחמים)"
-msgstr[3] "%2 (%1 מתחמים)"
+msgstr[0] "%2 (מקום אחד)"
+msgstr[1] "%2 (שני מקומות)"
+msgstr[2] "%2 (%1 מקומות)"
+msgstr[3] "%2 (%1 מקומות)"
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
