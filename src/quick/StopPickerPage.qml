@@ -300,4 +300,9 @@ Kirigami.ScrollablePage {
             width: parent.width - Kirigami.Units.gridUnit * 4
         }
     }
+
+    Component.onCompleted: {
+        if (locationView.count === 0)
+            queryTextField.forceActiveFocus();
+    }
 }
