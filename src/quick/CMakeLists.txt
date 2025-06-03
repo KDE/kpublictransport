@@ -32,6 +32,7 @@ ecm_target_qml_sources(kpublictransportquickplugin SOURCES
     OccupancyDelegate.qml
     OccupancyIndicator.qml
     StopPickerPage.qml
+    StopoverInformationView.qml
     TransportIcon.qml
     TransportNameControl.qml
     VehicleLayoutView.qml

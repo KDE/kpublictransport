@@ -81,7 +81,10 @@ Kirigami.Page {
         QQC2.TabBar {
             id: tabBar
             Layout.fillWidth: true
-            QQC2.TabButton { text: "Information" }
+            QQC2.TabButton {
+                text: "Information"
+                enabled: infoView.hasContent
+            }
             QQC2.TabButton {
                 text: "Trip"
                 enabled: tripView.journeySection.mode !== KPublicTransport.JourneySection.Invalid
@@ -104,68 +107,16 @@ Kirigami.Page {
             Layout.fillHeight: true
             Layout.fillWidth: true
             currentIndex: tabBar.currentIndex
+
             QQC2.ScrollView {
                 id: infoPage
                 contentWidth: width - effectiveScrollBarWidth
                 QQC2.ScrollBar.horizontal.policy: QQC2.ScrollBar.AlwaysOff
 
-                ColumnLayout {
+                KPublicTransport.StopoverInformationView {
+                    id: infoView
                     width: infoPage.width - infoPage.effectiveScrollBarWidth
-
-                    Kirigami.Heading {
-                        text: "Information"
-                        level: 4
-                        visible: root.stopover.notes.length > 0
-                    }
-                    QQC2.Label {
-                        text: root.stopover.notes.join("<br/>")
-                        textFormat: Text.RichText
-                        font.italic: true
-                        wrapMode: Text.WordWrap
-                        Layout.fillWidth: true
-                        onLinkActivated: (link) => { Qt.openUrlExternally(link); }
-                        visible: root.stopover.notes.length > 0
-                    }
-
-                    Kirigami.Heading {
-                        text: "Occupancy"
-                        level: 4
-                        visible: occupancyView.count > 0
-                    }
-                    Repeater {
-                        id: occupancyView
-                        model: root.stopover.aggregatedOccupancy
-                        KPublicTransport.OccupancyDelegate {
-                            Layout.fillWidth: true
-                            required property KPublicTransport.loadInfo modelData
-                            occupancyInfo: modelData
-                        }
-                    }
-
-                    Kirigami.Heading {
-                        text: "Amenities"
-                        level: 4
-                        visible: amenityView.count > 0
-                    }
-                    Repeater {
-                        id: amenityView
-                        model: root.stopover.vehicleLayout.combinedFeatures
-                        delegate: KPublicTransport.FeatureDelegate {
-                            required property KPublicTransport.feature modelData
-                            feature: modelData
-                        }
-                    }
-
-                    Kirigami.Heading {
-                        text: "Operator"
-                        level: 4
-                        visible: operatorLabel.visible
-                    }
-                    QQC2.Label {
-                        id: operatorLabel
-                        text: root.stopover.route.line.operatorName
-                        visible: text !== ""
-                    }
+                    stopover: root.stopover
                 }
             }
             ListView {
