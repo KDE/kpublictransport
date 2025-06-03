@@ -110,6 +110,10 @@ private Q_SLOTS:
     void testDefaultEnabledState()
     {
         Manager mgr;
+        const auto backends = mgr.backends();
+        if (std::ranges::none_of(backends, [](const auto &b) { return b.identifier() == "un_transitous_staging"_L1; })) {
+            QSKIP("Development backend configurations not installed.");
+        }
         QCOMPARE(mgr.isBackendEnabled("un_transitous"_L1), true);
         QCOMPARE(mgr.isBackendEnabled("un_transitous_staging"_L1), false);
         mgr.setBackendsEnabledByDefault(false);
