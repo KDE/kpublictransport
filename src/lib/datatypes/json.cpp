@@ -22,7 +22,7 @@
 
 using namespace KPublicTransport;
 
-QString Json::translatedValue(const QJsonObject &obj, const QString &key)
+QString Json::translatedValue(const QJsonObject &obj, QLatin1StringView key)
 {
     auto languageWithCountry = QLocale().name();
     auto it = obj.constFind(key + QLatin1Char('[') + languageWithCountry + QLatin1Char(']'));

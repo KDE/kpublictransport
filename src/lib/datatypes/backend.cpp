@@ -12,7 +12,7 @@
 
 #include <QJsonObject>
 
-using namespace Qt::Literals::StringLiterals;
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 KPUBLICTRANSPORT_MAKE_GADGET(Backend)
@@ -79,9 +79,9 @@ struct {
 Backend BackendPrivate::fromJson(const QJsonObject &obj)
 {
     Backend b;
-    const auto jsonMetaData = obj.value(QLatin1String("KPlugin")).toObject();
-    b.d->name = Json::translatedValue(jsonMetaData, QStringLiteral("Name"));
-    b.d->description = Json::translatedValue(jsonMetaData, QStringLiteral("Description"));
+    const auto jsonMetaData = obj.value("KPlugin"_L1).toObject();
+    b.d->name = Json::translatedValue(jsonMetaData, "Name"_L1);
+    b.d->description = Json::translatedValue(jsonMetaData, "Description"_L1);
 
     // untranslated files for development purposes only
     if (b.d->name.isEmpty() && b.d->description.isEmpty()) [[unlikely]] {
@@ -89,9 +89,9 @@ Backend BackendPrivate::fromJson(const QJsonObject &obj)
         b.d->description = obj.value("description"_L1).toString();
     }
 
-    const auto coverage = obj.value(QLatin1String("coverage")).toObject();
+    const auto coverage = obj.value("coverage"_L1).toObject();
     for (const auto &c : coverage_area_map) {
-        const auto covObj = coverage.value(QLatin1String(c.name)).toObject();
+        const auto covObj = coverage.value(QLatin1StringView(c.name)).toObject();
         if (covObj.empty()) {
             continue;
         }

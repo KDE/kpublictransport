@@ -22,7 +22,7 @@ namespace KPublicTransport {
 namespace Json
 {
     /** Looks for a translated value in @p obj with @p key. */
-    QString translatedValue(const QJsonObject &obj, const QString &key);
+    [[nodiscard]] QString translatedValue(const QJsonObject &obj, QLatin1StringView key);
     /** Convert a QJsonValue to a QStringList, assuming it contains an array of strings. */
     QStringList toStringList(const QJsonValue &v);
 
