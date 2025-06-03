@@ -15,6 +15,7 @@
 #include <QStandardPaths>
 #include <QTest>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 class BackendTest : public QObject
@@ -118,12 +119,13 @@ private Q_SLOTS:
         mgr.setAllowInsecureBackends(false);
         for (auto i = 0; i < model.rowCount(); ++i) {
             const auto idx = model.index(i, 0);
-            QVERIFY(!idx.data(BackendModel::IdentifierRole).toString().isEmpty());
+            const auto backendId = idx.data(BackendModel::IdentifierRole).toString();
+            QVERIFY(!backendId.isEmpty());
             QCOMPARE(idx.data(BackendModel::SecureRole).userType(), QMetaType::Bool);
             QVERIFY(!idx.data(BackendModel::NameRole).toString().isEmpty());
             QVERIFY(!idx.data(BackendModel::DescriptionRole).toString().isEmpty());
             QCOMPARE(idx.data(BackendModel::SecureRole), idx.data(BackendModel::ItemEnabledRole));
-            if (!idx.data(BackendModel::SecureRole).toBool()) {
+            if (!idx.data(BackendModel::SecureRole).toBool() && !backendId.endsWith("_staging"_L1)) {
                 QVERIFY(!idx.data(BackendModel::BackendEnabledRole).toBool());
             }
             QVERIFY(!idx.data(BackendModel::CountryCodeRole).toString().isEmpty());
@@ -135,7 +137,8 @@ private Q_SLOTS:
         for (auto i = 0; i < model.rowCount(); ++i) {
             const auto idx = model.index(i, 0);
             QVERIFY(idx.data(BackendModel::ItemEnabledRole).toBool());
-            QVERIFY(idx.data(BackendModel::BackendEnabledRole).toBool());
+            const auto backendId = idx.data(BackendModel::IdentifierRole).toString();
+            QCOMPARE(idx.data(BackendModel::BackendEnabledRole).toBool(), !backendId.endsWith("_staging"_L1));
         }
 
         QCOMPARE(mgr.isBackendEnabled(QStringLiteral("un_transitous")), true);

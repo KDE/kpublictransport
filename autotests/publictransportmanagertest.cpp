@@ -23,6 +23,7 @@
 #include <QStandardPaths>
 #include <QTest>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 class PublicTransportManagerTest : public QObject
@@ -104,6 +105,19 @@ private Q_SLOTS:
         QCOMPARE(spy.size(), 1);
         QCOMPARE(reply->error(), Reply::InvalidRequest);
         delete reply;
+    }
+
+    void testDefaultEnabledState()
+    {
+        Manager mgr;
+        QCOMPARE(mgr.isBackendEnabled("un_transitous"_L1), true);
+        QCOMPARE(mgr.isBackendEnabled("un_transitous_staging"_L1), false);
+        mgr.setBackendsEnabledByDefault(false);
+        QCOMPARE(mgr.isBackendEnabled("un_transitous"_L1), false);
+        QCOMPARE(mgr.isBackendEnabled("un_transitous_staging"_L1), false);
+        mgr.setBackendsEnabledByDefault(true);
+        QCOMPARE(mgr.isBackendEnabled("un_transitous"_L1), true);
+        QCOMPARE(mgr.isBackendEnabled("un_transitous_staging"_L1), false);
     }
 
     void testReload()

@@ -105,6 +105,8 @@ public:
     std::vector<Backend> m_backends;
     std::vector<Attribution> m_attributions;
 
+    // backends that are configured to be off by default, regardless of m_backendsEnabledByDefault
+    QStringList m_disabledByDefault;
     // we store both explicitly to have a third state, backends with the enabled state being the "default" (whatever that might eventually be)
     QStringList m_enabledBackends;
     QStringList m_disabledBackends;
@@ -165,8 +167,9 @@ void ManagerPrivate::loadNetworks()
                 qCWarning(Log) << "Failed to parse public transport network configuration:" << error.errorString() << it.fileName();
                 continue;
             }
+            const auto obj = doc.object();
 
-            auto net = loadNetwork(doc.object());
+            auto net = loadNetwork(obj);
             if (net) {
                 net->setBackendId(id);
                 net->init();
@@ -177,15 +180,19 @@ void ManagerPrivate::loadNetworks()
                 auto b = BackendPrivate::fromJson(doc.object());
                 BackendPrivate::setImpl(b, std::move(net));
                 m_backends.push_back(std::move(b));
+                if (!obj.value("enabled"_L1).toBool(true)) {
+                    m_disabledByDefault.push_back(id);
+                }
             } else {
                 qCWarning(Log) << "Failed to load public transport network configuration config:" << it.fileName();
             }
         }
     }
 
-    std::stable_sort(m_backends.begin(), m_backends.end(), [](const auto &lhs, const auto &rhs) {
+    std::ranges::stable_sort(m_backends, [](const auto &lhs, const auto &rhs) {
         return lhs.identifier() < rhs.identifier();
     });
+    std::ranges::sort(m_disabledByDefault);
 
     AttributionUtil::sort(attributions);
     if (m_attributions.empty()) {
@@ -1015,14 +1022,16 @@ const std::vector<Backend>& Manager::backends() const
 
 bool Manager::isBackendEnabled(const QString &backendId) const
 {
-    if (std::binary_search(d->m_disabledBackends.cbegin(), d->m_disabledBackends.cend(), backendId)) {
+    d->loadNetworks();
+
+    if (std::ranges::binary_search(std::as_const(d->m_disabledBackends), backendId)) {
         return false;
     }
-    if (std::binary_search(d->m_enabledBackends.cbegin(), d->m_enabledBackends.cend(), backendId)) {
+    if (std::ranges::binary_search(std::as_const(d->m_enabledBackends), backendId)) {
         return true;
     }
 
-    return d->m_backendsEnabledByDefault;
+    return d->m_backendsEnabledByDefault && !std::ranges::binary_search(std::as_const(d->m_disabledByDefault), backendId);
 }
 
 static void sortedInsert(QStringList &l, const QString &value)
