@@ -295,7 +295,7 @@ Kirigami.ScrollablePage {
 
         Kirigami.PlaceholderMessage {
             text: i18ndc("publictransport", "@info:placeholder", "No locations found")
-            visible: locationView.count === 0 && !locationQueryModel.loading && queryTextField !== ""
+            visible: locationView.count === 0 && !locationQueryModel.loading && queryTextField.text !== ""
             anchors.centerIn: parent
             width: parent.width - Kirigami.Units.gridUnit * 4
         }
