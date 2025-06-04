@@ -204,9 +204,7 @@ Kirigami.Page {
                     onPlatformIndexChanged: {
                         if (platformModel.departurePlatformRow >= 0) {
                             const idx = platformModel.index(platformModel.departurePlatformRow, 0);
-                            stopMapView.view.floorLevel = platformModel.data(idx, KOSM.PlatformModel.LevelRole)
-                            stopMapView.view.setZoomLevel(19, Qt.point(stopMapView.width / 2.0, stopMapView.height / 2.0));
-                            stopMapView.view.centerOnGeoCoordinate(platformModel.data(idx, KOSM.PlatformModel.CoordinateRole));
+                            stopMapView.view.centerOn(platformModel.data(idx, KOSM.PlatformModel.CoordinateRole), platformModel.data(idx, KOSM.PlatformModel.LevelRole), 19);
                         }
                     }
                 }
