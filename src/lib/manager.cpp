@@ -58,6 +58,7 @@
 #include <QTimeZone>
 
 #include <functional>
+#include <unordered_set>
 
 using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
@@ -145,13 +146,14 @@ void ManagerPrivate::loadNetworks()
     searchDirs.push_back(u":/"_s);
 
     std::vector<Attribution> attributions;
+    std::unordered_set<QString> loadedBackends;
     for (const auto &searchDir : searchDirs) {
         QDirIterator it(searchDir + "/org.kde.kpublictransport/networks"_L1, {u"*.json"_s}, QDir::Files);
         while (it.hasNext()) {
             it.next();
             const auto id = it.fileInfo().baseName();
-            if (std::any_of(m_backends.begin(), m_backends.end(), [&id](const auto &backend) { return backend.identifier() == id; })) {
-                // already seen in another location
+            if (loadedBackends.contains(id)) {
+                // already loaded from an earlier location
                 continue;
             }
 
@@ -169,6 +171,13 @@ void ManagerPrivate::loadNetworks()
             }
             const auto obj = doc.object();
 
+            if (!obj.value("active"_L1).toBool(true)) {
+                // disabled in configuration, also skip all later instances of this then!
+                qCDebug(Log) << "Not loading deactivated backend:" << it.fileName();
+                loadedBackends.insert(id);
+                continue;
+            }
+
             auto net = loadNetwork(obj);
             if (net) {
                 net->setBackendId(id);
@@ -180,6 +189,7 @@ void ManagerPrivate::loadNetworks()
                 auto b = BackendPrivate::fromJson(doc.object());
                 BackendPrivate::setImpl(b, std::move(net));
                 m_backends.push_back(std::move(b));
+                loadedBackends.insert(id);
                 if (!obj.value("enabled"_L1).toBool(true)) {
                     m_disabledByDefault.push_back(id);
                 }
