@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-31 00:41+0000\n"
+"POT-Creation-Date: 2025-06-04 00:41+0000\n"
 "PO-Revision-Date: 2025-02-18 15:48+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -312,6 +312,31 @@ msgstr "滿座"
 #: quick/private/CountryComboBox.qml:47
 #, kde-format
 msgid "Select country"
+msgstr ""
+
+#: quick/StopoverInformationView.qml:43
+#, fuzzy, kde-format
+#| msgctxt "train coach feature"
+#| msgid "Information point"
+msgid "Information"
+msgstr "資訊點"
+
+#: quick/StopoverInformationView.qml:61
+#, fuzzy, kde-format
+#| msgctxt "vehicle occupancy"
+#| msgid "Low occupancy"
+msgid "Occupancy"
+msgstr "低承載"
+
+#: quick/StopoverInformationView.qml:76
+#, kde-format
+msgid "Amenities"
+msgstr ""
+
+#: quick/StopoverInformationView.qml:91
+#, kde-format
+msgctxt "operator/provider of a rail/bus service"
+msgid "Operator"
 msgstr ""
 
 #: quick/StopPickerPage.qml:34

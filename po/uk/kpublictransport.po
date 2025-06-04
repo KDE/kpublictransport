@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-31 00:41+0000\n"
+"POT-Creation-Date: 2025-06-04 00:41+0000\n"
 "PO-Revision-Date: 2025-05-31 07:36+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -308,6 +308,31 @@ msgstr "Повний"
 #, kde-format
 msgid "Select country"
 msgstr "Виберіть країну"
+
+#: quick/StopoverInformationView.qml:43
+#, fuzzy, kde-format
+#| msgctxt "train coach feature"
+#| msgid "Information point"
+msgid "Information"
+msgstr "Інформаційний вузол"
+
+#: quick/StopoverInformationView.qml:61
+#, fuzzy, kde-format
+#| msgctxt "vehicle occupancy"
+#| msgid "Low occupancy"
+msgid "Occupancy"
+msgstr "Низька заповненість"
+
+#: quick/StopoverInformationView.qml:76
+#, kde-format
+msgid "Amenities"
+msgstr ""
+
+#: quick/StopoverInformationView.qml:91
+#, kde-format
+msgctxt "operator/provider of a rail/bus service"
+msgid "Operator"
+msgstr ""
 
 #: quick/StopPickerPage.qml:34
 #, kde-format

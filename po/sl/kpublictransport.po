@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-31 00:41+0000\n"
+"POT-Creation-Date: 2025-06-04 00:41+0000\n"
 "PO-Revision-Date: 2025-05-31 21:53+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <kde-i18n-doc@kde.org>\n"
@@ -309,6 +309,31 @@ msgstr "Polno"
 #, kde-format
 msgid "Select country"
 msgstr "Izberite državo"
+
+#: quick/StopoverInformationView.qml:43
+#, fuzzy, kde-format
+#| msgctxt "train coach feature"
+#| msgid "Information point"
+msgid "Information"
+msgstr "Informacijska točka"
+
+#: quick/StopoverInformationView.qml:61
+#, fuzzy, kde-format
+#| msgctxt "vehicle occupancy"
+#| msgid "Low occupancy"
+msgid "Occupancy"
+msgstr "Nizka zasedenost"
+
+#: quick/StopoverInformationView.qml:76
+#, kde-format
+msgid "Amenities"
+msgstr ""
+
+#: quick/StopoverInformationView.qml:91
+#, kde-format
+msgctxt "operator/provider of a rail/bus service"
+msgid "Operator"
+msgstr ""
 
 #: quick/StopPickerPage.qml:34
 #, kde-format
