@@ -26,6 +26,8 @@
 #include "datatypes/disruption.h"
 #include "datatypes/json_p.h"
 #include "geo/geojson_p.h"
+#include "update/updatejob_p.h"
+#include "update/updatestate_p.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
@@ -116,6 +118,8 @@ public:
     bool m_allowInsecure = false;
     bool m_hasReadCachedAttributions = false;
     bool m_backendsEnabledByDefault = true;
+
+    UpdateResult::Type m_updateResult = UpdateResult::NoError;
 
 private:
     [[nodiscard]] bool shouldSkipBackend(const Backend &backend) const;
@@ -520,6 +524,8 @@ Manager::Manager(QObject *parent)
     }
 
     Cache::expire();
+    UpdateState::purgeObsoleteFiles();
+    d->m_updateResult = UpdateState::isEnabled() ? UpdateResult::NoError : UpdateResult::UpdatesDisabled;
 
     QCoreApplication::instance()->installEventFilter(this);
 }
@@ -1122,6 +1128,39 @@ bool Manager::eventFilter(QObject *object, QEvent *event)
     }
 
     return QObject::eventFilter(object, event);
+}
+
+void Manager::checkForUpdates(bool force)
+{
+    if (d->m_updateResult == UpdateResult::InProgress) {
+        return;
+    }
+
+    if (!force && UpdateState::lastUpdate().addDays(1) > QDateTime::currentDateTimeUtc()) {
+        d->m_updateResult = UpdateResult::NoUpdate;
+        Q_EMIT updateResultChanged();
+        return;
+    }
+
+    d->m_updateResult = UpdateResult::InProgress;
+    Q_EMIT updateResultChanged();
+
+    auto job = new UpdateJob(this);
+    job->start(d->nam());
+    connect(job, &UpdateJob::finished, this, [this, job]() {
+        job->deleteLater();
+        qCDebug(Log) << job->result();
+        d->m_updateResult = job->result();
+        if (job->result() == UpdateResult::UpdateSuccessful) {
+            reload();
+        }
+        Q_EMIT updateResultChanged();
+    });
+}
+
+UpdateResult::Type Manager::updateResult() const
+{
+    return d->m_updateResult;
 }
 
 #include "moc_manager.cpp"

@@ -146,6 +146,11 @@ target_sources(KPublicTransport PRIVATE
 
     uic/uicrailwaycoach.cpp
     uic/uicstationcode.cpp
+
+    update/manifest.cpp
+    update/updateresult.cpp
+    update/updatejob.cpp
+    update/updatestate.cpp
 )
 ecm_qt_declare_logging_category(KPublicTransport
     HEADER logging.h
@@ -247,6 +252,13 @@ ecm_generate_headers(KPublicTransport_Models_FORWARDING_HEADERS
     REQUIRED_HEADERS KPublicTransport_Models_HEADERS
     RELATIVE models
 )
+ecm_generate_headers(KPublicTransport_Update_FORWARDING_HEADERS
+    HEADER_NAMES
+        UpdateResult
+    PREFIX KPublicTransport
+    REQUIRED_HEADERS KPublicTransport_Update_HEADERS
+    RELATIVE update
+)
 
 install(TARGETS KPublicTransport EXPORT KPublicTransportTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 ecm_qt_install_logging_categories(
@@ -259,6 +271,7 @@ install(FILES
     ${KPublicTransport_Datatypes_FORWARDING_HEADERS}
     ${KPublicTransport_Layout_FORWARDING_HEADERS}
     ${KPublicTransport_Models_FORWARDING_HEADERS}
+    ${KPublicTransport_Update_FORWARDING_HEADERS}
     DESTINATION ${KPUBLICTRANSPORT_INSTALL_INCLUDEDIR}/KPublicTransport
 )
 install(FILES
@@ -266,6 +279,7 @@ install(FILES
     ${KPublicTransport_Datatypes_HEADERS}
     ${KPublicTransport_Layout_HEADERS}
     ${KPublicTransport_Models_HEADERS}
+    ${KPublicTransport_Update_HEADERS}
     ${CMAKE_CURRENT_BINARY_DIR}/kpublictransport_export.h
     DESTINATION ${KPUBLICTRANSPORT_INSTALL_INCLUDEDIR}/kpublictransport
 )

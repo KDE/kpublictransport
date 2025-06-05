@@ -5,6 +5,8 @@
 
 #include "standardpaths_p.h"
 
+#include "update/updatestate_p.h"
+
 #include <QFile>
 #include <QStandardPaths>
 
@@ -20,6 +22,7 @@ QStringList StandardPaths::dataSearchPaths()
         dir += "/org.kde.kpublictransport/"_L1;
     }
 #endif
+    dirs.push_back(UpdateState::basePath());
     dirs.push_back(u":/org.kde.kpublictransport/"_s);
 
     return dirs;

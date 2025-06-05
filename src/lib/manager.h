@@ -9,6 +9,8 @@
 
 #include "kpublictransport_export.h"
 
+#include <KPublicTransport/UpdateResult>
+
 #include <QObject>
 
 #include <memory>
@@ -57,6 +59,11 @@ class KPUBLICTRANSPORT_EXPORT Manager : public QObject
 
     /** QML-compatible access to backends(). */
     Q_PROPERTY(QVariantList backends READ backendsVariant NOTIFY backendsChanged)
+
+    /** Backend configuration online update result.
+     *  @since 25.08
+     */
+    Q_PROPERTY(KPublicTransport::UpdateResult::Type updateResult READ updateResult NOTIFY updateResultChanged)
 
 public:
     explicit Manager(QObject *parent = nullptr);
@@ -142,6 +149,19 @@ public:
      */
     void setBackendsEnabledByDefault(bool byDefault);
 
+    /** Check for online updates to backend configurations.
+     *  If there's an update, backend data will automatically be reloaded.
+     *  @param force When @c true check for updates even if there has been a recent
+     *  successful check already.
+     *  @since 25.08
+     */
+    Q_INVOKABLE void checkForUpdates(bool force = false);
+
+    /** Current status of the online update.
+     *  @since 25.08
+     */
+    [[nodiscard]] UpdateResult::Type updateResult() const;
+
 public Q_SLOTS:
     /** Reload backend configuration.
      *  Can be used when on-disk configuration has been changed.
@@ -153,6 +173,7 @@ Q_SIGNALS:
     void attributionsChanged();
     void configurationChanged();
     void backendsChanged();
+    void updateResultChanged();
 
 private:
     bool eventFilter(QObject *object, QEvent *event) override;
