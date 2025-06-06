@@ -115,6 +115,8 @@ target_sources(KPublicTransport PRIVATE
 
     gtfs/hvt.cpp
 
+    http/useragent.cpp
+
     ifopt/ifoptutil.cpp
 
     images/images.qrc

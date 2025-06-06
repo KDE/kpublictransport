@@ -6,13 +6,12 @@
 
 #include "abstractbackend.h"
 #include "logging.h"
-#include "kpublictransport_version.h"
+#include "http/useragent_p.h"
 
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
 #include <KPublicTransport/Location>
 
-#include <QCoreApplication>
 #include <QDebug>
 #include <QDir>
 #include <QJsonDocument>
@@ -300,11 +299,5 @@ void AbstractBackend::applySslConfiguration(QNetworkRequest &request) const
 
 void AbstractBackend::applyUserAgent(QNetworkRequest &request)
 {
-    if (!QCoreApplication::applicationVersion().isEmpty()) {
-        request.setHeader(QNetworkRequest::UserAgentHeader, ("org.kde.kpublictransport/"_L1 + QCoreApplication::applicationName()
-            + QLatin1Char('/') + QCoreApplication::applicationVersion()).toUtf8());
-    } else {
-        request.setHeader(QNetworkRequest::UserAgentHeader, ("org.kde.kpublictransport/"_L1 + QCoreApplication::applicationName()
-            + QLatin1Char('/') + QLatin1StringView(KPUBLICTRANSPORT_VERSION_STRING)).toUtf8());
-    }
+    request.setHeader(QNetworkRequest::UserAgentHeader, Http::userAgent().toUtf8());
 }
