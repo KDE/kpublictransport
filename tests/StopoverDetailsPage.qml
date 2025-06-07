@@ -7,7 +7,6 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls as QQC2
 import org.kde.kirigami as Kirigami
-import org.kde.kirigamiaddons.components as KirigamiComponents
 import org.kde.kpublictransport as KPublicTransport
 import org.kde.kpublictransport.ui as KPublicTransport
 import org.kde.kosmindoormap as KOSM
@@ -159,43 +158,9 @@ Kirigami.Page {
                     onVehicleSectionTapped: (section) => { console.log(section.name); }
                 }
             }
-            KOSM.IndoorMap {
+            KOSM.IndoorMapView {
                 id: stopMapView
                 overlaySources: [ platformModel ]
-
-                KOSM.IndoorMapScale {
-                    map: stopMapView
-                    anchors.left: map.left
-                    anchors.bottom: map.bottom
-                    width: 0.3 * map.width
-                }
-                KOSM.IndoorMapAttributionLabel {
-                    anchors.right: stopMapView.right
-                    anchors.bottom: stopMapView.bottom
-                }
-
-                KOSM.OSMElementInformationModel {
-                    id: infoModel
-                    debug: true
-                    allowOnlineContent: true
-                }
-                KOSM.FloorLevelChangeModel {
-                    id: floorLevelChangeModel
-                    currentFloorLevel: stopMapView.view.floorLevel
-                    floorLevelModel: stopMapView.floorLevels
-                }
-
-                KOSM.OSMElementInformationDialog {
-                    id: elementDetailsSheet
-                    model: infoModel
-                    regionCode: stopMapView.mapData.regionCode
-                    timeZone: stopMapView.mapData.timeZone
-                }
-                KOSM.FloorLevelSelector {
-                    id: elevatorSheet
-                    model: floorLevelChangeModel
-                    onFloorLevelSelected: (level) => { stopMapView.view.floorLevel = level; }
-                }
 
                 KOSM.PlatformModel {
                     id: platformModel
@@ -206,50 +171,6 @@ Kirigami.Page {
                             const idx = platformModel.index(platformModel.departurePlatformRow, 0);
                             stopMapView.view.centerOn(platformModel.data(idx, KOSM.PlatformModel.CoordinateRole), platformModel.data(idx, KOSM.PlatformModel.LevelRole), 19);
                         }
-                    }
-                }
-
-                onElementPicked: (element) => {
-                    floorLevelChangeModel.element = element;
-                    if (floorLevelChangeModel.hasSingleLevelChange) {
-                        showPassiveNotification("Switched to floor " + floorLevelChangeModel.destinationLevelName, "short");
-                        stopMapView.view.floorLevel = floorLevelChangeModel.destinationLevel;
-                        return;
-                    } else if (floorLevelChangeModel.hasMultipleLevelChanges) {
-                        elevatorSheet.open();
-                        return;
-                    }
-
-                    infoModel.element = element;
-                    if (infoModel.name != "" || infoModel.debug) {
-                        elementDetailsSheet.open();
-                    }
-                }
-
-                KirigamiComponents.DoubleFloatingButton {
-                    anchors {
-                        right: parent.right
-                        rightMargin: Kirigami.Units.largeSpacing
-                        bottom: parent.bottom
-                        bottomMargin: Kirigami.Units.largeSpacing + Kirigami.Units.smallSpacing // to not hide the copyright information
-                    }
-
-                    leadingAction: Kirigami.Action {
-                        icon.name: "go-down-symbolic"
-                        text: "Floor down"
-                        enabled: stopMapView.floorLevels.hasFloorLevelBelow(stopMapView.view.floorLevel)
-                        onTriggered: stopMapView.view.floorLevel = stopMapView.floorLevels.floorLevelBelow(stopMapView.view.floorLevel)
-                        visible: stopMapView.floorLevels.hasFloorLevels
-                        tooltip: text
-                    }
-
-                    trailingAction: Kirigami.Action {
-                        icon.name: "go-up-symbolic"
-                        text: "Floor up"
-                        enabled: stopMapView.floorLevels.hasFloorLevelAbove(stopMapView.view.floorLevel)
-                        onTriggered: stopMapView.view.floorLevel = stopMapView.floorLevels.floorLevelAbove(stopMapView.view.floorLevel)
-                        visible: stopMapView.floorLevels.hasFloorLevels
-                        tooltip: text
                     }
                 }
             }
