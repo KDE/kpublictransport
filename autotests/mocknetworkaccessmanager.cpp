@@ -11,12 +11,12 @@ class MockNetworkReply : public QNetworkReply
 {
     Q_OBJECT
 public:
-    explicit MockNetworkReply(const QNetworkAccessManager::Operation op,
+    explicit MockNetworkReply(QNetworkAccessManager::Operation op,
                               const QNetworkRequest &request,
                               const MockNetworkAccessManager::Reply &replyData,
                               QObject *parent);
 
-    qint64 bytesAvailable() const override;
+    [[nodiscard]] qint64 bytesAvailable() const override;
     void abort() override;
 
 protected:
@@ -27,7 +27,7 @@ private:
     qint64 m_offset = 0;
 };
 
-MockNetworkReply::MockNetworkReply(const QNetworkAccessManager::Operation op,
+MockNetworkReply::MockNetworkReply(QNetworkAccessManager::Operation op,
                                    const QNetworkRequest &request,
                                    const MockNetworkAccessManager::Reply &replyData,
                                    QObject *parent)
@@ -39,6 +39,9 @@ MockNetworkReply::MockNetworkReply(const QNetworkAccessManager::Operation op,
     setUrl(request.url());
     setOperation(op);
     setError(NoError, QString());
+    for (const auto it : replyData.headers.asKeyValueRange()) {
+        setHeader(it.first, it.second);
+    }
 
     if (!request.sslConfiguration().isNull()) {
         setSslConfiguration(request.sslConfiguration());

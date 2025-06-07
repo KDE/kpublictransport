@@ -27,6 +27,7 @@ public:
         int statusCode = 0;
         QByteArray data = {};
         QString errorMessage = QStringLiteral("no pending reply available");
+        QHash<QNetworkRequest::KnownHeaders, QByteArray> headers = {};
     };
 
     std::queue<Reply> replies;
