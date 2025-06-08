@@ -50,7 +50,7 @@ the [OpenBike](https://github.com/transportkollektiv/openbike) bike rental syste
 Additionally, a few proprietary/vendor-specific backends are supported too though.
 
 Configurations for about 70 backend services can be found in 'src/lib/networks'.
-Backend service configations follow the [Transport API Repository](https://github.com/public-transport/transport-apis/)
+Backend service configurations follow the [Transport API Repository](https://github.com/public-transport/transport-apis/)
 format.
 
 ## License Compliance and Attribution
