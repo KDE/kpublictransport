@@ -101,7 +101,6 @@
         }
     },
     "options": {
-        "customCaCertificate": "thawte-rsa-ca-2018.pem",
         "endpoint": "https://delfi.nrw-zks.de/delfitrias/"
     },
     "supportedLanguages": [
