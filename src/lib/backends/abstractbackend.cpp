@@ -260,7 +260,7 @@ bool AbstractBackend::queryVehicleLayout(const VehicleLayoutRequest &request, Ve
 
 void AbstractBackend::setCustomCaCertificate(const QString &caCert)
 {
-    QFile f(QLatin1String(":/org.kde.kpublictransport/network-certificates/") + caCert);
+    QFile f(QLatin1String(":/org.kde.kpublictransport/networks/certs/") + caCert);
     if (!f.open(QFile::ReadOnly)) {
         qCWarning(Log) << f.fileName() << f.errorString();
         return;
@@ -270,7 +270,7 @@ void AbstractBackend::setCustomCaCertificate(const QString &caCert)
 
 void AbstractBackend::setPkcs12(const QString &pkcs12Name)
 {
-    QFile f(QLatin1String(":/org.kde.kpublictransport/network-certificates/") + pkcs12Name);
+    QFile f(QLatin1String(":/org.kde.kpublictransport/networks/certs/") + pkcs12Name);
     if (!f.open(QFile::ReadOnly)) {
         qCWarning(Log) << f.fileName() << f.errorString();
         return;

@@ -3,7 +3,7 @@
     SPDX-License-Identifier: CC0-1.0
 -->
 <RCC>
-    <qresource prefix="/org.kde.kpublictransport/network-certificates/">
+    <qresource prefix="/org.kde.kpublictransport/networks/certs/">
         <!-- custom CA certs for services with broken TLS setups -->
         <file>digicert-sha2-secure-server-ca.pem</file>
         <file>thawte-rsa-ca-2018.pem</file>
