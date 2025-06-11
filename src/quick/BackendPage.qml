@@ -3,6 +3,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+import QtNetwork as QtNetwork
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls as QQC2
@@ -17,6 +18,37 @@ Kirigami.ScrollablePage {
 
     /** KPublicTransport.Manager that is configured by this page. */
     property alias publicTransportManager: backendModel.manager
+
+    /** Action to manually trigger online update of backend configurations. */
+    property Kirigami.Action onlineUpdateAction: Kirigami.Action {
+        text: i18nd("kpublictransport", "Check for Updates")
+        icon.name: "system-software-update"
+        enabled: root.publicTransportManager.updateResult !== KPublicTransport.UpdateResult.InProgress
+              && (QtNetwork.NetworkInformation.reachability === QtNetwork.NetworkInformation.Reachability.Online
+               || QtNetwork.NetworkInformation.reachability === QtNetwork.NetworkInformation.Reachability.Unknown)
+        visible: root.publicTransportManager.updateResult !== KPublicTransport.UpdateResult.UpdatesDisabled
+        onTriggered: root.publicTransportManager.checkForUpdates(true)
+    }
+
+    Connections {
+        target: root.publicTransportManager
+        function onUpdateResultChanged() {
+            switch (root.publicTransportManager.updateResult) {
+                case KPublicTransport.UpdateResult.NoUpdate:
+                    showPassiveNotification(i18nd("kpublictransport", "Already up to date."), "short");
+                    break;
+                case KPublicTransport.UpdateResult.UpdateSuccessful:
+                    showPassiveNotification(i18nd("kpublictransport", "Update successful."), "short");
+                    break;
+                case KPublicTransport.UpdateResult.NetworkError:
+                case KPublicTransport.UpdateResult.FilesystemError:
+                case KPublicTransport.UpdateResult.IncompatibleVersion:
+                case KPublicTransport.UpdateResult.FileFormatError:
+                    showPassiveNotification(i18nd("kpublictransport", "Update failed."), "short");
+                    break;
+            }
+        }
+    }
 
     title: i18nd("kpublictransport", "Public Transport Information Sources")
 

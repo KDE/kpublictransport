@@ -288,6 +288,7 @@ Kirigami.ApplicationWindow {
         id: backendPage
         BackendPage {
             publicTransportManager: ptMgr
+            actions: [ onlineUpdateAction ]
         }
     }
 

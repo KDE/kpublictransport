@@ -33,6 +33,7 @@
 #include <KPublicTransport/StopoverQueryModel>
 #include <KPublicTransport/StopoverRequest>
 #include <KPublicTransport/TripRequest>
+#include <KPublicTransport/UpdateResult>
 #include <KPublicTransport/Vehicle>
 #include <KPublicTransport/VehicleLayoutQueryModel>
 #include <KPublicTransport/VehicleLayoutRequest>
@@ -299,6 +300,13 @@ struct TripRequestForeign {
     QML_FOREIGN(KPublicTransport::TripRequest)
     QML_VALUE_TYPE(tripRequest)
     QML_STRUCTURED_VALUE
+};
+
+namespace UpdateResultForeign
+{
+Q_NAMESPACE
+QML_NAMED_ELEMENT(UpdateResult)
+QML_FOREIGN_NAMESPACE(KPublicTransport::UpdateResult)
 };
 
 struct VehicleForeign {
