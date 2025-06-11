@@ -13,6 +13,7 @@
 #include "locationreply.h"
 #include "locationrequest.h"
 #include "logging.h"
+#include "standardpaths_p.h"
 #include "stopoverreply.h"
 #include "stopoverrequest.h"
 #include "tripreply.h"
@@ -139,16 +140,11 @@ void ManagerPrivate::loadNetworks()
         return;
     }
 
-    QStringList searchDirs;
-#ifndef Q_OS_ANDROID
-    searchDirs = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
-#endif
-    searchDirs.push_back(u":/"_s);
-
+    const auto searchDirs = StandardPaths::dataSearchPaths();
     std::vector<Attribution> attributions;
     std::unordered_set<QString> loadedBackends;
     for (const auto &searchDir : searchDirs) {
-        QDirIterator it(searchDir + "/org.kde.kpublictransport/networks"_L1, {u"*.json"_s}, QDir::Files);
+        QDirIterator it(searchDir + "/networks"_L1, {u"*.json"_s}, QDir::Files);
         while (it.hasNext()) {
             it.next();
             const auto id = it.fileInfo().baseName();

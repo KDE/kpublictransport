@@ -10,12 +10,14 @@
 #include "location.h"
 #include "logging.h"
 #include "geo/geojson_p.h"
+#include "standardpaths_p.h"
 
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QPolygonF>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
@@ -40,7 +42,7 @@ void CoverageAreaPrivate::loadGeometry()
         return;
     }
 
-    QFile f(QLatin1String(":/org.kde.kpublictransport/networks/geometry/") + areaFile);
+    QFile f(StandardPaths::locateFile("networks/geometry/"_L1 + areaFile));
     if (!f.open(QFile::ReadOnly)) {
         qCWarning(Log) << "reading coverage area file failed:" << f.fileName() << f.errorString();
         return;

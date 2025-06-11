@@ -7,6 +7,7 @@
 #include "abstractbackend.h"
 #include "logging.h"
 #include "http/useragent_p.h"
+#include "standardpaths_p.h"
 
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
@@ -260,7 +261,7 @@ bool AbstractBackend::queryVehicleLayout(const VehicleLayoutRequest &request, Ve
 
 void AbstractBackend::setCustomCaCertificate(const QString &caCert)
 {
-    QFile f(QLatin1String(":/org.kde.kpublictransport/networks/certs/") + caCert);
+    QFile f(StandardPaths::locateFile("networks/certs/"_L1 + caCert));
     if (!f.open(QFile::ReadOnly)) {
         qCWarning(Log) << f.fileName() << f.errorString();
         return;
@@ -270,7 +271,7 @@ void AbstractBackend::setCustomCaCertificate(const QString &caCert)
 
 void AbstractBackend::setPkcs12(const QString &pkcs12Name)
 {
-    QFile f(QLatin1String(":/org.kde.kpublictransport/networks/certs/") + pkcs12Name);
+    QFile f(StandardPaths::locateFile("networks/certs/"_L1 + pkcs12Name));
     if (!f.open(QFile::ReadOnly)) {
         qCWarning(Log) << f.fileName() << f.errorString();
         return;

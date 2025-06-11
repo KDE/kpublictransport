@@ -15,6 +15,7 @@ target_sources(KPublicTransport PRIVATE
     manager.cpp
     reply.cpp
     requestcontext.cpp
+    standardpaths.cpp
     stopoverreply.cpp
     stopoverrequest.cpp
     tripreply.cpp

@@ -15,6 +15,7 @@
 #include "locationreply.h"
 #include "locationrequest.h"
 #include "journeyreply.h"
+#include "standardpaths_p.h"
 
 #include <QFile>
 #include <QJsonDocument>
@@ -231,7 +232,7 @@ bool SrbijavozBackend::queryLocation(const LocationRequest &request, LocationRep
 
 void SrbijavozBackend::loadAuxData()
 {
-    QFile file(QStringLiteral(":/org.kde.kpublictransport/networks/stations/me-rs.json"));
+    QFile file(StandardPaths::locateFile(u"networks/stations/me-rs.json"_s));
     if (!file.open(QFile::ReadOnly)) {
         qCWarning(Log) << file.errorString();
         qFatal("The bundled station data of KPublicTransport can not be read. This is a bug.");
