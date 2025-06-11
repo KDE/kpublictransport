@@ -160,7 +160,7 @@ Kirigami.Page {
             }
             KOSM.IndoorMapView {
                 id: stopMapView
-                overlaySources: [ platformModel ]
+                overlaySources: [ platformModel, stopMapView.equipmentModel ]
 
                 KOSM.PlatformModel {
                     id: platformModel
