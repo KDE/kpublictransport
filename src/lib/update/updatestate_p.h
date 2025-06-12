@@ -41,6 +41,9 @@ public:
     /** Path to a not yet fully processed updated manifest. */
     [[nodiscard]] static QString manifestPath();
 
+    /** Path to the lock file preventing multiple processes from simultaneous updates. */
+    [[nodiscard]] static QString lockFilePath();
+
     /** Manifest download request, with caching headers set up correctly. */
     [[nodiscard]] QNetworkRequest manifestRequest() const;
     /** Handle manifest download, returns @c true when the manifest changed and there might be content to update. */

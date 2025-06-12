@@ -42,6 +42,13 @@ QString UpdateState::stateFilePath()
     return QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/org.kde.kpublictransport/updatestate.conf"_L1;
 }
 
+#ifndef Q_OS_ANDROID
+QString UpdateState::lockFilePath()
+{
+    return QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/org.kde.kpublictransport/update.lock"_L1;
+}
+#endif
+
 [[nodiscard]] static QString defaultUpdateUrl()
 {
     // TODO awaits server-side setup

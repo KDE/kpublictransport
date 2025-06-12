@@ -11,6 +11,7 @@
 
 #include <QObject>
 
+class QLockFile;
 class QNetworkAccessManager;
 
 namespace KPublicTransport {
@@ -34,6 +35,8 @@ Q_SIGNALS:
     void finished();
 
 private:
+    void aquireLock();
+    void updateManifest();
     void processNextFile();
 
     UpdateState m_state;
@@ -41,6 +44,11 @@ private:
     qsizetype m_currentIdx = 0;
     QNetworkAccessManager *m_nam = nullptr;
     UpdateResult::Type m_result = UpdateResult::NoError;
+
+#ifndef Q_OS_ANDROID
+    int m_lockRetryCount = 0;
+    std::unique_ptr<QLockFile> m_lockFile;
+#endif
 };
 
 }
