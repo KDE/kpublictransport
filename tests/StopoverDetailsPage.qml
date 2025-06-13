@@ -25,6 +25,7 @@ Kirigami.Page {
         // TODO move flickable offset
         onContentChanged: {
             root.stopover = vehicleModel.stopover;
+            tabBar.selectFirstEnabledTab();
         }
     }
 
@@ -99,6 +100,18 @@ Kirigami.Page {
             QQC2.TabButton {
                 text: "Stop Map"
                 enabled: root.stopover.stopPoint.hasCoordinate
+            }
+
+            function selectFirstEnabledTab() {
+                if (tabBar.itemAt(tabBar.currentIndex).enabled)
+                    return;
+                for (let i = 0; i < tabBar.count; ++i) {
+                    console.log(i, tabBar.itemAt(i).enabled);
+                    if (tabBar.itemAt(i).enabled) {
+                        tabBar.currentIndex = i;
+                        break;
+                    }
+                }
             }
         }
 
@@ -217,11 +230,14 @@ Kirigami.Page {
                 tripMapView.centerOnJourney();
                 vehicleModel.request.stopover = reply.stopover;
                 vehicleModel.request.backendIds = root.backendIds;
+                tabBar.selectFirstEnabledTab();
                 root.updateStopMap();
             } else {
                 errorMessage.text = reply.errorString;
             }
             reply.destroy();
         });
+
+        tabBar.selectFirstEnabledTab();
     }
 }
