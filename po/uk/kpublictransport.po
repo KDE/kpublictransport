@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-06-04 00:41+0000\n"
+"POT-Creation-Date: 2025-06-14 00:41+0000\n"
 "PO-Revision-Date: 2025-06-04 22:29+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -185,28 +185,48 @@ msgctxt "train coach type"
 msgid "Car transport car"
 msgstr "Вагон для перевезення автомобілів"
 
-#: quick/BackendPage.qml:21
+#: quick/BackendPage.qml:24
+#, kde-format
+msgid "Check for Updates"
+msgstr ""
+
+#: quick/BackendPage.qml:38
+#, kde-format
+msgid "Already up to date."
+msgstr ""
+
+#: quick/BackendPage.qml:41
+#, kde-format
+msgid "Update successful."
+msgstr ""
+
+#: quick/BackendPage.qml:47
+#, kde-format
+msgid "Update failed."
+msgstr ""
+
+#: quick/BackendPage.qml:53
 #, kde-format
 msgid "Public Transport Information Sources"
 msgstr "Джерела даних щодо громадського транспорту"
 
-#: quick/BackendPage.qml:98 quick/BackendPage.qml:110
+#: quick/BackendPage.qml:130 quick/BackendPage.qml:142
 #, kde-format
 msgid "Global"
 msgstr "Загальне"
 
-#: quick/BackendPage.qml:100
+#: quick/BackendPage.qml:132
 #, kde-format
 msgid "🇪🇺 European Union"
 msgstr "🇪🇺 Європейський Союз"
 
-#: quick/BackendPage.qml:103
+#: quick/BackendPage.qml:135
 #, kde-format
 msgctxt "emoji flag, country name"
 msgid "%1 %2"
 msgstr "%1 %2"
 
-#: quick/BackendPage.qml:112
+#: quick/BackendPage.qml:144
 #, kde-format
 msgid "European Union"
 msgstr "Європейський Союз"
