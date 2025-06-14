@@ -5,7 +5,8 @@
 <RCC>
     <qresource prefix="/org.kde.kpublictransport/networks/certs/">
         <!-- custom CA certs for services with broken TLS setups -->
-        <file>digicert-sha2-secure-server-ca.pem</file>
+
+        <!-- client certificates -->
         <file>vrs-client-cert.p12</file>
     </qresource>
 </RCC>
