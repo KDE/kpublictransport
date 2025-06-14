@@ -51,9 +51,7 @@ QString UpdateState::lockFilePath()
 
 [[nodiscard]] static QString defaultUpdateUrl()
 {
-    // TODO awaits server-side setup
-    // return u"https://autoconfig.kde.org/kpublictransport/"_s;
-    return QString();
+    return u"https://autoconfig.kde.org/kpublictransport/"_s;
 }
 
 QUrl UpdateState::remoteUrl(QStringView filePath)
