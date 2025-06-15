@@ -32,6 +32,8 @@ constexpr inline const auto MINIMUM_WALK_DISTANCE = 50; // meters; shorter walki
 constexpr inline const auto MAXIMUM_TRANSFER_SPEED = 30; // meter/second; anything above is discarded as nonsensical data
 constexpr inline const auto MAXIMUM_TRANSFER_DISTANCE = 100000; // meters; anything above is discarded as nonsensical data
 
+constexpr inline const auto MAXIMUM_DETOUR_FACTOR = 12; // amount of travelled distance can exceed the direct distance
+
 class JourneyReplyPrivate : public ReplyPrivate {
 public:
     void finalizeResult() override;
@@ -126,6 +128,22 @@ static bool isImplausibleSection(const JourneySection &section)
     return false;
 }
 
+[[nodiscard]] static bool isImplausibleJourney(const Journey &jny)
+{
+    if (jny.sections().empty()) {
+        return true;
+    }
+
+    const auto directDist = Location::distance(jny.sections().front().from(), jny.sections().back().to());
+    const auto travelDist = jny.distance();
+    if (!std::isnan(directDist) && !std::isnan(travelDist) && travelDist > (directDist * MAXIMUM_DETOUR_FACTOR)) {
+        qCDebug(Log) << "discarding journey due to excessive detour" << directDist << travelDist;
+        return true;
+    }
+
+    return false;
+}
+
 void JourneyReplyPrivate::postProcessJourneys(std::vector<Journey> &journeys)
 {
     // try to fill gaps in timezone data
@@ -190,7 +208,7 @@ void JourneyReplyPrivate::postProcessJourneys(std::vector<Journey> &journeys)
 
     // remove empty or implausible journeys
     journeys.erase(std::remove_if(journeys.begin(), journeys.end(), [](const auto &journey) {
-        return journey.sections().empty() || std::any_of(journey.sections().begin(), journey.sections().end(), isImplausibleSection);
+        return journey.sections().empty() || std::any_of(journey.sections().begin(), journey.sections().end(), isImplausibleSection) || isImplausibleJourney(journey);
     }), journeys.end());
 }
 
