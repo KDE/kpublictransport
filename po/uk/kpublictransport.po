@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-06-14 00:41+0000\n"
-"PO-Revision-Date: 2025-06-04 22:29+0300\n"
+"PO-Revision-Date: 2025-06-14 20:36+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -188,22 +188,22 @@ msgstr "Вагон для перевезення автомобілів"
 #: quick/BackendPage.qml:24
 #, kde-format
 msgid "Check for Updates"
-msgstr ""
+msgstr "Перевірити наявність оновлень"
 
 #: quick/BackendPage.qml:38
 #, kde-format
 msgid "Already up to date."
-msgstr ""
+msgstr "Вже актуальне."
 
 #: quick/BackendPage.qml:41
 #, kde-format
 msgid "Update successful."
-msgstr ""
+msgstr "Успішно оновлено."
 
 #: quick/BackendPage.qml:47
 #, kde-format
 msgid "Update failed."
-msgstr ""
+msgstr "Спроба оновлення завершилася невдало."
 
 #: quick/BackendPage.qml:53
 #, kde-format

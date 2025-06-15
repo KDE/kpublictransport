@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-06-14 00:41+0000\n"
-"PO-Revision-Date: 2025-06-04 06:51+0200\n"
+"PO-Revision-Date: 2025-06-14 06:37+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <kde-i18n-doc@kde.org>\n"
 "Language: sl\n"
@@ -189,22 +189,22 @@ msgstr "Vagon za prevoz avtomobilov"
 #: quick/BackendPage.qml:24
 #, kde-format
 msgid "Check for Updates"
-msgstr ""
+msgstr "Preveri posodobitve"
 
 #: quick/BackendPage.qml:38
 #, kde-format
 msgid "Already up to date."
-msgstr ""
+msgstr "Že posodobljeno."
 
 #: quick/BackendPage.qml:41
 #, kde-format
 msgid "Update successful."
-msgstr ""
+msgstr "Posodobitev uspešna."
 
 #: quick/BackendPage.qml:47
 #, kde-format
 msgid "Update failed."
-msgstr ""
+msgstr "Posodobitev ni uspela."
 
 #: quick/BackendPage.qml:53
 #, kde-format

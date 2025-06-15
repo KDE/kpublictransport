@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-06-14 00:41+0000\n"
-"PO-Revision-Date: 2025-06-04 10:23+0300\n"
+"PO-Revision-Date: 2025-06-14 07:07+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -188,22 +188,22 @@ msgstr "קרון הובלת מכוניות"
 #: quick/BackendPage.qml:24
 #, kde-format
 msgid "Check for Updates"
-msgstr ""
+msgstr "איתור עדכונים"
 
 #: quick/BackendPage.qml:38
 #, kde-format
 msgid "Already up to date."
-msgstr ""
+msgstr "כבר עדכני."
 
 #: quick/BackendPage.qml:41
 #, kde-format
 msgid "Update successful."
-msgstr ""
+msgstr "העדכון הצליח."
 
 #: quick/BackendPage.qml:47
 #, kde-format
 msgid "Update failed."
-msgstr ""
+msgstr "העדכון נכשל."
 
 #: quick/BackendPage.qml:53
 #, kde-format

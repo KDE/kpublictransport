@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-06-14 00:41+0000\n"
-"PO-Revision-Date: 2025-06-04 09:08+0200\n"
+"PO-Revision-Date: 2025-06-14 11:02+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -189,22 +189,22 @@ msgstr "Vagó de transport de cotxes"
 #: quick/BackendPage.qml:24
 #, kde-format
 msgid "Check for Updates"
-msgstr ""
+msgstr "Comprova si hi ha actualitzacions"
 
 #: quick/BackendPage.qml:38
 #, kde-format
 msgid "Already up to date."
-msgstr ""
+msgstr "Ja està al dia."
 
 #: quick/BackendPage.qml:41
 #, kde-format
 msgid "Update successful."
-msgstr ""
+msgstr "Actualització correcta."
 
 #: quick/BackendPage.qml:47
 #, kde-format
 msgid "Update failed."
-msgstr ""
+msgstr "L'actualització ha fallat."
 
 #: quick/BackendPage.qml:53
 #, kde-format
