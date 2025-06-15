@@ -87,7 +87,7 @@ private Q_SLOTS:
             {"name":"networks/geometry/un_transitous_any.geojson","version":"125.07.40","minSupportedVersion":"124.07.1" },
             {"name":"networks/de_db.json","version":"243.12.3.4"},
             {"name":"../../etc/passwd","version":"1.0"}
-        ]})", .headers = {{QNetworkRequest::LastModifiedHeader, "Tue, 25 Mar 2025 21:26:21 GMT"}} });
+        ]})", .headers = {{"Last-Modified", "Tue, 25 Mar 2025 21:26:21 GMT"}} });
         nam.replies.push({.error = QNetworkReply::NoError, .statusCode = 200, .data = R"({"active":false})"});
         nam.replies.push({.error = QNetworkReply::NoError, .statusCode = 304});
 
@@ -121,7 +121,7 @@ private Q_SLOTS:
             QCOMPARE(mgr.updateResult(), UpdateResult::NoUpdate);
 
             QCOMPARE(nam.requests.size(), 1);
-            QCOMPARE(nam.requests[0].request.header(QNetworkRequest::IfModifiedSinceHeader).toString(), "Tue, 25 Mar 2025 21:26:21 GMT"_L1);
+            QCOMPARE(nam.requests[0].request.header(QNetworkRequest::IfModifiedSinceHeader).toDateTime(), QDateTime({2025, 3, 25}, {21, 26, 21}, QTimeZone::UTC));
         }
 
         nam.requests.clear();

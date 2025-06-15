@@ -93,7 +93,7 @@ QNetworkRequest UpdateState::manifestRequest() const
     req.setHeader(QNetworkRequest::UserAgentHeader, Http::userAgent().toUtf8());
 
     const QSettings state(stateFilePath(), QSettings::IniFormat);
-    if (const auto lastMod = state.value("Last-Modified", QString()).toString(); !lastMod.isEmpty()) {
+    if (const auto lastMod = state.value("Last-Modified", QString()).toDateTime(); !lastMod.isNull()) {
         req.setHeader(QNetworkRequest::IfModifiedSinceHeader, lastMod);
     }
     if (const auto etag = state.value("ETag", QString()).toString(); !etag.isEmpty()) {
@@ -128,7 +128,7 @@ std::expected<bool, UpdateResult::Type> UpdateState::handleManifestReply(QNetwor
     f.write(reply->readAll());
 
     QSettings state(stateFilePath(), QSettings::IniFormat);
-    if (const auto lastMod = reply->header(QNetworkRequest::LastModifiedHeader).toString(); !lastMod.isEmpty()) {
+    if (const auto lastMod = reply->header(QNetworkRequest::LastModifiedHeader).toDateTime(); !lastMod.isNull()) {
         state.setValue("Last-Modified", lastMod);
     }
     if (const auto etag = reply->header(QNetworkRequest::ETagHeader).toString(); !etag.isEmpty()) {

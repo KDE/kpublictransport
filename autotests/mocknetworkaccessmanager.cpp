@@ -40,7 +40,7 @@ MockNetworkReply::MockNetworkReply(QNetworkAccessManager::Operation op,
     setOperation(op);
     setError(NoError, QString());
     for (const auto it : replyData.headers.asKeyValueRange()) {
-        setHeader(it.first, it.second);
+        setRawHeader(it.first, it.second);
     }
 
     if (!request.sslConfiguration().isNull()) {
