@@ -88,9 +88,9 @@ QtLocation.Map {
         }
     }
     // intermediate stops
-    Repeater {
+    QtLocation.MapItemView {
         model: map.journey.intermediateStops
-        QtLocation.MapQuickItem {
+        delegate: QtLocation.MapQuickItem {
             required property KPublicTransport.stopover modelData
             coordinate {
                 latitude: modelData.stopPoint.latitude

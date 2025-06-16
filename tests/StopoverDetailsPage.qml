@@ -113,6 +113,19 @@ Kirigami.Page {
                     }
                 }
             }
+
+            onCurrentIndexChanged: {
+                // trip map view on-demand loading
+                if (tabBar.currentIndex === 2 && tripView.journeySection.mode !== KPublicTransport.JourneySection.Invalid && tripMapView.journey.mode === KPublicTransport.JourneySection.Invalid) {
+                    tripMapView.journey = tripView.journeySection;
+                    tripMapView.centerOnJourney();
+                }
+                // indoor map view on-demand loading
+                if (tabBar.currentIndex === 4 && stopMapView.mapData.isEmpty && !stopMapView.mapLoader.isLoading && root.stopover.stopPoint.hasCoordinate) {
+                    stopMapView.mapLoader.loadForCoordinate(root.stopover.stopPoint.latitude, root.stopover.stopPoint.longitude);
+                    root.updateStopMap();
+                }
+            }
         }
 
         StackLayout {
@@ -158,9 +171,7 @@ Kirigami.Page {
                 }
             }
             JourneySectionMap {
-                // TODO intermediate stops missing??
                 id: tripMapView
-                journey: tripView.journeySection
             }
             QQC2.ScrollView {
                 id: vehicleLayout
@@ -209,25 +220,15 @@ Kirigami.Page {
         platformModel.departurePlatform.ifopt = root.stopover.stopPoint.identifier("ifopt")
     }
 
-    // TODO trigger this only when opening the trip tab for the first time?
     Component.onCompleted: {
         errorMessage.text = "Loading..."
-
-        if (root.stopover.stopPoint.hasCoordinate) {
-            stopMapView.mapLoader.loadForCoordinate(root.stopover.stopPoint.latitude, root.stopover.stopPoint.longitude);
-            updateStopMap();
-        }
 
         let reply = ptMgr.queryTrip({ stopover: root.stopover, backendIds: root.backendIds, downloadAssets: true })
         reply.finished.connect(() => {
             if (reply.error === KPublicTransport.Reply.NoError) {
                 errorMessage.text = ""
                 tripView.journeySection = reply.trip;
-                if (!root.stopover.stopPoint.hasCoordinate && reply.stopover.stopPoint.hasCoordinate) {
-                    stopMapView.mapLoader.loadForCoordinate(reply.stopover.stopPoint.latitude, reply.stopover.stopPoint.longitude);
-                }
                 root.stopover = reply.stopover;
-                tripMapView.centerOnJourney();
                 vehicleModel.request.stopover = reply.stopover;
                 vehicleModel.request.backendIds = root.backendIds;
                 tabBar.selectFirstEnabledTab();
