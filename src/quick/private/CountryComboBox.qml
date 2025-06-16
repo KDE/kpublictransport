@@ -8,7 +8,7 @@ import QtQuick.Controls as QQC2
 import org.kde.i18n.localeData
 
 /** Combo box for showing a list of countries.
- *  The model is expected to be an array of ISO 3166-1 alpha 2 codes.
+ *  The model is expected to be CoverageCountryModel.
  */
 QQC2.ComboBox {
     id: root
@@ -19,21 +19,19 @@ QQC2.ComboBox {
     /** Initially selected country. */
     property string initialCountry
 
-    function sort(model) {
-        return model.sort((lhs, rhs) => { return Country.fromAlpha2(lhs).name.localeCompare(Country.fromAlpha2(rhs).name); });
-    }
-
     displayText: currentCountry ? (currentCountry.emojiFlag + ' ' + currentCountry.name) : ""
+    valueRole: "code"
 
     delegate: QQC2.ItemDelegate {
         id: delegate
+        required property string code
         text: {
-            const c = Country.fromAlpha2(modelData);
+            const c = Country.fromAlpha2(delegate.code);
             return "<span style='font.family: \"emoji\">'" + c.emojiFlag + '</span> ' + c.name;
         }
         width: parent ? parent.width : undefined
 
-        Accessible.name: Country.fromAlpha2(modelData).name
+        Accessible.name: Country.fromAlpha2(delegate.code).name
         Accessible.onPressAction: delegate.clicked()
     }
 

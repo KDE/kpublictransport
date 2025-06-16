@@ -14,6 +14,7 @@
 #include <KPublicTransport/Backend>
 #include <KPublicTransport/BackendModel>
 #include <KPublicTransport/CoverageArea>
+#include <KPublicTransport/CoverageCountryModel>
 #include <KPublicTransport/Equipment>
 #include <KPublicTransport/Feature>
 #include <KPublicTransport/IndividualTransport>
@@ -76,6 +77,12 @@ struct CoverageArea {
     QML_VALUE_TYPE(coverageArea)
 };
 FOREIGN_ENUM_GADGET(CoverageArea)
+
+struct CoverageCountryModelForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::CoverageCountryModel)
+    QML_NAMED_ELEMENT(CoverageCountryModel)
+};
 
 namespace DisruptionForeign
 {

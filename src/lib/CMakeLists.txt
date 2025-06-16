@@ -132,6 +132,7 @@ target_sources(KPublicTransport PRIVATE
 
     models/abstractquerymodel.cpp
     models/backendmodel.cpp
+    models/coveragecountrymodel.cpp
     models/journeyquerymodel.cpp
     models/locationhistorymodel.cpp
     models/locationquerymodel.cpp
@@ -242,6 +243,7 @@ ecm_generate_headers(KPublicTransport_Models_FORWARDING_HEADERS
     HEADER_NAMES
         AbstractQueryModel
         BackendModel
+        CoverageCountryModel
         JourneyQueryModel
         LocationHistoryModel
         LocationQueryModel

@@ -100,21 +100,8 @@ Kirigami.ScrollablePage {
             Layout.leftMargin: Kirigami.Units.smallSpacing
             Layout.rightMargin: Kirigami.Units.smallSpacing
             Layout.fillWidth: true
-            model: {
-                var countries = new Array();
-                for (const b of publicTransportManager.backends) {
-                    if (!publicTransportManager.isBackendEnabled(b.identifier)) {
-                        continue;
-                    }
-                    for (const t of [PublicTransport.CoverageArea.Realtime, PublicTransport.CoverageArea.Regular, PublicTransport.CoverageArea.Any]) {
-                        for (const c of b.coverageArea(t).regions) {
-                            if (c != 'UN' && c != 'EU') {
-                                countries.push(c.substr(0, 2));
-                            }
-                        }
-                    }
-                }
-                return sort([...new Set(countries)]);
+            model: PublicTransport.CoverageCountryModel {
+                manager: root.publicTransportManager
             }
             initialCountry: root.initialCountry
             onCurrentValueChanged: root.updateQuery();
