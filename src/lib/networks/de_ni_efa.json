@@ -105,8 +105,7 @@
         }
     },
     "options": {
-        "endpoint": "https://efa29.efa.de/efaws2/default/",
-        "mId": "efa_29"
+        "endpoint": "https://efa29.efa.de/efa/"
     },
     "supportedLanguages": [
         "en",
