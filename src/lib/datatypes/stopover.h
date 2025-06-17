@@ -118,6 +118,12 @@ class KPUBLICTRANSPORT_EXPORT Stopover
      */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::PickupDropoff::Type, dropoffType, setDropoffType)
 
+    /** Returns @c true if there is any trip identifier set at all.
+     *  This is usually a prerequisite for efficient trip queries.
+     *  @since 25.08
+     */
+    Q_PROPERTY(bool hasTripIdentifiers READ hasTripIdentifiers STORED false)
+
 public:
     [[nodiscard]] bool hasExpectedArrivalTime() const;
     [[nodiscard]] int arrivalDelay() const;

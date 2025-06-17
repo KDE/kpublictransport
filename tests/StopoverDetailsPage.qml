@@ -106,7 +106,6 @@ Kirigami.Page {
                 if (tabBar.itemAt(tabBar.currentIndex).enabled)
                     return;
                 for (let i = 0; i < tabBar.count; ++i) {
-                    console.log(i, tabBar.itemAt(i).enabled);
                     if (tabBar.itemAt(i).enabled) {
                         tabBar.currentIndex = i;
                         break;
