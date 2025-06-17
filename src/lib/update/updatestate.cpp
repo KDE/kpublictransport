@@ -51,7 +51,9 @@ QString UpdateState::lockFilePath()
 
 [[nodiscard]] static QString defaultUpdateUrl()
 {
-    return u"https://autoconfig.kde.org/kpublictransport/"_s;
+    // TODO disabled until we have resolved the CDN caching issues
+    // return u"https://autoconfig.kde.org/kpublictransport/"_s;
+    return QString();
 }
 
 QUrl UpdateState::remoteUrl(QStringView filePath)
