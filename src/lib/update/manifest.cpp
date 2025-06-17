@@ -15,7 +15,7 @@
 using namespace Qt::Literals;
 using namespace KPublicTransport;
 
-constexpr inline auto MANIFEST_VERSION = 1;
+constexpr inline auto MANIFEST_VERSION = 2;
 
 ManifestEntry::ManifestEntry(QJsonObject obj)
     : m_entry(std::move(obj))
@@ -33,6 +33,11 @@ QString ManifestEntry::fileName() const
         return {};
     }
     return s;
+}
+
+QString ManifestEntry::source() const
+{
+    return m_entry.value("source"_L1).toString();
 }
 
 QString ManifestEntry::fileVersion() const

@@ -20,6 +20,7 @@ public:
     explicit ManifestEntry(QJsonObject obj);
 
     [[nodiscard]] QString fileName() const;
+    [[nodiscard]] QString source() const;
     /** Version of the file to update. */
     [[nodiscard]] QString fileVersion() const;
 

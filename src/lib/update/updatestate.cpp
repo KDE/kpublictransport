@@ -190,7 +190,7 @@ void UpdateState::purgeObsoleteFiles(const QVersionNumber &version)
 
 QNetworkRequest UpdateState::fileRequest(const ManifestEntry &entry) const
 {
-    QNetworkRequest req(remoteUrl(entry.fileName()));
+    QNetworkRequest req(remoteUrl(entry.source()));
     req.setHeader(QNetworkRequest::UserAgentHeader, Http::userAgent().toUtf8());
     return req;
 }

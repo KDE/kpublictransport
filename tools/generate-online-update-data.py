@@ -36,7 +36,7 @@ def get_current_version():
 
 
 allowed_types = ['.json', '.geojson', '.pem', '.p12']
-ignore_patterns = ['ch_sbb.json', 'eu_motislocal.json']
+ignore_patterns = ['ch_sbb.json', 'eu_motislocal.json', 'un_transitous_staging.json']
 
 
 def is_ignored(f: str) -> bool:
@@ -69,7 +69,7 @@ for entry in manifest.get('entries', []):
     old_entries[entry['name']] = entry
 
 manifest['entries'] = []
-manifest['version'] = 1
+manifest['version'] = 2
 
 # look for new or changed files
 os.chdir(os.path.join(absSourcePath, 'src/lib/'))
@@ -82,26 +82,31 @@ for subdir, _, files in os.walk('networks'):
         entry = {}
         entry['version'] = current_version
         entry['name'] = f"{subdir}/{f}"
+        if entry['name'] in old_entries:
+            old_src = old_entries[entry['name']].get('source', '')
+        f_base, f_ext = os.path.splitext(f)
 
         os.makedirs(os.path.join(absOutputPath, subdir), exist_ok=True)
-        if not os.path.isfile(os.path.join(absOutputPath, subdir, f)):
+        if not old_src or not os.path.isfile(os.path.join(absOutputPath, old_src)):
             print(f"Adding new file {f}…")
-            shutil.copy(os.path.join(subdir, f), os.path.join(absOutputPath, subdir, f))
+            entry['source'] = f"{subdir}/{f_base}-{current_version}{f_ext}"
+            shutil.copy(os.path.join(subdir, f), os.path.join(absOutputPath, entry['source']))
             manifest['entries'].append(entry)
             continue
 
-        if filecmp.cmp(os.path.join(subdir, f), os.path.join(absOutputPath, subdir, f), shallow=False):
+        if filecmp.cmp(os.path.join(subdir, f), os.path.join(absOutputPath, old_src), shallow=False):
             manifest['entries'].append(old_entries.get(f"{subdir}/{f}", entry))
             continue
 
-        shutil.copy(os.path.join(subdir, f), os.path.join(absOutputPath, subdir, f))
-        entry = old_entries.get(f"{subdir}/{f}", entry)
+        entry = old_entries.get(entry['name'], entry).copy()
         if entry['version'] == current_version:
             entry['version'] = f"{current_version}.1"
         elif entry['version'].startswith(current_version):
             entry['version'] = f"{current_version}.{int(entry['version'][len(current_version)+1:])+1}"
         else:
             entry['version'] = current_version
+        entry['source'] = f"{subdir}/{f_base}-{entry['version']}{f_ext}"
+        shutil.copy(os.path.join(subdir, f), os.path.join(absOutputPath, entry['source']))
         print(f"Updating file {subdir}/{f} to {entry['version']}…")
         manifest['entries'].append(entry)
 
@@ -111,7 +116,8 @@ for subdir, _, files in os.walk('.'):
     for f in files:
         if f == "manifest":
             continue
-        if not os.path.isfile(os.path.join(absSourcePath, 'src/lib', subdir, f)) or is_ignored(f):
+        f_full = f"{subdir.lstrip('./')}/{f}"
+        if not any([e.get('source', '') == f_full for _, e in old_entries.items()]) and not any([e['source'] == f_full for e in manifest['entries']]):
             print(f"Removing file {subdir}/{f}…")
             os.remove(os.path.join(absOutputPath, subdir, f))
 

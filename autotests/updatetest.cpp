@@ -81,11 +81,11 @@ private Q_SLOTS:
         QCOMPARE(s.lastUpdate().isValid(), false);
 
         MockNetworkAccessManager nam;
-        nam.replies.push({.error = QNetworkReply::NoError, .statusCode = 200, .data = R"({"version":1,"entries":[
+        nam.replies.push({.error = QNetworkReply::NoError, .statusCode = 200, .data = R"({"version":2,"entries":[
             {"name":"networks/un_transitous.json","version":"25.04.1.3" },
             {"name":"networks/geometry/un_transitous_regular.geojson","version":"25.07.40" },
             {"name":"networks/geometry/un_transitous_any.geojson","version":"125.07.40","minSupportedVersion":"124.07.1" },
-            {"name":"networks/de_db.json","version":"243.12.3.4"},
+            {"name":"networks/de_db.json","version":"243.12.3.4","source":"networks/de_db-243.12.3.4.json"},
             {"name":"../../etc/passwd","version":"1.0"}
         ]})", .headers = {{"Last-Modified", "Tue, 25 Mar 2025 21:26:21 GMT"}} });
         nam.replies.push({.error = QNetworkReply::NoError, .statusCode = 200, .data = R"({"active":false})"});
@@ -105,7 +105,7 @@ private Q_SLOTS:
             QCOMPARE(backendChangeSpy.size(), 1);
 
             QCOMPARE(nam.requests.size(), 2);
-            QVERIFY(nam.requests[1].request.url().path().endsWith("/networks/de_db.json"_L1));
+            QVERIFY(nam.requests[1].request.url().path().endsWith("/networks/de_db-243.12.3.4.json"_L1));
 
             QVERIFY(std::ranges::none_of(mgr.backends(), [](const auto &b) { return b.identifier() == "de_db"_L1; }));
         }
