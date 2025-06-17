@@ -57,9 +57,6 @@ class KPUBLICTRANSPORT_EXPORT Manager : public QObject
     /** @see backendsEnabledByDefault() */
     Q_PROPERTY(bool backendsEnabledByDefault READ backendsEnabledByDefault WRITE setBackendsEnabledByDefault NOTIFY configurationChanged)
 
-    /** QML-compatible access to backends(). */
-    Q_PROPERTY(QVariantList backends READ backendsVariant NOTIFY backendsChanged)
-
     /** Backend configuration online update result.
      *  @since 25.08
      */
@@ -178,7 +175,6 @@ Q_SIGNALS:
 private:
     bool eventFilter(QObject *object, QEvent *event) override;
     Q_DECL_HIDDEN QVariantList attributionsVariant() const;
-    Q_DECL_HIDDEN QVariantList backendsVariant() const;
 
     std::unique_ptr<ManagerPrivate> d;
 };

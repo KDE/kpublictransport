@@ -1112,15 +1112,6 @@ void Manager::setBackendsEnabledByDefault(bool byDefault)
     Q_EMIT configurationChanged();
 }
 
-QVariantList Manager::backendsVariant() const
-{
-    d->loadNetworks();
-    QVariantList l;
-    l.reserve(d->m_backends.size());
-    std::transform(d->m_backends.begin(), d->m_backends.end(), std::back_inserter(l), [](const auto &b) { return QVariant::fromValue(b); });
-    return l;
-}
-
 bool Manager::eventFilter(QObject *object, QEvent *event)
 {
     if (event->type() == QEvent::LanguageChange && object == QCoreApplication::instance() && !QCoreApplication::closingDown()) {
