@@ -8,6 +8,7 @@ ecm_add_qml_module(kpublictransportquickplugin
     CLASS_NAME "KPublicTransportUiQuickPlugin"
     IMPORTS "org.kde.kpublictransport"
     DEPENDENCIES
+        "QtNetwork"
         "QtQuick"
         "QtQuick.Controls"
         "org.kde.kirigami"
