@@ -17,12 +17,13 @@ Kirigami.Page {
 
     required property KPublicTransport.Manager ptMgr
     required property KPublicTransport.stopover stopover
-    required property list<string> backendIds
+    required property var backendIds // ### should be list<string> but that gives us an empty list here no matter what's passed in
+
+    property bool isArrival: false
 
     KPublicTransport.VehicleLayoutQueryModel {
         id: vehicleModel
         manager: root.ptMgr
-        // TODO move flickable offset
         onContentChanged: {
             root.stopover = vehicleModel.stopover;
             tabBar.selectFirstEnabledTab();
@@ -37,8 +38,16 @@ Kirigami.Page {
             rows: 3
 
             KPublicTransport.TransportNameControl {
+                id: lineLabel
                 Layout.rowSpan: 3
                 line: root.stopover.route.line
+                opacity: loadingSpinner.running ? 0.75 : 1.0
+
+                QQC2.BusyIndicator {
+                    id: loadingSpinner
+                    anchors.centerIn: lineLabel
+                    running: vehicleModel.loading && root.stopover.hasTripIdentifiers
+                }
             }
 
             QQC2.Label {
@@ -57,24 +66,23 @@ Kirigami.Page {
             QQC2.Label {
                 Layout.row: 1
                 Layout.column: 1
-                text: "Direction: " + root.stopover.route.direction
+                text: (root.isArrival ? "From: " : "Direction: ") + root.stopover.route.direction
             }
 
-            // TODO arrival support
             KPublicTransport.ExpectedTimeLabel {
                 Layout.row: 2
                 Layout.column: 1
                 stopover: root.stopover
-                scheduledTime: root.stopover.scheduledDepartureTime.toTimeString()
-                delay: root.stopover.departureDelay
-                hasExpectedTime: root.stopover.hasExpectedDepartureTime
+                scheduledTime: root.isArrival ? root.stopover.scheduledArrivalTime.toTimeString() : root.stopover.scheduledDepartureTime.toTimeString()
+                delay: root.isArrival ? root.stopover.arrivalDelay : root.stopover.departureDelay
+                hasExpectedTime: root.isArrival ? root.stopover.hasExpectedArrivalTime : root.stopover.hasExpectedDepartureTime
             }
 
             QQC2.Label {
                 Layout.row: 1
                 Layout.column: 2
                 Layout.rowSpan: 2
-                text: root.stopover.expectedDepartureTime.toTimeString()
+                text: root.isArrival ?  root.stopover.expectedArrivalTime.toTimeString() : root.stopover.expectedDepartureTime.toTimeString()
             }
         }
 
@@ -119,6 +127,12 @@ Kirigami.Page {
                     tripMapView.journey = tripView.journeySection;
                     tripMapView.centerOnJourney();
                 }
+                // position vehicle layout at the start of the train if not modified yet
+                if (tabBar.currentIndex === 3 && vehicleLayout.contentItem.contentY === 0) {
+                    let offset = vehicleView.fullLength * vehicleModel.vehicle.platformPositionBegin;
+                    offset -= Kirigami.Units.iconSizes.small + Kirigami.Units.largeSpacing; // direction indicator
+                    vehicleLayout.contentItem.contentY = offset;
+                }
                 // indoor map view on-demand loading
                 if (tabBar.currentIndex === 4 && stopMapView.mapData.isEmpty && !stopMapView.mapLoader.isLoading && root.stopover.stopPoint.hasCoordinate) {
                     stopMapView.mapLoader.loadForCoordinate(root.stopover.stopPoint.latitude, root.stopover.stopPoint.longitude);
@@ -160,14 +174,6 @@ Kirigami.Page {
                 }
 
                 model: journeySection.intermediateStops
-
-                QQC2.Label {
-                    id: errorMessage
-                    anchors.centerIn: parent
-                    width: parent.width
-                    color: Kirigami.Theme.negativeTextColor
-                    wrapMode: Text.Wrap
-                }
             }
             JourneySectionMap {
                 id: tripMapView
@@ -176,6 +182,7 @@ Kirigami.Page {
                 id: vehicleLayout
                 QQC2.ScrollBar.horizontal.policy: QQC2.ScrollBar.AlwaysOff
                 KPublicTransport.VehicleLayoutView {
+                    id: vehicleView
                     model: vehicleModel
                     width: vehicleLayout.width - vehicleLayout.effectiveScrollBarWidth
                     onVehicleSectionTapped: (section) => { console.log(section.name); }
@@ -220,12 +227,10 @@ Kirigami.Page {
     }
 
     Component.onCompleted: {
-        errorMessage.text = "Loading..."
-
         let reply = ptMgr.queryTrip({ stopover: root.stopover, backendIds: root.backendIds, downloadAssets: true })
         reply.finished.connect(() => {
+            loadingSpinner.running = Qt.binding(() => { return vehicleModel.loading; });
             if (reply.error === KPublicTransport.Reply.NoError) {
-                errorMessage.text = ""
                 tripView.journeySection = reply.trip;
                 root.stopover = reply.stopover;
                 vehicleModel.request.stopover = reply.stopover;
@@ -233,7 +238,7 @@ Kirigami.Page {
                 tabBar.selectFirstEnabledTab();
                 root.updateStopMap();
             } else {
-                errorMessage.text = reply.errorString;
+                showPassiveNotification(reply.errorString);
             }
             reply.destroy();
         });

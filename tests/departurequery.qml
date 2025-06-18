@@ -197,11 +197,11 @@ Kirigami.ApplicationWindow {
             }
 
             onClicked: {
-                console.log(stopover.stopPoint.hasCoordinate, stopover.hasTripIdentifiers)
                 if (stopover.stopPoint.hasCoordinate || stopover.hasTripIdentifiers)
                     applicationWindow().pageStack.push(detailsPage, {
                         stopover: departure,
                         backendIds: backendBox.checked ? [ backendSelector.currentText ] : [],
+                        isArrival: arrivalBox.checked,
                         ptMgr: ptMgr
                     });
             }
