@@ -90,8 +90,10 @@ struct {
     { "BISTRO", Feature::Restaurant },
     { "CABIN_INFANT", Feature::ToddlerArea },
     { "INFO", Feature::InformationPoint },
+    { "TOILET", Feature::Toilet },
     { "TOILET_WHEELCHAIR", Feature::WheelchairAccessibleToilet },
     { "WHEELCHAIR_SPACE", Feature::WheelchairAccessible },
+    { "WIFI", Feature::WiFi },
     { "ZONE_FAMILY", Feature::FamilyArea },
     { "ZONE_QUIET", Feature::SilentArea },
 };
