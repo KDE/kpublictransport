@@ -30,6 +30,7 @@ public:
 
 KPUBLICTRANSPORT_MAKE_GADGET(VehicleLayoutRequest)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleLayoutRequest, Stopover, stopover, setStopover)
+KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleLayoutRequest, QStringList, backendIds, setBackendIds)
 
 VehicleLayoutRequest::VehicleLayoutRequest(const Stopover &stopover)
     : d(new VehicleLayoutRequestPrivate)
@@ -53,17 +54,6 @@ QJsonObject VehicleLayoutRequest::toJson(const VehicleLayoutRequest &req)
     auto obj = Json::toJson(req);
     obj.insert(QLatin1String("stopover"), Stopover::toJson(req.stopover()));
     return obj;
-}
-
-QStringList VehicleLayoutRequest::backendIds() const
-{
-    return d->backendIds;
-}
-
-void VehicleLayoutRequest::setBackendIds(const QStringList &backendIds)
-{
-    d.detach();
-    d->backendIds = backendIds;
 }
 
 #include "moc_vehiclelayoutrequest.cpp"

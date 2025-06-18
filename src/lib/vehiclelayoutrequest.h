@@ -28,25 +28,21 @@ class KPUBLICTRANSPORT_EXPORT VehicleLayoutRequest
     /** The stopover vehicle and platform layout information are requested for. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Stopover, stopover, setStopover)
 
+    /*  Identifiers of backends that should be queried.
+     *  Settings this is only needed when you want explicit control over this, leaving
+     *  this empty picks suitable backends automatically.
+     */
+    KPUBLICTRANSPORT_PROPERTY(QStringList, backendIds, setBackendIds)
+
 public:
     /** Creates a vehicle layout request for the given stopover. */
     explicit VehicleLayoutRequest(const Stopover &stopover);
 
     /** Returns @c true if this is a valid request, that is it has enough parameters set to perform a query. */
-    bool isValid() const;
+    [[nodiscard]] bool isValid() const;
 
     /** Unique string representation used for caching results. */
-    QString cacheKey() const;
-
-    /** Identifiers of the backends that should be queried.
-     *  @see setBackendIds()
-     */
-    QStringList backendIds() const;
-    /** Set identifiers of backends that should be queried.
-     *  Settings this is only needed when you want explicit control over this, leaving
-     *  this empty picks suitable backends automatically.
-     */
-    void setBackendIds(const QStringList &backendIds);
+    [[nodiscard]] QString cacheKey() const;
 
     ///@cond internal
     static QJsonObject toJson(const VehicleLayoutRequest &req);
