@@ -385,7 +385,7 @@ struct {
     { "SCHEDULED", PickupDropoff::Normal },
 };
 
-[[nodicard]] static PickupDropoff::Type parsePickupDropoffType(QStringView name)
+[[nodiscard]] PickupDropoff::Type parsePickupDropoffType(QStringView name)
 {
     for (const auto &m :pickupDropoff_map) {
         if (QLatin1StringView(m.name) == name) {
