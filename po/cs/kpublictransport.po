@@ -187,12 +187,12 @@ msgstr ""
 #: quick/BackendPage.qml:24
 #, kde-format
 msgid "Check for Updates"
-msgstr ""
+msgstr "Zkontrolovat aktualizace"
 
 #: quick/BackendPage.qml:38
 #, kde-format
 msgid "Already up to date."
-msgstr ""
+msgstr "Již je aktuální."
 
 #: quick/BackendPage.qml:41
 #, kde-format
@@ -334,7 +334,7 @@ msgstr "Vyberte zemi"
 #: quick/StopoverInformationView.qml:43
 #, kde-format
 msgid "Information"
-msgstr ""
+msgstr "Informace"
 
 #: quick/StopoverInformationView.qml:61
 #, fuzzy, kde-format
