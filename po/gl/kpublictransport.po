@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-06-18 00:41+0000\n"
-"PO-Revision-Date: 2025-05-26 08:46+0200\n"
+"PO-Revision-Date: 2025-06-19 10:10+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.gal>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.04.1\n"
+"X-Generator: Lokalize 25.04.2\n"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
@@ -187,22 +187,22 @@ msgstr "Coche portacoches"
 #: quick/BackendPage.qml:24
 #, kde-format
 msgid "Check for Updates"
-msgstr ""
+msgstr "Consultar actualizacións"
 
 #: quick/BackendPage.qml:38
 #, kde-format
 msgid "Already up to date."
-msgstr ""
+msgstr "Xa está ao día."
 
 #: quick/BackendPage.qml:41
 #, kde-format
 msgid "Update successful."
-msgstr ""
+msgstr "Completouse a actualización."
 
 #: quick/BackendPage.qml:47
 #, kde-format
 msgid "Update failed."
-msgstr ""
+msgstr "A actualización fallou."
 
 #: quick/BackendPage.qml:53
 #, kde-format
@@ -255,32 +255,27 @@ msgid "On time"
 msgstr "Puntual"
 
 #: quick/FeatureDelegate.qml:39
-#, fuzzy, kde-format
-#| msgid "%1 (availability unknown)"
+#, kde-format
 msgid "Availability unknown"
-msgstr "%1 (dispoñibilidade descoñecida)"
+msgstr "Dispoñibilidade descoñecida"
 
 #: quick/FeatureDelegate.qml:41
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Not available"
-msgstr "%1 (non dispoñíbel)"
+msgstr "Non está dispoñíbel"
 
 #: quick/FeatureDelegate.qml:43
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Currently not available"
-msgstr "%1 (non dispoñíbel)"
+msgstr "Non está dispoñíbel actualmente"
 
 #: quick/FeatureDelegate.qml:45
-#, fuzzy, kde-format
-#| msgid "%2 (one space)"
-#| msgid_plural "%2 (%1 spaces)"
+#, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "One space"
 msgid_plural "%1 spaces"
-msgstr[0] "%2 (1 espazo)"
-msgstr[1] "%2 (%1 espazos)"
+msgstr[0] "1 espazo"
+msgstr[1] "%1 espazos"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format
@@ -293,9 +288,7 @@ msgid "%1 (not available)"
 msgstr "%1 (non dispoñíbel)"
 
 #: quick/FeatureIcon.qml:62
-#, fuzzy, kde-format
-#| msgid "%2 (one space)"
-#| msgid_plural "%2 (%1 spaces)"
+#, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
@@ -332,29 +325,25 @@ msgid "Select country"
 msgstr "Seleccione un país"
 
 #: quick/StopoverInformationView.qml:43
-#, fuzzy, kde-format
-#| msgctxt "train coach feature"
-#| msgid "Information point"
+#, kde-format
 msgid "Information"
-msgstr "Punto de información"
+msgstr "Información"
 
 #: quick/StopoverInformationView.qml:61
-#, fuzzy, kde-format
-#| msgctxt "vehicle occupancy"
-#| msgid "Low occupancy"
+#, kde-format
 msgid "Occupancy"
-msgstr "Baixa ocupación"
+msgstr "Ocupación"
 
 #: quick/StopoverInformationView.qml:76
 #, kde-format
 msgid "Amenities"
-msgstr ""
+msgstr "Comodidades"
 
 #: quick/StopoverInformationView.qml:91
 #, kde-format
 msgctxt "operator/provider of a rail/bus service"
 msgid "Operator"
-msgstr ""
+msgstr "Operador"
 
 #: quick/StopPickerPage.qml:34
 #, kde-format
