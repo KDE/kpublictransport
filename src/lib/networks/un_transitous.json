@@ -111,13 +111,13 @@
                 "OM-MA",
                 "PR",
                 "PT",
-                "RO",
                 "RS",
                 "SI",
                 "SK",
                 "TR",
                 "UA-46",
-                "US"
+                "US",
+                "XK"
             ]
         },
         "realtimeCoverage": {
@@ -143,6 +143,7 @@
                 "NL",
                 "NO",
                 "PL",
+                "RO",
                 "SE",
                 "SG"
             ]
