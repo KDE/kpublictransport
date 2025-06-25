@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-06-18 00:41+0000\n"
-"PO-Revision-Date: 2025-01-12 19:59+0200\n"
+"PO-Revision-Date: 2025-06-03 17:44+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -21,19 +21,19 @@ msgstr ""
 #, kde-format
 msgctxt "train seating class"
 msgid "First class"
-msgstr ""
+msgstr "Ensimmäinen luokka"
 
 #: lib/datatypes/classutil.cpp:32
 #, kde-format
 msgctxt "train seating class"
 msgid "Second class"
-msgstr ""
+msgstr "Toinen luokka"
 
 #: lib/datatypes/classutil.cpp:35
 #, kde-format
 msgctxt "train seating class"
 msgid "First/second class"
-msgstr ""
+msgstr "Ensimmäinen tai toinen luokka"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
@@ -164,29 +164,26 @@ msgstr "Vuokra-auto"
 #, kde-format
 msgctxt "train coach type"
 msgid "Sleeping car"
-msgstr ""
+msgstr "Makuuvaunu"
 
+# Ilmeisesti nimenomaan tämä on Suomessakin käytetyn mallin mukainen makuuvaunu: hyteittäin on muutama vuode. ”Sleeping car” taas on meikäläisittäin outo mutta elokuvista tuttu malli, jossa on pitkällä käytävällä vuoteita. En tiedä, onko tarpeen kääntää näitä eri sanoilla.
 #: lib/datatypes/vehicle.cpp:79
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented car"
+#, kde-format
 msgctxt "train coach type"
 msgid "Couchette car"
-msgstr "Vuokra-auto"
+msgstr "Makuuvaunu"
 
 #: lib/datatypes/vehicle.cpp:81
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented car"
+#, kde-format
 msgctxt "train coach type"
 msgid "Restaurant car"
-msgstr "Vuokra-auto"
+msgstr "Ravintolavaunu"
 
 #: lib/datatypes/vehicle.cpp:83
 #, kde-format
 msgctxt "train coach type"
 msgid "Car transport car"
-msgstr ""
+msgstr "Autonkuljetusvaunu"
 
 #: quick/BackendPage.qml:24
 #, kde-format
@@ -211,70 +208,67 @@ msgstr ""
 #: quick/BackendPage.qml:53
 #, kde-format
 msgid "Public Transport Information Sources"
-msgstr ""
+msgstr "Julkisen liikenteen tietolähteet"
 
 #: quick/BackendPage.qml:130 quick/BackendPage.qml:142
 #, kde-format
 msgid "Global"
-msgstr ""
+msgstr "Maailmanlaajuinen"
 
 #: quick/BackendPage.qml:132
 #, kde-format
 msgid "🇪🇺 European Union"
-msgstr ""
+msgstr "🇪🇺 Euroopan unioni"
 
 #: quick/BackendPage.qml:135
 #, kde-format
 msgctxt "emoji flag, country name"
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: quick/BackendPage.qml:144
 #, kde-format
 msgid "European Union"
-msgstr ""
+msgstr "Euroopan unioni"
 
 #: quick/ExpectedTimeLabel.qml:36
 #, kde-format
 msgctxt "a train/bus journey canceled by its operator"
 msgid "Canceled"
-msgstr ""
+msgstr "Peruttu"
 
 #: quick/ExpectedTimeLabel.qml:38
 #, kde-format
 msgctxt "duration of the delay"
 msgid "Delayed %1"
-msgstr ""
+msgstr "Viivästynyt %1"
 
 #: quick/ExpectedTimeLabel.qml:40
 #, kde-format
 msgctxt "earlier arrival/departure"
 msgid "%1 earlier"
-msgstr ""
+msgstr "%1 aiemmin"
 
 #: quick/ExpectedTimeLabel.qml:42
 #, kde-format
 msgctxt "@info"
 msgid "On time"
-msgstr ""
+msgstr "Aikataulussa"
 
 #: quick/FeatureDelegate.qml:39
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Availability unknown"
-msgstr "%1 (ei saatavilla)"
+msgstr "Saatavuus tuntematon"
 
 #: quick/FeatureDelegate.qml:41
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Not available"
-msgstr "%1 (ei saatavilla)"
+msgstr "E saatavilla"
 
 #: quick/FeatureDelegate.qml:43
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Currently not available"
-msgstr "%1 (ei saatavilla)"
+msgstr "Ei juuri nyt saatavilla"
 
 #: quick/FeatureDelegate.qml:45
 #, fuzzy, kde-format
@@ -287,10 +281,9 @@ msgstr[0] "%2 (yksi paikka)"
 msgstr[1] "%2 (%1 paikkaa)"
 
 #: quick/FeatureIcon.qml:58
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "%1 (availability unknown)"
-msgstr "%1 (ei saatavilla)"
+msgstr "%1 (saatavuus tuntematon)"
 
 #: quick/FeatureIcon.qml:60
 #, kde-format
@@ -334,7 +327,7 @@ msgstr "Täynnä"
 #: quick/private/CountryComboBox.qml:45
 #, kde-format
 msgid "Select country"
-msgstr ""
+msgstr "Valitse maa"
 
 #: quick/StopoverInformationView.qml:43
 #, fuzzy, kde-format
@@ -365,88 +358,88 @@ msgstr ""
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Clear History"
-msgstr ""
+msgstr "Tyhjennä historia"
 
 #: quick/StopPickerPage.qml:35
 #, kde-format
 msgctxt "@info"
 msgid "Do you really want to remove all previously searched locations?"
-msgstr ""
+msgstr "Haluatko varmasti poistaa kaikki aiemmin etsityt sijainnit?"
 
 #: quick/StopPickerPage.qml:39
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
-msgstr ""
+msgstr "Poista"
 
 #: quick/StopPickerPage.qml:53
 #, kde-format
 msgctxt "@action"
 msgid "Clear history"
-msgstr ""
+msgstr "Tyhjennä historia"
 
 #: quick/StopPickerPage.qml:62
 #, kde-format
 msgctxt "@action"
 msgid "Sort by name"
-msgstr ""
+msgstr "Lajittele nimen mukaan"
 
 #: quick/StopPickerPage.qml:70
 #, kde-format
 msgctxt "@action"
 msgid "Most recently used"
-msgstr ""
+msgstr "Viimeksi käytetty"
 
 #: quick/StopPickerPage.qml:77
 #, kde-format
 msgctxt "@action"
 msgid "Most often used"
-msgstr ""
+msgstr "Useimmin käytetty"
 
 #: quick/StopPickerPage.qml:152
 #, kde-format
 msgctxt "locality, region, country"
 msgid "%1, %2, %3"
-msgstr ""
+msgstr "%1, %2, %3"
 
 #: quick/StopPickerPage.qml:157
 #, kde-format
 msgctxt "locality, country"
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: quick/StopPickerPage.qml:161
 #, kde-format
 msgctxt "region, country"
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: quick/StopPickerPage.qml:184
 #, kde-format
 msgctxt "location name, locality, region, country"
 msgid "%1, %2, %3, %4"
-msgstr ""
+msgstr "%1, %2, %3, %4"
 
 #: quick/StopPickerPage.qml:190
 #, kde-format
 msgctxt "location name, locality, country"
 msgid "%1, %2, %3"
-msgstr ""
+msgstr "%1, %2, %3"
 
 #: quick/StopPickerPage.qml:195
 #, kde-format
 msgctxt "location name, region, country"
 msgid "%1, %2, %3"
-msgstr ""
+msgstr "%1, %2, %3"
 
 #: quick/StopPickerPage.qml:227
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove history entry"
-msgstr ""
+msgstr "Poista historiamerkintä"
 
 #: quick/StopPickerPage.qml:284
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "No locations found"
-msgstr ""
+msgstr "Sijainteja ei löytynyt"
