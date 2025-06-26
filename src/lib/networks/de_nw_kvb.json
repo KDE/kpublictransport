@@ -107,6 +107,7 @@
             "id": "HAFAS",
             "type": "WEB"
         },
+        "customCaCertificate": "thawte-tls-rsa-ca-g1.crt.pem",
         "endpoint": "https://auskunft.kvb.koeln/gate",
         "productNameMappings": [
             {
