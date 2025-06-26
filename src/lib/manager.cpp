@@ -1036,14 +1036,15 @@ bool Manager::isBackendEnabled(const QString &backendId) const
 {
     d->loadNetworks();
 
-    if (std::ranges::binary_search(std::as_const(d->m_disabledBackends), backendId)) {
+    // ### should be std::ranges::binary_search, but that produces wrong results with Android NDK r26...
+    if (std::binary_search(d->m_disabledBackends.cbegin(), d->m_disabledBackends.cend(), backendId)) {
         return false;
     }
-    if (std::ranges::binary_search(std::as_const(d->m_enabledBackends), backendId)) {
+    if (std::binary_search(d->m_enabledBackends.cbegin(), d->m_enabledBackends.cend(), backendId)) {
         return true;
     }
 
-    return d->m_backendsEnabledByDefault && !std::ranges::binary_search(std::as_const(d->m_disabledByDefault), backendId);
+    return d->m_backendsEnabledByDefault && !std::binary_search(d->m_disabledByDefault.cbegin(), d->m_disabledByDefault.cend(), backendId);
 }
 
 static void sortedInsert(QStringList &l, const QString &value)
