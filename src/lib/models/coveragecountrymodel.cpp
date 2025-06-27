@@ -92,7 +92,9 @@ void CoverageCountryModel::repopulate()
         for (const auto cov : {CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any}) {
             const auto regions = backend.coverageArea(cov).regions();
             for (const auto &region : regions) {
-                if (region == "UN"_L1 || region == "EU"_L1) {
+                // TODO XK should be enabled here eventualy, but iso-codes doesn't have that
+                // so neither our sorting nor our display code will work correctly for that
+                if (region == "UN"_L1 || region == "EU"_L1 || region == "XK"_L1) {
                     continue;
                 }
                 const auto code = region.left(2);
