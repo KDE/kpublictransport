@@ -175,6 +175,12 @@ Kirigami.ApplicationWindow {
                 property alias includeRentals: includeRentals.checked
                 property alias includeEquipment: includeEquipment.checked
                 property alias includeAddresses: includeAddresses.checked
+
+                property alias biasEnabled: biasBox.checked
+                property alias biasLon1: biasX1.text
+                property alias biasLat1: biasY1.text
+                property alias biasLon2: biasX2.text
+                property alias biasLat2: biasY2.text
             }
 
             ColumnLayout {
@@ -238,6 +244,43 @@ Kirigami.ApplicationWindow {
                     }
                 }
 
+                RowLayout {
+                    Layout.fillWidth: true
+                    QQC2.CheckBox {
+                        id: biasBox
+                        checked: false
+                        text: "Bias"
+                    }
+                    QQC2.TextField {
+                        id: biasX1
+                        text: "5.93"
+                        validator: DoubleValidator { bottom: -180; top: 180; decimals: 2 }
+                        maximumLength: 6
+                        Layout.maximumWidth: maximumLength * Kirigami.Units.gridUnit
+                    }
+                    QQC2.TextField {
+                        id: biasY1
+                        text: "45.8"
+                        validator: DoubleValidator { bottom: -90; top: 90; decimals: 2 }
+                        maximumLength: 5
+                        Layout.maximumWidth: maximumLength * Kirigami.Units.gridUnit
+                    }
+                    QQC2.TextField {
+                        id: biasX2
+                        text: "10.5"
+                        validator: DoubleValidator { bottom: -180; top: 180; decimals: 2 }
+                        maximumLength: 6
+                        Layout.maximumWidth: maximumLength * Kirigami.Units.gridUnit
+                    }
+                    QQC2.TextField {
+                        id: biasY2
+                        text: "47.83"
+                        validator: DoubleValidator { bottom: -90; top: 90; decimals: 2 }
+                        maximumLength: 5
+                        Layout.maximumWidth: maximumLength * Kirigami.Units.gridUnit
+                    }
+                }
+
                 QQC2.ComboBox {
                     id: exampleSelector
                     Layout.fillWidth: true
@@ -268,7 +311,8 @@ Kirigami.ApplicationWindow {
                                 types: (includeStops.checked ?  Location.Stop : Location.Place)
                                 | (includeRentals.checked ? (Location.RentedVehicleStation | Location.RentedVehicle) : Location.Place)
                                 | (includeEquipment.checked ? Location.Equipment : Location.Place)
-                                | (includeAddresses.checked ? Location.Address: Location.Place)
+                                | (includeAddresses.checked ? Location.Address: Location.Place),
+                                viewbox: biasBox.checked ? Qt.rect(biasX1.text, biasY1.text, biasX2.text - biasX1.text, biasY2.text - biasY1.text) : null
                             }
                         }
                     }

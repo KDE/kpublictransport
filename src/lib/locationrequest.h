@@ -13,6 +13,7 @@
 #include <KPublicTransport/Location>
 
 #include <QMetaType>
+#include <QRectF>
 #include <QSharedDataPointer>
 
 class QJsonObject;
@@ -50,6 +51,14 @@ class KPUBLICTRANSPORT_EXPORT LocationRequest
      *  that all results comply with this constraint.
      */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Location::Types, types, setTypes)
+
+    /** An area defined by two geographic coodinates in which results should be
+     *  preferred/filtered to.
+     *  This is only relevant for name-based queries, not for location-based ones.
+     *  @note This is not necessarily considered by all backends.
+     *  @since 25.08
+     */
+    KPUBLICTRANSPORT_PROPERTY(QRectF, viewbox, setViewbox)
 
 public:
     /** Create a LocationRequest from @p locaction.

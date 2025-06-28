@@ -28,6 +28,7 @@ public:
     int maximumDistance = 1000;
     int maximumResults = 10;
     Location::Types types = Location::Stop | Location::RentedVehicleStation;
+    QRectF viewbox;
 };
 }
 
@@ -35,6 +36,7 @@ KPUBLICTRANSPORT_MAKE_GADGET(LocationRequest)
 KPUBLICTRANSPORT_MAKE_PROPERTY(LocationRequest, int, maximumDistance, setMaximumDistance)
 KPUBLICTRANSPORT_MAKE_PROPERTY(LocationRequest, int, maximumResults, setMaximumResults)
 KPUBLICTRANSPORT_MAKE_PROPERTY(LocationRequest, Location::Types, types, setTypes)
+KPUBLICTRANSPORT_MAKE_PROPERTY(LocationRequest, QRectF, viewbox, setViewbox)
 
 LocationRequest::LocationRequest(const Location &locaction)
     : d(new LocationRequestPrivate)
@@ -113,6 +115,11 @@ QString LocationRequest::cacheKey() const
     hash.addData(me.valueToKeys(types()));
     hash.addData(QByteArray::number(maximumDistance()));
     hash.addData(QByteArray::number(maximumResults()));
+    if (d->viewbox.isValid()) {
+        double data[4];
+        d->viewbox.getRect(&data[0], &data[1], &data[2], &data[3]);
+        hash.addData(QByteArrayView(reinterpret_cast<uint8_t*>(data), sizeof(data)));
+    }
     return QString::fromUtf8(hash.result().toHex());
 }
 
