@@ -114,6 +114,26 @@ bool CoverageArea::coversLocation(const Location &loc) const
     return true;
 }
 
+bool CoverageArea::coversArea(const QRectF &rect) const
+{
+    // no information to the contrary means yes, as above
+    if (!rect.isValid()) {
+        return true;
+    }
+
+    d->loadGeometry();
+    if (!d->areas.empty()) {
+        if (d->boundingBox.intersects(rect)) {
+            return std::any_of(d->areas.begin(), d->areas.end(), [rect](const auto &area) {
+                return area.intersects(rect);
+            });
+        }
+        return false;
+    }
+
+    return true;
+}
+
 bool CoverageArea::hasNationWideCoverage(const QString &country) const
 {
     return std::binary_search(d->regions.begin(), d->regions.end(), country);

@@ -797,7 +797,7 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
                 continue;
             }
             const auto coverage = backend.coverageArea(coverageType);
-            if (coverage.isEmpty() || !coverage.coversLocation(loc)) {
+            if (coverage.isEmpty() || !coverage.coversLocation(loc) || !coverage.coversArea(req.viewbox())) {
                 continue;
             }
             if (isCountryOnly && !coverage.hasNationWideCoverage(loc.country())) {
@@ -818,7 +818,7 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
                 continue;
             }
             const auto coverage = backend.coverageArea(coverageType);
-            if (coverage.isEmpty() || !coverage.coversLocation(loc)) {
+            if (coverage.isEmpty() || !coverage.coversLocation(loc) || !coverage.coversArea(req.viewbox())) {
                 continue;
             }
 

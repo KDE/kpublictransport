@@ -52,6 +52,10 @@ public:
 
     /** Checks whether @p loc is covered by this area. */
     [[nodiscard]] bool coversLocation(const Location &loc) const;
+    /** Checks whether @p rect is covered by this area.
+     *  @since 25.08
+     */
+    [[nodiscard]] bool coversArea(const QRectF &rect) const;
 
     /** Checks whether this includes the entire country @p country. */
     [[nodiscard]] bool hasNationWideCoverage(const QString &country) const;
