@@ -73,7 +73,7 @@ bool CoverageArea::isEmpty() const
 
 bool CoverageArea::isGlobal() const
 {
-    if (d->regions.size() == 1 && d->regions.at(0) == QLatin1String("UN")) {
+    if (d->regions.size() == 1 && d->regions.at(0) == "UN"_L1) {
         return true;
     }
 
@@ -102,7 +102,7 @@ bool CoverageArea::coversLocation(const Location &loc) const
     // TODO we could do a more precise check for ISO 3166-2 subdivision codes when available
 
     if (loc.country().size() == 2 && !d->regions.empty()) {
-        if (d->regions.size() == 1 && d->regions.at(0) == QLatin1String("UN")) { // global coverage
+        if (d->regions.size() == 1 && d->regions.at(0) == "UN"_L1) { // global coverage
             return true;
         }
         return std::binary_search(d->regions.begin(), d->regions.end(), loc.country(), [](const auto &lhs, const auto &rhs) {
@@ -122,13 +122,13 @@ bool CoverageArea::hasNationWideCoverage(const QString &country) const
 CoverageArea CoverageArea::fromJson(const QJsonObject &obj)
 {
     CoverageArea ca;
-    ca.setRegions(Json::toStringList(obj.value(QLatin1String("region"))));
-    ca.setUicCompanyCodes(Json::toStringList(obj.value(QLatin1String("uicCompanyCodes"))));
+    ca.setRegions(Json::toStringList(obj.value("region"_L1)));
+    ca.setUicCompanyCodes(Json::toStringList(obj.value("uicCompanyCodes"_L1)));
     std::sort(ca.d->regions.begin(), ca.d->regions.end());
 
-    ca.d->areaFile = obj.value(QLatin1String("areaFile")).toString();
+    ca.d->areaFile = obj.value("areaFile"_L1).toString();
     if (ca.d->areaFile.isEmpty()) {
-        ca.d->areas = GeoJson::readOuterPolygons(obj.value(QLatin1String("area")).toObject());
+        ca.d->areas = GeoJson::readOuterPolygons(obj.value("area"_L1).toObject());
         ca.d->recomputeBoundingBox();
     }
     return ca;

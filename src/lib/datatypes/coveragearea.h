@@ -45,16 +45,16 @@ public:
     /** Checks whether this coverage area is empty.
      *  coversLocation() would always return @p false for empty areas.
      */
-    bool isEmpty() const;
+    [[nodiscard]] bool isEmpty() const;
 
     /** Returns @c true if this area covers the entire world. */
-    bool isGlobal() const;
+    [[nodiscard]] bool isGlobal() const;
 
     /** Checks whether @p loc is covered by this area. */
-    bool coversLocation(const Location &loc) const;
+    [[nodiscard]] bool coversLocation(const Location &loc) const;
 
     /** Checks whether this includes the entire country @p country. */
-    bool hasNationWideCoverage(const QString &country) const;
+    [[nodiscard]] bool hasNationWideCoverage(const QString &country) const;
 
     /** Read a single coverage area information from a JSON object
      *  in Transport API Repository format.
