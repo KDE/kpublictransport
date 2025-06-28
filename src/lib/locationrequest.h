@@ -58,9 +58,9 @@ public:
     LocationRequest(const Location &locaction);
 
     /** Returns @c true if this is a valid request, that is it has enough parameters set to perform a query. */
-    bool isValid() const;
+    [[nodiscard]] bool isValid() const;
 
-    Location location() const;
+    [[nodiscard]] Location location() const;
     void setLocation(const Location &location);
 
     /** Latitude of the location to search. */
@@ -74,21 +74,21 @@ public:
     /** Search by geo coordinate. */
     void setCoordinate(double lat, double lon);
     /** Returns true if a valid geo coordinate has been set. */
-    bool hasCoordinate() const;
+    [[nodiscard]] bool hasCoordinate() const;
 
     /** The name of the location to search. */
-    QString name() const;
+    [[nodiscard]] QString name() const;
     /** Search by name or name fragment. */
     void setName(const QString &name);
     // TODO select full name or name fragment mode for auto-completion
 
     /** Unique string representation used for caching results. */
-    QString cacheKey() const;
+    [[nodiscard]] QString cacheKey() const;
 
     /** Identifiers of the backends that should be queried.
      *  @see setBackendIds()
      */
-    QStringList backendIds() const;
+    [[nodiscard]] QStringList backendIds() const;
     /** Set identifiers of backends that should be queried.
      *  Settings this is only needed when you want explicit control over this, leaving
      *  this empty picks suitable backends automatically.

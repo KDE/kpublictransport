@@ -17,6 +17,7 @@
 
 #include <cmath>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
@@ -118,7 +119,7 @@ QString LocationRequest::cacheKey() const
 QJsonObject LocationRequest::toJson(const LocationRequest &req)
 {
     auto obj = Json::toJson(req);
-    obj.insert(QLatin1String("location"), Location::toJson(req.location()));
+    obj.insert("location"_L1, Location::toJson(req.location()));
     return obj;
 }
 
