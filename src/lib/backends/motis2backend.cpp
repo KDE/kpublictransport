@@ -111,6 +111,9 @@ bool Motis2Backend::queryLocation(const LocationRequest &req, LocationReply *rep
         if (req.types() == Location::Stop) {
             query.addQueryItem(u"type"_s, u"STOP"_s);
         }
+        if (req.viewbox().isValid()) {
+            query.addQueryItem(u"place"_s, QString::number(req.viewbox().center().y()) + ','_L1 + QString::number(req.viewbox().center().x()));
+        }
 
         netReply = makeRequest(req, reply, "geocode"_L1, query, nam);
     }
