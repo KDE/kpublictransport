@@ -113,7 +113,11 @@ QRectF MapUtils::boundingBox(const KPublicTransport::Path &path)
     double maxLon = std::numeric_limits<double>::lowest();
 
     for (const auto &pathSec : path.sections()) {
-        const auto bbox = pathSec.path().boundingRect();
+        const auto p = pathSec.path();
+        if (p.isEmpty()) {
+            continue;
+        }
+        const auto bbox = p.boundingRect();
         minLat = std::min(minLat, bbox.bottom());
         minLon = std::min(minLon, bbox.left());
         maxLat = std::max(maxLat, bbox.top());
