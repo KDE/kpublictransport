@@ -259,9 +259,11 @@ OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseLine(const QJsonObj
     parseAlerts(obj.value(QLatin1String("alerts")).toArray());
 
     Line line;
-    line.setName(obj.value(QLatin1String("shortName")).toString());
-    if (line.name().isEmpty()) {
-        line.setName(obj.value(QLatin1String("longName")).toString());
+    for (const auto &key : {"shortName"_L1, "longName"_L1, "name"_L1}) {
+        line.setName(obj.value(key).toString());
+        if (!line.name().isEmpty()) {
+            break;
+        }
     }
     line.setOperatorName(obj.value("agency"_L1).toObject().value("name"_L1).toString());
 
@@ -335,8 +337,8 @@ OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseRoute(const QJsonOb
 {
     auto data = parseLine(obj.value("route"_L1).toObject());
     auto line = data.route.line();
-    if (line.name().isEmpty()) {
-        line.setName(obj.value("tripShortName"_L1).toString());
+    if (const auto name = obj.value("tripShortName"_L1).toString(); !name.isEmpty()) {
+        line.setName(name);
     }
 
     data.route.setLine(line);

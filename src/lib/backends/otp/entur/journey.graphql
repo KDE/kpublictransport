@@ -40,29 +40,32 @@ query journeys(
         to: toPlace { ...locationFragment }
         fromStoptime: fromEstimatedCall { ...estimatedCallFragment }
         toStoptime: toEstimatedCall { ...estimatedCallFragment }
-        line {
-          presentation {
-            color: colour
-            textColor: textColour
-          }
-          transportMode
-          type: transportSubmode
-          shortName: publicCode
-          name
-          bikesAllowed
-          agency: operator {
-            name
-          }
-          alerts: situations {
-            alertHeaderTextTranslations: summary {
-                language
-                text: value
+        trip: serviceJourney {
+            route: line {
+                presentation {
+                    color: colour
+                    textColor: textColour
+                }
+                transportMode
+                type: transportSubmode
+                shortName: publicCode
+                name
+                bikesAllowed
+                agency: operator {
+                    name
+                }
+                alerts: situations {
+                    alertHeaderTextTranslations: summary {
+                        language
+                        text: value
+                    }
+                    alertDescriptionTextTranslations: description {
+                        language
+                        text: value
+                    }
+                }
             }
-            alertDescriptionTextTranslations: description {
-                language
-                text: value
-            }
-          }
+            tripShortName: publicCode
         }
         intermediateStops: intermediateEstimatedCalls @include(if: $withIntermediateStops) {
           stop: quay {
