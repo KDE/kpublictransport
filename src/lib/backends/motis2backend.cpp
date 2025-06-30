@@ -159,7 +159,7 @@ bool Motis2Backend::queryStopover(const StopoverRequest &req, StopoverReply *rep
     query.addQueryItem(u"radius"_s, u"200"_s);
 
     auto netReply = makeRequest(req, reply, "stoptimes"_L1, query, nam);
-    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply, req]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
@@ -169,6 +169,15 @@ bool Motis2Backend::queryStopover(const StopoverRequest &req, StopoverReply *rep
         if (netReply->error() == QNetworkReply::NoError) {
             setNextRequestContext(reply, p.m_nextPageCursor);
             setPreviousRequestContext(reply, p.m_previousPageCursor);
+
+            // MOTIS has no support for doing mode filtering on the server
+            if (!req.lineModes().empty()) {
+                auto it = std::remove_if(result.begin(), result.end(), [req](const auto &s) {
+                    return !std::binary_search(req.lineModes().begin(), req.lineModes().end(), s.route().line().mode());
+                });
+                result.erase(it, result.end());
+            }
+
             addResult(reply, this, std::move(result));
         } else {
             addError(reply, Reply::NetworkError, netReply->errorString() + ' '_L1 + QString::fromUtf8(data));
