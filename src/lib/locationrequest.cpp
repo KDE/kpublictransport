@@ -8,6 +8,7 @@
 #include "datatypes/datatypes_p.h"
 #include "datatypes/json_p.h"
 #include "datatypes/locationutil_p.h"
+#include "knowledgedb/countryboundingbox_p.h"
 
 #include <QCryptographicHash>
 #include <QDebug>
@@ -36,7 +37,6 @@ KPUBLICTRANSPORT_MAKE_GADGET(LocationRequest)
 KPUBLICTRANSPORT_MAKE_PROPERTY(LocationRequest, int, maximumDistance, setMaximumDistance)
 KPUBLICTRANSPORT_MAKE_PROPERTY(LocationRequest, int, maximumResults, setMaximumResults)
 KPUBLICTRANSPORT_MAKE_PROPERTY(LocationRequest, Location::Types, types, setTypes)
-KPUBLICTRANSPORT_MAKE_PROPERTY(LocationRequest, QRectF, viewbox, setViewbox)
 
 LocationRequest::LocationRequest(const Location &locaction)
     : d(new LocationRequestPrivate)
@@ -107,6 +107,21 @@ void LocationRequest::setName(const QString &name)
     d->location.setName(name);
 }
 
+QRectF LocationRequest::viewbox() const
+{
+    if (d->viewbox.isValid() || d->location.country().size() != 2) {
+        return d->viewbox;
+    }
+
+    return boundingBoxForCountry(d->location.country());
+}
+
+void LocationRequest::setViewbox(const QRectF &value)
+{
+    d.detach();
+    d->viewbox = value;
+}
+
 QString LocationRequest::cacheKey() const
 {
     QCryptographicHash hash(QCryptographicHash::Sha1);
@@ -127,6 +142,9 @@ QJsonObject LocationRequest::toJson(const LocationRequest &req)
 {
     auto obj = Json::toJson(req);
     obj.insert("location"_L1, Location::toJson(req.location()));
+    if (!req.d->viewbox.isValid()) {
+        obj.remove("viewbox"_L1);
+    }
     return obj;
 }
 

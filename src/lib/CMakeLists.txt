@@ -126,6 +126,7 @@ target_sources(KPublicTransport PRIVATE
     json/jsonpointer.cpp
 
     knowledgedb/asset-attributions.qrc
+    knowledgedb/countryboundingbox.cpp
     knowledgedb/linemetadata.cpp
 
     layout/platformlayout.cpp

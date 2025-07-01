@@ -13,6 +13,7 @@ heaptrack.*
 *.fail
 
 src/coverage/10m_cultural
+src/lib/knowledgedb/iso3166-1-boundaries*
 
 # LSP & IDE
 /.clang-format
