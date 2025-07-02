@@ -21,6 +21,16 @@ bool LocationUtil::sortLessThan(const LocationRequest &request, const Location &
         return Location::distance(request.latitude(), request.longitude(), lhs.latitude(), lhs.longitude())
              < Location::distance(request.latitude(), request.longitude(), rhs.latitude(), rhs.longitude());
     }
+
+    // prefer the one inside the viewbox
+    if (request.viewbox().isValid()) {
+        const auto lhsIn = request.viewbox().contains(QPointF(lhs.longitude(), lhs.latitude()));
+        const auto rhsIn = request.viewbox().contains(QPointF(rhs.longitude(), rhs.latitude()));
+        if (lhsIn != rhsIn) {
+            return lhsIn;
+        }
+    }
+
     // for name based search, sort by Levenshtein distance or similar metric
     // TODO so far this only sorts for matching or not matching
     const auto lhsSame = Location::isSameName(request.name(), lhs.name());
