@@ -126,6 +126,11 @@ class KPUBLICTRANSPORT_EXPORT Path
     /** Last point on this path. */
     Q_PROPERTY(QPointF endPoint READ endPoint STORED false)
 
+    /** Returns @c true if this is an empty/not-set path.
+     *  @since 25.08
+     */
+    Q_PROPERTY(bool isEmpty READ isEmpty STORED false)
+
 public:
     /** Returns @c true if this is an empty/not-set path. */
     [[nodiscard]] bool isEmpty() const;
