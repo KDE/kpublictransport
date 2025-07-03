@@ -15,7 +15,6 @@ namespace KPublicTransport {
 class DeutscheBahnBackend : public HafasMgateBackend
 {
     Q_GADGET
-    Q_PROPERTY(bool useHafasMgate MEMBER m_bypassDbApi)
 public:
     [[nodiscard]] static inline constexpr const char* type() { return "deutschebahn"; }
 
@@ -30,8 +29,6 @@ public:
 private:
     [[nodiscard]] QNetworkRequest makeHafasProxyRequest(const QUrl &url) const;
     [[nodiscard]] QString hafasIdentifier() const;
-
-    bool m_bypassDbApi = true;
 };
 
 }

@@ -39,19 +39,11 @@ using namespace KPublicTransport;
 
 AbstractBackend::Capabilities DeutscheBahnBackend::capabilities() const
 {
-    if (m_bypassDbApi) {
-        return HafasMgateBackend::capabilities();
-    }
-
     return  Secure | CanQueryArrivals | CanQueryPreviousDeparture | CanQueryPreviousJourney | CanQueryNextJourney;
 }
 
 bool DeutscheBahnBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
-    if (m_bypassDbApi) {
-        return HafasMgateBackend::needsLocationQuery(loc, type);
-    }
-
     switch (type) {
         case AbstractBackend::QueryType::Departure:
             return locationIdentifier(loc).isEmpty() && !loc.hasIdentifier(hafasIdentifier());
@@ -64,10 +56,6 @@ bool DeutscheBahnBackend::needsLocationQuery(const Location &loc, AbstractBacken
 
 bool DeutscheBahnBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    if (m_bypassDbApi) {
-        return HafasMgateBackend::queryLocation(req, reply, nam);
-    }
-
     QUrl url;
     QUrlQuery query;
     if (req.hasCoordinate()) {
@@ -148,10 +136,6 @@ struct {
 
 bool DeutscheBahnBackend::queryStopover(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
-    if (m_bypassDbApi) {
-        return HafasMgateBackend::queryStopover(request, reply, nam);
-    }
-
     auto url = request.mode() == StopoverRequest::QueryDeparture ?
         QUrl(u"https://www.bahn.de/web/api/reiseloesung/abfahrten"_s) :
         QUrl(u"https://www.bahn.de/web/api/reiseloesung/ankuenfte"_s);
@@ -206,10 +190,6 @@ bool DeutscheBahnBackend::queryStopover(const StopoverRequest &request, Stopover
 
 bool DeutscheBahnBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
-    if (m_bypassDbApi) {
-        return HafasMgateBackend::queryJourney(request, reply, nam);
-    }
-
     if ((request.modes() & JourneySection::PublicTransport) == 0) {
         return false;
     }
@@ -281,10 +261,6 @@ bool DeutscheBahnBackend::queryJourney(const JourneyRequest &request, JourneyRep
 
 bool DeutscheBahnBackend::queryTrip(const TripRequest &request, TripReply *reply, QNetworkAccessManager *nam) const
 {
-    if (m_bypassDbApi) {
-        return HafasMgateBackend::queryTrip(request, reply, nam);
-    }
-
     const auto tripId = request.identifier(locationIdentifierType());
     if (tripId.isEmpty()) {
         return false;
