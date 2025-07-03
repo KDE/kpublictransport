@@ -99,8 +99,13 @@ void Location::setCountry(const QString &countryCode)
 QString Location::country() const
 {
     if (d->country.isEmpty() && hasCoordinate()) {
-        auto country = KCountry::fromLocation((float)latitude(), (float)longitude());
+        const auto country = KCountry::fromLocation((float)latitude(), (float)longitude());
         const_cast<Location *>(this)->setCountry(country.alpha2());
+    } else if (d->country.size() != 2 && hasCoordinate()) {
+        const auto country = KCountry::fromLocation((float)latitude(), (float)longitude());
+        if (country.isValid()) {
+            const_cast<Location *>(this)->setCountry(country.alpha2());
+        }
     }
 
     return d->country;
