@@ -242,18 +242,6 @@ static QColor parseColor(const QJsonValue &value)
     return QColor(QLatin1Char('#') + value.toString());
 }
 
-struct {
-    const char *name;
-    Feature::Availability availability;
-} static constexpr const bikes_allowed_map[] = {
-    { "ALLOWED", Feature::Available },
-    { "NOT_ALLOWED", Feature::Unavailable },
-    { "NO_INFORMATION", Feature::Unknown },
-    { "allowed", Feature::Available },
-    { "noInformation", Feature::Unknown },
-    { "notAllowed", Feature::Unavailable },
-};
-
 OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseLine(const QJsonObject &obj) const
 {
     parseAlerts(obj.value(QLatin1String("alerts")).toArray());
@@ -287,13 +275,6 @@ OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseLine(const QJsonObj
     RouteData data;
     data.route.setLine(line);
 
-    const auto bikesAllowed = obj.value("bikesAllowed"_L1).toString();
-    const auto it = std::find_if(std::begin(bikes_allowed_map), std::end(bikes_allowed_map), [&bikesAllowed](auto m) {
-        return bikesAllowed == QLatin1StringView(m.name);
-    });
-    if (it != std::end(bikes_allowed_map)) {
-        data.features.emplace_back(Feature::BikeStorage, (*it).availability);
-    }
     return data;
 }
 
@@ -333,6 +314,30 @@ struct {
     return Load::Unknown;
 }
 
+struct {
+    const char *name;
+    Feature::Availability availability;
+} static constexpr const bikes_allowed_map[] = {
+    { "ALLOWED", Feature::Available },
+    { "NOT_ALLOWED", Feature::Unavailable },
+    { "NO_INFORMATION", Feature::Unknown },
+    { "allowed", Feature::Available },
+    { "noInformation", Feature::Unknown },
+    { "notAllowed", Feature::Unavailable },
+};
+
+struct {
+    const char *name;
+    Feature::Availability availability;
+} static constexpr const wheelchair_access_map[] = {
+    { "NOT_POSSIBLE", Feature::Unavailable },
+    { "NO_INFORMATION", Feature::Unknown },
+    { "POSSIBLE", Feature::Available },
+    { "noInformation", Feature::Unknown },
+    { "notPossible", Feature::Unavailable },
+    { "possible", Feature::Available },
+};
+
 OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseRoute(const QJsonObject &obj) const
 {
     auto data = parseLine(obj.value("route"_L1).toObject());
@@ -344,6 +349,27 @@ OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseRoute(const QJsonOb
     data.route.setLine(line);
     data.route.setDirection(obj.value("tripHeadsign"_L1).toString());
     data.occupancy = parseOccupancy(obj.value("occupancy"_L1));
+
+    {
+        const auto bikesAllowed = obj.value("bikesAllowed"_L1).toString();
+        const auto it = std::find_if(std::begin(bikes_allowed_map), std::end(bikes_allowed_map), [&bikesAllowed](auto m) {
+            return bikesAllowed == QLatin1StringView(m.name);
+        });
+        if (it != std::end(bikes_allowed_map)) {
+            data.features.emplace_back(Feature::BikeStorage, (*it).availability);
+        }
+    }
+
+    {
+        const auto wheelchairAccess = obj.value("wheelchairAccessible"_L1).toString();
+        const auto it = std::find_if(std::begin(wheelchair_access_map), std::end(wheelchair_access_map), [&wheelchairAccess](auto m) {
+            return wheelchairAccess == QLatin1StringView(m.name);
+        });
+        if (it != std::end(wheelchair_access_map)) {
+            data.features.emplace_back(Feature::WheelchairAccessible, (*it).availability);
+        }
+    }
+
     return data;
 }
 

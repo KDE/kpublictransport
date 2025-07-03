@@ -49,7 +49,6 @@ query journeys(
                         longName
                         color
                         textColor
-                        bikesAllowed
                         agency {
                             name
                         }
@@ -62,11 +61,13 @@ query journeys(
                             alertSeverityLevel
                         }
                     }
+                    bikesAllowed
                     tripHeadsign
                     tripShortName
                     occupancy {
                         occupancyStatus
                     }
+                    wheelchairAccessible
                 }
                 intermediateStops: intermediatePlaces @include(if: $withIntermediateStops) {
                     stop {

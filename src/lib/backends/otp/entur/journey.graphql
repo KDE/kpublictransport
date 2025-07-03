@@ -50,7 +50,6 @@ query journeys(
                 type: transportSubmode
                 shortName: publicCode
                 name
-                bikesAllowed
                 agency: operator {
                     name
                 }
@@ -65,7 +64,9 @@ query journeys(
                     }
                 }
             }
+            bikesAllowed
             tripShortName: publicCode
+            wheelchairAccessible
         }
         intermediateStops: intermediateEstimatedCalls @include(if: $withIntermediateStops) {
           stop: quay {
