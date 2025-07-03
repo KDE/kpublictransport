@@ -31,6 +31,15 @@ bool LocationUtil::sortLessThan(const LocationRequest &request, const Location &
         }
     }
 
+    // prefer matching country, if that was specified in the request
+    if (request.location().country().size() == 2) {
+        const auto lhsMatch = request.location().country() == lhs.country();
+        const auto rhsMatch = request.location().country() == rhs.country();
+        if (lhsMatch != rhsMatch) {
+            return lhsMatch;
+        }
+    }
+
     // for name based search, sort by Levenshtein distance or similar metric
     // TODO so far this only sorts for matching or not matching
     const auto lhsSame = Location::isSameName(request.name(), lhs.name());
