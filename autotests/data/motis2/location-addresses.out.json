@@ -27,6 +27,7 @@
         "longitude": 3.1099533,
         "name": "Guido Gezellelaan 106",
         "postalCode": "8930",
+        "region": "West Flanders",
         "streetAddress": "Guido Gezellelaan 106",
         "type": "Address"
     },
@@ -69,6 +70,7 @@
         "locality": "Harderwijk",
         "longitude": 5.6386994,
         "name": "Guido Gezellelaan 106",
+        "region": "Gelderland",
         "streetAddress": "Guido Gezellelaan 106",
         "type": "Address"
     },
@@ -78,6 +80,7 @@
         "locality": "Hillegom",
         "longitude": 4.5847613,
         "name": "Guido Gezellelaan 106",
+        "region": "South Holland",
         "streetAddress": "Guido Gezellelaan 106",
         "type": "Address"
     },

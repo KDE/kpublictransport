@@ -10,6 +10,7 @@
         "longitude": 8.402185,
         "name": "Karlsruhe Hbf",
         "postalCode": "76137",
+        "region": "Baden-Württemberg",
         "streetAddress": "",
         "type": "Stop"
     },
@@ -24,6 +25,7 @@
         "longitude": 8.402185,
         "name": "Karlsruhe Hbf",
         "postalCode": "76137",
+        "region": "Baden-Württemberg",
         "streetAddress": "",
         "type": "Stop"
     },
@@ -38,6 +40,7 @@
         "longitude": 8.402185,
         "name": "Karlsruhe Hbf",
         "postalCode": "76137",
+        "region": "Baden-Württemberg",
         "streetAddress": "",
         "type": "Stop"
     },
@@ -52,6 +55,7 @@
         "longitude": 8.402185,
         "name": "Karlsruhe Hbf",
         "postalCode": "76137",
+        "region": "Baden-Württemberg",
         "streetAddress": "",
         "type": "Stop"
     },
@@ -78,6 +82,7 @@
         "longitude": 8.3335171,
         "name": "Karlsruher Hof",
         "postalCode": "76189",
+        "region": "Baden-Württemberg",
         "streetAddress": ""
     },
     {
