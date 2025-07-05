@@ -145,24 +145,24 @@ Kirigami.ScrollablePage {
         required property PublicTransport.location location
 
         readonly property string subtitle: {
-            let country = Country.fromAlpha2(location.country)
-            let region = CountrySubdivision.fromCode(location.region)
+            const country = Country.fromAlpha2(location.country)
+            const region = CountrySubdivision.fromCode(location.region)
 
-            if (location.locality && location.name !== location.locality && region && country) {
+            if (location.locality && location.name !== location.locality && location.country && location.region) {
                 return i18ndc("publictransport", "locality, region, country", "%1, %2, %3",
                              location.locality,
-                             region.name,
-                             country.name)
-            } else if (location.locality && location.name !== location.locality && country) {
+                             region ? region.name : location.region,
+                             country ? country.name : location.country)
+            } else if (location.locality && location.name !== location.locality && location.country) {
                 return i18ndc("publictransport", "locality, country", "%1, %2",
                              location.locality,
-                             country.name)
-            } else if (region && country) {
+                             country ? country.name : location.country)
+            } else if (location.region && location.country) {
                 return i18ndc("publictransport", "region, country", "%1, %2",
-                             region.name,
-                             country.name)
-            } else if (country) {
-                return country.name
+                             region ? region.name : location.region,
+                             country ? country.name : location.country)
+            } else if (location.country) {
+                return country ? country.name : location.country;
             } else {
                 return " "
             }
@@ -180,22 +180,26 @@ Kirigami.ScrollablePage {
             const country = Country.fromAlpha2(location.country)
             const region = CountrySubdivision.fromCode(location.region)
 
-            if (location.locality && location.name !== location.locality && region && country) {
+            if (location.locality && location.name !== location.locality && location.region && location.country) {
                 return i18ndc("publictransport", "location name, locality, region, country", "%1, %2, %3, %4",
                              location.name,
                              location.locality,
-                             region.name,
-                             country.name)
-            } else if (location.locality && location.name !== location.locality && country) {
+                             region ? region.name : location.region,
+                             country ? country.name : location.country)
+            } else if (location.locality && location.name !== location.locality && location.country) {
                 return i18ndc("publictransport", "location name, locality, country", "%1, %2, %3",
                              location.name,
                              location.locality,
-                             country.name)
-            } else if (region && country) {
+                             country ? country.name : location.country)
+            } else if (location.region && location.country) {
                 return i18ndc("publictransport", "location name, region, country", "%1, %2, %3",
                              location.name,
-                             region.name,
-                             country.name)
+                             region ? region.name : location.region,
+                             country ? country.name : location.country)
+            } else if (location.country) {
+                return i18ndc("publictransport", "location name, country", "%1, %2",
+                             location.name,
+                             country ? country.name : location.country);
             } else {
                 return location.name
             }
