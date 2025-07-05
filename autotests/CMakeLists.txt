@@ -53,7 +53,7 @@ ecm_add_test(ivvassparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(gbfsreadertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(ojprequesttest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(ojpparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
-ecm_add_test(motis2parsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
+ecm_add_test(motis2parsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport KF6::I18nLocaleData)
 
 ecm_add_test(publictransportmanagertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(cachetest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)

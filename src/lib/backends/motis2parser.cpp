@@ -11,6 +11,9 @@
 #include <KPublicTransport/RentalVehicle>
 #include <KPublicTransport/Stopover>
 
+#include <KCountry>
+#include <KCountrySubdivision>
+
 #include <QColor>
 #include <QDebug>
 #include <QJsonArray>
@@ -374,6 +377,17 @@ struct {
     { "STOP", Location::Stop },
 };
 
+// see https://github.com/osm-search/Nominatim/blob/master/settings/address-levels.json
+constexpr inline auto DEFAULT_REGION_LEVEL = 4;
+struct {
+    const char code[3];
+    uint8_t level;
+} static constexpr const region_admin_level_map[] = {
+    { "BE", 6 },
+    { "NO", 0 },
+    { "SE", 0 },
+};
+
 std::vector<Location> Motis2Parser::parseLocations(const QByteArray &data) const
 {
     const auto locations = QJsonDocument::fromJson(data).array();
@@ -396,21 +410,48 @@ std::vector<Location> Motis2Parser::parseLocations(const QByteArray &data) const
         l.setLatitude(locObj.value("lat"_L1).toDouble());
         l.setLongitude(locObj.value("lon"_L1).toDouble());
         l.setFloorLevel(locObj.value("level"_L1).toInt(std::numeric_limits<int>::lowest()));
+
         const auto areas = locObj.value("areas"_L1).toArray();
-        int cityLevel = std::numeric_limits<int>::max();
+        std::vector<QJsonObject> adminLevels(12);
         for (const auto &areaV : areas) {
             const auto area = areaV.toObject();
             const auto level = area.value("adminLevel"_L1).toInt();
-            if (level == 2) {
-                l.setCountry(area.value("name"_L1).toString());
+            if (level < 0 || level >= (int)adminLevels.size()) {
+                continue;
             }
-            if (level >= 8 && level < cityLevel) {
-                // TODO needs a proper country-specific admin-level mapping, for now taken from Motis v1 parser
-                // see https://wiki.openstreetmap.org/wiki/Key:admin_level
-                cityLevel = level;
-                l.setLocality(area.value("name"_L1).toString());
+            adminLevels[level] = area;
+        }
+
+        // resolve country
+        // we need to do this here rather than relying on post-processing as the subsequent admin level mapping depends on it
+        const auto countryName = adminLevels[2].value("name"_L1).toString();
+        auto country = KCountry::fromName(countryName);
+        if (!country.isValid()) {
+            country = KCountry::fromLocation((float)l.latitude(), (float)l.longitude());
+        }
+        l.setCountry(country.isValid() ? country.alpha2() : countryName);
+
+        // resolve region
+        if (const auto r = KCountrySubdivision::fromLocation((float)l.latitude(), (float)l.longitude()); r.isValid()) {
+            l.setRegion(r.code());
+        }
+        if (country.isValid() && l.region().isEmpty()) {
+            const auto it = std::find_if(std::begin(region_admin_level_map), std::end(region_admin_level_map), [country](const auto &m) {
+                return QLatin1StringView(m.code, 2) == country.alpha2();
+            });
+            l.setRegion(adminLevels[it != std::end(region_admin_level_map) ? (*it).level :DEFAULT_REGION_LEVEL].value("name"_L1).toString());
+        }
+
+        // city name
+        // TODO needs a proper country-specific admin-level mapping, for now taken from Motis v1 parser
+        // see https://wiki.openstreetmap.org/wiki/Key:admin_level
+        for (int i = 8; i < (int)adminLevels.size(); ++i) {
+            if (const auto n = adminLevels[i].value("name"_L1).toString(); !n.isEmpty()) {
+                l.setLocality(n);
+                break;
             }
         }
+
         l.setPostalCode(locObj.value("zip"_L1).toString());
         l.setStreetAddress(QString(locObj.value("street"_L1).toString() + ' '_L1 + locObj.value("houseNumber"_L1).toString()).trimmed());
         result.push_back(std::move(l));
