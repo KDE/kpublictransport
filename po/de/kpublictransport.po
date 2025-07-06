@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-06-18 00:41+0000\n"
+"POT-Creation-Date: 2025-07-06 02:30+0000\n"
 "PO-Revision-Date: 2025-06-07 12:54+0200\n"
 "Last-Translator: Alois Spitzbart <spitz234@hotmail.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -430,13 +430,21 @@ msgctxt "location name, region, country"
 msgid "%1, %2, %3"
 msgstr "%1, %2, %3"
 
-#: quick/StopPickerPage.qml:227
+#: quick/StopPickerPage.qml:200
+#, fuzzy, kde-format
+#| msgctxt "locality, country"
+#| msgid "%1, %2"
+msgctxt "location name, country"
+msgid "%1, %2"
+msgstr "%1, %2"
+
+#: quick/StopPickerPage.qml:231
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove history entry"
 msgstr "Verlaufseintrag entfernen"
 
-#: quick/StopPickerPage.qml:284
+#: quick/StopPickerPage.qml:288
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "No locations found"
