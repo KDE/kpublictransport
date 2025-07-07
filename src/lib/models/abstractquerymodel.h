@@ -39,14 +39,14 @@ class KPUBLICTRANSPORT_EXPORT AbstractQueryModel : public QAbstractListModel
 public:
     ~AbstractQueryModel() override;
 
-    Manager* manager() const;
+    [[nodiscard]] Manager* manager() const;
     void setManager(Manager *mgr);
 
-    bool isLoading() const;
-    QString errorMessage() const;
+    [[nodiscard]] bool isLoading() const;
+    [[nodiscard]] QString errorMessage() const;
 
     /** The attribution information for the current model content. */
-    const std::vector<Attribution>& attributions() const;
+    [[nodiscard]] const std::vector<Attribution>& attributions() const;
 
     /** Cancel ongoing query operations, but keep the results that are already there. */
     Q_INVOKABLE void cancel();

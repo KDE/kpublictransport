@@ -39,16 +39,16 @@ public:
     explicit StopoverQueryModel(QObject *parent = nullptr);
     ~StopoverQueryModel() override;
 
-    StopoverRequest request() const;
+    [[nodiscard]] StopoverRequest request() const;
     void setRequest(const StopoverRequest &req);
 
-    bool canQueryNext() const;
+    [[nodiscard]] bool canQueryNext() const;
     /** Search for later journeys.
      *  Has no effect if canQueryNext() returns @c false.
      */
     Q_INVOKABLE void queryNext();
 
-    bool canQueryPrevious() const;
+    [[nodiscard]] bool canQueryPrevious() const;
     /** Search for earlier journeys.
      *  Has no effect if canQueryPrevious() returns @c false.
      */
@@ -60,12 +60,12 @@ public:
     };
     Q_ENUM(Roles)
 
-    int rowCount(const QModelIndex &parent) const override;
-    QVariant data(const QModelIndex &index, int role) const override;
-    QHash<int, QByteArray> roleNames() const override;
+    [[nodiscard]] int rowCount(const QModelIndex &parent = {}) const override;
+    [[nodiscard]] QVariant data(const QModelIndex &index, int role) const override;
+    [[nodiscard]] QHash<int, QByteArray> roleNames() const override;
 
     /** The current model content. */
-    const std::vector<Stopover>& departures() const;
+    [[nodiscard]] const std::vector<Stopover>& departures() const;
 
 Q_SIGNALS:
     void requestChanged();
