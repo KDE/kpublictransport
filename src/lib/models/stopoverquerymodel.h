@@ -35,6 +35,9 @@ class KPUBLICTRANSPORT_EXPORT StopoverQueryModel : public AbstractQueryModel
     /** Whether querying for earlier journey is possible. */
     Q_PROPERTY(bool canQueryPrevious READ canQueryPrevious NOTIFY canQueryPrevNextChanged)
 
+    /** Enable automatic update of the model content every minute. */
+    Q_PROPERTY(bool autoUpdate READ autoUpdate WRITE setAutoUpdate NOTIFY autoUpdateChanged)
+
 public:
     explicit StopoverQueryModel(QObject *parent = nullptr);
     ~StopoverQueryModel() override;
@@ -65,11 +68,15 @@ public:
     [[nodiscard]] QHash<int, QByteArray> roleNames() const override;
 
     /** The current model content. */
-    [[nodiscard]] const std::vector<Stopover>& departures() const;
+    [[nodiscard]] std::vector<Stopover> departures() const;
+
+    [[nodiscard]] bool autoUpdate() const;
+    void setAutoUpdate(bool enabled);
 
 Q_SIGNALS:
     void requestChanged();
     void canQueryPrevNextChanged();
+    void autoUpdateChanged();
 
 private:
     friend class StopoverQueryModelPrivate;

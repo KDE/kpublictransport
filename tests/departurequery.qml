@@ -68,6 +68,7 @@ Kirigami.ApplicationWindow {
     StopoverQueryModel {
         id: departureModel
         manager: ptMgr
+        autoUpdate: autoUpdateBox.checked
     }
 
     Component {
@@ -229,6 +230,7 @@ Kirigami.ApplicationWindow {
             property alias singleBackend: backendBox.checked
             property alias backend: backendSelector.currentIndex
             property alias maxResults: maxResults.text
+            property alias autoUpdate: autoUpdateBox.checked
         }
 
         ColumnLayout {
@@ -311,6 +313,11 @@ Kirigami.ApplicationWindow {
                     }
                     return [];
                 }
+            }
+
+            QQC2.CheckBox {
+                id: autoUpdateBox
+                text: "Update continuously"
             }
 
             RowLayout {
