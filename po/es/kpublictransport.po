@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-07-06 00:41+0000\n"
-"PO-Revision-Date: 2025-06-15 00:31+0100\n"
+"PO-Revision-Date: 2025-07-06 15:23+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -427,9 +427,7 @@ msgid "%1, %2, %3"
 msgstr "%1, %2, %3"
 
 #: quick/StopPickerPage.qml:200
-#, fuzzy, kde-format
-#| msgctxt "locality, country"
-#| msgid "%1, %2"
+#, kde-format
 msgctxt "location name, country"
 msgid "%1, %2"
 msgstr "%1, %2"
