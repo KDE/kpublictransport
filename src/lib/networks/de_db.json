@@ -159,8 +159,7 @@
             87,
             88
         ],
-        "standardLocationIdentifierType": "ibnr",
-        "useHafasMgate": false
+        "standardLocationIdentifierType": "ibnr"
     },
     "supportedLanguages": [
         "cz",
