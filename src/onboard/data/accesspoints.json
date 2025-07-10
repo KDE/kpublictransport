@@ -24,5 +24,6 @@
     { "ssid": "WIFIonICE", "id": "deutschebahn-ice" },
     { "ssid": "Wings Connect", "id": "eurowings" },
     { "ssid": "[Ana-WiFi-Service]", "id": "panasonic-inflight-v1" },
-    { "ssid": "Wifi in de trein", "id": "nstrein" }
+    { "ssid": "Wifi in de trein", "id": "nstrein" },
+    { "ssid": "XiamenAir", "id": "panasonic-inflight-v2" }
 ]
