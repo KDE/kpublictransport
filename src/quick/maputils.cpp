@@ -158,7 +158,8 @@ double MapUtils::zoomLevel(const QRectF &bbox, double width, double height)
     const auto zy = std::log2((height / (p2.y() - p1.y())));
     const auto z = std::min(zx, zy);
 
-    return z >= 1.0 && z <= 22.0 ? z : 5.0;
+    // z + 1 would fit perfectly, but then we have relevant content on the edge of the view, which isn't ideal
+    return z >= 1.0 && z <= 22.0 ? z + 0.5 : 5.0;
 }
 
 #include "moc_maputils.cpp"
