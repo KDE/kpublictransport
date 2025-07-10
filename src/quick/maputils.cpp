@@ -5,6 +5,8 @@
 
 #include "maputils.h"
 
+#include "../lib/knowledgedb/countryboundingbox_p.h"
+
 #include <KPublicTransport/Stopover>
 
 #include <cmath>
@@ -130,6 +132,11 @@ QRectF MapUtils::boundingBox(const KPublicTransport::Path &path)
 QRectF MapUtils::boundingBox(const KPublicTransport::PathSection &pathSection)
 {
     return pathSection.path().boundingRect();
+}
+
+QRectF MapUtils::boundingBoxForCountry(const QString &countryCode)
+{
+    return KPublicTransport::boundingBoxForCountry(countryCode);
 }
 
 QJSValue MapUtils::center(const QRectF &bbox) const

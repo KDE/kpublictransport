@@ -52,6 +52,12 @@ public:
     /** Bounding box of path section @p pathSection. */
     Q_INVOKABLE [[nodiscard]] static QRectF boundingBox(const KPublicTransport::PathSection &pathSection);
 
+    /** Bounding box for a county.
+     *  @param countryCode ISO-3166-1 alpha 2 code.
+     *  @since 25.12
+     */
+    Q_INVOKABLE [[nodiscard]] static QRectF boundingBoxForCountry(const QString &countryCode);
+
     /** Center coordinate of bounding box @bbox,
      *  for consumption by QtLocation.Map.
      */
