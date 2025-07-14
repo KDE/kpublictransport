@@ -21,6 +21,8 @@
 
 #include <iostream>
 
+using namespace Qt::Literals;
+
 // excluded provider ids, mainly for simple disambiguation
 static constexpr const char* const excluded_transport_apis[] = {
     "db-hafas-query",
@@ -224,6 +226,10 @@ void TransportApiMerger::preProcessConfig(QJsonObject &top)
     if (!client.isEmpty()) {
         options.insert(QLatin1String("client"), std::move(client));
     }
+
+    // remove unsupported EFA options
+    options.remove("supportedOutputFormats"_L1);
+
     if (!options.isEmpty()) {
         top.insert(QLatin1String("options"), std::move(options));
     }
