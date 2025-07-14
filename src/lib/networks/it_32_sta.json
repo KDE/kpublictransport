@@ -1,0 +1,36 @@
+{
+    "KPlugin": {
+        "Name": "Südtirolmobil (STA)",
+        "Description": "Local public transport in South Tyrol."
+    },
+    "attribution": {
+        "homepage": "https://www.sta.bz.it/de/",
+        "license": "CC0-1.0",
+        "name": "Südtiroler Transportstrukturen AG"
+    },
+    "coverage": {
+        "regularCoverage": {
+            "areaFile": "it_32_sta_regular.geojson",
+            "region": [
+                "IT-32"
+            ]
+        }
+    },
+    "options": {
+        "endpoint": "https://mobility.api.opendatahub.com/v2/",
+        "supportedOutputFormats": [
+            "XML"
+        ],
+        "xmlOutputFormat": "full"
+    },
+    "supportedLanguages": [
+        "de",
+        "en",
+        "it",
+        "lld"
+    ],
+    "timezone": "Europe/Rome",
+    "type": {
+        "efa": true
+    }
+}
