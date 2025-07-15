@@ -1,7 +1,7 @@
 {
     "KPlugin": {
-        "Name": "Südtirolmobil (STA)",
-        "Description": "Local public transport in South Tyrol."
+        "Description": "Local public transport in South Tyrol.",
+        "Name": "Südtirolmobil (STA)"
     },
     "attribution": {
         "homepage": "https://www.sta.bz.it/de/",
