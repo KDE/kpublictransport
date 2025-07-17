@@ -4,6 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include "mocknetworkaccessmanager.h"
+
 #include <KPublicTransport/Attribution>
 #include <KPublicTransport/Backend>
 #include <KPublicTransport/Manager>
@@ -185,6 +187,27 @@ private Q_SLOTS:
         QEXPECT_FAIL("", "NoBackend error handling not correctly implemented yet", Continue);
         QCOMPARE(reply->error(), Reply::NoBackend);
         delete reply;
+    }
+
+    void testLocationQuery()
+    {
+        MockNetworkAccessManager nam;
+        Manager mgr;
+        mgr.setNetworkAccessManager(&nam);
+
+        // should select a single country-wide backend even if better localized ones exist
+        Location loc;
+        loc.setCountry(u"US"_s);
+        loc.setName(u"Union Station"_s);
+        LocationRequest req(loc);
+
+        auto reply = mgr.queryLocation(req);
+        QVERIFY(reply);
+        QSignalSpy finishedSpy(reply, &Reply::finished);
+        QVERIFY(finishedSpy.wait());
+
+        QCOMPARE(nam.requests.size(), 1);
+        QVERIFY(nam.requests[0].request.url().toString().contains("transitous"_L1));
     }
 };
 
