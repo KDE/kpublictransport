@@ -61,7 +61,8 @@ public:
         ScheduledArrivalTime,
 
         /// Useful for creating sections
-        ScheduledDepartureDate
+        ScheduledDepartureDate,
+        ScheduledArrivalDate,
     };
     Q_ENUM(Roles)
 

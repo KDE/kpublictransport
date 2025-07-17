@@ -211,6 +211,8 @@ QVariant JourneyQueryModel::data(const QModelIndex& index, int role) const
             return jny.scheduledArrivalTime();
         case ScheduledDepartureDate:
             return jny.scheduledDepartureTime().date();
+        case ScheduledArrivalDate:
+            return jny.scheduledArrivalTime().date();
     }
 
     return {};
@@ -223,6 +225,7 @@ QHash<int, QByteArray> JourneyQueryModel::roleNames() const
     r.insert(ScheduledDepartureTime, "scheduledDepartureTime");
     r.insert(ScheduledArrivalTime, "scheduledArrivalTime");
     r.insert(ScheduledDepartureDate, "scheduledDepartureDate");
+    r.insert(ScheduledArrivalDate, "scheduledArrivalDate");
     return r;
 }
 
