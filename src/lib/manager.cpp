@@ -789,30 +789,34 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
     QSet<QString> triedBackends;
     bool foundNonGlobalCoverage = false;
     const auto loc = req.location();
-    const auto isCountryOnly = !loc.hasCoordinate() && !loc.country().isEmpty() && loc.region().isEmpty();
+
+    // try first to find a country-wide coverage at any level for country-limited name-based searches
+    if (!loc.hasCoordinate() && !loc.country().isEmpty() && loc.region().isEmpty()) {
+        for (const auto coverageType : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
+            for (const auto &backend : d->m_backends) {
+                if (triedBackends.contains(backend.identifier()) || d->shouldSkipBackend(backend, req)) {
+                    continue;
+                }
+                const auto coverage = backend.coverageArea(coverageType);
+                if (coverage.isEmpty() || !coverage.hasNationWideCoverage(loc.country()) || !coverage.coversLocation(loc) || !coverage.coversArea(req.viewbox())) {
+                    continue;
+                }
+
+                triedBackends.insert(backend.identifier());
+                foundNonGlobalCoverage |= !coverage.isGlobal();
+                pendingOps += d->queryLocationOnBackend(req, reply, backend);
+            }
+            if (pendingOps && foundNonGlobalCoverage) {
+                break;
+            }
+        }
+    }
+
+    // search for highest-quality coverage match otherwise
     for (const auto coverageType : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
-        // pass 1: coordinate-based coverage, or nationwide country coverage
-        for (const auto &backend : d->m_backends) {
-            if (triedBackends.contains(backend.identifier()) || d->shouldSkipBackend(backend, req)) {
-                continue;
-            }
-            const auto coverage = backend.coverageArea(coverageType);
-            if (coverage.isEmpty() || !coverage.coversLocation(loc) || !coverage.coversArea(req.viewbox())) {
-                continue;
-            }
-            if (isCountryOnly && !coverage.hasNationWideCoverage(loc.country())) {
-                continue;
-            }
-
-            triedBackends.insert(backend.identifier());
-            foundNonGlobalCoverage |= !coverage.isGlobal();
-            pendingOps += d->queryLocationOnBackend(req, reply, backend);
-        }
         if (pendingOps && foundNonGlobalCoverage) {
             break;
         }
-
-        // pass 2: any country match
         for (const auto &backend : d->m_backends) {
             if (triedBackends.contains(backend.identifier()) || d->shouldSkipBackend(backend, req)) {
                 continue;
@@ -825,9 +829,6 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
             triedBackends.insert(backend.identifier());
             foundNonGlobalCoverage |= !coverage.isGlobal();
             pendingOps += d->queryLocationOnBackend(req, reply, backend);
-        }
-        if (pendingOps && foundNonGlobalCoverage) {
-            break;
         }
     }
 
