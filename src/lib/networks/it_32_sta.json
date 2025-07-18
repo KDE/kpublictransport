@@ -5,6 +5,7 @@
         "Description[es]": "Transporte público local de Tirol del Sur.",
         "Description[ka]": "ლოკალური საჯარო ტრანსპორტი სამხრეთ ტიროლში.",
         "Description[nl]": "Lokaal openbaar vervoer in Zuid-Tirol.",
+        "Description[sl]": "Lokalni javni prevoz na južnem Tirolskem.",
         "Description[uk]": "Місцевий громадський транспорт у Південному Тиролі.",
         "Description[x-test]": "xxLocal public transport in South Tyrol.xx",
         "Name": "Südtirolmobil (STA)",
@@ -12,6 +13,7 @@
         "Name[es]": "Südtirolmobil (STA)",
         "Name[ka]": "Südtirolmobil (STA)",
         "Name[nl]": "Südtirolmobil (STA)",
+        "Name[sl]": "Südtirolmobil (STA)",
         "Name[uk]": "Südtirolmobil (STA)",
         "Name[x-test]": "xxSüdtirolmobil (STA)xx"
     },
