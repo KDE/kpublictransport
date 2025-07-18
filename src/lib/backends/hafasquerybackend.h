@@ -21,8 +21,9 @@ public:
     ~HafasQueryBackend() override;
 
     void init() override;
-    static inline constexpr const char* type() { return "hafasQuery"; }
+    static constexpr const char* type() { return "hafasQuery"; }
     Capabilities capabilities() const override;
+    [[nodiscard]] Location::Types supportedLocationTypes() const override;
     bool needsLocationQuery(const Location &loc, QueryType type) const override;
     bool queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const override;
     bool queryStopover(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const override;

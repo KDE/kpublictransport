@@ -35,6 +35,11 @@ AbstractBackend::Capabilities NavitiaBackend::capabilities() const
     return Secure | CanQueryNextJourney | CanQueryPreviousJourney | CanQueryArrivals; // https is hardcoded below
 }
 
+Location::Types NavitiaBackend::supportedLocationTypes() const
+{
+    return Location::Stop | Location::RentedVehicleStation;
+}
+
 bool NavitiaBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
     Q_UNUSED(type);
@@ -203,10 +208,6 @@ bool NavitiaBackend::queryStopover(const StopoverRequest &req, StopoverReply *re
 
 bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    if ((req.types() & (Location::Stop | Location::RentedVehicleStation)) == 0) {
-        return false;
-    }
-
     QUrl url;
     url.setScheme(QStringLiteral("https"));
     url.setHost(m_endpoint);

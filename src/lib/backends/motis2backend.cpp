@@ -44,6 +44,11 @@ AbstractBackend::Capabilities Motis2Backend::capabilities() const
     return c;
 }
 
+Location::Types Motis2Backend::supportedLocationTypes() const
+{
+    return Location::Stop | Location::Address;
+}
+
 bool Motis2Backend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
     if (type == QueryType::Journey) {
@@ -65,11 +70,6 @@ static void filterLocations(std::vector<Location> &locations, Location::Types ty
 
 bool Motis2Backend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    if ((req.types() & (Location::Stop|Location::Address)) == 0) {
-        // only stop and address searches are supported
-        return false;
-    }
-
     QUrlQuery query;
     QNetworkReply *netReply = nullptr;
 

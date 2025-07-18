@@ -86,12 +86,14 @@ private Q_SLOTS:
         {
             LocationRequest req;
             req.setCoordinate(-52.5, -13.5);
+            req.setTypes(Location::Stop | Location::RentedVehicleStation);
             QCOMPARE(req.cacheKey(), QLatin1String("73be02317c4a7a43aff31f3186b18c22c6466250"));
             req.setTypes(Location::RentedVehicle|Location::RentedVehicleStation);
             QCOMPARE(req.cacheKey(), QLatin1String("4dfaecadb1a7d03106fe585b119948c158509807"));
         }
         {
             LocationRequest req;
+            req.setTypes(Location::Stop | Location::RentedVehicleStation);
             req.setName(QStringLiteral("Randa"));
             QCOMPARE(req.cacheKey(), QLatin1String("c4053bc0f4582f2977f3e43cad07b6587e6b6935"));
             req.setName(QStringLiteral("RANDA"));

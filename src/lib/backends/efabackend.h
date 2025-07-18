@@ -42,17 +42,18 @@ public:
     EfaBackend();
     ~EfaBackend() override;
 
-    static inline constexpr const char* type() { return "efa"; }
-    Capabilities capabilities() const override;
-    bool needsLocationQuery(const Location  &loc, AbstractBackend::QueryType type) const override;
-    bool queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const override;
-    bool queryStopover(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const override;
-    bool queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const override;
+    static constexpr const char* type() { return "efa"; }
+    [[nodiscard]] Capabilities capabilities() const override;
+    [[nodiscard]] Location::Types supportedLocationTypes() const override;
+    [[nodiscard]] bool needsLocationQuery(const Location  &loc, AbstractBackend::QueryType type) const override;
+    [[nodiscard]] bool queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const override;
+    [[nodiscard]] bool queryStopover(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const override;
+    [[nodiscard]] bool queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
-    QString locationIdentifierType() const;
-    std::unique_ptr<EfaParser> make_parser() const;
-    QUrlQuery commonQuery() const;
+    [[nodiscard]] QString locationIdentifierType() const;
+    [[nodiscard]] std::unique_ptr<EfaParser> make_parser() const;
+    [[nodiscard]] QUrlQuery commonQuery() const;
 
     void setXmlOutputFormat(const QString &format);
 

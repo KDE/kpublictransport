@@ -35,8 +35,9 @@ public:
     OpenTripPlannerGraphQLBackend();
     ~OpenTripPlannerGraphQLBackend() override;
 
-    [[nodiscard]] static inline constexpr const char* type() { return "otpGraphQl"; }
+    [[nodiscard]] static constexpr const char* type() { return "otpGraphQl"; }
     [[nodiscard]] Capabilities capabilities() const override;
+    [[nodiscard]] Location::Types supportedLocationTypes() const override;
     [[nodiscard]] bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
     [[nodiscard]] bool queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const override;
     [[nodiscard]] bool queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const override;

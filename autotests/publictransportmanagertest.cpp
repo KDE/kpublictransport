@@ -200,14 +200,33 @@ private Q_SLOTS:
         loc.setCountry(u"US"_s);
         loc.setName(u"Union Station"_s);
         LocationRequest req(loc);
+        req.setTypes(Location::Address | Location::Stop);
 
-        auto reply = mgr.queryLocation(req);
-        QVERIFY(reply);
-        QSignalSpy finishedSpy(reply, &Reply::finished);
-        QVERIFY(finishedSpy.wait());
+        {
+            auto reply = mgr.queryLocation(req);
+            QVERIFY(reply);
+            QSignalSpy finishedSpy(reply, &Reply::finished);
+            QVERIFY(finishedSpy.wait());
+            reply->deleteLater();
+        }
 
         QCOMPARE(nam.requests.size(), 1);
         QVERIFY(nam.requests[0].request.url().toString().contains("transitous"_L1));
+        nam.requests.clear();
+
+        req.setTypes(Location::Equipment);
+        req.setCoordinate(40.75, -73.993);
+        {
+            auto reply = mgr.queryLocation(req);
+            QVERIFY(reply);
+            QSignalSpy finishedSpy(reply, &Reply::finished);
+            QVERIFY(finishedSpy.wait());
+            reply->deleteLater();
+        }
+
+        QCOMPARE(nam.requests.size(), 1);
+        QVERIFY(nam.requests[0].request.url().toString().contains("accessibility"_L1));
+        nam.requests.clear();
     }
 };
 

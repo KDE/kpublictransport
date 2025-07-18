@@ -16,9 +16,10 @@ class DeutscheBahnBackend : public HafasMgateBackend
 {
     Q_GADGET
 public:
-    [[nodiscard]] static inline constexpr const char* type() { return "deutschebahn"; }
+    [[nodiscard]] static constexpr const char* type() { return "deutschebahn"; }
 
     [[nodiscard]] Capabilities capabilities() const override;
+    [[nodiscard]] Location::Types supportedLocationTypes() const override;
     [[nodiscard]] bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
     [[nodiscard]] bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
     [[nodiscard]] bool queryStopover(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const override;

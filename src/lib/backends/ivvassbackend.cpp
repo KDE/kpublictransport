@@ -33,6 +33,11 @@ AbstractBackend::Capabilities IvvAssBackend::capabilities() const
     return m_endpoint.scheme() == QLatin1String("https") ? Capability::Secure : Capability::NoCapability;
 }
 
+Location::Types IvvAssBackend::supportedLocationTypes() const
+{
+    return Location::Stop | Location::Address | Location::RentedVehicle | Location::RentedVehicleStation | Location::Equipment;
+}
+
 bool IvvAssBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
     Q_UNUSED(type);

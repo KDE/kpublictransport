@@ -29,9 +29,14 @@ AbstractBackend::Capabilities AccessibilityCloudBackend::capabilities() const
     return AbstractBackend::Secure; // hardcoded below
 }
 
+Location::Types AccessibilityCloudBackend::supportedLocationTypes() const
+{
+    return Location::Equipment;
+}
+
 bool AccessibilityCloudBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    if ((req.types() & Location::Equipment) == 0 || !req.hasCoordinate()) {
+    if (!req.hasCoordinate()) {
         return false;
     }
 

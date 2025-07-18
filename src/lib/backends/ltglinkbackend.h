@@ -29,17 +29,18 @@ class LTGLinkBackend : public QObject, public AbstractBackend
     Q_OBJECT
 
 public:
-    static inline constexpr const char* type() { return "ltglink"; }
-    Capabilities capabilities() const override;
-    bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
-    bool queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const override;
-    bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
+    static constexpr const char* type() { return "ltglink"; }
+    [[nodiscard]] Capabilities capabilities() const override;
+    [[nodiscard]] Location::Types supportedLocationTypes() const override;
+    [[nodiscard]] bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
+    [[nodiscard]] bool queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const override;
+    [[nodiscard]] bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
     AsyncTask<void> *downloadStationData(Reply *reply, QNetworkAccessManager *nam);
 
     static Location stationToLocation(const LTGLink::Station &station);
-    Location lookupStation(int ltglinkint) const;
+    [[nodiscard]] Location lookupStation(int ltglinkint) const;
 
     std::map<int, LTGLink::Station> m_stations;
     QPointer<AsyncTask<void>> m_stationDataTask = nullptr;

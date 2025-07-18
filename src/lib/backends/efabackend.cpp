@@ -38,6 +38,11 @@ AbstractBackend::Capabilities EfaBackend::capabilities() const
         | CanQueryNextJourney | CanQueryPreviousJourney | CanQueryNextDeparture | CanQueryPreviousDeparture;
 }
 
+Location::Types EfaBackend::supportedLocationTypes() const
+{
+    return Location::Stop;
+}
+
 bool EfaBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
     Q_UNUSED(type);
@@ -46,7 +51,7 @@ bool EfaBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryT
 
 bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    if ((request.name().isEmpty() && !request.hasCoordinate()) || (request.types() & Location::Stop) == 0) {
+    if (request.name().isEmpty() && !request.hasCoordinate()) {
         return false;
     }
 

@@ -27,12 +27,13 @@ class NavitiaBackend : public AbstractBackend
 public:
     NavitiaBackend();
 
-    static inline constexpr const char* type() { return "navitia"; }
-    Capabilities capabilities() const override;
-    bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
-    bool queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const override;
-    bool queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const override;
-    bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
+    static  constexpr const char* type() { return "navitia"; }
+    [[nodiscard]] Capabilities capabilities() const override;
+    [[nodiscard]] Location::Types supportedLocationTypes() const override;
+    [[nodiscard]] bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
+    [[nodiscard]] bool queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const override;
+    [[nodiscard]] bool queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const override;
+    [[nodiscard]] bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
     QString m_endpoint;

@@ -32,8 +32,9 @@ public:
     explicit Motis2Backend();
     ~Motis2Backend() override;
 
-    static inline constexpr const char* type() { return "motis2"; }
+    static constexpr const char* type() { return "motis2"; }
     [[nodiscard]] Capabilities capabilities() const override;
+    [[nodiscard]] Location::Types supportedLocationTypes() const override;
     [[nodiscard]] bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
     [[nodiscard]] bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
     [[nodiscard]] bool queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const override;

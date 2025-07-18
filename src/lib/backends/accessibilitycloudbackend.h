@@ -20,8 +20,9 @@ public:
     explicit AccessibilityCloudBackend();
     ~AccessibilityCloudBackend() override;
 
-    static inline constexpr const char* type() { return "a11y_cloud"; }
-    Capabilities capabilities() const override;
+    static constexpr const char* type() { return "a11y_cloud"; }
+    [[nodiscard]] Capabilities capabilities() const override;
+    [[nodiscard]] Location::Types supportedLocationTypes() const override;
     bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
 
 private:

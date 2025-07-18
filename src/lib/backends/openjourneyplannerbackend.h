@@ -37,17 +37,18 @@ class OpenJourneyPlannerBackend : public AbstractBackend
     Q_PROPERTY(QString uicLocationIdentifierType MEMBER m_uicLocationIdentifierType)
 
 public:
-    static inline constexpr const char* type() { return "openJourneyPlanner"; }
-    AbstractBackend::Capabilities capabilities() const override;
-    bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
-    bool queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const override;
-    bool queryStopover(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const override;
-    bool queryJourney(const JourneyRequest &request, JourneyReply * reply, QNetworkAccessManager *nam) const override;
+    static  constexpr const char* type() { return "openJourneyPlanner"; }
+    [[nodiscard]] AbstractBackend::Capabilities capabilities() const override;
+    [[nodiscard]] Location::Types supportedLocationTypes() const override;
+    [[nodiscard]] bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
+    [[nodiscard]] bool queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const override;
+    [[nodiscard]] bool queryStopover(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const override;
+    [[nodiscard]] bool queryJourney(const JourneyRequest &request, JourneyReply * reply, QNetworkAccessManager *nam) const override;
 
 private:
-    QNetworkRequest networkRequest() const;
-    OpenJourneyPlannerRequestBuilder requestBuilder() const;
-    OpenJourneyPlannerParser parser() const;
+    [[nodiscard]] QNetworkRequest networkRequest() const;
+    [[nodiscard]] OpenJourneyPlannerRequestBuilder requestBuilder() const;
+    [[nodiscard]] OpenJourneyPlannerParser parser() const;
 
     QUrl m_endpoint;
     QString m_authorization;

@@ -358,7 +358,7 @@ void ManagerPrivate::resolveLocation(LocationRequest &&locReq, const AbstractBac
 
     // actually do the location query
     auto locReply = new LocationReply(locReq, q);
-    if (backend->queryLocation(locReq, locReply, nam())) {
+    if ((backend->supportedLocationTypes() & locReq.types()) && backend->queryLocation(locReq, locReply, nam())) {
         locReply->setPendingOps(1);
     } else {
         locReply->setPendingOps(0);
@@ -787,8 +787,8 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
     d->loadNetworks();
 
     QSet<QString> triedBackends;
-    bool foundNonGlobalCoverage = false;
     const auto loc = req.location();
+    Location::Types queriedTypes = {};
 
     // try first to find a country-wide coverage at any level for country-limited name-based searches
     if (!loc.hasCoordinate() && !loc.country().isEmpty() && loc.region().isEmpty()) {
@@ -797,16 +797,20 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
                 if (triedBackends.contains(backend.identifier()) || d->shouldSkipBackend(backend, req)) {
                     continue;
                 }
+                const auto backendTypes = BackendPrivate::impl(backend)->supportedLocationTypes() & req.types();
+                if (backendTypes == 0) {
+                    continue;
+                }
                 const auto coverage = backend.coverageArea(coverageType);
                 if (coverage.isEmpty() || !coverage.hasNationWideCoverage(loc.country()) || !coverage.coversLocation(loc) || !coverage.coversArea(req.viewbox())) {
                     continue;
                 }
 
                 triedBackends.insert(backend.identifier());
-                foundNonGlobalCoverage |= !coverage.isGlobal();
+                queriedTypes |= backendTypes;
                 pendingOps += d->queryLocationOnBackend(req, reply, backend);
             }
-            if (pendingOps && foundNonGlobalCoverage) {
+            if (pendingOps && queriedTypes == req.types()) {
                 break;
             }
         }
@@ -814,11 +818,15 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
 
     // search for highest-quality coverage match otherwise
     for (const auto coverageType : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
-        if (pendingOps && foundNonGlobalCoverage) {
+        if (pendingOps && queriedTypes == req.types()) {
             break;
         }
         for (const auto &backend : d->m_backends) {
             if (triedBackends.contains(backend.identifier()) || d->shouldSkipBackend(backend, req)) {
+                continue;
+            }
+            const auto backendTypes = BackendPrivate::impl(backend)->supportedLocationTypes() & req.types();
+            if (backendTypes == 0) {
                 continue;
             }
             const auto coverage = backend.coverageArea(coverageType);
@@ -827,7 +835,7 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
             }
 
             triedBackends.insert(backend.identifier());
-            foundNonGlobalCoverage |= !coverage.isGlobal();
+            queriedTypes |= backendTypes;
             pendingOps += d->queryLocationOnBackend(req, reply, backend);
         }
     }

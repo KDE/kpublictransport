@@ -13,6 +13,7 @@
 #include "requestcontext_p.h"
 
 #include <KPublicTransport/Attribution>
+#include <KPublicTransport/Location>
 
 #include <QFlags>
 #include <QJsonObject>
@@ -30,7 +31,6 @@ namespace KPublicTransport {
 
 class JourneyReply;
 class JourneyRequest;
-class Location;
 class LocationReply;
 class LocationRequest;
 class StopoverReply;
@@ -148,12 +148,18 @@ public:
      */
     [[nodiscard]] virtual Capabilities capabilities() const;
     /** Checks if this backend has @p capability. */
-    [[nodiscard]] inline bool hasCapability(Capability capability) const { return capabilities() & capability; };
+    [[nodiscard]] bool hasCapability(Capability capability) const { return capabilities() & capability; };
 
     /** Returns the static attribution information for this backend. */
     [[nodiscard]] Attribution attribution() const;
     /** Sets the static attribution information for this backend. */
     void setAttribution(const Attribution &attr);
+
+    /** Returns the location types this backend can query.
+     *  This is used to ensure geocoding queries all relevant backends.
+     *  @since 25.12
+     */
+    [[nodiscard]] virtual Location::Types supportedLocationTypes() const = 0;
 
     /** Type of query.
      *  @see needsLocationQuery
@@ -220,12 +226,12 @@ public:
 
 protected:
     /** Helper function to call non-public Reply API. */
-    template <typename T, typename ...Args> inline static void addResult(T *reply, Args&&... args)
+    template <typename T, typename ...Args> static void addResult(T *reply, Args&&... args)
     {
         reply->addResult(std::forward<Args>(args)...);
     }
 
-    template <typename T> inline void addError(T *reply, Reply::Error error, const QString &errorMsg) const
+    template <typename T> void addError(T *reply, Reply::Error error, const QString &errorMsg) const
     {
         reply->addError(this, error, errorMsg);
     }
@@ -234,24 +240,24 @@ protected:
 
     /** Extract the request context for the current backend from @p request. */
     template <typename ReqT>
-    [[nodiscard]] inline RequestContext requestContext(const ReqT &request) const
+    [[nodiscard]] RequestContext requestContext(const ReqT &request) const
     {
         return request.context(this);
     }
     /** Extract the backend-specific data from the request context for the current backend from @p request. */
     template <typename ReqT>
-    [[nodiscard]] inline QVariant requestContextData(const ReqT &request) const
+    [[nodiscard]] QVariant requestContextData(const ReqT &request) const
     {
         return request.context(this).backendData;
     }
 
     /** Set request context for retrieving the next set of results for a stopover or journey query. */
-    template <typename RepT> inline void setNextRequestContext(RepT *reply, const QVariant &data) const
+    template <typename RepT> void setNextRequestContext(RepT *reply, const QVariant &data) const
     {
         reply->setNextContext(this, data);
     }
     /** Set request context for retrieving the previous set of results for a stopover or journey query. */
-    template <typename RepT> inline void setPreviousRequestContext(RepT *reply, const QVariant &data) const
+    template <typename RepT> void setPreviousRequestContext(RepT *reply, const QVariant &data) const
     {
         reply->setPreviousContext(this, data);
     }

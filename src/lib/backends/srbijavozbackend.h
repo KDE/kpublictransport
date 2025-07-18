@@ -23,14 +23,15 @@ struct SrbStation {
     int id;
 };
 
-class SrbijavozBackend : public KPublicTransport::AbstractBackend
+class SrbijavozBackend : public AbstractBackend
 {
 public:
     SrbijavozBackend();
 
-    static inline constexpr const char* type() { return "srbijavoz"; }
+    static constexpr const char* type() { return "srbijavoz"; }
 
     Capabilities capabilities() const override;
+    [[nodiscard]] Location::Types supportedLocationTypes() const override;
 
     /** Returns whether or not a location query has to be performed for the given
      *  Location before doing departure or journey queries for it.

@@ -41,6 +41,11 @@ AbstractBackend::Capabilities OpenTripPlannerGraphQLBackend::capabilities() cons
         |  (m_apiVersion == QLatin1String("otp2") ? (CanQueryNextJourney | CanQueryPreviousJourney) : NoCapability);
 }
 
+Location::Types OpenTripPlannerGraphQLBackend::supportedLocationTypes() const
+{
+    return Location::Stop | Location::RentedVehicle | Location::RentedVehicleStation;
+}
+
 bool OpenTripPlannerGraphQLBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
     Q_UNUSED(type);
@@ -49,10 +54,6 @@ bool OpenTripPlannerGraphQLBackend::needsLocationQuery(const Location &loc, Abst
 
 bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    if ((req.types() & (Location::Stop | Location::RentedVehicle | Location::RentedVehicleStation)) == 0) {
-        return false;
-    }
-
     auto gqlReq = graphQLRequest();
     if (req.hasCoordinate()) {
         gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("stationByCoordinate.graphql")));

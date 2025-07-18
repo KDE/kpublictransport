@@ -71,6 +71,11 @@ AbstractBackend::Capabilities HafasMgateBackend::capabilities() const
         | CanQueryArrivals | CanQueryPreviousDeparture | CanQueryPreviousJourney | CanQueryNextJourney;
 }
 
+Location::Types HafasMgateBackend::supportedLocationTypes() const
+{
+    return Location::Stop;
+}
+
 bool HafasMgateBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
     Q_UNUSED(type);
@@ -281,10 +286,6 @@ bool HafasMgateBackend::queryStopover(const StopoverRequest &request, StopoverRe
 
 bool HafasMgateBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    if ((req.types() & Location::Stop) == 0) {
-        return false;
-    }
-
     QJsonObject methodObj;
     if (req.hasCoordinate()) {
         QJsonObject coord;

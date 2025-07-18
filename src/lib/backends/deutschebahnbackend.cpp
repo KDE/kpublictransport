@@ -42,6 +42,11 @@ AbstractBackend::Capabilities DeutscheBahnBackend::capabilities() const
     return  Secure | CanQueryArrivals | CanQueryPreviousDeparture | CanQueryPreviousJourney | CanQueryNextJourney;
 }
 
+Location::Types DeutscheBahnBackend::supportedLocationTypes() const
+{
+    return Location::Address | Location::Stop;
+}
+
 bool DeutscheBahnBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
     switch (type) {

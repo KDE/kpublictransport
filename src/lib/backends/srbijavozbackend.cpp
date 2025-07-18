@@ -44,6 +44,11 @@ bool SrbijavozBackend::needsLocationQuery(const Location &loc, QueryType type) c
     return loc.identifier(identifierName()).isEmpty();
 }
 
+Location::Types SrbijavozBackend::supportedLocationTypes() const
+{
+    return Location::Stop;
+}
+
 bool SrbijavozBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     // Ignore requests for which we don't have the needed identifier

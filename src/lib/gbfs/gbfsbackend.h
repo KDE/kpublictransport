@@ -21,9 +21,10 @@ public:
     explicit GBFSBackend();
     ~GBFSBackend() override;
 
-    static inline constexpr const char* type() { return "gbfs"; }
-    Capabilities capabilities() const override;
-    bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
+    static  constexpr const char* type() { return "gbfs"; }
+    [[nodiscard]] Capabilities capabilities() const override;
+    [[nodiscard]] Location::Types supportedLocationTypes() const override;
+    [[nodiscard]] bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
 };

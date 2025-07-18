@@ -31,6 +31,11 @@ AbstractBackend::Capabilities OpenJourneyPlannerBackend::capabilities() const
         (m_endpoint.scheme() == QLatin1String("https") ? AbstractBackend::Secure : AbstractBackend::NoCapability);
 }
 
+Location::Types OpenJourneyPlannerBackend::supportedLocationTypes() const
+{
+    return Location::Stop;
+}
+
 bool OpenJourneyPlannerBackend::needsLocationQuery(const Location &loc, [[maybe_unused]] AbstractBackend::QueryType type) const
 {
     return !loc.hasCoordinate() && loc.identifier(QStringLiteral("uic")).isEmpty(); // ### TODO configure identifier type
@@ -38,10 +43,6 @@ bool OpenJourneyPlannerBackend::needsLocationQuery(const Location &loc, [[maybe_
 
 bool OpenJourneyPlannerBackend::queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    if ((request.types() & Location::Stop) == 0) {
-        return false;
-    }
-
     const auto postData = requestBuilder().buildLocationInformationRequest(request);
     const auto netReq = networkRequest();
     logRequest(request, netReq, postData);

@@ -31,6 +31,11 @@ AbstractBackend::Capabilities LTGLinkBackend::capabilities() const
     return Secure;
 }
 
+Location::Types LTGLinkBackend::supportedLocationTypes() const
+{
+    return Location::Stop;
+}
+
 bool LTGLinkBackend::needsLocationQuery(const Location &loc, QueryType type) const
 {
     Q_UNUSED(type);

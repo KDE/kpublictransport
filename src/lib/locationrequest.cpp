@@ -28,7 +28,7 @@ public:
     QStringList backendIds;
     int maximumDistance = 1000;
     int maximumResults = 10;
-    Location::Types types = Location::Stop | Location::RentedVehicleStation;
+    Location::Types types = Location::Stop | Location::Address;
     QRectF viewbox;
 };
 }
