@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local public transport in South Tyrol.",
+        "Description[ca@valencia]": "Transport públic local al Tirol del Sud.",
         "Description[ca]": "Transport públic local al Tirol del Sud.",
         "Description[es]": "Transporte público local de Tirol del Sur.",
         "Description[he]": "תחבורה ציבורית מקומית בדרום טירול.",
@@ -11,6 +12,7 @@
         "Description[uk]": "Місцевий громадський транспорт у Південному Тиролі.",
         "Description[x-test]": "xxLocal public transport in South Tyrol.xx",
         "Name": "Südtirolmobil (STA)",
+        "Name[ca@valencia]": "Südtirolmobil (STA)",
         "Name[ca]": "Südtirolmobil (STA)",
         "Name[es]": "Südtirolmobil (STA)",
         "Name[ka]": "Südtirolmobil (STA)",
