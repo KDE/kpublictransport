@@ -407,14 +407,22 @@ int main(int argc, char **argv)
     });
 
     QStringList geometryFiles;
-    for (const auto &c : configs) {
+    for (auto &c : configs) {
         if (c.apiConfigs.empty()) {
             qDebug() << "  " << c.config << "is missing upstream";
             continue;
         }
         if (c.apiConfigs.size() > 1) {
             qDebug() << "  " << c.config << "has multiple matches:" << c.apiConfigs;
-            // TODO pick the best protocol and use that one
+            // pick the best protocol and use that one
+            for (const auto &proto : { "query"_L1, "trias"_L1, "efa"_L1, "mgate"_L1 }) {
+                if (c.apiConfigs.size() <= 1) {
+                    break;
+                }
+                c.apiConfigs.erase(std::remove_if(c.apiConfigs.begin(), c.apiConfigs.end(), [proto](const auto &s) { return s.contains(proto); }), c.apiConfigs.end());
+            }
+        }
+        if (c.apiConfigs.size() != 1) {
             continue;
         }
 
