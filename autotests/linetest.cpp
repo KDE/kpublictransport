@@ -10,6 +10,7 @@
 
 #define s(x) QStringLiteral(x)
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 class LineTest : public QObject
@@ -42,6 +43,8 @@ private Q_SLOTS:
         QTest::newRow("special char") << QString() << s("<6>") << QString() << s("<6>");
 
         QTest::newRow("TGV INOUI") << QString() << s("TGV INOUI 8501") << QString() << s("TGV 8501");
+
+        QTest::newRow("ic-name-suffic") << QString() << u"IC 19792"_s << QString() << u"IC 19792 KÉK HULLÁM"_s;
     }
 
     void testLineCompare()
