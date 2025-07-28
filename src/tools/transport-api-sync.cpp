@@ -21,6 +21,8 @@
 
 #include <iostream>
 
+using namespace Qt::Literals;
+
 // excluded provider ids, mainly for simple disambiguation
 static constexpr const char* const excluded_transport_apis[] = {
     "db-hafas-query",
