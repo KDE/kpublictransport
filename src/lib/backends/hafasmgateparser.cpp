@@ -276,7 +276,7 @@ static std::vector<Message> parseRemarks(const QJsonArray &remL)
                     if (code == HAFAS_RT_ENTRY_DISABLED || code == HAFAS_RT_ENTRY_EXIT_DISABLED) {
                         m.pickupType = PickupDropoff::NotAllowed;
                     }
-                    if (code == HAFAS_RT_ENTRY_DISABLED || code == HAFAS_RT_ENTRY_EXIT_DISABLED) {
+                    if (code == HAFAS_RT_EXIT_DISABLED || code == HAFAS_RT_ENTRY_EXIT_DISABLED) {
                         m.dropoffType = PickupDropoff::NotAllowed;
                     }
                 }
