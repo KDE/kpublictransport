@@ -168,6 +168,9 @@ private Q_SLOTS:
         QTest::newRow("de-bvg-realtime")
             << s(SOURCE_DIR "/data/hafas/trip-realtime.in.json")
             << s(SOURCE_DIR "/data/hafas/trip-realtime.out.json");
+        QTest::newRow("at-oebb-dropff-constraints")
+            << s(SOURCE_DIR "/data/hafas/trip-dropoff-constraints.in.json")
+            << s(SOURCE_DIR "/data/hafas/trip-dropoff-constraints.out.json");
     }
 
     void testParseTrips()

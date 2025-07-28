@@ -1,0 +1,257 @@
+{
+    "arrival": {
+        "disruptionEffect": "NormalService",
+        "scheduledArrivalTime": "2025-08-06T09:52:00+02:00",
+        "stopPoint": {
+            "country": "BE",
+            "identifier": {
+                "unit-test": "8800004"
+            },
+            "latitude": 50.835375,
+            "longitude": 4.335695,
+            "name": "Bruxelles Midi",
+            "type": "Stop"
+        }
+    },
+    "departure": {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Bruxelles Midi",
+            "line": {
+                "color": "#221d47",
+                "name": "NJ 40468",
+                "operatorName": "Nahreisezug",
+                "textColor": "#ffffff"
+            }
+        },
+        "scheduledDepartureTime": "2025-08-05T18:13:00+02:00",
+        "stopPoint": {
+            "country": "AT",
+            "identifier": {
+                "unit-test": "8103000"
+            },
+            "latitude": 48.185103,
+            "longitude": 16.377114,
+            "name": "Wien Hbf",
+            "type": "Stop"
+        },
+        "vehicleLayout": {
+            "direction": "UnknownDirection",
+            "features": [
+                {
+                    "availability": "Available",
+                    "disruptionEffect": "NormalService",
+                    "name": "snacks and beverages available from sleeper/couchette attendant",
+                    "type": "Restaurant"
+                },
+                {
+                    "availability": "Conditional",
+                    "disruptionEffect": "NormalService",
+                    "name": "Wheelchair space - For advance notification, call +43 5 1717",
+                    "type": "WheelchairAccessible"
+                },
+                {
+                    "availability": "Available",
+                    "disruptionEffect": "NormalService",
+                    "name": "WC accessible for wheelchair",
+                    "type": "WheelchairAccessibleToilet"
+                }
+            ]
+        }
+    },
+    "identifiers": {
+        "unit-test": "2|#VN#1#ST#1753431739#PI#0#ZI#430149#TA#0#DA#50825#1S#8103000#1T#1813#LS#8800004#LT#10952#PU#81#RT#1#CA#NJ#ZE#40468#ZB#NJ 40468#PC#3#FR#8103000#FT#1813#TO#8800004#TT#10952#"
+    },
+    "intermediateStops": [
+        {
+            "disruptionEffect": "NormalService",
+            "dropoffType": "NotAllowed",
+            "notes": [
+                "Enter only, no exiting allowed"
+            ],
+            "scheduledDepartureTime": "2025-08-05T18:20:00+02:00",
+            "stopPoint": {
+                "country": "AT",
+                "identifier": {
+                    "unit-test": "8100514"
+                },
+                "latitude": 48.174585,
+                "longitude": 16.333733,
+                "name": "Wien Meidling Bahnhof",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "scheduledArrivalTime": "2025-08-05T18:44:00+02:00",
+            "scheduledDepartureTime": "2025-08-05T18:46:00+02:00",
+            "stopPoint": {
+                "country": "AT",
+                "identifier": {
+                    "unit-test": "8100008"
+                },
+                "latitude": 48.208277,
+                "longitude": 15.624681,
+                "name": "St.Pölten Hbf",
+                "region": "AT-3",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "scheduledArrivalTime": "2025-08-05T19:32:00+02:00",
+            "scheduledDepartureTime": "2025-08-05T19:36:00+02:00",
+            "stopPoint": {
+                "country": "AT",
+                "identifier": {
+                    "unit-test": "8100013"
+                },
+                "latitude": 48.290241,
+                "longitude": 14.29186,
+                "name": "Linz/Donau Hbf",
+                "region": "AT-4",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "dropoffType": "NotAllowed",
+            "notes": [
+                "Entering and exiting not allowed"
+            ],
+            "pickupType": "NotAllowed",
+            "stopPoint": {
+                "identifier": {
+                    "unit-test": "8000298"
+                },
+                "latitude": 48.573635,
+                "longitude": 13.450775,
+                "name": "Passau Hbf",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "scheduledArrivalTime": "2025-08-06T04:51:00+02:00",
+            "scheduledDepartureTime": "2025-08-06T04:53:00+02:00",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "8000240"
+                },
+                "latitude": 50.001113,
+                "longitude": 8.258723,
+                "name": "Mainz Hbf",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "scheduledArrivalTime": "2025-08-06T05:45:00+02:00",
+            "scheduledDepartureTime": "2025-08-06T05:47:00+02:00",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "8000206"
+                },
+                "latitude": 50.350928,
+                "longitude": 7.588343,
+                "name": "Koblenz Hbf",
+                "region": "DE-RP",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "scheduledArrivalTime": "2025-08-06T06:58:00+02:00",
+            "scheduledDepartureTime": "2025-08-06T07:00:00+02:00",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "8000207"
+                },
+                "latitude": 50.943029,
+                "longitude": 6.95873,
+                "name": "Köln Hbf",
+                "region": "DE-NW",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "scheduledArrivalTime": "2025-08-06T07:46:00+02:00",
+            "scheduledDepartureTime": "2025-08-06T07:56:00+02:00",
+            "stopPoint": {
+                "identifier": {
+                    "unit-test": "8000001"
+                },
+                "latitude": 50.767803,
+                "longitude": 6.091495,
+                "name": "Aachen Hbf",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "dropoffType": "NotAllowed",
+            "notes": [
+                "Entering and exiting not allowed"
+            ],
+            "pickupType": "NotAllowed",
+            "stopPoint": {
+                "identifier": {
+                    "unit-test": "8000403"
+                },
+                "latitude": 50.731918,
+                "longitude": 6.045408,
+                "name": "Aachen Süd Staatsgrenze",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "notes": [
+                "Exit only, no entry allowed"
+            ],
+            "pickupType": "NotAllowed",
+            "scheduledArrivalTime": "2025-08-06T08:47:00+02:00",
+            "stopPoint": {
+                "country": "BE",
+                "identifier": {
+                    "unit-test": "8800012"
+                },
+                "latitude": 50.624362,
+                "longitude": 5.56648,
+                "name": "Liège-Guillemins",
+                "region": "BE-WAL",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "scheduledArrivalTime": "2025-08-06T09:47:00+02:00",
+            "scheduledDepartureTime": "2025-08-06T09:49:00+02:00",
+            "stopPoint": {
+                "country": "BE",
+                "identifier": {
+                    "unit-test": "8800002"
+                },
+                "latitude": 50.860239,
+                "longitude": 4.361458,
+                "name": "Bruxelles-Nord",
+                "type": "Stop"
+            }
+        }
+    ],
+    "mode": "PublicTransport",
+    "notes": [
+        "Subject to compulsory reservation (Passau Hbf - Aachen Hbf)",
+        "2nd class only seated accommodation",
+        "ÖBB Nightjet (<a href=\"https://www.nightjet.com\">www.nightjet.com</a>)",
+        "IRT Integrated Reservation Ticket",
+        "Global price",
+        "Sleeping-car",
+        "Couchettes",
+        "Construction work - Train will not stop at all stations\n\nNJ 40468: Due to construction work, this train will not stop at Bonn-Beuel and Köln Hbf. As an alternative this train stops at Bonn Hbf and Köln-Ehrenfeld.<br>We apologise for any inconvenience this may cause."
+    ]
+}
