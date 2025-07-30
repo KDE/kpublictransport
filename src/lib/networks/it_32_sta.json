@@ -11,6 +11,7 @@
         "Description[ko]": "오스트리아 남티롤의 대중 교통입니다.",
         "Description[nl]": "Lokaal openbaar vervoer in Zuid-Tirol.",
         "Description[sl]": "Lokalni javni prevoz na južnem Tirolskem.",
+        "Description[sv]": "Lokal kollektivtrafik i Sydtyrolen.",
         "Description[tr]": "Güney Tirol içi ve çevresi yerel toplu taşıma.",
         "Description[uk]": "Місцевий громадський транспорт у Південному Тиролі.",
         "Description[x-test]": "xxLocal public transport in South Tyrol.xx",
@@ -24,6 +25,7 @@
         "Name[ko]": "Südtirolmobil(STA)",
         "Name[nl]": "Südtirolmobil (STA)",
         "Name[sl]": "Südtirolmobil (STA)",
+        "Name[sv]": "Südtirolmobil (STA)",
         "Name[tr]": "Südtirolmobil (STA)",
         "Name[uk]": "Südtirolmobil (STA)",
         "Name[x-test]": "xxSüdtirolmobil (STA)xx"
