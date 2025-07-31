@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-07-06 02:30+0000\n"
-"PO-Revision-Date: 2025-05-27 12:01+0200\n"
+"PO-Revision-Date: 2025-07-30 18:35+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -188,22 +188,22 @@ msgstr "Wagon de transporto auto"
 #: quick/BackendPage.qml:24
 #, kde-format
 msgid "Check for Updates"
-msgstr ""
+msgstr "Verifica per actualisationes"
 
 #: quick/BackendPage.qml:38
 #, kde-format
 msgid "Already up to date."
-msgstr ""
+msgstr "Ja actualisate."
 
 #: quick/BackendPage.qml:41
 #, kde-format
 msgid "Update successful."
-msgstr ""
+msgstr "Actualisation con successo."
 
 #: quick/BackendPage.qml:47
 #, kde-format
 msgid "Update failed."
-msgstr ""
+msgstr "Il falleva actualisation."
 
 #: quick/BackendPage.qml:53
 #, kde-format
@@ -271,9 +271,7 @@ msgid "Currently not available"
 msgstr "Cuirrentemente non disponibile"
 
 #: quick/FeatureDelegate.qml:45
-#, fuzzy, kde-format
-#| msgid "One space"
-#| msgid_plural "%1 spaces"
+#, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "One space"
 msgid_plural "%1 spaces"
@@ -291,9 +289,7 @@ msgid "%1 (not available)"
 msgstr "%1 (Non disponibile)"
 
 #: quick/FeatureIcon.qml:62
-#, fuzzy, kde-format
-#| msgid "%2 (one space)"
-#| msgid_plural "%2 (%1 spaces)"
+#, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
@@ -330,29 +326,25 @@ msgid "Select country"
 msgstr "Selectiona pais"
 
 #: quick/StopoverInformationView.qml:43
-#, fuzzy, kde-format
-#| msgctxt "train coach feature"
-#| msgid "Information point"
+#, kde-format
 msgid "Information"
-msgstr "Puncto de  information"
+msgstr "Information"
 
 #: quick/StopoverInformationView.qml:61
-#, fuzzy, kde-format
-#| msgctxt "vehicle occupancy"
-#| msgid "Low occupancy"
+#, kde-format
 msgid "Occupancy"
-msgstr "Occupation basse"
+msgstr "Occupation "
 
 #: quick/StopoverInformationView.qml:76
 #, kde-format
 msgid "Amenities"
-msgstr ""
+msgstr "Amenitates"
 
 #: quick/StopoverInformationView.qml:91
 #, kde-format
 msgctxt "operator/provider of a rail/bus service"
 msgid "Operator"
-msgstr ""
+msgstr "Operator"
 
 #: quick/StopPickerPage.qml:34
 #, kde-format
@@ -433,9 +425,7 @@ msgid "%1, %2, %3"
 msgstr "%1, %2, %3"
 
 #: quick/StopPickerPage.qml:200
-#, fuzzy, kde-format
-#| msgctxt "locality, country"
-#| msgid "%1, %2"
+#, kde-format
 msgctxt "location name, country"
 msgid "%1, %2"
 msgstr "%1, %2"
