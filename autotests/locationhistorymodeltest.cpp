@@ -72,6 +72,10 @@ private Q_SLOTS:
             QCOMPARE(model.data(idx, LocationHistoryModel::LocationRole).value<Location>().name(), QLatin1String("Randa"));
             QCOMPARE(model.data(idx, LocationHistoryModel::LastUsedRole).value<QDateTime>().date(), QDate::currentDate());
             QCOMPARE(model.data(idx, LocationHistoryModel::UseCountRole).toInt(), 2);
+
+            model.importEntry(R"({"useCount": 3, "lastUse": "2025-08-05T17:00:00Z", "location": {"name": "Randa", "longitude": 7.78315, "latitute": 46.099}})");
+            QCOMPARE(model.rowCount(), 1);
+            QCOMPARE(model.data(idx, LocationHistoryModel::UseCountRole).toInt(), 3);
         }
     }
 };

@@ -60,6 +60,19 @@ public Q_SLOTS:
     /** Delete the entire history content. */
     void clear();
 
+    /** Storage location for the history data.
+     *  This is only exposed for allowing applications to export/backup this data
+     *  (especially when used within a bundling/sandboxing environment).
+     *  @since 25.12
+     */
+    [[nodiscard]] static QString storagePath();
+
+    /** Import a single entry.
+     *  This is only meant to be used for applications re-importing backed up data.
+     *  @since 25.12
+     */
+    void importEntry(const QByteArray &entry);
+
 private:
     struct Data {
         QString id;
@@ -69,6 +82,7 @@ private:
         bool removable = true;
     };
 
+    [[nodiscard]] static std::optional<Data> load(const QByteArray &entry);
     void rescan();
     static void store(const Data &data);
 

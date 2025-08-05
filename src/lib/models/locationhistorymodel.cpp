@@ -15,7 +15,7 @@
 using namespace KPublicTransport;
 using namespace Qt::Literals;
 
-static QString basePath()
+QString LocationHistoryModel::storagePath()
 {
 #ifdef Q_OS_ANDROID
     constexpr auto dataLoc = QStandardPaths::AppDataLocation;
@@ -80,7 +80,7 @@ bool LocationHistoryModel::removeRows(int row, int count, const QModelIndex &par
         return false;
     }
 
-    const auto path = basePath();
+    const auto path = LocationHistoryModel::storagePath();
     beginRemoveRows({}, row, row + count - 1);
     for (int i = row; i < row + count; ++i) {
         QFile::remove(path + m_locations[i].id);
@@ -153,7 +153,7 @@ void LocationHistoryModel::clearPresetLocations()
 void LocationHistoryModel::clear()
 {
     beginResetModel();
-    const auto path = basePath();
+    const auto path = LocationHistoryModel::storagePath();
     for (const auto &data : m_locations) {
         QFile::remove(path + data.id);
     }
@@ -161,24 +161,64 @@ void LocationHistoryModel::clear()
     endResetModel();
 }
 
+void LocationHistoryModel::importEntry(const QByteArray &entry)
+{
+    auto data = load(entry);
+    if (!data) {
+        return;
+    }
+
+    for (auto it = m_locations.begin(); it != m_locations.end(); ++it) {
+        if ((*it).removable && Location::isSame((*it).loc, (*data).loc)) {
+            (*it).loc = Location::merge((*it).loc, (*data).loc);
+            (*it).lastUse = std::max((*it).lastUse, (*data).lastUse);
+            (*it).useCount = std::max((*it).useCount, (*data).useCount);
+            store(*it);
+            const auto idx = index((int)std::distance(m_locations.begin(), it));
+            Q_EMIT dataChanged(idx, idx);
+            return;
+        }
+    }
+
+    (*data).id = QUuid::createUuid().toString(QUuid::WithoutBraces);
+    store(*data);
+
+    beginInsertRows({}, (int)m_locations.size(), (int)m_locations.size());
+    m_locations.push_back(std::move(*data));
+    endInsertRows();
+}
+
+std::optional<LocationHistoryModel::Data> LocationHistoryModel::load(const QByteArray &entry)
+{
+    QJsonParseError error;
+    const auto doc = QJsonDocument::fromJson(entry, &error);
+    if (error.error != QJsonParseError::NoError) {
+        qCWarning(Log) << error.errorString();
+        return {};
+    }
+    const auto obj = doc.object();
+    Data data;
+    data.loc = Location::fromJson(obj.value("location"_L1).toObject());
+    data.lastUse = QDateTime::fromString(obj.value("lastUse"_L1).toString(), Qt::ISODate);
+    data.useCount = obj.value("useCount"_L1).toInt();
+    return data;
+}
+
 void LocationHistoryModel::rescan()
 {
     beginResetModel();
-    for(QDirIterator it(basePath(), QDir::Files); it.hasNext();) {
+    for(QDirIterator it(LocationHistoryModel::storagePath(), QDir::Files); it.hasNext();) {
         QFile f(it.next());
         if (!f.open(QFile::ReadOnly)) {
             qCWarning(Log) << "Unable to read history entry:" << f.fileName() << f.errorString();
             continue;
         }
 
-        const auto doc = QJsonDocument::fromJson(f.readAll());
-        const auto obj = doc.object();
-        Data data;
-        data.id = it.fileInfo().baseName();
-        data.loc = Location::fromJson(obj.value("location"_L1).toObject());
-        data.lastUse = QDateTime::fromString(obj.value("lastUse"_L1).toString(), Qt::ISODate);
-        data.useCount = obj.value("useCount"_L1).toInt();
-        m_locations.push_back(std::move(data));
+        auto data = load(f.readAll());
+        if (data) {
+            (*data).id = it.fileInfo().baseName();
+            m_locations.push_back(std::move(*data));
+        }
     }
     endResetModel();
 }
@@ -189,7 +229,7 @@ void LocationHistoryModel::store(const LocationHistoryModel::Data &data)
         return;
     }
 
-    const auto path = basePath();
+    const auto path = LocationHistoryModel::storagePath();
     QDir().mkpath(path);
 
     QFile f(path + data.id);
