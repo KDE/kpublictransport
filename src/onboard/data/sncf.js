@@ -20,7 +20,7 @@ function parseDetails(response)
     section.mode = 'PublicTransport';
     section.route = {};
     section.route.line = {};
-    section.route.line.name = response.carrier + ' ' + response.number;
+    section.route.line.name = ((response.carrier ?? '') + ' ' + response.number).trim();
     section.route.line.mode = 'LongDistanceTrain';
     section.intermediateStops = [];
     for (s of response.stops) {
