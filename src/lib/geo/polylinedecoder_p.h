@@ -20,20 +20,24 @@ namespace KPublicTransport {
 ///@cond internal
 class PolylineDecoderBase {
 protected:
-    explicit inline PolylineDecoderBase(const char *const begin, const char *const end)
+    explicit PolylineDecoderBase(const char *const begin, const char *const end, int precision)
         : m_it(begin)
         , m_end(end)
+        , m_precision(precision)
     {}
 
-    [[nodiscard]] inline bool canReadMore() const
+    [[nodiscard]] bool canReadMore() const
     {
         return m_it != m_end && *m_it;
     }
+
+    [[nodiscard]] int precision() const { return m_precision; }
 
     KPUBLICTRANSPORT_EXPORT int32_t readNextIntNonDifferential();
 
     const char *m_it = nullptr;
     const char *m_end = nullptr;
+    int m_precision = 5;
 };
 ///@endcond
 
@@ -41,31 +45,30 @@ protected:
  * Decoder for Google's Polyline format.
  * @see https://developers.google.com/maps/documentation/utilities/polylinealgorithm
  */
-template <int Dim = 2, int Precision = 5, bool Differential = true>
+template <int Dim = 2, bool Differential = true>
 class PolylineDecoder : PolylineDecoderBase
 {
 public:
-    explicit inline PolylineDecoder(const char *const begin, const char *const end)
-        : PolylineDecoderBase(begin, end)
+    explicit PolylineDecoder(const char *const begin, const char *const end, int precision = 5)
+        : PolylineDecoderBase(begin, end, precision)
     {
         m_accu.fill(0);
     }
 
     template <std::size_t N>
-    explicit inline PolylineDecoder(const char (&data)[N])
-        : PolylineDecoder(std::begin(data), std::end(data)) {}
+    explicit PolylineDecoder(const char (&data)[N], int precision = 5)
+        : PolylineDecoder(std::begin(data), std::end(data), precision) {}
 
-    explicit inline PolylineDecoder(const char *data)
-        : PolylineDecoder(data, data + std::strlen(data)) {}
+    explicit PolylineDecoder(const char *data, int precision = 5)
+        : PolylineDecoder(data, data + std::strlen(data), precision) {}
 
     ~PolylineDecoder() = default;
 
-    [[nodiscard]] constexpr inline int dimensions() const { return Dim; }
-    [[nodiscard]] constexpr inline int precision() const { return Precision; }
+    [[nodiscard]] constexpr int dimensions() const { return Dim; }
 
     using PolylineDecoderBase::canReadMore;
 
-    [[nodiscard]] inline int32_t readNextInt()
+    [[nodiscard]] int32_t readNextInt()
     {
         auto n = readNextIntNonDifferential();
         if constexpr(Differential) {
@@ -76,12 +79,12 @@ public:
         return n;
     }
 
-    [[nodiscard]] inline double readNextDouble()
+    [[nodiscard]] double readNextDouble()
     {
         return readNextInt() / scaleFactor();
     }
 
-    inline void readPolygon(QPolygonF &polygon, int maxEntries = -1)
+    void readPolygon(QPolygonF &polygon, int maxEntries = -1)
     {
         static_assert(Dim == 2, "Polygons require a two-dimensional polyline");
         if (maxEntries > 0) {
@@ -96,8 +99,7 @@ public:
     }
 
 private:
-    // TODO constexpr in C++26
-    [[nodiscard]] inline double scaleFactor() const { return std::pow(10.0, precision()); };
+    [[nodiscard]] double scaleFactor() const { return std::pow(10.0, precision()); };
 
     int m_nextDim = 0;
     std::array<int32_t, Dim> m_accu;

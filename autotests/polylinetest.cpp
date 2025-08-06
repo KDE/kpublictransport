@@ -53,7 +53,7 @@ private Q_SLOTS:
 
     void testNonDifferential()
     {
-        PolylineDecoder<1, 5, false>  decoder("NL");
+        PolylineDecoder<1, false> decoder("NL");
         QCOMPARE(decoder.canReadMore(), true);
         QCOMPARE(decoder.readNextInt(), -8);
         QCOMPARE(decoder.readNextInt(), -7);
