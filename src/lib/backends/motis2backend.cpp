@@ -79,7 +79,7 @@ bool Motis2Backend::queryLocation(const LocationRequest &req, LocationReply *rep
         query.addQueryItem(u"min"_s, QString::number(req.latitude() - dlat) + ','_L1 + QString::number(req.longitude() - dlon));
         query.addQueryItem(u"max"_s, QString::number(req.latitude() + dlat) + ','_L1 + QString::number(req.longitude() + dlon));
 
-        netReply = makeRequest(req, reply, "map/stops"_L1, query, nam);
+        netReply = makeRequest(req, reply, "v1/map/stops"_L1, query, nam);
         QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
             netReply->deleteLater();
             const auto data = netReply->readAll();
@@ -104,7 +104,7 @@ bool Motis2Backend::queryLocation(const LocationRequest &req, LocationReply *rep
 
     if (req.hasCoordinate()) {
         query.addQueryItem(u"place"_s, QString::number(req.latitude()) + ','_L1 + QString::number(req.longitude()));
-        netReply = makeRequest(req, reply, "reverse-geocode"_L1, query, nam);
+        netReply = makeRequest(req, reply, "v1/reverse-geocode"_L1, query, nam);
     } else {
         query.addQueryItem(u"text"_s, req.name());
         query.addQueryItem(u"language"_s, preferredLanguage());
@@ -115,7 +115,7 @@ bool Motis2Backend::queryLocation(const LocationRequest &req, LocationReply *rep
             query.addQueryItem(u"place"_s, QString::number(req.viewbox().center().y()) + ','_L1 + QString::number(req.viewbox().center().x()));
         }
 
-        netReply = makeRequest(req, reply, "geocode"_L1, query, nam);
+        netReply = makeRequest(req, reply, "v1/geocode"_L1, query, nam);
     }
 
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
@@ -158,7 +158,7 @@ bool Motis2Backend::queryStopover(const StopoverRequest &req, StopoverReply *rep
     }
     query.addQueryItem(u"radius"_s, u"200"_s);
 
-    auto netReply = makeRequest(req, reply, "stoptimes"_L1, query, nam);
+    auto netReply = makeRequest(req, reply, "v1/stoptimes"_L1, query, nam);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply, req]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
@@ -343,7 +343,7 @@ bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
     }
     query.addQueryItem(u"arriveBy"_s, req.dateTimeMode() == JourneyRequest::Arrival ? u"true"_s : u"false"_s);
 
-    auto netReply = makeRequest(req, reply, "plan"_L1, query, nam);
+    auto netReply = makeRequest(req, reply, "v3/plan"_L1, query, nam);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
@@ -373,7 +373,7 @@ bool Motis2Backend::queryTrip(const TripRequest &req, TripReply *reply, QNetwork
 
     QUrlQuery query;
     query.addQueryItem(u"tripId"_s, tripId);
-    auto netReply = makeRequest(req, reply, "trip"_L1, query, nam);
+    auto netReply = makeRequest(req, reply, "v2/trip"_L1, query, nam);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
@@ -399,7 +399,7 @@ template <typename Request>
 QNetworkReply* Motis2Backend::makeRequest(const Request &req, QObject *parent, QLatin1StringView command, const QUrlQuery &query, QNetworkAccessManager *nam) const
 {
     auto url = m_endpoint;
-    url.setPath("/api/v1/"_L1 + command);
+    url.setPath("/api/"_L1 + command);
     url.setQuery(query);
     QNetworkRequest netReq(url);
     applySslConfiguration(netReq);

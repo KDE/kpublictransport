@@ -155,7 +155,7 @@ Stopover Motis2Parser::parsePlace(const QJsonObject &obj, bool hasRealTime) cons
     QPolygonF poly;
     poly.reserve(encodedPolyline.value("length"_L1).toInteger());
     const auto points = encodedPolyline.value("points"_L1).toString().toUtf8();
-    PolylineDecoder<2, 7> decoder(points.constData());
+    PolylineDecoder<2> decoder(points.constData(), encodedPolyline.value("precision"_L1).toInt(7));
     decoder.readPolygon(poly);
     return poly;
 }
