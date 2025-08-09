@@ -60,7 +60,15 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
 
     QUrl url(QStringLiteral("https://bilietas.ltglink.lt/api/v2021/en-gb/journeys/search"));
     QUrlQuery urlQuery;
-    urlQuery.addQueryItem(QStringLiteral("departureDate"), req.dateTime().date().toString(Qt::ISODate));
+
+    auto date = [&]() {
+        if (auto context = requestContextData(req); !context.isNull()) {
+            return context.toDate();
+        } else {
+            return req.dateTime().date();
+        }
+    }();
+    urlQuery.addQueryItem(QStringLiteral("departureDate"), date.toString(Qt::ISODate));
     urlQuery.addQueryItem(QStringLiteral("currencyId"), QStringLiteral("CURRENCY.EUR"));
     urlQuery.addQueryItem(QStringLiteral("Passengers"), QStringLiteral("BONUS_SCHEME_GROUP.ADULT%2C1"));
     urlQuery.addQueryItem(QStringLiteral("OriginStopId"), req.from().identifier(QStringLiteral("ltglinkint")));
@@ -115,11 +123,6 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
                     scheduledArrivalTime.setTimeZone(destinationTimeZone);
 
                     auto note = sectionJson[u"Trip"][u"Name"].toString();
-
-                    // Filter out results that don't match the selected time frame
-                    if (!LocalBackendUtils::isInSelectedTimeframe(actualDepartureTime, actualArrivalTime, req)) {
-                        continue;
-                    }
 
                     auto lineNumber = sectionJson[u"Service"][u"Code"].toString();
                     auto transportationType = sectionJson[u"Line"][u"TransportationType"][u"Id"].toString();
@@ -197,6 +200,9 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
                         attribution.setUrl(QUrl(QStringLiteral("https://ltglink.lt")));
                         addAttributions(reply, {attribution});
                     }
+
+                    setPreviousRequestContext(reply, QVariant::fromValue(date.addDays(-1)));
+                    setNextRequestContext(reply, QVariant::fromValue(date.addDays(1)));
 
                     addResult(reply, this, std::move(*journeys));
                 }

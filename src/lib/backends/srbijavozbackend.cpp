@@ -74,7 +74,16 @@ bool SrbijavozBackend::queryJourney(const JourneyRequest &request, JourneyReply 
     QUrlQuery query;
     query.addQueryItem(u"stanicaod"_s, request.from().identifier(identifierName()));
     query.addQueryItem(u"stanicado"_s, request.to().identifier(identifierName()));
-    query.addQueryItem(u"datum"_s, request.dateTime().date().toString(QStringLiteral("MM-dd-yyyy")));
+
+    auto date = [&]() {
+        if (auto context = requestContextData(request); !context.isNull()) {
+            return context.toDate();
+        } else {
+            return request.dateTime().date();
+        }
+    }();
+    qWarning() << date;
+    query.addQueryItem(u"datum"_s, date.toString(QStringLiteral("MM-dd-yyyy")));
     query.addQueryItem(u"brojputnika"_s, QString::number(1));
     query.addQueryItem(u"razred"_s, QString::number(2));
 
@@ -100,14 +109,10 @@ bool SrbijavozBackend::queryJourney(const JourneyRequest &request, JourneyReply 
                 notes = train[u"napomenaE"].toString().trimmed();
             }
 
-            auto departureTime = parseDateTime(departureTimeString, request.dateTime().date());
-            auto arrivalTime = parseDateTime(arrivalTimeString, request.dateTime().date(), departureTime);
+            auto departureTime = parseDateTime(departureTimeString, date);
+            auto arrivalTime = parseDateTime(arrivalTimeString, date, departureTime);
 
             const auto stops = train[u"etTrasaVoza"].toArray();
-
-            if (!LocalBackendUtils::isInSelectedTimeframe(departureTime, arrivalTime, request)) {
-                continue;
-            }
 
             Line line;
             line.setName(QString::number(trainNumber));
@@ -149,9 +154,13 @@ bool SrbijavozBackend::queryJourney(const JourneyRequest &request, JourneyReply 
                 if (inRoute) {
                     Stopover stop;
 
-                    auto arrivalTime = parseDateTime(stopover[u"vremE_DOLASKA"].toString(), request.dateTime().date(), mostRecentTime);
+                    auto arrivalTime = parseDateTime(stopover[u"vremE_DOLASKA"].toString(),
+                                                     date,
+                                                     mostRecentTime);
                     mostRecentTime = arrivalTime;
-                    auto departureTime = parseDateTime(stopover[u"vremE_POLASKA"].toString(), request.dateTime().date(), mostRecentTime);
+                    auto departureTime = parseDateTime(stopover[u"vremE_POLASKA"].toString(),
+                                                       date,
+                                                       mostRecentTime);
                     mostRecentTime = departureTime;
 
                     stop.setScheduledArrivalTime(arrivalTime);
@@ -174,6 +183,9 @@ bool SrbijavozBackend::queryJourney(const JourneyRequest &request, JourneyReply 
         }
 
         bool isEmpty = journeys.empty();
+
+        setPreviousRequestContext(reply, QVariant::fromValue(date.addDays(-1)));
+        setNextRequestContext(reply, QVariant::fromValue(date.addDays(1)));
 
         addResult(reply, this, std::move(journeys));
 
