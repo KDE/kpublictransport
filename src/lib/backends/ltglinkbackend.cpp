@@ -116,7 +116,7 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
                         continue;
                     }
 
-                    auto lineNumber = sectionJson[u"Line"][u"Number"].toString();
+                    auto lineNumber = sectionJson[u"Service"][u"Code"].toString();
                     auto transportationType = sectionJson[u"Line"][u"TransportationType"][u"Id"].toString();
 
                     Line line;
