@@ -18,8 +18,5 @@ namespace LocalBackendUtils {
 
 QString makeSearchableName(const QString &name);
 
-bool isInSelectedTimeframe(const QDateTime &departure, const QDateTime &arrival, const JourneyRequest &req);
-
 }
-
 }

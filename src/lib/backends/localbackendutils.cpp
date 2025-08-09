@@ -119,19 +119,3 @@ QString KPublicTransport::LocalBackendUtils::makeSearchableName(const QString &n
         .toLower()
         .trimmed();
 }
-
-bool KPublicTransport::LocalBackendUtils::isInSelectedTimeframe(const QDateTime &departure, const QDateTime &arrival, const JourneyRequest &req)
-{
-    // Filter for requested arrival / departure time frame
-    if (req.dateTimeMode() == JourneyRequest::Departure) {
-        if (departure < req.dateTime()) {
-            return false;
-        }
-    } else {
-        if (arrival > req.dateTime()) {
-            return false;
-        }
-    }
-
-    return true;
-}
