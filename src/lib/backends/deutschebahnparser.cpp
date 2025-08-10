@@ -9,30 +9,14 @@
 #include "hafasmgateparser.h"
 #include "datatypes/featureutil_p.h"
 
+#include <KPublicTransport/StopInformation>
+
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 
 using namespace Qt::Literals;
 using namespace KPublicTransport;
-
-std::vector<Location> DeutscheBahnParser::parseLocations(const QByteArray &data, const HafasMgateParser &hafasParser)
-{
-    const auto array = QJsonDocument::fromJson(data).array();
-    std::vector<Location> locs;
-    locs.reserve(array.size());
-    for (const auto &locV : array) {
-        const auto locObj = locV.toObject();
-        Location loc = hafasParser.fromLocationId(locObj.value("id"_L1).toString());
-        loc.setName(locObj.value("name"_L1).toString());
-        loc.setLatitude(locObj.value("lat"_L1).toDouble());
-        loc.setLongitude(locObj.value("lon"_L1).toDouble());
-        // TODO type (ST, ADR, POI)
-        hafasParser.setLocationIdentifier(loc, locObj.value("extId"_L1).toString());
-        locs.push_back(std::move(loc));
-    }
-    return locs;
-}
 
 struct {
     const char *name;
@@ -51,16 +35,54 @@ struct {
     { "ERSATZVERKEHR", Line::Bus },
 };
 
+[[nodiscard]] static Line::Mode parseLineMode(const QJsonValue &product)
+{
+    for (const auto &m :product_to_mode_map) {
+        if (QLatin1StringView(m.name) == product) {
+            return m.mode;
+        }
+    }
+    return Line::Unknown;
+}
+
+std::vector<Location> DeutscheBahnParser::parseLocations(const QByteArray &data, const HafasMgateParser &hafasParser)
+{
+    const auto array = QJsonDocument::fromJson(data).array();
+    std::vector<Location> locs;
+    locs.reserve(array.size());
+    for (const auto &locV : array) {
+        const auto locObj = locV.toObject();
+        Location loc = hafasParser.fromLocationId(locObj.value("id"_L1).toString());
+        loc.setName(locObj.value("name"_L1).toString());
+        loc.setLatitude(locObj.value("lat"_L1).toDouble());
+        loc.setLongitude(locObj.value("lon"_L1).toDouble());
+        // TODO type (ST, ADR, POI)
+        const auto type = locObj.value("type"_L1);
+        if (type == "ST"_L1) {
+            StopInformation info;
+            loc.setType(Location::Stop);
+            const auto prods = locObj.value("products"_L1).toArray();
+            for (const auto &prod : prods) {
+                Line l;
+                l.setMode(parseLineMode(prod));
+                if (l.mode() != Line::Unknown) {
+                    info.addLine(l);
+                }
+            }
+            loc.setData(info);
+        }
+        hafasParser.setLocationIdentifier(loc, locObj.value("extId"_L1).toString());
+        locs.push_back(std::move(loc));
+    }
+    return locs;
+}
+
 [[nodiscard]] static Route parseRoute(const QJsonObject &lineObj)
 {
     Line line;
-    const auto product = lineObj.value("produktGattung"_L1).toString();
-    for (const auto &m :product_to_mode_map) {
-        if (QLatin1StringView(m.name) == product) {
-            line.setMode(m.mode);
-            break;
-        }
-    }
+    const auto product = lineObj.value("produktGattung"_L1);
+    line.setMode(parseLineMode(product));
+
     if (line.mode() == Line::Unknown) {
         qDebug() << "Unkown product category" << product;
     }

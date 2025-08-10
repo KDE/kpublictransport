@@ -11,6 +11,28 @@
         "longitude": 13.369629,
         "name": "Berlin Hbf",
         "region": "DE-BE",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "LongDistanceTrain"
+                },
+                {
+                    "mode": "LocalTrain"
+                },
+                {
+                    "mode": "RapidTransit"
+                },
+                {
+                    "mode": "Metro"
+                },
+                {
+                    "mode": "Tramway"
+                },
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
         "type": "Stop"
     },
     {
@@ -25,6 +47,22 @@
         "longitude": 13.511947,
         "name": "BER Berlin Brandenburg Airport",
         "region": "DE-BB",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "LongDistanceTrain"
+                },
+                {
+                    "mode": "LocalTrain"
+                },
+                {
+                    "mode": "RapidTransit"
+                },
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
         "type": "Stop"
     },
     {
@@ -39,6 +77,28 @@
         "longitude": 13.386988,
         "name": "BERLIN",
         "region": "DE-BE",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "LongDistanceTrain"
+                },
+                {
+                    "mode": "LocalTrain"
+                },
+                {
+                    "mode": "RapidTransit"
+                },
+                {
+                    "mode": "Metro"
+                },
+                {
+                    "mode": "Tramway"
+                },
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
         "type": "Stop"
     },
     {
@@ -53,6 +113,22 @@
         "longitude": 13.4349,
         "name": "Berlin Ostbahnhof",
         "region": "DE-BE",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "LongDistanceTrain"
+                },
+                {
+                    "mode": "LocalTrain"
+                },
+                {
+                    "mode": "RapidTransit"
+                },
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
         "type": "Stop"
     },
     {
@@ -67,6 +143,22 @@
         "longitude": 13.365863,
         "name": "Berlin Südkreuz",
         "region": "DE-BE",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "LongDistanceTrain"
+                },
+                {
+                    "mode": "LocalTrain"
+                },
+                {
+                    "mode": "RapidTransit"
+                },
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
         "type": "Stop"
     },
     {
@@ -81,6 +173,25 @@
         "longitude": 13.200947,
         "name": "Berlin-Spandau",
         "region": "DE-BE",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "LongDistanceTrain"
+                },
+                {
+                    "mode": "LocalTrain"
+                },
+                {
+                    "mode": "RapidTransit"
+                },
+                {
+                    "mode": "Metro"
+                },
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
         "type": "Stop"
     },
     {
@@ -95,6 +206,25 @@
         "longitude": 13.39106,
         "name": "Berlin Gesundbrunnen",
         "region": "DE-BE",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "LongDistanceTrain"
+                },
+                {
+                    "mode": "LocalTrain"
+                },
+                {
+                    "mode": "RapidTransit"
+                },
+                {
+                    "mode": "Metro"
+                },
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
         "type": "Stop"
     },
     {
@@ -109,6 +239,25 @@
         "longitude": 13.332414,
         "name": "Berlin Zoologischer Garten",
         "region": "DE-BE",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "LongDistanceTrain"
+                },
+                {
+                    "mode": "LocalTrain"
+                },
+                {
+                    "mode": "RapidTransit"
+                },
+                {
+                    "mode": "Metro"
+                },
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
         "type": "Stop"
     },
     {
@@ -123,6 +272,25 @@
         "longitude": 13.411088,
         "name": "Berlin Alexanderplatz",
         "region": "DE-BE",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "LocalTrain"
+                },
+                {
+                    "mode": "RapidTransit"
+                },
+                {
+                    "mode": "Metro"
+                },
+                {
+                    "mode": "Tramway"
+                },
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
         "type": "Stop"
     },
     {
@@ -137,6 +305,22 @@
         "longitude": 13.59311,
         "name": "Bernau(b Berlin)",
         "region": "DE-BB",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "LongDistanceTrain"
+                },
+                {
+                    "mode": "LocalTrain"
+                },
+                {
+                    "mode": "RapidTransit"
+                },
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
         "type": "Stop"
     }
 ]
