@@ -138,11 +138,18 @@ public:
 
     /** Serializes one object to JSON. */
     [[nodiscard]] static QJsonObject toJson(const Line &l);
+    /** Serializes a list of object to JSON. */
+    [[nodiscard]] static QJsonArray toJson(const std::vector<Line> &l);
     /** Deserialize an object from JSON.
      *  @note Line meta data isn't serialized, so you might need to call applyLineMetaData() again
      *  after loading a line.
      */
     [[nodiscard]] static Line fromJson(const QJsonObject &obj);
+    /** Deserialize a list of objects from JSON.
+     *  @note Line meta data isn't serialized, so you might need to call applyLineMetaData() again
+     *  after loading a line.
+     */
+    [[nodiscard]] static std::vector<Line> fromJson(const QJsonArray &array);
 };
 
 class RoutePrivate;

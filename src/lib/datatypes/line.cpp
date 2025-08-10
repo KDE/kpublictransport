@@ -242,10 +242,20 @@ QJsonObject Line::toJson(const Line &l)
     return obj;
 }
 
+QJsonArray Line::toJson(const std::vector<Line> &lines)
+{
+    return Json::toJson(lines);
+}
+
 Line Line::fromJson(const QJsonObject &obj)
 {
     auto l = Json::fromJson<Line>(obj);
     return l;
+}
+
+std::vector<Line> Line::fromJson(const QJsonArray &array)
+{
+    return Json::fromJson<Line>(array);
 }
 
 
