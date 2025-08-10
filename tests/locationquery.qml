@@ -75,21 +75,23 @@ Kirigami.ApplicationWindow {
     Component {
         id: locationDelegate
         Kirigami.SwipeListItem {
+            id: delegateRoot
+            required property location location
             actions: [
                 Kirigami.Action {
                     icon.name: "map-globe"
                     text: "View on OSM"
-                    onTriggered: Qt.openUrlExternally("https://www.openstreetmap.org/#map=18/" + location.latitude + "/" + location.longitude)
+                    onTriggered: Qt.openUrlExternally("https://www.openstreetmap.org/#map=18/" + delegateRoot.location.latitude + "/" + delegateRoot.location.longitude)
                 },
                 Kirigami.Action {
                     icon.name: "map-symbolic"
                     text: "Indoor Map"
-                    onTriggered: pageStack.push(indoorMapPage, {coordinate: Qt.point(location.longitude, location.latitude)})
+                    onTriggered: pageStack.push(indoorMapPage, {coordinate: Qt.point(delegateRoot.location.longitude, delegateRoot.location.latitude)})
                 }
             ]
             contentItem: RowLayout {
                 Kirigami.Icon {
-                    source: location.iconName
+                    source: delegateRoot.location.iconName
                     Layout.preferredHeight: Kirigami.Units.iconSizes.medium
                     Layout.preferredWidth: Kirigami.Units.iconSizes.medium
                     Layout.alignment: Qt.AlignCenter
@@ -98,10 +100,10 @@ Kirigami.ApplicationWindow {
                     id: delegateLayout
                     Layout.fillWidth: true
                     QQC2.Label {
-                        text: location.name
+                        text: delegateRoot.location.name
                         color: {
-                            if (location && location.type == Location.Equipment) {
-                                switch (location.equipment.disruptionEffect) {
+                            if (delegateRoot.location && delegateRoot.location.type == Location.Equipment) {
+                                switch (delegateRoot.location.equipment.disruptionEffect) {
                                     case Disruption.NormalService:
                                         return Kirigami.Theme.positiveTextColor;
                                     case Disruption.NoService:
@@ -112,36 +114,47 @@ Kirigami.ApplicationWindow {
                         }
                     }
                     QQC2.Label {
-                        text: location.streetAddress
-                        visible: location.streetAddress.length > 0
+                        text: delegateRoot.location.streetAddress
+                        visible: delegateRoot.location.streetAddress.length > 0
                     }
                     QQC2.Label {
-                        text: "ZIP: " + location.postalCode + " City: " + location.locality
-                        visible: location.postalCode.length > 0 || location.locality.length > 0
+                        text: "ZIP: " + delegateRoot.location.postalCode + " City: " + delegateRoot.location.locality
+                        visible: delegateRoot.location.postalCode.length > 0 || delegateRoot.location.locality.length > 0
                     }
                     QQC2.Label {
-                        text: "Region: " + location.region + " Country: " + location.country
-                        visible: location.region.length > 0 || location.country.length > 0
+                        text: "Region: " + delegateRoot.location.region + " Country: " + delegateRoot.location.country
+                        visible: delegateRoot.location.region.length > 0 || delegateRoot.location.country.length > 0
                     }
                     QQC2.Label {
-                        text: "Lat: " + location.latitude + " Lon: " + location.longitude
+                        text: "Lat: " + delegateRoot.location.latitude + " Lon: " + delegateRoot.location.longitude
                     }
                     QQC2.Label {
-                        text: location.rentalVehicleStation.network.name + " (" + location.rentalVehicleStation.availableVehicles
-                            + "/" + location.rentalVehicleStation.capacity + ")"
-                        visible: location.rentalVehicleStation.isValid
+                        text: delegateRoot.location.rentalVehicleStation.network.name + " (" + delegateRoot.location.rentalVehicleStation.availableVehicles
+                            + "/" + delegateRoot.location.rentalVehicleStation.capacity + ")"
+                        visible: delegateRoot.location.rentalVehicleStation.isValid
                     }
                     QQC2.Label {
-                        text: location.equipment ? location.equipment.notes.join("<br/>") : ''
+                        text: delegateRoot.location.equipment ? delegateRoot.location.equipment.notes.join("<br/>") : ''
                         visible: text != ''
                         font.italic: true
                         textFormat: Text.RichText
                     }
+                    Flow {
+                        Layout.fillWidth: true
+                        spacing: Kirigami.Units.smallSpacing
+                        Repeater {
+                            model: delegateRoot.location.stopInformation.lines
+                            TransportNameControl {
+                                required property line modelData
+                                line: modelData
+                            }
+                        }
+                    }
                     QQC2.Label {
                         text: {
                             let s = "Identifiers:";
-                            for (const type of location.identifierTypes)
-                                s += " " + type + ":" + location.identifier(type);
+                            for (const type of delegateRoot.location.identifierTypes)
+                                s += " " + type + ":" + delegateRoot.location.identifier(type);
                             return s;
                         }
                     }
@@ -312,7 +325,8 @@ Kirigami.ApplicationWindow {
                                 | (includeRentals.checked ? (Location.RentedVehicleStation | Location.RentedVehicle) : Location.Place)
                                 | (includeEquipment.checked ? Location.Equipment : Location.Place)
                                 | (includeAddresses.checked ? Location.Address: Location.Place),
-                                viewbox: biasBox.checked ? Qt.rect(biasX1.text, biasY1.text, biasX2.text - biasX1.text, biasY2.text - biasY1.text) : null
+                                viewbox: biasBox.checked ? Qt.rect(biasX1.text, biasY1.text, biasX2.text - biasX1.text, biasY2.text - biasY1.text) : null,
+                                downloadAssets: true
                             }
                         }
                     }

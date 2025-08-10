@@ -24,6 +24,7 @@ Kirigami.ApplicationWindow {
         initialCountry: 'CH'
         publicTransportManager: ptMgr
         historySortRoleName: "locationName"
+        downloadAssets: true
 
         onLocationChanged: () => { console.log(stopPicker.location); }
     }
