@@ -14,6 +14,7 @@
 #include "mergeutil_p.h"
 #include "rentalvehicle.h"
 #include "rentalvehicleutil_p.h"
+#include "stopinformation.h"
 #include "ifopt/ifoptutil.h"
 
 #include <KTimeZone>
@@ -173,6 +174,11 @@ bool Location::hasIdentifier(QAnyStringView identifierType) const
 QStringList Location::identifierTypes() const
 {
     return d->ids.identifierTypes();
+}
+
+StopInformation Location::stopInformation() const
+{
+    return d->data.value<StopInformation>();
 }
 
 RentalVehicleStation Location::rentalVehicleStation() const
@@ -449,8 +455,10 @@ Location Location::merge(const Location &lhs, const Location &rhs)
     switch (l.type()) {
         case Place:
         case CarpoolPickupDropoff:
-        case Stop:
         case Address:
+            break;
+        case Stop:
+            l.setData(StopInformation::merge(lhs.stopInformation(), rhs.stopInformation()));
             break;
         case RentedVehicleStation:
             l.setData(RentalVehicleUtil::merge(lhs.rentalVehicleStation(), rhs.rentalVehicleStation()));
@@ -506,8 +514,12 @@ QJsonObject Location::toJson(const Location &loc)
             obj.remove("type"_L1);
             [[fallthrough]];
         case Address:
-        case Stop:
         case CarpoolPickupDropoff:
+            break;
+        case Stop:
+            if (const auto infoObj = StopInformation::toJson(loc.stopInformation()); !infoObj.isEmpty()) {
+                obj.insert("stopInformation"_L1, infoObj);
+            }
             break;
         case RentedVehicleStation:
             obj.insert("rentalVehicleStation"_L1, RentalVehicleStation::toJson(loc.rentalVehicleStation()));
@@ -561,8 +573,10 @@ Location Location::fromJson(const QJsonObject &obj)
     switch (loc.type()) {
         case Place:
         case Address:
-        case Stop:
         case CarpoolPickupDropoff:
+            break;
+        case Stop:
+            loc.setData(StopInformation::fromJson(obj.value("stopInformation"_L1).toObject()));
             break;
         case RentedVehicleStation:
             loc.setData(RentalVehicleStation::fromJson(obj.value("rentalVehicleStation"_L1).toObject()));

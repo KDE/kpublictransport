@@ -21,6 +21,7 @@ class LocationPrivate;
 class Equipment;
 class RentalVehicle;
 class RentalVehicleStation;
+class StopInformation;
 
 /** A location.
  *  This can be a train station, a bus stop, a rental vehicle dock, a free-floating vehicle position,
@@ -80,6 +81,8 @@ public:
      */
     KPUBLICTRANSPORT_PROPERTY(QVariant, data, setData)
 
+    /** Stop information, if applicable for this location. */
+    Q_PROPERTY(KPublicTransport::StopInformation stopInformation READ stopInformation STORED false)
     /** Rental vehicle dock information, if applicable for this location. */
     Q_PROPERTY(KPublicTransport::RentalVehicleStation rentalVehicleStation READ rentalVehicleStation STORED false)
     /** Rental vehicle information, if applicable for this location. */
@@ -109,8 +112,8 @@ public:
 
     /** Location identifiers. */
     [[nodiscard]] QString identifier(QAnyStringView identifierType) const;
-    Q_INVOKABLE [[nodiscard]] inline QString identifier(const QString &identifierType) const { return identifier(QAnyStringView(identifierType)); }
-    [[nodiscard]] inline QString identifier(QLatin1StringView identifierType) const { return identifier(QAnyStringView(identifierType)); }
+    Q_INVOKABLE [[nodiscard]] QString identifier(const QString &identifierType) const { return identifier(QAnyStringView(identifierType)); }
+    [[nodiscard]] QString identifier(QLatin1StringView identifierType) const { return identifier(QAnyStringView(identifierType)); }
     void setIdentifier(const QString &identifierType, const QString &id);
     [[nodiscard]] bool hasIdentifier(QAnyStringView identifierType) const;
     [[nodiscard]] QStringList identifierTypes() const;
@@ -132,6 +135,7 @@ public:
      */
     [[nodiscard]] static double distance(const Location &lhs, const Location &rhs);
 
+    [[nodiscard]] StopInformation stopInformation() const;
     [[nodiscard]] RentalVehicleStation rentalVehicleStation() const;
     [[nodiscard]] RentalVehicle rentalVehicle() const;
     [[nodiscard]] KPublicTransport::Equipment equipment() const;

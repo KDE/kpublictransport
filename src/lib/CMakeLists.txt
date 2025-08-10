@@ -94,6 +94,7 @@ target_sources(KPublicTransport PRIVATE
     datatypes/platformutils.cpp
     datatypes/rentalvehicle.cpp
     datatypes/rentalvehicleutil.cpp
+    datatypes/stopinformation.cpp
     datatypes/stopover.cpp
     datatypes/stopoverutil.cpp
     datatypes/timeutil.cpp
@@ -227,6 +228,7 @@ ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
         RentalVehicle
         Path
         Platform
+        StopInformation
         Stopover
         Vehicle
     PREFIX KPublicTransport

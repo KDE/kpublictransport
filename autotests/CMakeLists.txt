@@ -36,6 +36,7 @@ ecm_add_test(tripreplytest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(updatetest.cpp mocknetworkaccessmanager.cpp TEST_NAME updatetest LINK_LIBRARIES Qt::Test Qt::Network KPublicTransport)
 ecm_add_test(coveragecountrymodeltest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(countryboundingboxtest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
+ecm_add_test(stopinformationtest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 
 ecm_add_test(navitiaparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(hafasparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport Qt::Network)

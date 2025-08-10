@@ -31,6 +31,7 @@
 #include <KPublicTransport/Platform>
 #include <KPublicTransport/RentalVehicle>
 #include <KPublicTransport/Reply>
+#include <KPublicTransport/StopInformation>
 #include <KPublicTransport/StopoverQueryModel>
 #include <KPublicTransport/StopoverRequest>
 #include <KPublicTransport/TripRequest>
@@ -291,6 +292,12 @@ struct RouteForeign {
     QML_FOREIGN(KPublicTransport::Route)
     QML_VALUE_TYPE(route)
     QML_STRUCTURED_VALUE
+};
+
+struct StopInformationForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::StopInformation)
+    QML_VALUE_TYPE(stopInformation)
 };
 
 struct StopoverForeign {
