@@ -1,0 +1,174 @@
+[
+    {
+        "country": "DE",
+        "identifier": {
+            "ifopt": "de:11000:900058101",
+            "unit-test": "900058101"
+        },
+        "latitude": 52.475501,
+        "longitude": 13.365548,
+        "name": "S Südkreuz Bhf (Berlin)",
+        "region": "DE-BE",
+        "stopInformation": {
+            "lines": [
+                {
+                    "color": "#7d8185",
+                    "mode": "LongDistanceTrain",
+                    "name": "",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#e20019",
+                    "mode": "LocalTrain",
+                    "name": "FEX",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#e20019",
+                    "mode": "LocalTrain",
+                    "name": "RB10",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#e20019",
+                    "mode": "LocalTrain",
+                    "name": "RB14",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#e20019",
+                    "mode": "LocalTrain",
+                    "name": "RE1",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#e20019",
+                    "mode": "LocalTrain",
+                    "name": "RE2",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#e20019",
+                    "mode": "LocalTrain",
+                    "name": "RE3",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#e20019",
+                    "mode": "LocalTrain",
+                    "name": "RE4",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#e20019",
+                    "mode": "LocalTrain",
+                    "name": "RE5",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#e20019",
+                    "mode": "LocalTrain",
+                    "name": "RE8",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#37874a",
+                    "mode": "RapidTransit",
+                    "name": "S2",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#37874a",
+                    "mode": "RapidTransit",
+                    "name": "S25",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#37874a",
+                    "mode": "RapidTransit",
+                    "name": "S26",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#37874a",
+                    "mode": "RapidTransit",
+                    "name": "S41",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#37874a",
+                    "mode": "RapidTransit",
+                    "name": "S42",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#37874a",
+                    "mode": "RapidTransit",
+                    "name": "S45",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#37874a",
+                    "mode": "RapidTransit",
+                    "name": "S46",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#37874a",
+                    "mode": "RapidTransit",
+                    "name": "S47",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#993399",
+                    "mode": "Bus",
+                    "name": "106",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#993399",
+                    "mode": "Bus",
+                    "name": "184",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#993399",
+                    "mode": "Bus",
+                    "name": "204",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#993399",
+                    "mode": "Bus",
+                    "name": "248",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#993399",
+                    "mode": "Bus",
+                    "name": "M46",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#993399",
+                    "mode": "Bus",
+                    "name": "N42",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#993399",
+                    "mode": "Bus",
+                    "name": "S41",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#993399",
+                    "mode": "Bus",
+                    "name": "S42",
+                    "textColor": "#ffffff"
+                }
+            ]
+        },
+        "type": "Stop"
+    }
+]

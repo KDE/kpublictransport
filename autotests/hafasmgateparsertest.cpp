@@ -20,6 +20,7 @@
 
 #define s(x) QStringLiteral(x)
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 class HafasMgateParserTest : public QObject
@@ -97,6 +98,39 @@ private Q_SLOTS:
         QFETCH(QJsonValue, tzOffset);
         QFETCH(QDateTime, dt);
         QCOMPARE(HafasMgateParser::parseDateTime(date, QJsonValue(time), tzOffset), dt);
+    }
+
+    void testParseLocation_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("refFileName");
+
+        QTest::newRow("de-bvg-locmatch")
+            << QStringLiteral(SOURCE_DIR "/data/hafas/de-bvg-locmatch.in.json")
+            << QStringLiteral(SOURCE_DIR "/data/hafas/de-bvg-locmatch.out.json");
+    }
+
+    void testParseLocation()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, refFileName);
+
+        std::vector<HafasLineModeMapEntry> modeMap = {
+            {1, Line::Mode::RapidTransit},
+            {8, Line::Mode::Bus},
+            {32, Line::Mode::LongDistanceTrain},
+            {64, Line::Mode::LocalTrain},
+        };
+        HafasMgateParser p;
+        p.setLineModeMap(modeMap);
+        p.setLocationIdentifierTypes(u"unit-test"_s);
+        const auto res = p.parseLocations(Test::readFile(inFileName));
+        const auto jsonRes = Location::toJson(res);
+
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
+
+        QVERIFY(!jsonRes.empty());
+        QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
     }
 
     void testParseDepartures_data()

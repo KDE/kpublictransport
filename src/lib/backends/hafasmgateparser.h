@@ -78,7 +78,7 @@ private:
     Q_DISABLE_COPY(HafasMgateParser)
     std::vector<Stopover> parseStationBoardResponse(const QJsonObject &obj) const;
     std::vector<Route> parseProducts(const QJsonArray &prodL, const std::vector<Ico> &icos, const std::vector<QString> &ops) const;
-    std::vector<Location> parseLocations(const QJsonArray &locL) const;
+    std::vector<Location> parseLocations(const QJsonArray &locL, const std::vector<Route> &products = {}) const;
     std::vector<Journey> parseTripSearch(const QJsonObject &obj);
     JourneySection parseJourneyDetails(const QJsonObject &obj) const;
 

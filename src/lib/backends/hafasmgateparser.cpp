@@ -20,6 +20,7 @@
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Platform>
 #include <KPublicTransport/RentalVehicle>
+#include <KPublicTransport/StopInformation>
 #include <KPublicTransport/Stopover>
 #include <KPublicTransport/Vehicle>
 
@@ -388,7 +389,7 @@ static std::vector<LoadInfo> parseLoadInformation(const QJsonArray &tcocL)
     return loadInfos;
 }
 
-std::vector<Location> HafasMgateParser::parseLocations(const QJsonArray &locL) const
+std::vector<Location> HafasMgateParser::parseLocations(const QJsonArray &locL, const std::vector<Route> &products) const
 {
     std::vector<Location> locs;
     locs.reserve(locL.size());
@@ -419,6 +420,33 @@ std::vector<Location> HafasMgateParser::parseLocations(const QJsonArray &locL) c
             if (gid.startsWith(QStringLiteral("U×00")) && UicStationCode::isValid(QStringView(gid).mid(4))) {
                 loc.setIdentifier(UicStationCode::identifierType(), gid.mid(4));
             }
+        }
+
+        auto pCls = locObj.value("pCls"_L1).toInt();
+        if (pCls > 0 && !products.empty()) {
+            StopInformation info;
+            for (int i = 0; i < 32 && pCls; ++i) {
+                if (pCls & (1 >> i)) {
+                    Line l;
+                    l.setMode(parseLineMode(1 >> i));
+                    if (l.mode() != Line::Mode::Unknown) {
+                        info.addLine(l);
+                    }
+                    pCls -= (1 >> i);
+                }
+            }
+
+            const auto pRefL = locObj.value("pRefL"_L1).toArray();
+            for (const auto pRefV : pRefL) {
+                const auto pIdx = pRefV.toInt(-1);
+                if (pIdx < 0 || pIdx >= (int)products.size()) {
+                    continue;
+                }
+                info.addLine(products[pIdx].line());
+            }
+
+            loc.setType(Location::Stop);
+            loc.setData(info);
         }
 
         locs.push_back(loc);
@@ -612,18 +640,23 @@ std::vector<Location> HafasMgateParser::parseLocations(const QByteArray &data) c
         return {};
     }
 
-    const auto svcResL = topObj.value(QLatin1String("svcResL")).toArray();
+    const auto svcResL = topObj.value("svcResL"_L1).toArray();
     for (const auto &v : svcResL) {
         const auto obj = v.toObject();
-        const auto meth = obj.value(QLatin1String("meth")).toString();
-        if (meth == QLatin1String("LocMatch") || meth == QLatin1String("LocGeoPos")) {
+        if (const auto meth = obj.value("meth"_L1); meth == "LocMatch"_L1 || meth == "LocGeoPos"_L1) {
             if (parseError(obj)) {
-                const auto resObj = obj.value(QLatin1String("res")).toObject();
-                if (resObj.contains(QLatin1String("locL"))) {
-                    return parseLocations(resObj.value(QLatin1String("locL")).toArray());
+                const auto resObj = obj.value("res"_L1).toObject();
+
+                const auto commonObj = resObj.value("common"_L1).toObject();
+                const auto icos = parseIcos(commonObj.value("icoL"_L1).toArray());
+                const auto ops = parseOperators(commonObj.value("opL"_L1).toArray());
+                const auto products = parseProducts(commonObj.value("prodL"_L1).toArray(), icos, ops);
+
+                if (resObj.contains("locL"_L1)) {
+                    return parseLocations(resObj.value("locL"_L1).toArray(), products);
                 }
-                if (resObj.contains(QLatin1String("match"))) {
-                    return parseLocations(resObj.value(QLatin1String("match")).toObject().value(QLatin1String("locL")).toArray());
+                if (resObj.contains("match"_L1)) {
+                    return parseLocations(resObj.value("match"_L1).toObject().value("locL"_L1).toArray(), products);
                 }
                 qCDebug(Log).noquote() << "Failed to parse location query response:" << QJsonDocument(obj).toJson();
                 return {};
