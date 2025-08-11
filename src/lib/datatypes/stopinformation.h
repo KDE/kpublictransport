@@ -15,6 +15,7 @@ class QJsonObject;
 namespace KPublicTransport {
 
 class Line;
+class Location;
 class StopInformationPrivate;
 
 /** Transit stop specific additional information for a location.
@@ -37,6 +38,11 @@ public:
     void addLine(const KPublicTransport::Line &line);
     /** Sets lines servied at this stop. */
     void setLines(const std::vector<Line> &lines);
+
+    /** Augment line meta data.
+     *  @param download when set to @c true trigger download of missing assets.
+     */
+    void applyMetaData(const Location &loc, bool download);
 
     /** Merge two stop information instances.
      *  This assumes isSame(lhs, rhs) and tries to preserve the most detailed information.

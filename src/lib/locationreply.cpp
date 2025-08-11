@@ -13,6 +13,7 @@
 #include "backends/cache.h"
 
 #include <KPublicTransport/Location>
+#include <KPublicTransport/StopInformation>
 
 #include <QDebug>
 
@@ -22,6 +23,10 @@ namespace KPublicTransport {
 class LocationReplyPrivate: public ReplyPrivate {
 public:
     void finalizeResult() override;
+    [[nodiscard]] bool needToWaitForAssets() const override
+    {
+        return request.downloadAssets();
+    }
 
     LocationRequest request;
     std::vector<Location> locations;
@@ -92,6 +97,16 @@ void LocationReply::addResult(std::vector<Location> &&res)
             continue;
         }
         ++it;
+    }
+
+    // augment line information
+    for (auto &loc : res) {
+        if (loc.type() != Location::Stop) {
+            continue;
+        }
+        auto info = loc.stopInformation();
+        info.applyMetaData(loc, request().downloadAssets());
+        loc.setData(info);
     }
 
     if (!res.empty()) {

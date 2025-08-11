@@ -30,6 +30,7 @@ public:
     int maximumResults = 10;
     Location::Types types = Location::Stop | Location::Address;
     QRectF viewbox;
+    bool downloadAssets = false;
 };
 }
 
@@ -37,6 +38,7 @@ KPUBLICTRANSPORT_MAKE_GADGET(LocationRequest)
 KPUBLICTRANSPORT_MAKE_PROPERTY(LocationRequest, int, maximumDistance, setMaximumDistance)
 KPUBLICTRANSPORT_MAKE_PROPERTY(LocationRequest, int, maximumResults, setMaximumResults)
 KPUBLICTRANSPORT_MAKE_PROPERTY(LocationRequest, Location::Types, types, setTypes)
+KPUBLICTRANSPORT_MAKE_PROPERTY(LocationRequest, bool, downloadAssets, setDownloadAssets)
 
 LocationRequest::LocationRequest(const Location &locaction)
     : d(new LocationRequestPrivate)

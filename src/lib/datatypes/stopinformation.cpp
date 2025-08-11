@@ -89,6 +89,13 @@ void StopInformation::addLine(const KPublicTransport::Line &line)
     });
 }
 
+void StopInformation::applyMetaData(const Location &loc, bool download)
+{
+    for (auto &line : d->lines) {
+        line.applyMetaData(loc, download);
+    }
+}
+
 StopInformation StopInformation::merge(const StopInformation &lhs, const StopInformation &rhs)
 {
     auto res = lhs;

@@ -60,6 +60,12 @@ class KPUBLICTRANSPORT_EXPORT LocationRequest
      */
     KPUBLICTRANSPORT_PROPERTY(QRectF, viewbox, setViewbox)
 
+    /** Enable downloading of graphic assets such as line logos for the data requested here.
+     *  Default: @c false
+     *  @since 25.12
+     */
+    KPUBLICTRANSPORT_PROPERTY(bool, downloadAssets, setDownloadAssets)
+
 public:
     /** Create a LocationRequest from @p locaction.
      *  Whatever fields set in @p location will be used for the search request.
