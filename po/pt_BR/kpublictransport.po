@@ -1,0 +1,443 @@
+# Copyright (C) 2025 This file is copyright:
+# This file is distributed under the same license as the kpublictransport package.
+#
+# SPDX-FileCopyrightText: 2025 Marcus Gama <marcus.gama@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: kpublictransport\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2025-07-06 02:30+0000\n"
+"PO-Revision-Date: 2025-08-11 12:31-0300\n"
+"Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 25.04.3\n"
+
+#: lib/datatypes/classutil.cpp:29
+#, kde-format
+msgctxt "train seating class"
+msgid "First class"
+msgstr "Primeira classe"
+
+#: lib/datatypes/classutil.cpp:32
+#, kde-format
+msgctxt "train seating class"
+msgid "Second class"
+msgstr "Segunda classe"
+
+#: lib/datatypes/classutil.cpp:35
+#, kde-format
+msgctxt "train seating class"
+msgid "First/second class"
+msgstr "Primeira/segunda classe"
+
+#: lib/datatypes/feature.cpp:52
+#, kde-format
+msgctxt "train coach feature"
+msgid "Air conditioning"
+msgstr "Ar condicionado"
+
+#: lib/datatypes/feature.cpp:54
+#, kde-format
+msgctxt "train coach feature"
+msgid "Bistro or restaurant"
+msgstr "Bistrô ou restaurante"
+
+#: lib/datatypes/feature.cpp:56
+#, kde-format
+msgctxt "train coach feature"
+msgid "Toddler area"
+msgstr "Área de carrinhos"
+
+#: lib/datatypes/feature.cpp:58
+#, kde-format
+msgctxt "train coach feature"
+msgid "Family area"
+msgstr "Área para família"
+
+#: lib/datatypes/feature.cpp:60
+#, kde-format
+msgctxt "train coach feature"
+msgid "Wheelchair accessible"
+msgstr "Acessível para cadeirantes"
+
+#: lib/datatypes/feature.cpp:62
+#, kde-format
+msgctxt "train coach feature"
+msgid "Quiet area"
+msgstr "Área silenciosa"
+
+#: lib/datatypes/feature.cpp:64
+#, kde-format
+msgctxt "train coach feature"
+msgid "Business area"
+msgstr "Área para negócios"
+
+#: lib/datatypes/feature.cpp:66
+#, kde-format
+msgctxt "train coach feature"
+msgid "Bike storage"
+msgstr "Armazenamento de bicicletas"
+
+#: lib/datatypes/feature.cpp:68
+#, kde-format
+msgctxt "train coach feature"
+msgid "Toilet"
+msgstr "Banheiro"
+
+#: lib/datatypes/feature.cpp:70
+#, kde-format
+msgctxt "train coach feature"
+msgid "Wheelchair accessible toilet"
+msgstr "Banheiro acessível para cadeirantes"
+
+#: lib/datatypes/feature.cpp:72
+#, kde-format
+msgctxt "train coach feature"
+msgid "Information point"
+msgstr "Ponto de informações"
+
+#: lib/datatypes/feature.cpp:74
+#, kde-format
+msgctxt "train coach feature"
+msgid "Wi-Fi"
+msgstr "Wi-Fi"
+
+#: lib/datatypes/feature.cpp:76
+#, kde-format
+msgctxt "train coach feature"
+msgid "Power sockets"
+msgstr "Tomadas"
+
+#: lib/datatypes/individualtransport.cpp:73
+#, kde-format
+msgctxt "mode of individual transport"
+msgid "Bike"
+msgstr "Bicicleta"
+
+#: lib/datatypes/individualtransport.cpp:75
+#, kde-format
+msgctxt "mode of individual transport"
+msgid "Car"
+msgstr "Carro"
+
+#: lib/datatypes/individualtransport.cpp:77 lib/datatypes/journey.cpp:582
+#, kde-format
+msgctxt "mode of individual transport"
+msgid "Walk"
+msgstr "À pé"
+
+#: lib/datatypes/journey.cpp:584
+#, kde-format
+msgid "Wait"
+msgstr "Espera"
+
+#: lib/datatypes/rentalvehicle.cpp:271
+#, kde-format
+msgctxt "rental vehicle type"
+msgid "Rented bike"
+msgstr "Bicicleta alugada"
+
+#: lib/datatypes/rentalvehicle.cpp:273
+#, kde-format
+msgctxt "rental vehicle type"
+msgid "Rented moped"
+msgstr "Ciclomotor alugado"
+
+#: lib/datatypes/rentalvehicle.cpp:275
+#, kde-format
+msgctxt "rental vehicle type"
+msgid "Rented kick scooter"
+msgstr "Patinete alugado"
+
+#: lib/datatypes/rentalvehicle.cpp:277
+#, kde-format
+msgctxt "rental vehicle type"
+msgid "Rented car"
+msgstr "Carro alugado"
+
+#: lib/datatypes/vehicle.cpp:77
+#, kde-format
+msgctxt "train coach type"
+msgid "Sleeping car"
+msgstr "Vagão dormitório"
+
+#: lib/datatypes/vehicle.cpp:79
+#, kde-format
+msgctxt "train coach type"
+msgid "Couchette car"
+msgstr "Vagão couchette"
+
+#: lib/datatypes/vehicle.cpp:81
+#, kde-format
+msgctxt "train coach type"
+msgid "Restaurant car"
+msgstr "Vagão restaurante"
+
+#: lib/datatypes/vehicle.cpp:83
+#, kde-format
+msgctxt "train coach type"
+msgid "Car transport car"
+msgstr "Vagão de transporte de carros"
+
+#: quick/BackendPage.qml:24
+#, kde-format
+msgid "Check for Updates"
+msgstr "Procurar atualizações"
+
+#: quick/BackendPage.qml:38
+#, kde-format
+msgid "Already up to date."
+msgstr "Já atualizado."
+
+#: quick/BackendPage.qml:41
+#, kde-format
+msgid "Update successful."
+msgstr "Atualização bem sucedida."
+
+#: quick/BackendPage.qml:47
+#, kde-format
+msgid "Update failed."
+msgstr "Atualização falhou."
+
+#: quick/BackendPage.qml:53
+#, kde-format
+msgid "Public Transport Information Sources"
+msgstr "Fontes de informação de transporte público"
+
+#: quick/BackendPage.qml:130 quick/BackendPage.qml:142
+#, kde-format
+msgid "Global"
+msgstr "Global"
+
+#: quick/BackendPage.qml:132
+#, kde-format
+msgid "🇪🇺 European Union"
+msgstr "🇪🇺 União Europeia"
+
+#: quick/BackendPage.qml:135
+#, kde-format
+msgctxt "emoji flag, country name"
+msgid "%1 %2"
+msgstr "%1 %2"
+
+#: quick/BackendPage.qml:144
+#, kde-format
+msgid "European Union"
+msgstr "União Europeia"
+
+#: quick/ExpectedTimeLabel.qml:36
+#, kde-format
+msgctxt "a train/bus journey canceled by its operator"
+msgid "Canceled"
+msgstr "Cancelado"
+
+#: quick/ExpectedTimeLabel.qml:38
+#, kde-format
+msgctxt "duration of the delay"
+msgid "Delayed %1"
+msgstr "Atrasado %1"
+
+#: quick/ExpectedTimeLabel.qml:40
+#, kde-format
+msgctxt "earlier arrival/departure"
+msgid "%1 earlier"
+msgstr "%1 mais cedo"
+
+#: quick/ExpectedTimeLabel.qml:42
+#, kde-format
+msgctxt "@info"
+msgid "On time"
+msgstr "Na hora"
+
+#: quick/FeatureDelegate.qml:39
+#, kde-format
+msgid "Availability unknown"
+msgstr "Disponibilidade desconhecida"
+
+#: quick/FeatureDelegate.qml:41
+#, kde-format
+msgid "Not available"
+msgstr "Não disponível"
+
+#: quick/FeatureDelegate.qml:43
+#, kde-format
+msgid "Currently not available"
+msgstr "Atualmente não disponível"
+
+#: quick/FeatureDelegate.qml:45
+#, kde-format
+msgctxt "bike/wheelchair spaces on a train/bus"
+msgid "One space"
+msgid_plural "%1 spaces"
+msgstr[0] "Um espaço"
+msgstr[1] "%1 espaços"
+
+#: quick/FeatureIcon.qml:58
+#, kde-format
+msgid "%1 (availability unknown)"
+msgstr "%1 (disponibilidade desconhecida)"
+
+#: quick/FeatureIcon.qml:60
+#, kde-format
+msgid "%1 (not available)"
+msgstr "%1 (não disponível)"
+
+#: quick/FeatureIcon.qml:62
+#, kde-format
+msgctxt "bike/wheelchair spaces on a train/bus"
+msgid "%2 (one space)"
+msgid_plural "%2 (%1 spaces)"
+msgstr[0] "%2 (um espaço)"
+msgstr[1] "%2 (%1 espaços)"
+
+#: quick/OccupancyIndicator.qml:39
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "Low occupancy"
+msgstr "Ocupação baixa"
+
+#: quick/OccupancyIndicator.qml:40
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "Medium occupancy"
+msgstr "Ocupação média"
+
+#: quick/OccupancyIndicator.qml:41
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "High occupancy"
+msgstr "Alta ocupação"
+
+#: quick/OccupancyIndicator.qml:42
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "Full"
+msgstr "Cheio"
+
+#: quick/private/CountryComboBox.qml:45
+#, kde-format
+msgid "Select country"
+msgstr "Selecione o país"
+
+#: quick/StopoverInformationView.qml:43
+#, kde-format
+msgid "Information"
+msgstr "Informações"
+
+#: quick/StopoverInformationView.qml:61
+#, kde-format
+msgid "Occupancy"
+msgstr "Ocupação"
+
+#: quick/StopoverInformationView.qml:76
+#, kde-format
+msgid "Amenities"
+msgstr "Amenidades"
+
+#: quick/StopoverInformationView.qml:91
+#, kde-format
+msgctxt "operator/provider of a rail/bus service"
+msgid "Operator"
+msgstr "Operador"
+
+#: quick/StopPickerPage.qml:34
+#, kde-format
+msgctxt "@title:dialog"
+msgid "Clear History"
+msgstr "Limpar histórico"
+
+#: quick/StopPickerPage.qml:35
+#, kde-format
+msgctxt "@info"
+msgid "Do you really want to remove all previously searched locations?"
+msgstr ""
+"Você realmente deseja remover todos os locais pesquisados anteriormente?"
+
+#: quick/StopPickerPage.qml:39
+#, kde-format
+msgctxt "@action:button"
+msgid "Remove"
+msgstr "Remover"
+
+#: quick/StopPickerPage.qml:53
+#, kde-format
+msgctxt "@action"
+msgid "Clear history"
+msgstr "Limpar histórico"
+
+#: quick/StopPickerPage.qml:62
+#, kde-format
+msgctxt "@action"
+msgid "Sort by name"
+msgstr "Ordenar por nome"
+
+#: quick/StopPickerPage.qml:70
+#, kde-format
+msgctxt "@action"
+msgid "Most recently used"
+msgstr "Mais recentemente usados"
+
+#: quick/StopPickerPage.qml:77
+#, kde-format
+msgctxt "@action"
+msgid "Most often used"
+msgstr "Mais frequentemente usados"
+
+#: quick/StopPickerPage.qml:152
+#, kde-format
+msgctxt "locality, region, country"
+msgid "%1, %2, %3"
+msgstr "%1, %2, %3"
+
+#: quick/StopPickerPage.qml:157
+#, kde-format
+msgctxt "locality, country"
+msgid "%1, %2"
+msgstr "%1, %2"
+
+#: quick/StopPickerPage.qml:161
+#, kde-format
+msgctxt "region, country"
+msgid "%1, %2"
+msgstr "%1, %2"
+
+#: quick/StopPickerPage.qml:184
+#, kde-format
+msgctxt "location name, locality, region, country"
+msgid "%1, %2, %3, %4"
+msgstr "%1, %2, %3, %4"
+
+#: quick/StopPickerPage.qml:190
+#, kde-format
+msgctxt "location name, locality, country"
+msgid "%1, %2, %3"
+msgstr "%1, %2, %3"
+
+#: quick/StopPickerPage.qml:195
+#, kde-format
+msgctxt "location name, region, country"
+msgid "%1, %2, %3"
+msgstr "%1, %2, %3"
+
+#: quick/StopPickerPage.qml:200
+#, kde-format
+msgctxt "location name, country"
+msgid "%1, %2"
+msgstr "%1, %2"
+
+#: quick/StopPickerPage.qml:231
+#, kde-format
+msgctxt "@action:button"
+msgid "Remove history entry"
+msgstr "Remover entrada do histórico"
+
+#: quick/StopPickerPage.qml:288
+#, kde-format
+msgctxt "@info:placeholder"
+msgid "No locations found"
+msgstr "Nenhum local encontrado"
