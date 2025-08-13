@@ -101,7 +101,7 @@
         }
     },
     "options": {
-        "endpoint": "http://railteam.hafas.eu/bin/",
+        "endpoint": "https://railteam.hafas.de/bin/",
         "locationIdentifierType": "rt",
         "products": [
             {
