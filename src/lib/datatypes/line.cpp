@@ -51,7 +51,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(Line, QString, operatorName, setOperatorName)
 
 QColor Line::color() const
 {
-    return d->metaData.color().isValid() ? d->metaData.color() : d->color;
+    return (!name().isEmpty() && d->metaData.color().isValid()) ? d->metaData.color() : d->color;
 }
 
 void Line::setColor(const QColor &value)
@@ -62,7 +62,7 @@ void Line::setColor(const QColor &value)
 
 bool Line::hasColor() const
 {
-    return d->color.isValid() || d->metaData.color().isValid();
+    return d->color.isValid() || (!name().isEmpty() && d->metaData.color().isValid());
 }
 
 bool Line::hasTextColor() const
@@ -72,7 +72,7 @@ bool Line::hasTextColor() const
 
 QString Line::logo() const
 {
-    return AssetRepository::localFile(d->metaData.logoUrl()).toString(QUrl::FullyEncoded);
+    return !name().isEmpty() ? AssetRepository::localFile(d->metaData.logoUrl()).toString(QUrl::FullyEncoded) : QString();
 }
 
 bool Line::hasLogo() const
@@ -221,11 +221,15 @@ Line Line::merge(const Line &lhs, const Line &rhs)
 
 void Line::applyMetaData(const Location &location, bool download)
 {
-    if (name().isEmpty() || !location.hasCoordinate()) {
+    if (!location.hasCoordinate()) {
         return;
     }
 
-    d->metaData = LineMetaData::find(location.latitude(), location.longitude(), name(), mode());
+    if (!name().isEmpty()) {
+        d->metaData = LineMetaData::find(location.latitude(), location.longitude(), name(), mode());
+    } else {
+        d->metaData = LineMetaData::find(location.latitude(), location.longitude(), mode());
+    }
 
     if (download && AssetRepository::instance()) {
         AssetRepository::instance()->download(d->metaData.logoUrl());

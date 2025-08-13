@@ -7,6 +7,7 @@
 #include "linemetadata.h"
 #include "linemetadata_data.cpp"
 #include "datatypes/lineutil_p.h"
+#include "logging.h"
 
 #include <osm/datatypes.h>
 #include <osm/ztile.h>
@@ -22,6 +23,13 @@ using namespace KPublicTransport;
 // should this fail more space needs to be allocated in LineMetaDataContent
 static_assert(sizeof(line_name_stringtab) < (1 << 13));
 static_assert(sizeof(line_logo_stringtab) < (1 << 16));
+
+// overall quad tree parameters
+static_assert(std::ranges::size(line_data_depthOffsets) > 1, "quad tree depth information error");
+constexpr const uint8_t line_data_maxDepth = line_data_depthOffsets[0].depth;
+constexpr const uint8_t line_data_minDepth = line_data_depthOffsets[std::ranges::size(line_data_depthOffsets)- 1].depth;
+static_assert(line_data_maxDepth > line_data_minDepth, "quad tree depth error");
+static_assert(line_data_minDepth > 1, "quad tree depth error");
 
 static QString lookupName(uint16_t index)
 {
@@ -100,14 +108,6 @@ LineMetaData LineMetaData::find(double latitude, double longitude, const QString
 {
     OSM::Coordinate coord(latitude, longitude);
 
-    // overall quad tree parameters
-    constexpr const auto depthCount = sizeof(line_data_depthOffsets) / sizeof(LineMetaDataQuadTreeDepthIndex);
-    static_assert(depthCount > 1, "quad tree depth information error");
-    constexpr const uint8_t maxDepth = line_data_depthOffsets[0].depth;
-    constexpr const uint8_t minDepth = line_data_depthOffsets[depthCount - 1].depth;
-    static_assert(maxDepth > minDepth, "quad tree depth error");
-    static_assert(minDepth > 1, "quad tree depth error");
-
     const auto isLineMatch = [](const LineMetaDataContent *d, const QString &name, Line::Mode mode) {
         return LineUtil::isSameLineNameStrict(lookupName(d->nameIdx), name) &&
             (LineUtil::isCompatibleMode(LineMetaData(d).mode(), mode) ||
@@ -115,8 +115,8 @@ LineMetaData LineMetaData::find(double latitude, double longitude, const QString
     };
 
     // walk through the quad tree bottom up, looking for a tile containing the line we are looking for
-    OSM::ZTile tile(coord.z() >> (2 * minDepth), minDepth);
-    for (uint8_t d = minDepth; d <= maxDepth; ++d, tile = tile.parent()) {
+    OSM::ZTile tile(coord.z() >> (2 * line_data_minDepth), line_data_minDepth);
+    for (uint8_t d = line_data_minDepth; d <= line_data_maxDepth; ++d, tile = tile.parent()) {
         // determining quad tree offsets for the current depth
         const auto depthOffsetIt = std::lower_bound(std::begin(line_data_depthOffsets), std::end(line_data_depthOffsets), d);
         if (depthOffsetIt == std::end(line_data_depthOffsets) || (*depthOffsetIt).depth != d) {
@@ -153,4 +153,58 @@ LineMetaData LineMetaData::find(double latitude, double longitude, const QString
     }
 
     return {};
+}
+
+LineMetaData LineMetaData::find(double latitude, double longitude, Line::Mode mode)
+{
+    OSM::Coordinate coord(latitude, longitude);
+    const LineMetaDataContent *data = nullptr;
+
+    // walk through the quad tree bottom up, looking for a tile containing the line we are looking for
+    OSM::ZTile tile(coord.z() >> (2 * line_data_minDepth), line_data_minDepth);
+    for (uint8_t d = line_data_minDepth; d <= line_data_maxDepth; ++d, tile = tile.parent()) {
+        // determining quad tree offsets for the current depth
+        const auto depthOffsetIt = std::lower_bound(std::begin(line_data_depthOffsets), std::end(line_data_depthOffsets), d);
+        if (depthOffsetIt == std::end(line_data_depthOffsets) || (*depthOffsetIt).depth != d) {
+            continue; // depth level isn't populated at all (yes, this can happen)
+        }
+        const auto treeBegin = std::begin(line_data_zquadtree) + (*depthOffsetIt).offset;
+        const auto treeEnd = (depthOffsetIt + 1) == std::end(line_data_depthOffsets) ?
+                std::end(line_data_zquadtree) :
+                std::begin(line_data_zquadtree) + (*(depthOffsetIt + 1)).offset;
+
+        // look up the tile for the given coordinate at depth d
+        const auto treeIt = std::lower_bound(treeBegin, treeEnd, tile.z);
+        if (treeIt == treeEnd || (*treeIt).z != tile.z) {
+            continue; // tile doesn't exist at this depth
+        }
+
+        // iterate over the bucket of this tile and look for the line
+        // we have to handle two cases: single lines and buckets of lines
+        if ((*treeIt).lineIdx >= line_data_count) {
+            auto bucketIt = line_data_bucketTable + (*treeIt).lineIdx - line_data_count;
+            while ((*bucketIt) != -1) {
+                const auto d = line_data + (*bucketIt);
+                if (LineMetaData(d).mode() == mode && d->productLogoIdx != NoLogo) {
+                    if (data && data->productLogoIdx != d->productLogoIdx) {
+                        qCDebug(Log) << "conflict" << data->productLogoIdx << d->productLogoIdx << lookupName(data->nameIdx) << lookupName(d->nameIdx) << LineMetaData(d).mode() << lookupLogo(d->productLogoIdx) << lookupLogo(data->productLogoIdx);
+                        return {};
+                    }
+                    data = d;
+                }
+                ++bucketIt;
+            }
+        } else {
+            const auto d = line_data + (*treeIt).lineIdx;
+            if (LineMetaData(d).mode() == mode && d->productLogoIdx != NoLogo) {
+                if (data && data->productLogoIdx != d->productLogoIdx) {
+                    qCDebug(Log) << "conflict" << data->productLogoIdx << d->productLogoIdx << lookupName(data->nameIdx) << lookupName(d->nameIdx) << LineMetaData(d).mode() << lookupLogo(d->productLogoIdx) << lookupLogo(data->productLogoIdx);
+                    return {};
+                }
+                data = d;
+            }
+        }
+    }
+
+    return LineMetaData(data);
 }

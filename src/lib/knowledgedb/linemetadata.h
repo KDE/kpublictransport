@@ -30,15 +30,19 @@ public:
     LineMetaData(const LineMetaData&);
     LineMetaData& operator=(const LineMetaData&);
 
-    bool isNull() const;
-    QString name() const;
-    QColor color() const;
-    QUrl logoUrl() const;
-    Line::Mode mode() const;
-    QUrl modeLogoUrl() const;
+    [[nodiscard]] bool isNull() const;
+    [[nodiscard]] QString name() const;
+    [[nodiscard]] QColor color() const;
+    [[nodiscard]] QUrl logoUrl() const;
+    [[nodiscard]] Line::Mode mode() const;
+    [[nodiscard]] QUrl modeLogoUrl() const;
 
     /** Attempts to find information about a line with the given name and a stop at the given coordinates. */
-    static LineMetaData find(double latitude, double longitude, const QString &name, Line::Mode mode);
+    [[nodiscard]] static LineMetaData find(double latitude, double longitude, const QString &name, Line::Mode mode);
+    /** Attempts to find information about an entire line mode at the given coordinates.
+     *  Line-specific data in the result are to be ignored in that case.
+     */
+    [[nodiscard]] static LineMetaData find(double latitude, double longitude, Line::Mode mode);
 
 private:
     LineMetaData(const LineMetaDataContent *dd);

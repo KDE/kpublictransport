@@ -6,6 +6,7 @@
 
 #include <knowledgedb/linemetadata.h>
 
+#include <QStandardPaths>
 #include <QObject>
 #include <QTest>
 
@@ -18,6 +19,10 @@ class LineMetaDataTest : public QObject
 {
     Q_OBJECT
 private Q_SLOTS:
+    void initTestCase()
+    {
+        QStandardPaths::setTestModeEnabled(true);
+    }
     void testLookup_data()
     {
         QTest::addColumn<double>("latitude");
@@ -133,6 +138,96 @@ private Q_SLOTS:
 
         l = LineMetaData::find(52.52, 13.40, QStringLiteral("U1"), Line::Bus);
         QVERIFY(l.isNull());
+    }
+
+    void testLookupModeOnly_data()
+    {
+        QTest::addColumn<double>("latitude");
+        QTest::addColumn<double>("longitude");
+        QTest::addColumn<Line::Mode>("mode");
+        QTest::addColumn<QString>("logo");
+
+        QTest::newRow("Berlin U") << 52.52 << 13.40 << Line::Metro << u"U-Bahn.svg"_s;
+        QTest::newRow("Berlin S") << 52.52 << 13.40 << Line::RapidTransit << u"S-Bahn-Logo.svg"_s;
+        QTest::newRow("Munich S") << 48.13 << 11.58 << Line::RapidTransit << u"S-Bahn-Logo.svg"_s;
+        QTest::newRow("Munich U") << 48.13 << 11.58 << Line::Metro << u"U-Bahnlogo%20M%C3%BCnchen.svg"_s;
+        QTest::newRow("Nurnberg S") << 49.44 << 11.08 << Line::RapidTransit << u"S-Bahn-Logo.svg"_s;
+        QTest::newRow("Nurnberg U") << 49.44 << 11.08 << Line::Metro << u"U-Bahn.svg"_s;
+        QTest::newRow("Nurnberg tram") << 49.44 << 11.08 << Line::Tramway << u"Tram%20N%C3%BCrnberg%20Logo.png"_s;
+        QTest::newRow("Frankfurt U") << 50.1 << 8.66 << Line::Metro << u"U-Bahn.svg"_s;
+        QTest::newRow("Brussels M") << 50.83 << 4.33 << Line::Metro << u"Brussels%20Metro%20Logo.svg"_s;
+        QTest::newRow("Brussels tram") << 50.83 << 4.33 << Line::Tramway << u"Brussels%20tramway%20icon.svg"_s;
+        QTest::newRow("Brussels S") << 50.83 << 4.33 << Line::RapidTransit << u"NMBS%20S-Trein%20logo.svg"_s;
+        // RER vs Transilien conflict, bot are classified as RapidTransit but have different logos
+        QTest::newRow("Paris RER") << 48.84 << 2.37 << Line::RapidTransit << QString(); // u"Paris%20transit%20icons%20-%20RER.svg"_s;
+        QTest::newRow("Paris Metro") << 48.84 << 2.37 << Line::Metro << u"Paris%20transit%20icons%20-%20M%C3%A9tro.svg"_s;
+        QTest::newRow("Paris tram") << 48.84 << 2.37 << Line::Tramway << u"Paris%20transit%20icons%20-%20Tram.svg"_s;
+        QTest::newRow("Milano M") << 45.48 << 9.18 << Line::Metro << u"Logo%20Metropolitane%20Italia.svg"_s;
+        QTest::newRow("Milano S") << 45.48 << 9.18 << Line::RapidTransit << u"Linee%20S%20di%20Milano.svg"_s;
+        QTest::newRow("Hannover S") << 52.37 << 9.74 << Line::RapidTransit << u"S-Bahn-Logo.svg"_s;
+        QTest::newRow("Magdeburg S") << 52.13 << 11.62 << Line::RapidTransit << u"S-Bahn-Logo.svg"_s;
+        QTest::newRow("Vienna U") << 48.18 << 16.37 << Line::Metro << u"U-Bahn%20Wien.svg"_s;
+        QTest::newRow("Vienna S") << 48.18 << 16.37 << Line::RapidTransit << u"S-Bahn%20Wien.svg"_s;
+        QTest::newRow("Hamburg U") << 53.55 << 10.0 << Line::Metro << u"U-Bahn.svg"_s;
+        QTest::newRow("Hamburg S") << 53.55 << 10.0 << Line::RapidTransit << u"S-Bahn-Logo.svg"_s;
+        QTest::newRow("Copenhagen S") << 55.67 << 12.56 << Line::RapidTransit << u"S-tog.svg"_s;
+        QTest::newRow("Cologne S") << 50.94 << 6.97 << Line::RapidTransit << u"S-Bahn-Logo.svg"_s;
+        // Stuttgart subway is also classified as RapidTransit making this ambiguous
+        QTest::newRow("Stuttgart S") << 48.78 << 9.18 << Line::RapidTransit << QString(); // u"S-Bahn-Logo.svg"_s;
+        QTest::newRow("Stuttgart U") << 48.78 << 9.18 << Line::Metro << QString(); // u"Logo%20Stadtbahn%20Stuttgart.svg"_s;
+        QTest::newRow("Barcelona M") << 41.37 << 2.13 << Line::Metro << u"Barcelona%20Metro%20Logo.svg"_s;
+        QTest::newRow("Toulouse M") << 43.6 << 1.44 << Line::Metro << u"Toulouse%20%22M%22%20symbol.svg"_s;
+        QTest::newRow("San Francisco BART") << 37.77 << -122.41 << Line::Metro << u"Bart-logo.svg"_s;
+        QTest::newRow("Oslo T-Bane") << 59.94 << 10.76 << Line::Metro << u"Oslo%20T-bane%20Logo.svg"_s;
+        QTest::newRow("Prague M") << 50.07 << 14.47 << Line::Metro << u"Prague%20metro%20logo%20without%20padding.svg"_s;
+        QTest::newRow("Rome Metro") << 41.8989 << 12.5089 << Line::Metro << u"Logo%20Metropolitane%20Italia.svg"_s;
+        QTest::newRow("Amsterdam Metro") << 52.37 << 4.9 << Line::Metro << u"Amsterdam%20metro%20logo.svg"_s;
+        QTest::newRow("Thessaloniki Metro") << 40.64 << 22.93 << Line::Metro << u"Thessaloniki%20Metro%20logo.svg"_s;
+        QTest::newRow("Graz S") << 47.1 << 15.4 << Line::RapidTransit << u"S-Bahn%20Austria.svg"_s;
+        QTest::newRow("Budapest Tram") << 47.49 << 19.03 << Line::Tramway << u"Logo%20tramway-budapest.svg"_s;
+    }
+
+    void testLookupModeOnly()
+    {
+        QFETCH(double, latitude);
+        QFETCH(double, longitude);
+        QFETCH(Line::Mode, mode);
+        QFETCH(QString, logo);
+
+        const auto l = LineMetaData::find(latitude, longitude, mode);
+        if (logo.isEmpty()) {
+            QVERIFY(l.isNull());
+        } else {
+            QEXPECT_FAIL("Brussels S", "missing disambiguation with SNCF rapid transit modes", Abort);
+            QEXPECT_FAIL("Paris tram", "data issue due to outdated Wikidata data it semms", Abort);
+            QEXPECT_FAIL("Cologne S", "missing disambiguation with SNCB rapid transit modes", Abort);
+            QEXPECT_FAIL("Graz S", "collision with rapid transit from Kaernten which doesn't have the Austrian S-Bahn logo set", Abort);
+            QVERIFY(!l.isNull());
+            QCOMPARE(l.mode(), mode);
+            QCOMPARE(l.modeLogoUrl().toString(QUrl::FullyEncoded), QString("https://commons.wikimedia.org/wiki/Special:Redirect/file/"_L1 + logo));
+        }
+    }
+
+    void testLineIntegration()
+    {
+        Location loc;
+        loc.setCoordinate(52.52, 13.4);
+
+        Line l;
+        l.setMode(Line::Metro);
+        l.applyMetaData(loc, false);
+
+        QCOMPARE(l.mode(), Line::Metro);
+        QCOMPARE(l.hasModeLogo(), false);
+        QCOMPARE(l.hasLogo(), false);
+        QCOMPARE(l.hasColor(), false);
+
+        l.setName(u"U1"_s);
+        l.applyMetaData(loc, false);
+        QCOMPARE(l.mode(), Line::Metro);
+        QCOMPARE(l.hasModeLogo(), false);
+        QCOMPARE(l.hasLogo(), false);
+        QCOMPARE(l.hasColor(), true);
     }
 };
 
