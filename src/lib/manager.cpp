@@ -812,6 +812,33 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
         }
     }
 
+    // alternatively, if there is no context at all, only use backends with a wide coverage area
+    // as those with a small area will likely produce unrelated and very wrong results
+    if (!loc.hasCoordinate() && loc.country().isEmpty() && loc.region().isEmpty() && !req.viewbox().isValid()) {
+        for (const auto coverageType : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
+            if (pendingOps && queriedTypes == req.types()) {
+                break;
+            }
+            for (const auto &backend : d->m_backends) {
+                if (triedBackends.contains(backend.identifier()) || d->shouldSkipBackend(backend, req)) {
+                    continue;
+                }
+                const auto backendTypes = BackendPrivate::impl(backend)->supportedLocationTypes() & req.types();
+                if (backendTypes == 0) {
+                    continue;
+                }
+                const auto coverage = backend.coverageArea(coverageType);
+                if (coverage.isEmpty() || !coverage.hasAnyNationWideCoverage()) {
+                    continue;
+                }
+
+                triedBackends.insert(backend.identifier());
+                queriedTypes |= backendTypes;
+                pendingOps += d->queryLocationOnBackend(req, reply, backend);
+            }
+        }
+    }
+
     // search for highest-quality coverage match otherwise
     for (const auto coverageType : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
         if (pendingOps && foundNonGlobalCoverage) {
