@@ -59,6 +59,8 @@ public:
 
     /** Checks whether this includes the entire country @p country. */
     [[nodiscard]] bool hasNationWideCoverage(const QString &country) const;
+    /** Checkes whether this includes any country entirely. */
+    [[nodiscard]] bool hasAnyNationWideCoverage() const;
 
     /** Read a single coverage area information from a JSON object
      *  in Transport API Repository format.

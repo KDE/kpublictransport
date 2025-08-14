@@ -139,6 +139,11 @@ bool CoverageArea::hasNationWideCoverage(const QString &country) const
     return std::binary_search(d->regions.begin(), d->regions.end(), country);
 }
 
+bool CoverageArea::hasAnyNationWideCoverage() const
+{
+    return std::ranges::any_of(d->regions, [](const auto &region) { return region.size() == 2; });
+}
+
 CoverageArea CoverageArea::fromJson(const QJsonObject &obj)
 {
     CoverageArea ca;
