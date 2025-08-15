@@ -49,6 +49,10 @@ private Q_SLOTS:
             << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-coordinate.in.json")
             << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-coordinate.out.json")
             << RentalVehicleNetworkMap();
+        QTest::newRow("fi-digitransit-location-with-routes")
+            << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-coordinate-with-routes.in.json")
+            << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-coordinate-with-routes.out.json")
+            << RentalVehicleNetworkMap();
 
         RentalVehicleNetworkMap networks;
         networks.insert(s("car-sharing"), {});
@@ -71,7 +75,10 @@ private Q_SLOTS:
 
         OpenTripPlannerParser p(s("gtfs"));
         p.setKnownRentalVehicleNetworks(networks);
-        const auto res = p.parseLocationsByCoordinate(QJsonDocument::fromJson(Test::readFile(inFileName)).object());
+        const auto inDoc = QJsonDocument::fromJson(Test::readFile(inFileName));
+        QVERIFY(!inDoc.isEmpty());
+        const auto res = p.parseLocationsByCoordinate(inDoc.object());
+        QVERIFY(!res.empty());
         const auto jsonRes = Location::toJson(res);
 
         const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
@@ -89,6 +96,9 @@ private Q_SLOTS:
         QTest::newRow("it-torino-location")
             << s(SOURCE_DIR "/data/otp/it-torino-location-by-name.in.json")
             << s(SOURCE_DIR "/data/otp/it-torino-location-by-name.out.json");
+        QTest::newRow("de-stadtnavi-location-by-name-with-routes")
+            << s(SOURCE_DIR "/data/otp/de-stadtnavi-location-by-name-with-routes.in.json")
+            << s(SOURCE_DIR "/data/otp/de-stadtnavi-location-by-name-with-routes.out.json");
     }
 
     void testParseLocationByName()
@@ -97,7 +107,10 @@ private Q_SLOTS:
         QFETCH(QString, refFileName);
 
         OpenTripPlannerParser p(s("gtfs"));
-        const auto res = p.parseLocationsByName(QJsonDocument::fromJson(Test::readFile(inFileName)).object());
+        const auto inDoc = QJsonDocument::fromJson(Test::readFile(inFileName));
+        QVERIFY(!inDoc.isEmpty());
+        const auto res = p.parseLocationsByName(inDoc.object());
+        QVERIFY(!res.empty());
         const auto jsonRes = Location::toJson(res);
 
         const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();

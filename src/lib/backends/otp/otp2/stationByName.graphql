@@ -14,5 +14,15 @@ query stationsByName($name: String!) {
             lat
             lon
         }
+        routes {
+            type
+            shortName
+            longName
+            color
+            textColor
+            agency {
+                name
+            }
+        }
     }
 }

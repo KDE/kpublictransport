@@ -1,0 +1,332 @@
+[
+    {
+        "country": "FI",
+        "identifier": {
+            "gtfs": "digitraffic:TPE"
+        },
+        "latitude": 61.498236,
+        "longitude": 23.773454,
+        "name": "Tampere",
+        "region": "FI-11",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "HDM 420",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "HDM 421",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "HDM 422",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "HDM 423",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "HDM 424",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "HDM 426",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "HDM 427",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 140",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 142",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 144",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 146",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 148",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 150",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 180",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 183",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 46",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 466",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 468",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 469",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 471",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 472",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 473",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 474",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 476",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 477",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 628",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 80",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 910",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 916",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 920",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 921",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 923",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "S 140",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "S 144",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "S 148",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "S 152",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "S 178",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "S 183",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "S 88",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "S 912",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "LongDistanceTrain",
+                    "name": "S 915",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "RapidTransit",
+                    "name": "M",
+                    "operatorName": "VR"
+                },
+                {
+                    "mode": "RapidTransit",
+                    "name": "R",
+                    "operatorName": "VR"
+                }
+            ]
+        },
+        "type": "Stop"
+    },
+    {
+        "country": "FI",
+        "identifier": {
+            "gtfs": "tampere:0108"
+        },
+        "latitude": 61.5004846,
+        "longitude": 23.7700006,
+        "name": "Kyttälä",
+        "region": "FI-11",
+        "stopInformation": {
+            "lines": [
+                {
+                    "color": "#1a4a8f",
+                    "mode": "Bus",
+                    "name": "103",
+                    "operatorName": "Nysse",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#1a4a8f",
+                    "mode": "Bus",
+                    "name": "11",
+                    "operatorName": "Nysse",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#1a4a8f",
+                    "mode": "Bus",
+                    "name": "13",
+                    "operatorName": "Nysse",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#1a4a8f",
+                    "mode": "Bus",
+                    "name": "26",
+                    "operatorName": "Nysse",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#1a4a8f",
+                    "mode": "Bus",
+                    "name": "29",
+                    "operatorName": "Nysse",
+                    "textColor": "#ffffff"
+                }
+            ]
+        },
+        "type": "Stop"
+    },
+    {
+        "country": "FI",
+        "identifier": {
+            "gtfs": "tampere:0109"
+        },
+        "latitude": 61.5002827,
+        "longitude": 23.7703244,
+        "name": "Kyttälä",
+        "region": "FI-11",
+        "stopInformation": {
+            "lines": [
+                {
+                    "color": "#1a4a8f",
+                    "mode": "Bus",
+                    "name": "103",
+                    "operatorName": "Nysse",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#1a4a8f",
+                    "mode": "Bus",
+                    "name": "11",
+                    "operatorName": "Nysse",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#1a4a8f",
+                    "mode": "Bus",
+                    "name": "13",
+                    "operatorName": "Nysse",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#1a4a8f",
+                    "mode": "Bus",
+                    "name": "26",
+                    "operatorName": "Nysse",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#1a4a8f",
+                    "mode": "Bus",
+                    "name": "29",
+                    "operatorName": "Nysse",
+                    "textColor": "#ffffff"
+                }
+            ]
+        },
+        "type": "Stop"
+    }
+]

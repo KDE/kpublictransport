@@ -1,0 +1,130 @@
+[
+    {
+        "country": "DE",
+        "identifier": {
+            "gtfs": "hbg:de:08111:6118"
+        },
+        "latitude": 48.783386,
+        "longitude": 9.180229,
+        "name": "Hauptbahnhof (tief)",
+        "region": "DE-BW",
+        "stopInformation": {
+            "lines": [
+                {
+                    "color": "#83b23b",
+                    "mode": "RapidTransit",
+                    "name": "S1",
+                    "operatorName": "VVS",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#83b23b",
+                    "mode": "RapidTransit",
+                    "name": "S2",
+                    "operatorName": "VVS",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#83b23b",
+                    "mode": "RapidTransit",
+                    "name": "S3",
+                    "operatorName": "VVS",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#83b23b",
+                    "mode": "RapidTransit",
+                    "name": "S4",
+                    "operatorName": "VVS",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#83b23b",
+                    "mode": "RapidTransit",
+                    "name": "S5",
+                    "operatorName": "VVS",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#83b23b",
+                    "mode": "RapidTransit",
+                    "name": "S6",
+                    "operatorName": "VVS",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#83b23b",
+                    "mode": "RapidTransit",
+                    "name": "S60",
+                    "operatorName": "VVS",
+                    "textColor": "#ffffff"
+                }
+            ]
+        },
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "gtfs": "hbg:de:08111:6118"
+        },
+        "latitude": 48.783386,
+        "longitude": 9.180229,
+        "name": "Hauptbahnhof (tief)",
+        "region": "DE-BW",
+        "stopInformation": {
+            "lines": [
+                {
+                    "color": "#83b23b",
+                    "mode": "RapidTransit",
+                    "name": "S1",
+                    "operatorName": "VVS",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#83b23b",
+                    "mode": "RapidTransit",
+                    "name": "S2",
+                    "operatorName": "VVS",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#83b23b",
+                    "mode": "RapidTransit",
+                    "name": "S3",
+                    "operatorName": "VVS",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#83b23b",
+                    "mode": "RapidTransit",
+                    "name": "S4",
+                    "operatorName": "VVS",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#83b23b",
+                    "mode": "RapidTransit",
+                    "name": "S5",
+                    "operatorName": "VVS",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#83b23b",
+                    "mode": "RapidTransit",
+                    "name": "S6",
+                    "operatorName": "VVS",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#83b23b",
+                    "mode": "RapidTransit",
+                    "name": "S60",
+                    "operatorName": "VVS",
+                    "textColor": "#ffffff"
+                }
+            ]
+        },
+        "type": "Stop"
+    }
+]

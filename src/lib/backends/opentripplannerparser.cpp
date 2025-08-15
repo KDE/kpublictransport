@@ -10,6 +10,7 @@
 #include "ifopt/ifoptutil.h"
 
 #include <KPublicTransport/Journey>
+#include <KPublicTransport/StopInformation>
 #include <KPublicTransport/Stopover>
 
 #include <QColor>
@@ -68,45 +69,53 @@ QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj) c
 
 bool OpenTripPlannerParser::parseLocationFragment(const QJsonObject &obj, Location &loc) const
 {
-    const auto parentObj = obj.value(QLatin1String("parentStation")).toObject();
+    const auto parentObj = obj.value("parentStation"_L1).toObject();
     if (!parentObj.isEmpty()) {
         loc.setType(Location::Stop);
-        return parseLocationFragment(parentObj, loc);
-    }
+        parseLocationFragment(parentObj, loc);
+    } else {
+        if (loc.name().isEmpty()) {
+            loc.setName(obj.value("name"_L1).toString());
+        }
+        loc.setLatitude(obj.value("lat"_L1).toDouble(loc.latitude()));
+        loc.setLongitude(obj.value("lon"_L1).toDouble(loc.longitude()));
 
-    if (loc.name().isEmpty()) {
-        loc.setName(obj.value(QLatin1String("name")).toString());
-    }
-    loc.setLatitude(obj.value(QLatin1String("lat")).toDouble(loc.latitude()));
-    loc.setLongitude(obj.value(QLatin1String("lon")).toDouble(loc.longitude()));
-
-    const auto tzId = obj.value(QLatin1String("timezone")).toString();
-    if (!tzId.isEmpty()) {
-        loc.setTimeZone(QTimeZone(tzId.toUtf8()));
-    }
-
-    const auto id = obj.value(QLatin1String("id")).toString();
-    if (!id.isEmpty()) {
-        loc.setIdentifier(m_identifierType, id);
-    }
-    if (!m_ifoptPrefix.isEmpty() && id.size() > m_ifoptPrefix.size() + 1 && id.startsWith(m_ifoptPrefix) && id.at(m_ifoptPrefix.size()) == QLatin1Char(':')) {
-        const auto ifopt = QStringView(id).mid(m_ifoptPrefix.size() + 1);
-        if (IfoptUtil::isValid(ifopt)) {
-            loc.setIdentifier(IfoptUtil::identifierType(), ifopt.toString());
+        const auto tzId = obj.value("timezone"_L1).toString();
+        if (!tzId.isEmpty()) {
+            loc.setTimeZone(QTimeZone(tzId.toUtf8()));
+        }
+        const auto id = obj.value("id"_L1).toString();
+        if (!id.isEmpty()) {
+            loc.setIdentifier(m_identifierType, id);
+        }
+        if (!m_ifoptPrefix.isEmpty() && id.size() > m_ifoptPrefix.size() + 1 && id.startsWith(m_ifoptPrefix) && id.at(m_ifoptPrefix.size()) == QLatin1Char(':')) {
+            const auto ifopt = QStringView(id).mid(m_ifoptPrefix.size() + 1);
+            if (IfoptUtil::isValid(ifopt)) {
+                loc.setIdentifier(IfoptUtil::identifierType(), ifopt.toString());
+            }
         }
     }
 
-    const auto bss = obj.value(QLatin1String("bikeRentalStation")).toObject();
-    if (!bss.isEmpty()) {
+    if (const auto routes = obj.value("routes"_L1).toArray(); !routes.isEmpty()) {
+        StopInformation info;
+        for (const auto &routeV : routes) {
+            const auto r = parseLine(routeV.toObject());
+            info.addLine(r.route.line());
+        }
+        loc.setType(Location::Stop);
+        loc.setData(info);
+    }
+
+    if (const auto bss = obj.value("bikeRentalStation"_L1).toObject(); !bss.isEmpty()) {
         loc.setData(parseRentalVehicleData(bss));
         loc.setType(loc.data().userType() == qMetaTypeId<RentalVehicle>() ? Location::RentedVehicle : Location::RentedVehicleStation);
         return loc.rentalVehicleStation().network().isValid() || loc.rentalVehicle().network().isValid();
     }
 
-    const auto mode = obj.value(QLatin1String("vehicleMode")).toString();
-    if (mode == QLatin1String("CARPOOL")) {
+    const auto mode = obj.value("vehicleMode"_L1);
+    if (mode == "CARPOOL"_L1) {
         loc.setType(Location::CarpoolPickupDropoff);
-    } else if (!mode.isEmpty() && loc.type() == Location::Place) {
+    } else if (loc.type() == Location::Place && !mode.toString().isEmpty()) {
         loc.setType(Location::Stop);
     }
 

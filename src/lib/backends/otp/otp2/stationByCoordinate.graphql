@@ -29,6 +29,16 @@ query stopsByCoordinate(
                         lat
                         lon
                     }
+                    routes {
+                        type
+                        shortName
+                        longName
+                        color
+                        textColor
+                        agency {
+                            name
+                        }
+                    }
                 }}
                 bikeRentalStation: place { ...on BikeRentalStation {
                     id
