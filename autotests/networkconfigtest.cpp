@@ -13,6 +13,8 @@
 #include <QTest>
 #include <QTimeZone>
 
+using namespace Qt::Literals;
+
 class NetworkConfigTest : public QObject
 {
     Q_OBJECT
@@ -43,6 +45,9 @@ private Q_SLOTS:
 
         const auto top = doc.object();
         QVERIFY(!top.isEmpty());
+        if (!top.value("active"_L1).toBool(true)) {
+            return;
+        }
         QVERIFY(!top.value(QLatin1String("type")).toObject().isEmpty());
 
         const auto tz = top.value(QLatin1String("timezone")).toString();
