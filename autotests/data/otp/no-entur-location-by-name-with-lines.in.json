@@ -1,0 +1,301 @@
+{
+    "stations": [
+      {
+        "id": "NSR:Quay:11153",
+        "name": "Nydalen",
+        "lat": 59.949433,
+        "lon": 10.765322,
+        "timezone": "Europe/Oslo",
+        "parentStation": {
+          "id": "NSR:StopPlace:6073",
+          "lat": 59.949492,
+          "lon": 10.765338,
+          "timezone": "Europe/Oslo"
+        },
+        "routes": [
+          {
+            "transportMode": "metro",
+            "type": "metro",
+            "shortName": "5",
+            "longName": "Sognsvann - Vestli",
+            "agency": {
+              "name": "Sporveien T-banen AS"
+            },
+            "presentation": {
+              "color": "EC700C",
+              "textColor": "FFFFFF"
+            }
+          },
+          {
+            "transportMode": "metro",
+            "type": "metro",
+            "shortName": "4",
+            "longName": "Vestli - Bergkrystallen",
+            "agency": {
+              "name": "Sporveien T-banen AS"
+            },
+            "presentation": {
+              "color": "EC700C",
+              "textColor": "FFFFFF"
+            }
+          },
+          {
+            "transportMode": "metro",
+            "type": "metro",
+            "shortName": "3",
+            "longName": "Kolsås - Mortensrud",
+            "agency": {
+              "name": "Sporveien T-banen AS"
+            },
+            "presentation": {
+              "color": "EC700C",
+              "textColor": "FFFFFF"
+            }
+          },
+          {
+            "transportMode": "metro",
+            "type": "metro",
+            "shortName": "2",
+            "longName": "Østerås - Ellingsrudåsen",
+            "agency": {
+              "name": "Sporveien T-banen AS"
+            },
+            "presentation": {
+              "color": "EC700C",
+              "textColor": "FFFFFF"
+            }
+          }
+        ]
+      },
+      {
+        "id": "NSR:Quay:11151",
+        "name": "Nydalen",
+        "lat": 59.949532,
+        "lon": 10.765338,
+        "timezone": "Europe/Oslo",
+        "parentStation": {
+          "id": "NSR:StopPlace:6073",
+          "lat": 59.949492,
+          "lon": 10.765338,
+          "timezone": "Europe/Oslo"
+        },
+        "routes": [
+          {
+            "transportMode": "metro",
+            "type": "metro",
+            "shortName": "4",
+            "longName": "Vestli - Bergkrystallen",
+            "agency": {
+              "name": "Sporveien T-banen AS"
+            },
+            "presentation": {
+              "color": "EC700C",
+              "textColor": "FFFFFF"
+            }
+          },
+          {
+            "transportMode": "metro",
+            "type": "metro",
+            "shortName": "5",
+            "longName": "Sognsvann - Vestli",
+            "agency": {
+              "name": "Sporveien T-banen AS"
+            },
+            "presentation": {
+              "color": "EC700C",
+              "textColor": "FFFFFF"
+            }
+          },
+          {
+            "transportMode": "metro",
+            "type": "metro",
+            "shortName": "3",
+            "longName": "Kolsås - Mortensrud",
+            "agency": {
+              "name": "Sporveien T-banen AS"
+            },
+            "presentation": {
+              "color": "EC700C",
+              "textColor": "FFFFFF"
+            }
+          },
+          {
+            "transportMode": "metro",
+            "type": "metro",
+            "shortName": "2",
+            "longName": "Østerås - Ellingsrudåsen",
+            "agency": {
+              "name": "Sporveien T-banen AS"
+            },
+            "presentation": {
+              "color": "EC700C",
+              "textColor": "FFFFFF"
+            }
+          }
+        ]
+      },
+      {
+        "id": "NSR:Quay:54060",
+        "name": "Nydalen",
+        "lat": 60.340827,
+        "lon": 5.345184,
+        "timezone": "Europe/Oslo",
+        "parentStation": {
+          "id": "NSR:StopPlace:31393",
+          "lat": 60.341199,
+          "lon": 5.345195,
+          "timezone": "Europe/Oslo"
+        },
+        "routes": [
+          {
+            "transportMode": "bus",
+            "type": "localBus",
+            "shortName": "83",
+            "longName": "Nesttun - Storetveitveien - Wergeland",
+            "agency": {
+              "name": "Tide Buss AS"
+            },
+            "presentation": {
+              "color": null,
+              "textColor": null
+            }
+          },
+          {
+            "transportMode": "bus",
+            "type": "localBus",
+            "shortName": "49",
+            "longName": "Skoleturer Bergen Sentrum",
+            "agency": {
+              "name": "Tide Buss og Bane"
+            },
+            "presentation": {
+              "color": null,
+              "textColor": null
+            }
+          },
+          {
+            "transportMode": "bus",
+            "type": "localBus",
+            "shortName": "740",
+            "longName": "Bergen-Eikelandsosen-Gjermundshamn",
+            "agency": {
+              "name": "Tide Buss AS"
+            },
+            "presentation": {
+              "color": null,
+              "textColor": null
+            }
+          }
+        ]
+      },
+      {
+        "id": "NSR:Quay:54059",
+        "name": "Nydalen",
+        "lat": 60.341675,
+        "lon": 5.345106,
+        "timezone": "Europe/Oslo",
+        "parentStation": {
+          "id": "NSR:StopPlace:31393",
+          "lat": 60.341199,
+          "lon": 5.345195,
+          "timezone": "Europe/Oslo"
+        },
+        "routes": [
+          {
+            "transportMode": "bus",
+            "type": "localBus",
+            "shortName": "530",
+            "longName": "Våge-Bekkjarvik-Husavik-Hufthamar-Bergen",
+            "agency": {
+              "name": "Tide Buss AS"
+            },
+            "presentation": {
+              "color": null,
+              "textColor": null
+            }
+          },
+          {
+            "transportMode": "bus",
+            "type": "localBus",
+            "shortName": "83",
+            "longName": "Nesttun - Storetveitveien - Wergeland",
+            "agency": {
+              "name": "Tide Buss AS"
+            },
+            "presentation": {
+              "color": null,
+              "textColor": null
+            }
+          },
+          {
+            "transportMode": "bus",
+            "type": "localBus",
+            "shortName": "934",
+            "longName": "Eikelandsosen-Tysse",
+            "agency": {
+              "name": "Tide Buss AS"
+            },
+            "presentation": {
+              "color": null,
+              "textColor": null
+            }
+          },
+          {
+            "transportMode": "bus",
+            "type": "localBus",
+            "shortName": "740",
+            "longName": "Bergen-Eikelandsosen-Gjermundshamn",
+            "agency": {
+              "name": "Tide Buss AS"
+            },
+            "presentation": {
+              "color": null,
+              "textColor": null
+            }
+          }
+        ]
+      },
+      {
+        "id": "NSR:Quay:74229",
+        "name": "Nydalen",
+        "lat": 63.404563,
+        "lon": 10.386956,
+        "timezone": "Europe/Oslo",
+        "parentStation": {
+          "id": "NSR:StopPlace:43272",
+          "lat": 63.404004,
+          "lon": 10.387322,
+          "timezone": "Europe/Oslo"
+        },
+        "routes": [
+          {
+            "transportMode": "bus",
+            "type": "localBus",
+            "shortName": "20",
+            "longName": "Grillstad - Strindheim - Ladehammeren- Sentrum - Romolslia",
+            "agency": {
+              "name": "Tide Buss"
+            },
+            "presentation": {
+              "color": null,
+              "textColor": null
+            }
+          }
+        ]
+      },
+      {
+        "id": "NSR:Quay:74230",
+        "name": "Nydalen",
+        "lat": 63.403445,
+        "lon": 10.387689,
+        "timezone": "Europe/Oslo",
+        "parentStation": {
+          "id": "NSR:StopPlace:43272",
+          "lat": 63.404004,
+          "lon": 10.387322,
+          "timezone": "Europe/Oslo"
+        },
+        "routes": []
+      }
+    ]
+  }

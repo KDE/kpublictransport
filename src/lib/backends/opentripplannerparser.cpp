@@ -73,17 +73,18 @@ bool OpenTripPlannerParser::parseLocationFragment(const QJsonObject &obj, Locati
     if (!parentObj.isEmpty()) {
         loc.setType(Location::Stop);
         parseLocationFragment(parentObj, loc);
-    } else {
-        if (loc.name().isEmpty()) {
-            loc.setName(obj.value("name"_L1).toString());
-        }
+    }
+    if (loc.name().isEmpty()) {
+        loc.setName(obj.value("name"_L1).toString());
+    }
+    if (!loc.hasCoordinate()) {
         loc.setLatitude(obj.value("lat"_L1).toDouble(loc.latitude()));
         loc.setLongitude(obj.value("lon"_L1).toDouble(loc.longitude()));
-
-        const auto tzId = obj.value("timezone"_L1).toString();
-        if (!tzId.isEmpty()) {
-            loc.setTimeZone(QTimeZone(tzId.toUtf8()));
-        }
+    }
+    if (const auto tzId = obj.value("timezone"_L1).toString(); !tzId.isEmpty()) {
+        loc.setTimeZone(QTimeZone(tzId.toUtf8()));
+    }
+    if (!loc.hasIdentifier(m_identifierType)) {
         const auto id = obj.value("id"_L1).toString();
         if (!id.isEmpty()) {
             loc.setIdentifier(m_identifierType, id);
@@ -101,6 +102,16 @@ bool OpenTripPlannerParser::parseLocationFragment(const QJsonObject &obj, Locati
         for (const auto &routeV : routes) {
             const auto r = parseLine(routeV.toObject());
             info.addLine(r.route.line());
+        }
+        loc.setType(Location::Stop);
+        loc.setData(info);
+    }
+    else if (const auto modes = obj.value("transportMode"_L1).toArray(); !modes.isEmpty()) {
+        StopInformation info;
+        for (const auto &mode : modes) {
+            Line line;
+            line.setMode(Gtfs::Hvt::typeToMode(mode.toString()));
+            info.addLine(line);
         }
         loc.setType(Location::Stop);
         loc.setData(info);

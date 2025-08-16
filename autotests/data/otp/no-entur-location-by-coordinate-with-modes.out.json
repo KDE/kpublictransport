@@ -1,0 +1,77 @@
+[
+    {
+        "country": "NO",
+        "identifier": {
+            "gtfs": "NSR:StopPlace:59605"
+        },
+        "latitude": 59.949063,
+        "longitude": 10.766848,
+        "name": "Nydalen",
+        "region": "NO-03",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Metro"
+                },
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
+        "type": "Stop"
+    },
+    {
+        "country": "NO",
+        "identifier": {
+            "gtfs": "NSR:StopPlace:6081"
+        },
+        "latitude": 59.950893,
+        "longitude": 10.768412,
+        "name": "Tamburveien",
+        "region": "NO-03",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
+        "type": "Stop"
+    },
+    {
+        "country": "NO",
+        "identifier": {
+            "gtfs": "NSR:StopPlace:6190"
+        },
+        "latitude": 59.950826,
+        "longitude": 10.760941,
+        "name": "Blåsbortveien",
+        "region": "NO-03",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
+        "type": "Stop"
+    },
+    {
+        "country": "NO",
+        "identifier": {
+            "gtfs": "NSR:StopPlace:6380"
+        },
+        "latitude": 59.946886,
+        "longitude": 10.764163,
+        "name": "Kristoffer Aamots bro",
+        "region": "NO-03",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
+        "type": "Stop"
+    }
+]

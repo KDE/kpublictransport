@@ -1,0 +1,67 @@
+{
+"stopsByRadius": {
+    "edges": [
+    {
+        "node": {
+        "stop": {
+            "id": "NSR:StopPlace:59605",
+            "name": "Nydalen",
+            "lat": 59.949063,
+            "lon": 10.766848,
+            "parentStation": null,
+            "transportMode": [
+            "metro",
+            "bus"
+            ]
+        },
+        "bikeRentalStation": {}
+        }
+    },
+    {
+        "node": {
+        "stop": {
+            "id": "NSR:StopPlace:6380",
+            "name": "Kristoffer Aamots bro",
+            "lat": 59.946886,
+            "lon": 10.764163,
+            "parentStation": null,
+            "transportMode": [
+            "bus"
+            ]
+        },
+        "bikeRentalStation": {}
+        }
+    },
+    {
+        "node": {
+        "stop": {
+            "id": "NSR:StopPlace:6190",
+            "name": "Blåsbortveien",
+            "lat": 59.950826,
+            "lon": 10.760941,
+            "parentStation": null,
+            "transportMode": [
+            "bus"
+            ]
+        },
+        "bikeRentalStation": {}
+        }
+    },
+    {
+        "node": {
+        "stop": {
+            "id": "NSR:StopPlace:6081",
+            "name": "Tamburveien",
+            "lat": 59.950893,
+            "lon": 10.768412,
+            "parentStation": null,
+            "transportMode": [
+            "bus"
+            ]
+        },
+        "bikeRentalStation": {}
+        }
+    }
+    ]
+  }
+}

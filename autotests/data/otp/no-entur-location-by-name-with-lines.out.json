@@ -1,0 +1,190 @@
+[
+    {
+        "country": "NO",
+        "identifier": {
+            "gtfs": "NSR:StopPlace:6073"
+        },
+        "latitude": 59.949492,
+        "longitude": 10.765338,
+        "name": "Nydalen",
+        "region": "NO-03",
+        "stopInformation": {
+            "lines": [
+                {
+                    "color": "#ec700c",
+                    "mode": "Metro",
+                    "name": "2",
+                    "operatorName": "Sporveien T-banen AS",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#ec700c",
+                    "mode": "Metro",
+                    "name": "3",
+                    "operatorName": "Sporveien T-banen AS",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#ec700c",
+                    "mode": "Metro",
+                    "name": "4",
+                    "operatorName": "Sporveien T-banen AS",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#ec700c",
+                    "mode": "Metro",
+                    "name": "5",
+                    "operatorName": "Sporveien T-banen AS",
+                    "textColor": "#ffffff"
+                }
+            ]
+        },
+        "timezone": "Europe/Oslo",
+        "type": "Stop"
+    },
+    {
+        "country": "NO",
+        "identifier": {
+            "gtfs": "NSR:StopPlace:6073"
+        },
+        "latitude": 59.949492,
+        "longitude": 10.765338,
+        "name": "Nydalen",
+        "region": "NO-03",
+        "stopInformation": {
+            "lines": [
+                {
+                    "color": "#ec700c",
+                    "mode": "Metro",
+                    "name": "2",
+                    "operatorName": "Sporveien T-banen AS",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#ec700c",
+                    "mode": "Metro",
+                    "name": "3",
+                    "operatorName": "Sporveien T-banen AS",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#ec700c",
+                    "mode": "Metro",
+                    "name": "4",
+                    "operatorName": "Sporveien T-banen AS",
+                    "textColor": "#ffffff"
+                },
+                {
+                    "color": "#ec700c",
+                    "mode": "Metro",
+                    "name": "5",
+                    "operatorName": "Sporveien T-banen AS",
+                    "textColor": "#ffffff"
+                }
+            ]
+        },
+        "timezone": "Europe/Oslo",
+        "type": "Stop"
+    },
+    {
+        "country": "NO",
+        "identifier": {
+            "gtfs": "NSR:StopPlace:31393"
+        },
+        "latitude": 60.341199,
+        "longitude": 5.345195,
+        "name": "Nydalen",
+        "region": "NO-46",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Bus",
+                    "name": "49",
+                    "operatorName": "Tide Buss og Bane"
+                },
+                {
+                    "mode": "Bus",
+                    "name": "740",
+                    "operatorName": "Tide Buss AS"
+                },
+                {
+                    "mode": "Bus",
+                    "name": "83",
+                    "operatorName": "Tide Buss AS"
+                }
+            ]
+        },
+        "timezone": "Europe/Oslo",
+        "type": "Stop"
+    },
+    {
+        "country": "NO",
+        "identifier": {
+            "gtfs": "NSR:StopPlace:31393"
+        },
+        "latitude": 60.341199,
+        "longitude": 5.345195,
+        "name": "Nydalen",
+        "region": "NO-46",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Bus",
+                    "name": "530",
+                    "operatorName": "Tide Buss AS"
+                },
+                {
+                    "mode": "Bus",
+                    "name": "740",
+                    "operatorName": "Tide Buss AS"
+                },
+                {
+                    "mode": "Bus",
+                    "name": "83",
+                    "operatorName": "Tide Buss AS"
+                },
+                {
+                    "mode": "Bus",
+                    "name": "934",
+                    "operatorName": "Tide Buss AS"
+                }
+            ]
+        },
+        "timezone": "Europe/Oslo",
+        "type": "Stop"
+    },
+    {
+        "country": "NO",
+        "identifier": {
+            "gtfs": "NSR:StopPlace:43272"
+        },
+        "latitude": 63.404004,
+        "longitude": 10.387322,
+        "name": "Nydalen",
+        "region": "NO-50",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Bus",
+                    "name": "20",
+                    "operatorName": "Tide Buss"
+                }
+            ]
+        },
+        "timezone": "Europe/Oslo",
+        "type": "Stop"
+    },
+    {
+        "country": "NO",
+        "identifier": {
+            "gtfs": "NSR:StopPlace:43272"
+        },
+        "latitude": 63.404004,
+        "longitude": 10.387322,
+        "name": "Nydalen",
+        "region": "NO-50",
+        "timezone": "Europe/Oslo",
+        "type": "Stop"
+    }
+]

@@ -53,6 +53,10 @@ private Q_SLOTS:
             << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-coordinate-with-routes.in.json")
             << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-coordinate-with-routes.out.json")
             << RentalVehicleNetworkMap();
+        QTest::newRow("no-entur-location-with-modes")
+            << s(SOURCE_DIR "/data/otp/no-entur-location-by-coordinate-with-modes.in.json")
+            << s(SOURCE_DIR "/data/otp/no-entur-location-by-coordinate-with-modes.out.json")
+            << RentalVehicleNetworkMap();
 
         RentalVehicleNetworkMap networks;
         networks.insert(s("car-sharing"), {});
@@ -99,6 +103,9 @@ private Q_SLOTS:
         QTest::newRow("de-stadtnavi-location-by-name-with-routes")
             << s(SOURCE_DIR "/data/otp/de-stadtnavi-location-by-name-with-routes.in.json")
             << s(SOURCE_DIR "/data/otp/de-stadtnavi-location-by-name-with-routes.out.json");
+        QTest::newRow("no-entur-location-by-name-with-lines")
+            << s(SOURCE_DIR "/data/otp/no-entur-location-by-name-with-lines.in.json")
+            << s(SOURCE_DIR "/data/otp/no-entur-location-by-name-with-lines.out.json");
     }
 
     void testParseLocationByName()

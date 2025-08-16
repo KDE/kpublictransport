@@ -14,5 +14,18 @@ query stationsByName($name: String!) {
       lon: longitude
       timezone: timeZone
     }
+    routes: lines {
+        transportMode
+        type: transportSubmode
+        shortName: publicCode
+        longName: name
+        agency: operator {
+            name
+        }
+        presentation {
+            color: colour
+            textColor: textColour
+        }
+    }
   }
 }

@@ -28,6 +28,7 @@ query stopsByCoordinate(
             lat: latitude
             lon: longitude
           }
+          transportMode
         }}
         bikeRentalStation: place { ...on BikeRentalStation {
             id
