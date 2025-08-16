@@ -29,6 +29,11 @@ Kirigami.ScrollablePage {
     property alias historySortRoleName: historySortModel.sortRoleName
     signal historySortRoleChanged(string sortRoleName)
 
+    /** See LocationRequest::downloadAssets.
+     *  @since 25.12
+     */
+    property bool downloadAssets: false
+
     Kirigami.PromptDialog {
         id: clearConfirmDialog
         title: i18ndc("kpublictransport", "@title:dialog", "Clear History")
@@ -86,7 +91,8 @@ Kirigami.ScrollablePage {
                     name: queryTextField.text,
                     country: countryCombo.currentValue
                 },
-                types: PublicTransport.Location.Stop | PublicTransport.Location.Address
+                types: PublicTransport.Location.Stop | PublicTransport.Location.Address,
+                downloadAssets: root.downloadAssets
             };
         }
     }
