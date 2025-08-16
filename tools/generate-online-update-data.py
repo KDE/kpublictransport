@@ -22,6 +22,7 @@ import sys
 parser = argparse.ArgumentParser(description='Generate KPublicTransport online update repository')
 parser.add_argument('--source', type=str, required=True, help='Path of the kpublictransport source code root folder')
 parser.add_argument('--output', type=str, required=True, help='Path of the online update data. Reuses pre-existing data for incremental updates')
+parser.add_argument('--release', action='store_true', help='Current source code repository state is a release tag')
 arguments = parser.parse_args()
 
 
@@ -99,9 +100,9 @@ for subdir, _, files in os.walk('networks'):
             continue
 
         entry = old_entries.get(entry['name'], entry).copy()
-        if entry['version'] == current_version:
+        if entry['version'] == current_version and not arguments.release:
             entry['version'] = f"{current_version}.1"
-        elif entry['version'].startswith(current_version):
+        elif entry['version'].startswith(current_version) and not entry['version'] == current_version:
             entry['version'] = f"{current_version}.{int(entry['version'][len(current_version)+1:])+1}"
         else:
             entry['version'] = current_version
