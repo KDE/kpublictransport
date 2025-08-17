@@ -484,8 +484,9 @@ std::vector<Route> HafasMgateParser::parseProducts(const QJsonArray &prodL, cons
             line.setName(prodObj.value(QLatin1String("name")).toString());
         }
 
-        const auto icoIdx = prodObj.value(QLatin1String("icoX")).toInt();
-        if ((unsigned int)icoIdx < icos.size()) {
+        // only apply colors to lines, not generic modes
+        // lines have a clearly defined color, colors for modes (== products) vary depending on who you ask
+        if (const std::size_t icoIdx = prodObj.value("icoX"_L1).toInt(); icoIdx < icos.size() && !line.name().isEmpty()) {
             line.setColor(icos[icoIdx].bg);
             line.setTextColor(icos[icoIdx].fg);
         }

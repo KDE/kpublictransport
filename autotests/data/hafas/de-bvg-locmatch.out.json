@@ -12,10 +12,8 @@
         "stopInformation": {
             "lines": [
                 {
-                    "color": "#7d8185",
                     "mode": "LongDistanceTrain",
-                    "name": "",
-                    "textColor": "#ffffff"
+                    "name": ""
                 },
                 {
                     "color": "#e20019",
