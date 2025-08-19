@@ -105,7 +105,7 @@ for subdir, _, files in os.walk('networks'):
         elif entry['version'].startswith(current_version) and not entry['version'] == current_version:
             entry['version'] = f"{current_version}.{int(entry['version'][len(current_version)+1:])+1}"
         else:
-            entry['version'] = current_version
+            entry['version'] = current_version if arguments.release else f"{current_version}.1"
         entry['source'] = f"{subdir}/{f_base}-{entry['version']}{f_ext}"
         shutil.copy(os.path.join(subdir, f), os.path.join(absOutputPath, entry['source']))
         print(f"Updating file {subdir}/{f} to {entry['version']}…")
