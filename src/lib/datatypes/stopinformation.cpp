@@ -89,6 +89,17 @@ void StopInformation::addLine(const KPublicTransport::Line &line)
     });
 }
 
+QString StopInformation::iconName() const
+{
+    if (!d->lines.empty()) {
+        const auto mode = d->lines.front().mode();
+        if (std::ranges::all_of(d->lines, [mode](const auto &l) { return l.mode() == mode; })) {
+            return Line::modeIconName(mode);
+        }
+    }
+    return u"qrc:///org.kde.kpublictransport/assets/images/transport-stop.svg"_s;
+}
+
 void StopInformation::applyMetaData(const Location &loc, bool download)
 {
     for (auto &line : d->lines) {

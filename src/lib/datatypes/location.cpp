@@ -544,7 +544,7 @@ QString Location::iconName() const
 {
     switch (d->type) {
         case Location::Stop:
-            return u"qrc:///org.kde.kpublictransport/assets/images/transport-stop.svg"_s;
+            return stopInformation().iconName();
         case Location::RentedVehicleStation:
             return rentalVehicleStation().iconName();
         case Location::RentedVehicle:

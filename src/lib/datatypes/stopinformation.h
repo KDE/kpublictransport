@@ -28,6 +28,12 @@ class KPUBLICTRANSPORT_EXPORT StopInformation
 
     /** Lines served at this stop. */
     Q_PROPERTY(std::vector<KPublicTransport::Line> lines READ lines)
+
+    /** Icon representing this rental vehicle station.
+     *  Can be a qrc: URL or an XDG icon name.
+     */
+    Q_PROPERTY(QString iconName READ iconName STORED false)
+
 public:
     /** Served lines at this stop. Can be fully qualified lines or just transport modes,
      *  depending on what the backend provides.
@@ -38,6 +44,8 @@ public:
     void addLine(const KPublicTransport::Line &line);
     /** Sets lines servied at this stop. */
     void setLines(const std::vector<Line> &lines);
+
+    [[nodiscard]] QString iconName() const;
 
     /** Augment line meta data.
      *  @param download when set to @c true trigger download of missing assets.
