@@ -27,3 +27,4 @@ Options:
   - 'autotests/data/ivvass/journey-long-distance-vrs-input.json'
   - 'autotests/data/onboard-journey/db-ice.in.json'
   - 'autotests/data/otp/de-stadtnavi-bike-parking-journey.in.json'
+  run-qmllint: true
