@@ -67,7 +67,7 @@ KPublicTransport.VehicleSectionItem {
         }
 
         TapHandler {
-            enabled: (delegateRoot.vehicleSection.sectionFeatures.length > 0 || delegateRoot.vehicleSection.occupancy != KPublicTransport.Load.Unknown) && delegateRoot.vehicleSection.disruptionEffect !== KPublicTransport.Disruption.NoService
+            enabled: (delegateRoot.vehicleSection.sectionFeatures.length > 0 || delegateRoot.vehicleSection.load !== KPublicTransport.Load.Unknown) && delegateRoot.vehicleSection.disruptionEffect !== KPublicTransport.Disruption.NoService
             onTapped: (eventPoint, button) => { delegateRoot.tapped(eventPoint, button); }
         }
     }
