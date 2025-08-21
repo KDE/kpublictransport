@@ -64,7 +64,7 @@ Kirigami.Icon {
 
         if (root.feature.description !== "") {
             s += '\n' + root.feature.description;
-            s = s.trimmed();
+            s = s.trim();
         }
 
         return s;
