@@ -24,6 +24,8 @@
 
 #include "localbackendutils.h"
 
+constexpr auto LTGLINK_IDENTIFIER = QLatin1StringView("ltglinkint");
+
 using namespace KPublicTransport;
 
 AbstractBackend::Capabilities LTGLinkBackend::capabilities() const
@@ -34,7 +36,7 @@ AbstractBackend::Capabilities LTGLinkBackend::capabilities() const
 bool LTGLinkBackend::needsLocationQuery(const Location &loc, QueryType type) const
 {
     Q_UNUSED(type);
-    return loc.identifier(QStringLiteral("ltglinkint")).isEmpty();
+    return loc.identifier(LTGLINK_IDENTIFIER).isEmpty();
 }
 
 bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
@@ -65,9 +67,11 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
     }();
     urlQuery.addQueryItem(QStringLiteral("departureDate"), date.toString(Qt::ISODate));
     urlQuery.addQueryItem(QStringLiteral("currencyId"), QStringLiteral("CURRENCY.EUR"));
-    urlQuery.addQueryItem(QStringLiteral("Passengers"), QStringLiteral("BONUS_SCHEME_GROUP.ADULT%2C1"));
-    urlQuery.addQueryItem(QStringLiteral("OriginStopId"), req.from().identifier(QStringLiteral("ltglinkint")));
-    urlQuery.addQueryItem(QStringLiteral("DestinationStopId"), req.to().identifier(QStringLiteral("ltglinkint")));
+    urlQuery.addQueryItem(QStringLiteral("Passengers"),
+                          QStringLiteral("BONUS_SCHEME_GROUP.ADULT%2C1"));
+    urlQuery.addQueryItem(QStringLiteral("OriginStopId"), req.from().identifier(LTGLINK_IDENTIFIER));
+    urlQuery.addQueryItem(QStringLiteral("DestinationStopId"),
+                          req.to().identifier(LTGLINK_IDENTIFIER));
     url.setQuery(urlQuery);
 
     auto netReply = nam->get(QNetworkRequest(url));
@@ -306,7 +310,7 @@ Location LTGLinkBackend::stationToLocation(const LTGLink::Station &station)
 {
     Location loc;
     loc.setCoordinate(station.latitude, station.longitude);
-    loc.setIdentifier(QStringLiteral("ltglinkint"), QString::number(station.id));
+    loc.setIdentifier(LTGLINK_IDENTIFIER, QString::number(station.id));
     loc.setName(station.name);
     loc.setType(Location::Stop);
     return loc;
