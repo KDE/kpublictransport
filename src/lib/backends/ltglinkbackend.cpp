@@ -91,6 +91,10 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
         auto journeys = std::make_shared<std::vector<Journey>>();
         auto runningRequests = std::make_shared<int>(0);
 
+        if (journeysJson.empty()) {
+            addResult(reply, this, std::vector<Journey>());
+        }
+
         for (const auto &j : journeysJson) {
             auto journeyId = j[u"Id"].toString();
             auto sectionsJson = j[u"Legs"].toArray();
