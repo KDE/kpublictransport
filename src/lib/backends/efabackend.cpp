@@ -279,6 +279,7 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
     }
 
     url.setQuery(query);
+    qCDebug(Log) << url;
 
     QNetworkRequest netRequest(url);
     applySslConfiguration(netRequest);
