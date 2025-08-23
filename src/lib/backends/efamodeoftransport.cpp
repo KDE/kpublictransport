@@ -24,7 +24,7 @@ static constexpr const Line::Mode mot_map[] = {
     Line::Bus, // 5
     Line::Bus, // 6 "Regional bus"
     Line::Bus, // 7 "Express bus"
-    Line::Funicular, // 8 "Cable car/Rack railway"
+    Line::Funicular, // 8 "Cable car/Rack railway" TODO this would also be Line::AerialLift
     Line::Ferry, // 9
     Line::Taxi, // 10 "Taxi on demand"
     Line::Unknown, // 11 "Other"
@@ -34,8 +34,10 @@ static constexpr const Line::Mode mot_map[] = {
     Line::LongDistanceTrain,
     Line::LongDistanceTrain, // 14-16 "Train (intercity)"
     Line::Bus, // 17 "Rail replacement service"
-    Line::Train, // 18 "Rail shuttle"
+    Line::RailShuttle, // 18 "Rail shuttle"
     Line::Bus, // 19 "Peoples bus" / "Bürgerbus"
+    Line::Bus, // 20 "Rufbus" / on-demand but line-based busses
+    Line::Coach, // 21 "Fernbus" / long distance bus services
 };
 
 Line::Mode EfaModeOfTransport::motTypeToLineMode(int mot)
