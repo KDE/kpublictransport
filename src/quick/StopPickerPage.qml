@@ -135,6 +135,7 @@ Kirigami.ScrollablePage {
         sourceModel: locationHistoryModel
         sortOrder: sortRoleName == "locationName" ? Qt.AscendingOrder : Qt.DescendingOrder
         sortCaseSensitivity: Qt.CaseInsensitive
+        isSortLocaleAware: true
         onSortRoleChanged: root.historySortRoleChanged(sortRoleName)
     }
 
