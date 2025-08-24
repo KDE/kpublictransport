@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-18 00:40+0000\n"
+"POT-Creation-Date: 2025-08-24 00:41+0000\n"
 "PO-Revision-Date: 2025-05-27 12:01+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -396,43 +396,43 @@ msgctxt "@action"
 msgid "Most often used"
 msgstr "Plus soventemente usate"
 
-#: quick/StopPickerPage.qml:158
+#: quick/StopPickerPage.qml:159
 #, kde-format
 msgctxt "locality, region, country"
 msgid "%1, %2, %3"
 msgstr "%1, %2, %3"
 
-#: quick/StopPickerPage.qml:163
+#: quick/StopPickerPage.qml:164
 #, kde-format
 msgctxt "locality, country"
 msgid "%1, %2"
 msgstr "%1, %2"
 
-#: quick/StopPickerPage.qml:167
+#: quick/StopPickerPage.qml:168
 #, kde-format
 msgctxt "region, country"
 msgid "%1, %2"
 msgstr "%1, %2"
 
-#: quick/StopPickerPage.qml:190
+#: quick/StopPickerPage.qml:191
 #, kde-format
 msgctxt "location name, locality, region, country"
 msgid "%1, %2, %3, %4"
 msgstr "%1, %2, %3, %4"
 
-#: quick/StopPickerPage.qml:196
+#: quick/StopPickerPage.qml:197
 #, kde-format
 msgctxt "location name, locality, country"
 msgid "%1, %2, %3"
 msgstr "%1, %2, %3"
 
-#: quick/StopPickerPage.qml:201
+#: quick/StopPickerPage.qml:202
 #, kde-format
 msgctxt "location name, region, country"
 msgid "%1, %2, %3"
 msgstr "%1, %2, %3"
 
-#: quick/StopPickerPage.qml:206
+#: quick/StopPickerPage.qml:207
 #, fuzzy, kde-format
 #| msgctxt "locality, country"
 #| msgid "%1, %2"
@@ -440,13 +440,13 @@ msgctxt "location name, country"
 msgid "%1, %2"
 msgstr "%1, %2"
 
-#: quick/StopPickerPage.qml:237
+#: quick/StopPickerPage.qml:238
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove history entry"
 msgstr "Remove entrata de chronologia"
 
-#: quick/StopPickerPage.qml:294
+#: quick/StopPickerPage.qml:295
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "No locations found"
