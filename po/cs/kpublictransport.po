@@ -265,21 +265,18 @@ msgid "Not available"
 msgstr "Není k dispozici"
 
 #: quick/FeatureDelegate.qml:43
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Currently not available"
-msgstr "%1 (Nedostupný)"
+msgstr ""
 
 #: quick/FeatureDelegate.qml:45
-#, fuzzy, kde-format
-#| msgid "%2 (one space)"
-#| msgid_plural "%2 (%1 spaces)"
+#, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "One space"
 msgid_plural "%1 spaces"
-msgstr[0] "%2 (jedno místo)"
-msgstr[1] "%2 (%1 místa)"
-msgstr[2] "%2 (%1 míst)"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: quick/FeatureIcon.qml:58
 #, kde-format
@@ -292,15 +289,13 @@ msgid "%1 (not available)"
 msgstr "%1 (Nedostupný)"
 
 #: quick/FeatureIcon.qml:62
-#, fuzzy, kde-format
-#| msgid "%2 (one space)"
-#| msgid_plural "%2 (%1 spaces)"
+#, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
-msgstr[0] "%2 (jedno místo)"
-msgstr[1] "%2 (%1 místa)"
-msgstr[2] "%2 (%1 míst)"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
@@ -337,11 +332,9 @@ msgid "Information"
 msgstr "Informace"
 
 #: quick/StopoverInformationView.qml:61
-#, fuzzy, kde-format
-#| msgctxt "vehicle occupancy"
-#| msgid "Low occupancy"
+#, kde-format
 msgid "Occupancy"
-msgstr "Nízká obsazenost"
+msgstr ""
 
 #: quick/StopoverInformationView.qml:76
 #, kde-format
