@@ -34,6 +34,11 @@ Kirigami.ScrollablePage {
      */
     property bool downloadAssets: false
 
+    /** Whether to offer a button that uses the user's current location.
+     * @since 25.12
+    */
+    property bool showUseCurrentLocationButton: false
+
     Kirigami.PromptDialog {
         id: clearConfirmDialog
         title: i18ndc("kpublictransport", "@title:dialog", "Clear History")
@@ -110,6 +115,7 @@ Kirigami.ScrollablePage {
                 manager: root.publicTransportManager
             }
             initialCountry: root.initialCountry
+            enabled: !currentLocationDelegate.checked
             onCurrentValueChanged: root.updateQuery();
         }
 
@@ -119,10 +125,26 @@ Kirigami.ScrollablePage {
             Layout.rightMargin: Kirigami.Units.smallSpacing
             Layout.fillWidth: true
             onAccepted: root.updateQuery();
+            enabled: !currentLocationDelegate.checked
         }
 
         Kirigami.Separator {
             Layout.fillWidth: true
+        }
+
+        Private.CurrentLocationDelegate {
+            id: currentLocationDelegate
+            Layout.fillWidth: true
+            active: root.showUseCurrentLocationButton
+            visible: active && available && queryTextField.text === ""
+
+            onLocationPicked: {
+                root.location = location;
+                QQC2.ApplicationWindow.window.pageStack.goBack();
+            }
+            onErrorOccurred: (errorString) => {
+                applicationWindow().showPassiveNotification(errorString);
+            }
         }
     }
 
@@ -277,6 +299,7 @@ Kirigami.ScrollablePage {
         id: locationView
         model: queryTextField.text === "" ? historySortModel : locationQueryModel
         delegate: queryTextField.text === "" ? historyDelegate : queryResultDelegate
+        enabled: !currentLocationDelegate.checked
 
         QQC2.BusyIndicator {
             anchors.centerIn: parent
