@@ -46,6 +46,7 @@ ecm_target_qml_sources(kpublictransportquickplugin
     PATH private
     SOURCES
         private/CountryComboBox.qml
+        private/CurrentLocationDelegate.qml
 )
 
 target_link_libraries(kpublictransportquickplugin
