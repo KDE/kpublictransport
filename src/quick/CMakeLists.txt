@@ -11,6 +11,8 @@ ecm_add_qml_module(kpublictransportquickplugin
         "QtNetwork"
         "QtQuick"
         "QtQuick.Controls"
+        "QtLocation"
+        "QtPositioning"
         "org.kde.kirigami"
         "org.kde.kirigamiaddons.delegates"
         "org.kde.i18n.localeData"
@@ -46,6 +48,8 @@ ecm_target_qml_sources(kpublictransportquickplugin
     PATH private
     SOURCES
         private/CountryComboBox.qml
+        private/CurrentLocationDelegate.qml
+        private/globals.js
 )
 
 target_link_libraries(kpublictransportquickplugin

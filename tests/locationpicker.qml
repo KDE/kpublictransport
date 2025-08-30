@@ -25,6 +25,7 @@ Kirigami.ApplicationWindow {
         publicTransportManager: ptMgr
         historySortRoleName: "locationName"
         downloadAssets: true
+        showUseCurrentLocationButton: true
 
         onLocationChanged: () => { console.log(stopPicker.location); }
     }
