@@ -44,10 +44,14 @@ QQC2.Control {
     /** Displayed name of the public transport line. */
     property string lineName: root.line.name
 
+    /** The lower limit of the width this item can take **/
+    readonly property int minimumWidth: Kirigami.Units.iconSizes.smallMedium + Kirigami.Units.smallSpacing * 2
+
     leftPadding: Kirigami.Units.smallSpacing
     rightPadding: Kirigami.Units.smallSpacing
     topPadding: Kirigami.Units.smallSpacing
     bottomPadding: Kirigami.Units.smallSpacing
+
 
     clip: true
 
@@ -56,6 +60,7 @@ QQC2.Control {
 
         Item {
             Layout.fillWidth: true
+            Layout.horizontalStretchFactor: 5
         }
 
         KPublicTransport.TransportIcon {
@@ -71,6 +76,9 @@ QQC2.Control {
             Accessible.name: root.modeName
 
             Layout.rightMargin: lineName.visible ? Kirigami.Units.smallSpacing : 0
+            Layout.fillWidth: true
+
+            Layout.minimumWidth: Kirigami.Units.iconSizes.smallMedium
         }
 
         Kirigami.Heading {
@@ -93,18 +101,20 @@ QQC2.Control {
             }
             level: 4
             text: root.lineName
-            visible: text.length > 0 && root.journeySectionMode === KPublicTransport.JourneySection.PublicTransport && !root.line.hasLogo
-            elide: Text.ElideRight
+            visible: text.length > 0 && root.journeySectionMode === KPublicTransport.JourneySection.PublicTransport && !root.line.hasLogo &&
+                     lineName.contentWidth <= lineName.width
             font.weight: Font.DemiBold
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
             Layout.minimumHeight: Kirigami.Units.iconSizes.smallMedium
             Layout.fillHeight: true
+            Layout.fillWidth: true
         }
 
         Item {
             Layout.fillWidth: true
+            Layout.horizontalStretchFactor: 5
         }
     }
 
