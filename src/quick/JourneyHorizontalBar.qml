@@ -32,19 +32,6 @@ RowLayout {
     spacing: Kirigami.Units.smallSpacing
     Layout.fillWidth: true
 
-    // minimum width we need to show the journey without eliding/clipping/etc
-    readonly property real __minimumWidth: {
-        if (repeater.count != root.journey.sections.length || repeater.count === 0) // still being populated
-            return 0.0;
-        let s = 0.0;
-        for (const v of root.children) {
-            if (v as TransportNameControl)
-                s += v.implicitWidth
-        }
-        s += (repeater.count - 1) * root.spacing;
-        return s;
-    }
-
     // suspiciously long individual transport sections
     function warnAboutSection(section : KPublicTransport.journeySection): bool {
         switch (section.mode) {
@@ -81,12 +68,14 @@ RowLayout {
             required property KPublicTransport.journeySection modelData
             journeySection: modelData
 
-            Layout.fillWidth: true
-            Layout.maximumWidth: delegateRoot.modelData.mode === KPublicTransport.JourneySection.PublicTransport ? Number.POSITIVE_INFINITY : implicitWidth
-            Layout.minimumWidth: root.__minimumWidth < root.width ? implicitWidth : 0
-
             // when we have the space, size public transport sections based on their duration
-            Layout.preferredWidth: implicitWidth + (delegateRoot.modelData.mode === KPublicTransport.JourneySection.PublicTransport ? (delegateRoot.journeySection.duration / root.journey.duration) * (root.width - (root.journey.sections.length * root.spacing) - root.__minimumWidth) : 0)
+            Layout.minimumWidth: delegateRoot.minimumWidth
+            Layout.preferredWidth: implicitWidth +
+                                    (delegateRoot.modelData.mode === KPublicTransport.JourneySection.PublicTransport ?
+                                        (delegateRoot.journeySection.duration / root.journey.duration) * (root.width - (root.journey.sections.length * root.spacing))
+                                        : 0)
+
+            Layout.fillWidth: true
 
             // ### enabled: false for cancelled sections? needs the below icon moved out of the hierarchy though
 
