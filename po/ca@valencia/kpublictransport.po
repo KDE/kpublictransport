@@ -324,7 +324,7 @@ msgstr "Completa"
 #: quick/private/CountryComboBox.qml:45
 #, kde-format
 msgid "Select country"
-msgstr "Seleccioneu el país"
+msgstr "Trieu el país"
 
 #: quick/StopoverInformationView.qml:43
 #, kde-format
