@@ -595,9 +595,15 @@ QString JourneySection::label() const
 
 Load::Category JourneySection::maximumOccupancy() const
 {
-    return std::accumulate(d->departure.loadInformation().begin(), d->departure.loadInformation().end(), Load::Unknown, [](auto l, const auto &info) {
+    const auto l = std::accumulate(d->departure.loadInformation().begin(), d->departure.loadInformation().end(), Load::Unknown, [](auto l, const auto &info) {
         return std::max(l, info.load());
     });
+    if (l == Load::Unknown) {
+        return std::accumulate(d->intermediateStops.begin(), d->intermediateStops.end(), Load::Unknown, [](auto l, const auto &stop) {
+            return std::max(l, stop.maximumOccupancy());
+        });
+    }
+    return l;
 }
 
 QString JourneySection::identifier(QAnyStringView identifierType) const
