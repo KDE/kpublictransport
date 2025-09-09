@@ -31,7 +31,6 @@
         "Description[sv]": "Kollektivtrafik i Finland.",
         "Description[tr]": "Finlandiya toplu taşıma.",
         "Description[uk]": "Громадський транспорт у Фінляндії.",
-        "Description[x-test]": "xxPublic transport in Finland.xx",
         "Description[zh_CN]": "芬兰的公共交通。",
         "Description[zh_TW]": "芬蘭的公共運輸。",
         "Name": "Digitransit Finland",
@@ -64,7 +63,6 @@
         "Name[sv]": "Digitransit Finland",
         "Name[tr]": "Digitransit Finland",
         "Name[uk]": "Digitransit Finland",
-        "Name[x-test]": "xxDigitransit Finlandxx",
         "Name[zh_CN]": "Digitransit 芬兰"
     },
     "attribution": {

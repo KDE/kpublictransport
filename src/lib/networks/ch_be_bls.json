@@ -29,7 +29,6 @@
         "Description[sv]": "Lokal kollektivtrafik i och omkring Bern och Luzern, Schweiz.",
         "Description[tr]": "Luzern, İsviçre içi ve çevresi yerel toplu taşıma.",
         "Description[uk]": "Місцевий транспорт у Берні і Люцерні, Швейцарія.",
-        "Description[x-test]": "xxLocal public transport in and around Bern and Luzern, Switzerland.xx",
         "Name": "BLS AG",
         "Name[ca@valencia]": "BLS AG",
         "Name[ca]": "BLS AG",
@@ -56,8 +55,7 @@
         "Name[sl]": "BLS AG",
         "Name[sv]": "BLS AG",
         "Name[tr]": "BLS AG",
-        "Name[uk]": "BLS AG",
-        "Name[x-test]": "xxBLS AGxx"
+        "Name[uk]": "BLS AG"
     },
     "attribution": {
         "homepage": "https://www.bls.ch/",

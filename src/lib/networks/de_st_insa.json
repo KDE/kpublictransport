@@ -31,7 +31,6 @@
         "Description[sv]": "Lokal transportoperatör i Sachsen-Anhalt, Tyskland.",
         "Description[tr]": "Almanya, Sachsen-Anhalt için yerel taşıma.",
         "Description[uk]": "Місцевий транспорт у регіоні Саксонія-Ангальт, Німеччина.",
-        "Description[x-test]": "xxLocal transport in Sachsen-Anhalt, Germany.xx",
         "Description[zh_CN]": "德国萨克森-安哈尔特当地的公共交通。",
         "Description[zh_TW]": "德國薩克森-安哈特邦的區域運輸。",
         "Name": "Nahverkehrsservice Sachsen-Anhalt (INSA)",
@@ -63,8 +62,7 @@
         "Name[sl]": "Nahverkehrsservice Sachsen-Anhalt (INSA)",
         "Name[sv]": "Nahverkehrsservice Sachsen-Anhalt (INSA)",
         "Name[tr]": "Nahverkehrsservice Sachsen-Anhalt (INSA)",
-        "Name[uk]": "Nahverkehrsservice Sachsen-Anhalt (INSA)",
-        "Name[x-test]": "xxNahverkehrsservice Sachsen-Anhalt (INSA)xx"
+        "Name[uk]": "Nahverkehrsservice Sachsen-Anhalt (INSA)"
     },
     "attribution": {
         "homepage": "https://www.nasa.de/",

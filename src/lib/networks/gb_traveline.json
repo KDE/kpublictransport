@@ -30,7 +30,6 @@
         "Description[sv]": "Information om kollektivtrafik i Storbritannien.",
         "Description[tr]": "BK toplu taşıma bilgisi.",
         "Description[uk]": "Дані щодо громадського транспорту у Великій Британії.",
-        "Description[x-test]": "xxUK public transport information.xx",
         "Description[zh_CN]": "英国公交信息。",
         "Description[zh_TW]": "英國公共運輸資訊。",
         "Name": "Traveline",
@@ -62,8 +61,7 @@
         "Name[sl]": "Traveline",
         "Name[sv]": "Traveline",
         "Name[tr]": "Traveline",
-        "Name[uk]": "Traveline",
-        "Name[x-test]": "xxTravelinexx"
+        "Name[uk]": "Traveline"
     },
     "coverage": {
         "realtimeCoverage": {

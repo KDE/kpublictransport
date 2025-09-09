@@ -18,7 +18,6 @@
         "Description[sv]": "Lokal kollektivtrafik i Sydtyrolen.",
         "Description[tr]": "Güney Tirol içi ve çevresi yerel toplu taşıma.",
         "Description[uk]": "Місцевий громадський транспорт у Південному Тиролі.",
-        "Description[x-test]": "xxLocal public transport in South Tyrol.xx",
         "Name": "Südtirolmobil (STA)",
         "Name[ca@valencia]": "Südtirolmobil (STA)",
         "Name[ca]": "Südtirolmobil (STA)",
@@ -35,8 +34,7 @@
         "Name[sl]": "Südtirolmobil (STA)",
         "Name[sv]": "Südtirolmobil (STA)",
         "Name[tr]": "Südtirolmobil (STA)",
-        "Name[uk]": "Südtirolmobil (STA)",
-        "Name[x-test]": "xxSüdtirolmobil (STA)xx"
+        "Name[uk]": "Südtirolmobil (STA)"
     },
     "attribution": {
         "homepage": "https://www.sta.bz.it/de/",

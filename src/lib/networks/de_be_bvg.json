@@ -31,7 +31,6 @@
         "Description[sv]": "Lokal transportoperatör i Berlin, Tyskland.",
         "Description[tr]": "Almanya, Berlin için yerel ulaşım operatörü.",
         "Description[uk]": "Місцевий транспортний оператор у Берліні, Німеччина.",
-        "Description[x-test]": "xxLocal transport operator in Berlin, Germany.xx",
         "Description[zh_CN]": "德国柏林当地的交通运营单位。",
         "Description[zh_TW]": "德國柏林的區域運輸營運者。",
         "Name": "Berliner Verkehrsbetriebe (BVG)",
@@ -65,7 +64,6 @@
         "Name[sv]": "Berliner Verkehrsbetriebe (BVG)",
         "Name[tr]": "Berliner Verkehrsbetriebe (BVG)",
         "Name[uk]": "Berliner Verkehrsbetriebe (BVG)",
-        "Name[x-test]": "xxBerliner Verkehrsbetriebe (BVG)xx",
         "Name[zh_TW]": "Berliner Verkehrsbetriebe (BVG)"
     },
     "attribution": {

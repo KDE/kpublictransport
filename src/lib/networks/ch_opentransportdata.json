@@ -30,7 +30,6 @@
         "Description[sv]": "Kollektivtrafik i Schweiz.",
         "Description[tr]": "İsviçre için toplu taşıma.",
         "Description[uk]": "Громадський транспорт у Швейцарії.",
-        "Description[x-test]": "xxPublic transport in Switzerland.xx",
         "Description[zh_TW]": "瑞士的公共運輸。",
         "Name": "opentransportdata.swiss",
         "Name[ca@valencia]": "opentransportdata.swiss",
@@ -61,7 +60,6 @@
         "Name[sv]": "opentransportdata.swiss",
         "Name[tr]": "açıktaşımaverisi.swiss",
         "Name[uk]": "opentransportdata.swiss",
-        "Name[x-test]": "xxopentransportdata.swissxx",
         "Name[zh_TW]": "opentransportdata.swiss"
     },
     "attribution": {

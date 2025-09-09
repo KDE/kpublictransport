@@ -31,7 +31,6 @@
         "Description[sv]": "Schweizisk statsjärnväg.",
         "Description[tr]": "İsviçre ulusal demiryolları.",
         "Description[uk]": "Швейцарська державна залізниця.",
-        "Description[x-test]": "xxSwiss national railway.xx",
         "Description[zh_CN]": "瑞士国家铁路。",
         "Description[zh_TW]": "瑞士國家鐵路。",
         "Name": "Swiss Federal Railways (SBB/CFF/FFS)",
@@ -63,8 +62,7 @@
         "Name[sl]": "Švicarske federalne železnice (SBB/CFF/FFS)",
         "Name[sv]": "Schweiziska federala järnvägar (SBB/CFF/FFS)",
         "Name[tr]": "İsviçre Federal Demiryolları (SBB/CFF/FFS)",
-        "Name[uk]": "Федеральна залізниця Швейцарії (SBB/CFF/FFS)",
-        "Name[x-test]": "xxSwiss Federal Railways (SBB/CFF/FFS)xx"
+        "Name[uk]": "Федеральна залізниця Швейцарії (SBB/CFF/FFS)"
     },
     "attribution": {
         "homepage": "https://www.sbb.ch",

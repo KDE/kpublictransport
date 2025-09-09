@@ -31,7 +31,6 @@
         "Description[sv]": "Lokal transportoperatör i och omkring Torino, Italien.",
         "Description[tr]": "İtalya, Torino içi ve çevresi yerel toplu taşıma.",
         "Description[uk]": "Місцевий транспорт у Туріні і околицях, Італія.",
-        "Description[x-test]": "xxLocal public transport in and around Torino, Italy.xx",
         "Description[zh_CN]": "意大利都灵及其周边地区的公共交通。",
         "Description[zh_TW]": "義大利杜林與附近的區域公共運輸。",
         "Name": "Muoversi a Torino",
@@ -63,8 +62,7 @@
         "Name[sl]": "Muoversi a Torino",
         "Name[sv]": "Muoversi a Torino",
         "Name[tr]": "Muoversi a Torino",
-        "Name[uk]": "Muoversi a Torino",
-        "Name[x-test]": "xxMuoversi a Torinoxx"
+        "Name[uk]": "Muoversi a Torino"
     },
     "coverage": {
         "anyCoverage": {

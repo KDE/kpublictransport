@@ -31,7 +31,6 @@
         "Description[sv]": "Kollektivtrafik i Thuringia, Tyskland.",
         "Description[tr]": "Almanya, Thuringia için toplu taşıma.",
         "Description[uk]": "Дані щодо громадського транспорту у Тюрінґії, Німеччина.",
-        "Description[x-test]": "xxPublic transport in Thuringia, Germany.xx",
         "Description[zh_CN]": "德国图林根的公共交通。",
         "Description[zh_TW]": "德國圖林根邦的公共運輸。",
         "Name": "Verkehrsverbund Mittelthüringen (VMT)",
@@ -63,8 +62,7 @@
         "Name[sl]": "Verkehrsverbund Mittelthüringen (VMT)",
         "Name[sv]": "Verkehrsverbund Mittelthüringen (VMT)",
         "Name[tr]": "Verkehrsverbund Mittelthüringen (VMT)",
-        "Name[uk]": "Verkehrsverbund Mittelthüringen (VMT)",
-        "Name[x-test]": "xxVerkehrsverbund Mittelthüringen (VMT)xx"
+        "Name[uk]": "Verkehrsverbund Mittelthüringen (VMT)"
     },
     "attribution": {
         "homepage": "https://www.vmt-thueringen.de/",

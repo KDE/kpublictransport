@@ -29,7 +29,6 @@
         "Description[sv]": "Lokala transporter i och omkring Köln, Tyskland.",
         "Description[tr]": "Almanya, Köln içi ve çevresi için yerel taşıma.",
         "Description[uk]": "Місцевий транспорт у Кельні і околицях, Німеччина.",
-        "Description[x-test]": "xxLocal transport in and around Cologne, Germany.xx",
         "Name": "Kölner Verkehrs-Betriebe (KVB)",
         "Name[ca@valencia]": "Kölner Verkehrs-Betriebe (KVB)",
         "Name[ca]": "Kölner Verkehrs-Betriebe (KVB)",
@@ -57,8 +56,7 @@
         "Name[sl]": "Kölner Verkehrs-Betriebe (KVB)",
         "Name[sv]": "Kölner Verkehrs-Betriebe (KVB)",
         "Name[tr]": "Kölner Verkehrs-Betriebe (KVB)",
-        "Name[uk]": "Kölner Verkehrs-Betriebe (KVB)",
-        "Name[x-test]": "xxKölner Verkehrs-Betriebe (KVB)xx"
+        "Name[uk]": "Kölner Verkehrs-Betriebe (KVB)"
     },
     "attribution": {
         "homepage": "https://kvb.koeln/",
