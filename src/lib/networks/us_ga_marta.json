@@ -31,7 +31,6 @@
         "Description[sv]": "Lokal transportoperatör i och omkring Atlanta, Georgia, USA.",
         "Description[tr]": "ABD, Georgia, Atlanta içi ve çevresi toplu taşıma.",
         "Description[uk]": "Громадський транспорт у Атланті і околицях, Джорджія, США.",
-        "Description[x-test]": "xxPublic transport in and around Atlanta, Georgia, US.xx",
         "Description[zh_CN]": "美国佐治亚州亚特兰大及其周边地区的公共交通。",
         "Description[zh_TW]": "Atlanta, Georgia, US 及其週邊的公共運輸。",
         "Name": "Marta",
@@ -63,8 +62,7 @@
         "Name[sl]": "Marta",
         "Name[sv]": "Marta",
         "Name[tr]": "Marta",
-        "Name[uk]": "Marta",
-        "Name[x-test]": "xxMartaxx"
+        "Name[uk]": "Marta"
     },
     "coverage": {
         "anyCoverage": {

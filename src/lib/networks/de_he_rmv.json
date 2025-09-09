@@ -31,7 +31,6 @@
         "Description[sv]": "Lokal transportoperatör i Rhein-Main-området, Tyskland.",
         "Description[tr]": "Almanya, Rhein-Main bölgesi yerel taşıma.",
         "Description[uk]": "Місцевий транспорт у регіоні Рейн-Майн, Німеччина.",
-        "Description[x-test]": "xxLocal transport in the Rhein-Main area, Germany.xx",
         "Description[zh_CN]": "德国莱茵-美因地区的公共交通。",
         "Description[zh_TW]": "德國法蘭克福萊茵-美因地區的區域運輸。",
         "Name": "Rhein-Main-Verkehrsverbund (RMV)",
@@ -64,8 +63,7 @@
         "Name[sl]": "Rhein-Main-Verkehrsverbund (RMV)",
         "Name[sv]": "Rhein-Main-Verkehrsverbund (RMV)",
         "Name[tr]": "Rhein-Main-Verkehrsverbund (RMV)",
-        "Name[uk]": "Rhein-Main-Verkehrsverbund (RMV)",
-        "Name[x-test]": "xxRhein-Main-Verkehrsverbund (RMV)xx"
+        "Name[uk]": "Rhein-Main-Verkehrsverbund (RMV)"
     },
     "attribution": {
         "homepage": "https://www.rmv.de/",

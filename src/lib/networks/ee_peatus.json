@@ -31,7 +31,6 @@
         "Description[sv]": "Kollektivtrafik i Estland.",
         "Description[tr]": "Estonya toplu taşıma.",
         "Description[uk]": "Громадський транспорт в Естонії.",
-        "Description[x-test]": "xxPublic transport in Estonia.xx",
         "Description[zh_CN]": "爱沙尼亚的公共交通。",
         "Description[zh_TW]": "愛沙尼亞的公共運輸。",
         "Name": "Peatus",
@@ -63,8 +62,7 @@
         "Name[sl]": "Peatus",
         "Name[sv]": "Peatus",
         "Name[tr]": "Peatus",
-        "Name[uk]": "Peatus",
-        "Name[x-test]": "xxPeatusxx"
+        "Name[uk]": "Peatus"
     },
     "coverage": {
         "regularCoverage": {

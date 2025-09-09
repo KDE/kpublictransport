@@ -27,7 +27,6 @@
         "Description[sv]": "Gemenskapsdriven fri och öppen dirigeringstjänst för kollektivtrafik.",
         "Description[tr]": "Topluluk tarafından işletilen, ücretsiz ve açık toplu taşıma yönlendirme hizmeti.",
         "Description[uk]": "Вільна і відкрита служба маршрутизації транспорту, супровід якої здійснює спільнота користувачів",
-        "Description[x-test]": "xxCommunity-run free and open public transport routing service.xx",
         "Name": "Transitous",
         "Name[ca@valencia]": "Transitous",
         "Name[ca]": "Transitous",
@@ -54,8 +53,7 @@
         "Name[sl]": "Transitous",
         "Name[sv]": "Transitous",
         "Name[tr]": "Transitous",
-        "Name[uk]": "Transitous",
-        "Name[x-test]": "xxTransitousxx"
+        "Name[uk]": "Transitous"
     },
     "attribution": {
         "name": "Transitous",

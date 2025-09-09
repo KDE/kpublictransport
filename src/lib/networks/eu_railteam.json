@@ -30,7 +30,6 @@
         "Description[sv]": "Gemensam tjänst för europeiska nationella järnvägsoperatörer.",
         "Description[tr]": "Avrupa ulusal demiryolları operatörleri ortak hizmeti.",
         "Description[uk]": "Загальна служба європейських державних операторів залізниць.",
-        "Description[x-test]": "xxJoint service of European national railway operators.xx",
         "Description[zh_CN]": "欧洲国家铁路运营单位的联合运营服务。",
         "Description[zh_TW]": "歐洲各國家鐵路營運者的合併服務。",
         "Name": "Railteam",
@@ -63,8 +62,7 @@
         "Name[sl]": "Railteam",
         "Name[sv]": "Railteam",
         "Name[tr]": "Railteam",
-        "Name[uk]": "Railteam",
-        "Name[x-test]": "xxRailteamxx"
+        "Name[uk]": "Railteam"
     },
     "coverage": {
         "anyCoverage": {

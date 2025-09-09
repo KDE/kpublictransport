@@ -31,7 +31,6 @@
         "Description[sv]": "Kollektivtrafik i och omkring Grenoble, Frankrike.",
         "Description[tr]": "Fransa, Grenoble içi ve çevresi toplu taşıma.",
         "Description[uk]": "Громадський транспорт у Греноблі і околицях, Франція.",
-        "Description[x-test]": "xxPublic transport in and around Grenoble, France.xx",
         "Description[zh_CN]": "法国格勒诺布尔及其周边地区的公共交通。",
         "Description[zh_TW]": "法國格勒諾勃及其週邊的公共運輸。",
         "Name": "Metromobilite",
@@ -63,8 +62,7 @@
         "Name[sl]": "Metromobilite",
         "Name[sv]": "Metromobilite",
         "Name[tr]": "Metromobilite",
-        "Name[uk]": "Metromobilite",
-        "Name[x-test]": "xxMetromobilitexx"
+        "Name[uk]": "Metromobilite"
     },
     "coverage": {
         "anyCoverage": {

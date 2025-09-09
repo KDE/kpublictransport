@@ -27,7 +27,6 @@
         "Description[sv]": "Tågoperatör i Litauen",
         "Description[tr]": "Litvanya’da tren operatörü",
         "Description[uk]": "Залізничний оператор у Литві",
-        "Description[x-test]": "xxOperator of trains in Lithuaniaxx",
         "Description[zh_TW]": "立陶宛的火車營運者",
         "Name": "LTG Link",
         "Name[ca@valencia]": "LTG Link",
@@ -55,8 +54,7 @@
         "Name[sl]": "LTG Link",
         "Name[sv]": "LTG Link",
         "Name[tr]": "LTG Link",
-        "Name[uk]": "LTG Link",
-        "Name[x-test]": "xxLTG Linkxx"
+        "Name[uk]": "LTG Link"
     },
     "attribution": {
         "homepage": "https://ltglink.lt/",

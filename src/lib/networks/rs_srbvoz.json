@@ -24,7 +24,6 @@
         "Description[sv]": "Tågoperatör i Serbien",
         "Description[tr]": "Sırbistan’da tren operatörü",
         "Description[uk]": "Залізничний оператор у Сербії",
-        "Description[x-test]": "xxOperator of trains in Serbiaxx",
         "Name": "Srbijavoz",
         "Name[ca@valencia]": "Srbijavoz",
         "Name[ca]": "Srbijavoz",
@@ -51,8 +50,7 @@
         "Name[sl]": "Srbijavoz",
         "Name[sv]": "Srbijavoz",
         "Name[tr]": "Srbijavoz",
-        "Name[uk]": "Srbijavoz",
-        "Name[x-test]": "xxSrbijavozxx"
+        "Name[uk]": "Srbijavoz"
     },
     "attribution": {
         "homepage": "https://srbijavoz.rs/",

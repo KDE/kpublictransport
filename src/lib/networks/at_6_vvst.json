@@ -31,7 +31,6 @@
         "Description[sv]": "Lokal transportoperatör i Styria, Österrike.",
         "Description[tr]": "Avusturya, Styria için bölgesel taşıma.",
         "Description[uk]": "Місцевий транспорт у Штирії, Австрія.",
-        "Description[x-test]": "xxRegional transport in Styria, Austria.xx",
         "Description[zh_CN]": "奥地利施泰尔马克州地区的公共交通。",
         "Description[zh_TW]": "奧地利史泰爾馬克邦的地區運輸。",
         "Name": "Verkehrsverbund Steiermark (VVSt)",
@@ -63,8 +62,7 @@
         "Name[sl]": "Verkehrsverbund Steiermark (VVSt)",
         "Name[sv]": "Verkehrsverbund Steiermark (VVSt)",
         "Name[tr]": "Verkehrsverbund Steiermark (VVSt)",
-        "Name[uk]": "Verkehrsverbund Steiermark (VVSt)",
-        "Name[x-test]": "xxVerkehrsverbund Steiermark (VVSt)xx"
+        "Name[uk]": "Verkehrsverbund Steiermark (VVSt)"
     },
     "coverage": {
         "regularCoverage": {

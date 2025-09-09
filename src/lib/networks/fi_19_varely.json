@@ -24,7 +24,6 @@
         "Description[sv]": "Kollektivtrafik i sydvästra Finland.",
         "Description[tr]": "Güneybatı Finlandiya’da toplu taşıma.",
         "Description[uk]": "Громадський транспорт у південно-західній Фінляндії.",
-        "Description[x-test]": "xxPublic transport in Southwest Finland.xx",
         "Name": "Varsinais-Suomen ELY",
         "Name[ca@valencia]": "Varsinais-Suomen ELY",
         "Name[ca]": "Varsinais-Suomen ELY",
@@ -46,8 +45,7 @@
         "Name[sl]": "Varsinais-Suomen ELY",
         "Name[sv]": "Varsinais-Suomen ELY",
         "Name[tr]": "Varsinais-Suomen ELY",
-        "Name[uk]": "Varsinais-Suomen ELY",
-        "Name[x-test]": "xxVarsinais-Suomen ELYxx"
+        "Name[uk]": "Varsinais-Suomen ELY"
     },
     "attribution": {
         "homepage": "https://digitransit.fi/",
