@@ -254,7 +254,7 @@ static void parseVehicleFeatures(const QJsonArray &trainAttributes, JourneySecti
 
         const auto type = trainAttrObj.value("kategorie"_L1).toString();
         if (type == "INFORMATION"_L1 || type == "FAHRRADMITNAHME"_L1 || type == "BORDBISTRO"_L1) {
-            const auto remarkData = HafasMgateParser::lookupRemarkData(u"A", key);
+            const auto remarkData = HafasParser::lookupRemarkData(u"A", key);
             if (remarkData.msg == FeatureRemark) {
                 Feature f(remarkData.featureType, remarkData.featureAvailability);
                 f.setName(value);

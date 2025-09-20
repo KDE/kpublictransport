@@ -35,23 +35,6 @@ struct Ico {
     QColor fg;
 };
 
-enum HafasMessageType {
-    UndefinedRemark,
-    IgnoreRemark,
-    FeatureRemark,
-    OperatorRemark,
-    TrainFormationRemark,
-    PlatformSectorsRemark,
-};
-
-struct HafasRemarkData {
-    const char *type = nullptr;
-    const char *code = nullptr;
-    HafasMessageType msg = UndefinedRemark;
-    Feature::Type featureType = Feature::NoFeature;
-    Feature::Availability featureAvailability = Feature::Unknown;
-};
-
 struct HafasMgateParserContext;
 
 /** Hafas response parser.
@@ -70,7 +53,6 @@ public:
     [[nodiscard]] JourneySection parseTrip(const QByteArray &data) const;
 
     static QDateTime parseDateTime(const QString &date, const QJsonValue &time, const QJsonValue &tzOffset);
-    static HafasRemarkData lookupRemarkData(QStringView type, QStringView code);
 
     QString m_previousJourneyContext;
     QString m_nextJourneyContext;
