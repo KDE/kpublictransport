@@ -24,6 +24,7 @@
 
 #include <zlib.h>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 HafasQueryParser::HafasQueryParser() = default;
@@ -316,15 +317,17 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
 
                 auto attr = HafasJourneyResponse::attribute(rawData.constData(), extHeader, sectionInfo->sectionAttributeIndex);
                 while (!attr->atEnd()) {
-                    qDebug() << "section attr" << stringTable.lookup(attr->keyStr) << stringTable.lookup(attr->valueStr);
                     const auto key = stringTable.lookup(attr->keyStr);
-                    if (key == QLatin1String("Direction")) {
+                    qDebug() << "section attr" << key << stringTable.lookup(attr->valueStr);
+                    if (key == "Direction"_L1) {
                         const auto dir = stringTable.lookup(attr->valueStr);
-                        if (dir != QLatin1String("---")) {
+                        if (dir != "---"_L1) {
                             route.setDirection(dir.trimmed());
                         }
-                    } else if (key == QLatin1String("Class")) {
+                    } else if (key == "Class"_L1) {
                         line.setMode(parseLineMode(stringTable.lookup(attr->valueStr)));
+                    } else if (key == "Operator"_L1) {
+                        line.setOperatorName(stringTable.lookup(attr->valueStr));
                     }
                     ++attr;
                 }
