@@ -355,7 +355,7 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
                     + extHeader->detailsOffset
                     + journeyDetailsOffset
                     + detailsHeader->sectionDetailsOffset
-                    + detailsHeader->sectionDetailsSize * sectionIdx);
+                    + (detailsHeader->sectionDetailsSize * sectionIdx));
                 qDebug() << "section detail" << sectionDetail->expectedArrivalPlatformStr <<  sectionDetail->expectedDeparturePlatformStr;
                 section.setExpectedDeparturePlatform(stringTable.lookup(sectionDetail->expectedDeparturePlatformStr));
                 section.setExpectedArrivalPlatform(stringTable.lookup(sectionDetail->expectedArrivalPlatformStr));
@@ -366,12 +366,15 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
                 std::vector<Stopover> stops;
                 stops.reserve(sectionDetail->numStops);
                 for (int i = 0; i < sectionDetail->numStops; ++i) {
-                    const auto stopInfo = reinterpret_cast<const HafasJourneyResponseStop*>(rawData.constData() + extHeader->detailsOffset + detailsHeader->stopsOffset + i * detailsHeader->stopsSize);
+                    const auto stopInfo = reinterpret_cast<const HafasJourneyResponseStop*>(rawData.constData()
+                        + extHeader->detailsOffset
+                        + detailsHeader->stopsOffset
+                        + ((sectionDetail->stopIndex + i) * detailsHeader->stopsSize));
 
                     Location loc;
                     const auto locInfo = reinterpret_cast<const HafasJourneyResponseStation*>(rawData.constData()
                         + header->stationTableOffset
-                        + stopInfo->stationIdx * sizeof(HafasJourneyResponseStation));
+                        + (stopInfo->stationIdx * sizeof(HafasJourneyResponseStation)));
                     loc.setName(stringTable.lookup(locInfo->nameStr));
                     loc.setLatitude(locInfo->latitude / 1000000.0);
                     loc.setLongitude(locInfo->longitude / 1000000.0);
