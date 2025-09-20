@@ -12,12 +12,13 @@
 #include <QTest>
 
 namespace Test {
-    QByteArray readFile(const QString &fn)
+    [[nodiscard]] inline QByteArray readFile(const QString &fn)
     {
         QFile f(fn);
         f.open(QFile::ReadOnly | QFile::Text);
         return f.readAll();
     }
+    [[nodiscard]] inline QByteArray readFile(const char *fn) { return readFile(QLatin1StringView(fn)); }
 
     template <typename T>
     inline bool compareJson(const QString &refFile, const T &output, const T &ref)
