@@ -138,3 +138,144 @@ Load::Category HafasParser::parseLoadLevel(int level)
     }
     return Load::Unknown;
 }
+
+static constexpr const HafasRemarkData remarks_map[] = {
+    // different name formats for the line, used by SBB
+    { "A", "1", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "A", "2", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "A", "3", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    // same as above, containing product, line number and journey number
+    { "A", "4", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "A", "A4", FeatureRemark, Feature::Toilet, Feature::Available },
+    { "A", "BO", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "BR", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "BT", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "BW", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "BZ", FeatureRemark, Feature::BusinessArea, Feature::Available },
+    { "A", "CK", IgnoreRemark, Feature::NoFeature, Feature::Unknown }, // Komfort Check-in advertisment
+    { "A", "CR", FeatureRemark, Feature::BikeStorage, Feature::Conditional },
+    { "A", "EA", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "EF", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "EH", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "ER", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "EXTERNAL_ID", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "A", "FA", FeatureRemark, Feature::FamilyArea, Feature::Available },
+    { "A", "FB", FeatureRemark, Feature::BikeStorage, Feature::Limited },
+    { "A", "FH", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "FK", FeatureRemark, Feature::BikeStorage, Feature::Limited },
+    { "A", "FR", FeatureRemark, Feature::BikeStorage, Feature::Conditional },
+    // observied with different meanings - Conditional bike storage (DE) vs free wifi (CH)
+    // { "A", "FS", FeatureRemark, Feature::BikeStorage, Feature::Conditional },
+    { "A", "FZ", FeatureRemark, Feature::FamilyArea, Feature::Available },
+    { "A", "G ", FeatureRemark, Feature::BikeStorage, Feature::Limited },
+    // NASA: GTFS route type
+    { "A", "GT", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "A", "HD", FeatureRemark, Feature::SilentArea, Feature::Available },
+    { "A", "HK", FeatureRemark, Feature::ToddlerArea, Feature::Available },
+    { "A", "JOURNEYNUMBER", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "A", "KG", FeatureRemark, Feature::Restaurant, Feature::Unavailable },
+    { "A", "KK", FeatureRemark, Feature::ToddlerArea, Feature::Available },
+    { "A", "KL", FeatureRemark, Feature::AirConditioning, Feature::Available },
+    { "A", "KN", FeatureRemark, Feature::FamilyArea, Feature::Available },
+    { "A", "LS", FeatureRemark, Feature::PowerSockets, Feature::Available },
+    { "A", "MN", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "MP", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "NAME", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    // observed with different meanings? no bike storage (DE?) vs. low floor vehicle (CH)
+    // { "A", "NF", FeatureRemark, Feature::BikeStorage, Feature::Unavailable },
+    { "A", "OA", FeatureRemark, Feature::WheelchairAccessible, Feature::Conditional },
+    { "A", "OC", FeatureRemark, Feature::WheelchairAccessibleToilet, Feature::Available },
+    { "A", "OG", FeatureRemark, Feature::WheelchairAccessibleToilet, Feature::Limited },
+    { "A", "OPERATOR", OperatorRemark, Feature::NoFeature, Feature::Unknown },
+    { "A", "QP", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "RG", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "RO", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    // observed with different meanings: wheelchair access in DE, quiet zone in CH
+    //{ "A", "RZ", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "SA", FeatureRemark, Feature::ToddlerArea, Feature::Limited },
+    { "A", "SI", FeatureRemark, Feature::WheelchairAccessible, Feature::Limited },
+    { "A", "SN", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "TD", FeatureRemark, Feature::WiFi, Feature::Available },
+    { "A", "TM", FeatureRemark, Feature::Restaurant, Feature::Limited },
+    { "A", "TO", FeatureRemark, Feature::Toilet, Feature::Available },
+    { "A", "UA", FeatureRemark, Feature::BusinessArea, Feature::Available },
+    { "A", "VB", FeatureRemark, Feature::BikeStorage, Feature::Limited },
+    { "A", "VN", FeatureRemark, Feature::BikeStorage, Feature::Unavailable },
+    { "A", "VR", FeatureRemark, Feature::BikeStorage, Feature::Conditional },
+    { "A", "WI", FeatureRemark, Feature::WiFi, Feature::Available },
+    { "A", "WR", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "WV", FeatureRemark, Feature::WiFi, Feature::Available },
+    { "A", "ZB", FeatureRemark, Feature::WheelchairAccessible, Feature::Limited },
+    { "A", "ZM", FeatureRemark, Feature::WheelchairAccessible, Feature::Limited },
+    { "A", "aD", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "aR", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "aS", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "bV", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "bW", FeatureRemark, Feature::BikeStorage, Feature::Conditional },
+    { "A", "bf", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "bg", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "bq", FeatureRemark, Feature::BikeStorage, Feature::Limited },
+    { "A", "br", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "bs", FeatureRemark, Feature::WheelchairAccessibleToilet, Feature::Available },
+    { "A", "bv", FeatureRemark, Feature::WiFi, Feature::Available },
+    { "A", "cc", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "cd", FeatureRemark, Feature::BikeStorage, Feature::Limited },
+    { "A", "cg", FeatureRemark, Feature::BikeStorage, Feature::Conditional },
+    { "A", "cj", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "de", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "df", FeatureRemark, Feature::WheelchairAccessible, Feature::Unavailable },
+    { "A", "dg", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    // NASA: literally just a '.'
+    { "A", "dj", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "A", "dk", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "dl", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "ei", FeatureRemark, Feature::BikeStorage, Feature::Available },
+    { "A", "ek", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "ga", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "gd", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "hz", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "ia", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "ic", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "ie", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "in", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "kx", FeatureRemark, Feature::PowerSockets, Feature::Available },
+    { "A", "lb", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "mG", FeatureRemark, Feature::BikeStorage, Feature::Conditional },
+    { "A", "mg", FeatureRemark, Feature::WheelchairAccessible, Feature::Conditional },
+   // ZVV: pointless note about checking intermediate stops for more details
+    { "A", "moreAttr", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "A", "yh", FeatureRemark, Feature::WiFi, Feature::Available },
+    { "A", "zd", OperatorRemark, Feature::NoFeature, Feature::Unknown },
+    { "A", "zn", OperatorRemark, Feature::NoFeature, Feature::Unknown },
+    // pointless CO2 emission reduction ad
+    { "H", "text.connection.eco.co2.decreased.consumption.message", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "H", "vmt.accessible", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    // contains a pointless note about checking trip details
+    { "H", "wagenstand_v2", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    // SBB line number?
+    { "I", "FD", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "I", "JF", TrainFormationRemark, Feature::NoFeature, Feature::Unknown },
+    // Swiss journey id
+    { "I", "JY", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+     // SBB: some unknown number for buses
+    { "I", "RN", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "I", "TC", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    // SBB: some XML structure of unknown content, related to train/platform layouts
+    { "I", "XC", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "I", "XG", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "I", "XP", PlatformSectorsRemark, Feature::NoFeature, Feature::Unknown },
+    // SBB: some XML structure of unknown content, related to train/platform layouts
+    { "I", "XT", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    // Swiss journey id
+    { "I", "sj", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+};
+
+HafasRemarkData HafasParser::lookupRemarkData(QStringView type, QStringView code)
+{
+    for (const auto &r : remarks_map) {
+        if (type == QLatin1StringView(r.type) && code == QLatin1StringView(r.code)) {
+            return r;
+        }
+    }
+    return {};
+}

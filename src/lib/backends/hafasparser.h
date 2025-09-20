@@ -11,6 +11,7 @@
 
 #include "hafasbackend.h"
 
+#include <KPublicTransport/Feature>
 #include <KPublicTransport/Line>
 #include <KPublicTransport/Load>
 #include <KPublicTransport/Reply>
@@ -23,6 +24,23 @@
 namespace KPublicTransport {
 
 class Location;
+
+enum HafasMessageType {
+    UndefinedRemark,
+    IgnoreRemark,
+    FeatureRemark,
+    OperatorRemark,
+    TrainFormationRemark,
+    PlatformSectorsRemark,
+};
+
+struct HafasRemarkData {
+    const char *type = nullptr;
+    const char *code = nullptr;
+    HafasMessageType msg = UndefinedRemark;
+    Feature::Type featureType = Feature::NoFeature;
+    Feature::Availability featureAvailability = Feature::Unknown;
+};
 
 /** Common base for the various Hafas response parsers.
  *  @internal only exported for unit tests
@@ -43,6 +61,8 @@ public:
 
     /** Convert occupancy level. */
     [[nodiscard]] static Load::Category parseLoadLevel(int level);
+
+    static HafasRemarkData lookupRemarkData(QStringView type, QStringView code);
 
 protected:
     HafasParser();
