@@ -38,6 +38,29 @@
                         "longitude": 16.612776,
                         "name": "Brno hl.n.",
                         "region": "CZ-64"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "Partially, snacks and beverages available",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Family Zone",
+                                "type": "FamilyArea"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wifi available",
+                                "type": "WiFi"
+                            }
+                        ]
                     }
                 },
                 "intermediateStops": [
@@ -68,10 +91,7 @@
                 "notes": [
                     "Subject to compulsory reservation",
                     "no bicycle transport",
-                    "Global price",
-                    "Partially, snacks and beverages available",
-                    "Family Zone",
-                    "Wifi available"
+                    "Global price"
                 ]
             },
             {
@@ -111,6 +131,59 @@
                         "latitude": 48.185103,
                         "longitude": 16.377114,
                         "name": "Wien Hbf"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordrestaurant",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Family Zone",
+                                "type": "FamilyArea"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wheelchair space - For advance notification, call +43 5 1717",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Quiet Zone",
+                                "type": "SilentArea"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "business-compartment",
+                                "type": "BusinessArea"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bicycles conveyed - subject to reservation",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "WC accessible for wheelchair",
+                                "type": "WheelchairAccessibleToilet"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wifi available",
+                                "type": "WiFi"
+                            }
+                        ]
                     }
                 },
                 "intermediateStops": [
@@ -156,20 +229,7 @@
                         }
                     }
                 ],
-                "mode": "PublicTransport",
-                "notes": [
-                    "Bicycles conveyed - subject to reservation",
-                    "Number of bicycles conveyed limited",
-                    "business-compartment",
-                    "Bordrestaurant",
-                    "space for wheelchairs",
-                    "Wheelchair space - For advance notification, call +43 5 1717",
-                    "Vehicle-mounted access ramp for wheelchair users",
-                    "WC accessible for wheelchair",
-                    "Quiet Zone",
-                    "Family Zone",
-                    "Wifi available"
-                ]
+                "mode": "PublicTransport"
             },
             {
                 "arrival": {
@@ -209,6 +269,35 @@
                         "longitude": 14.02657,
                         "name": "Wels Hbf",
                         "region": "AT-4"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wheelchair space - For advance notification, call +43 5 1717",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "Number of bicycles conveyed limited",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "WC accessible for wheelchair",
+                                "type": "WheelchairAccessibleToilet"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wifi available",
+                                "type": "WiFi"
+                            }
+                        ]
                     }
                 },
                 "intermediateStops": [
@@ -229,15 +318,9 @@
                 ],
                 "mode": "PublicTransport",
                 "notes": [
-                    "Number of bicycles conveyed limited",
                     "2nd class only",
                     "It is mandatory to hold a valid ticket in local lines (REX, R, S-Bahn)",
-                    "space for wheelchairs",
-                    "Wheelchair space - For advance notification, call +43 5 1717",
-                    "Vehicle-mounted access ramp for wheelchair users",
-                    "Low-floor coach",
-                    "WC accessible for wheelchair",
-                    "Wifi available"
+                    "Low-floor coach"
                 ]
             }
         ]
@@ -281,6 +364,59 @@
                         "longitude": 16.612776,
                         "name": "Brno hl.n.",
                         "region": "CZ-64"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordrestaurant",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Family Zone",
+                                "type": "FamilyArea"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wheelchair space - For advance notification, call +43 5 1717",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Quiet Zone",
+                                "type": "SilentArea"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "business-compartment",
+                                "type": "BusinessArea"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bicycles conveyed - subject to reservation",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "WC accessible for wheelchair",
+                                "type": "WheelchairAccessibleToilet"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wifi available",
+                                "type": "WiFi"
+                            }
+                        ]
                     }
                 },
                 "intermediateStops": [
@@ -307,20 +443,7 @@
                         }
                     }
                 ],
-                "mode": "PublicTransport",
-                "notes": [
-                    "Bicycles conveyed - subject to reservation",
-                    "Number of bicycles conveyed limited",
-                    "business-compartment",
-                    "Bordrestaurant",
-                    "space for wheelchairs",
-                    "Wheelchair space - For advance notification, call +43 5 1717",
-                    "Vehicle-mounted access ramp for wheelchair users",
-                    "WC accessible for wheelchair",
-                    "Quiet Zone",
-                    "Family Zone",
-                    "Wifi available"
-                ]
+                "mode": "PublicTransport"
             },
             {
                 "arrival": {
@@ -359,6 +482,59 @@
                         "latitude": 48.185103,
                         "longitude": 16.377114,
                         "name": "Wien Hbf"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordrestaurant",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Family Zone",
+                                "type": "FamilyArea"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wheelchair space - For advance notification, call +43 5 1717",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Quiet Zone",
+                                "type": "SilentArea"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "business-compartment",
+                                "type": "BusinessArea"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bicycles conveyed - subject to reservation",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "WC accessible for wheelchair",
+                                "type": "WheelchairAccessibleToilet"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wifi available",
+                                "type": "WiFi"
+                            }
+                        ]
                     }
                 },
                 "intermediateStops": [
@@ -459,20 +635,7 @@
                         }
                     }
                 ],
-                "mode": "PublicTransport",
-                "notes": [
-                    "Bicycles conveyed - subject to reservation",
-                    "Number of bicycles conveyed limited",
-                    "business-compartment",
-                    "Bordrestaurant",
-                    "space for wheelchairs",
-                    "Wheelchair space - For advance notification, call +43 5 1717",
-                    "Vehicle-mounted access ramp for wheelchair users",
-                    "WC accessible for wheelchair",
-                    "Quiet Zone",
-                    "Family Zone",
-                    "Wifi available"
-                ]
+                "mode": "PublicTransport"
             },
             {
                 "arrival": {
@@ -512,6 +675,35 @@
                         "longitude": 13.720721,
                         "name": "Attnang-Puchheim",
                         "region": "AT-4"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wheelchair space - For advance notification, call +43 5 1717",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "Number of bicycles conveyed limited",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "WC accessible for wheelchair",
+                                "type": "WheelchairAccessibleToilet"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wifi available",
+                                "type": "WiFi"
+                            }
+                        ]
                     }
                 },
                 "intermediateStops": [
@@ -574,15 +766,9 @@
                 ],
                 "mode": "PublicTransport",
                 "notes": [
-                    "Number of bicycles conveyed limited",
                     "2nd class only",
                     "It is mandatory to hold a valid ticket in local lines (REX, R, S-Bahn)",
-                    "space for wheelchairs",
-                    "Wheelchair space - For advance notification, call +43 5 1717",
-                    "Vehicle-mounted access ramp for wheelchair users",
-                    "Low-floor coach",
-                    "WC accessible for wheelchair",
-                    "Wifi available"
+                    "Low-floor coach"
                 ]
             }
         ]
@@ -625,14 +811,34 @@
                         "longitude": 16.612776,
                         "name": "Brno hl.n.",
                         "region": "CZ-64"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordbistro",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bicycles conveyed - subject to reservation",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "power sockets for laptop",
+                                "type": "PowerSockets"
+                            }
+                        ]
                     }
                 },
                 "mode": "PublicTransport",
                 "notes": [
-                    "Bicycles conveyed - subject to reservation",
-                    "Reservation possible",
-                    "Bordbistro",
-                    "power sockets for laptop"
+                    "Reservation possible"
                 ]
             },
             {
@@ -670,6 +876,41 @@
                         "latitude": 48.753904,
                         "longitude": 16.893239,
                         "name": "Breclav"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordrestaurant",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "parent-and-children compartment",
+                                "type": "ToddlerArea"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wheelchair space - For advance notification, call +43 5 1717",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bicycles conveyed - subject to reservation",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "WC accessible for wheelchair",
+                                "type": "WheelchairAccessibleToilet"
+                            }
+                        ]
                     }
                 },
                 "intermediateStops": [
@@ -684,16 +925,7 @@
                         }
                     }
                 ],
-                "mode": "PublicTransport",
-                "notes": [
-                    "Bicycles conveyed - subject to reservation",
-                    "Number of bicycles conveyed limited",
-                    "Bordrestaurant",
-                    "space for wheelchairs",
-                    "Wheelchair space - For advance notification, call +43 5 1717",
-                    "WC accessible for wheelchair",
-                    "parent-and-children compartment"
-                ]
+                "mode": "PublicTransport"
             },
             {
                 "arrival": {
@@ -732,6 +964,59 @@
                         "latitude": 48.185103,
                         "longitude": 16.377114,
                         "name": "Wien Hbf"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordrestaurant",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Family Zone",
+                                "type": "FamilyArea"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wheelchair space - For advance notification, call +43 5 1717",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Quiet Zone",
+                                "type": "SilentArea"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "business-compartment",
+                                "type": "BusinessArea"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bicycles conveyed - subject to reservation",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "WC accessible for wheelchair",
+                                "type": "WheelchairAccessibleToilet"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wifi available",
+                                "type": "WiFi"
+                            }
+                        ]
                     }
                 },
                 "intermediateStops": [
@@ -777,20 +1062,7 @@
                         }
                     }
                 ],
-                "mode": "PublicTransport",
-                "notes": [
-                    "Bicycles conveyed - subject to reservation",
-                    "Number of bicycles conveyed limited",
-                    "business-compartment",
-                    "Bordrestaurant",
-                    "space for wheelchairs",
-                    "Wheelchair space - For advance notification, call +43 5 1717",
-                    "Vehicle-mounted access ramp for wheelchair users",
-                    "WC accessible for wheelchair",
-                    "Quiet Zone",
-                    "Family Zone",
-                    "Wifi available"
-                ]
+                "mode": "PublicTransport"
             },
             {
                 "arrival": {
@@ -830,6 +1102,35 @@
                         "longitude": 14.02657,
                         "name": "Wels Hbf",
                         "region": "AT-4"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wheelchair space - For advance notification, call +43 5 1717",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "Number of bicycles conveyed limited",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "WC with limited accessibility for wheelchair",
+                                "type": "WheelchairAccessibleToilet"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wifi available",
+                                "type": "WiFi"
+                            }
+                        ]
                     }
                 },
                 "intermediateStops": [
@@ -850,14 +1151,9 @@
                 ],
                 "mode": "PublicTransport",
                 "notes": [
-                    "Number of bicycles conveyed limited",
                     "2nd class only",
                     "It is mandatory to hold a valid ticket in local lines (REX, R, S-Bahn)",
-                    "space for wheelchairs",
-                    "Wheelchair space - For advance notification, call +43 5 1717",
-                    "Low-floor coach",
-                    "WC with limited accessibility for wheelchair",
-                    "Wifi available"
+                    "Low-floor coach"
                 ]
             }
         ]
@@ -901,6 +1197,59 @@
                         "longitude": 16.612776,
                         "name": "Brno hl.n.",
                         "region": "CZ-64"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordrestaurant",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Family Zone",
+                                "type": "FamilyArea"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wheelchair space - For advance notification, call +43 5 1717",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Quiet Zone",
+                                "type": "SilentArea"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "business-compartment",
+                                "type": "BusinessArea"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bicycles conveyed - subject to reservation",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "WC accessible for wheelchair",
+                                "type": "WheelchairAccessibleToilet"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wifi available",
+                                "type": "WiFi"
+                            }
+                        ]
                     }
                 },
                 "intermediateStops": [
@@ -927,20 +1276,7 @@
                         }
                     }
                 ],
-                "mode": "PublicTransport",
-                "notes": [
-                    "Bicycles conveyed - subject to reservation",
-                    "Number of bicycles conveyed limited",
-                    "business-compartment",
-                    "Bordrestaurant",
-                    "space for wheelchairs",
-                    "Wheelchair space - For advance notification, call +43 5 1717",
-                    "Vehicle-mounted access ramp for wheelchair users",
-                    "WC accessible for wheelchair",
-                    "Quiet Zone",
-                    "Family Zone",
-                    "Wifi available"
-                ]
+                "mode": "PublicTransport"
             },
             {
                 "arrival": {
@@ -1069,6 +1405,17 @@
                         "longitude": 13.04582,
                         "name": "Salzburg Hbf",
                         "region": "AT-5"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "snacks and beverages available from sleeper/couchette attendant",
+                                "type": "Restaurant"
+                            }
+                        ]
                     }
                 },
                 "mode": "PublicTransport",
@@ -1078,8 +1425,7 @@
                     "Comfortticket (IRT Integrated Reservation Ticket)",
                     "Global price",
                     "Sleeping-car",
-                    "Couchettes",
-                    "snacks and beverages available from sleeper/couchette attendant"
+                    "Couchettes"
                 ]
             },
             {
@@ -1120,6 +1466,35 @@
                         "longitude": 13.720721,
                         "name": "Attnang-Puchheim",
                         "region": "AT-4"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wheelchair space - For advance notification, call +43 5 1717",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "Number of bicycles conveyed limited",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "WC with limited accessibility for wheelchair",
+                                "type": "WheelchairAccessibleToilet"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wifi available",
+                                "type": "WiFi"
+                            }
+                        ]
                     }
                 },
                 "intermediateStops": [
@@ -1182,14 +1557,9 @@
                 ],
                 "mode": "PublicTransport",
                 "notes": [
-                    "Number of bicycles conveyed limited",
                     "2nd class only",
                     "It is mandatory to hold a valid ticket in local lines (REX, R, S-Bahn)",
-                    "space for wheelchairs",
-                    "Wheelchair space - For advance notification, call +43 5 1717",
-                    "Low-floor coach",
-                    "WC with limited accessibility for wheelchair",
-                    "Wifi available"
+                    "Low-floor coach"
                 ]
             }
         ]
@@ -1233,6 +1603,59 @@
                         "longitude": 16.612776,
                         "name": "Brno hl.n.",
                         "region": "CZ-64"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordrestaurant",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Family Zone",
+                                "type": "FamilyArea"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wheelchair space - For advance notification, call +43 5 1717",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Quiet Zone",
+                                "type": "SilentArea"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "business-compartment",
+                                "type": "BusinessArea"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bicycles conveyed - subject to reservation",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "WC accessible for wheelchair",
+                                "type": "WheelchairAccessibleToilet"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wifi available",
+                                "type": "WiFi"
+                            }
+                        ]
                     }
                 },
                 "intermediateStops": [
@@ -1259,20 +1682,7 @@
                         }
                     }
                 ],
-                "mode": "PublicTransport",
-                "notes": [
-                    "Bicycles conveyed - subject to reservation",
-                    "Number of bicycles conveyed limited",
-                    "business-compartment",
-                    "Bordrestaurant",
-                    "space for wheelchairs",
-                    "Wheelchair space - For advance notification, call +43 5 1717",
-                    "Vehicle-mounted access ramp for wheelchair users",
-                    "WC accessible for wheelchair",
-                    "Quiet Zone",
-                    "Family Zone",
-                    "Wifi available"
-                ]
+                "mode": "PublicTransport"
             },
             {
                 "arrival": {
@@ -1387,6 +1797,35 @@
                         "longitude": 14.292129,
                         "name": "Linz Hbf",
                         "region": "AT-4"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wheelchair space - For advance notification, call +43 5 1717",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "Number of bicycles conveyed limited",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "WC with limited accessibility for wheelchair",
+                                "type": "WheelchairAccessibleToilet"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Wifi available",
+                                "type": "WiFi"
+                            }
+                        ]
                     }
                 },
                 "intermediateStops": [
@@ -1491,14 +1930,9 @@
                 ],
                 "mode": "PublicTransport",
                 "notes": [
-                    "Number of bicycles conveyed limited",
                     "2nd class only",
                     "It is mandatory to hold a valid ticket in local lines (REX, R, S-Bahn)",
-                    "space for wheelchairs",
-                    "Wheelchair space - For advance notification, call +43 5 1717",
-                    "Low-floor coach",
-                    "WC with limited accessibility for wheelchair",
-                    "Wifi available"
+                    "Low-floor coach"
                 ]
             }
         ]

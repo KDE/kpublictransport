@@ -8,6 +8,7 @@
 #include "hafasjourneyresponse_p.h"
 #include "logging.h"
 
+#include <datatypes/featureutil_p.h>
 #include <json/jsonp_p.h>
 
 #include <KPublicTransport/Journey>
@@ -334,16 +335,31 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
 
                 const auto *commentPtr = reinterpret_cast<const uint16_t*>(rawData.constBegin() + header->commentTableOffset + sectionInfo->commentIdx);
                 const auto commentCount = *commentPtr;
+                std::vector<Feature> features;
                 for (int i = 0; i < commentCount; ++i) {
                     ++commentPtr;
                     // format: XX - <human readable comment>, where XX is two character code for the comment
                     const auto note = stringTable.lookup(*commentPtr);
                     if (note.size() > 5 && QStringView(note).mid(2, 3) == QLatin1String(" - ")) {
+                        const auto remarkData = HafasParser::lookupRemarkData(u"A", QStringView(note).left(2));
+                        if (remarkData.msg == FeatureRemark) {
+                            Feature f(remarkData.featureType, remarkData.featureAvailability);
+                            f.setName(note.mid(5));
+                            FeatureUtil::add(features, std::move(f));
+                            continue;
+                        }
+                        if (remarkData.msg == IgnoreRemark) {
+                            continue;
+                        }
+                        if (remarkData.msg == UndefinedRemark) {
+                            qDebug() << "unknown vehicle attribute" << note;
+                        }
                         section.addNote(note.mid(5));
                     } else {
                         section.addNote(note);
                     }
                 }
+                section.setFeatures(std::move(features));
 
                 route.setLine(line);
                 section.setRoute(route);
