@@ -117,28 +117,6 @@
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T19:18:00",
-                        "scheduledDepartureTime": "2025-09-20T19:20:00",
-                        "scheduledPlatform": "",
-                        "stopPoint": {
-                            "latitude": 48.753904,
-                            "longitude": 16.893239,
-                            "name": "Breclav"
-                        }
-                    },
-                    {
-                        "disruptionEffect": "NormalService",
-                        "expectedPlatform": "",
-                        "scheduledPlatform": "",
-                        "stopPoint": {
-                            "latitude": 48.712653,
-                            "longitude": 16.868366,
-                            "name": "Breclav(Gr)"
-                        }
-                    },
-                    {
-                        "disruptionEffect": "NormalService",
-                        "expectedPlatform": "",
                         "scheduledArrivalTime": "2025-09-20T20:33:00",
                         "scheduledDepartureTime": "2025-09-20T20:35:00",
                         "scheduledPlatform": "5",
@@ -147,6 +125,34 @@
                             "latitude": 48.174451,
                             "longitude": 16.333085,
                             "name": "Wien Meidling"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T20:57:00",
+                        "scheduledDepartureTime": "2025-09-20T20:59:00",
+                        "scheduledPlatform": "5",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.208277,
+                            "longitude": 15.624681,
+                            "name": "St.Pölten Hbf",
+                            "region": "AT-3"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T21:43:00",
+                        "scheduledDepartureTime": "2025-09-20T21:45:00",
+                        "scheduledPlatform": "6A-F",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.290178,
+                            "longitude": 14.292129,
+                            "name": "Linz Hbf",
+                            "region": "AT-4"
                         }
                     }
                 ],
@@ -209,13 +215,15 @@
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T19:18:00",
-                        "scheduledDepartureTime": "2025-09-20T19:20:00",
-                        "scheduledPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T22:27:00",
+                        "scheduledDepartureTime": "2025-09-20T22:28:00",
+                        "scheduledPlatform": "1",
                         "stopPoint": {
-                            "latitude": 48.753904,
-                            "longitude": 16.893239,
-                            "name": "Breclav"
+                            "country": "AT",
+                            "latitude": 48.1323,
+                            "longitude": 13.945622,
+                            "name": "Gunskirchen",
+                            "region": "AT-4"
                         }
                     }
                 ],
@@ -279,8 +287,8 @@
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T19:18:00",
-                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledArrivalTime": "2025-09-20T19:52:00",
+                        "scheduledDepartureTime": "2025-09-20T19:55:00",
                         "scheduledPlatform": "",
                         "stopPoint": {
                             "latitude": 48.753904,
@@ -357,30 +365,8 @@
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T19:18:00",
-                        "scheduledDepartureTime": "2025-09-20T19:20:00",
-                        "scheduledPlatform": "",
-                        "stopPoint": {
-                            "latitude": 48.753904,
-                            "longitude": 16.893239,
-                            "name": "Breclav"
-                        }
-                    },
-                    {
-                        "disruptionEffect": "NormalService",
-                        "expectedPlatform": "",
-                        "scheduledPlatform": "",
-                        "stopPoint": {
-                            "latitude": 48.712653,
-                            "longitude": 16.868366,
-                            "name": "Breclav(Gr)"
-                        }
-                    },
-                    {
-                        "disruptionEffect": "NormalService",
-                        "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T20:33:00",
-                        "scheduledDepartureTime": "2025-09-20T20:35:00",
+                        "scheduledArrivalTime": "2025-09-20T21:00:00",
+                        "scheduledDepartureTime": "2025-09-20T21:02:00",
                         "scheduledPlatform": "5",
                         "stopPoint": {
                             "country": "AT",
@@ -392,8 +378,22 @@
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T20:57:00",
-                        "scheduledDepartureTime": "2025-09-20T20:59:00",
+                        "scheduledArrivalTime": "2025-09-20T21:14:00",
+                        "scheduledDepartureTime": "2025-09-20T21:16:00",
+                        "scheduledPlatform": "3",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.295275,
+                            "longitude": 15.996529,
+                            "name": "Tullnerfeld",
+                            "region": "AT-3"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T21:28:00",
+                        "scheduledDepartureTime": "2025-09-20T21:30:00",
                         "scheduledPlatform": "5",
                         "stopPoint": {
                             "country": "AT",
@@ -406,8 +406,35 @@
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T21:43:00",
-                        "scheduledDepartureTime": "2025-09-20T21:45:00",
+                        "scheduledArrivalTime": "2025-09-20T21:53:00",
+                        "scheduledDepartureTime": "2025-09-20T21:55:00",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.121603,
+                            "longitude": 14.878109,
+                            "name": "Amstetten NÖ",
+                            "region": "AT-3"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T22:10:00",
+                        "scheduledDepartureTime": "2025-09-20T22:15:00",
+                        "scheduledPlatform": "1A-F",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.179143,
+                            "longitude": 14.521849,
+                            "name": "St. Valentin"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T22:28:00",
+                        "scheduledDepartureTime": "2025-09-20T22:30:00",
                         "scheduledPlatform": "6A-F",
                         "stopPoint": {
                             "country": "AT",
@@ -420,27 +447,15 @@
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T22:27:00",
-                        "scheduledDepartureTime": "2025-09-20T22:28:00",
-                        "scheduledPlatform": "1",
+                        "scheduledArrivalTime": "2025-09-20T22:44:00",
+                        "scheduledDepartureTime": "2025-09-20T22:46:00",
+                        "scheduledPlatform": "2",
                         "stopPoint": {
                             "country": "AT",
-                            "latitude": 48.1323,
-                            "longitude": 13.945622,
-                            "name": "Gunskirchen",
+                            "latitude": 48.166082,
+                            "longitude": 14.02657,
+                            "name": "Wels Hbf",
                             "region": "AT-4"
-                        }
-                    },
-                    {
-                        "disruptionEffect": "NormalService",
-                        "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T19:52:00",
-                        "scheduledDepartureTime": "2025-09-20T19:55:00",
-                        "scheduledPlatform": "",
-                        "stopPoint": {
-                            "latitude": 48.753904,
-                            "longitude": 16.893239,
-                            "name": "Breclav"
                         }
                     }
                 ],
@@ -503,50 +518,57 @@
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T19:18:00",
-                        "scheduledDepartureTime": "2025-09-20T19:20:00",
-                        "scheduledPlatform": "",
-                        "stopPoint": {
-                            "latitude": 48.753904,
-                            "longitude": 16.893239,
-                            "name": "Breclav"
-                        }
-                    },
-                    {
-                        "disruptionEffect": "NormalService",
-                        "expectedPlatform": "",
-                        "scheduledPlatform": "",
-                        "stopPoint": {
-                            "latitude": 48.712653,
-                            "longitude": 16.868366,
-                            "name": "Breclav(Gr)"
-                        }
-                    },
-                    {
-                        "disruptionEffect": "NormalService",
-                        "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T20:33:00",
-                        "scheduledDepartureTime": "2025-09-20T20:35:00",
-                        "scheduledPlatform": "5",
+                        "scheduledArrivalTime": "2025-09-20T23:14:00",
+                        "scheduledDepartureTime": "2025-09-20T23:14:00",
+                        "scheduledPlatform": "1",
                         "stopPoint": {
                             "country": "AT",
-                            "latitude": 48.174451,
-                            "longitude": 16.333085,
-                            "name": "Wien Meidling"
+                            "latitude": 48.054004,
+                            "longitude": 13.767879,
+                            "name": "Schwanenstadt",
+                            "region": "AT-4"
                         }
                     },
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T20:57:00",
-                        "scheduledDepartureTime": "2025-09-20T20:59:00",
-                        "scheduledPlatform": "5",
+                        "scheduledArrivalTime": "2025-09-20T23:17:00",
+                        "scheduledDepartureTime": "2025-09-20T23:18:00",
+                        "scheduledPlatform": "1",
                         "stopPoint": {
                             "country": "AT",
-                            "latitude": 48.208277,
-                            "longitude": 15.624681,
-                            "name": "St.Pölten Hbf",
-                            "region": "AT-3"
+                            "latitude": 48.078787,
+                            "longitude": 13.800887,
+                            "name": "Breitenschützing",
+                            "region": "AT-4"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T23:20:00",
+                        "scheduledDepartureTime": "2025-09-20T23:21:00",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.095435,
+                            "longitude": 13.83216,
+                            "name": "Neukirchen b.Lambach",
+                            "region": "AT-4"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T23:23:00",
+                        "scheduledDepartureTime": "2025-09-20T23:24:00",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.094429,
+                            "longitude": 13.87032,
+                            "name": "Lambach Markt",
+                            "region": "AT-4"
                         }
                     }
                 ],
@@ -654,13 +676,11 @@
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T19:18:00",
-                        "scheduledDepartureTime": "2025-09-20T19:20:00",
                         "scheduledPlatform": "",
                         "stopPoint": {
-                            "latitude": 48.753904,
-                            "longitude": 16.893239,
-                            "name": "Breclav"
+                            "latitude": 48.712653,
+                            "longitude": 16.868366,
+                            "name": "Breclav(Gr)"
                         }
                     }
                 ],
@@ -718,36 +738,42 @@
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T19:18:00",
-                        "scheduledDepartureTime": "2025-09-20T19:20:00",
-                        "scheduledPlatform": "",
-                        "stopPoint": {
-                            "latitude": 48.753904,
-                            "longitude": 16.893239,
-                            "name": "Breclav"
-                        }
-                    },
-                    {
-                        "disruptionEffect": "NormalService",
-                        "expectedPlatform": "",
-                        "scheduledPlatform": "",
-                        "stopPoint": {
-                            "latitude": 48.712653,
-                            "longitude": 16.868366,
-                            "name": "Breclav(Gr)"
-                        }
-                    },
-                    {
-                        "disruptionEffect": "NormalService",
-                        "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T20:33:00",
-                        "scheduledDepartureTime": "2025-09-20T20:35:00",
+                        "scheduledArrivalTime": "2025-09-20T22:33:00",
+                        "scheduledDepartureTime": "2025-09-20T22:35:00",
                         "scheduledPlatform": "5",
                         "stopPoint": {
                             "country": "AT",
                             "latitude": 48.174451,
                             "longitude": 16.333085,
                             "name": "Wien Meidling"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T22:57:00",
+                        "scheduledDepartureTime": "2025-09-20T22:59:00",
+                        "scheduledPlatform": "5",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.208277,
+                            "longitude": 15.624681,
+                            "name": "St.Pölten Hbf",
+                            "region": "AT-3"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T23:43:00",
+                        "scheduledDepartureTime": "2025-09-20T23:45:00",
+                        "scheduledPlatform": "5A-F",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.290178,
+                            "longitude": 14.292129,
+                            "name": "Linz Hbf",
+                            "region": "AT-4"
                         }
                     }
                 ],
@@ -810,13 +836,15 @@
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T19:18:00",
-                        "scheduledDepartureTime": "2025-09-20T19:20:00",
-                        "scheduledPlatform": "",
+                        "scheduledArrivalTime": "2025-09-21T00:27:00",
+                        "scheduledDepartureTime": "2025-09-21T00:28:00",
+                        "scheduledPlatform": "1",
                         "stopPoint": {
-                            "latitude": 48.753904,
-                            "longitude": 16.893239,
-                            "name": "Breclav"
+                            "country": "AT",
+                            "latitude": 48.1323,
+                            "longitude": 13.945622,
+                            "name": "Gunskirchen",
+                            "region": "AT-4"
                         }
                     }
                 ],
@@ -879,8 +907,8 @@
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T19:18:00",
-                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledArrivalTime": "2025-09-20T21:52:00",
+                        "scheduledDepartureTime": "2025-09-20T21:55:00",
                         "scheduledPlatform": "",
                         "stopPoint": {
                             "latitude": 48.753904,
@@ -957,36 +985,42 @@
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T19:18:00",
-                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledArrivalTime": "2025-09-20T23:33:00",
+                        "scheduledDepartureTime": "2025-09-20T23:35:00",
                         "scheduledPlatform": "",
-                        "stopPoint": {
-                            "latitude": 48.753904,
-                            "longitude": 16.893239,
-                            "name": "Breclav"
-                        }
-                    },
-                    {
-                        "disruptionEffect": "NormalService",
-                        "expectedPlatform": "",
-                        "scheduledPlatform": "",
-                        "stopPoint": {
-                            "latitude": 48.712653,
-                            "longitude": 16.868366,
-                            "name": "Breclav(Gr)"
-                        }
-                    },
-                    {
-                        "disruptionEffect": "NormalService",
-                        "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T20:33:00",
-                        "scheduledDepartureTime": "2025-09-20T20:35:00",
-                        "scheduledPlatform": "5",
                         "stopPoint": {
                             "country": "AT",
                             "latitude": 48.174451,
                             "longitude": 16.333085,
                             "name": "Wien Meidling"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T23:59:00",
+                        "scheduledDepartureTime": "2025-09-21T00:01:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.208277,
+                            "longitude": 15.624681,
+                            "name": "St.Pölten Hbf",
+                            "region": "AT-3"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-21T00:48:00",
+                        "scheduledDepartureTime": "2025-09-21T00:51:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.290178,
+                            "longitude": 14.292129,
+                            "name": "Linz Hbf",
+                            "region": "AT-4"
                         }
                     }
                 ],
@@ -1092,50 +1126,57 @@
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T19:18:00",
-                        "scheduledDepartureTime": "2025-09-20T19:20:00",
-                        "scheduledPlatform": "",
-                        "stopPoint": {
-                            "latitude": 48.753904,
-                            "longitude": 16.893239,
-                            "name": "Breclav"
-                        }
-                    },
-                    {
-                        "disruptionEffect": "NormalService",
-                        "expectedPlatform": "",
-                        "scheduledPlatform": "",
-                        "stopPoint": {
-                            "latitude": 48.712653,
-                            "longitude": 16.868366,
-                            "name": "Breclav(Gr)"
-                        }
-                    },
-                    {
-                        "disruptionEffect": "NormalService",
-                        "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T20:33:00",
-                        "scheduledDepartureTime": "2025-09-20T20:35:00",
-                        "scheduledPlatform": "5",
+                        "scheduledArrivalTime": "2025-09-21T06:14:00",
+                        "scheduledDepartureTime": "2025-09-21T06:14:00",
+                        "scheduledPlatform": "1",
                         "stopPoint": {
                             "country": "AT",
-                            "latitude": 48.174451,
-                            "longitude": 16.333085,
-                            "name": "Wien Meidling"
+                            "latitude": 48.054004,
+                            "longitude": 13.767879,
+                            "name": "Schwanenstadt",
+                            "region": "AT-4"
                         }
                     },
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T20:57:00",
-                        "scheduledDepartureTime": "2025-09-20T20:59:00",
-                        "scheduledPlatform": "5",
+                        "scheduledArrivalTime": "2025-09-21T06:17:00",
+                        "scheduledDepartureTime": "2025-09-21T06:18:00",
+                        "scheduledPlatform": "1",
                         "stopPoint": {
                             "country": "AT",
-                            "latitude": 48.208277,
-                            "longitude": 15.624681,
-                            "name": "St.Pölten Hbf",
-                            "region": "AT-3"
+                            "latitude": 48.078787,
+                            "longitude": 13.800887,
+                            "name": "Breitenschützing",
+                            "region": "AT-4"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-21T06:20:00",
+                        "scheduledDepartureTime": "2025-09-21T06:21:00",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.095435,
+                            "longitude": 13.83216,
+                            "name": "Neukirchen b.Lambach",
+                            "region": "AT-4"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-21T06:23:00",
+                        "scheduledDepartureTime": "2025-09-21T06:24:00",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.094429,
+                            "longitude": 13.87032,
+                            "name": "Lambach Markt",
+                            "region": "AT-4"
                         }
                     }
                 ],
@@ -1198,8 +1239,8 @@
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T19:18:00",
-                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledArrivalTime": "2025-09-20T21:52:00",
+                        "scheduledDepartureTime": "2025-09-20T21:55:00",
                         "scheduledPlatform": "",
                         "stopPoint": {
                             "latitude": 48.753904,
@@ -1276,23 +1317,28 @@
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T19:18:00",
-                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledArrivalTime": "2025-09-20T23:33:00",
+                        "scheduledDepartureTime": "2025-09-20T23:35:00",
                         "scheduledPlatform": "",
                         "stopPoint": {
-                            "latitude": 48.753904,
-                            "longitude": 16.893239,
-                            "name": "Breclav"
+                            "country": "AT",
+                            "latitude": 48.174451,
+                            "longitude": 16.333085,
+                            "name": "Wien Meidling"
                         }
                     },
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T23:59:00",
+                        "scheduledDepartureTime": "2025-09-21T00:01:00",
                         "scheduledPlatform": "",
                         "stopPoint": {
-                            "latitude": 48.712653,
-                            "longitude": 16.868366,
-                            "name": "Breclav(Gr)"
+                            "country": "AT",
+                            "latitude": 48.208277,
+                            "longitude": 15.624681,
+                            "name": "St.Pölten Hbf",
+                            "region": "AT-3"
                         }
                     }
                 ],
@@ -1347,71 +1393,92 @@
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T19:18:00",
-                        "scheduledDepartureTime": "2025-09-20T19:20:00",
-                        "scheduledPlatform": "",
-                        "stopPoint": {
-                            "latitude": 48.753904,
-                            "longitude": 16.893239,
-                            "name": "Breclav"
-                        }
-                    },
-                    {
-                        "disruptionEffect": "NormalService",
-                        "expectedPlatform": "",
-                        "scheduledPlatform": "",
-                        "stopPoint": {
-                            "latitude": 48.712653,
-                            "longitude": 16.868366,
-                            "name": "Breclav(Gr)"
-                        }
-                    },
-                    {
-                        "disruptionEffect": "NormalService",
-                        "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T20:33:00",
-                        "scheduledDepartureTime": "2025-09-20T20:35:00",
-                        "scheduledPlatform": "5",
+                        "scheduledArrivalTime": "2025-09-21T06:03:00",
+                        "scheduledDepartureTime": "2025-09-21T06:03:00",
+                        "scheduledPlatform": "2",
                         "stopPoint": {
                             "country": "AT",
-                            "latitude": 48.174451,
-                            "longitude": 16.333085,
-                            "name": "Wien Meidling"
-                        }
-                    },
-                    {
-                        "disruptionEffect": "NormalService",
-                        "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T20:57:00",
-                        "scheduledDepartureTime": "2025-09-20T20:59:00",
-                        "scheduledPlatform": "5",
-                        "stopPoint": {
-                            "country": "AT",
-                            "latitude": 48.208277,
-                            "longitude": 15.624681,
-                            "name": "St.Pölten Hbf",
-                            "region": "AT-3"
-                        }
-                    },
-                    {
-                        "disruptionEffect": "NormalService",
-                        "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T21:43:00",
-                        "scheduledDepartureTime": "2025-09-20T21:45:00",
-                        "scheduledPlatform": "6A-F",
-                        "stopPoint": {
-                            "country": "AT",
-                            "latitude": 48.290178,
-                            "longitude": 14.292129,
-                            "name": "Linz Hbf",
+                            "latitude": 48.274015,
+                            "longitude": 14.253943,
+                            "name": "Leonding",
                             "region": "AT-4"
                         }
                     },
                     {
                         "disruptionEffect": "NormalService",
                         "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T22:27:00",
-                        "scheduledDepartureTime": "2025-09-20T22:28:00",
+                        "scheduledArrivalTime": "2025-09-21T06:06:00",
+                        "scheduledDepartureTime": "2025-09-21T06:07:00",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.256927,
+                            "longitude": 14.208287,
+                            "name": "Pasching",
+                            "region": "AT-4"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-21T06:09:00",
+                        "scheduledDepartureTime": "2025-09-21T06:10:00",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.245555,
+                            "longitude": 14.185976,
+                            "name": "Hörsching",
+                            "region": "AT-4"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-21T06:12:00",
+                        "scheduledDepartureTime": "2025-09-21T06:13:00",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.227766,
+                            "longitude": 14.151439,
+                            "name": "Oftering",
+                            "region": "AT-4"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-21T06:17:00",
+                        "scheduledDepartureTime": "2025-09-21T06:18:00",
+                        "scheduledPlatform": "11",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.201355,
+                            "longitude": 14.100021,
+                            "name": "Marchtrenk",
+                            "region": "AT-4"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-21T06:22:00",
+                        "scheduledDepartureTime": "2025-09-21T06:23:00",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.166082,
+                            "longitude": 14.02657,
+                            "name": "Wels Hbf",
+                            "region": "AT-4"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-21T06:27:00",
+                        "scheduledDepartureTime": "2025-09-21T06:28:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "country": "AT",
@@ -1419,18 +1486,6 @@
                             "longitude": 13.945622,
                             "name": "Gunskirchen",
                             "region": "AT-4"
-                        }
-                    },
-                    {
-                        "disruptionEffect": "NormalService",
-                        "expectedPlatform": "",
-                        "scheduledArrivalTime": "2025-09-20T19:52:00",
-                        "scheduledDepartureTime": "2025-09-20T19:55:00",
-                        "scheduledPlatform": "",
-                        "stopPoint": {
-                            "latitude": 48.753904,
-                            "longitude": 16.893239,
-                            "name": "Breclav"
                         }
                     }
                 ],
