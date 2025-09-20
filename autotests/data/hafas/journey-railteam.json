@@ -1,0 +1,1451 @@
+[
+    {
+        "sections": [
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-09-20T20:18:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8103000"
+                        },
+                        "latitude": 48.185103,
+                        "longitude": 16.377114,
+                        "name": "Wien Hbf"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Wien Hbf",
+                        "line": {
+                            "name": "IC  1037",
+                            "operatorName": "RegioJet"
+                        }
+                    },
+                    "scheduledDepartureTime": "2025-09-20T18:48:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "CZ",
+                        "identifier": {
+                            "": "5400001"
+                        },
+                        "latitude": 49.190537,
+                        "longitude": 16.612776,
+                        "name": "Brno hl.n.",
+                        "region": "CZ-64"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T19:18:00",
+                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.753904,
+                            "longitude": 16.893239,
+                            "name": "Breclav"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.712653,
+                            "longitude": 16.868366,
+                            "name": "Breclav(Gr)"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Subject to compulsory reservation",
+                    "no bicycle transport",
+                    "Global price",
+                    "Partially, snacks and beverages available",
+                    "Family Zone",
+                    "Wifi available"
+                ]
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-09-20T22:00:00",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8100014"
+                        },
+                        "latitude": 48.166082,
+                        "longitude": 14.02657,
+                        "name": "Wels Hbf",
+                        "region": "AT-4"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Salzburg Hbf",
+                        "line": {
+                            "name": "RJX 1164",
+                            "operatorName": "Österreichische Bundesbahnen"
+                        }
+                    },
+                    "scheduledDepartureTime": "2025-09-20T20:28:00",
+                    "scheduledPlatform": "7A-B",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8103000"
+                        },
+                        "latitude": 48.185103,
+                        "longitude": 16.377114,
+                        "name": "Wien Hbf"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T19:18:00",
+                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.753904,
+                            "longitude": 16.893239,
+                            "name": "Breclav"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.712653,
+                            "longitude": 16.868366,
+                            "name": "Breclav(Gr)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T20:33:00",
+                        "scheduledDepartureTime": "2025-09-20T20:35:00",
+                        "scheduledPlatform": "5",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.174451,
+                            "longitude": 16.333085,
+                            "name": "Wien Meidling"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Bicycles conveyed - subject to reservation",
+                    "Number of bicycles conveyed limited",
+                    "business-compartment",
+                    "Bordrestaurant",
+                    "space for wheelchairs",
+                    "Wheelchair space - For advance notification, call +43 5 1717",
+                    "Vehicle-mounted access ramp for wheelchair users",
+                    "WC accessible for wheelchair",
+                    "Quiet Zone",
+                    "Family Zone",
+                    "Wifi available"
+                ]
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-09-20T22:32:00",
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8100015"
+                        },
+                        "latitude": 48.094087,
+                        "longitude": 13.888343,
+                        "name": "Lambach",
+                        "region": "AT-4"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Attnang-Puchheim",
+                        "line": {
+                            "name": "R      2",
+                            "operatorName": "Österreichische Bundesbahnen"
+                        }
+                    },
+                    "scheduledDepartureTime": "2025-09-20T22:23:00",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8100014"
+                        },
+                        "latitude": 48.166082,
+                        "longitude": 14.02657,
+                        "name": "Wels Hbf",
+                        "region": "AT-4"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T19:18:00",
+                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.753904,
+                            "longitude": 16.893239,
+                            "name": "Breclav"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Number of bicycles conveyed limited",
+                    "2nd class only",
+                    "It is mandatory to hold a valid ticket in local lines (REX, R, S-Bahn)",
+                    "space for wheelchairs",
+                    "Wheelchair space - For advance notification, call +43 5 1717",
+                    "Vehicle-mounted access ramp for wheelchair users",
+                    "Low-floor coach",
+                    "WC accessible for wheelchair",
+                    "Wifi available"
+                ]
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-09-20T20:49:00",
+                    "scheduledPlatform": "7A-B",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8103000"
+                        },
+                        "latitude": 48.185103,
+                        "longitude": 16.377114,
+                        "name": "Wien Hbf"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Graz Hbf",
+                        "line": {
+                            "name": "RJ   373",
+                            "operatorName": "Ceske Drahy"
+                        }
+                    },
+                    "scheduledDepartureTime": "2025-09-20T19:22:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "CZ",
+                        "identifier": {
+                            "": "5400001"
+                        },
+                        "latitude": 49.190537,
+                        "longitude": 16.612776,
+                        "name": "Brno hl.n.",
+                        "region": "CZ-64"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T19:18:00",
+                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.753904,
+                            "longitude": 16.893239,
+                            "name": "Breclav"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.712653,
+                            "longitude": 16.868366,
+                            "name": "Breclav(Gr)"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Bicycles conveyed - subject to reservation",
+                    "Number of bicycles conveyed limited",
+                    "business-compartment",
+                    "Bordrestaurant",
+                    "space for wheelchairs",
+                    "Wheelchair space - For advance notification, call +43 5 1717",
+                    "Vehicle-mounted access ramp for wheelchair users",
+                    "WC accessible for wheelchair",
+                    "Quiet Zone",
+                    "Family Zone",
+                    "Wifi available"
+                ]
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-09-20T22:58:00",
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8100017"
+                        },
+                        "latitude": 48.012798,
+                        "longitude": 13.720721,
+                        "name": "Attnang-Puchheim",
+                        "region": "AT-4"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Salzburg Hbf",
+                        "line": {
+                            "name": "RJ   840",
+                            "operatorName": "Österreichische Bundesbahnen"
+                        }
+                    },
+                    "scheduledDepartureTime": "2025-09-20T20:55:00",
+                    "scheduledPlatform": "8A-B",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8103000"
+                        },
+                        "latitude": 48.185103,
+                        "longitude": 16.377114,
+                        "name": "Wien Hbf"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T19:18:00",
+                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.753904,
+                            "longitude": 16.893239,
+                            "name": "Breclav"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.712653,
+                            "longitude": 16.868366,
+                            "name": "Breclav(Gr)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T20:33:00",
+                        "scheduledDepartureTime": "2025-09-20T20:35:00",
+                        "scheduledPlatform": "5",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.174451,
+                            "longitude": 16.333085,
+                            "name": "Wien Meidling"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T20:57:00",
+                        "scheduledDepartureTime": "2025-09-20T20:59:00",
+                        "scheduledPlatform": "5",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.208277,
+                            "longitude": 15.624681,
+                            "name": "St.Pölten Hbf",
+                            "region": "AT-3"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T21:43:00",
+                        "scheduledDepartureTime": "2025-09-20T21:45:00",
+                        "scheduledPlatform": "6A-F",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.290178,
+                            "longitude": 14.292129,
+                            "name": "Linz Hbf",
+                            "region": "AT-4"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T22:27:00",
+                        "scheduledDepartureTime": "2025-09-20T22:28:00",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.1323,
+                            "longitude": 13.945622,
+                            "name": "Gunskirchen",
+                            "region": "AT-4"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T19:52:00",
+                        "scheduledDepartureTime": "2025-09-20T19:55:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.753904,
+                            "longitude": 16.893239,
+                            "name": "Breclav"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Bicycles conveyed - subject to reservation",
+                    "Number of bicycles conveyed limited",
+                    "business-compartment",
+                    "Bordrestaurant",
+                    "space for wheelchairs",
+                    "Wheelchair space - For advance notification, call +43 5 1717",
+                    "Vehicle-mounted access ramp for wheelchair users",
+                    "WC accessible for wheelchair",
+                    "Quiet Zone",
+                    "Family Zone",
+                    "Wifi available"
+                ]
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-09-20T23:26:00",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8100015"
+                        },
+                        "latitude": 48.094087,
+                        "longitude": 13.888343,
+                        "name": "Lambach",
+                        "region": "AT-4"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Linz Hbf",
+                        "line": {
+                            "name": "R      2",
+                            "operatorName": "Österreichische Bundesbahnen"
+                        }
+                    },
+                    "scheduledDepartureTime": "2025-09-20T23:10:00",
+                    "scheduledPlatform": "5A-C",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8100017"
+                        },
+                        "latitude": 48.012798,
+                        "longitude": 13.720721,
+                        "name": "Attnang-Puchheim",
+                        "region": "AT-4"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T19:18:00",
+                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.753904,
+                            "longitude": 16.893239,
+                            "name": "Breclav"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.712653,
+                            "longitude": 16.868366,
+                            "name": "Breclav(Gr)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T20:33:00",
+                        "scheduledDepartureTime": "2025-09-20T20:35:00",
+                        "scheduledPlatform": "5",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.174451,
+                            "longitude": 16.333085,
+                            "name": "Wien Meidling"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T20:57:00",
+                        "scheduledDepartureTime": "2025-09-20T20:59:00",
+                        "scheduledPlatform": "5",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.208277,
+                            "longitude": 15.624681,
+                            "name": "St.Pölten Hbf",
+                            "region": "AT-3"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Number of bicycles conveyed limited",
+                    "2nd class only",
+                    "It is mandatory to hold a valid ticket in local lines (REX, R, S-Bahn)",
+                    "space for wheelchairs",
+                    "Wheelchair space - For advance notification, call +43 5 1717",
+                    "Vehicle-mounted access ramp for wheelchair users",
+                    "Low-floor coach",
+                    "WC accessible for wheelchair",
+                    "Wifi available"
+                ]
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-09-20T20:52:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "": "5400202"
+                        },
+                        "latitude": 48.753904,
+                        "longitude": 16.893239,
+                        "name": "Breclav"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Nove Zamky",
+                        "line": {
+                            "name": "EC   283",
+                            "operatorName": "Ceske Drahy"
+                        }
+                    },
+                    "scheduledDepartureTime": "2025-09-20T20:22:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "CZ",
+                        "identifier": {
+                            "": "5400001"
+                        },
+                        "latitude": 49.190537,
+                        "longitude": 16.612776,
+                        "name": "Brno hl.n.",
+                        "region": "CZ-64"
+                    }
+                },
+                "mode": "PublicTransport",
+                "notes": [
+                    "Bicycles conveyed - subject to reservation",
+                    "Reservation possible",
+                    "Bordbistro",
+                    "power sockets for laptop"
+                ]
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-09-20T21:49:00",
+                    "scheduledPlatform": "7",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8103000"
+                        },
+                        "latitude": 48.185103,
+                        "longitude": 16.377114,
+                        "name": "Wien Hbf"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Wien Hbf",
+                        "line": {
+                            "name": "EC   109",
+                            "operatorName": "Österreichische Bundesbahnen"
+                        }
+                    },
+                    "scheduledDepartureTime": "2025-09-20T20:55:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "": "5400202"
+                        },
+                        "latitude": 48.753904,
+                        "longitude": 16.893239,
+                        "name": "Breclav"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T19:18:00",
+                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.753904,
+                            "longitude": 16.893239,
+                            "name": "Breclav"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Bicycles conveyed - subject to reservation",
+                    "Number of bicycles conveyed limited",
+                    "Bordrestaurant",
+                    "space for wheelchairs",
+                    "Wheelchair space - For advance notification, call +43 5 1717",
+                    "WC accessible for wheelchair",
+                    "parent-and-children compartment"
+                ]
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-09-21T00:00:00",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8100014"
+                        },
+                        "latitude": 48.166082,
+                        "longitude": 14.02657,
+                        "name": "Wels Hbf",
+                        "region": "AT-4"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Salzburg Hbf",
+                        "line": {
+                            "name": "RJX  768",
+                            "operatorName": "Österreichische Bundesbahnen"
+                        }
+                    },
+                    "scheduledDepartureTime": "2025-09-20T22:28:00",
+                    "scheduledPlatform": "8A-B",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8103000"
+                        },
+                        "latitude": 48.185103,
+                        "longitude": 16.377114,
+                        "name": "Wien Hbf"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T19:18:00",
+                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.753904,
+                            "longitude": 16.893239,
+                            "name": "Breclav"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.712653,
+                            "longitude": 16.868366,
+                            "name": "Breclav(Gr)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T20:33:00",
+                        "scheduledDepartureTime": "2025-09-20T20:35:00",
+                        "scheduledPlatform": "5",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.174451,
+                            "longitude": 16.333085,
+                            "name": "Wien Meidling"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Bicycles conveyed - subject to reservation",
+                    "Number of bicycles conveyed limited",
+                    "business-compartment",
+                    "Bordrestaurant",
+                    "space for wheelchairs",
+                    "Wheelchair space - For advance notification, call +43 5 1717",
+                    "Vehicle-mounted access ramp for wheelchair users",
+                    "WC accessible for wheelchair",
+                    "Quiet Zone",
+                    "Family Zone",
+                    "Wifi available"
+                ]
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-09-21T00:32:00",
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8100015"
+                        },
+                        "latitude": 48.094087,
+                        "longitude": 13.888343,
+                        "name": "Lambach",
+                        "region": "AT-4"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Attnang-Puchheim",
+                        "line": {
+                            "name": "R      2",
+                            "operatorName": "Österreichische Bundesbahnen"
+                        }
+                    },
+                    "scheduledDepartureTime": "2025-09-21T00:23:00",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8100014"
+                        },
+                        "latitude": 48.166082,
+                        "longitude": 14.02657,
+                        "name": "Wels Hbf",
+                        "region": "AT-4"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T19:18:00",
+                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.753904,
+                            "longitude": 16.893239,
+                            "name": "Breclav"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Number of bicycles conveyed limited",
+                    "2nd class only",
+                    "It is mandatory to hold a valid ticket in local lines (REX, R, S-Bahn)",
+                    "space for wheelchairs",
+                    "Wheelchair space - For advance notification, call +43 5 1717",
+                    "Low-floor coach",
+                    "WC with limited accessibility for wheelchair",
+                    "Wifi available"
+                ]
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-09-20T22:49:00",
+                    "scheduledPlatform": "4A-B",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8103000"
+                        },
+                        "latitude": 48.185103,
+                        "longitude": 16.377114,
+                        "name": "Wien Hbf"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Wien Hbf",
+                        "line": {
+                            "name": "RJ   375",
+                            "operatorName": "Ceske Drahy"
+                        }
+                    },
+                    "scheduledDepartureTime": "2025-09-20T21:22:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "CZ",
+                        "identifier": {
+                            "": "5400001"
+                        },
+                        "latitude": 49.190537,
+                        "longitude": 16.612776,
+                        "name": "Brno hl.n.",
+                        "region": "CZ-64"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T19:18:00",
+                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.753904,
+                            "longitude": 16.893239,
+                            "name": "Breclav"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.712653,
+                            "longitude": 16.868366,
+                            "name": "Breclav(Gr)"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Bicycles conveyed - subject to reservation",
+                    "Number of bicycles conveyed limited",
+                    "business-compartment",
+                    "Bordrestaurant",
+                    "space for wheelchairs",
+                    "Wheelchair space - For advance notification, call +43 5 1717",
+                    "Vehicle-mounted access ramp for wheelchair users",
+                    "WC accessible for wheelchair",
+                    "Quiet Zone",
+                    "Family Zone",
+                    "Wifi available"
+                ]
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-09-21T02:07:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8100002"
+                        },
+                        "latitude": 47.813048,
+                        "longitude": 13.04582,
+                        "name": "Salzburg Hbf",
+                        "region": "AT-5"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "München Ost",
+                        "line": {
+                            "name": "EN 50462",
+                            "operatorName": "MAV"
+                        }
+                    },
+                    "scheduledDepartureTime": "2025-09-20T23:28:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8103000"
+                        },
+                        "latitude": 48.185103,
+                        "longitude": 16.377114,
+                        "name": "Wien Hbf"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T19:18:00",
+                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.753904,
+                            "longitude": 16.893239,
+                            "name": "Breclav"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.712653,
+                            "longitude": 16.868366,
+                            "name": "Breclav(Gr)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T20:33:00",
+                        "scheduledDepartureTime": "2025-09-20T20:35:00",
+                        "scheduledPlatform": "5",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.174451,
+                            "longitude": 16.333085,
+                            "name": "Wien Meidling"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "2nd class only seated accommodation",
+                    "Sleeping-car",
+                    "Couchettes"
+                ]
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-09-21T05:19:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8100017"
+                        },
+                        "latitude": 48.012798,
+                        "longitude": 13.720721,
+                        "name": "Attnang-Puchheim",
+                        "region": "AT-4"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Wien Hbf",
+                        "line": {
+                            "name": "NJ 40236",
+                            "operatorName": "Österreichische Bundesbahnen"
+                        }
+                    },
+                    "scheduledDepartureTime": "2025-09-21T04:33:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8100002"
+                        },
+                        "latitude": 47.813048,
+                        "longitude": 13.04582,
+                        "name": "Salzburg Hbf",
+                        "region": "AT-5"
+                    }
+                },
+                "mode": "PublicTransport",
+                "notes": [
+                    "2nd class only seated accommodation",
+                    "ÖBB Nightjet (<a href=\"https://www.nightjet.com\">www.nightjet.com</a>)",
+                    "Comfortticket (IRT Integrated Reservation Ticket)",
+                    "Global price",
+                    "Sleeping-car",
+                    "Couchettes",
+                    "snacks and beverages available from sleeper/couchette attendant"
+                ]
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-09-21T06:26:00",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8100015"
+                        },
+                        "latitude": 48.094087,
+                        "longitude": 13.888343,
+                        "name": "Lambach",
+                        "region": "AT-4"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Linz Hbf",
+                        "line": {
+                            "name": "R      2",
+                            "operatorName": "Österreichische Bundesbahnen"
+                        }
+                    },
+                    "scheduledDepartureTime": "2025-09-21T06:10:00",
+                    "scheduledPlatform": "1A-C",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8100017"
+                        },
+                        "latitude": 48.012798,
+                        "longitude": 13.720721,
+                        "name": "Attnang-Puchheim",
+                        "region": "AT-4"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T19:18:00",
+                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.753904,
+                            "longitude": 16.893239,
+                            "name": "Breclav"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.712653,
+                            "longitude": 16.868366,
+                            "name": "Breclav(Gr)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T20:33:00",
+                        "scheduledDepartureTime": "2025-09-20T20:35:00",
+                        "scheduledPlatform": "5",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.174451,
+                            "longitude": 16.333085,
+                            "name": "Wien Meidling"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T20:57:00",
+                        "scheduledDepartureTime": "2025-09-20T20:59:00",
+                        "scheduledPlatform": "5",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.208277,
+                            "longitude": 15.624681,
+                            "name": "St.Pölten Hbf",
+                            "region": "AT-3"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Number of bicycles conveyed limited",
+                    "2nd class only",
+                    "It is mandatory to hold a valid ticket in local lines (REX, R, S-Bahn)",
+                    "space for wheelchairs",
+                    "Wheelchair space - For advance notification, call +43 5 1717",
+                    "Low-floor coach",
+                    "WC with limited accessibility for wheelchair",
+                    "Wifi available"
+                ]
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-09-20T22:49:00",
+                    "scheduledPlatform": "4A-B",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8103000"
+                        },
+                        "latitude": 48.185103,
+                        "longitude": 16.377114,
+                        "name": "Wien Hbf"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Wien Hbf",
+                        "line": {
+                            "name": "RJ   375",
+                            "operatorName": "Ceske Drahy"
+                        }
+                    },
+                    "scheduledDepartureTime": "2025-09-20T21:22:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "CZ",
+                        "identifier": {
+                            "": "5400001"
+                        },
+                        "latitude": 49.190537,
+                        "longitude": 16.612776,
+                        "name": "Brno hl.n.",
+                        "region": "CZ-64"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T19:18:00",
+                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.753904,
+                            "longitude": 16.893239,
+                            "name": "Breclav"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.712653,
+                            "longitude": 16.868366,
+                            "name": "Breclav(Gr)"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Bicycles conveyed - subject to reservation",
+                    "Number of bicycles conveyed limited",
+                    "business-compartment",
+                    "Bordrestaurant",
+                    "space for wheelchairs",
+                    "Wheelchair space - For advance notification, call +43 5 1717",
+                    "Vehicle-mounted access ramp for wheelchair users",
+                    "WC accessible for wheelchair",
+                    "Quiet Zone",
+                    "Family Zone",
+                    "Wifi available"
+                ]
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-09-21T00:48:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8100013"
+                        },
+                        "latitude": 48.290178,
+                        "longitude": 14.292129,
+                        "name": "Linz Hbf",
+                        "region": "AT-4"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "München Ost",
+                        "line": {
+                            "name": "EN 50462",
+                            "operatorName": "MAV"
+                        }
+                    },
+                    "scheduledDepartureTime": "2025-09-20T23:28:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8103000"
+                        },
+                        "latitude": 48.185103,
+                        "longitude": 16.377114,
+                        "name": "Wien Hbf"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T19:18:00",
+                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.753904,
+                            "longitude": 16.893239,
+                            "name": "Breclav"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.712653,
+                            "longitude": 16.868366,
+                            "name": "Breclav(Gr)"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "2nd class only seated accommodation",
+                    "Sleeping-car",
+                    "Couchettes"
+                ]
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-09-21T06:32:00",
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8100015"
+                        },
+                        "latitude": 48.094087,
+                        "longitude": 13.888343,
+                        "name": "Lambach",
+                        "region": "AT-4"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Attnang-Puchheim",
+                        "line": {
+                            "name": "S      2",
+                            "operatorName": "Österreichische Bundesbahnen"
+                        }
+                    },
+                    "scheduledDepartureTime": "2025-09-21T06:00:00",
+                    "scheduledPlatform": "4C-E",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "": "8100013"
+                        },
+                        "latitude": 48.290178,
+                        "longitude": 14.292129,
+                        "name": "Linz Hbf",
+                        "region": "AT-4"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T19:18:00",
+                        "scheduledDepartureTime": "2025-09-20T19:20:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.753904,
+                            "longitude": 16.893239,
+                            "name": "Breclav"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.712653,
+                            "longitude": 16.868366,
+                            "name": "Breclav(Gr)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T20:33:00",
+                        "scheduledDepartureTime": "2025-09-20T20:35:00",
+                        "scheduledPlatform": "5",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.174451,
+                            "longitude": 16.333085,
+                            "name": "Wien Meidling"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T20:57:00",
+                        "scheduledDepartureTime": "2025-09-20T20:59:00",
+                        "scheduledPlatform": "5",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.208277,
+                            "longitude": 15.624681,
+                            "name": "St.Pölten Hbf",
+                            "region": "AT-3"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T21:43:00",
+                        "scheduledDepartureTime": "2025-09-20T21:45:00",
+                        "scheduledPlatform": "6A-F",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.290178,
+                            "longitude": 14.292129,
+                            "name": "Linz Hbf",
+                            "region": "AT-4"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T22:27:00",
+                        "scheduledDepartureTime": "2025-09-20T22:28:00",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "country": "AT",
+                            "latitude": 48.1323,
+                            "longitude": 13.945622,
+                            "name": "Gunskirchen",
+                            "region": "AT-4"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedPlatform": "",
+                        "scheduledArrivalTime": "2025-09-20T19:52:00",
+                        "scheduledDepartureTime": "2025-09-20T19:55:00",
+                        "scheduledPlatform": "",
+                        "stopPoint": {
+                            "latitude": 48.753904,
+                            "longitude": 16.893239,
+                            "name": "Breclav"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Number of bicycles conveyed limited",
+                    "2nd class only",
+                    "It is mandatory to hold a valid ticket in local lines (REX, R, S-Bahn)",
+                    "space for wheelchairs",
+                    "Wheelchair space - For advance notification, call +43 5 1717",
+                    "Low-floor coach",
+                    "WC with limited accessibility for wheelchair",
+                    "Wifi available"
+                ]
+            }
+        ]
+    }
+]
