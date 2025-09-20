@@ -23,7 +23,7 @@
                     "route": {
                         "direction": "Wien Hbf",
                         "line": {
-                            "name": "IC  1037",
+                            "name": "IC 1037",
                             "operatorName": "RegioJet"
                         }
                     },
@@ -254,7 +254,7 @@
                     "route": {
                         "direction": "Attnang-Puchheim",
                         "line": {
-                            "name": "R      2",
+                            "name": "R 2",
                             "operatorName": "Österreichische Bundesbahnen"
                         }
                     },
@@ -349,7 +349,7 @@
                     "route": {
                         "direction": "Graz Hbf",
                         "line": {
-                            "name": "RJ   373",
+                            "name": "RJ 373",
                             "operatorName": "Ceske Drahy"
                         }
                     },
@@ -468,7 +468,7 @@
                     "route": {
                         "direction": "Salzburg Hbf",
                         "line": {
-                            "name": "RJ   840",
+                            "name": "RJ 840",
                             "operatorName": "Österreichische Bundesbahnen"
                         }
                     },
@@ -660,7 +660,7 @@
                     "route": {
                         "direction": "Linz Hbf",
                         "line": {
-                            "name": "R      2",
+                            "name": "R 2",
                             "operatorName": "Österreichische Bundesbahnen"
                         }
                     },
@@ -796,7 +796,7 @@
                     "route": {
                         "direction": "Nove Zamky",
                         "line": {
-                            "name": "EC   283",
+                            "name": "EC 283",
                             "operatorName": "Ceske Drahy"
                         }
                     },
@@ -863,7 +863,7 @@
                     "route": {
                         "direction": "Wien Hbf",
                         "line": {
-                            "name": "EC   109",
+                            "name": "EC 109",
                             "operatorName": "Österreichische Bundesbahnen"
                         }
                     },
@@ -950,7 +950,7 @@
                     "route": {
                         "direction": "Salzburg Hbf",
                         "line": {
-                            "name": "RJX  768",
+                            "name": "RJX 768",
                             "operatorName": "Österreichische Bundesbahnen"
                         }
                     },
@@ -1087,7 +1087,7 @@
                     "route": {
                         "direction": "Attnang-Puchheim",
                         "line": {
-                            "name": "R      2",
+                            "name": "R 2",
                             "operatorName": "Österreichische Bundesbahnen"
                         }
                     },
@@ -1182,7 +1182,7 @@
                     "route": {
                         "direction": "Wien Hbf",
                         "line": {
-                            "name": "RJ   375",
+                            "name": "RJ 375",
                             "operatorName": "Ceske Drahy"
                         }
                     },
@@ -1451,7 +1451,7 @@
                     "route": {
                         "direction": "Linz Hbf",
                         "line": {
-                            "name": "R      2",
+                            "name": "R 2",
                             "operatorName": "Österreichische Bundesbahnen"
                         }
                     },
@@ -1588,7 +1588,7 @@
                     "route": {
                         "direction": "Wien Hbf",
                         "line": {
-                            "name": "RJ   375",
+                            "name": "RJ 375",
                             "operatorName": "Ceske Drahy"
                         }
                     },
@@ -1782,7 +1782,7 @@
                     "route": {
                         "direction": "Attnang-Puchheim",
                         "line": {
-                            "name": "S      2",
+                            "name": "S 2",
                             "operatorName": "Österreichische Bundesbahnen"
                         }
                     },

@@ -314,7 +314,7 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
             if (sectionInfo->type == HafasJourneyResponseSectionMode::PublicTransport) {
                 Route route;
                 Line line;
-                line.setName(stringTable.lookup(sectionInfo->lineNameStr).trimmed());
+                line.setName(stringTable.lookup(sectionInfo->lineNameStr).simplified());
 
                 auto attr = HafasJourneyResponse::attribute(rawData.constData(), extHeader, sectionInfo->sectionAttributeIndex);
                 while (!attr->atEnd()) {
