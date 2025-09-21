@@ -163,7 +163,7 @@ Kirigami.ApplicationWindow {
                         }
                         ExpectedTimeLabel {
                             stopover: modelData.departure
-                            scheduledTime:  modelData.scheduledDepartureTime.toTimeString()
+                            scheduledTime: KCoreAddons.Format.formatTime(modelData, "scheduledDepartureTime", Locale.ShortFormat, KCoreAddons.FormatTypes.AddTimezoneAbbreviationIfNeeded)
                             delay: modelData.departureDelay
                             hasExpectedTime: modelData.hasExpectedDepartureTime
                         }
@@ -221,7 +221,7 @@ Kirigami.ApplicationWindow {
                         }
                         ExpectedTimeLabel {
                             stopover: modelData.departure
-                            scheduledTime: modelData.scheduledArrivalTime.toTimeString()
+                            scheduledTime: KCoreAddons.Format.formatTime(modelData, "scheduledArrivalTime", Locale.ShortFormat, KCoreAddons.FormatTypes.AddTimezoneAbbreviationIfNeeded)
                             delay: modelData.arrivalDelay
                             hasExpectedTime: modelData.hasExpectedArrivalTime
                         }

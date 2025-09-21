@@ -10,6 +10,7 @@ import QtQuick.Layouts
 import QtQuick.Controls as QQC2
 import QtQuick.Dialogs as Dialogs
 import org.kde.kirigami as Kirigami
+import org.kde.coreaddons as KCoreAddons
 import org.kde.kpublictransport
 import org.kde.kpublictransport.ui
 import org.kde.example
@@ -123,7 +124,7 @@ Kirigami.ApplicationWindow {
                         ExpectedTimeLabel {
                             id: arrivalTimeLabel
                             stopover: departure
-                            scheduledTime: departure.scheduledArrivalTime.toTimeString()
+                            scheduledTime: KCoreAddons.Format.formatTime(departure, "scheduledArrivalTime", Locale.ShortFormat, KCoreAddons.FormatTypes.AddTimezoneAbbreviationIfNeeded)
                             delay: departure.arrivalDelay
                             hasExpectedTime: departure.hasExpectedArrivalTime
                         }
@@ -134,7 +135,7 @@ Kirigami.ApplicationWindow {
                         ExpectedTimeLabel {
                             id: departureTimeLabel
                             stopover: departure
-                            scheduledTime: departure.scheduledDepartureTime.toTimeString()
+                            scheduledTime: KCoreAddons.Format.formatTime(departure, "scheduledDepartureTime", Locale.ShortFormat, KCoreAddons.FormatTypes.AddTimezoneAbbreviationIfNeeded)
                             delay: departure.departureDelay
                             hasExpectedTime: departure.hasExpectedDepartureTime
                         }
