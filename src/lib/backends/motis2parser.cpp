@@ -39,6 +39,17 @@ Motis2Parser::Motis2Parser(QString locIdentifierType)
     return QDateTime::fromString(timestamp.toString(), Qt::ISODate);
 }
 
+static void parseTimeZone(const QJsonObject &obj, Location &loc)
+{
+    const auto tzId = obj.value("tz"_L1).toString().toUtf8();
+    if (tzId.isEmpty()) {
+        return;
+    }
+    if (const auto tz = QTimeZone(tzId); tz.isValid()) {
+        loc.setTimeZone(tz);
+    }
+}
+
 struct {
     const char *name;
     Line::Mode lineMode;
@@ -115,6 +126,7 @@ Stopover Motis2Parser::parsePlace(const QJsonObject &obj, bool hasRealTime) cons
     l.setLatitude(obj.value("lat"_L1).toDouble(NAN));
     l.setLongitude(obj.value("lon"_L1).toDouble(NAN));
     l.setFloorLevel(obj.value("level"_L1).toInt(std::numeric_limits<int>::lowest()));
+    parseTimeZone(obj, l);
     const auto type = obj.value("vertexType"_L1).toString();
     for (const auto &m : vertex_map ) {
         if (QLatin1StringView(m.name) == type) {
@@ -454,6 +466,8 @@ std::vector<Location> Motis2Parser::parseLocations(const QByteArray &data) const
 
         l.setPostalCode(locObj.value("zip"_L1).toString());
         l.setStreetAddress(QString(locObj.value("street"_L1).toString() + ' '_L1 + locObj.value("houseNumber"_L1).toString()).trimmed());
+
+        parseTimeZone(locObj, l);
         result.push_back(std::move(l));
     }
 
