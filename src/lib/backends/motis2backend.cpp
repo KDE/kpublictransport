@@ -204,7 +204,7 @@ struct {
     { Line::Bus, "BUS" },
     { Line::Coach, "COACH" },
     { Line::Ferry, "FERRY" },
-    { Line::Funicular, "OTHER" },
+    { Line::Funicular, "FUNICULAR" },
     { Line::LocalTrain, "REGIONAL_FAST_RAIL" },
     { Line::LocalTrain, "REGIONAL_RAIL" },
     { Line::LongDistanceTrain, "HIGHSPEED_RAIL" },
@@ -219,8 +219,9 @@ struct {
     { Line::Taxi, "CAR_HAILING" },
     { Line::Train, "RAIL" },
     { Line::Tramway, "TRAM" },
+    { Line::Tramway, "CABLE_CAR" },
     { Line::RideShare, "CAR_SHARING" },
-    { Line::AerialLift, "OTHER" },
+    { Line::AerialLift, "AREAL_LIFT" },
 };
 
 struct {

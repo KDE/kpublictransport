@@ -84,6 +84,9 @@ struct {
     { "NIGHT_RAIL", Line::Mode::LongDistanceTrain, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
     { "REGIONAL_FAST_RAIL", Line::Mode::LocalTrain, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
     { "REGIONAL_RAIL", Line::Mode::LocalTrain, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
+    { "CABLE_CAR", Line::Mode::Tramway, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
+    { "FUNICULAR", Line::Mode::Funicular, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
+    { "AREAL_LIFT", Line::Mode::AerialLift, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
     { "OTHER", Line::Mode::Unknown, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
 };
 
