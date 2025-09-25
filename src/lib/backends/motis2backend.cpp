@@ -104,12 +104,19 @@ bool Motis2Backend::queryLocation(const LocationRequest &req, LocationReply *rep
 
     if (req.hasCoordinate()) {
         query.addQueryItem(u"place"_s, QString::number(req.latitude()) + ','_L1 + QString::number(req.longitude()));
+        if (req.types() == Location::Stop) {
+            query.addQueryItem(u"type"_s, u"STOP"_s);
+        } else if (req.types() == Location::Address) {
+            query.addQueryItem(u"type"_s, u"ADDRESS"_s);
+        }
         netReply = makeRequest(req, reply, "v1/reverse-geocode"_L1, query, nam);
     } else {
         query.addQueryItem(u"text"_s, req.name());
         query.addQueryItem(u"language"_s, preferredLanguage());
         if (req.types() == Location::Stop) {
             query.addQueryItem(u"type"_s, u"STOP"_s);
+        } else if (req.types() == Location::Address) {
+            query.addQueryItem(u"type"_s, u"ADDRESS"_s);
         }
         if (req.viewbox().isValid()) {
             query.addQueryItem(u"place"_s, QString::number(req.viewbox().center().y()) + ','_L1 + QString::number(req.viewbox().center().x()));
