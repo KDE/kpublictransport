@@ -93,7 +93,16 @@ QString StopInformation::iconName() const
 {
     if (!d->lines.empty()) {
         const auto mode = d->lines.front().mode();
+        // single mode
         if (std::ranges::all_of(d->lines, [mode](const auto &l) { return l.mode() == mode; })) {
+            return Line::modeIconName(mode);
+        }
+        // airport or high speed rail dominate all other modes
+        if (mode == Line::Air || mode == Line::LongDistanceTrain) {
+            return Line::modeIconName(mode);
+        }
+        // ignore buses and taxis
+        if (std::ranges::all_of(d->lines, [mode](const auto &l) { return l.mode() == mode || l.mode() == Line::Mode::Bus || l.mode() == Line::Mode::Taxi; })) {
             return Line::modeIconName(mode);
         }
     }
