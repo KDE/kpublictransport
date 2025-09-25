@@ -238,6 +238,7 @@ struct {
     { IndividualTransport::Car, IndividualTransport::Rent, "RENTAL", "CAR" },
     { IndividualTransport::Car, IndividualTransport::Park, "CAR_PARKING", nullptr },
     // { IndividualTransport::Car, IndividualTransport::Pickup, "CAR_PICKUP", nullptr }, // TODO removed in later v2 versions again
+    { IndividualTransport::Car, IndividualTransport::Dropoff, "CAR_DROPOFF", nullptr },
     { IndividualTransport::Car, IndividualTransport::None, "CAR", nullptr },
 };
 
