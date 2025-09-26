@@ -44,5 +44,6 @@ Item {
         visible: source !== ""
         anchors.fill: parent
         fillMode: Image.PreserveAspectFit
+        sourceSize.height: root.iconHeight
     }
 }
