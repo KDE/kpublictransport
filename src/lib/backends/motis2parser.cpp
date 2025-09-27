@@ -165,6 +165,29 @@ Stopover Motis2Parser::parsePlace(const QJsonObject &obj, bool hasRealTime) cons
     return s;
 }
 
+Route Motis2Parser::parseRoute(const QJsonObject &obj) const
+{
+    Line line;
+    const auto mode = obj.value("mode"_L1).toString();
+    for (const auto &m : mode_map) {
+        if (QLatin1StringView(m.name) == mode) {
+            line.setMode(m.lineMode);
+            break;
+        }
+    }
+    line.setName(obj.value("routeShortName"_L1).toString());
+    line.setOperatorName(obj.value("agencyName"_L1).toString());
+    line.setColor(QColor::fromString('#'_L1 + obj.value("routeColor"_L1).toString()));
+    line.setTextColor(QColor::fromString('#'_L1 + obj.value("routeTextColor"_L1).toString()));
+
+    Route route;
+    route.setDirection(obj.value("headsign"_L1).toString());
+    route.setDestination(parsePlace(obj.value("tripTo"_L1).toObject(), false).stopPoint());
+    route.setLine(line);
+
+    return route;
+}
+
 [[nodiscard]] static QPolygonF parsePolyLine(const QJsonObject &encodedPolyline)
 {
     QPolygonF poly;
@@ -237,19 +260,7 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
 
         if (s.mode() == JourneySection::PublicTransport) {
             s.setIdentifier(m_locIdentifierType, leg.value("tripId"_L1).toString());
-
-            Line line;
-            line.setMode((*it).lineMode);
-            line.setName(leg.value("routeShortName"_L1).toString());
-            line.setOperatorName(leg.value("agencyName"_L1).toString());
-            line.setColor(QColor::fromString('#'_L1 + leg.value("routeColor"_L1).toString()));
-            line.setTextColor(QColor::fromString('#'_L1 + leg.value("routeTextColor"_L1).toString()));
-
-            Route route;
-            route.setDirection(leg.value("headsign"_L1).toString());
-            route.setLine(line);
-
-            s.setRoute(route);
+            s.setRoute(parseRoute(leg));
 
             const auto intermediateStops = leg.value("intermediateStops"_L1).toArray();
             std::vector<Stopover> stops;
@@ -348,26 +359,10 @@ std::vector<Stopover> Motis2Parser::parseStopTimes(const QByteArray &data, bool 
     result.reserve(stopTimes.size());
     for (const auto &stopV : stopTimes) {
         const auto stop = stopV.toObject();
-        Line line;
-        const auto mode = stop.value("mode"_L1).toString();
-        for (const auto &m : mode_map) {
-            if (QLatin1StringView(m.name) == mode) {
-                line.setMode(m.lineMode);
-                break;
-            }
-        }
-        line.setName(stop.value("routeShortName"_L1).toString());
-        line.setOperatorName(stop.value("agencyName"_L1).toString());
-        line.setColor(QColor::fromString('#'_L1 + stop.value("routeColor"_L1).toString()));
-        line.setTextColor(QColor::fromString('#'_L1 + stop.value("routeTextColor"_L1).toString()));
-        Route route;
-        route.setLine(line);
-        route.setDirection(stop.value("headsign"_L1).toString());
-
         const auto hasRealTime = stop.value("realTime"_L1).toBool();
         auto s = parsePlace(stop.value("place"_L1).toObject(), hasRealTime);
         s.setTripIdentifier(m_locIdentifierType, stop.value("tripId"_L1).toString());
-        s.setRoute(route);
+        s.setRoute(parseRoute(stop));
 
         if (stop.value("cancelled"_L1).toBool()) {
             s.setDisruptionEffect(Disruption::NoService);

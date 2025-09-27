@@ -17,6 +17,7 @@ namespace KPublicTransport {
 class Location;
 class Journey;
 class Path;
+class Route;
 class Stopover;
 
 /** Response parsing for Motis v2.
@@ -38,6 +39,7 @@ public:
 
 private:
     [[nodiscard]] Stopover parsePlace(const QJsonObject &obj, bool hasRealTime) const;
+    [[nodiscard]] Route parseRoute(const QJsonObject &obj) const;
     void parseCursors(const QJsonObject &obj);
 
     QString m_locIdentifierType;
