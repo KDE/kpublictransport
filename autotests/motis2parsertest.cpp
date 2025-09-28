@@ -5,6 +5,7 @@
 
 #include "testhelpers.h"
 #include "backends/motis2parser.cpp"
+#include "gtfs/hvt.cpp"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>

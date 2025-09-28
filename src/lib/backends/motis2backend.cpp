@@ -165,7 +165,7 @@ bool Motis2Backend::queryStopover(const StopoverRequest &req, StopoverReply *rep
     }
     query.addQueryItem(u"radius"_s, u"200"_s);
 
-    auto netReply = makeRequest(req, reply, "v1/stoptimes"_L1, query, nam);
+    auto netReply = makeRequest(req, reply, "v4/stoptimes"_L1, query, nam);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply, req]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
@@ -352,7 +352,7 @@ bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
     }
     query.addQueryItem(u"arriveBy"_s, req.dateTimeMode() == JourneyRequest::Arrival ? u"true"_s : u"false"_s);
 
-    auto netReply = makeRequest(req, reply, "v3/plan"_L1, query, nam);
+    auto netReply = makeRequest(req, reply, "v4/plan"_L1, query, nam);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
@@ -382,7 +382,7 @@ bool Motis2Backend::queryTrip(const TripRequest &req, TripReply *reply, QNetwork
 
     QUrlQuery query;
     query.addQueryItem(u"tripId"_s, tripId);
-    auto netReply = makeRequest(req, reply, "v2/trip"_L1, query, nam);
+    auto netReply = makeRequest(req, reply, "v4/trip"_L1, query, nam);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();

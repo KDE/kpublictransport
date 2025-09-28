@@ -5,6 +5,7 @@
 
 #include "motis2parser.h"
 #include "geo/polylinedecoder_p.h"
+#include "gtfs/hvt.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
@@ -168,19 +169,32 @@ Stopover Motis2Parser::parsePlace(const QJsonObject &obj, bool hasRealTime) cons
 Route Motis2Parser::parseRoute(const QJsonObject &obj) const
 {
     Line line;
-    const auto mode = obj.value("mode"_L1).toString();
-    for (const auto &m : mode_map) {
-        if (QLatin1StringView(m.name) == mode) {
-            line.setMode(m.lineMode);
-            break;
+    Route route;
+
+    if (const auto mode = Gtfs::Hvt::typeToMode(obj.value("routeType"_L1).toInt(-1)); mode != Line::Unknown) {
+        line.setMode(mode);
+    } else {
+        const auto modeClass = obj.value("mode"_L1).toString();
+        for (const auto &m : mode_map) {
+            if (QLatin1StringView(m.name) == modeClass) {
+                line.setMode(m.lineMode);
+                break;
+            }
         }
     }
-    line.setName(obj.value("routeShortName"_L1).toString());
+
+    line.setName(obj.value("displayName"_L1).toString());
+    if (line.name().isEmpty()) {
+        line.setName(obj.value("routeShortName"_L1).toString());
+    }
+    if (const auto tripName = obj.value("tripShortName"_L1).toString(); !tripName.isEmpty() && !line.name().contains(tripName)) {
+        route.setName(tripName);
+    }
+
     line.setOperatorName(obj.value("agencyName"_L1).toString());
     line.setColor(QColor::fromString('#'_L1 + obj.value("routeColor"_L1).toString()));
     line.setTextColor(QColor::fromString('#'_L1 + obj.value("routeTextColor"_L1).toString()));
 
-    Route route;
     route.setDirection(obj.value("headsign"_L1).toString());
     route.setDestination(parsePlace(obj.value("tripTo"_L1).toObject(), false).stopPoint());
     route.setLine(line);
