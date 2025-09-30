@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-24 00:41+0000\n"
+"POT-Creation-Date: 2025-09-30 00:42+0000\n"
 "PO-Revision-Date: 2025-07-06 12:12+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <kde-i18n-doc@kde.org>\n"
@@ -330,6 +330,36 @@ msgstr "Polno"
 msgid "Select country"
 msgstr "Izberite državo"
 
+#: quick/private/CurrentLocationDelegate.qml:43
+#, kde-format
+msgid "Current Location"
+msgstr ""
+
+#: quick/private/CurrentLocationDelegate.qml:100
+#, kde-format
+msgid "Determining Location…"
+msgstr ""
+
+#: quick/private/CurrentLocationDelegate.qml:102
+#, kde-format
+msgid "Waiting for more accurate location…"
+msgstr ""
+
+#: quick/private/CurrentLocationDelegate.qml:105
+#, kde-format
+msgid "Looking up address…"
+msgstr ""
+
+#: quick/private/CurrentLocationDelegate.qml:174
+#, kde-format
+msgid "Failed to determine accurate enough location."
+msgstr ""
+
+#: quick/private/CurrentLocationDelegate.qml:176
+#, kde-format
+msgid "Failed to determine location."
+msgstr ""
+
 #: quick/StopoverInformationView.qml:43
 #, kde-format
 msgid "Information"
@@ -351,97 +381,97 @@ msgctxt "operator/provider of a rail/bus service"
 msgid "Operator"
 msgstr "Operater"
 
-#: quick/StopPickerPage.qml:39
+#: quick/StopPickerPage.qml:44
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Clear History"
 msgstr "Očisti zgodovino"
 
-#: quick/StopPickerPage.qml:40
+#: quick/StopPickerPage.qml:45
 #, kde-format
 msgctxt "@info"
 msgid "Do you really want to remove all previously searched locations?"
 msgstr "Ali res želite odstraniti vse predhodno iskane lokacije?"
 
-#: quick/StopPickerPage.qml:44
+#: quick/StopPickerPage.qml:49
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "Odstrani"
 
-#: quick/StopPickerPage.qml:58
+#: quick/StopPickerPage.qml:63
 #, kde-format
 msgctxt "@action"
 msgid "Clear history"
 msgstr "Očisti zgodovino"
 
-#: quick/StopPickerPage.qml:67
+#: quick/StopPickerPage.qml:72
 #, kde-format
 msgctxt "@action"
 msgid "Sort by name"
 msgstr "Razvrsti po imenu"
 
-#: quick/StopPickerPage.qml:75
+#: quick/StopPickerPage.qml:80
 #, kde-format
 msgctxt "@action"
 msgid "Most recently used"
 msgstr "Nazadnje uporabljene"
 
-#: quick/StopPickerPage.qml:82
+#: quick/StopPickerPage.qml:87
 #, kde-format
 msgctxt "@action"
 msgid "Most often used"
 msgstr "Najpogosteje uporabljene"
 
-#: quick/StopPickerPage.qml:159
+#: quick/StopPickerPage.qml:181
 #, kde-format
 msgctxt "locality, region, country"
 msgid "%1, %2, %3"
 msgstr "%1, %2, %3"
 
-#: quick/StopPickerPage.qml:164
+#: quick/StopPickerPage.qml:186
 #, kde-format
 msgctxt "locality, country"
 msgid "%1, %2"
 msgstr "%1, %2"
 
-#: quick/StopPickerPage.qml:168
+#: quick/StopPickerPage.qml:190
 #, kde-format
 msgctxt "region, country"
 msgid "%1, %2"
 msgstr "%1, %2"
 
-#: quick/StopPickerPage.qml:191
+#: quick/StopPickerPage.qml:213
 #, kde-format
 msgctxt "location name, locality, region, country"
 msgid "%1, %2, %3, %4"
 msgstr "%1, %2, %3, %4"
 
-#: quick/StopPickerPage.qml:197
+#: quick/StopPickerPage.qml:219
 #, kde-format
 msgctxt "location name, locality, country"
 msgid "%1, %2, %3"
 msgstr "%1, %2, %3"
 
-#: quick/StopPickerPage.qml:202
+#: quick/StopPickerPage.qml:224
 #, kde-format
 msgctxt "location name, region, country"
 msgid "%1, %2, %3"
 msgstr "%1, %2, %3"
 
-#: quick/StopPickerPage.qml:207
+#: quick/StopPickerPage.qml:229
 #, kde-format
 msgctxt "location name, country"
 msgid "%1, %2"
 msgstr "%1, %2"
 
-#: quick/StopPickerPage.qml:238
+#: quick/StopPickerPage.qml:260
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove history entry"
 msgstr "Odstrani vnos zgodovine"
 
-#: quick/StopPickerPage.qml:295
+#: quick/StopPickerPage.qml:318
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "No locations found"
