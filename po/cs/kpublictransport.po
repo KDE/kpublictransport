@@ -329,7 +329,7 @@ msgstr "Vyberte zemi"
 #: quick/private/CurrentLocationDelegate.qml:43
 #, kde-format
 msgid "Current Location"
-msgstr ""
+msgstr "Současná poloha"
 
 #: quick/private/CurrentLocationDelegate.qml:100
 #, kde-format

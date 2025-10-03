@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-09-30 00:42+0000\n"
-"PO-Revision-Date: 2025-07-09 22:11+0200\n"
+"PO-Revision-Date: 2025-10-02 21:33+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.04.3\n"
+"X-Generator: Lokalize 25.08.1\n"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
@@ -330,32 +330,32 @@ msgstr "Hautatu herrialdea"
 #: quick/private/CurrentLocationDelegate.qml:43
 #, kde-format
 msgid "Current Location"
-msgstr ""
+msgstr "Uneko kokalekua"
 
 #: quick/private/CurrentLocationDelegate.qml:100
 #, kde-format
 msgid "Determining Location…"
-msgstr ""
+msgstr "Kokapena zehazten…"
 
 #: quick/private/CurrentLocationDelegate.qml:102
 #, kde-format
 msgid "Waiting for more accurate location…"
-msgstr ""
+msgstr "Kokapen zehatzago baten zain…"
 
 #: quick/private/CurrentLocationDelegate.qml:105
 #, kde-format
 msgid "Looking up address…"
-msgstr ""
+msgstr "Helbidea bilatzen…"
 
 #: quick/private/CurrentLocationDelegate.qml:174
 #, kde-format
 msgid "Failed to determine accurate enough location."
-msgstr ""
+msgstr "Ezin izan da kokapen zehatza zehaztu."
 
 #: quick/private/CurrentLocationDelegate.qml:176
 #, kde-format
 msgid "Failed to determine location."
-msgstr ""
+msgstr "Kokapena zehaztea huts egin du."
 
 #: quick/StopoverInformationView.qml:43
 #, kde-format
