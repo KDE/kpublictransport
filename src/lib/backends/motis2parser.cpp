@@ -434,6 +434,7 @@ std::vector<Location> Motis2Parser::parseLocations(const QByteArray &data) const
         l.setLatitude(locObj.value("lat"_L1).toDouble());
         l.setLongitude(locObj.value("lon"_L1).toDouble());
         l.setFloorLevel(locObj.value("level"_L1).toInt(std::numeric_limits<int>::lowest()));
+        l.setCountry(locObj.value("country"_L1).toString());
 
         const auto areas = locObj.value("areas"_L1).toArray();
         std::vector<QJsonObject> adminLevels(12);
@@ -446,14 +447,17 @@ std::vector<Location> Motis2Parser::parseLocations(const QByteArray &data) const
             adminLevels[level] = area;
         }
 
-        // resolve country
+        // resolve country if needed
         // we need to do this here rather than relying on post-processing as the subsequent admin level mapping depends on it
-        const auto countryName = adminLevels[2].value("name"_L1).toString();
-        auto country = KCountry::fromName(countryName);
+        auto country = KCountry::fromAlpha2(l.country());
         if (!country.isValid()) {
-            country = KCountry::fromLocation((float)l.latitude(), (float)l.longitude());
+            const auto countryName = adminLevels[2].value("name"_L1).toString();
+            country = KCountry::fromName(countryName);
+            if (!country.isValid()) {
+                country = KCountry::fromLocation((float)l.latitude(), (float)l.longitude());
+            }
+            l.setCountry(country.isValid() ? country.alpha2() : countryName);
         }
-        l.setCountry(country.isValid() ? country.alpha2() : countryName);
 
         // resolve region
         if (const auto r = KCountrySubdivision::fromLocation((float)l.latitude(), (float)l.longitude()); r.isValid()) {
