@@ -68,15 +68,7 @@ RowLayout {
             required property KPublicTransport.journeySection modelData
             journeySection: modelData
 
-            // when we have the space, size public transport sections based on their duration
-            Layout.minimumWidth: delegateRoot.minimumWidth
-            Layout.preferredWidth: implicitWidth +
-                                    (delegateRoot.modelData.mode === KPublicTransport.JourneySection.PublicTransport ?
-                                        (delegateRoot.journeySection.duration / root.journey.duration) * (root.width - (root.journey.sections.length * root.spacing))
-                                        : 0)
-
-            Layout.fillWidth: true
-
+            Layout.fillWidth: delegateRoot.modelData.mode === KPublicTransport.JourneySection.PublicTransport
             // ### enabled: false for cancelled sections? needs the below icon moved out of the hierarchy though
 
             readonly property bool isFull: delegateRoot.journeySection.maximumOccupancy == KPublicTransport.Load.Full;
