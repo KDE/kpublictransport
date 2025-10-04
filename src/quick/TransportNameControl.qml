@@ -3,7 +3,6 @@
 
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls as QQC2
 import org.kde.kirigami as Kirigami
 import org.kde.kpublictransport as KPublicTransport
 import org.kde.kpublictransport.ui as KPublicTransport
@@ -14,7 +13,7 @@ import org.kde.kpublictransport.ui as KPublicTransport
  *  Public transport sections are shown in line colors (or inverted text colors if none available),
  *  all other section modes are shown in regular text colors without background.
  */
-QQC2.Control {
+Kirigami.Padding {
     id: root
 
     /** The journey section to represent.
@@ -54,6 +53,18 @@ QQC2.Control {
 
 
     clip: true
+
+    Rectangle {
+        id: background
+
+        radius: Kirigami.Units.cornerRadius
+        color: root.line.hasColor ? root.line.color : Kirigami.Theme.textColor
+        visible: root.journeySectionMode === KPublicTransport.JourneySection.PublicTransport
+
+        anchors.fill: parent
+
+        z: -1
+    }
 
     contentItem: RowLayout {
         spacing: 0
@@ -116,13 +127,5 @@ QQC2.Control {
             Layout.fillWidth: true
             Layout.horizontalStretchFactor: 5
         }
-    }
-
-    background: Rectangle {
-        id: background
-
-        radius: Kirigami.Units.cornerRadius
-        color: root.line.hasColor ? root.line.color : Kirigami.Theme.textColor
-        visible: root.journeySectionMode === KPublicTransport.JourneySection.PublicTransport
     }
 }

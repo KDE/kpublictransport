@@ -3,6 +3,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
@@ -13,12 +15,13 @@ import org.kde.kirigami as Kirigami
  *
  *  @since 25.04
  */
-Item {
+Loader {
     id: root
+
     // properties match those of Icon
     property string source
-    property alias isMask: __icon.isMask
-    property alias color: __icon.color
+    property bool isMask: false
+    property color color
 
     /** Icon height (and width for squre ones) */
     property int iconHeight: Kirigami.Units.iconSizes.smallMedium
@@ -26,24 +29,42 @@ Item {
     // internal
     property bool __isIcon: !source.startsWith("file:")
 
-    implicitWidth: __isIcon ? root.iconHeight : Math.round(root.iconHeight * __image.implicitWidth / __image.implicitHeight)
-    implicitHeight: root.iconHeight
-
     Layout.preferredWidth: root.implicitWidth
     Layout.preferredHeight: root.implicitHeight
 
-    Kirigami.Icon {
-        id: __icon
-        source: root.__isIcon ? root.source : ""
-        visible: source !== ""
-        anchors.fill: parent
+    active: true
+
+    Component {
+        id: iconComponent
+
+        Kirigami.Icon {
+            id: __icon
+
+            implicitWidth: root.iconHeight
+            implicitHeight: root.iconHeight
+
+            source: root.source
+            isMask: root.isMask
+            color: root.color
+            anchors.fill: parent
+        }
     }
-    Image {
-        id: __image
-        source: root.__isIcon ? "" : root.source
-        visible: source !== ""
-        anchors.fill: parent
-        fillMode: Image.PreserveAspectFit
-        sourceSize.height: root.iconHeight
+
+    Component {
+        id: imageComponent
+
+        Image {
+            id: __image
+
+            property int implicitWidth: Math.round(root.iconHeight * __image.implicitWidth / __image.implicitHeight)
+            property int implicitHeight: root.iconHeight
+
+            source: root.source
+            anchors.fill: parent
+            fillMode: Image.PreserveAspectFit
+            sourceSize.height: root.iconHeight
+        }
     }
+
+    sourceComponent: root.__isIcon ? iconComponent : imageComponent
 }
