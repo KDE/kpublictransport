@@ -65,6 +65,8 @@ RowLayout {
             id: delegateRoot
             clip: false
 
+            visible: modelData.mode != KPublicTransport.JourneySection.Walking || modelData.duration > 120 // seconds
+
             required property KPublicTransport.journeySection modelData
             journeySection: modelData
 
