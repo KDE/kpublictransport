@@ -1,223 +1,224 @@
-# Copyright (C) 2024 This file is copyright:
+# Copyright (C) 2025 This file is copyright:
 # This file is distributed under the same license as the kpublictransport package.
+# SPDX-FileCopyrightText: 2025 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
 #
-# SPDX-FileCopyrightText: 2024, 2025 Stefan Asserhäll <stefan.asserhall@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-09-30 00:42+0000\n"
-"PO-Revision-Date: 2025-10-05 08:48+0200\n"
-"Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
-"Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
-"Language: sv\n"
+"PO-Revision-Date: 2025-10-05 13:38+0400\n"
+"Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
+"Language-Team: ar\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.08.1\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
 msgctxt "train seating class"
 msgid "First class"
-msgstr "Första klass"
+msgstr "الدرجة الأولى"
 
 #: lib/datatypes/classutil.cpp:32
 #, kde-format
 msgctxt "train seating class"
 msgid "Second class"
-msgstr "Andra klass"
+msgstr "الدرجة الثانية"
 
 #: lib/datatypes/classutil.cpp:35
 #, kde-format
 msgctxt "train seating class"
 msgid "First/second class"
-msgstr "Första eller andra klass"
+msgstr "الدرجة الأولى/الثانية"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
 msgctxt "train coach feature"
 msgid "Air conditioning"
-msgstr "Luftkonditionering"
+msgstr "تكييف الهواء"
 
 #: lib/datatypes/feature.cpp:54
 #, kde-format
 msgctxt "train coach feature"
 msgid "Bistro or restaurant"
-msgstr "Bistro eller restaurang"
+msgstr "مقهى أو مطعم"
 
 #: lib/datatypes/feature.cpp:56
 #, kde-format
 msgctxt "train coach feature"
 msgid "Toddler area"
-msgstr "Småbarnsområde"
+msgstr "منطقة الأطفال الصغار"
 
 #: lib/datatypes/feature.cpp:58
 #, kde-format
 msgctxt "train coach feature"
 msgid "Family area"
-msgstr "Familjeområde"
+msgstr "منطقة العائلة"
 
 #: lib/datatypes/feature.cpp:60
 #, kde-format
 msgctxt "train coach feature"
 msgid "Wheelchair accessible"
-msgstr "Rullstolsanpassat"
+msgstr "وصول الكراسي المتحركة"
 
 #: lib/datatypes/feature.cpp:62
 #, kde-format
 msgctxt "train coach feature"
 msgid "Quiet area"
-msgstr "Tyst område"
+msgstr "منطقة هادئة"
 
 #: lib/datatypes/feature.cpp:64
 #, kde-format
 msgctxt "train coach feature"
 msgid "Business area"
-msgstr "Affärsområde"
+msgstr "منطقة العمل"
 
 #: lib/datatypes/feature.cpp:66
 #, kde-format
 msgctxt "train coach feature"
 msgid "Bike storage"
-msgstr "Cykelgarage"
+msgstr "تخزين الدراجات"
 
 #: lib/datatypes/feature.cpp:68
 #, kde-format
 msgctxt "train coach feature"
 msgid "Toilet"
-msgstr "Toalett"
+msgstr "مرحاض"
 
 #: lib/datatypes/feature.cpp:70
 #, kde-format
 msgctxt "train coach feature"
 msgid "Wheelchair accessible toilet"
-msgstr "Rullstolsanpassad toalett"
+msgstr "مرحاض لوصول الكراسي المتحركة"
 
 #: lib/datatypes/feature.cpp:72
 #, kde-format
 msgctxt "train coach feature"
 msgid "Information point"
-msgstr "Informationspunkt"
+msgstr "نقطة معلومات"
 
 #: lib/datatypes/feature.cpp:74
 #, kde-format
 msgctxt "train coach feature"
 msgid "Wi-Fi"
-msgstr "WIFI"
+msgstr "شبكة لاسلكية"
 
 #: lib/datatypes/feature.cpp:76
 #, kde-format
 msgctxt "train coach feature"
 msgid "Power sockets"
-msgstr "Strömuttag"
+msgstr "مقابس الطاقة"
 
 #: lib/datatypes/individualtransport.cpp:73
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Bike"
-msgstr "Cykel"
+msgstr "دراجة"
 
 #: lib/datatypes/individualtransport.cpp:75
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Car"
-msgstr "Bil"
+msgstr "سيارة"
 
 #: lib/datatypes/individualtransport.cpp:77 lib/datatypes/journey.cpp:582
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Walk"
-msgstr "Gå"
+msgstr "مشي"
 
 #: lib/datatypes/journey.cpp:584
 #, kde-format
 msgid "Wait"
-msgstr "Vänta"
+msgstr "انتظر"
 
 #: lib/datatypes/rentalvehicle.cpp:271
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented bike"
-msgstr "Hyrcykel"
+msgstr "دراجة مستأجرة"
 
 #: lib/datatypes/rentalvehicle.cpp:273
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented moped"
-msgstr "Hyrmoped"
+msgstr "دراجة نارية مستأجرة"
 
 #: lib/datatypes/rentalvehicle.cpp:275
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented kick scooter"
-msgstr "Hyrd sparkcykel"
+msgstr "سكوتر مستأجر"
 
 #: lib/datatypes/rentalvehicle.cpp:277
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"
-msgstr "Hyrbil"
+msgstr "سيارة مستأجرة"
 
 #: lib/datatypes/vehicle.cpp:77
 #, kde-format
 msgctxt "train coach type"
 msgid "Sleeping car"
-msgstr "Sovvagn"
+msgstr "عربة نوم"
 
 #: lib/datatypes/vehicle.cpp:79
 #, kde-format
 msgctxt "train coach type"
 msgid "Couchette car"
-msgstr "Liggvagn"
+msgstr "عربة أسِرّة"
 
 #: lib/datatypes/vehicle.cpp:81
 #, kde-format
 msgctxt "train coach type"
 msgid "Restaurant car"
-msgstr "Restaurangvagn"
+msgstr "عربة مطعم"
 
 #: lib/datatypes/vehicle.cpp:83
 #, kde-format
 msgctxt "train coach type"
 msgid "Car transport car"
-msgstr "Biltransportvagn"
+msgstr "عربة نقل سيارات"
 
 #: quick/BackendPage.qml:24
 #, kde-format
 msgid "Check for Updates"
-msgstr "Sök efter uppdateringar"
+msgstr "تحقّق من التحديثات"
 
 #: quick/BackendPage.qml:38
 #, kde-format
 msgid "Already up to date."
-msgstr "Redan uppdaterad."
+msgstr "أنت محدَّث بالفعل."
 
 #: quick/BackendPage.qml:41
 #, kde-format
 msgid "Update successful."
-msgstr "Uppdatering lyckades."
+msgstr "التحديث ناجح."
 
 #: quick/BackendPage.qml:47
 #, kde-format
 msgid "Update failed."
-msgstr "Uppdatering misslyckades."
+msgstr "التحديث فاشل."
 
 #: quick/BackendPage.qml:53
 #, kde-format
 msgid "Public Transport Information Sources"
-msgstr "Informationskällor för kollektivtrafik"
+msgstr "مصادر معلومات النقل العام"
 
 #: quick/BackendPage.qml:130 quick/BackendPage.qml:142
 #, kde-format
 msgid "Global"
-msgstr "Global"
+msgstr "عالمي"
 
 #: quick/BackendPage.qml:132
 #, kde-format
 msgid "🇪🇺 European Union"
-msgstr "🇪🇺 Europeiska unionen"
+msgstr "🇪🇺 الاتحاد الأوروبي"
 
 #: quick/BackendPage.qml:135
 #, kde-format
@@ -228,245 +229,253 @@ msgstr "%1 %2"
 #: quick/BackendPage.qml:144
 #, kde-format
 msgid "European Union"
-msgstr "Europeiska unionen"
+msgstr "الاتحاد الأوروبي"
 
 #: quick/ExpectedTimeLabel.qml:36
 #, kde-format
 msgctxt "a train/bus journey canceled by its operator"
 msgid "Canceled"
-msgstr "Inställd"
+msgstr "مُلغى"
 
 #: quick/ExpectedTimeLabel.qml:38
 #, kde-format
 msgctxt "duration of the delay"
 msgid "Delayed %1"
-msgstr "Fördröjd %1"
+msgstr "تأخير %1"
 
 #: quick/ExpectedTimeLabel.qml:40
 #, kde-format
 msgctxt "earlier arrival/departure"
 msgid "%1 earlier"
-msgstr "%1 tidigare"
+msgstr "قبل %1"
 
 #: quick/ExpectedTimeLabel.qml:42
 #, kde-format
 msgctxt "@info"
 msgid "On time"
-msgstr "I tid"
+msgstr "في الموعد"
 
 #: quick/FeatureDelegate.qml:39
 #, kde-format
 msgid "Availability unknown"
-msgstr "Tillgänglighet okänd"
+msgstr "التوفّر مجهول"
 
 #: quick/FeatureDelegate.qml:41
 #, kde-format
 msgid "Not available"
-msgstr "Inte tillgänglig"
+msgstr "غير متوفّر"
 
 #: quick/FeatureDelegate.qml:43
 #, kde-format
 msgid "Currently not available"
-msgstr "För närvarande inte tillgänglig"
+msgstr "غير متوفّر حاليًا"
 
 #: quick/FeatureDelegate.qml:45
 #, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "One space"
 msgid_plural "%1 spaces"
-msgstr[0] "En plats"
-msgstr[1] "%1 platser"
+msgstr[0] "مساحة واحدة"
+msgstr[1] "مساحة واحدة"
+msgstr[2] "مساحتان"
+msgstr[3] "%1 مساحات"
+msgstr[4] "%1 مساحة"
+msgstr[5] "%1 مساحة"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format
 msgid "%1 (availability unknown)"
-msgstr "%1 (tillgänglighet okänd)"
+msgstr "%1 (التوفّر مجهول)"
 
 #: quick/FeatureIcon.qml:60
 #, kde-format
 msgid "%1 (not available)"
-msgstr "%1 (Inte tillgänglig)"
+msgstr "%1 (غير متوفّر)"
 
 #: quick/FeatureIcon.qml:62
 #, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
-msgstr[0] "%2 (en plats)"
-msgstr[1] "%2 (%1 platser)"
+msgstr[0] "%2 (مساحة واحدة)"
+msgstr[1] "%2 (مساحة واحدة)"
+msgstr[2] "%2 (مساحتان)"
+msgstr[3] "%2 (%1 مساحات)"
+msgstr[4] "%2 (%1 مساحة)"
+msgstr[5] "%2 (%1 مساحة)"
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "Low occupancy"
-msgstr "Låg beläggning"
+msgstr "إشغال منخفض"
 
 #: quick/OccupancyIndicator.qml:40
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "Medium occupancy"
-msgstr "Medelstor beläggning"
+msgstr "إشغال متوسّط"
 
 #: quick/OccupancyIndicator.qml:41
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "High occupancy"
-msgstr "Hög beläggning"
+msgstr "إشغال مرتفع"
 
 #: quick/OccupancyIndicator.qml:42
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "Full"
-msgstr "Fullt"
+msgstr "ممتلئ"
 
 #: quick/private/CountryComboBox.qml:45
 #, kde-format
 msgid "Select country"
-msgstr "Välj land"
+msgstr "اختر البلد"
 
 #: quick/private/CurrentLocationDelegate.qml:43
 #, kde-format
 msgid "Current Location"
-msgstr "Nuvarande position"
+msgstr "الموقع الحالي"
 
 #: quick/private/CurrentLocationDelegate.qml:100
 #, kde-format
 msgid "Determining Location…"
-msgstr "Bestämmer position…"
+msgstr "يحدّد الموقع…"
 
 #: quick/private/CurrentLocationDelegate.qml:102
 #, kde-format
 msgid "Waiting for more accurate location…"
-msgstr "Väntar på mer exakt position…"
+msgstr "ينتظر موقعًا أكثر دقّة…"
 
 #: quick/private/CurrentLocationDelegate.qml:105
 #, kde-format
 msgid "Looking up address…"
-msgstr "Slår upp adress…"
+msgstr "يبحث عن العنوان…"
 
 #: quick/private/CurrentLocationDelegate.qml:174
 #, kde-format
 msgid "Failed to determine accurate enough location."
-msgstr "Misslyckades med att bestämma tillräckligt exakt position."
+msgstr "فشلت في تحديد موقع دقيق بما فيه الكفاية."
 
 #: quick/private/CurrentLocationDelegate.qml:176
 #, kde-format
 msgid "Failed to determine location."
-msgstr "Misslyckades bestämma position."
+msgstr "فشلت في تحديد الموقع."
 
 #: quick/StopoverInformationView.qml:43
 #, kde-format
 msgid "Information"
-msgstr "Information"
+msgstr "معلومات"
 
 #: quick/StopoverInformationView.qml:61
 #, kde-format
 msgid "Occupancy"
-msgstr "Beläggning"
+msgstr "إشغال"
 
 #: quick/StopoverInformationView.qml:76
 #, kde-format
 msgid "Amenities"
-msgstr "Bekvämlighetsinrättningar"
+msgstr "وسائل الراحة"
 
 #: quick/StopoverInformationView.qml:91
 #, kde-format
 msgctxt "operator/provider of a rail/bus service"
 msgid "Operator"
-msgstr "Operatör"
+msgstr "المشغّل"
 
 #: quick/StopPickerPage.qml:44
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Clear History"
-msgstr "Rensa historik"
+msgstr "امسح السجل"
 
 #: quick/StopPickerPage.qml:45
 #, kde-format
 msgctxt "@info"
 msgid "Do you really want to remove all previously searched locations?"
-msgstr "Vill du verkligen ta bort alla tidigare sökta platser?"
+msgstr "هل تريد إزالة جميع المواقع التي بحث عنها سابقًا حقًا؟"
 
 #: quick/StopPickerPage.qml:49
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
-msgstr "Ta bort"
+msgstr "أزل"
 
 #: quick/StopPickerPage.qml:63
 #, kde-format
 msgctxt "@action"
 msgid "Clear history"
-msgstr "Rensa historik"
+msgstr "امسح السجل"
 
 #: quick/StopPickerPage.qml:72
 #, kde-format
 msgctxt "@action"
 msgid "Sort by name"
-msgstr "Sortera enligt namn"
+msgstr "رتب حسب الاسم"
 
 #: quick/StopPickerPage.qml:80
 #, kde-format
 msgctxt "@action"
 msgid "Most recently used"
-msgstr "Senast använda"
+msgstr "التي استخدمت مؤخرًا"
 
 #: quick/StopPickerPage.qml:87
 #, kde-format
 msgctxt "@action"
 msgid "Most often used"
-msgstr "Oftast använda"
+msgstr "التي استخدمت كثيرًا"
 
 #: quick/StopPickerPage.qml:181
 #, kde-format
 msgctxt "locality, region, country"
 msgid "%1, %2, %3"
-msgstr "%1, %2, %3"
+msgstr "%1، %2، %3"
 
 #: quick/StopPickerPage.qml:186
 #, kde-format
 msgctxt "locality, country"
 msgid "%1, %2"
-msgstr "%1, %2"
+msgstr "%1، %2"
 
 #: quick/StopPickerPage.qml:190
 #, kde-format
 msgctxt "region, country"
 msgid "%1, %2"
-msgstr "%1, %2"
+msgstr "%1، %2"
 
 #: quick/StopPickerPage.qml:213
 #, kde-format
 msgctxt "location name, locality, region, country"
 msgid "%1, %2, %3, %4"
-msgstr "%1, %2, %3, %4"
+msgstr "%1، %2، %3، %4"
 
 #: quick/StopPickerPage.qml:219
 #, kde-format
 msgctxt "location name, locality, country"
 msgid "%1, %2, %3"
-msgstr "%1, %2, %3"
+msgstr "%1، %2، %3"
 
 #: quick/StopPickerPage.qml:224
 #, kde-format
 msgctxt "location name, region, country"
 msgid "%1, %2, %3"
-msgstr "%1, %2, %3"
+msgstr "%1، %2، %3"
 
 #: quick/StopPickerPage.qml:229
 #, kde-format
 msgctxt "location name, country"
 msgid "%1, %2"
-msgstr "%1, %2"
+msgstr "%1، %2"
 
 #: quick/StopPickerPage.qml:260
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove history entry"
-msgstr "Ta bort historikpost"
+msgstr "أزل إدخال السجل"
 
 #: quick/StopPickerPage.qml:318
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "No locations found"
-msgstr "Inga platser hittades"
+msgstr "لا يوجد مواقع"
