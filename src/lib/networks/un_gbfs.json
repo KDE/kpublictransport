@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Generic support for bike or scooter sharing services following the GBFS standard.",
+        "Description[ar]": "دعم عام لخدمات مشاركة الدراجات أو السكوتر التي تتبع معيار جي بي إف إس.",
         "Description[ca@valencia]": "Suport genèric per als serveis de bicicletes o motos compartides que seguisquen l'estàndard GBFS.",
         "Description[ca]": "Suport genèric per als serveis de bicicletes o motos compartides que segueixin l'estàndard GBFS.",
         "Description[en_GB]": "Generic support for bike or scooter sharing services following the GBFS standard.",
@@ -32,6 +33,7 @@
         "Description[zh_CN]": "对遵从 GBFS 标准的共享单车、共享踏板车服务进行通用支持。",
         "Description[zh_TW]": "對於跟隨 GBFS 標準的單車或機車共享服務的通用支援。",
         "Name": "Shared bikes/scooters",
+        "Name[ar]": "الدراجات/السكوتر المشتركة",
         "Name[ca@valencia]": "Bicicletes/motos compartides",
         "Name[ca]": "Bicicletes/motos compartides",
         "Name[cs]": "Sdílená kola/skútry",

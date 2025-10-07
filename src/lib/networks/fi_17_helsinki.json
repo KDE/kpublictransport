@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local public transport in and around Helsinki, Finland.",
+        "Description[ar]": "النقل العام المحلي في هلسنكي والمناطق المحيطة بها، فنلندا.",
         "Description[ca@valencia]": "Transport públic local a Helsinki i rodalia, Finlàndia.",
         "Description[ca]": "Transport públic local a Helsinki i rodalia, Finlàndia.",
         "Description[cs]": "Místní doprava v Helsinkách a okolí, Finsko.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "芬兰赫尔辛基及其周边地区的公共交通。",
         "Description[zh_TW]": "芬蘭赫爾辛基與其週遭的區域公共運輸。",
         "Name": "Helsinki",
+        "Name[ar]": "هلسنكي",
         "Name[ca@valencia]": "Hèlsinki",
         "Name[ca]": "Hèlsinki",
         "Name[cs]": "Helsinki",

@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in Saarland, Germany.",
+        "Description[ar]": "النقل العام في زارلاند، ألمانيا.",
         "Description[ca@valencia]": "Transport públic a Saarland, Alemanya.",
         "Description[ca]": "Transport públic a Saarland, Alemanya.",
         "Description[cs]": "Veřejná doprava v Sársku, Německo.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "德国萨尔兰的公共交通。",
         "Description[zh_TW]": "德國薩爾蘭邦的公共運輸。",
         "Name": "Saarländischer Verkehrsverbund (saarVV)",
+        "Name[ar]": "اتحاد النقل لزارلاند (saarVV)",
         "Name[ca@valencia]": "Saarländischer Verkehrsverbund (saarVV)",
         "Name[ca]": "Saarländischer Verkehrsverbund (saarVV)",
         "Name[cs]": "Saarländischer Verkehrsverbund (saarVV)",

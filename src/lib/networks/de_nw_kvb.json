@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Cologne, Germany.",
+        "Description[ar]": "النقل المحلي في كولونيا والمناطق المحيطة بها، ألمانيا.",
         "Description[ca@valencia]": "Transport local a Colonia i rodalia, Alemanya.",
         "Description[ca]": "Transport local a Colonia i rodalia, Alemanya.",
         "Description[cs]": "Místní doprava v Kolínu nad Rýnem a okolí, Německo.",
@@ -30,6 +31,7 @@
         "Description[tr]": "Almanya, Köln içi ve çevresi için yerel taşıma.",
         "Description[uk]": "Місцевий транспорт у Кельні і околицях, Німеччина.",
         "Name": "Kölner Verkehrs-Betriebe (KVB)",
+        "Name[ar]": "شركات نقل كولن (KVB)",
         "Name[ca@valencia]": "Kölner Verkehrs-Betriebe (KVB)",
         "Name[ca]": "Kölner Verkehrs-Betriebe (KVB)",
         "Name[cs]": "Kölner Verkehrs-Betriebe (KVB)",

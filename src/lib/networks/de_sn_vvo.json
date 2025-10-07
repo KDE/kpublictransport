@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in Saxony, Germany.",
+        "Description[ar]": "النقل العام في ساكسونيا، ألمانيا.",
         "Description[ca@valencia]": "Transport públic a Saxònia, Alemanya.",
         "Description[ca]": "Transport públic a Saxònia, Alemanya.",
         "Description[cs]": "Veřejná doprava v Sasku, Německo.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "德国萨克森的公共交通。",
         "Description[zh_TW]": "德國薩克森邦的公共運輸。",
         "Name": "Verkehrsverbund Oberelbe (VVO)",
+        "Name[ar]": "اتحاد النقل لأوبريلبه (VVO)",
         "Name[ca@valencia]": "Verkehrsverbund Oberelbe (VVO)",
         "Name[ca]": "Verkehrsverbund Oberelbe (VVO)",
         "Name[cs]": "Verkehrsverbund Oberelbe (VVO)",

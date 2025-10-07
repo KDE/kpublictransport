@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in and around Portland, Oregon, US.",
+        "Description[ar]": "النقل العام في بورتلاند والمناطق المحيطة بها، أوريغون، الولايات المتحدة.",
         "Description[ca@valencia]": "Transport públic a Portland i rodalia, Oregon, EUA.",
         "Description[ca]": "Transport públic a Portland i rodalia, Oregon, EUA.",
         "Description[cs]": "Veřejná doprava v Portlandu a okolí, Oregon, USA.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "美国俄勒冈州波特兰及其周边地区的公共交通。",
         "Description[zh_TW]": "Portland, Oregon, US 及其週邊的公共運輸。",
         "Name": "TriMet",
+        "Name[ar]": "تراي ميت",
         "Name[ca@valencia]": "TriMet",
         "Name[ca]": "TriMet",
         "Name[cs]": "TriMet",

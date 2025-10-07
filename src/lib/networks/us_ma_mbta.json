@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in and around Boston, Massachusetts, US.",
+        "Description[ar]": "النقل العام في بوسطن والمناطق المحيطة بها، ماساتشوستس، الولايات المتحدة.",
         "Description[ca@valencia]": "Transport públic a Boston i rodalia, Massachusetts, EUA.",
         "Description[ca]": "Transport públic a Boston i rodalia, Massachusetts, EUA.",
         "Description[cs]": "Veřejná doprava v Bostonu a okolí, Massachusetts, USA.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "美国马萨诸塞州波士顿及其周边地区的公共交通。",
         "Description[zh_TW]": "Boston, Massachusetts, US 及其週邊的公共運輸。",
         "Name": "Massachusetts Bay Transportation Authority (MBTA)",
+        "Name[ar]": "هيئة النقل بخليج ماساتشوستس (MBTA)",
         "Name[ca@valencia]": "Massachusetts Bay Transportation Authority (MBTA)",
         "Name[ca]": "Massachusetts Bay Transportation Authority (MBTA)",
         "Name[de]": "Massachusetts Bay Transportation Authority (MBTA)",

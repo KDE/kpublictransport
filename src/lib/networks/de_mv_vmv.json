@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in Mecklenburg-Western Pomerania, Germany.",
+        "Description[ar]": "النقل العام في مكلنبورغ-فوربومرن، ألمانيا.",
         "Description[ca@valencia]": "Transport públic a Mecklenburg-Pomerània Occidental, Alemanya.",
         "Description[ca]": "Transport públic a Mecklenburg-Pomerània Occidental, Alemanya.",
         "Description[cs]": "Veřejná doprava v Mecklenburgu-Západním Pomořansku, Německo.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "德国梅克伦堡-前波美拉尼亚的公共交通。",
         "Description[zh_TW]": "德國梅克倫堡-佛波門邦的公共運輸。",
         "Name": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
+        "Name[ar]": "شركة النقل لمكلنبورغ-فوربومرن (VMV)",
         "Name[ca@valencia]": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
         "Name[ca]": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
         "Name[cs]": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",

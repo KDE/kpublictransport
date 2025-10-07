@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "German national railway, covers local and long-distance services in Germany and neighbouring countries.",
+        "Description[ar]": "السكك الحديدية الوطنية الألمانية، تغطي الخدمات المحلية والبعيدة المدى في ألمانيا والدول المجاورة.",
         "Description[ca@valencia]": "Ferrocarrils nacionals alemanys, efectua serveis locals i de llarga distància en Alemanya i països veïns.",
         "Description[ca]": "Ferrocarrils nacionals alemanys, efectua serveis locals i de llarga distància a Alemanya i països veïns.",
         "Description[de]": "Deutsche Bundesbahn, deckt den Nah- und Fernverkehr in Deutschland und im benachbarten Ausland ab.",
@@ -33,6 +34,7 @@
         "Description[zh_CN]": "德国国家铁路，覆盖德国本地并提供至邻国的长途服务。",
         "Description[zh_TW]": "德國國家鐵路，涵蓋德國國內及附近國家的區域性與長距離服務。",
         "Name": "Deutsche Bahn (DB)",
+        "Name[ar]": "السكك الحديدية الألمانية (DB)",
         "Name[ca@valencia]": "Deutsche Bahn (DB)",
         "Name[ca]": "Deutsche Bahn (DB)",
         "Name[cs]": "Deutsche Bahn (DB)",

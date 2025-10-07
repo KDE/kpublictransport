@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in Waltti regions in Finland.",
+        "Description[ar]": "النقل العام في مناطق فالتي في فنلندا.",
         "Description[ca@valencia]": "Transport públic a les regions amb Waltti a Finlàndia.",
         "Description[ca]": "Transport públic a les regions amb Waltti a Finlàndia.",
         "Description[cs]": "Veřejná doprava v regionech Waltti ve Finsku.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "芬兰内有 Waltti 覆盖的公共交通。",
         "Description[zh_TW]": "Waltti regions in Finland 的公共運輸。",
         "Name": "Waltti",
+        "Name[ar]": "فالتي",
         "Name[ca@valencia]": "Waltti",
         "Name[ca]": "Waltti",
         "Name[cs]": "Waltti",

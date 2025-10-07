@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Trier, Germany.",
+        "Description[ar]": "النقل المحلي في ترير والمناطق المحيطة بها، ألمانيا.",
         "Description[ca@valencia]": "Transport local a Trier i rodalia, Alemanya.",
         "Description[ca]": "Transport local a Trier i rodalia, Alemanya.",
         "Description[cs]": "Místní doprava v Trevíru a okolí, Německo.",
@@ -33,6 +34,7 @@
         "Description[zh_CN]": "德国特里尔及其周边地区的公共交通。",
         "Description[zh_TW]": "德國特里爾及其週邊的區域運輸。",
         "Name": "Verkehrsverbund Region Trier (VRT)",
+        "Name[ar]": "اتحاد النقل لمنطقة ترير (VRT)",
         "Name[ca@valencia]": "Verkehrsverbund Region Trier (VRT)",
         "Name[ca]": "Verkehrsverbund Region Trier (VRT)",
         "Name[cs]": "Verkehrsverbund Region Trier (VRT)",

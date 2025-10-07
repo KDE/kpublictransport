@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in and around Los Angeles, US.",
+        "Description[ar]": "النقل العام في لوس أنجلوس والمناطق المحيطة بها، الولايات المتحدة.",
         "Description[ca@valencia]": "Transport públic a Los Angeles i rodalia, EUA.",
         "Description[ca]": "Transport públic a Los Angeles i rodalia, EUA.",
         "Description[cs]": "Veřejná doprava v Los Angeles a okolí, USA.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "美国洛杉矶及其周边地区的公共交通。",
         "Description[zh_TW]": "美國洛杉磯及其週邊的公共運輸。",
         "Name": "Los Angeles Metro",
+        "Name[ar]": "مترو لوس أنجلوس",
         "Name[ca@valencia]": "Los Angeles Metro",
         "Name[ca]": "Los Angeles Metro",
         "Name[cs]": "Los Angeles Metro",

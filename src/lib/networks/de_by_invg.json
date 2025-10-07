@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Ingolstadt, Germany.",
+        "Description[ar]": "النقل المحلي في إنغولشتادت والمناطق المحيطة بها، ألمانيا.",
         "Description[ca@valencia]": "Transport local a Ingolstadt i rodalia, Alemanya.",
         "Description[ca]": "Transport local a Ingolstadt i rodalia, Alemanya.",
         "Description[cs]": "Místní doprava v Ingolstadtu a okolí, Německo.",
@@ -33,6 +34,7 @@
         "Description[zh_CN]": "德国英戈尔施塔特及其周边地区的公共交通。",
         "Description[zh_TW]": "德國因哥斯塔特及其週邊的區域運輸。",
         "Name": "Ingolstädter Verkehrsgesellschaft (INVG)",
+        "Name[ar]": "شركة إنغولشتادت للنقل (INVG)",
         "Name[ca@valencia]": "Ingolstädter Verkehrsgesellschaft (INVG)",
         "Name[ca]": "Ingolstädter Verkehrsgesellschaft (INVG)",
         "Name[cs]": "Ingolstädter Verkehrsgesellschaft (INVG)",

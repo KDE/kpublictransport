@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Regional transport in Styria, Austria.",
+        "Description[ar]": "النقل الإقليمي في ستيريا، النمسا.",
         "Description[ca@valencia]": "Transport públic regional a Estíria, Àustria.",
         "Description[ca]": "Transport públic regional a Estíria, Àustria.",
         "Description[cs]": "Místní doprava ve Štýrsku, Rakousko.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "奥地利施泰尔马克州地区的公共交通。",
         "Description[zh_TW]": "奧地利史泰爾馬克邦的地區運輸。",
         "Name": "Verkehrsverbund Steiermark (VVSt)",
+        "Name[ar]": "اتحاد النقل لستيريا (VVSt)",
         "Name[ca@valencia]": "Verkehrsverbund Steiermark (VVSt)",
         "Name[ca]": "Verkehrsverbund Steiermark (VVSt)",
         "Name[cs]": "Verkehrsverbund Steiermark (VVSt)",

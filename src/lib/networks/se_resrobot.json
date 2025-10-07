@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport information for Sweden.",
+        "Description[ar]": "معلومات النقل العام للسويد.",
         "Description[ca@valencia]": "Informació de transport públic a Suècia.",
         "Description[ca]": "Informació de transport públic a Suècia.",
         "Description[de]": "Informationen über öffentliche Verkehrsmittel in Schweden.",
@@ -33,6 +34,7 @@
         "Description[zh_CN]": "瑞典的公交信息。",
         "Description[zh_TW]": "瑞典的公共運輸資訊。",
         "Name": "Resrobot",
+        "Name[ar]": "ريس روبوت",
         "Name[ca@valencia]": "Resrobot",
         "Name[ca]": "Resrobot",
         "Name[cs]": "Resrobot",

@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in Rhineland-Palatinate, Germany.",
+        "Description[ar]": "النقل العام في راينلاند-بالاتينات، ألمانيا.",
         "Description[ca@valencia]": "Transport públic en l'àrea de Renània-Palatinat, Alemanya.",
         "Description[ca]": "Transport públic a l'àrea de Renània-Palatinat, Alemanya.",
         "Description[cs]": "Veřejná doprava v oblasti Porýní-Palatinátu, Německo.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "德国莱茵兰-普法尔茨的公共交通。",
         "Description[zh_TW]": "德國萊茵-法爾茲邦的公共運輸。",
         "Name": "Rolph",
+        "Name[ar]": "رولف",
         "Name[ca@valencia]": "Rolph",
         "Name[ca]": "Rolph",
         "Name[cs]": "Rolph",

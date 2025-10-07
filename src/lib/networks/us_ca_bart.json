@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in the bay area in California, United States.",
+        "Description[ar]": "النقل المحلي في منطقة الخليج بكاليفورنيا، الولايات المتحدة.",
         "Description[ca@valencia]": "Transport local en l'àrea de la badia a Califòrnia, Estats Units.",
         "Description[ca]": "Transport local a l'àrea de la badia a Califòrnia, Estats Units.",
         "Description[de]": "Lokale Verkehrsmittel in der Bay Area in Kalifornien, Vereinigte Staaten.",
@@ -33,6 +34,7 @@
         "Description[zh_CN]": "美国加利福尼亚州湾区及其周边的公共交通。",
         "Description[zh_TW]": "美國加州灣區的區域運輸。",
         "Name": "Bay Area Rapid Transit (BART)",
+        "Name[ar]": "النقل السريع لمنطقة الخليج (BART)",
         "Name[ca@valencia]": "Bay Area Rapid Transit (BART)",
         "Name[ca]": "Bay Area Rapid Transit (BART)",
         "Name[de]": "Bay Area Rapid Transit (BART)",

@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in Sachsen-Anhalt, Germany.",
+        "Description[ar]": "النقل المحلي في ساكسونيا-أنهالت، ألمانيا.",
         "Description[ca@valencia]": "Transport local a Sachsen-Anhalt, Alemanya.",
         "Description[ca]": "Transport local a Sachsen-Anhalt, Alemanya.",
         "Description[cs]": "Místní doprava v Sasku-Anhaltsku, Německo.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "德国萨克森-安哈尔特当地的公共交通。",
         "Description[zh_TW]": "德國薩克森-安哈特邦的區域運輸。",
         "Name": "Nahverkehrsservice Sachsen-Anhalt (INSA)",
+        "Name[ar]": "خدمة النقل المحلي لساكسونيا-أنهالت (INSA)",
         "Name[ca@valencia]": "Nahverkehrsservice Sachsen-Anhalt (INSA)",
         "Name[ca]": "Nahverkehrsservice Sachsen-Anhalt (INSA)",
         "Name[cs]": "Nahverkehrsservice Sachsen-Anhalt (INSA)",

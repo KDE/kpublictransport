@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in and around Atlanta, Georgia, US.",
+        "Description[ar]": "النقل العام في أتلانتا والمناطق المحيطة بها، جورجيا، الولايات المتحدة.",
         "Description[ca@valencia]": "Transport públic a Atlanta i rodalia, Georgia, EUA.",
         "Description[ca]": "Transport públic a Atlanta i rodalia, Georgia, EUA.",
         "Description[cs]": "Veřejná doprava v Atlantě a okolí, Georgia, USA.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "美国佐治亚州亚特兰大及其周边地区的公共交通。",
         "Description[zh_TW]": "Atlanta, Georgia, US 及其週邊的公共運輸。",
         "Name": "Marta",
+        "Name[ar]": "مارتا",
         "Name[ca@valencia]": "Marta",
         "Name[ca]": "Marta",
         "Name[cs]": "Marta",

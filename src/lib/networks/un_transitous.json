@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Community-run free and open public transport routing service.",
+        "Description[ar]": "خدمة توجيه النقل العام المجانية والمفتوحة التي يديرها المجتمع.",
         "Description[ca@valencia]": "Servei de rutes de transport públic obert i debades de gestió comunitària.",
         "Description[ca]": "Servei de rutes de transport públic obert i gratuït de gestió comunitària.",
         "Description[en_GB]": "Community-run free and open public transport routing service.",
@@ -28,6 +29,7 @@
         "Description[tr]": "Topluluk tarafından işletilen, ücretsiz ve açık toplu taşıma yönlendirme hizmeti.",
         "Description[uk]": "Вільна і відкрита служба маршрутизації транспорту, супровід якої здійснює спільнота користувачів",
         "Name": "Transitous",
+        "Name[ar]": "ترانزيتوس",
         "Name[ca@valencia]": "Transitous",
         "Name[ca]": "Transitous",
         "Name[cs]": "Přechody",

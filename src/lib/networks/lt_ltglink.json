@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Operator of trains in Lithuania",
+        "Description[ar]": "مشغل القطارات في ليتوانيا",
         "Description[ca@valencia]": "Operador de trens en Lituània",
         "Description[ca]": "Operador de trens a Lituània",
         "Description[en_GB]": "Operator of trains in Lithuania",
@@ -29,6 +30,7 @@
         "Description[uk]": "Залізничний оператор у Литві",
         "Description[zh_TW]": "立陶宛的火車營運者",
         "Name": "LTG Link",
+        "Name[ar]": "إل تي جي لينك",
         "Name[ca@valencia]": "LTG Link",
         "Name[ca]": "LTG Link",
         "Name[cs]": "Odkaz na LTG",

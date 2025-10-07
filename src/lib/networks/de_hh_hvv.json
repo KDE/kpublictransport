@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in Hamburg, Germany.",
+        "Description[ar]": "النقل العام في هامبورغ، ألمانيا.",
         "Description[ca@valencia]": "Transport públic a Hamburg, Alemanya.",
         "Description[ca]": "Transport públic a Hamburg, Alemanya.",
         "Description[cs]": "Veřejná doprava v Hamburku, Německo.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "德国汉堡的公共交通。",
         "Description[zh_TW]": "德國漢堡邦的公共運輸。",
         "Name": "Hamburger Verkehrsverbund (HVV)",
+        "Name[ar]": "اتحاد النقل لهامبورغ (HVV)",
         "Name[ca@valencia]": "Hamburger Verkehrsverbund (HVV)",
         "Name[ca]": "Hamburger Verkehrsverbund (HVV)",
         "Name[cs]": "Hamburger Verkehrsverbund (HVV)",

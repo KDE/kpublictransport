@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local and national transport in Ireland.",
+        "Description[ar]": "النقل المحلي والوطني في أيرلندا.",
         "Description[ca@valencia]": "Transport local i nacional a Irlanda.",
         "Description[ca]": "Transport local i nacional a Irlanda.",
         "Description[de]": "Lokale und nationale Verkehrsmittel in Irland.",
@@ -32,6 +33,7 @@
         "Description[uk]": "Місцевий і загальнодержавний транспорт у Ірландії.",
         "Description[zh_CN]": "爱尔兰的当地公交及国际公交",
         "Name": "Transport For Ireland",
+        "Name[ar]": "النقل لأيرلندا",
         "Name[ca@valencia]": "Transport For Ireland",
         "Name[ca]": "Transport For Ireland",
         "Name[de]": "Transport For Ireland",

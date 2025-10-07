@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in the Rhein-Main area, Germany.",
+        "Description[ar]": "النقل المحلي في منطقة الراين-الماين، ألمانيا.",
         "Description[ca@valencia]": "Transport local en l'àrea de Rin-Main, Alemanya.",
         "Description[ca]": "Transport local a l'àrea de Rin-Main, Alemanya.",
         "Description[cs]": "Místní doprava v oblasti Porýní-Main, Německo.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "德国莱茵-美因地区的公共交通。",
         "Description[zh_TW]": "德國法蘭克福萊茵-美因地區的區域運輸。",
         "Name": "Rhein-Main-Verkehrsverbund (RMV)",
+        "Name[ar]": "اتحاد النقل للراين-الماين (RMV)",
         "Name[ca@valencia]": "Rhein-Main-Verkehrsverbund (RMV)",
         "Name[ca]": "Rhein-Main-Verkehrsverbund (RMV)",
         "Name[cs]": "Rhein-Main-Verkehrsverbund (RMV)",

@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Realtime status information for elevators and escalators.",
+        "Description[ar]": "معلومات حالة المصاعد والسلالم المتحركة آنية.",
         "Description[ca@valencia]": "Estat de la informació en temps real per als ascensors i escales mecàniques.",
         "Description[ca]": "Estat de la informació en temps real per als ascensors i escales mecàniques.",
         "Description[cs]": "Informace v reálném čase o výtazích a eskalátorech.",
@@ -33,6 +34,7 @@
         "Description[zh_CN]": "升降梯和手扶梯的实时状态信息。",
         "Description[zh_TW]": "電梯與手扶梯的即時狀態資訊。",
         "Name": "Accessibility Cloud",
+        "Name[ar]": "سحابة الوصول",
         "Name[ca@valencia]": "Accessibility Cloud",
         "Name[ca]": "Accessibility Cloud",
         "Name[en_GB]": "Accessibility Cloud",
