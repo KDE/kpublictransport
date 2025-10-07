@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in Vienna, Austria.",
+        "Description[ar]": "النقل العام في فيينا، النمسا.",
         "Description[ca@valencia]": "Transport públic a Viena, Àustria.",
         "Description[ca]": "Transport públic a Viena, Àustria.",
         "Description[cs]": "Veřejná doprava ve Vídni, Rakousko.",
@@ -33,6 +34,7 @@
         "Description[zh_CN]": "奥地利维也纳的公共交通。",
         "Description[zh_TW]": "奧地利維也納的公共運輸。",
         "Name": "Wiener Linien",
+        "Name[ar]": "خطوط فيينا",
         "Name[ca@valencia]": "Wiener Linien",
         "Name[ca]": "Wiener Linien",
         "Name[cs]": "Wiener Linien",

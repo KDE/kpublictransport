@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in Switzerland.",
+        "Description[ar]": "النقل العام في سويسرا.",
         "Description[ca@valencia]": "Transport públic a Suïssa.",
         "Description[ca]": "Transport públic a Suïssa.",
         "Description[cs]": "Veřejná doprava ve Švýcarsku.",
@@ -32,6 +33,7 @@
         "Description[uk]": "Громадський транспорт у Швейцарії.",
         "Description[zh_TW]": "瑞士的公共運輸。",
         "Name": "opentransportdata.swiss",
+        "Name[ar]": "بيانات النقل المفتوحة.سويس",
         "Name[ca@valencia]": "opentransportdata.swiss",
         "Name[ca]": "opentransportdata.swiss",
         "Name[cs]": "opentransportdata.swiss",

@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Munich, Germany.",
+        "Description[ar]": "النقل المحلي في ميونيخ والمناطق المحيطة بها، ألمانيا.",
         "Description[ca@valencia]": "Transport local en Munic i rodalia, Alemanya.",
         "Description[ca]": "Transport local a Munic i rodalia, Alemanya.",
         "Description[cs]": "Místní doprava v Mnichově a okolí, Německo.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "德国慕尼黑及其周边地区的公共交通。",
         "Description[zh_TW]": "德國慕尼黑及其週邊的區域運輸。",
         "Name": "Münchener Verkehrs- und Tarifverbund (MVV)",
+        "Name[ar]": "اتحاد النقل والأجرة لميونيخ (MVV)",
         "Name[ca@valencia]": "Münchener Verkehrs- und Tarifverbund (MVV)",
         "Name[ca]": "Münchener Verkehrs- und Tarifverbund (MVV)",
         "Name[cs]": "Münchener Verkehrs- und Tarifverbund (MVV)",

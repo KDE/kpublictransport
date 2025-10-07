@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local public transport in the Rhein-Neckar area.",
+        "Description[ar]": "النقل العام المحلي في منطقة الراين-نيكار.",
         "Description[ca@valencia]": "Transport públic local en l'àrea de Rin-Neckar.",
         "Description[ca]": "Transport públic local a l'àrea de Rin-Neckar.",
         "Description[cs]": "Místní doprava v oblasti Rhein-Neckar, Německo.",
@@ -33,6 +34,7 @@
         "Description[zh_CN]": "萊茵河-内卡河地区的公共交通。",
         "Description[zh_TW]": "萊茵-內卡區域的公共運輸。",
         "Name": "Verkehrsverbund Rhein-Neckar (VRN)",
+        "Name[ar]": "اتحاد النقل للراين-نيكار (VRN)",
         "Name[ca@valencia]": "Verkehrsverbund Rhein-Neckar (VRN)",
         "Name[ca]": "Verkehrsverbund Rhein-Neckar (VRN)",
         "Name[cs]": "Verkehrsverbund Rhein-Neckar (VRN)",

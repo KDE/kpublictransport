@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local public transport in and around Bern and Luzern, Switzerland.",
+        "Description[ar]": "النقل العام المحلي في برن ولوزيرن والمناطق المحيطة بهما، سويسرا.",
         "Description[ca@valencia]": "Transport públic local a Berna, Lucerna i rodalia, Suïssa.",
         "Description[ca]": "Transport públic local a Berna, Lucerna i rodalia, Suïssa.",
         "Description[cs]": "Místní doprava v Bernu, Luzernu a okolí, Švýcarsko.",
@@ -30,6 +31,7 @@
         "Description[tr]": "Luzern, İsviçre içi ve çevresi yerel toplu taşıma.",
         "Description[uk]": "Місцевий транспорт у Берні і Люцерні, Швейцарія.",
         "Name": "BLS AG",
+        "Name[ar]": "بي إل إس إيه جي",
         "Name[ca@valencia]": "BLS AG",
         "Name[ca]": "BLS AG",
         "Name[de]": "BLS AG",

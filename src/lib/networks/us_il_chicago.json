@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Chicago, Illinois, United States.",
+        "Description[ar]": "النقل المحلي في شيكاغو والمناطق المحيطة بها، إلينوي، الولايات المتحدة.",
         "Description[ca@valencia]": "Transport local a Chicago i rodalia, Illinois, Estats Units.",
         "Description[ca]": "Transport local a Chicago i rodalia, Illinois, Estats Units.",
         "Description[cs]": "Místní doprava v Chicago, Illinois a okolí, Spojené Státy.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "美国伊利诺伊州芝加哥及其周边地区的公共交通。",
         "Description[zh_TW]": "美國伊利諾州芝加哥及其週邊的區域運輸。",
         "Name": "Regional Transport Authority Chicago",
+        "Name[ar]": "هيئة النقل الإقليمي في شيكاغو",
         "Name[ca@valencia]": "Regional Transport Authority Chicago",
         "Name[ca]": "Regional Transport Authority Chicago",
         "Name[en_GB]": "Regional Transport Authority Chicago",

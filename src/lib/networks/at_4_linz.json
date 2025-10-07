@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Linz, Austria.",
+        "Description[ar]": "النقل المحلي في لينز والمناطق المحيطة بها، النمسا.",
         "Description[ca@valencia]": "Transport local a Linz i rodalia, Àustria.",
         "Description[ca]": "Transport local a Linz i rodalia, Àustria.",
         "Description[cs]": "Místní doprava v Linci a okolí, Rakousko.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "奥地利林茨及其周边地区的公共交通。",
         "Description[zh_TW]": "奧地利林茲與其週邊的區域運輸。",
         "Name": "Linz AG",
+        "Name[ar]": "لينز إيه جي",
         "Name[ca@valencia]": "Linz AG",
         "Name[ca]": "Linz AG",
         "Name[cs]": "Linz AG",

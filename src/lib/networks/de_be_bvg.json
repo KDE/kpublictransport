@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport operator in Berlin, Germany.",
+        "Description[ar]": "مشغل النقل المحلي في برلين، ألمانيا.",
         "Description[ca@valencia]": "Operador de transport local en Berlín, Alemanya.",
         "Description[ca]": "Operador de transport local a Berlín, Alemanya.",
         "Description[cs]": "Místní dopravce v Berlíně, Německo.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "德国柏林当地的交通运营单位。",
         "Description[zh_TW]": "德國柏林的區域運輸營運者。",
         "Name": "Berliner Verkehrsbetriebe (BVG)",
+        "Name[ar]": "شركات النقل في برلين (BVG)",
         "Name[ca@valencia]": "Berliner Verkehrsbetriebe (BVG)",
         "Name[ca]": "Berliner Verkehrsbetriebe (BVG)",
         "Name[cs]": "Berliner Verkehrsbetriebe (BVG)",

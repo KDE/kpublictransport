@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in Schleswig-Holstein, Germany.",
+        "Description[ar]": "النقل المحلي في شليسفيغ هولشتاين، ألمانيا.",
         "Description[ca@valencia]": "Transport local a Schleswig-Holstein, Alemanya.",
         "Description[ca]": "Transport local a Schleswig-Holstein, Alemanya.",
         "Description[cs]": "Místní doprava ve Šlesvicko-Holštýnsku, Německo.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "德国石勒苏益格-荷尔斯泰因当地的公共交通。",
         "Description[zh_TW]": "德國什勒斯維希-霍爾斯坦邦的區域運輸。",
         "Name": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",
+        "Name[ar]": "اتحاد النقل المحلي لشليسفيغ هولشتاين (NAH.SH)",
         "Name[ca@valencia]": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",
         "Name[ca]": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",
         "Name[cs]": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",

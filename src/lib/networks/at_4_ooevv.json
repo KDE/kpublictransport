@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Regional public transport in Upper Austria.",
+        "Description[ar]": "النقل العام الإقليمي في النمسا العليا.",
         "Description[ca@valencia]": "Transport públic regional en l'alta Àustria.",
         "Description[ca]": "Transport públic regional a l'alta Àustria.",
         "Description[cs]": "Místní doprava v Horním Rakousku.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "上奥地利州地区的公共交通。",
         "Description[zh_TW]": "奧地利上奧地利邦的地區公共運輸。",
         "Name": "Oberösterreichischer Verkehrsverbund (OÖVV)",
+        "Name[ar]": "اتحاد النقل النمساوي العلوي (OÖVV)",
         "Name[ca@valencia]": "Oberösterreichischer Verkehrsverbund (OÖVV)",
         "Name[ca]": "Oberösterreichischer Verkehrsverbund (OÖVV)",
         "Name[cs]": "Oberösterreichischer Verkehrsverbund (OÖVV)",

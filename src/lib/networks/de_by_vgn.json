@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Nuremberg, Germany.",
+        "Description[ar]": "النقل المحلي في نورنبرغ والمناطق المحيطة بها، ألمانيا.",
         "Description[ca@valencia]": "Transport local a Nuremberg i rodalia, Alemanya.",
         "Description[ca]": "Transport local a Nuremberg i rodalia, Alemanya.",
         "Description[cs]": "Místní doprava v Norimberku a okolí, Německo.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "德国纽伦堡及其周边地区的公共交通。",
         "Description[zh_TW]": "德國紐倫堡及其週邊的區域運輸。",
         "Name": "Verkehrsverbund Großraum Nürnberg (VGN)",
+        "Name[ar]": "اتحاد النقل لمنطقة نورنبرغ الكبرى (VGN)",
         "Name[ca@valencia]": "Verkehrsverbund Großraum Nürnberg (VGN)",
         "Name[ca]": "Verkehrsverbund Großraum Nürnberg (VGN)",
         "Name[cs]": "Verkehrsverbund Großraum Nürnberg (VGN)",

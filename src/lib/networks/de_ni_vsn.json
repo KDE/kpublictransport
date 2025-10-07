@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in southern Lower Saxony, Germany.",
+        "Description[ar]": "النقل العام في جنوب ساكسونيا السفلى، ألمانيا.",
         "Description[ca@valencia]": "Transport públic en la Baixa Saxònia meridional, Alemanya.",
         "Description[ca]": "Transport públic a la Baixa Saxònia meridional, Alemanya.",
         "Description[cs]": "Veřejná doprava v jižním Dolním Sasku, Německo.",
@@ -33,6 +34,7 @@
         "Description[zh_CN]": "德国下萨克森南部的公共交通。",
         "Description[zh_TW]": "德國下薩克森邦南部的公共運輸。",
         "Name": "Verkehrsverbund Süd-Niedersachsen (VSN)",
+        "Name[ar]": "اتحاد النقل لجنوب ساكسونيا السفلى (VSN)",
         "Name[ca@valencia]": "Verkehrsverbund Süd-Niedersachsen (VSN)",
         "Name[ca]": "Verkehrsverbund Süd-Niedersachsen (VSN)",
         "Name[cs]": "Verkehrsverbund Süd-Niedersachsen (VSN)",

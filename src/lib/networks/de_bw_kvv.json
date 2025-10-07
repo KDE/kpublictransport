@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Karlsruhe, Germany.",
+        "Description[ar]": "النقل المحلي في كارلسروه والمناطق المحيطة بها، ألمانيا.",
         "Description[ca@valencia]": "Transport local a Karlsruhe i rodalia, Alemanya.",
         "Description[ca]": "Transport local a Karlsruhe i rodalia, Alemanya.",
         "Description[cs]": "Místní doprava v Karlsruhe a okolí, Německo.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "德国卡尔斯鲁厄及其周边地区的公共交通。",
         "Description[zh_TW]": "德國卡爾斯魯厄及其週邊的區域運輸。",
         "Name": "Karlsruher Verkehrsverbund (KVV)",
+        "Name[ar]": "اتحاد النقل لكارلسروه (KVV)",
         "Name[ca@valencia]": "Karlsruher Verkehrsverbund (KVV)",
         "Name[ca]": "Karlsruher Verkehrsverbund (KVV)",
         "Name[cs]": "Karlsruher Verkehrsverbund (KVV)",

@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in North Rhine-Westphalia, Germany.",
+        "Description[ar]": "النقل العام في راينلاند الشمالية-وستفاليا، ألمانيا.",
         "Description[ca@valencia]": "Transport públic al Rin del Nord-Westfàlia, Alemanya.",
         "Description[ca]": "Transport públic al Rin del Nord-Westfàlia, Alemanya.",
         "Description[cs]": "Veřejná doprava v oblasti Porýní-Vestfálsko, Německo.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "德国北莱茵-威斯特法伦的公共交通。",
         "Description[zh_TW]": "德國北萊茵-西伐利亞邦的公共運輸。",
         "Name": "Delfi NRW",
+        "Name[ar]": "دلفي لراينلاند الشمالية-وستفاليا",
         "Name[ca@valencia]": "Delfi NRW",
         "Name[ca]": "Delfi NRW",
         "Name[cs]": "Delfi NRW",

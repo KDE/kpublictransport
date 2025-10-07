@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in New South Wales, Australia.",
+        "Description[ar]": "النقل المحلي في نيو ساوث ويلز، أستراليا.",
         "Description[ca@valencia]": "Transport local a Nova Gal·les del Sud, Austràlia.",
         "Description[ca]": "Transport local a Nova Gal·les del Sud, Austràlia.",
         "Description[cs]": "Místní doprava v Novém jižním Walesu, Austrálie.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "澳大利亚新南威尔士州当地的公共交通。",
         "Description[zh_TW]": "澳洲新南威爾斯州的區域運輸。",
         "Name": "Transport for NSW",
+        "Name[ar]": "النقل لنيو ساوث ويلز",
         "Name[ca@valencia]": "Transport for NSW",
         "Name[ca]": "Transport for NSW",
         "Name[de]": "Verkehrsmittel in NSW (New South Wales)",

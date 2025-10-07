@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Operator of trains in Serbia",
+        "Description[ar]": "مشغل القطارات في صربيا",
         "Description[ca@valencia]": "Operador de trens en Sèrbia",
         "Description[ca]": "Operador de trens a Sèrbia",
         "Description[eo]": "Funkciigisto de trajnoj en Serbio",
@@ -25,6 +26,7 @@
         "Description[tr]": "Sırbistan’da tren operatörü",
         "Description[uk]": "Залізничний оператор у Сербії",
         "Name": "Srbijavoz",
+        "Name[ar]": "صربيافوز",
         "Name[ca@valencia]": "Srbijavoz",
         "Name[ca]": "Srbijavoz",
         "Name[cs]": "Srbijavoz",

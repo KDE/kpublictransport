@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Rostock, Germany.",
+        "Description[ar]": "النقل المحلي في روستوك والمناطق المحيطة بها، ألمانيا.",
         "Description[ca@valencia]": "Transport local a Rostock i rodalia, Alemanya.",
         "Description[ca]": "Transport local a Rostock i rodalia, Alemanya.",
         "Description[cs]": "Místní doprava v Rostocku a okolí, Německo.",
@@ -33,6 +34,7 @@
         "Description[zh_CN]": "德国罗斯托克及其周边地区的公共交通。",
         "Description[zh_TW]": "德國羅斯托克及其週邊的區域運輸。",
         "Name": "Rostocker Straßenbahn (RSAG)",
+        "Name[ar]": "ترام روستوك (RSAG)",
         "Name[ca@valencia]": "Rostocker Straßenbahn (RSAG)",
         "Name[ca]": "Rostocker Straßenbahn (RSAG)",
         "Name[cs]": "Rostocker Straßenbahn (RSAG)",

@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Swiss national railway.",
+        "Description[ar]": "السكك الحديدية الوطنية السويسرية.",
         "Description[ca@valencia]": "Ferrocarrils nacionals suïssos.",
         "Description[ca]": "Ferrocarrils nacionals suïssos.",
         "Description[cs]": "Švýcarské národní železnice.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "瑞士国家铁路。",
         "Description[zh_TW]": "瑞士國家鐵路。",
         "Name": "Swiss Federal Railways (SBB/CFF/FFS)",
+        "Name[ar]": "السكك الحديدية الفيدرالية السويسرية (SBB/CFF/FFS)",
         "Name[ca@valencia]": "Ferrocarril Federal Suïs (SBB/CFF/FFS)",
         "Name[ca]": "Ferrocarril Federal Suïs (SBB/CFF/FFS)",
         "Name[cs]": "Švýcarské Federální Železnice (SBB/CFF/FFS)",

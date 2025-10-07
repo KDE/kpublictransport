@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local public transport in and around Torino, Italy.",
+        "Description[ar]": "النقل العام المحلي في تورينو والمناطق المحيطة بها، إيطاليا.",
         "Description[ca@valencia]": "Transport públic local a Torí i rodalia, Itàlia.",
         "Description[ca]": "Transport públic local a Torí i rodalia, Itàlia.",
         "Description[cs]": "Místní doprava v Turíně a okolí, Itálie.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "意大利都灵及其周边地区的公共交通。",
         "Description[zh_TW]": "義大利杜林與附近的區域公共運輸。",
         "Name": "Muoversi a Torino",
+        "Name[ar]": "تنقل في تورينو",
         "Name[ca@valencia]": "Muoversi a Torino",
         "Name[ca]": "Muoversi a Torino",
         "Name[cs]": "Muoversi a Torino",

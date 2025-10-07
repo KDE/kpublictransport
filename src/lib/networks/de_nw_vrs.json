@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in the Rhein-Sieg area, Germany.",
+        "Description[ar]": "النقل المحلي في منطقة الراين-زيغ، ألمانيا.",
         "Description[ca@valencia]": "Transport local en l'àrea de Rin-Sieg, Alemanya.",
         "Description[ca]": "Transport local a l'àrea de Rin-Sieg, Alemanya.",
         "Description[cs]": "Místní doprava v oblasti Rhein-Sieg, Německo.",
@@ -33,6 +34,7 @@
         "Description[zh_CN]": "德国莱茵-锡格地区的公共交通。",
         "Description[zh_TW]": "德國萊茵-錫格郡的區域運輸。",
         "Name": "Verkehrsverbund Rhein-Sieg (VRS)",
+        "Name[ar]": "اتحاد النقل للراين-زيغ (VRS)",
         "Name[ca@valencia]": "Verkehrsverbund Rhein-Sieg (VRS)",
         "Name[ca]": "Verkehrsverbund Rhein-Sieg (VRS)",
         "Name[cs]": "Verkehrsverbund Rhein-Sieg (VRS)",

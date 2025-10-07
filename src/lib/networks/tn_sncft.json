@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in Tunisia.",
+        "Description[ar]": "النقل العام في تونس.",
         "Description[ca@valencia]": "Transport públic a Tunísia.",
         "Description[ca]": "Transport públic a Tunísia.",
         "Description[cs]": "Veřejná doprava v Tunisku.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "突尼斯的公共交通。",
         "Description[zh_TW]": "突尼西亞的公共運輸。",
         "Name": "Société Nationale des Chemins de Fer Tunisiens (SNCFT)",
+        "Name[ar]": "الشركة الوطنية للسكك الحديدية التونسية (SNCFT)",
         "Name[ca@valencia]": "Société Nationale des Chemins de Fer Tunisiens (SNCFT)",
         "Name[ca]": "Société Nationale des Chemins de Fer Tunisiens (SNCFT)",
         "Name[cs]": "Société Nationale des Chemins de Fer Tunisiens (SNCFT)",

@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Aachen, Germany.",
+        "Description[ar]": "النقل المحلي في آخن والمناطق المحيطة بها، ألمانيا.",
         "Description[ca@valencia]": "Transport local a Aachen i rodalia, Alemanya.",
         "Description[ca]": "Transport local a Aachen i rodalia, Alemanya.",
         "Description[cs]": "Místní doprava v Cáchách a okolí, Německo.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "德国亚琛及其周边地区的公共交通。",
         "Description[zh_TW]": "德國阿亨市及其週邊的區域運輸。",
         "Name": "Aachener Verkehrsverbund (AVV)",
+        "Name[ar]": "اتحاد النقل لآخن (AVV)",
         "Name[ca@valencia]": "Aachener Verkehrsverbund (AVV)",
         "Name[ca]": "Aachener Verkehrsverbund (AVV)",
         "Name[cs]": "Aachener Verkehrsverbund (AVV)",

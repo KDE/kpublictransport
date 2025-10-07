@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "UK public transport information.",
+        "Description[ar]": "معلومات النقل العام للمملكة المتحدة.",
         "Description[ca@valencia]": "Informació de transport públic al Regne Unit.",
         "Description[ca]": "Informació de transport públic al Regne Unit.",
         "Description[de]": "Informationen über öffentliche Verkehrsmittel in UK (Vereinigtes Königreich).",
@@ -33,6 +34,7 @@
         "Description[zh_CN]": "英国公交信息。",
         "Description[zh_TW]": "英國公共運輸資訊。",
         "Name": "Traveline",
+        "Name[ar]": "ترافل لاين",
         "Name[ca@valencia]": "Traveline",
         "Name[ca]": "Traveline",
         "Name[cs]": "Traveline",

@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local public transport in the Piemonte region in Italy.",
+        "Description[ar]": "النقل العام المحلي في منطقة بييمونتي في إيطاليا.",
         "Description[ca@valencia]": "Transport públic local en la regió del Piemont a Itàlia.",
         "Description[ca]": "Transport públic local a la regió del Piemont a Itàlia.",
         "Description[cs]": "Místní doprava v oblasti Piemonte v Itálii.",
@@ -34,6 +35,7 @@
         "Description[zh_CN]": "意大利皮埃蒙特大区当地的公共交通。",
         "Description[zh_TW]": "義大利皮埃蒙特區域的公共運輸。",
         "Name": "Muoversi in Piemonte",
+        "Name[ar]": "تنقل في بييمونتي",
         "Name[ca@valencia]": "Muoversi in Piemonte",
         "Name[ca]": "Muoversi in Piemonte",
         "Name[cs]": "Muoversi in Piemonte",
