@@ -46,6 +46,12 @@ Kirigami.Padding {
     /** The lower limit of the width this item can take **/
     readonly property int minimumWidth: Kirigami.Units.iconSizes.smallMedium + Kirigami.Units.smallSpacing * 2
 
+    /**
+     * Whether the item should try to adapt to a lack of space (width)
+     * Default: false
+    **/
+    property bool squashToFit: false
+
     leftPadding: Kirigami.Units.smallSpacing
     rightPadding: Kirigami.Units.smallSpacing
     topPadding: Kirigami.Units.smallSpacing
@@ -113,7 +119,7 @@ Kirigami.Padding {
             level: 4
             text: root.lineName
             visible: text.length > 0 && root.journeySectionMode === KPublicTransport.JourneySection.PublicTransport && !root.line.hasLogo &&
-                     lineName.contentWidth <= lineName.width
+                    !(squashToFit && lineName.contentWidth > lineName.width)
             font.weight: Font.DemiBold
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
