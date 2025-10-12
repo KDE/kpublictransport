@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-09-30 00:42+0000\n"
-"PO-Revision-Date: 2025-07-06 20:44+0200\n"
+"PO-Revision-Date: 2025-10-01 08:48+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.04.3\n"
+"X-Generator: Lokalize 25.08.1\n"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
@@ -327,32 +327,32 @@ msgstr "Seleziona la nazione"
 #: quick/private/CurrentLocationDelegate.qml:43
 #, kde-format
 msgid "Current Location"
-msgstr ""
+msgstr "Posizione attuale"
 
 #: quick/private/CurrentLocationDelegate.qml:100
 #, kde-format
 msgid "Determining Location…"
-msgstr ""
+msgstr "Individuazione della posizione…"
 
 #: quick/private/CurrentLocationDelegate.qml:102
 #, kde-format
 msgid "Waiting for more accurate location…"
-msgstr ""
+msgstr "In attesa di una posizione più precisa…"
 
 #: quick/private/CurrentLocationDelegate.qml:105
 #, kde-format
 msgid "Looking up address…"
-msgstr ""
+msgstr "Ricerca dell'indirizzo…"
 
 #: quick/private/CurrentLocationDelegate.qml:174
 #, kde-format
 msgid "Failed to determine accurate enough location."
-msgstr ""
+msgstr "Impossibile determinare una posizione sufficientemente precisa."
 
 #: quick/private/CurrentLocationDelegate.qml:176
 #, kde-format
 msgid "Failed to determine location."
-msgstr ""
+msgstr "Impossibile determinare la posizione."
 
 #: quick/StopoverInformationView.qml:43
 #, kde-format
