@@ -213,6 +213,7 @@
                             "mode": "LocalTrain",
                             "name": "B ",
                             "operatorName": "RER",
+                            "operatorUrl": "https://www.ratp.fr/",
                             "textColor": "#ffffff"
                         }
                     },
@@ -554,6 +555,7 @@
                             "mode": "LocalTrain",
                             "name": "A ",
                             "operatorName": "RER",
+                            "operatorUrl": "https://www.ratp.fr/",
                             "textColor": "#ffffff"
                         }
                     },

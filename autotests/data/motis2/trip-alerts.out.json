@@ -29,7 +29,8 @@
                     "line": {
                         "mode": "RapidTransit",
                         "name": "U",
-                        "operatorName": "Helsingin seudun liikenne"
+                        "operatorName": "Helsingin seudun liikenne",
+                        "operatorUrl": "http://www.hsl.fi/"
                     }
                 },
                 "scheduledDepartureTime": "2025-05-27T15:07:00Z",

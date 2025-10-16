@@ -524,7 +524,8 @@
                         "line": {
                             "mode": "RapidTransit",
                             "name": "S6",
-                            "operatorName": "DB Regio AG Baden-Württemberg"
+                            "operatorName": "DB Regio AG Baden-Württemberg",
+                            "operatorUrl": "https://www.delfi.de"
                         }
                     },
                     "scheduledDepartureTime": "2024-11-06T16:46:00Z",

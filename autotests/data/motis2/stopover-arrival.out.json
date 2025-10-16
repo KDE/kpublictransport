@@ -6,7 +6,8 @@
             "line": {
                 "mode": "LongDistanceTrain",
                 "name": "ICE 1586",
-                "operatorName": "DB Fernverkehr AG"
+                "operatorName": "DB Fernverkehr AG",
+                "operatorUrl": "https://www.delfi.de"
             }
         },
         "scheduledArrivalTime": "2024-11-06T13:44:00Z",
@@ -31,7 +32,8 @@
             "line": {
                 "mode": "LocalTrain",
                 "name": "RB71",
-                "operatorName": "Nordbahn Eisenbahngesellschaft"
+                "operatorName": "Nordbahn Eisenbahngesellschaft",
+                "operatorUrl": "https://www.delfi.de"
             }
         },
         "scheduledArrivalTime": "2024-11-06T14:05:00Z",
@@ -56,7 +58,8 @@
             "line": {
                 "mode": "LongDistanceTrain",
                 "name": "ICE 802",
-                "operatorName": "DB Fernverkehr AG"
+                "operatorName": "DB Fernverkehr AG",
+                "operatorUrl": "https://www.delfi.de"
             }
         },
         "scheduledArrivalTime": "2024-11-06T14:23:00Z",
@@ -81,7 +84,8 @@
             "line": {
                 "mode": "LocalTrain",
                 "name": "RE6",
-                "operatorName": "DB Regio AG Nord"
+                "operatorName": "DB Regio AG Nord",
+                "operatorUrl": "https://www.delfi.de"
             }
         },
         "scheduledArrivalTime": "2024-11-06T14:23:00Z",
@@ -106,7 +110,8 @@
             "line": {
                 "mode": "LocalTrain",
                 "name": "RB71",
-                "operatorName": "Nordbahn Eisenbahngesellschaft"
+                "operatorName": "Nordbahn Eisenbahngesellschaft",
+                "operatorUrl": "https://www.delfi.de"
             }
         },
         "scheduledArrivalTime": "2024-11-06T15:04:00Z",
@@ -131,7 +136,8 @@
             "line": {
                 "mode": "LocalTrain",
                 "name": "RE6",
-                "operatorName": "DB Regio AG Nord"
+                "operatorName": "DB Regio AG Nord",
+                "operatorUrl": "https://www.delfi.de"
             }
         },
         "scheduledArrivalTime": "2024-11-06T15:21:00Z",
@@ -156,7 +162,8 @@
             "line": {
                 "mode": "LongDistanceTrain",
                 "name": "ICE 1600",
-                "operatorName": "DB Fernverkehr AG"
+                "operatorName": "DB Fernverkehr AG",
+                "operatorUrl": "https://www.delfi.de"
             }
         },
         "scheduledArrivalTime": "2024-11-06T15:24:00Z",
@@ -181,7 +188,8 @@
             "line": {
                 "mode": "LocalTrain",
                 "name": "RB71",
-                "operatorName": "Nordbahn Eisenbahngesellschaft"
+                "operatorName": "Nordbahn Eisenbahngesellschaft",
+                "operatorUrl": "https://www.delfi.de"
             }
         },
         "scheduledArrivalTime": "2024-11-06T16:04:00Z",
@@ -206,7 +214,8 @@
             "line": {
                 "mode": "LongDistanceTrain",
                 "name": "ICE 800",
-                "operatorName": "DB Fernverkehr AG"
+                "operatorName": "DB Fernverkehr AG",
+                "operatorUrl": "https://www.delfi.de"
             }
         },
         "scheduledArrivalTime": "2024-11-06T16:20:00Z",
@@ -231,7 +240,8 @@
             "line": {
                 "mode": "LocalTrain",
                 "name": "RE6",
-                "operatorName": "DB Regio AG Nord"
+                "operatorName": "DB Regio AG Nord",
+                "operatorUrl": "https://www.delfi.de"
             }
         },
         "scheduledArrivalTime": "2024-11-06T16:21:00Z",

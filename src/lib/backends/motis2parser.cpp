@@ -192,6 +192,7 @@ Route Motis2Parser::parseRoute(const QJsonObject &obj) const
     }
 
     line.setOperatorName(obj.value("agencyName"_L1).toString());
+    line.setOperatorUrl(QUrl(obj.value("agencyUrl"_L1).toString()));
     line.setColor(QColor::fromString('#'_L1 + obj.value("routeColor"_L1).toString()));
     line.setTextColor(QColor::fromString('#'_L1 + obj.value("routeTextColor"_L1).toString()));
 

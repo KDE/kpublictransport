@@ -25,7 +25,8 @@
                     "line": {
                         "mode": "LongDistanceTrain",
                         "name": "ICE",
-                        "operatorName": "Österreichische Bundesbahnen"
+                        "operatorName": "Österreichische Bundesbahnen",
+                        "operatorUrl": "https://www.delfi.de"
                     }
                 },
                 "scheduledDepartureTime": "2025-05-25T07:35:00Z",
