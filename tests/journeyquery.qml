@@ -120,6 +120,7 @@ Kirigami.ApplicationWindow {
         id: journeyDelegate
         QQC2.ItemDelegate {
             id: delegateRoot
+            required property journeySection modelData
 
             enabled: modelData.disruptionEffect != Disruption.NoService
             highlighted: false
@@ -234,8 +235,9 @@ Kirigami.ApplicationWindow {
                         }
                     }
                     QQC2.Label {
-                        text: modelData.route.line.operatorName
+                        text: delegateRoot.modelData.route.line.operatorName + " <a href=\"" + delegateRoot.modelData.route.line.operatorUrl + "\">" + delegateRoot.modelData.route.line.operatorUrl + "</a>"
                         visible: text !== ""
+                        onLinkActivated: (link) => { Qt.openUrlExternally(link); }
                     }
                     RowLayout {
                         Repeater {
