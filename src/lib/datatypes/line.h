@@ -86,6 +86,8 @@ public:
 
     /** Name of the operator running this line. */
     KPUBLICTRANSPORT_PROPERTY(QString, operatorName, setOperatorName)
+    /** URL to e.g. a website of the operator of this line. */
+    KPUBLICTRANSPORT_PROPERTY(QUrl, operatorUrl, setOperatorUrl)
 
     /** Generic icon for the line mode.
      *  @see modeIconName(Line::Mode)

@@ -159,3 +159,8 @@ QString MergeUtil::mergeString(const QString &lhs, const QString &rhs)
     // Prefer longer string
     return lhs.size() < rhs.size() ? rhs : lhs;
 }
+
+QUrl MergeUtil::mergeUrl(const QUrl &lhs, const QUrl &rhs)
+{
+    return lhs.isEmpty() ? rhs : lhs;
+}

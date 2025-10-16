@@ -9,6 +9,7 @@
 
 class QDateTime;
 class QString;
+class QUrl;
 
 namespace KPublicTransport {
 
@@ -32,6 +33,7 @@ namespace MergeUtil
 
     /** Takes the longer input string. */
     QString mergeString(const QString &lhs, const QString &rhs);
+    QUrl mergeUrl(const QUrl &lhs, const QUrl &rhs);
 }
 
 }
