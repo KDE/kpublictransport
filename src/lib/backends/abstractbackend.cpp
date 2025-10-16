@@ -99,6 +99,11 @@ QStringList AbstractBackend::preferredLanguages() const
     return langs;
 }
 
+QUrl AbstractBackend::operatorUrl() const
+{
+    return m_operatorUrl;
+}
+
 void AbstractBackend::init()
 {
 }

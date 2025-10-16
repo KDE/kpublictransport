@@ -90,6 +90,8 @@ class KPUBLICTRANSPORT_EXPORT AbstractBackend
     Q_PROPERTY(QString customCaCertificate WRITE setCustomCaCertificate)
     /** PKCS#12 client certificate bundle. */
     Q_PROPERTY(QString pkcs12 WRITE setPkcs12)
+    /** Static operator URL. */
+    Q_PROPERTY(QUrl operatorUrl MEMBER m_operatorUrl)
 public:
     AbstractBackend();
     virtual ~AbstractBackend();
@@ -126,6 +128,12 @@ public:
      *  @since 25.08
      */
     [[nodiscard]] QStringList preferredLanguages() const;
+
+    /** Static operator URL, to be set on Line objects in results.
+     *  Use this for backends that do not provide this dynamically in their responses.
+     *  @since 25.12
+     */
+    [[nodiscard]] QUrl operatorUrl() const;
 
     /** Called after all settings have been set on this backend. */
     virtual void init();
@@ -312,6 +320,8 @@ private:
     QList<QSslCertificate> m_customCaCerts;
     QSslCertificate m_clientCert;
     QSslKey m_privateKey;
+
+    QUrl m_operatorUrl;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(AbstractBackend::Capabilities)

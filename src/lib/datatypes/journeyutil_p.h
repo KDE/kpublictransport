@@ -10,6 +10,7 @@
 #include "kpublictransport_export.h"
 
 class QDateTime;
+class QUrl;
 class QTimeZone;
 
 namespace KPublicTransport {
@@ -41,6 +42,10 @@ namespace JourneyUtil
 
     /** Fix common nonsense found in journey section paths reported from backends. */
     void postProcessPath(JourneySection &section);
+
+    /** Set a static operator URL wherever missing/needed. */
+    void applyOperatorUrl(Journey &jny, const QUrl &operatorUrl);
+    void applyOperatorUrl(JourneySection &section, const QUrl &operatorUrl);
 }
 
 }

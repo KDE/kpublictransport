@@ -139,6 +139,7 @@
     },
     "options": {
         "locationIdentifierType": "db",
+        "operatorUrl": "https://bahn.de",
         "standardLocationIdentifierCountries": [
             51,
             53,

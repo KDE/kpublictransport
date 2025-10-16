@@ -8,6 +8,7 @@
 #define KPUBLICTRANSPORT_STOPOVERUTIL_P_H
 
 class QTimeZone;
+class QUrl;
 
 namespace KPublicTransport {
 
@@ -26,6 +27,9 @@ namespace StopoverUtil
 
     /** Propagate location-based timezone information to the stopover. */
     void propagateTimeZone(Stopover &stop);
+
+    /** Set a static operator URL wherever missing/needed. */
+    void applyOperatorUrl(Stopover &stop, const QUrl &operatorUrl);
 }
 
 }

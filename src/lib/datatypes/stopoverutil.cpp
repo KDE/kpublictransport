@@ -11,6 +11,7 @@
 #include <KPublicTransport/StopoverRequest>
 
 #include <QDateTime>
+#include <QUrl>
 #include <QTimeZone>
 
 using namespace KPublicTransport;
@@ -51,5 +52,16 @@ void StopoverUtil::propagateTimeZone(Stopover &stop)
 {
     if (const auto tz = stop.stopPoint().timeZone(); tz.isValid()) {
         StopoverUtil::applyTimeZone(stop, tz);
+    }
+}
+
+void StopoverUtil::applyOperatorUrl(Stopover &stop, const QUrl &operatorUrl)
+{
+    auto r = stop.route();
+    auto l = r.line();
+    if (!l.name().isEmpty() && l.operatorUrl().isEmpty()) {
+        l.setOperatorUrl(operatorUrl);
+        r.setLine(l);
+        stop.setRoute(r);
     }
 }

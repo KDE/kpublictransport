@@ -284,10 +284,13 @@ void JourneyReply::addResult(const AbstractBackend *backend, std::vector<Journey
         d->prevRequest.setContext(backend, std::move(context));
     }
 
-    // if this is a backend with a static timezone, apply this to the result
+    // if this is a backend with a static timezone or operator, apply this to the result
     if (backend->timeZone().isValid()) {
         for (auto &jny : res) {
             JourneyUtil::applyTimeZone(jny, backend->timeZone());
+            if (!backend->operatorUrl().isEmpty()) {
+                JourneyUtil::applyOperatorUrl(jny, backend->operatorUrl());
+            }
         }
     }
 

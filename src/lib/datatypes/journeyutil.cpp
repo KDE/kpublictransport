@@ -16,6 +16,7 @@
 #include <KPublicTransport/Stopover>
 
 #include <QDateTime>
+#include <QUrl>
 #include <QTimeZone>
 
 using namespace KPublicTransport;
@@ -116,4 +117,30 @@ void JourneyUtil::postProcessPath(JourneySection &section)
         path.setSections(std::move(pathSecs));
         section.setPath(path);
     }
+}
+
+void JourneyUtil::applyOperatorUrl(Journey &jny, const QUrl &operatorUrl)
+{
+    auto sections = jny.takeSections();
+    for (auto &sec :sections) {
+        applyOperatorUrl(sec, operatorUrl);
+    }
+    jny.setSections(std::move(sections));
+}
+
+void JourneyUtil::applyOperatorUrl(JourneySection &section, const QUrl &operatorUrl)
+{
+    auto r = section.route();
+    auto l = r.line();
+    if (!l.name().isEmpty() && l.operatorUrl().isEmpty()) {
+        l.setOperatorUrl(operatorUrl);
+        r.setLine(l);
+        section.setRoute(r);
+    }
+
+    auto stops = section.takeIntermediateStops();
+    for (auto &s : stops) {
+        StopoverUtil::applyOperatorUrl(s, operatorUrl);
+    }
+    section.setIntermediateStops(std::move(stops));
 }
