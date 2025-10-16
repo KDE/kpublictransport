@@ -195,7 +195,7 @@ Kirigami.ApplicationWindow {
                             case JourneySection.Waiting:
                                 return "Wait " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds)
                             case JourneySection.RentedVehicle:
-                                return "Drive (" + modelData.rentalVehicle.network.name + ") " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + KCoreAddons.Format.formatDistance(modelData.distance);
+                                return "Drive (<a href=\""+ delegateRoot.modelData.rentalVehicle.network.url + "\">" + delegateRoot.modelData.rentalVehicle.network.name + "</a>) " + KCoreAddons.Format.formatDuration(delegateRoot.modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + KCoreAddons.Format.formatDistance(delegateRoot.modelData.distance);
                             case JourneySection.IndividualTransport:
                                 return "Drive " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + KCoreAddons.Format.formatDistance(modelData.distance)
                             return "???";

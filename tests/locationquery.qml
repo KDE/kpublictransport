@@ -129,9 +129,10 @@ Kirigami.ApplicationWindow {
                         text: "Lat: " + delegateRoot.location.latitude + " Lon: " + delegateRoot.location.longitude
                     }
                     QQC2.Label {
-                        text: delegateRoot.location.rentalVehicleStation.network.name + " (" + delegateRoot.location.rentalVehicleStation.availableVehicles
+                        text: "<a href=\"" + delegateRoot.location.rentalVehicleStation.network.url + "\">" + delegateRoot.location.rentalVehicleStation.network.name + "</a> (" + delegateRoot.location.rentalVehicleStation.availableVehicles
                             + "/" + delegateRoot.location.rentalVehicleStation.capacity + ")"
                         visible: delegateRoot.location.rentalVehicleStation.isValid
+                        onLinkActivated: (link) => { Qt.openUrlExternally(link); }
                     }
                     QQC2.Label {
                         text: delegateRoot.location.equipment ? delegateRoot.location.equipment.notes.join("<br/>") : ''
