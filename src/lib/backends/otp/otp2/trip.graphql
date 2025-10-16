@@ -15,6 +15,7 @@ query trip(
             textColor
             agency {
                 name
+                url
             }
         }
         tripHeadsign

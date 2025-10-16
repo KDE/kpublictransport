@@ -37,6 +37,7 @@ query stopsByCoordinate(
                         textColor
                         agency {
                             name
+                            url
                         }
                     }
                 }}

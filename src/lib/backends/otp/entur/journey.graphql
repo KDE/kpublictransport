@@ -52,6 +52,7 @@ query journeys(
                 name
                 agency: operator {
                     name
+                    url
                 }
                 alerts: situations {
                     alertHeaderTextTranslations: summary {

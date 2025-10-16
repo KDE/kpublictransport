@@ -55,6 +55,7 @@ query departures(
                   bikesAllowed
                   agency {
                     name
+                    url
                   }
                   alerts {
                     alertHeaderText

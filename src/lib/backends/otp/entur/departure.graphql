@@ -47,6 +47,7 @@ query departures(
                   bikesAllowed
                   agency: operator {
                       name
+                      url
                   }
                   presentation {
                     color: colour

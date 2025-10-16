@@ -21,6 +21,7 @@ query stationsByName($name: String!) {
         longName: name
         agency: operator {
             name
+            url
         }
         presentation {
             color: colour

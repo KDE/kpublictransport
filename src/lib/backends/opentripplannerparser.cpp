@@ -274,6 +274,7 @@ OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseLine(const QJsonObj
         }
     }
     line.setOperatorName(obj.value("agency"_L1).toObject().value("name"_L1).toString());
+    line.setOperatorUrl(QUrl(obj.value("agency"_L1).toObject().value("url"_L1).toString()));
 
     const auto type = obj.value(QLatin1String("type"));
     if (type.isString()) {

@@ -51,6 +51,7 @@ query journeys(
                         textColor
                         agency {
                             name
+                            url
                         }
                         alerts {
                             alertHeaderText
