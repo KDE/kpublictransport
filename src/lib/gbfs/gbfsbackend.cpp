@@ -120,7 +120,8 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
     RentalVehicleNetwork network;
     const auto sysInfoDoc = store.loadData(GBFS::SystemInformation);
     const auto sysInfo = GBFSReader::dataObject(sysInfoDoc);
-    network.setName(sysInfo.value(QLatin1String("name")).toString());
+    network.setName(sysInfo.value("name"_L1).toString());
+    network.setUrl(QUrl(sysInfo.value("url"_L1).toString()));
 
     const auto stationsDoc = store.loadData(GBFS::StationInformation);
     const auto stations = GBFSReader::dataValue(stationsDoc, QLatin1String("stations")).toArray();

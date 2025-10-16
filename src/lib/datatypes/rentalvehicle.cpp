@@ -21,6 +21,7 @@ class RentalVehicleNetworkPrivate : public QSharedData
 {
 public:
     QString name;
+    QUrl url;
     RentalVehicle::VehicleTypes vehicleTypes = RentalVehicle::Unknown;
 };
 
@@ -47,6 +48,7 @@ public:
 
 KPUBLICTRANSPORT_MAKE_GADGET(RentalVehicleNetwork)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleNetwork, QString, name, setName)
+KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleNetwork, QUrl, url, setUrl)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleNetwork, RentalVehicle::VehicleTypes, vehicleTypes, setVehicleTypes)
 
 bool RentalVehicleNetwork::isValid() const

@@ -154,6 +154,8 @@ class KPUBLICTRANSPORT_EXPORT RentalVehicleNetwork
     KPUBLICTRANSPORT_GADGET(RentalVehicleNetwork)
     /** Human-visible name of this network. */
     KPUBLICTRANSPORT_PROPERTY(QString, name, setName)
+    /** URL e.g. to a website of this network. */
+    KPUBLICTRANSPORT_PROPERTY(QUrl, url, setUrl)
     /** Supported vehicle types by this network. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicle::VehicleTypes, vehicleTypes, setVehicleTypes)
 
