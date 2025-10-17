@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-09-30 00:42+0000\n"
+"POT-Creation-Date: 2025-10-17 00:41+0000\n"
 "PO-Revision-Date: 2025-08-24 00:41+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -137,25 +137,25 @@ msgstr ""
 msgid "Wait"
 msgstr ""
 
-#: lib/datatypes/rentalvehicle.cpp:271
+#: lib/datatypes/rentalvehicle.cpp:273
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented bike"
 msgstr ""
 
-#: lib/datatypes/rentalvehicle.cpp:273
+#: lib/datatypes/rentalvehicle.cpp:275
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented moped"
 msgstr ""
 
-#: lib/datatypes/rentalvehicle.cpp:275
+#: lib/datatypes/rentalvehicle.cpp:277
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented kick scooter"
 msgstr ""
 
-#: lib/datatypes/rentalvehicle.cpp:277
+#: lib/datatypes/rentalvehicle.cpp:279
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"
