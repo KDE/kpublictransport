@@ -8,7 +8,9 @@ function parseGps(response)
     return {
         latitude: response.Latitude,
         longitude: response.Longitude,
-        speed: response.JSON ? response.JSON.speed : undefined
+        speed: response.JSON?.speed * 3.6,
+        heading: response.JSON?.heading,
+        altitude: response.JSON?.altitude,
     };
 }
 
