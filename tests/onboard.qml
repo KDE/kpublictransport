@@ -52,6 +52,10 @@ Kirigami.ApplicationWindow {
                             text: onboardStatus.heading
                             Kirigami.FormData.label: "Heading"
                         }
+                        QQC2.Label {
+                            text: onboardStatus.altitude
+                            Kirigami.FormData.label: "Altitude"
+                        }
                     }
 
                     Kirigami.ColumnView.preventStealing: true
