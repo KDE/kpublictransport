@@ -16,9 +16,9 @@ namespace KPublicTransport {
 class PositionData
 {
 public:
-    inline bool hasCoordinate() const
+    [[nodiscard]] bool hasCoordinate() const
     {
-        return !std::isnan(latitude) && !std::isnan(longitude);
+        return !std::isnan(latitude) && !std::isnan(longitude) && latitude >= -90.0f && latitude <= 90.0f && longitude >= -180.0f && longitude <= 180.0f;
     }
 
     float latitude = NAN;
