@@ -61,7 +61,7 @@ private Q_SLOTS:
         QTest::newRow("sncf-inoui") << s("sncf-tgv") << s("sncf-inoui.json") << 48.064258333f << 7.33914f << 105.379f << 212.5f << 205.47f;
         QTest::newRow("thalys") << s("icomera-omboard") << s("thalys.json") << 50.948208f << 6.885135f << 163.512f << 259.72f << 54.7f;
         QTest::newRow("oebb-railnet") << s("oebb") << s("oebb-railnet.json") << 47.4719f << 19.022648f << NAN << NAN << NAN;
-        QTest::newRow("oebb-railnetregio") << s("oebb") << s("oebb-railnetregio.json") << 48.1459f << 16.4267f << 37.325f  << NAN << NAN;
+        QTest::newRow("oebb-railnetregio") << s("oebb") << s("oebb-railnetregio.json") << 48.1459f << 16.4267f << 134.371f  << NAN << NAN;
 
         QTest::newRow("ana") << s("panasonic-inflight-v1") << s("../onboard-journey/ana.in.json") << 39.3520f << 141.077f << 801.916f << 191.0f << 9753.91f;
         QTest::newRow("united-panasonic") << s("panasonic-inflight-v1") << s("../onboard-journey/united-panasonic.in.json") << 41.5150f << 2.069f << 872.292f << 169.0f << 10668.6f;
