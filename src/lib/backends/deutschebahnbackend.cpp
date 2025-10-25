@@ -271,14 +271,12 @@ bool DeutscheBahnBackend::queryTrip(const TripRequest &request, TripReply *reply
         return false;
     }
 
-    QUrl url(u"https://www.bahn.de/web/api/reiseloesung/fahrt"_s);
-    QUrlQuery query;
-    query.addQueryItem(u"journeyId"_s, tripId);
-    query.addQueryItem(u"poly"_s, u"true"_s);
-    url.setQuery(query);
+    QUrl url(u"https://app.services-bahn.de"_s);
+    url.setPath("/mob/zuglauf/"_L1 + tripId);
     qCDebug(Log) << url;
 
-    const auto netReq = makeHafasProxyRequest(url);
+    auto netReq = makeHafasProxyRequest(url);
+    netReq.setRawHeader("Accept", "application/x.db.vendo.mob.zuglauf.v2+json");
     logRequest(request, netReq);
     auto netReply = nam->get(netReq);
     netReply->setParent(reply);
