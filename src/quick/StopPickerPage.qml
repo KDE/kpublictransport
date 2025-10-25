@@ -39,21 +39,24 @@ Kirigami.ScrollablePage {
     */
     property bool showUseCurrentLocationButton: false
 
-    Kirigami.PromptDialog {
-        id: clearConfirmDialog
-        title: i18ndc("kpublictransport", "@title:dialog", "Clear History")
-        subtitle: i18ndc("kpublictransport", "@info", "Do you really want to remove all previously searched locations?")
-        standardButtons: QQC2.Dialog.Cancel
-        customFooterActions: [
-            Kirigami.Action {
-                text: i18ndc("kpublictransport", "@action:button", "Remove")
-                icon.name: "edit-clear-history-symbolic"
-                onTriggered: {
-                    locationHistoryModel.clear();
-                    clearConfirmDialog.close();
+    Component {
+        id: clearConfirmDialogComponent
+        Kirigami.PromptDialog {
+            id: clearConfirmDialog
+            title: i18ndc("kpublictransport", "@title:dialog", "Clear History")
+            subtitle: i18ndc("kpublictransport", "@info", "Do you really want to remove all previously searched locations?")
+            standardButtons: QQC2.Dialog.Cancel
+            customFooterActions: [
+                Kirigami.Action {
+                    text: i18ndc("kpublictransport", "@action:button", "Remove")
+                    icon.name: "edit-clear-history-symbolic"
+                    onTriggered: {
+                        root.locationHistoryModel.clear();
+                        clearConfirmDialog.close();
+                    }
                 }
-            }
-        ]
+            ]
+        }
     }
 
     QQC2.ActionGroup { id: sortActionGroup }
@@ -62,7 +65,7 @@ Kirigami.ScrollablePage {
         QQC2.Action {
             text: i18ndc("kpublictransport", "@action", "Clear history")
             icon.name: "edit-clear-history-symbolic"
-            onTriggered: clearConfirmDialog.open()
+            onTriggered: clearConfirmDialogComponent.createObject().open()
         },
         Kirigami.Action { separator: true },
         QQC2.Action {
