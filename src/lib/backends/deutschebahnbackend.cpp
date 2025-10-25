@@ -318,6 +318,7 @@ QNetworkRequest DeutscheBahnBackend::makeHafasProxyRequest(const QUrl &url) cons
 {
     QNetworkRequest netRequest(url);
     netRequest.setRawHeader("Accept-Language", preferredLanguage().toUtf8());
+    netRequest.setRawHeader("X-Correlation-ID", QString(QUuid::createUuid().toString(QUuid::WithoutBraces) + '_'_L1 + QUuid::createUuid().toString(QUuid::WithoutBraces)).toUtf8());
     return netRequest;
 }
 
