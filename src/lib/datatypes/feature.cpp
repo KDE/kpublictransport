@@ -74,7 +74,8 @@ QString Feature::typeDisplayName(Feature::Type type)
             return i18nc("train coach feature", "Wi-Fi");
         case Feature::PowerSockets:
             return i18nc("train coach feature", "Power sockets");
-            break;
+        case Feature::SleeperCompartment:
+            return i18nc("train coach feature", "Sleeper Compartment");
         case Feature::Other:
         case Feature::NoFeature:
             break;
@@ -119,6 +120,8 @@ QString Feature::typeIconName(Feature::Type type)
             return u"qrc:///org.kde.kpublictransport/assets/images/vehicle-feature-wifi.svg"_s;
         case Feature::PowerSockets:
             return u"qrc:///org.kde.kpublictransport/assets/images/vehicle-feature-powersocket.svg"_s;
+        case Feature::SleeperCompartment:
+            return u"qrc:///org.kde.kpublictransport/assets/images/train-coach-sleeping.svg"_s;
         case Feature::Other:
             break;
     }

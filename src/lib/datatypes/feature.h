@@ -52,6 +52,7 @@ class KPUBLICTRANSPORT_EXPORT Feature {
         InformationPoint, ///< a place to obtain information from a human
         WiFi, ///< Freely usable Wi-Fi network
         PowerSockets, ///< Power sockets for passenger use
+        SleeperCompartment, ///< couchettes or sleeping compartments available
         Other, ///< none of the above
     };
     Q_ENUM(Type)

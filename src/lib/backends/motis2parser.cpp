@@ -260,7 +260,12 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
         s.setMode((*it).jnyMode);
 
         const auto hasRealTime = leg.value("realTime"_L1).toBool();
-        const auto from = parsePlace(leg.value("from"_L1).toObject(), hasRealTime);
+        auto from = parsePlace(leg.value("from"_L1).toObject(), hasRealTime);
+        std::vector<Feature> features;
+        if (leg["mode"_L1] == "NIGHT_RAIL"_L1) {
+            features.push_back(Feature(Feature::SleeperCompartment));
+        }
+        from.setFeatures(std::move(features));
         s.setDeparture(from);
         const auto to = parsePlace(leg.value("to"_L1).toObject(), hasRealTime);
         s.setArrival(to);
