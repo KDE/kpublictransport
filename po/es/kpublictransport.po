@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-17 00:41+0000\n"
+"POT-Creation-Date: 2025-10-30 00:41+0000\n"
 "PO-Revision-Date: 2025-09-30 23:51+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -114,6 +114,12 @@ msgstr "Wifi"
 msgctxt "train coach feature"
 msgid "Power sockets"
 msgstr "Tomas de corriente"
+
+#: lib/datatypes/feature.cpp:78
+#, kde-format
+msgctxt "train coach feature"
+msgid "Sleeper Compartment"
+msgstr ""
 
 #: lib/datatypes/individualtransport.cpp:73
 #, kde-format
@@ -377,98 +383,98 @@ msgctxt "operator/provider of a rail/bus service"
 msgid "Operator"
 msgstr "Operador"
 
-#: quick/StopPickerPage.qml:44
+#: quick/StopPickerPage.qml:46
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Clear History"
 msgstr "Borrar el historial"
 
-#: quick/StopPickerPage.qml:45
+#: quick/StopPickerPage.qml:47
 #, kde-format
 msgctxt "@info"
 msgid "Do you really want to remove all previously searched locations?"
 msgstr ""
 "¿Realmente desea eliminar todos los lugares que ha buscado anteriormente?"
 
-#: quick/StopPickerPage.qml:49
+#: quick/StopPickerPage.qml:51
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "Eliminar"
 
-#: quick/StopPickerPage.qml:63
+#: quick/StopPickerPage.qml:66
 #, kde-format
 msgctxt "@action"
 msgid "Clear history"
 msgstr "Borrar el historial"
 
-#: quick/StopPickerPage.qml:72
+#: quick/StopPickerPage.qml:75
 #, kde-format
 msgctxt "@action"
 msgid "Sort by name"
 msgstr "Ordenar por nombre"
 
-#: quick/StopPickerPage.qml:80
+#: quick/StopPickerPage.qml:83
 #, kde-format
 msgctxt "@action"
 msgid "Most recently used"
 msgstr "Usado más recientemente"
 
-#: quick/StopPickerPage.qml:87
+#: quick/StopPickerPage.qml:90
 #, kde-format
 msgctxt "@action"
 msgid "Most often used"
 msgstr "Usado con más frecuencia"
 
-#: quick/StopPickerPage.qml:181
+#: quick/StopPickerPage.qml:184
 #, kde-format
 msgctxt "locality, region, country"
 msgid "%1, %2, %3"
 msgstr "%1, %2, %3"
 
-#: quick/StopPickerPage.qml:186
+#: quick/StopPickerPage.qml:189
 #, kde-format
 msgctxt "locality, country"
 msgid "%1, %2"
 msgstr "%1, %2"
 
-#: quick/StopPickerPage.qml:190
+#: quick/StopPickerPage.qml:193
 #, kde-format
 msgctxt "region, country"
 msgid "%1, %2"
 msgstr "%1, %2"
 
-#: quick/StopPickerPage.qml:213
+#: quick/StopPickerPage.qml:216
 #, kde-format
 msgctxt "location name, locality, region, country"
 msgid "%1, %2, %3, %4"
 msgstr "%1, %2, %3, %4"
 
-#: quick/StopPickerPage.qml:219
+#: quick/StopPickerPage.qml:222
 #, kde-format
 msgctxt "location name, locality, country"
 msgid "%1, %2, %3"
 msgstr "%1, %2, %3"
 
-#: quick/StopPickerPage.qml:224
+#: quick/StopPickerPage.qml:227
 #, kde-format
 msgctxt "location name, region, country"
 msgid "%1, %2, %3"
 msgstr "%1, %2, %3"
 
-#: quick/StopPickerPage.qml:229
+#: quick/StopPickerPage.qml:232
 #, kde-format
 msgctxt "location name, country"
 msgid "%1, %2"
 msgstr "%1, %2"
 
-#: quick/StopPickerPage.qml:260
+#: quick/StopPickerPage.qml:263
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove history entry"
 msgstr "Eliminar entrada del historial"
 
-#: quick/StopPickerPage.qml:318
+#: quick/StopPickerPage.qml:321
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "No locations found"
