@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-10-30 00:41+0000\n"
-"PO-Revision-Date: 2025-09-30 10:32+0300\n"
+"PO-Revision-Date: 2025-10-30 14:31+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -118,7 +118,7 @@ msgstr "Розетки"
 #, kde-format
 msgctxt "train coach feature"
 msgid "Sleeper Compartment"
-msgstr ""
+msgstr "Спальний відсік"
 
 #: lib/datatypes/individualtransport.cpp:73
 #, kde-format
