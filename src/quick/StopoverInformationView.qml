@@ -95,10 +95,21 @@ ColumnLayout {
     }
     QQC2.Label {
         text: root.stopover.route.line.operatorName
-        visible: text !== ""
+        visible: text !== "" && root.stopover.route.line.operatorUrl == ""
         Layout.fillWidth: true
         wrapMode: Text.Wrap
         leftPadding: Kirigami.Units.largeSpacing
         rightPadding: Kirigami.Units.largeSpacing
+    }
+    Kirigami.UrlButton {
+        text: root.stopover.route.line.operatorName
+        url: root.stopover.route.line.operatorUrl
+        visible: text !== "" && root.stopover.route.line.operatorUrl != ""
+        Layout.fillWidth: true
+        wrapMode: Text.Wrap
+        leftPadding: Kirigami.Units.largeSpacing
+        rightPadding: Kirigami.Units.largeSpacing
+
+        horizontalAlignment: Text.AlignLeft
     }
 }
