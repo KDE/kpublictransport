@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-10-30 00:41+0000\n"
-"PO-Revision-Date: 2025-10-01 08:48+0200\n"
+"PO-Revision-Date: 2025-10-30 18:03+0100\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.08.1\n"
+"X-Generator: Lokalize 25.08.2\n"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
@@ -117,7 +117,7 @@ msgstr "Prese di corrente"
 #, kde-format
 msgctxt "train coach feature"
 msgid "Sleeper Compartment"
-msgstr ""
+msgstr "Scompartimento con letti"
 
 #: lib/datatypes/individualtransport.cpp:73
 #, kde-format
