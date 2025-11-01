@@ -1315,6 +1315,17 @@
                         "latitude": 48.185103,
                         "longitude": 16.377114,
                         "name": "Wien Hbf"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Sleeping-car",
+                                "type": "SleeperCompartment"
+                            }
+                        ]
                     }
                 },
                 "intermediateStops": [
@@ -1362,9 +1373,7 @@
                 ],
                 "mode": "PublicTransport",
                 "notes": [
-                    "2nd class only seated accommodation",
-                    "Sleeping-car",
-                    "Couchettes"
+                    "2nd class only seated accommodation"
                 ]
             },
             {
@@ -1414,6 +1423,12 @@
                                 "disruptionEffect": "NormalService",
                                 "name": "snacks and beverages available from sleeper/couchette attendant",
                                 "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Sleeping-car",
+                                "type": "SleeperCompartment"
                             }
                         ]
                     }
@@ -1423,9 +1438,7 @@
                     "2nd class only seated accommodation",
                     "ÖBB Nightjet (<a href=\"https://www.nightjet.com\">www.nightjet.com</a>)",
                     "Comfortticket (IRT Integrated Reservation Ticket)",
-                    "Global price",
-                    "Sleeping-car",
-                    "Couchettes"
+                    "Global price"
                 ]
             },
             {
@@ -1721,6 +1734,17 @@
                         "latitude": 48.185103,
                         "longitude": 16.377114,
                         "name": "Wien Hbf"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Sleeping-car",
+                                "type": "SleeperCompartment"
+                            }
+                        ]
                     }
                 },
                 "intermediateStops": [
@@ -1754,9 +1778,7 @@
                 ],
                 "mode": "PublicTransport",
                 "notes": [
-                    "2nd class only seated accommodation",
-                    "Sleeping-car",
-                    "Couchettes"
+                    "2nd class only seated accommodation"
                 ]
             },
             {

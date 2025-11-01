@@ -55,6 +55,12 @@
                     "disruptionEffect": "NormalService",
                     "name": "WC accessible for wheelchair",
                     "type": "WheelchairAccessibleToilet"
+                },
+                {
+                    "availability": "Available",
+                    "disruptionEffect": "NormalService",
+                    "name": "Sleeping-car",
+                    "type": "SleeperCompartment"
                 }
             ]
         }
@@ -250,8 +256,6 @@
         "ÖBB Nightjet (<a href=\"https://www.nightjet.com\">www.nightjet.com</a>)",
         "IRT Integrated Reservation Ticket",
         "Global price",
-        "Sleeping-car",
-        "Couchettes",
         "Construction work - Train will not stop at all stations\n\nNJ 40468: Due to construction work, this train will not stop at Bonn-Beuel and Köln Hbf. As an alternative this train stops at Bonn Hbf and Köln-Ehrenfeld.<br>We apologise for any inconvenience this may cause."
     ]
 }

@@ -219,6 +219,12 @@
                                 "disruptionEffect": "NormalService",
                                 "name": "rollstuhltaugliches WC",
                                 "type": "WheelchairAccessibleToilet"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Liegewagen",
+                                "type": "SleeperCompartment"
                             }
                         ]
                     }
@@ -294,8 +300,7 @@
                     "Reservierungspflicht",
                     "in Sitzwagen nur 2. Klasse",
                     "ÖBB Nightjet (<a href=\"https://www.nightjet.com\">www.nightjet.com</a>)",
-                    "Globalpreis",
-                    "Liegewagen"
+                    "Globalpreis"
                 ]
             }
         ]
