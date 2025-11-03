@@ -10,6 +10,7 @@
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
 #include <KPublicTransport/RentalVehicle>
+#include <KPublicTransport/StopInformation>
 #include <KPublicTransport/Stopover>
 
 #include <KCountry>
@@ -493,6 +494,27 @@ std::vector<Location> Motis2Parser::parseLocations(const QByteArray &data) const
         l.setStreetAddress(QString(locObj.value("street"_L1).toString() + ' '_L1 + locObj.value("houseNumber"_L1).toString()).trimmed());
 
         parseTimeZone(locObj, l);
+
+        if (l.type() == Location::Stop) {
+            StopInformation stopInfo;
+            const auto modes = locObj.value("modes"_L1).toArray();
+            for (const auto &mode : modes) {
+                const auto it = std::ranges::find_if(mode_map, [&mode](const auto &m) {
+                    return QLatin1StringView(m.name) == mode;
+                });
+                if (it == std::end(mode_map)) {
+                    qWarning() << "Unknown mode:" << mode;
+                    continue;
+                }
+                Line l;
+                l.setMode((*it).lineMode);
+                stopInfo.addLine(l);
+            }
+            if (!stopInfo.lines().empty()) {
+                l.setData(stopInfo);
+            }
+        }
+
         result.push_back(std::move(l));
     }
 
