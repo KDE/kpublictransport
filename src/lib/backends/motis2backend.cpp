@@ -219,7 +219,7 @@ struct {
     { Line::LongDistanceTrain, "NIGHT_RAIL" },
     { Line::Metro, "SUBWAY" },
     { Line::RailShuttle, "RAIL" },
-    { Line::RapidTransit, "METRO" },
+    { Line::RapidTransit, "SUBURBAN" },
     { Line::Shuttle, "BUS" },
     { Line::Shuttle, "COACH" },
     { Line::Taxi, "FLEXIBLE" },
@@ -228,7 +228,7 @@ struct {
     { Line::Tramway, "TRAM" },
     { Line::Tramway, "CABLE_CAR" },
     { Line::RideShare, "CAR_SHARING" },
-    { Line::AerialLift, "AREAL_LIFT" },
+    { Line::AerialLift, "AERIAL_LIFT" },
 };
 
 struct {
