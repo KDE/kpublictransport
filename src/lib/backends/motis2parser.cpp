@@ -92,6 +92,7 @@ struct {
     { "OTHER", Line::Mode::Unknown, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
     { "AERIAL_LIFT", Line::Mode::RapidTransit, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
     { "SUBURBAN", Line::Mode::RapidTransit, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
+    { "RIDE_SHARING", Line::Mode::RideShare, JourneySection::PublicTransport, IndividualTransport::Car, IndividualTransport::None, RentalVehicle::Car },
 };
 
 struct {

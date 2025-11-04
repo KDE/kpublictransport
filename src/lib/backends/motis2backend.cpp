@@ -228,6 +228,7 @@ struct {
     { Line::Tramway, "TRAM" },
     { Line::Tramway, "CABLE_CAR" },
     { Line::RideShare, "CAR_SHARING" },
+    { Line::RideShare, "RIDE_SHARING" },
     { Line::AerialLift, "AERIAL_LIFT" },
 };
 
