@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-10-30 00:41+0000\n"
-"PO-Revision-Date: 2025-07-07 09:02+0200\n"
+"PO-Revision-Date: 2025-10-31 09:42+0100\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
 "Language: fr\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.04.3\n"
+"X-Generator: Lokalize 25.08.2\n"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
@@ -114,7 +114,7 @@ msgstr "Prises de courant"
 #, kde-format
 msgctxt "train coach feature"
 msgid "Sleeper Compartment"
-msgstr ""
+msgstr "Compartiment couchette"
 
 #: lib/datatypes/individualtransport.cpp:73
 #, kde-format
@@ -330,32 +330,32 @@ msgstr "Sélectionner un pays"
 #: quick/private/CurrentLocationDelegate.qml:43
 #, kde-format
 msgid "Current Location"
-msgstr ""
+msgstr "Emplacement courant"
 
 #: quick/private/CurrentLocationDelegate.qml:100
 #, kde-format
 msgid "Determining Location…"
-msgstr ""
+msgstr "Détermination de l'emplacement en cours…"
 
 #: quick/private/CurrentLocationDelegate.qml:102
 #, kde-format
 msgid "Waiting for more accurate location…"
-msgstr ""
+msgstr "En attente d'une localisation plus précise…"
 
 #: quick/private/CurrentLocationDelegate.qml:105
 #, kde-format
 msgid "Looking up address…"
-msgstr ""
+msgstr "Recherche de l'adresse en cours..."
 
 #: quick/private/CurrentLocationDelegate.qml:174
 #, kde-format
 msgid "Failed to determine accurate enough location."
-msgstr ""
+msgstr "Impossible de déterminer un emplacement suffisamment précis."
 
 #: quick/private/CurrentLocationDelegate.qml:176
 #, kde-format
 msgid "Failed to determine location."
-msgstr ""
+msgstr "Impossible de déterminer l'emplacement."
 
 #: quick/StopoverInformationView.qml:43
 #, kde-format
