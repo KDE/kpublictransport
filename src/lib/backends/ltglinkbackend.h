@@ -24,9 +24,9 @@ struct Station {
 };
 }
 
-class LTGLinkBackend : public QObject, public AbstractBackend
+class LTGLinkBackend : public AbstractBackend
 {
-    Q_OBJECT
+    Q_GADGET
 
 public:
     static constexpr const char* type() { return "ltglink"; }
