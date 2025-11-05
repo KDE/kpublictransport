@@ -52,7 +52,7 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
             mutThis->m_stationDataTask = mutThis->downloadStationData(reply, nam);
         }
 
-        connect(m_stationDataTask, &AbstractAsyncTask::finished, reply, [=, this]() {
+        QObject::connect(m_stationDataTask, &AbstractAsyncTask::finished, reply, [=, this]() {
             queryJourney(req, reply, nam);
             m_stationDataTask->deleteLater();
         });
@@ -80,7 +80,7 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
     url.setQuery(urlQuery);
 
     auto netReply = nam->get(QNetworkRequest(url));
-    connect(netReply, &QNetworkReply::finished, this, [=, this]() {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [=, this]() {
         auto bytes = netReply->readAll();
         auto jsonValue = QJsonDocument::fromJson(bytes);
 
@@ -104,7 +104,7 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
 
             (*runningRequests)++;
 
-            connect(routeReply, &QNetworkReply::finished, this, [=, this]() {
+            QObject::connect(routeReply, &QNetworkReply::finished, reply, [=, this]() {
                 auto bytes = routeReply->readAll();
                 auto route = QJsonDocument::fromJson(bytes);
 
@@ -216,7 +216,7 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
                 }
             });
 
-            connect(routeReply, &QNetworkReply::errorOccurred, reply, [=, this]() {
+            QObject::connect(routeReply, &QNetworkReply::errorOccurred, reply, [=, this]() {
                 addError(reply, Reply::NetworkError, netReply->errorString());
             });
         };
@@ -224,7 +224,7 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
         netReply->deleteLater();
     });
 
-    connect(netReply, &QNetworkReply::errorOccurred, reply, [=, this]() {
+    QObject::connect(netReply, &QNetworkReply::errorOccurred, reply, [=, this]() {
         addError(reply, Reply::NetworkError, netReply->errorString());
     });
 
@@ -239,7 +239,7 @@ bool LTGLinkBackend::queryLocation(const LocationRequest &req, LocationReply *re
             mutThis->m_stationDataTask = mutThis->downloadStationData(reply, nam);
         }
 
-        connect(m_stationDataTask, &AbstractAsyncTask::finished, reply, [=, this]() {
+        QObject::connect(m_stationDataTask, &AbstractAsyncTask::finished, reply, [=, this]() {
             queryLocation(req, reply, nam);
             m_stationDataTask->deleteLater();
         });
@@ -264,7 +264,7 @@ bool LTGLinkBackend::queryLocation(const LocationRequest &req, LocationReply *re
 
 AsyncTask<void> *LTGLinkBackend::downloadStationData(Reply *reply, QNetworkAccessManager *nam)
 {
-    auto task = new AsyncTask<void>(this);
+    auto task = new AsyncTask<void>(reply);
 
     QUrl url(QStringLiteral("https://cms.ltglink.turnit.com/api/turnit/search"));
     QUrlQuery urlQuery;
@@ -275,7 +275,7 @@ AsyncTask<void> *LTGLinkBackend::downloadStationData(Reply *reply, QNetworkAcces
     url.setQuery(urlQuery);
 
     auto *netReply = nam->get(QNetworkRequest(url));
-    QObject::connect(netReply, &QNetworkReply::finished, this, [=, this]() {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [=, this]() {
         const auto bytes = netReply->readAll();
 
         logReply(reply, netReply, bytes);
