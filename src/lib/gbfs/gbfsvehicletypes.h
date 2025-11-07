@@ -43,6 +43,9 @@ public:
     PropulsionType propulsionType = UndefinedPropulsion;
 
     static GBFSVehicleType fromJson(const QJsonObject &obj);
+
+    [[nodiscard]] static FormFactor parseFormFactor(QStringView formFactor);
+    [[nodiscard]] static PropulsionType parsePropulsionType(QStringView propulsionType);
 };
 
 /** GBFS v2.1 vehicle types data parsing. */

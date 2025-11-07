@@ -16,6 +16,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
@@ -69,6 +70,16 @@ static T lookupValue(const value_map_entry<T>(&map)[N], QStringView name)
     return {};
 }
 
+GBFSVehicleType::FormFactor GBFSVehicleType::parseFormFactor(QStringView formFactor)
+{
+    return lookupValue(form_factor_map, formFactor);
+}
+
+GBFSVehicleType::PropulsionType GBFSVehicleType::parsePropulsionType(QStringView propulsionType)
+{
+    return lookupValue(propulsion_map, propulsionType);
+}
+
 // some services don't prove a vehicle_types file but use somewhat descriptive fixed values
 // try to support that as well to the extend possible
 struct fallback_entry {
@@ -86,10 +97,10 @@ static constexpr const value_map_entry<fallback_entry> fallback_type_map[] = {
 GBFSVehicleType GBFSVehicleType::fromJson(const QJsonObject &obj)
 {
     GBFSVehicleType v;
-    v.typeId = obj.value(QLatin1String("vehicle_type_id")).toString();
-    v.name = obj.value(QLatin1String("name")).toString();
-    v.formFactor = lookupValue(form_factor_map, obj.value(QLatin1String("form_factor")).toString());
-    v.propulsionType = lookupValue(propulsion_map, obj.value(QLatin1String("propulsion_type")).toString());
+    v.typeId = obj.value("vehicle_type_id"_L1).toString();
+    v.name = obj.value("name"_L1).toString();
+    v.formFactor = parseFormFactor(obj.value("form_factor"_L1).toString());
+    v.propulsionType = parsePropulsionType(obj.value("propulsion_type"_L1).toString());
     return v;
 }
 

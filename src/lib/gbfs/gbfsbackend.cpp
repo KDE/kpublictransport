@@ -10,6 +10,7 @@
 #include "gbfsjob.h"
 #include "gbfsreader.h"
 #include "gbfsvehicletypes.h"
+#include "datatypes/rentalvehicleutil_p.h"
 
 #include <KPublicTransport/Attribution>
 #include <KPublicTransport/Location>
@@ -74,35 +75,6 @@ static QString stationIdToString(const QJsonValue &id)
     return id.toString();
 }
 
-static RentalVehicle::VehicleType gbfs2kptVehicleType(const GBFSVehicleType &vehicle)
-{
-    static constexpr struct {
-        GBFSVehicleType::FormFactor formFactor;
-        GBFSVehicleType::PropulsionType propulsion;
-        RentalVehicle::VehicleType type;
-    } const type_map[] = {
-        { GBFSVehicleType::UndefinedFormFactor, GBFSVehicleType::UndefinedPropulsion, RentalVehicle::Unknown },
-        { GBFSVehicleType::Bicycle, GBFSVehicleType::Human, RentalVehicle::Bicycle },
-        { GBFSVehicleType::Bicycle, GBFSVehicleType::ElectricAssist, RentalVehicle::Pedelec },
-        { GBFSVehicleType::Scooter, GBFSVehicleType::Electric, RentalVehicle::ElectricKickScooter },
-        { GBFSVehicleType::Scooter, GBFSVehicleType::ElectricAssist, RentalVehicle::ElectricKickScooter },
-        { GBFSVehicleType::Scooter, GBFSVehicleType::UndefinedPropulsion, RentalVehicle::ElectricKickScooter },
-        { GBFSVehicleType::Moped, GBFSVehicleType::Electric, RentalVehicle::ElectricMoped },
-        { GBFSVehicleType::Moped, GBFSVehicleType::UndefinedPropulsion, RentalVehicle::ElectricMoped },
-        { GBFSVehicleType::Car, GBFSVehicleType::Electric, RentalVehicle::Car },
-        { GBFSVehicleType::Car, GBFSVehicleType::Combustion, RentalVehicle::Car },
-    };
-
-    for (const auto &map : type_map) {
-        if (map.formFactor == vehicle.formFactor && map.propulsion == vehicle.propulsionType) {
-            return map.type;
-        }
-    }
-
-    qDebug() << "unhandled vehicle type:" << vehicle.formFactor << vehicle.propulsionType;
-    return RentalVehicle::Unknown;
-}
-
 // we get some address values just being " , "...
 static QString cleanAddress(const QString &input)
 {
@@ -150,7 +122,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         s.setCapacity(station.value(QLatin1String("capacity")).toInt(-1));
         const auto vehicleCapacities = station.value(QLatin1String("vehicle_capacity")).toObject();
         for (auto it = vehicleCapacities.begin(); it != vehicleCapacities.end(); ++it) {
-            const auto type = gbfs2kptVehicleType(vehicleTypes.vehicleType(it.key()));
+            const auto type = RentalVehicleUtil::fromGbfsVehicleType(vehicleTypes.vehicleType(it.key()));
             s.setCapacity(type, it.value().toInt(-1));
         }
 
@@ -176,7 +148,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         const auto availableVehicleTypes = stat.value(QLatin1String("vehicle_types_available")).toArray();
         for (const auto &v : availableVehicleTypes) {
             const auto obj = v.toObject();
-            const auto type = gbfs2kptVehicleType(vehicleTypes.vehicleType(obj.value(QLatin1String("vehicle_type_id")).toString()));
+            const auto type = RentalVehicleUtil::fromGbfsVehicleType(vehicleTypes.vehicleType(obj.value(QLatin1String("vehicle_type_id")).toString()));
             s.setAvailableVehicles(type, obj.value(QLatin1String("count")).toInt(-1));
         }
 
@@ -229,7 +201,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
             vehicleTypeId = bike.value(QLatin1String("vehicle_type")).toString();
         }
         const auto vehicleType = vehicleTypes.vehicleType(vehicleTypeId);
-        vehicle.setType(gbfs2kptVehicleType(vehicleType));
+        vehicle.setType(RentalVehicleUtil::fromGbfsVehicleType(vehicleType));
         if (!vehicleType.name.isEmpty()) {
             loc.setName(vehicleType.name);
         }
