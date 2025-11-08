@@ -43,7 +43,7 @@ public:
 
 private:
     template <typename Request>
-    QNetworkReply* makeRequest(const Request &req, QObject *parent, QLatin1StringView command, const QUrlQuery &query, QNetworkAccessManager *nam) const;
+    QNetworkReply* makeRequest(const Request &req, QObject *parent, QLatin1StringView command, QUrlQuery query, QNetworkAccessManager *nam) const;
 
     [[nodiscard]] QString encodeLocation(const Location &loc) const;
 

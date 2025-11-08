@@ -112,7 +112,6 @@ bool Motis2Backend::queryLocation(const LocationRequest &req, LocationReply *rep
         netReply = makeRequest(req, reply, "v1/reverse-geocode"_L1, query, nam);
     } else {
         query.addQueryItem(u"text"_s, req.name());
-        query.addQueryItem(u"language"_s, preferredLanguage());
         if (req.types() == Location::Stop) {
             query.addQueryItem(u"type"_s, u"STOP"_s);
         } else if (req.types() == Location::Address) {
@@ -406,8 +405,18 @@ bool Motis2Backend::queryTrip(const TripRequest &req, TripReply *reply, QNetwork
 }
 
 template <typename Request>
-QNetworkReply* Motis2Backend::makeRequest(const Request &req, QObject *parent, QLatin1StringView command, const QUrlQuery &query, QNetworkAccessManager *nam) const
+QNetworkReply* Motis2Backend::makeRequest(const Request &req, QObject *parent, QLatin1StringView command, QUrlQuery query, QNetworkAccessManager *nam) const
 {
+    QStringList langs;
+    const auto localeLangs = QLocale().uiLanguages();
+    for (const auto &l : localeLangs) {
+        const auto baseLang = QStringView(l).left(2);
+        if (!langs.contains(baseLang)) {
+            langs.push_back(baseLang.toString());
+        }
+    }
+    query.addQueryItem(u"language"_s, langs.join(','_L1));
+
     auto url = m_endpoint;
     url.setPath("/api/"_L1 + command);
     url.setQuery(query);
