@@ -4,8 +4,7 @@
 */
 
 #include "testhelpers.h"
-#include "backends/motis2parser.cpp"
-#include "gtfs/hvt.cpp"
+#include "backends/motis2parser.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
@@ -82,6 +81,30 @@ private Q_SLOTS:
 
         Motis2Parser p(u"motis"_s);
         const auto result = p.parseMapStops(Test::readFile(inFileName));
+        QVERIFY(!result.empty());
+        const auto resultJson = Location::toJson(result);
+        const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).array();
+        QVERIFY(!resultJson.isEmpty());
+        QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));
+    }
+
+    void testParseRentals_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("outFileName");
+
+        QTest::newRow("map-stops")
+            << QStringLiteral(SOURCE_DIR "/data/motis2/location-rentals.in.json")
+            << QStringLiteral(SOURCE_DIR "/data/motis2/location-rentals.out.json");
+    }
+
+    void testParseRentals()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, outFileName);
+
+        Motis2Parser p(u"motis"_s);
+        const auto result = p.parseRentals(Test::readFile(inFileName));
         QVERIFY(!result.empty());
         const auto resultJson = Location::toJson(result);
         const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).array();

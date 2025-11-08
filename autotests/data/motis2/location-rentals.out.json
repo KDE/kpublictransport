@@ -1,0 +1,179 @@
+[
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-StadtmobilKarlsruhe:SMK:Station:2255"
+        },
+        "latitude": 49.013287,
+        "longitude": 8.416386,
+        "name": "KIT-Straße-am-Forum",
+        "rentalVehicleStation": {
+            "availabilitiesByType": {
+                "Car": 2
+            },
+            "availableVehicles": 2,
+            "capacity": -1,
+            "network": {
+                "name": "Stadtmobil Karlsruhe",
+                "url": "https://karlsruhe.stadtmobil.de/privatkunden/kunde-werden/",
+                "vehicleTypes": "Car"
+            }
+        },
+        "type": "RentedVehicleStation"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-KVV.nextbike:280322"
+        },
+        "latitude": 49.011085,
+        "longitude": 8.417748,
+        "name": "KIT Süd",
+        "rentalVehicleStation": {
+            "availabilitiesByType": {
+                "Bicycle": 1
+            },
+            "availableVehicles": 1,
+            "capacity": -1,
+            "network": {
+                "name": "KVV.nextbike",
+                "url": "https://www.kvv-nextbike.de/de/",
+                "vehicleTypes": "Bicycle|Pedelec"
+            }
+        },
+        "type": "RentedVehicleStation"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-KVV.nextbike:37983357"
+        },
+        "latitude": 49.010664,
+        "longitude": 8.417718,
+        "name": "Nancystraße - CAMPUSbike KIT",
+        "rentalVehicleStation": {
+            "availableVehicles": 0,
+            "capacity": -1,
+            "network": {
+                "name": "KVV.nextbike",
+                "url": "https://www.kvv-nextbike.de/de/",
+                "vehicleTypes": "Bicycle|Pedelec"
+            }
+        },
+        "type": "RentedVehicleStation"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-KVV.nextbike:A18jGZv7W6MAKA7FOew2qV6zV0l2Y5JM"
+        },
+        "latitude": 49.017822,
+        "longitude": 8.414343,
+        "name": "mit Rahmenschloss",
+        "rentalVehicle": {
+            "network": {
+                "name": "KVV.nextbike",
+                "url": "https://www.kvv-nextbike.de/de/",
+                "vehicleTypes": "Bicycle|Pedelec"
+            },
+            "type": "Bicycle",
+            "webBookingUrl": "https://nxtb.it/p/586413358"
+        },
+        "type": "RentedVehicle"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-KVV.nextbike:EY3RdQeVNgQA9GpUkX1Lzeg5wy2rJKk4"
+        },
+        "latitude": 49.01036,
+        "longitude": 8.414517,
+        "name": "mit Rahmenschloss",
+        "rentalVehicle": {
+            "network": {
+                "name": "KVV.nextbike",
+                "url": "https://www.kvv-nextbike.de/de/",
+                "vehicleTypes": "Bicycle|Pedelec"
+            },
+            "type": "Bicycle",
+            "webBookingUrl": "https://nxtb.it/p/586409090"
+        },
+        "type": "RentedVehicle"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-KVV.nextbike:kY9eaq3JPDZ8mPmSPQ3GqY6oKQr27A4z"
+        },
+        "latitude": 49.015609,
+        "longitude": 8.415328,
+        "name": "mit Rahmenschloss",
+        "rentalVehicle": {
+            "network": {
+                "name": "KVV.nextbike",
+                "url": "https://www.kvv-nextbike.de/de/",
+                "vehicleTypes": "Bicycle|Pedelec"
+            },
+            "type": "Bicycle",
+            "webBookingUrl": "https://nxtb.it/p/586403038"
+        },
+        "type": "RentedVehicle"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-KVV.nextbike:lELWreqO8gL3y81TAZmJvo6dkb9BAjG2"
+        },
+        "latitude": 49.015187,
+        "longitude": 8.415564,
+        "name": "mit Rahmenschloss",
+        "rentalVehicle": {
+            "network": {
+                "name": "KVV.nextbike",
+                "url": "https://www.kvv-nextbike.de/de/",
+                "vehicleTypes": "Bicycle|Pedelec"
+            },
+            "type": "Bicycle",
+            "webBookingUrl": "https://nxtb.it/p/586398258"
+        },
+        "type": "RentedVehicle"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-KVV.nextbike:mjp3Z5YwPDeVqmZIwpAAJBnJEWOaGAKy"
+        },
+        "latitude": 49.015956,
+        "longitude": 8.416009,
+        "name": "mit Rahmenschloss",
+        "rentalVehicle": {
+            "network": {
+                "name": "KVV.nextbike",
+                "url": "https://www.kvv-nextbike.de/de/",
+                "vehicleTypes": "Bicycle|Pedelec"
+            },
+            "type": "Bicycle",
+            "webBookingUrl": "https://nxtb.it/p/586410673"
+        },
+        "type": "RentedVehicle"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-KVV.nextbike:pdyLwe2j8gWmwKeidRmBLznqEvlA5NRZ"
+        },
+        "latitude": 49.011093,
+        "longitude": 8.41537,
+        "name": "mit Rahmenschloss",
+        "rentalVehicle": {
+            "network": {
+                "name": "KVV.nextbike",
+                "url": "https://www.kvv-nextbike.de/de/",
+                "vehicleTypes": "Bicycle|Pedelec"
+            },
+            "type": "Bicycle",
+            "webBookingUrl": "https://nxtb.it/p/586411425"
+        },
+        "type": "RentedVehicle"
+    }
+]

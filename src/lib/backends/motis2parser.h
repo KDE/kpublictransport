@@ -6,6 +6,8 @@
 #ifndef KPUBLICTRANSPORT_MOTIS2PARSER_H
 #define KPUBLICTRANSPORT_MOTIS2PARSER_H
 
+#include "kpublictransport_export.h"
+
 #include <QUrl>
 
 #include <vector>
@@ -22,8 +24,9 @@ class Stopover;
 
 /** Response parsing for Motis v2.
  *  @see https://github.com/motis-project/motis/blob/master/openapi.yaml
+ *  @internal exported only for unit tests
  */
-class Motis2Parser
+class KPUBLICTRANSPORT_EXPORT Motis2Parser
 {
 public:
     explicit Motis2Parser(QString locIdentifierType);
@@ -33,6 +36,7 @@ public:
     [[nodiscard]] std::vector<Stopover> parseStopTimes(const QByteArray &data, bool isArrivals);
     [[nodiscard]] std::vector<Location> parseLocations(const QByteArray &data) const;
     [[nodiscard]] std::vector<Location> parseMapStops(const QByteArray &data) const;
+    [[nodiscard]] std::vector<Location> parseRentals(const QByteArray &data) const;
 
     QString m_previousPageCursor;
     QString m_nextPageCursor;

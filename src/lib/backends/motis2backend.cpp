@@ -46,7 +46,7 @@ AbstractBackend::Capabilities Motis2Backend::capabilities() const
 
 Location::Types Motis2Backend::supportedLocationTypes() const
 {
-    return Location::Stop | Location::Address;
+    return Location::Stop | Location::Address | Location::RentedVehicle | Location::RentedVehicleStation;
 }
 
 bool Motis2Backend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
@@ -94,6 +94,35 @@ bool Motis2Backend::queryLocation(const LocationRequest &req, LocationReply *rep
                 } else {
                     Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), result, {}, std::chrono::days(m_cacheDays));
                 }
+                addResult(reply, std::move(result));
+            } else {
+                addError(reply, Reply::NetworkError, netReply->errorString() + ' '_L1 + QString::fromUtf8(data));
+            }
+        });
+        return true;
+    }
+
+    if (req.hasCoordinate() && (req.types() & (Location::RentedVehicle | Location::RentedVehicleStation)) == req.types()) {
+        const auto dlat = req.maximumDistance() / Location::distance(req.latitude(), 0.0, req.latitude(), 1.0);
+        const auto dlon = req.maximumDistance() / Location::distance(0.0, req.longitude(), 1.0, req.longitude());
+        query.addQueryItem(u"min"_s, QString::number(req.latitude() - dlat) + ','_L1 + QString::number(req.longitude() - dlon));
+        query.addQueryItem(u"max"_s, QString::number(req.latitude() + dlat) + ','_L1 + QString::number(req.longitude() + dlon));
+        query.addQueryItem(u"withProviders"_s, u"true"_s);
+        query.addQueryItem(u"withVehicles"_s, req.types() & Location::RentedVehicle ? u"true"_s : u"false"_s);
+        query.addQueryItem(u"withStations"_s, req.types() & Location::RentedVehicleStation ? u"true"_s : u"false"_s);
+        query.addQueryItem(u"withZones"_s, u"false"_s);
+
+        netReply = makeRequest(req, reply, "v1/map/rentals"_L1, query, nam); // TODO v2.7 - without "maps/"
+        QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
+            netReply->deleteLater();
+            const auto data = netReply->readAll();
+            logReply(reply, netReply, data);
+
+            Motis2Parser p(m_locationIdentifierType);
+            auto result = p.parseRentals(data);
+
+            if (netReply->error() == QNetworkReply::NoError) {
+                // no caching, these are realtime data results
                 addResult(reply, std::move(result));
             } else {
                 addError(reply, Reply::NetworkError, netReply->errorString() + ' '_L1 + QString::fromUtf8(data));

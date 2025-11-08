@@ -4,6 +4,9 @@
 */
 
 #include "motis2parser.h"
+
+#include "datatypes/rentalvehicleutil_p.h"
+#include "gbfs/gbfsvehicletypes.h"
 #include "geo/polylinedecoder_p.h"
 #include "gtfs/hvt.h"
 
@@ -534,6 +537,129 @@ std::vector<Location> Motis2Parser::parseMapStops(const QByteArray &data) const
         auto loc = stop.stopPoint();
         loc.setType(Location::Stop);
         result.push_back(loc);
+    }
+
+    return result;
+}
+
+std::vector<Location> Motis2Parser::parseRentals(const QByteArray &data) const
+{
+    const auto rentalsObj = QJsonDocument::fromJson(data).object();
+
+    const auto providersArray = rentalsObj.value("providers"_L1).toArray();
+    std::unordered_map<QString, RentalVehicleNetwork> providers;
+    providers.reserve(providersArray.size());
+    std::unordered_map<QString, std::unordered_map<QString, GBFSVehicleType>> vehicleTypes;
+
+    for (const auto &providerV : providersArray) {
+        const auto providerObj = providerV.toObject();
+        RentalVehicleNetwork provider;
+        provider.setName(providerObj.value("name"_L1).toString());
+        if (const auto purchaseUrl = providerObj.value("purchaseUrl"_L1).toString(); !purchaseUrl.isEmpty()) {
+            provider.setUrl(QUrl(purchaseUrl));
+        } else {
+            provider.setUrl(QUrl(providerObj.value("url"_L1).toString()));
+        }
+        const auto providerId = providerObj.value("id"_L1).toString();
+
+        std::unordered_map<QString, GBFSVehicleType> providerVehicleTypes;
+        const auto typesArray = providerObj.value("vehicleTypes"_L1).toArray();
+        providerVehicleTypes.reserve(typesArray.size());
+        for (const auto &typeV : typesArray) {
+            const auto typeObj = typeV.toObject();
+
+            GBFSVehicleType vt;
+            vt.typeId = typeObj.value("id"_L1).toString();
+            vt.name = typeObj.value("name"_L1).toString();
+            vt.formFactor = GBFSVehicleType::parseFormFactor(typeObj.value("formFactor"_L1).toString());
+            vt.propulsionType = GBFSVehicleType::parsePropulsionType(typeObj.value("propulsionType"_L1).toString());
+
+            provider.setVehicleTypes(provider.vehicleTypes() | RentalVehicleUtil::fromGbfsVehicleType(vt));
+            providerVehicleTypes[vt.typeId] = std::move(vt);
+        }
+
+        providers[providerId] = std::move(provider);
+        vehicleTypes[providerId] = std::move(providerVehicleTypes);
+    }
+
+    const auto stations = rentalsObj.value("stations"_L1).toArray();
+    const auto vehicles = rentalsObj.value("vehicles"_L1).toArray();
+    std::vector<Location> result;
+    result.reserve(stations.size() + vehicles.size());
+
+    for (const auto &stationV : stations) {
+        const auto &stationObj = stationV.toObject();
+        const auto providerId = stationObj.value("providerId"_L1).toString();
+
+        Location l;
+        l.setType(Location::RentedVehicleStation);
+        l.setCoordinate(stationObj.value("lat"_L1).toDouble(), stationObj.value("lon"_L1).toDouble());
+        l.setName(stationObj.value("name"_L1).toString());
+        l.setIdentifier(m_locIdentifierType, providerId + ':'_L1 + stationObj.value("id"_L1).toString());
+        if (const auto addr = stationObj.value("address"_L1).toString(); !addr.isEmpty()) {
+            l.setStreetAddress(addr);
+        }
+
+        RentalVehicleStation s;
+        // TODO booking urls for stations not in our data model yet
+        s.setAvailableVehicles(stationObj.value("numVehiclesAvailable"_L1).toInt(-1));
+
+        s.setNetwork(providers[providerId]);
+        std::unordered_map<RentalVehicle::VehicleType, std::pair<int, int>> docks;
+        const auto availableVehicles = stationObj.value("vehicleTypesAvailable"_L1).toObject();
+        for (auto it = availableVehicles.begin(); it != availableVehicles.end(); ++it) {
+            const auto t = RentalVehicleUtil::fromGbfsVehicleType(vehicleTypes[providerId][it.key()]);
+            s.setAvailableVehicles(t, std::max(0, s.availableVehicles(t)) + it.value().toInt());
+            docks[t].first = s.availableVehicles(t);
+        }
+        const auto availableDocks = stationObj.value("vehicleDocksAvailable"_L1).toObject();
+        for (auto it = availableDocks.begin(); it != availableDocks.end(); ++it) {
+            const auto t = RentalVehicleUtil::fromGbfsVehicleType(vehicleTypes[providerId][it.key()]);
+            docks[t].second += it.value().toInt();
+        }
+        if (!availableDocks.isEmpty()) {
+            for (auto it = docks.begin(); it != docks.end(); ++it) {
+                s.setCapacity((*it).first, (*it).second.first + (*it).second.second);
+            }
+        }
+
+        l.setData(std::move(s));
+        result.push_back(std::move(l));
+    }
+
+    for (const auto &vehicleV : vehicles) {
+        const auto vehicleObj = vehicleV.toObject();
+        const auto providerId = vehicleObj.value("providerId"_L1).toString();
+
+        if (vehicleObj.value("isReserved"_L1).toBool() || vehicleObj.value("isDisabled"_L1).toBool() || !vehicleObj.value("stationId"_L1).toString().isEmpty()) {
+            continue;
+        }
+
+        Location l;
+        l.setType(Location::RentedVehicle);
+        l.setCoordinate(vehicleObj.value("lat"_L1).toDouble(), vehicleObj.value("lon"_L1).toDouble());
+        l.setIdentifier(m_locIdentifierType, providerId + ':'_L1 + vehicleObj.value("id"_L1).toString());
+
+        RentalVehicle v;
+        v.setWebBookingUrl(QUrl(vehicleObj.value("rentalUriWeb"_L1).toString()));
+#ifdef Q_OS_ANDROID
+        v.setAppBookingUrl(QUrl(vehicleObj.value("rentalUriAndroid"_L1).toString()));
+#elif defined(Q_OS_IOS)
+        v.setAppBookingUrl(QUrl(vehicleObj.value("rentalUriIOS"_L1).toString()));
+#endif
+
+        v.setNetwork(providers[providerId]);
+
+        const auto &vt = vehicleTypes[providerId][vehicleObj.value("typeId"_L1).toString()];
+        v.setType(RentalVehicleUtil::fromGbfsVehicleType(vt));
+        if (!vt.name.isEmpty()) {
+            l.setName(vt.name);
+        } else {
+            l.setName(v.network().name());
+        }
+        l.setData(std::move(v));
+
+        result.push_back(std::move(l));
     }
 
     return result;
