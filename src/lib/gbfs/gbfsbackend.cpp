@@ -84,6 +84,18 @@ static QString cleanAddress(const QString &input)
     return {};
 }
 
+template <typename T>
+static void readRentalUris(const QJsonObject &obj, T &rental)
+{
+    const auto rental_uris = obj.value("rental_uris"_L1).toObject();
+    rental.setWebBookingUrl(QUrl(rental_uris.value("web"_L1).toString()));
+#ifdef Q_OS_ANDROID
+    rental.setAppBookingUrl(QUrl(rental_uris.value("android"_L1).toString()));
+#elif defined(Q_OS_IOS)
+    rental.setAppBookingUrl(QUrl(rental_uris.value("ios"_L1).toString()));
+#endif
+}
+
 static void appendResults(const GBFSService &service, const LocationRequest &req, QueryContext *context)
 {
     GBFSStore store(service.systemId);
@@ -125,6 +137,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
             const auto type = RentalVehicleUtil::fromGbfsVehicleType(vehicleTypes.vehicleType(it.key()));
             s.setCapacity(type, it.value().toInt(-1));
         }
+        readRentalUris(station, s);
 
         loc.setData(s);
         selectedStationIds.push_back(stationId);
@@ -187,14 +200,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
 
         RentalVehicle vehicle;
         vehicle.setNetwork(network);
-
-        const auto rental_uris = bike.value("rental_uris"_L1).toObject();
-        vehicle.setWebBookingUrl(QUrl(rental_uris.value("web"_L1).toString()));
-#ifdef Q_OS_ANDROID
-        vehicle.setAppBookingUrl(QUrl(rental_uris.value("android"_L1).toString()));
-#elif defined(Q_OS_IOS)
-        vehicle.setAppBookingUrl(QUrl(rental_uris.value("ios"_L1).toString()));
-#endif
+        readRentalUris(bike, vehicle);
 
         auto vehicleTypeId = bike.value(QLatin1String("vehicle_type_id")).toString();
         if (vehicleTypeId.isEmpty()) { // non-compliant format used eg. by Lime

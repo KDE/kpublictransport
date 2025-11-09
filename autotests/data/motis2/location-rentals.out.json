@@ -17,7 +17,8 @@
                 "name": "Stadtmobil Karlsruhe",
                 "url": "https://karlsruhe.stadtmobil.de/privatkunden/kunde-werden/",
                 "vehicleTypes": "Car"
-            }
+            },
+            "webBookingUrl": "https://mein.stadtmobil.de/?openPlace=2255"
         },
         "type": "RentedVehicleStation"
     },
@@ -39,7 +40,8 @@
                 "name": "KVV.nextbike",
                 "url": "https://www.kvv-nextbike.de/de/",
                 "vehicleTypes": "Bicycle|Pedelec"
-            }
+            },
+            "webBookingUrl": "https://nxtb.it/p/280322"
         },
         "type": "RentedVehicleStation"
     },
@@ -58,7 +60,8 @@
                 "name": "KVV.nextbike",
                 "url": "https://www.kvv-nextbike.de/de/",
                 "vehicleTypes": "Bicycle|Pedelec"
-            }
+            },
+            "webBookingUrl": "https://nxtb.it/p/37983357"
         },
         "type": "RentedVehicleStation"
     },

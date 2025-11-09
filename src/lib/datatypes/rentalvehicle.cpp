@@ -33,6 +33,8 @@ public:
     RentalVehicleNetwork network;
     std::vector<int> capacities;
     std::vector<int> availabilities;
+    QUrl webBookingUrl;
+    QUrl appBookingUrl;
 };
 
 class RentalVehiclePrivate : public QSharedData
@@ -76,6 +78,8 @@ KPUBLICTRANSPORT_MAKE_GADGET(RentalVehicleStation)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleStation, int, availableVehicles, setAvailableVehicles)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleStation, int, capacity, setCapacity)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleStation, RentalVehicleNetwork, network, setNetwork)
+KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleStation, QUrl, webBookingUrl, setWebBookingUrl)
+KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleStation, QUrl, appBookingUrl, setAppBookingUrl)
 
 bool RentalVehicleStation::isValid() const
 {

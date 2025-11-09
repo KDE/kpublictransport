@@ -111,6 +111,11 @@ class KPUBLICTRANSPORT_EXPORT RentalVehicleStation
     /** Available vehicle types at this station. */
     Q_PROPERTY(KPublicTransport::RentalVehicle::VehicleTypes availableVehicleTypes READ availableVehicleTypes STORED false)
 
+    /** Deep booking link via a web UI. */
+    KPUBLICTRANSPORT_PROPERTY(QUrl, webBookingUrl, setWebBookingUrl)
+    /** Deep booking link via an app. */
+    KPUBLICTRANSPORT_PROPERTY(QUrl, appBookingUrl, setAppBookingUrl)
+
     /** Icon representing this rental vehicle station.
      *  Can be a qrc: URL or an XDG icon name.
      */

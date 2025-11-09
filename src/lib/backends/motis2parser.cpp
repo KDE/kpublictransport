@@ -542,6 +542,17 @@ std::vector<Location> Motis2Parser::parseMapStops(const QByteArray &data) const
     return result;
 }
 
+template <typename T>
+static void readRentalBookingUrls(const QJsonObject &obj, T &rental)
+{
+    rental.setWebBookingUrl(QUrl(obj.value("rentalUriWeb"_L1).toString()));
+#ifdef Q_OS_ANDROID
+    rental.setAppBookingUrl(QUrl(obj.value("rentalUriAndroid"_L1).toString()));
+#elif defined(Q_OS_IOS)
+    rental.setAppBookingUrl(QUrl(obj.value("rentalUriIOS"_L1).toString()));
+#endif
+}
+
 std::vector<Location> Motis2Parser::parseRentals(const QByteArray &data) const
 {
     const auto rentalsObj = QJsonDocument::fromJson(data).object();
@@ -601,7 +612,7 @@ std::vector<Location> Motis2Parser::parseRentals(const QByteArray &data) const
         }
 
         RentalVehicleStation s;
-        // TODO booking urls for stations not in our data model yet
+        readRentalBookingUrls(stationObj, s);
         s.setAvailableVehicles(stationObj.value("numVehiclesAvailable"_L1).toInt(-1));
 
         s.setNetwork(providers[providerId]);
@@ -641,13 +652,7 @@ std::vector<Location> Motis2Parser::parseRentals(const QByteArray &data) const
         l.setIdentifier(m_locIdentifierType, providerId + ':'_L1 + vehicleObj.value("id"_L1).toString());
 
         RentalVehicle v;
-        v.setWebBookingUrl(QUrl(vehicleObj.value("rentalUriWeb"_L1).toString()));
-#ifdef Q_OS_ANDROID
-        v.setAppBookingUrl(QUrl(vehicleObj.value("rentalUriAndroid"_L1).toString()));
-#elif defined(Q_OS_IOS)
-        v.setAppBookingUrl(QUrl(vehicleObj.value("rentalUriIOS"_L1).toString()));
-#endif
-
+        readRentalBookingUrls(vehicleObj, v);
         v.setNetwork(providers[providerId]);
 
         const auto &vt = vehicleTypes[providerId][vehicleObj.value("typeId"_L1).toString()];
