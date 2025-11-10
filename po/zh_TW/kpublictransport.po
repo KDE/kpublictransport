@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-30 00:41+0000\n"
+"POT-Creation-Date: 2025-11-10 00:41+0000\n"
 "PO-Revision-Date: 2025-02-18 15:48+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -142,25 +142,25 @@ msgstr "步行"
 msgid "Wait"
 msgstr "等待"
 
-#: lib/datatypes/rentalvehicle.cpp:273
+#: lib/datatypes/rentalvehicle.cpp:277
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented bike"
 msgstr "租借腳踏車"
 
-#: lib/datatypes/rentalvehicle.cpp:275
+#: lib/datatypes/rentalvehicle.cpp:279
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented moped"
 msgstr "租借機車"
 
-#: lib/datatypes/rentalvehicle.cpp:277
+#: lib/datatypes/rentalvehicle.cpp:281
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented kick scooter"
 msgstr "租借滑班車"
 
-#: lib/datatypes/rentalvehicle.cpp:279
+#: lib/datatypes/rentalvehicle.cpp:283
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"

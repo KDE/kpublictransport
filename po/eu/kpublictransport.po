@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-30 00:41+0000\n"
+"POT-Creation-Date: 2025-11-10 00:41+0000\n"
 "PO-Revision-Date: 2025-10-02 21:33+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -145,25 +145,25 @@ msgstr "Oinez"
 msgid "Wait"
 msgstr "Itxoin"
 
-#: lib/datatypes/rentalvehicle.cpp:273
+#: lib/datatypes/rentalvehicle.cpp:277
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented bike"
 msgstr "Alokairuko bizikleta"
 
-#: lib/datatypes/rentalvehicle.cpp:275
+#: lib/datatypes/rentalvehicle.cpp:279
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented moped"
 msgstr "Alokairuko ziklomotorra"
 
-#: lib/datatypes/rentalvehicle.cpp:277
+#: lib/datatypes/rentalvehicle.cpp:281
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented kick scooter"
 msgstr "Alokairuko patinete elektrikoa"
 
-#: lib/datatypes/rentalvehicle.cpp:279
+#: lib/datatypes/rentalvehicle.cpp:283
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"
