@@ -1,6 +1,6 @@
 {
     "KPlugin": {
-        "Description": "Local transport in and around Hannover, Germany.",
+        "Description": "Public transport in Greater Hanover, Germany.",
         "Description[ar]": "النقل المحلي في هانوفر والمناطق المحيطة بها، ألمانيا.",
         "Description[ca@valencia]": "Transport local a Hannover i rodalia, Alemanya.",
         "Description[ca]": "Transport local a Hannover i rodalia, Alemanya.",
@@ -34,7 +34,7 @@
         "Description[uk]": "Місцевий транспорт у Ганновері і околицях, Німеччина.",
         "Description[zh_CN]": "德国汉诺威及其周边地区的公共交通。",
         "Description[zh_TW]": "德國漢諾威及其週邊的區域運輸。",
-        "Name": "Großraum-Verkehr Hannover (GVH)",
+        "Name": "ÜSTRA Hannover (GVH)",
         "Name[ar]": "نقل منطقة هانوفر الكبرى (GVH)",
         "Name[ca@valencia]": "Großraum-Verkehr Hannover (GVH)",
         "Name[ca]": "Großraum-Verkehr Hannover (GVH)",
