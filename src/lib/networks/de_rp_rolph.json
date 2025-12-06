@@ -34,7 +34,14 @@
         "Description[uk]": "Громадський транспорт у регіоні Рейнланд-Пфальц, Німеччина.",
         "Description[zh_CN]": "德国莱茵兰-普法尔茨的公共交通。",
         "Description[zh_TW]": "德國萊茵-法爾茲邦的公共運輸。",
-        "Name": "moveRLP"
+        "Name": "moveRLP",
+        "Name[ca@valencia]": "moveRLP",
+        "Name[ca]": "moveRLP",
+        "Name[ka]": "moveRLP",
+        "Name[nl]": "moveRLP",
+        "Name[pt_BR]": "moveRLP",
+        "Name[sl]": "moveRLP",
+        "Name[uk]": "moveRLP"
     },
     "coverage": {
         "realtimeCoverage": {

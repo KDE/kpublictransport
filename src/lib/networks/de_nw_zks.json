@@ -34,7 +34,14 @@
         "Description[uk]": "Громадський транспорт у землі Північна Рейн-Вестфалія, Німеччина.",
         "Description[zh_CN]": "德国北莱茵-威斯特法伦的公共交通。",
         "Description[zh_TW]": "德國北萊茵-西伐利亞邦的公共運輸。",
-        "Name": "DELFI NRW (mobil.nrw)"
+        "Name": "DELFI NRW (mobil.nrw)",
+        "Name[ca@valencia]": "DELFI NRW (mobil.nrw)",
+        "Name[ca]": "DELFI NRW (mobil.nrw)",
+        "Name[ka]": "DELFI NRW (mobil.nrw)",
+        "Name[nl]": "DELFI NRW (mobil.nrw)",
+        "Name[pt_BR]": "DELFI NRW (mobil.nrw)",
+        "Name[sl]": "DELFI NRW (mobil.nrw)",
+        "Name[uk]": "DELFI NRW (mobil.nrw)"
     },
     "coverage": {
         "anyCoverage": {
