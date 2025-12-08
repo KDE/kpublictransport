@@ -45,17 +45,17 @@ private Q_SLOTS:
         stop.setIdentifier(QLatin1String("de_bw_vvs"), QLatin1String("12345"));
         req.setStop(stop);
         req.setDateTime(QDateTime({2023, 6, 25}, {9, 39}, QTimeZone::UTC));
-        QTest::newRow("id-based-default") << req << QUrl(s("https://www2.vvs.de/vvs/XML_DM_REQUEST?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&type_dm=stop&name_dm=12345&itdDate=20230625&itdTime=0939&useRealtime=1&limit=12&mode=direct&ptOptionsActive=1&merge_dep=1&stateless=1&sessionID=0&requestID=0"));
+        QTest::newRow("id-based-default") << req << QUrl(s("https://www3.vvs.de/vvs/XML_DM_REQUEST?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&type_dm=stop&name_dm=12345&itdDate=20230625&itdTime=0939&useRealtime=1&limit=12&mode=direct&ptOptionsActive=1&merge_dep=1&stateless=1&sessionID=0&requestID=0"));
 
         stop = {};
         stop.setCoordinate(48.78, 9.18);
         req.setStop(stop);
         req.setMaximumResults(3);
-        QTest::newRow("coordinate-based") << req << QUrl(s("https://www2.vvs.de/vvs/XML_DM_REQUEST?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&type_dm=coord&name_dm=9.18:48.78:WGS84[DD.ddddd]&itdDate=20230625&itdTime=0939&useRealtime=1&limit=3&mode=direct&ptOptionsActive=1&merge_dep=1&stateless=1&sessionID=0&requestID=0"));
+        QTest::newRow("coordinate-based") << req << QUrl(s("https://www3.vvs.de/vvs/XML_DM_REQUEST?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&type_dm=coord&name_dm=9.18:48.78:WGS84[DD.ddddd]&itdDate=20230625&itdTime=0939&useRealtime=1&limit=3&mode=direct&ptOptionsActive=1&merge_dep=1&stateless=1&sessionID=0&requestID=0"));
 
         // not supported, so no impact
         req.setLineModes({Line::LocalTrain, Line::RapidTransit, Line::Metro});
-        QTest::newRow("line-mode-constraints") << req << QUrl(s("https://www2.vvs.de/vvs/XML_DM_REQUEST?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&type_dm=coord&name_dm=9.18:48.78:WGS84[DD.ddddd]&itdDate=20230625&itdTime=0939&useRealtime=1&limit=3&mode=direct&ptOptionsActive=1&merge_dep=1&stateless=1&sessionID=0&requestID=0"));
+        QTest::newRow("line-mode-constraints") << req << QUrl(s("https://www3.vvs.de/vvs/XML_DM_REQUEST?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&type_dm=coord&name_dm=9.18:48.78:WGS84[DD.ddddd]&itdDate=20230625&itdTime=0939&useRealtime=1&limit=3&mode=direct&ptOptionsActive=1&merge_dep=1&stateless=1&sessionID=0&requestID=0"));
     }
 
     void testStopoverRequest()
@@ -92,7 +92,7 @@ private Q_SLOTS:
         req.setFrom(from);
         req.setTo(to);
         req.setDateTime(QDateTime({2023, 6, 24}, {20, 58}, QTimeZone::UTC));
-        QTest::newRow("id-based-default") << req << QUrl(s("https://www2.vvs.de/vvs/XML_TRIP_REQUEST2?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&locationServerActive=1&useRealtime=1&type_origin=stop&name_origin=12345&type_destination=stop&name_destination=23456&itdDate=20230624&itdTime=2058&itdTripDateTimeDepArr=dep&itOptionsActive=1&trITDepMOT=100&trITArrMOT=100&calcNumberOfTrips=12&calcCO2=1&coordListOutputFormat=STRING&stateless=1&sessionID=0&requestID=0"));
+        QTest::newRow("id-based-default") << req << QUrl(s("https://www3.vvs.de/vvs/XML_TRIP_REQUEST2?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&locationServerActive=1&useRealtime=1&type_origin=stop&name_origin=12345&type_destination=stop&name_destination=23456&itdDate=20230624&itdTime=2058&itdTripDateTimeDepArr=dep&itOptionsActive=1&trITDepMOT=100&trITArrMOT=100&calcNumberOfTrips=12&calcCO2=1&coordListOutputFormat=STRING&stateless=1&sessionID=0&requestID=0"));
 
         from = {};
         from.setCoordinate(48.78, 9.18);
@@ -100,7 +100,7 @@ private Q_SLOTS:
         to.setCoordinate(48.59, 8.86);
         req.setFrom(from);
         req.setTo(to);
-        QTest::newRow("coordinate-based-default") << req << QUrl(s("https://www2.vvs.de/vvs/XML_TRIP_REQUEST2?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&locationServerActive=1&useRealtime=1&type_origin=coord&name_origin=9.18:48.78:WGS84[DD.ddddd]&type_destination=coord&name_destination=8.86:48.59:WGS84[DD.ddddd]&itdDate=20230624&itdTime=2058&itdTripDateTimeDepArr=dep&itOptionsActive=1&trITDepMOT=100&trITArrMOT=100&calcNumberOfTrips=12&calcCO2=1&coordListOutputFormat=STRING&stateless=1&sessionID=0&requestID=0"));
+        QTest::newRow("coordinate-based-default") << req << QUrl(s("https://www3.vvs.de/vvs/XML_TRIP_REQUEST2?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&locationServerActive=1&useRealtime=1&type_origin=coord&name_origin=9.18:48.78:WGS84[DD.ddddd]&type_destination=coord&name_destination=8.86:48.59:WGS84[DD.ddddd]&itdDate=20230624&itdTime=2058&itdTripDateTimeDepArr=dep&itOptionsActive=1&trITDepMOT=100&trITArrMOT=100&calcNumberOfTrips=12&calcCO2=1&coordListOutputFormat=STRING&stateless=1&sessionID=0&requestID=0"));
 
         req.setMaximumResults(4);
         req.setIncludeIntermediateStops(false);
@@ -108,10 +108,10 @@ private Q_SLOTS:
         req.setDateTimeMode(JourneyRequest::Arrival);
         req.setAccessModes({ IndividualTransport::Walk, IndividualTransport::Bike });
         req.setEgressModes({ IndividualTransport::Walk, IndividualTransport::Bike });
-        QTest::newRow("arrival-with-access-mode") << req << QUrl(s("https://www2.vvs.de/vvs/XML_TRIP_REQUEST2?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&locationServerActive=1&useRealtime=1&type_origin=coord&name_origin=9.18:48.78:WGS84[DD.ddddd]&type_destination=coord&name_destination=8.86:48.59:WGS84[DD.ddddd]&itdDate=20230624&itdTime=2058&itdTripDateTimeDepArr=arr&itOptionsActive=1&trITDepMOT=100&trITArrMOT=100&calcNumberOfTrips=4&calcCO2=1&coordListOutputFormat=STRING&stateless=1&sessionID=0&requestID=0"));
+        QTest::newRow("arrival-with-access-mode") << req << QUrl(s("https://www3.vvs.de/vvs/XML_TRIP_REQUEST2?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&locationServerActive=1&useRealtime=1&type_origin=coord&name_origin=9.18:48.78:WGS84[DD.ddddd]&type_destination=coord&name_destination=8.86:48.59:WGS84[DD.ddddd]&itdDate=20230624&itdTime=2058&itdTripDateTimeDepArr=arr&itOptionsActive=1&trITDepMOT=100&trITArrMOT=100&calcNumberOfTrips=4&calcCO2=1&coordListOutputFormat=STRING&stateless=1&sessionID=0&requestID=0"));
 
         req.setLineModes({Line::Bus, Line::Ferry});
-        QTest::newRow("line-mode-constraints") << req << QUrl(s("https://www2.vvs.de/vvs/XML_TRIP_REQUEST2?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&locationServerActive=1&useRealtime=1&type_origin=coord&name_origin=9.18:48.78:WGS84[DD.ddddd]&type_destination=coord&name_destination=8.86:48.59:WGS84[DD.ddddd]&itdDate=20230624&itdTime=2058&itdTripDateTimeDepArr=arr&inclMOT_5=on&inclMOT_6=on&inclMOT_7=on&inclMOT_17=on&inclMOT_19=on&inclMOT_20=on&inclMOT_9=on&includedMeans=checkbox&itOptionsActive=1&trITDepMOT=100&trITArrMOT=100&calcNumberOfTrips=4&calcCO2=1&coordListOutputFormat=STRING&stateless=1&sessionID=0&requestID=0"));
+        QTest::newRow("line-mode-constraints") << req << QUrl(s("https://www3.vvs.de/vvs/XML_TRIP_REQUEST2?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&locationServerActive=1&useRealtime=1&type_origin=coord&name_origin=9.18:48.78:WGS84[DD.ddddd]&type_destination=coord&name_destination=8.86:48.59:WGS84[DD.ddddd]&itdDate=20230624&itdTime=2058&itdTripDateTimeDepArr=arr&inclMOT_5=on&inclMOT_6=on&inclMOT_7=on&inclMOT_17=on&inclMOT_19=on&inclMOT_20=on&inclMOT_9=on&includedMeans=checkbox&itOptionsActive=1&trITDepMOT=100&trITArrMOT=100&calcNumberOfTrips=4&calcCO2=1&coordListOutputFormat=STRING&stateless=1&sessionID=0&requestID=0"));
     }
 
     void testJourneyRequest()
