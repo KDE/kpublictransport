@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:51+0000\n"
-"PO-Revision-Date: 2025-11-30 15:24+0100\n"
+"PO-Revision-Date: 2025-12-08 19:14+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -243,7 +243,7 @@ msgstr "Europar Batasuna"
 #, kde-format
 msgctxt "a train/bus journey canceled by its operator"
 msgid "Canceled"
-msgstr "Bertan behera"
+msgstr "Ezeztatuta"
 
 #: quick/ExpectedTimeLabel.qml:38
 #, kde-format
