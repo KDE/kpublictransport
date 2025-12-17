@@ -38,10 +38,10 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KPUBLICTRANSPORT
     SOVERSION 1
 )
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Location)
+find_package(Qt6 6.8 REQUIRED COMPONENTS Quick Location)
 
 if (BUILD_TESTING)
-    find_package(Qt6 6.5 REQUIRED COMPONENTS Test Widgets)
+    find_package(Qt6 6.8 REQUIRED COMPONENTS Test Widgets)
 endif()
 
 find_package(ZLIB REQUIRED)
