@@ -13,6 +13,7 @@
         "Description[nl]": "Openbaar vervoer in Groter Hanover, Duitsland.",
         "Description[pt_BR]": "Transporte público na Grande Hanover, Alemanha.",
         "Description[sl]": "Javni prevoz v širšem območju Hanovra v Nemčiji.",
+        "Description[tr]": "Almanya, Büyük Hanover için toplu taşıma.",
         "Description[uk]": "Дані щодо громадського транспорту у агломерації Ганновера, Німеччина.",
         "Name": "ÜSTRA Hannover (GVH)",
         "Name[ar]": "ÜSTRA Hannover (GVH)",
@@ -26,6 +27,7 @@
         "Name[nl]": "ÜSTRA Hannover (GVH)",
         "Name[pt_BR]": "ÜSTRA Hannover (GVH)",
         "Name[sl]": "ÜSTRA Hannover (GVH)",
+        "Name[tr]": "ÜSTRA Hannover (GVH)",
         "Name[uk]": "ÜSTRA Hannover (GVH)"
     },
     "coverage": {
