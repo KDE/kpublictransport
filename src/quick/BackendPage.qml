@@ -22,7 +22,7 @@ Kirigami.ScrollablePage {
     /** Action to manually trigger online update of backend configurations. */
     property Kirigami.Action onlineUpdateAction: Kirigami.Action {
         text: i18nd("kpublictransport", "Check for Updates")
-        icon.name: "system-software-update"
+        icon.name: "system-software-update-symbolic"
         enabled: root.publicTransportManager.updateResult !== KPublicTransport.UpdateResult.InProgress
               && (QtNetwork.NetworkInformation.reachability === QtNetwork.NetworkInformation.Reachability.Online
                || QtNetwork.NetworkInformation.reachability === QtNetwork.NetworkInformation.Reachability.Unknown)
