@@ -43,6 +43,8 @@ Kirigami.ScrollablePage {
         id: clearConfirmDialogComponent
         Kirigami.PromptDialog {
             id: clearConfirmDialog
+
+            parent: root.QQC2.Overlay.overlay
             title: i18ndc("kpublictransport", "@title:dialog", "Clear History")
             subtitle: i18ndc("kpublictransport", "@info", "Do you really want to remove all previously searched locations?")
             standardButtons: QQC2.Dialog.Cancel
