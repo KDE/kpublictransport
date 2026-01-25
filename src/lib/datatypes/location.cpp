@@ -11,6 +11,7 @@
 #include "equipmentutil.h"
 #include "identifier_p.h"
 #include "json_p.h"
+#include "line.h"
 #include "mergeutil_p.h"
 #include "rentalvehicle.h"
 #include "rentalvehicleutil_p.h"
@@ -309,11 +310,29 @@ static bool isCompatibleLocationType(Location::Type lhs, Location::Type rhs)
         || (rhs == Location::Place && lhs == Location::Stop);
 }
 
-static int isSameDistanceThreshold(Location::Type type)
+static int isSameDistanceThreshold(Location::Type type, const StopInformation &stopInfo)
 {
     switch (type) {
         case Location::Place:
         case Location::Stop:
+            if (!stopInfo.lines().empty()) {
+                // Lines from StopInfo are always sorted by relevance
+                const auto mode = stopInfo.lines().front();
+
+                // Distance in which it is safe to assume no other stop of this type is located
+                switch (mode.mode()) {
+                    case Line::Mode::Train:
+                    case Line::Mode::LongDistanceTrain:
+                    case Line::Mode::LocalTrain:
+                        return 500;
+                    case Line::Mode::Air:
+                        return 2000;
+                    case Line::Mode::Coach:
+                        return 200;
+                    default:
+                        return 25;
+                }
+            }
         case Location::Address:
             return 25; // meter
         case Location::CarpoolPickupDropoff:
@@ -368,7 +387,8 @@ bool Location::isSame(const Location &lhs, const Location &rhs)
     // TODO consider the address properties here?
 
     // anything sufficiently close together is assumed to be the same
-    if (lhs.hasCoordinate() && rhs.hasCoordinate() && dist < std::min(isSameDistanceThreshold(lhs.type()), isSameDistanceThreshold(rhs.type()))) {
+    auto maxDist = std::min(isSameDistanceThreshold(lhs.type(), rhs.stopInformation()), isSameDistanceThreshold(rhs.type(),  rhs.stopInformation()));
+    if (lhs.hasCoordinate() && rhs.hasCoordinate() && dist < maxDist) {
         return true;
     }
 

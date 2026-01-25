@@ -10,6 +10,7 @@
 #include "journeyutil_p.h"
 #include "json_p.h"
 #include "datatypes_p.h"
+#include "location.h"
 #include "logging.h"
 #include "mergeutil_p.h"
 #include "notesutil_p.h"
@@ -17,6 +18,7 @@
 #include "rentalvehicle.h"
 #include "rentalvehicleutil_p.h"
 #include "stopover.h"
+#include "stopinformation.h"
 
 #include <KLocalizedString>
 
@@ -783,13 +785,58 @@ bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs
     const auto arrTimeDist = MergeUtil::distance(lhs.scheduledArrivalTime(), rhs.scheduledArrivalTime());
     result += arrTimeDist < 60 ? Equal : depTimeDist <= 60 ? Compatible : Conflict;
 
-    const auto sameFrom = Location::isSame(lhs.from(), rhs.from());
+    // Add current line to stop. Allows to apply stop-type specific equality checks
+    auto enrichStop = [](Location loc, const Line &line) -> Location {
+        if (loc.type() == Location::Stop) {
+            auto stopInformation = loc.data().value<StopInformation>();
+            stopInformation.addLine(line);
+            loc.setData(stopInformation);
+        }
+
+        return loc;
+    };
+
+    const auto lhsFrom = enrichStop(lhs.from(), lhs.route().line());
+    const auto rhsFrom = enrichStop(rhs.from(), rhs.route().line());
+
+    const auto sameFrom = Location::isSame(lhsFrom, rhsFrom);
     const auto fromDist = Location::distance(lhs.from(), rhs.from());
     result += sameFrom ? Equal : fromDist < 200 ? Compatible : Conflict;
 
-    const auto sameTo = Location::isSame(lhs.to(), rhs.to());
+    const auto lhsTo = enrichStop(lhs.to(), lhs.route().line());
+    const auto rhsTo = enrichStop(rhs.to(), rhs.route().line());
+
+    const auto sameTo = Location::isSame(lhsTo, rhsTo);
     const auto toDist = Location::distance(lhs.to(), rhs.to());
     result += sameTo ? Equal : toDist < 200 ? Compatible : (std::isnan(toDist) && arrTimeDist == 0) ? Compatible : Conflict;
+
+    // TODO filter borders etc.
+    if (lhs.intermediateStops().size() == rhs.intermediateStops().size()) {
+        size_t stopovers = std::min(lhs.intermediateStops().size(), rhs.intermediateStops().size());
+        int intermediateStopsScore = 0;
+        for (size_t i = 0; i < stopovers; i++) {
+            const auto lhsStopover = lhs.intermediateStops()[i];
+            const auto rhsStopover = rhs.intermediateStops()[i];
+            const auto lhsStop = enrichStop(lhsStopover.stopPoint(), lhs.route().line());
+            const auto rhsStop = enrichStop(rhsStopover.stopPoint(), rhs.route().line());
+
+            const auto arrTimeDist = MergeUtil::distance(lhsStopover.scheduledArrivalTime(), rhsStopover.scheduledArrivalTime());
+            const auto depTimeDist = MergeUtil::distance(lhsStopover.scheduledDepartureTime(), rhsStopover.scheduledDepartureTime());
+
+            bool sameLoc = Location::isSame(lhsStop, rhsStop);
+            if (!sameLoc) {
+                intermediateStopsScore += Conflict;
+            } else {
+                intermediateStopsScore += depTimeDist < 60 && arrTimeDist < 60 ? Equal : (depTimeDist <= 60 && arrTimeDist <= 60 ? Compatible : Conflict);
+            }
+        }
+
+        // At least half of the stopovers have exact matching times
+        // No conflicts (in location and times)
+        if (intermediateStopsScore > int(stopovers) / 2) {
+            result += Equal;
+        }
+    }
 
     const auto sameRoute = Route::isSame(lhs.route(), rhs.route());
     const auto sameDir = Location::isSameName(lhs.route().direction(), rhs.route().direction());
