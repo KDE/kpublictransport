@@ -324,7 +324,7 @@ static int isSameDistanceThreshold(Location::Type type, const StopInformation &s
                     case Line::Mode::Train:
                     case Line::Mode::LongDistanceTrain:
                     case Line::Mode::LocalTrain:
-                        return 500;
+                        return 300;
                     case Line::Mode::Air:
                         return 2000;
                     case Line::Mode::Coach:
