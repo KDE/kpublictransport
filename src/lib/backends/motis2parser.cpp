@@ -10,6 +10,7 @@
 #include "geo/polylinedecoder_p.h"
 #include "gtfs/hvt.h"
 
+#include <KPublicTransport/Feature>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
 #include <KPublicTransport/RentalVehicle>
@@ -271,6 +272,9 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
         std::vector<Feature> features;
         if (leg["mode"_L1] == "NIGHT_RAIL"_L1) {
             features.push_back(Feature(Feature::SleeperCompartment));
+        }
+        if (leg["bikesAllowed"_L1].toBool()) {
+            features.push_back(Feature(Feature::BikeStorage));
         }
         from.setFeatures(std::move(features));
         s.setDeparture(from);
