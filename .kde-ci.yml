@@ -28,3 +28,4 @@ Options:
   - 'autotests/data/onboard-journey/db-ice.in.json'
   - 'autotests/data/otp/de-stadtnavi-bike-parking-journey.in.json'
   run-qmllint: true
+  enable-lsan: True
