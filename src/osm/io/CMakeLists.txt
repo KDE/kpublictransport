@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2020-2022 Volker Krause <vkrause@kde.org>
 # SPDX-License-Identifier: BSD-2-Clause
 
-if (Protobuf_FOUND AND Protobuf_PROTOC_EXECUTABLE)
+if (Protobuf_FOUND AND Protobuf_PROTOC_EXECUTABLE AND NOT CMAKE_CROSSCOMPILING)
     PROTOBUF_GENERATE_CPP(pbf_srcs pbf_hdrs
         ../pbf/fileformat.proto
         ../pbf/osmformat.proto
