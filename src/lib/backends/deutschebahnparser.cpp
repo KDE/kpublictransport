@@ -83,7 +83,7 @@ std::vector<Location> DeutscheBahnParser::parseLocations(const QByteArray &data,
     const auto product = lineObj.value("produktGattung"_L1);
     line.setMode(parseLineMode(product));
 
-    if (line.mode() == Line::Unknown) {
+    if (line.mode() == Line::Unknown && !product.isUndefined()) {
         qDebug() << "Unkown product category" << product;
     }
 
