@@ -149,7 +149,7 @@
                 }
             }
         ],
-        "endpoint": "https://bvg-apps.hafas.de/bin/mgate.exe",
+        "endpoint": "https://bvg-apps-ext.hafas.de/bin/mgate.exe",
         "ext": "BVG.1",
         "locationIdentifierType": "vbb",
         "products": [
