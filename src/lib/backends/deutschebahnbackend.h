@@ -30,6 +30,7 @@ public:
 private:
     [[nodiscard]] QNetworkRequest makeHafasProxyRequest(const QUrl &url) const;
     [[nodiscard]] QString hafasIdentifier() const;
+    [[nodiscard]] QString journeyLocationId(const Location &loc) const;
 };
 
 }

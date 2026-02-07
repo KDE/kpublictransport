@@ -53,7 +53,7 @@ bool DeutscheBahnBackend::needsLocationQuery(const Location &loc, AbstractBacken
         case AbstractBackend::QueryType::Departure:
             return locationIdentifier(loc).isEmpty() && !loc.hasIdentifier(hafasIdentifier());
         case AbstractBackend::QueryType::Journey:
-            return !loc.hasIdentifier(hafasIdentifier());
+            return !loc.hasIdentifier(hafasIdentifier()) && !loc.hasCoordinate();
     }
 
     return true;
@@ -193,6 +193,16 @@ bool DeutscheBahnBackend::queryStopover(const StopoverRequest &request, Stopover
     return true;
 }
 
+QString DeutscheBahnBackend::journeyLocationId(const Location &loc) const
+{
+    auto id = loc.identifier(hafasIdentifier());
+    if (!id.isEmpty()) {
+        return id;
+    }
+    return "A=2@H=5@X="_L1 + QString::number(HafasParser::coordGeo2Hafas(loc.longitude())) +
+           "@Y="_L1 + QString::number(HafasParser::coordGeo2Hafas(loc.latitude())) + '@'_L1;
+}
+
 bool DeutscheBahnBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     if ((request.modes() & JourneySection::PublicTransport) == 0) {
@@ -206,9 +216,9 @@ bool DeutscheBahnBackend::queryJourney(const JourneyRequest &request, JourneyRep
     auto dt = request.dateTime().toTimeZone(timeZone());
     dt.setTimeZone(QTimeZone::LocalTime);
     QJsonObject postObj({
-        {"abfahrtsHalt"_L1, request.from().identifier(hafasIdentifier())},
+        {"abfahrtsHalt"_L1, journeyLocationId(request.from())},
         {"anfrageZeitpunkt"_L1, dt.toString(Qt::ISODate)},
-        {"ankunftsHalt"_L1, request.to().identifier(hafasIdentifier())},
+        {"ankunftsHalt"_L1, journeyLocationId(request.to())},
         {"ankunftSuche"_L1, request.dateTimeMode() == JourneyRequest::Departure ? "ABFAHRT"_L1 : "ANKUNFT"_L1},
         {"klasse"_L1, "KLASSE_2"_L1},
         {"produktgattungen"_L1, modes},
