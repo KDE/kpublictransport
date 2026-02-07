@@ -1098,11 +1098,15 @@
                     "expectedArrivalTime": "2025-01-11T12:41:00",
                     "scheduledArrivalTime": "2025-01-11T12:21:00",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "db": "8070004",
                             "ibnr": "8070004"
                         },
-                        "name": "Frankfurt(M) Flughafen Regionalbf"
+                        "latitude": 50.051219,
+                        "longitude": 8.57125,
+                        "name": "Frankfurt(M) Flughafen Regionalbf",
+                        "region": "DE-HE"
                     }
                 },
                 "departure": {
@@ -1110,11 +1114,15 @@
                     "expectedDepartureTime": "2025-01-11T12:26:00",
                     "scheduledDepartureTime": "2025-01-11T12:06:00",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "db": "8070003",
                             "ibnr": "8070003"
                         },
-                        "name": "Frankfurt(M) Flughafen Fernbf"
+                        "latitude": 50.053169,
+                        "longitude": 8.570181,
+                        "name": "Frankfurt(M) Flughafen Fernbf",
+                        "region": "DE-HE"
                     }
                 },
                 "mode": "Walking",
@@ -2216,22 +2224,30 @@
                     "disruptionEffect": "NormalService",
                     "scheduledArrivalTime": "2025-01-11T12:04:00",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "db": "8070004",
                             "ibnr": "8070004"
                         },
-                        "name": "Frankfurt(M) Flughafen Regionalbf"
+                        "latitude": 50.051219,
+                        "longitude": 8.57125,
+                        "name": "Frankfurt(M) Flughafen Regionalbf",
+                        "region": "DE-HE"
                     }
                 },
                 "departure": {
                     "disruptionEffect": "NormalService",
                     "scheduledDepartureTime": "2025-01-11T11:49:00",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "db": "8070003",
                             "ibnr": "8070003"
                         },
-                        "name": "Frankfurt(M) Flughafen Fernbf"
+                        "latitude": 50.053169,
+                        "longitude": 8.570181,
+                        "name": "Frankfurt(M) Flughafen Fernbf",
+                        "region": "DE-HE"
                     }
                 },
                 "mode": "Walking",

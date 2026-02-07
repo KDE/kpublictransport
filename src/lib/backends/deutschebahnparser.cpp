@@ -291,10 +291,13 @@ std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journey
     journeys.reserve(journeysArray.size());
     for (const auto &journeyV : journeysArray) {
         const auto journeyObj = journeyV.toObject();
-        Journey journey;
-
-        std::vector<JourneySection> sections;
         const auto sectionArray = journeyObj.value("verbindungsAbschnitte"_L1).toArray();
+        if (sectionArray.empty()) {
+            continue;
+        }
+
+        Journey journey;
+        std::vector<JourneySection> sections;
         for (const auto &sectionV : sectionArray) {
             const auto sectionObj = sectionV.toObject();
             auto section = parseJourneySection(sectionObj);
@@ -349,6 +352,25 @@ std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journey
             route.setLine(line);
             section.setRoute(route);
             sections.push_back(std::move(section));
+        }
+
+        // propagate missing coordinates
+        for (auto it = sections.begin(); it != std::prev(sections.end()); ++it) {
+            if ((*it).to().identifier(hafasParser.locationIdentifierType()) != (*std::next(it)).from().identifier(hafasParser.locationIdentifierType())) {
+                continue;
+            }
+            // forward
+            if ((*it).to().hasCoordinate() && !(*std::next(it)).from().hasCoordinate()) {
+                auto from = (*std::next(it)).from();
+                from.setCoordinate((*it).to().latitude(), (*it).to().longitude());
+                (*std::next(it)).setFrom(from);
+            }
+            // backward
+            if (!(*it).to().hasCoordinate() && (*std::next(it)).from().hasCoordinate()) {
+                auto to = (*it).to();
+                to.setCoordinate((*std::next(it)).from().latitude(), (*std::next(it)).from().longitude());
+                (*it).setTo(to);
+            }
         }
 
         journey.setSections(std::move(sections));

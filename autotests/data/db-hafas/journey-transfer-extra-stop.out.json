@@ -6,10 +6,13 @@
                     "disruptionEffect": "NormalService",
                     "scheduledArrivalTime": "2025-01-18T14:25:00",
                     "stopPoint": {
+                        "country": "BE",
                         "identifier": {
                             "db": "8800004",
                             "ibnr": "8800004"
                         },
+                        "latitude": 50.835375,
+                        "longitude": 4.335695,
                         "name": "Bruxelles Midi"
                     }
                 },

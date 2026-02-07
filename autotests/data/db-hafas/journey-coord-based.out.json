@@ -1,0 +1,577 @@
+[
+    {
+        "sections": [
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2026-02-07T14:52:00",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "675663"
+                        },
+                        "latitude": 49.463342,
+                        "longitude": 11.084715,
+                        "name": "Maxfeld, Nürnberg",
+                        "region": "DE-BY"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2026-02-07T14:44:00",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 49.4596,
+                        "longitude": 11.08203,
+                        "name": "49.459600, 11.082030",
+                        "region": "DE-BY"
+                    }
+                },
+                "mode": "Walking"
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2026-02-07T14:58:00",
+                    "scheduledArrivalTime": "2026-02-07T14:57:00",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8070725",
+                            "db-hafas": "A=1@O=Nürnberg Hauptbahnhof@X=11082315@Y=49447009@U=80@L=8070725@",
+                            "ibnr": "8070725"
+                        },
+                        "latitude": 49.447009,
+                        "longitude": 11.082315,
+                        "name": "Nürnberg Hauptbahnhof",
+                        "region": "DE-BY",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2026-02-07T14:53:00",
+                    "route": {
+                        "direction": "Großreuth _bei Schweinau",
+                        "line": {
+                            "mode": "Metro",
+                            "name": "U 3"
+                        }
+                    },
+                    "scheduledDepartureTime": "2026-02-07T14:52:00",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "675663",
+                            "db-hafas": "A=1@O=Maxfeld, Nürnberg@X=11084715@Y=49463342@U=80@L=675663@"
+                        },
+                        "latitude": 49.463342,
+                        "longitude": 11.084715,
+                        "name": "Maxfeld, Nürnberg",
+                        "region": "DE-BY",
+                        "type": "Stop"
+                    }
+                },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1770055954#PI#0#ZI#1024000#TA#48#DA#70226#1S#677129#1T#1447#LS#310074#LT#1507#PU#80#RT#1#CA#U#ZE#3#ZB#U               3#PC#7#FR#677129#FT#1447#TO#310074#TT#1507#"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-07T14:54:00",
+                        "expectedDepartureTime": "2026-02-07T14:54:00",
+                        "scheduledArrivalTime": "2026-02-07T14:54:00",
+                        "scheduledDepartureTime": "2026-02-07T14:54:00",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8070727",
+                                "db-hafas": "A=1@O=Nürnberg Rathenauplatz@X=11089471@Y=49457005@U=80@L=8070727@",
+                                "ibnr": "8070727"
+                            },
+                            "latitude": 49.457005,
+                            "longitude": 11.089471,
+                            "name": "Nürnberg Rathenauplatz",
+                            "region": "DE-BY",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-07T14:56:00",
+                        "expectedDepartureTime": "2026-02-07T14:56:00",
+                        "scheduledArrivalTime": "2026-02-07T14:55:00",
+                        "scheduledDepartureTime": "2026-02-07T14:55:00",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8070722",
+                                "db-hafas": "A=1@O=Nürnberg Wöhrder Wiese@X=11086873@Y=49452393@U=80@L=8070722@",
+                                "ibnr": "8070722"
+                            },
+                            "latitude": 49.452393,
+                            "longitude": 11.086873,
+                            "name": "Nürnberg Wöhrder Wiese",
+                            "region": "DE-BY",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport"
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2026-02-07T15:04:00",
+                    "scheduledArrivalTime": "2026-02-07T15:03:00",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8000284",
+                            "ibnr": "8000284"
+                        },
+                        "latitude": 49.445615,
+                        "longitude": 11.082989,
+                        "name": "Nürnberg Hbf",
+                        "region": "DE-BY"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2026-02-07T14:58:00",
+                    "scheduledDepartureTime": "2026-02-07T14:57:00",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8070725",
+                            "ibnr": "8070725"
+                        },
+                        "latitude": 49.447009,
+                        "longitude": 11.082315,
+                        "name": "Nürnberg Hauptbahnhof",
+                        "region": "DE-BY"
+                    }
+                },
+                "mode": "Walking"
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2026-02-07T18:06:00",
+                    "scheduledArrivalTime": "2026-02-07T18:05:00",
+                    "scheduledPlatform": "6",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8098160",
+                            "db-hafas": "A=1@O=Berlin Hbf@X=13369549@Y=52525589@U=80@L=8098160@i=U×008031922@",
+                            "ibnr": "8098160",
+                            "uic": "8031922"
+                        },
+                        "latitude": 52.525589,
+                        "longitude": 13.369549,
+                        "name": "Berlin Hbf",
+                        "region": "DE-BE",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2026-02-07T15:07:00",
+                    "load": [
+                        {
+                            "load": "Medium",
+                            "seatingClass": "1"
+                        },
+                        {
+                            "load": "Full",
+                            "seatingClass": "2"
+                        }
+                    ],
+                    "route": {
+                        "direction": "Berlin Gesundbrunnen",
+                        "line": {
+                            "mode": "LongDistanceTrain",
+                            "name": "ICE 706",
+                            "operatorName": "DB Fernverkehr AG"
+                        }
+                    },
+                    "scheduledDepartureTime": "2026-02-07T15:04:00",
+                    "scheduledPlatform": "7",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8000284",
+                            "db-hafas": "A=1@O=Nürnberg Hbf@X=11082989@Y=49445615@U=80@L=8000284@i=U×008022193@",
+                            "ibnr": "8000284",
+                            "uic": "8022193"
+                        },
+                        "latitude": 49.445615,
+                        "longitude": 11.082989,
+                        "name": "Nürnberg Hbf",
+                        "region": "DE-BY",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordrestaurant",
+                                "type": "Restaurant"
+                            }
+                        ]
+                    }
+                },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1770055954#PI#0#ZI#223424#TA#0#DA#70226#1S#8000261#1T#1312#LS#8011102#LT#1813#PU#80#RT#1#CA#ICE#ZE#706#ZB#ICE           706#PC#0#FR#8000261#FT#1312#TO#8011102#TT#1813#"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-07T15:39:00",
+                        "expectedDepartureTime": "2026-02-07T15:41:00",
+                        "load": [
+                            {
+                                "load": "Medium",
+                                "seatingClass": "1"
+                            },
+                            {
+                                "load": "Full",
+                                "seatingClass": "2"
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-07T15:38:00",
+                        "scheduledDepartureTime": "2026-02-07T15:40:00",
+                        "scheduledPlatform": "6",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8000025",
+                                "db-hafas": "A=1@O=Bamberg@X=10899493@Y=49900757@U=80@L=8000025@i=U×008022090@",
+                                "ibnr": "8000025",
+                                "uic": "8022090"
+                            },
+                            "latitude": 49.900757,
+                            "longitude": 10.899493,
+                            "name": "Bamberg",
+                            "region": "DE-BY",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-07T16:21:00",
+                        "expectedDepartureTime": "2026-02-07T16:23:00",
+                        "load": [
+                            {
+                                "load": "Medium",
+                                "seatingClass": "1"
+                            },
+                            {
+                                "load": "Full",
+                                "seatingClass": "2"
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-07T16:21:00",
+                        "scheduledDepartureTime": "2026-02-07T16:23:00",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8010101",
+                                "db-hafas": "A=1@O=Erfurt Hbf@X=11037989@Y=50972352@U=80@L=8010101@i=U×008016043@",
+                                "ibnr": "8010101",
+                                "uic": "8016043"
+                            },
+                            "latitude": 50.972352,
+                            "longitude": 11.037989,
+                            "name": "Erfurt Hbf",
+                            "region": "DE-TH",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-07T16:53:00",
+                        "expectedDepartureTime": "2026-02-07T16:55:00",
+                        "load": [
+                            {
+                                "load": "Medium",
+                                "seatingClass": "1"
+                            },
+                            {
+                                "load": "High",
+                                "seatingClass": "2"
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-07T16:53:00",
+                        "scheduledDepartureTime": "2026-02-07T16:55:00",
+                        "scheduledPlatform": "7",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8010159",
+                                "db-hafas": "A=1@O=Halle(Saale)Hbf@X=11987088@Y=51477510@U=80@L=8010159@i=U×008023002@",
+                                "ibnr": "8010159",
+                                "uic": "8023002"
+                            },
+                            "latitude": 51.47751,
+                            "longitude": 11.987088,
+                            "name": "Halle(Saale)Hbf",
+                            "region": "DE-ST",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-07T17:58:00",
+                        "expectedDepartureTime": "2026-02-07T18:00:00",
+                        "notes": [
+                            "Exit only, no entry allowed"
+                        ],
+                        "pickupType": "NotAllowed",
+                        "scheduledArrivalTime": "2026-02-07T17:58:00",
+                        "scheduledDepartureTime": "2026-02-07T18:00:00",
+                        "scheduledPlatform": "6",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8011113",
+                                "db-hafas": "A=1@O=Berlin Südkreuz@X=13365315@Y=52475043@U=80@L=8011113@i=U×008065971@",
+                                "ibnr": "8011113",
+                                "uic": "8065971"
+                            },
+                            "latitude": 52.475043,
+                            "longitude": 13.365315,
+                            "name": "Berlin Südkreuz",
+                            "region": "DE-BE",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Seats can no longer be reserved"
+                ]
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2026-02-07T18:14:00",
+                    "scheduledArrivalTime": "2026-02-07T18:13:00",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "730749"
+                        },
+                        "latitude": 52.526461,
+                        "longitude": 13.369378,
+                        "name": "Berlin Hauptbahnhof (S+U), Berlin",
+                        "region": "DE-BE"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2026-02-07T18:06:00",
+                    "scheduledDepartureTime": "2026-02-07T18:05:00",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8098160",
+                            "ibnr": "8098160"
+                        },
+                        "latitude": 52.525589,
+                        "longitude": 13.369549,
+                        "name": "Berlin Hbf",
+                        "region": "DE-BE"
+                    }
+                },
+                "mode": "Walking"
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2026-02-07T18:22:00",
+                    "scheduledPlatform": "2 (U5)",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "732533",
+                            "db-hafas": "A=1@O=Alexanderplatz Bahnhof (S+U), Berlin@X=13412661@Y=52521023@U=80@L=732533@"
+                        },
+                        "latitude": 52.521023,
+                        "longitude": 13.412661,
+                        "name": "Alexanderplatz Bahnhof (S+U), Berlin",
+                        "region": "DE-BE",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Kaulsdorf-Nord",
+                        "line": {
+                            "mode": "Metro",
+                            "name": "U 5"
+                        }
+                    },
+                    "scheduledDepartureTime": "2026-02-07T18:13:00",
+                    "scheduledPlatform": "2 (U5)",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "730749",
+                            "db-hafas": "A=1@O=Berlin Hauptbahnhof (S+U), Berlin@X=13369378@Y=52526461@U=80@L=730749@"
+                        },
+                        "latitude": 52.526461,
+                        "longitude": 13.369378,
+                        "name": "Berlin Hauptbahnhof (S+U), Berlin",
+                        "region": "DE-BE",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "Number of bicycles conveyed limited",
+                                "type": "BikeStorage"
+                            }
+                        ]
+                    }
+                },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1770055954#PI#0#ZI#1125690#TA#1#DA#70226#1S#730749#1T#1813#LS#733244#LT#1846#PU#80#RT#1#CA#U#ZE#5#ZB#U               5#PC#7#FR#730749#FT#1813#TO#733244#TT#1846#"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-02-07T18:15:00",
+                        "scheduledDepartureTime": "2026-02-07T18:15:00",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "727274",
+                                "db-hafas": "A=1@O=Bundestag (U), Berlin@X=13372955@Y=52520106@U=80@L=727274@"
+                            },
+                            "latitude": 52.520106,
+                            "longitude": 13.372955,
+                            "name": "Bundestag (U), Berlin",
+                            "region": "DE-BE",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-02-07T18:16:00",
+                        "scheduledDepartureTime": "2026-02-07T18:16:00",
+                        "scheduledPlatform": "2 (U5)",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "732553",
+                                "db-hafas": "A=1@O=Brandenburger Tor (S+U), Berlin@X=13382475@Y=52516483@U=80@L=732553@"
+                            },
+                            "latitude": 52.516483,
+                            "longitude": 13.382475,
+                            "name": "Brandenburger Tor (S+U), Berlin",
+                            "region": "DE-BE",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-02-07T18:17:00",
+                        "scheduledDepartureTime": "2026-02-07T18:17:00",
+                        "scheduledPlatform": "2 (U5)",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "732590",
+                                "db-hafas": "A=1@O=Unter den Linden (U), Berlin@X=13388875@Y=52516996@U=80@L=732590@"
+                            },
+                            "latitude": 52.516996,
+                            "longitude": 13.388875,
+                            "name": "Unter den Linden (U), Berlin",
+                            "region": "DE-BE",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-02-07T18:19:00",
+                        "scheduledDepartureTime": "2026-02-07T18:19:00",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "732613",
+                                "db-hafas": "A=1@O=Museumsinsel (U), Berlin@X=13399195@Y=52517391@U=80@L=732613@"
+                            },
+                            "latitude": 52.517391,
+                            "longitude": 13.399195,
+                            "name": "Museumsinsel (U), Berlin",
+                            "region": "DE-BE",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-02-07T18:20:00",
+                        "scheduledDepartureTime": "2026-02-07T18:20:00",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "732572",
+                                "db-hafas": "A=1@O=Rotes Rathaus (U), Berlin@X=13409209@Y=52517032@U=80@L=732572@i=U×008099572@",
+                                "uic": "8099572"
+                            },
+                            "latitude": 52.517032,
+                            "longitude": 13.409209,
+                            "name": "Rotes Rathaus (U), Berlin",
+                            "region": "DE-BE",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Behindertengerechtes Fahrzeug"
+                ]
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2026-02-07T18:29:00",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 52.52068,
+                        "longitude": 13.41644,
+                        "name": "52.520680, 13.416440",
+                        "region": "DE-BE"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2026-02-07T18:22:00",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "732533"
+                        },
+                        "latitude": 52.521023,
+                        "longitude": 13.412661,
+                        "name": "Alexanderplatz Bahnhof (S+U), Berlin",
+                        "region": "DE-BE"
+                    }
+                },
+                "mode": "Walking"
+            }
+        ]
+    }
+]
