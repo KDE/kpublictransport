@@ -64,6 +64,10 @@ public:
 
     static HafasRemarkData lookupRemarkData(QStringView type, QStringView code);
 
+    /** Coordinate conversion */
+    [[nodiscard]] static double coordHafas2Geo(int hafasCoord) { return hafasCoord / 1000000.0; }
+    [[nodiscard]] static int coordGeo2Hafas(double geoCoord) { return (int)(geoCoord * 1000000.0); }
+
 protected:
     HafasParser();
     ~HafasParser();

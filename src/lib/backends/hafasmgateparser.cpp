@@ -267,7 +267,7 @@ std::vector<Location> HafasMgateParser::parseLocations(const QJsonArray &locL, c
         loc.setType(locObj.value(QLatin1String("type")).toString() == QLatin1Char('S') ? Location::Stop : Location::Place);
         setLocationIdentifier(loc, locObj.value(QLatin1String("extId")).toString());
         const auto coordObj = locObj.value(QLatin1String("crd")).toObject();
-        loc.setCoordinate(coordObj.value(QLatin1String("y")).toDouble() / 1000000.0, coordObj.value(QLatin1String("x")).toDouble() / 1000000.0);
+        loc.setCoordinate(coordHafas2Geo(coordObj.value("y"_L1).toInt()), coordHafas2Geo(coordObj.value("x"_L1).toInt()));
 
         const auto gidL = locObj.value(QLatin1String("gidL")).toArray();
         for (const auto &gidV : gidL) {

@@ -133,8 +133,8 @@ bool HafasQueryBackend::queryLocationByCoordinate(const LocationRequest &request
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("performLocating"), QStringLiteral("2"));
     query.addQueryItem(QStringLiteral("tpl"), QStringLiteral("stop2json"));
-    query.addQueryItem(QStringLiteral("look_x"), QString::number((int)(request.longitude() * 1000000)));
-    query.addQueryItem(QStringLiteral("look_y"), QString::number((int)(request.latitude() * 1000000)));
+    query.addQueryItem(QStringLiteral("look_x"), QString::number(HafasParser::coordGeo2Hafas(request.longitude())));
+    query.addQueryItem(QStringLiteral("look_y"), QString::number(HafasParser::coordGeo2Hafas(request.latitude())));
     query.addQueryItem(QStringLiteral("look_maxdist"), QString::number(std::max(1, request.maximumDistance())));
     query.addQueryItem(QStringLiteral("look_maxno"), QString::number(std::max(1, request.maximumResults())));
     url.setQuery(query);
@@ -217,7 +217,7 @@ QString HafasQueryBackend::locationId(const Location &loc) const
     }
 
     if (loc.hasCoordinate()) {
-        return QLatin1String("A=1@X=") + QString::number((int)(loc.longitude() * 1000000)) + QLatin1String("@Y=") + QString::number((int)(loc.latitude() * 1000000));
+        return QLatin1String("A=1@X=") + QString::number(HafasParser::coordGeo2Hafas(loc.longitude())) + QLatin1String("@Y=") + QString::number(HafasParser::coordGeo2Hafas(loc.latitude()));
     }
 
     if (!loc.name().isEmpty()) {
