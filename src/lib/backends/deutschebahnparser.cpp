@@ -272,7 +272,17 @@ static void parseVehicleFeatures(const QJsonArray &trainAttributes, JourneySecti
         section.addNote(value);
     }
     section.setFeatures(std::move(features));
+}
 
+static void parseCoordinateName(Location &loc, const HafasMgateParser &hafasParser)
+{
+    if (!loc.identifier(hafasParser.locationIdentifierType()).isEmpty()) {
+        return;
+    }
+    static const QRegularExpression rx(uR"(^(-?\d+\.\d+), (-?\d+\.\d+)$)"_s);
+    if (const auto match = rx.match(loc.name()); match.hasMatch()) {
+        loc.setCoordinate(match.capturedView(1).toDouble(), match.capturedView(2).toDouble());
+    }
 }
 
 std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journeysArray, const HafasMgateParser &hafasParser)
@@ -292,11 +302,13 @@ std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journey
             Location from;
             from.setName(sectionObj.value("abfahrtsOrt"_L1).toString());
             hafasParser.setLocationIdentifier(from, sectionObj.value("abfahrtsOrtExtId"_L1).toString());
+            parseCoordinateName(from, hafasParser);
             section.setFrom(from);
 
             Location to;
             to.setName(sectionObj.value("ankunftsOrt"_L1).toString());
             hafasParser.setLocationIdentifier(to, sectionObj.value("ankunftsOrtExtId"_L1).toString());
+            parseCoordinateName(to, hafasParser);
             section.setTo(to);
 
             const auto routeObj = sectionObj.value("verkehrsmittel"_L1).toObject();
