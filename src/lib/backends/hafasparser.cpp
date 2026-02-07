@@ -100,9 +100,9 @@ Location HafasParser::fromLocationId(const QString &locId) const
         if (entry.startsWith("O="_L1)) {
             loc.setName(entry.mid(2).toString());
         } else if (entry.startsWith("X="_L1)) {
-            loc.setLongitude(entry.mid(2).toInt() / 1000000.0);
+            loc.setLongitude(coordHafas2Geo(entry.mid(2).toInt()));
         } else if (entry.startsWith("Y="_L1)) {
-            loc.setLatitude(entry.mid(2).toInt() / 1000000.0);
+            loc.setLatitude(coordHafas2Geo(entry.mid(2).toInt()));
         } else if (entry.startsWith("L="_L1)) {
             setLocationIdentifier(loc, entry.mid(2).toString());
         } else if (entry.startsWith(u"i=U×00")) {

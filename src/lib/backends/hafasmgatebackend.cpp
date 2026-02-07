@@ -93,9 +93,10 @@ QJsonObject HafasMgateBackend::locationToJson(const Location &loc) const
     }
 
     else if (loc.hasCoordinate()) {
-        QJsonObject crd;
-        crd.insert(QLatin1String("y"), (int)(loc.latitude() * 1000000));
-        crd.insert(QLatin1String("x"), (int)(loc.longitude() * 1000000));
+        QJsonObject crd {
+            {"y"_L1, HafasParser::coordGeo2Hafas(loc.latitude())},
+            {"x"_L1, HafasParser::coordGeo2Hafas(loc.longitude())},
+        };
         obj.insert(QLatin1String("crd"), crd);
         obj.insert(QLatin1String("type"), QLatin1String("C")); // 'C' == coordinate
     }
@@ -288,9 +289,10 @@ bool HafasMgateBackend::queryLocation(const LocationRequest &req, LocationReply 
 {
     QJsonObject methodObj;
     if (req.hasCoordinate()) {
-        QJsonObject coord;
-        coord.insert(QLatin1String("x"), (int)(req.longitude() * 1000000));
-        coord.insert(QLatin1String("y"), (int)(req.latitude() * 1000000));
+        QJsonObject coord {
+            {"x"_L1, HafasParser::coordGeo2Hafas(req.longitude())},
+            {"y"_L1, HafasParser::coordGeo2Hafas(req.latitude())},
+        };
         QJsonObject ring;
         ring.insert(QLatin1String("cCrd"), coord);
         ring.insert(QLatin1String("maxDist"), std::max(1, req.maximumDistance()));
