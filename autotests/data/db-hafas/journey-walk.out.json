@@ -220,22 +220,30 @@
                     "disruptionEffect": "NormalService",
                     "scheduledArrivalTime": "2024-12-19T17:40:00",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "db": "8073368",
                             "ibnr": "8073368"
                         },
-                        "name": "Köln Messe/Deutz Gl.11-12"
+                        "latitude": 50.941717,
+                        "longitude": 6.974065,
+                        "name": "Köln Messe/Deutz Gl.11-12",
+                        "region": "DE-NW"
                     }
                 },
                 "departure": {
                     "disruptionEffect": "NormalService",
                     "scheduledDepartureTime": "2024-12-19T17:33:00",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "db": "8003368",
                             "ibnr": "8003368"
                         },
-                        "name": "Köln Messe/Deutz"
+                        "latitude": 50.940872,
+                        "longitude": 6.975,
+                        "name": "Köln Messe/Deutz",
+                        "region": "DE-NW"
                     }
                 },
                 "mode": "Walking"
@@ -427,11 +435,15 @@
                     "expectedArrivalTime": "2024-12-19T17:51:00",
                     "scheduledArrivalTime": "2024-12-19T17:49:00",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "db": "8073368",
                             "ibnr": "8073368"
                         },
-                        "name": "Köln Messe/Deutz Gl.11-12"
+                        "latitude": 50.941717,
+                        "longitude": 6.974065,
+                        "name": "Köln Messe/Deutz Gl.11-12",
+                        "region": "DE-NW"
                     }
                 },
                 "departure": {
@@ -439,11 +451,15 @@
                     "expectedDepartureTime": "2024-12-19T17:44:00",
                     "scheduledDepartureTime": "2024-12-19T17:42:00",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "db": "8003368",
                             "ibnr": "8003368"
                         },
-                        "name": "Köln Messe/Deutz"
+                        "latitude": 50.940872,
+                        "longitude": 6.975,
+                        "name": "Köln Messe/Deutz",
+                        "region": "DE-NW"
                     }
                 },
                 "mode": "Walking"
