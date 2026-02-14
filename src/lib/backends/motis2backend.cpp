@@ -250,6 +250,7 @@ struct {
     { Line::RapidTransit, "SUBURBAN" },
     { Line::Shuttle, "BUS" },
     { Line::Shuttle, "COACH" },
+    { Line::Taxi, "ODM" },
     { Line::Taxi, "FLEXIBLE" },
     { Line::Taxi, "CAR_HAILING" },
     { Line::Train, "RAIL" },
