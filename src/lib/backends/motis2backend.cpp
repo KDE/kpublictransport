@@ -441,11 +441,13 @@ QNetworkReply* Motis2Backend::makeRequest(const Request &req, QObject *parent, Q
     const auto localeLangs = QLocale().uiLanguages();
     for (const auto &l : localeLangs) {
         const auto baseLang = QStringView(l).left(2);
-        if (!langs.contains(baseLang)) {
+        if (baseLang.size() == 2 && !langs.contains(baseLang)) {
             langs.push_back(baseLang.toString());
         }
     }
-    query.addQueryItem(u"language"_s, langs.join(','_L1));
+    if (!langs.empty()) {
+        query.addQueryItem(u"language"_s, langs.join(','_L1));
+    }
 
     auto url = m_endpoint;
     url.setPath("/api/"_L1 + command);
