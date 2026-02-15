@@ -131,6 +131,26 @@ void parseAlerts(T &elem, const QJsonArray &alerts)
     }
 }
 
+static void parseStopModes(Location &loc, const QJsonArray &modes)
+{
+    StopInformation stopInfo;
+    for (const auto &mode : modes) {
+        const auto it = std::ranges::find_if(mode_map, [&mode](const auto &m) {
+            return QLatin1StringView(m.name) == mode;
+        });
+        if (it == std::end(mode_map)) {
+            qWarning() << "Unknown mode:" << mode;
+            continue;
+        }
+        Line l;
+        l.setMode((*it).lineMode);
+        stopInfo.addLine(l);
+    }
+    if (!stopInfo.lines().empty()) {
+        loc.setData(stopInfo);
+    }
+}
+
 Stopover Motis2Parser::parsePlace(const QJsonObject &obj, bool hasRealTime) const
 {
     Location l;
@@ -146,6 +166,9 @@ Stopover Motis2Parser::parsePlace(const QJsonObject &obj, bool hasRealTime) cons
             l.setType(m.type);
             break;
         }
+    }
+    if (l.type() == Location::Stop) {
+        parseStopModes(l, obj.value("modes"_L1).toArray());
     }
 
     Stopover s;
@@ -505,23 +528,7 @@ std::vector<Location> Motis2Parser::parseLocations(const QByteArray &data) const
         parseTimeZone(locObj, l);
 
         if (l.type() == Location::Stop) {
-            StopInformation stopInfo;
-            const auto modes = locObj.value("modes"_L1).toArray();
-            for (const auto &mode : modes) {
-                const auto it = std::ranges::find_if(mode_map, [&mode](const auto &m) {
-                    return QLatin1StringView(m.name) == mode;
-                });
-                if (it == std::end(mode_map)) {
-                    qWarning() << "Unknown mode:" << mode;
-                    continue;
-                }
-                Line l;
-                l.setMode((*it).lineMode);
-                stopInfo.addLine(l);
-            }
-            if (!stopInfo.lines().empty()) {
-                l.setData(stopInfo);
-            }
+            parseStopModes(l, locObj.value("modes"_L1).toArray());
         }
 
         result.push_back(std::move(l));
