@@ -2,39 +2,40 @@
 # This file is distributed under the same license as the kpublictransport package.
 #
 # SPDX-FileCopyrightText: 2024, 2025 Olesya Gerasimenko <translation-team@basealt.ru>
+# SPDX-FileCopyrightText: 2026 Alexander Yavorskiy <kekcuha@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-01-23 02:40+0000\n"
-"PO-Revision-Date: 2025-03-18 10:05+0300\n"
-"Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
-"Language-Team: Basealt Translation Team\n"
+"PO-Revision-Date: 2026-02-17 17:43+0200\n"
+"Last-Translator: Alexander Yavorskiy <kekcuha@gmail.com>\n"
+"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 25.12.2\n"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
 msgctxt "train seating class"
 msgid "First class"
-msgstr ""
+msgstr "Первый класс"
 
 #: lib/datatypes/classutil.cpp:32
 #, kde-format
 msgctxt "train seating class"
 msgid "Second class"
-msgstr ""
+msgstr "Второй класс"
 
 #: lib/datatypes/classutil.cpp:35
 #, kde-format
 msgctxt "train seating class"
 msgid "First/second class"
-msgstr ""
+msgstr "Первый/второй класс"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
@@ -118,7 +119,7 @@ msgstr "Розетки"
 #, kde-format
 msgctxt "train coach feature"
 msgid "Sleeper Compartment"
-msgstr ""
+msgstr "Ночное купе"
 
 #: lib/datatypes/individualtransport.cpp:73
 #, kde-format
@@ -171,135 +172,125 @@ msgstr "Арендный автомобиль"
 #, kde-format
 msgctxt "train coach type"
 msgid "Sleeping car"
-msgstr ""
+msgstr "Спальный вагон"
 
 #: lib/datatypes/vehicle.cpp:79
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented car"
+#, kde-format
 msgctxt "train coach type"
 msgid "Couchette car"
-msgstr "Арендный автомобиль"
+msgstr "Вагон с местами для лежания"
 
 #: lib/datatypes/vehicle.cpp:81
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented car"
+#, kde-format
 msgctxt "train coach type"
 msgid "Restaurant car"
-msgstr "Арендный автомобиль"
+msgstr "Вагон-ресторан"
 
 #: lib/datatypes/vehicle.cpp:83
 #, kde-format
 msgctxt "train coach type"
 msgid "Car transport car"
-msgstr ""
+msgstr "Вагон для перевозки автомобилей"
 
 #: quick/BackendPage.qml:24
 #, kde-format
 msgid "Check for Updates"
-msgstr ""
+msgstr "Проверить обновления"
 
 #: quick/BackendPage.qml:38
 #, kde-format
 msgid "Already up to date."
-msgstr ""
+msgstr "Уже обновлено."
 
 #: quick/BackendPage.qml:41
 #, kde-format
 msgid "Update successful."
-msgstr ""
+msgstr "Обновление завершено успешно."
 
 #: quick/BackendPage.qml:47
 #, kde-format
 msgid "Update failed."
-msgstr ""
+msgstr "Ошибка обновления."
 
 #: quick/BackendPage.qml:53
 #, kde-format
 msgid "Public Transport Information Sources"
-msgstr ""
+msgstr "Источники информации об общественном транспорте"
 
 #: quick/BackendPage.qml:130 quick/BackendPage.qml:142
 #, kde-format
 msgid "Global"
-msgstr ""
+msgstr "Общая"
 
 #: quick/BackendPage.qml:132
 #, kde-format
 msgid "🇪🇺 European Union"
-msgstr ""
+msgstr "🇪🇺 Европейский союз"
 
 #: quick/BackendPage.qml:135
 #, kde-format
 msgctxt "emoji flag, country name"
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: quick/BackendPage.qml:144
 #, kde-format
 msgid "European Union"
-msgstr ""
+msgstr "Европейский союз"
 
 #: quick/ExpectedTimeLabel.qml:36
 #, kde-format
 msgctxt "a train/bus journey canceled by its operator"
 msgid "Canceled"
-msgstr ""
+msgstr "Отменён"
 
 #: quick/ExpectedTimeLabel.qml:38
 #, kde-format
 msgctxt "duration of the delay"
 msgid "Delayed %1"
-msgstr ""
+msgstr "Задержка %1"
 
 #: quick/ExpectedTimeLabel.qml:40
 #, kde-format
 msgctxt "earlier arrival/departure"
 msgid "%1 earlier"
-msgstr ""
+msgstr "на %1 раньше"
 
 #: quick/ExpectedTimeLabel.qml:42
 #, kde-format
 msgctxt "@info"
 msgid "On time"
-msgstr ""
+msgstr "По расписанию"
 
 #: quick/FeatureDelegate.qml:39
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Availability unknown"
-msgstr "%1 (недоступно)"
+msgstr "Доступность неизвестна"
 
 #: quick/FeatureDelegate.qml:41
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Not available"
-msgstr "%1 (недоступно)"
+msgstr "Недоступно"
 
 #: quick/FeatureDelegate.qml:43
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "Currently not available"
-msgstr "%1 (недоступно)"
+msgstr "Сейчас недоступно"
 
 #: quick/FeatureDelegate.qml:45
-#, fuzzy, kde-format
-#| msgid "%2 (one space)"
-#| msgid_plural "%2 (%1 spaces)"
+#, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "One space"
 msgid_plural "%1 spaces"
-msgstr[0] "%2 (%1 место)"
-msgstr[1] "%2 (%1 места)"
-msgstr[2] "%2 (%1 мест)"
-msgstr[3] "%2 (одно место)"
+msgstr[0] "%1 место"
+msgstr[1] "%1 места"
+msgstr[2] "%1 мест"
+msgstr[3] "Одно место"
 
 #: quick/FeatureIcon.qml:58
-#, fuzzy, kde-format
-#| msgid "%1 (not available)"
+#, kde-format
 msgid "%1 (availability unknown)"
-msgstr "%1 (недоступно)"
+msgstr "%1 (доступность неизвестна)"
 
 #: quick/FeatureIcon.qml:60
 #, kde-format
@@ -307,9 +298,7 @@ msgid "%1 (not available)"
 msgstr "%1 (недоступно)"
 
 #: quick/FeatureIcon.qml:62
-#, fuzzy, kde-format
-#| msgid "%2 (one space)"
-#| msgid_plural "%2 (%1 spaces)"
+#, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
@@ -345,155 +334,151 @@ msgstr "Полная занятость"
 #: quick/private/CountryComboBox.qml:45
 #, kde-format
 msgid "Select country"
-msgstr ""
+msgstr "Выбор страны"
 
 #: quick/private/CurrentLocationDelegate.qml:43
 #, kde-format
 msgid "Current Location"
-msgstr ""
+msgstr "Текущее местоположение"
 
 #: quick/private/CurrentLocationDelegate.qml:100
 #, kde-format
 msgid "Determining Location…"
-msgstr ""
+msgstr "Определение местоположения…"
 
 #: quick/private/CurrentLocationDelegate.qml:102
 #, kde-format
 msgid "Waiting for more accurate location…"
-msgstr ""
+msgstr "Ожидание уточнения местоположения…"
 
 #: quick/private/CurrentLocationDelegate.qml:105
 #, kde-format
 msgid "Looking up address…"
-msgstr ""
+msgstr "Поиск адреса…"
 
 #: quick/private/CurrentLocationDelegate.qml:174
 #, kde-format
 msgid "Failed to determine accurate enough location."
-msgstr ""
+msgstr "Не удалось определить местоположение с достаточной точностью."
 
 #: quick/private/CurrentLocationDelegate.qml:176
 #, kde-format
 msgid "Failed to determine location."
-msgstr ""
+msgstr "Не удалось определить местоположение."
 
 #: quick/StopoverInformationView.qml:43
-#, fuzzy, kde-format
-#| msgctxt "train coach feature"
-#| msgid "Information point"
+#, kde-format
 msgid "Information"
-msgstr "Информационная стойка"
+msgstr "Информация"
 
 #: quick/StopoverInformationView.qml:61
-#, fuzzy, kde-format
-#| msgctxt "vehicle occupancy"
-#| msgid "Low occupancy"
+#, kde-format
 msgid "Occupancy"
-msgstr "Низкая занятность"
+msgstr "Заполненность"
 
 #: quick/StopoverInformationView.qml:76
 #, kde-format
 msgid "Amenities"
-msgstr ""
+msgstr "Удобства"
 
 #: quick/StopoverInformationView.qml:91
 #, kde-format
 msgctxt "operator/provider of a rail/bus service"
 msgid "Operator"
-msgstr ""
+msgstr "Перевозчик"
 
 #: quick/StopPickerPage.qml:48
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Clear History"
-msgstr ""
+msgstr "Очистка журнала"
 
 #: quick/StopPickerPage.qml:49
 #, kde-format
 msgctxt "@info"
 msgid "Do you really want to remove all previously searched locations?"
-msgstr ""
+msgstr "Удалить все ранее найденные местоположения?"
 
 #: quick/StopPickerPage.qml:53
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
-msgstr ""
+msgstr "Удалить"
 
 #: quick/StopPickerPage.qml:68
 #, kde-format
 msgctxt "@action"
 msgid "Clear history"
-msgstr ""
+msgstr "Очистить историю"
 
 #: quick/StopPickerPage.qml:77
 #, kde-format
 msgctxt "@action"
 msgid "Sort by name"
-msgstr ""
+msgstr "Сортировать по названию"
 
 #: quick/StopPickerPage.qml:85
 #, kde-format
 msgctxt "@action"
 msgid "Most recently used"
-msgstr ""
+msgstr "Последние использованные"
 
 #: quick/StopPickerPage.qml:92
 #, kde-format
 msgctxt "@action"
 msgid "Most often used"
-msgstr ""
+msgstr "Наиболее часто используемые"
 
 #: quick/StopPickerPage.qml:186
 #, kde-format
 msgctxt "locality, region, country"
 msgid "%1, %2, %3"
-msgstr ""
+msgstr "%3, %2, %1"
 
 #: quick/StopPickerPage.qml:191
 #, kde-format
 msgctxt "locality, country"
 msgid "%1, %2"
-msgstr ""
+msgstr "%2, %1"
 
 #: quick/StopPickerPage.qml:195
 #, kde-format
 msgctxt "region, country"
 msgid "%1, %2"
-msgstr ""
+msgstr "%2, %1"
 
 #: quick/StopPickerPage.qml:218
 #, kde-format
 msgctxt "location name, locality, region, country"
 msgid "%1, %2, %3, %4"
-msgstr ""
+msgstr "%4, %3, %2, %1"
 
 #: quick/StopPickerPage.qml:224
 #, kde-format
 msgctxt "location name, locality, country"
 msgid "%1, %2, %3"
-msgstr ""
+msgstr "%3, %2, %1"
 
 #: quick/StopPickerPage.qml:229
 #, kde-format
 msgctxt "location name, region, country"
 msgid "%1, %2, %3"
-msgstr ""
+msgstr "%3, %2, %1"
 
 #: quick/StopPickerPage.qml:234
 #, kde-format
 msgctxt "location name, country"
 msgid "%1, %2"
-msgstr ""
+msgstr "%2, %1"
 
 #: quick/StopPickerPage.qml:265
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove history entry"
-msgstr ""
+msgstr "Удалить запись из истории"
 
 #: quick/StopPickerPage.qml:323
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "No locations found"
-msgstr ""
+msgstr "Местоположения не найдены"
