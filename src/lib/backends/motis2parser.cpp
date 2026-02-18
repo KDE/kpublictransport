@@ -62,42 +62,38 @@ struct {
     JourneySection::Mode jnyMode;
     IndividualTransport::Mode ivMode;
     IndividualTransport::Qualifier ivQualifier;
-    RentalVehicle::VehicleType rentalType;
 } static constexpr const mode_map[] = {
-    { "WALK", Line::Mode::Unknown, JourneySection::Walking, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "BIKE", Line::Mode::Unknown, JourneySection::IndividualTransport, IndividualTransport::Bike, IndividualTransport::None, RentalVehicle::Unknown },
-    { "CAR", Line::Mode::Unknown, JourneySection::IndividualTransport, IndividualTransport::Car, IndividualTransport::None, RentalVehicle::Unknown },
-    { "BIKE_RENTAL", Line::Mode::Unknown, JourneySection::RentedVehicle, IndividualTransport::Bike, IndividualTransport::Rent, RentalVehicle::Bicycle },
-    { "BIKE_TO_PARK", Line::Mode::Unknown, JourneySection::IndividualTransport, IndividualTransport::Bike, IndividualTransport::Park, RentalVehicle::Unknown },
-    { "CAR_TO_PARK", Line::Mode::Unknown, JourneySection::IndividualTransport, IndividualTransport::Car, IndividualTransport::Park, RentalVehicle::Unknown },
-    { "CAR_HAILING", Line::Mode::Taxi, JourneySection::PublicTransport, IndividualTransport::Car, IndividualTransport::None, RentalVehicle::Unknown },
-    { "CAR_SHARING", Line::Mode::Unknown, JourneySection::IndividualTransport, IndividualTransport::Car, IndividualTransport::None, RentalVehicle::Car }, // TODO not properly modelled yet
-    { "CAR_PICKUP", Line::Mode::Unknown, JourneySection::IndividualTransport, IndividualTransport::Car, IndividualTransport::Pickup, RentalVehicle::Unknown },
-    { "CAR_RENTAL", Line::Mode::Unknown, JourneySection::RentedVehicle, IndividualTransport::Car, IndividualTransport::Rent, RentalVehicle::Car },
-    { "FLEXIBLE", Line::Mode::Taxi, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown }, // TODO not properly modelled yet
-    { "SCOOTER_RENTAL", Line::Mode::Unknown, JourneySection::RentedVehicle, IndividualTransport::Bike, IndividualTransport::Rent, RentalVehicle::ElectricKickScooter },
-    { "TRANSIT", Line::Mode::Unknown, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "TRAM", Line::Mode::Tramway, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "SUBWAY", Line::Mode::Metro, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "FERRY", Line::Mode::Ferry, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "AIRPLANE", Line::Mode::Air, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "BUS", Line::Mode::Bus, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "COACH", Line::Mode::Coach, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "RAIL", Line::Mode::Train, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "METRO", Line::Mode::RapidTransit, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "HIGHSPEED_RAIL", Line::Mode::LongDistanceTrain, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "LONG_DISTANCE", Line::Mode::LongDistanceTrain, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "NIGHT_RAIL", Line::Mode::LongDistanceTrain, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "REGIONAL_FAST_RAIL", Line::Mode::LocalTrain, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "REGIONAL_RAIL", Line::Mode::LocalTrain, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "CABLE_CAR", Line::Mode::Tramway, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "FUNICULAR", Line::Mode::Funicular, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "AREAL_LIFT", Line::Mode::AerialLift, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "OTHER", Line::Mode::Unknown, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "AERIAL_LIFT", Line::Mode::RapidTransit, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "SUBURBAN", Line::Mode::RapidTransit, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
-    { "RIDE_SHARING", Line::Mode::RideShare, JourneySection::PublicTransport, IndividualTransport::Car, IndividualTransport::None, RentalVehicle::Car },
-    { "ODM", Line::Mode::Taxi, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None, RentalVehicle::Unknown },
+    { "WALK", Line::Mode::Unknown, JourneySection::Walking, IndividualTransport::Walk, IndividualTransport::None },
+    { "BIKE", Line::Mode::Unknown, JourneySection::IndividualTransport, IndividualTransport::Bike, IndividualTransport::None },
+    { "CAR", Line::Mode::Unknown, JourneySection::IndividualTransport, IndividualTransport::Car, IndividualTransport::None },
+    { "BIKE_TO_PARK", Line::Mode::Unknown, JourneySection::IndividualTransport, IndividualTransport::Bike, IndividualTransport::Park },
+    { "CAR_TO_PARK", Line::Mode::Unknown, JourneySection::IndividualTransport, IndividualTransport::Car, IndividualTransport::Park },
+    { "CAR_HAILING", Line::Mode::Taxi, JourneySection::PublicTransport, IndividualTransport::Car, IndividualTransport::None },
+    { "CAR_PICKUP", Line::Mode::Unknown, JourneySection::IndividualTransport, IndividualTransport::Car, IndividualTransport::Pickup },
+    { "FLEXIBLE", Line::Mode::Taxi, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None }, // TODO not properly modelled yet
+    { "TRANSIT", Line::Mode::Unknown, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "TRAM", Line::Mode::Tramway, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "SUBWAY", Line::Mode::Metro, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "FERRY", Line::Mode::Ferry, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "AIRPLANE", Line::Mode::Air, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "BUS", Line::Mode::Bus, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "COACH", Line::Mode::Coach, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "RAIL", Line::Mode::Train, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "METRO", Line::Mode::RapidTransit, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "HIGHSPEED_RAIL", Line::Mode::LongDistanceTrain, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "LONG_DISTANCE", Line::Mode::LongDistanceTrain, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "NIGHT_RAIL", Line::Mode::LongDistanceTrain, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "REGIONAL_FAST_RAIL", Line::Mode::LocalTrain, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "REGIONAL_RAIL", Line::Mode::LocalTrain, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "CABLE_CAR", Line::Mode::Tramway, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "FUNICULAR", Line::Mode::Funicular, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "AREAL_LIFT", Line::Mode::AerialLift, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "OTHER", Line::Mode::Unknown, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "AERIAL_LIFT", Line::Mode::RapidTransit, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "SUBURBAN", Line::Mode::RapidTransit, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "RIDE_SHARING", Line::Mode::RideShare, JourneySection::PublicTransport, IndividualTransport::Car, IndividualTransport::None },
+    { "ODM", Line::Mode::Taxi, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
+    { "RENTAL", Line::Mode::Unknown, JourneySection::RentedVehicle, IndividualTransport::Walk, IndividualTransport::None },
 };
 
 struct {
@@ -338,14 +334,17 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
             s.setIndividualTransport(iv);
         } else if (s.mode() == JourneySection::RentedVehicle) {
             const auto rentalObj = leg.value("rental"_L1).toObject();
-            // TODO url
+
+            GBFSVehicleType vt;
+            vt.formFactor = GBFSVehicleType::parseFormFactor(rentalObj.value("formFactor"_L1).toString());
+            vt.propulsionType = GBFSVehicleType::parsePropulsionType(rentalObj.value("propulsionType"_L1).toString());
 
             RentalVehicleNetwork rvNetwork;
             rvNetwork.setName(rentalObj.value("systemName"_L1).toString());
             rvNetwork.setUrl(QUrl(rentalObj.value("url"_L1).toString()));
 
             RentalVehicle rv;
-            rv.setType((*it).rentalType);
+            rv.setType(RentalVehicleUtil::fromGbfsVehicleType(vt));
             rv.setNetwork(rvNetwork);
             rv.setWebBookingUrl(QUrl(rentalObj.value("rentalUriWeb"_L1).toString()));
 #ifdef Q_OS_ANDROID
