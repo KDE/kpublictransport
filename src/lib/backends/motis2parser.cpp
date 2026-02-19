@@ -377,6 +377,15 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
                 if (const auto streetName = legGeoObj.value("streetName"_L1).toString(); !streetName.isEmpty()) {
                     pathSec.setDescription(streetName);
                 }
+
+                // ensure elevators have a position as well, for displaying them on a map
+                if (pathSec.path().isEmpty() && pathSec.maneuver() == PathSection::Elevator && !pathSections.empty()) {
+                    const auto prevPath = pathSections.back().path();
+                    if (!prevPath.empty()) {
+                        pathSec.setPath(QPolygonF({prevPath.back()}));
+                    }
+                }
+
                 if (!pathSec.path().isEmpty() || pathSec.maneuver() != PathSection::Move) {
                     pathSections.push_back(std::move(pathSec));
                 }
