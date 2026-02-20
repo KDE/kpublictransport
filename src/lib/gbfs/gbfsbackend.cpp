@@ -18,6 +18,7 @@
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/RentalVehicle>
 
+#include <QColor>
 #include <QCoreApplication>
 #include <QDebug>
 #include <QJsonArray>
@@ -106,6 +107,9 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
     const auto sysInfo = GBFSReader::dataObject(sysInfoDoc);
     network.setName(sysInfo.value("name"_L1).toString());
     network.setUrl(QUrl(sysInfo.value("url"_L1).toString()));
+    if (const auto c = sysInfo.value("brand_assets"_L1).toObject().value("color"_L1).toString(); !c.isEmpty()) {
+        network.setBrandColor(QColor::fromString(c));
+    }
 
     const auto stationsDoc = store.loadData(GBFS::StationInformation);
     const auto stations = GBFSReader::dataValue(stationsDoc, QLatin1String("stations")).toArray();

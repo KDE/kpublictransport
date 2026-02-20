@@ -163,11 +163,16 @@ class KPUBLICTRANSPORT_EXPORT RentalVehicleNetwork
     KPUBLICTRANSPORT_PROPERTY(QUrl, url, setUrl)
     /** Supported vehicle types by this network. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicle::VehicleTypes, vehicleTypes, setVehicleTypes)
+    /** Brand color of this network, if available. */
+    KPUBLICTRANSPORT_PROPERTY(QColor, brandColor, setBrandColor)
+    /** @c true if a brand color is set. */
+    Q_PROPERTY(bool hasBrandColor READ hasBrandColor STORED false)
 
     /** Not an empty/default constructed object. */
     Q_PROPERTY(bool isValid READ isValid STORED false)
 
 public:
+    [[nodiscard]] bool hasBrandColor() const;
     [[nodiscard]] bool isValid() const;
 
     /** Checks if two instances refer to the same network. */

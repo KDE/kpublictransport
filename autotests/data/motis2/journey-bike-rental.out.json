@@ -1005,8 +1005,7 @@
                 "rentalVehicle": {
                     "network": {
                         "name": "RegioRad Stuttgart",
-                        "url": "https://www.regioradstuttgart.de",
-                        "vehicleTypes": "Unknown"
+                        "url": "https://www.regioradstuttgart.de"
                     },
                     "type": "Bicycle"
                 }

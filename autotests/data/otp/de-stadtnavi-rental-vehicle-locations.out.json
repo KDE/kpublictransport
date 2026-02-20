@@ -29,8 +29,7 @@
         "region": "DE-BW",
         "rentalVehicle": {
             "network": {
-                "name": "cargo-bike",
-                "vehicleTypes": "Unknown"
+                "name": "cargo-bike"
             },
             "type": "Unknown"
         },

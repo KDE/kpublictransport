@@ -1081,8 +1081,7 @@
                             "availableVehicles": 7,
                             "capacity": 26,
                             "network": {
-                                "name": "VélôToulouse",
-                                "vehicleTypes": "Unknown"
+                                "name": "VélôToulouse"
                             }
                         },
                         "type": "RentedVehicleStation"
@@ -1593,8 +1592,7 @@
                             "availableVehicles": 7,
                             "capacity": 26,
                             "network": {
-                                "name": "VélôToulouse",
-                                "vehicleTypes": "Unknown"
+                                "name": "VélôToulouse"
                             }
                         },
                         "type": "RentedVehicleStation"

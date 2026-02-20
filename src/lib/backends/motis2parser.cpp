@@ -342,6 +342,7 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
             RentalVehicleNetwork rvNetwork;
             rvNetwork.setName(rentalObj.value("systemName"_L1).toString());
             rvNetwork.setUrl(QUrl(rentalObj.value("url"_L1).toString()));
+            rvNetwork.setBrandColor(QColor::fromString(rentalObj.value("color"_L1).toString()));
 
             RentalVehicle rv;
             rv.setType(RentalVehicleUtil::fromGbfsVehicleType(vt));

@@ -11,6 +11,7 @@
 
 #include <KLocalizedString>
 
+#include <QColor>
 #include <QMetaEnum>
 
 using namespace Qt::Literals::StringLiterals;
@@ -23,6 +24,7 @@ public:
     QString name;
     QUrl url;
     RentalVehicle::VehicleTypes vehicleTypes = RentalVehicle::Unknown;
+    QColor brandColor;
 };
 
 class RentalVehicleStationPrivate : public QSharedData
@@ -52,6 +54,12 @@ KPUBLICTRANSPORT_MAKE_GADGET(RentalVehicleNetwork)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleNetwork, QString, name, setName)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleNetwork, QUrl, url, setUrl)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleNetwork, RentalVehicle::VehicleTypes, vehicleTypes, setVehicleTypes)
+KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleNetwork, QColor, brandColor, setBrandColor)
+
+bool RentalVehicleNetwork::hasBrandColor() const
+{
+    return d->brandColor.isValid();
+}
 
 bool RentalVehicleNetwork::isValid() const
 {
@@ -66,7 +74,11 @@ bool RentalVehicleNetwork::isSame(const RentalVehicleNetwork &lhs, const RentalV
 
 QJsonObject RentalVehicleNetwork::toJson(const RentalVehicleNetwork &network)
 {
-    return Json::toJson(network);
+    auto obj = Json::toJson(network);
+    if (network.d->vehicleTypes == RentalVehicle::Unknown) {
+        obj.remove("vehicleTypes"_L1);
+    }
+    return obj;
 }
 
 RentalVehicleNetwork RentalVehicleNetwork::fromJson(const QJsonObject &obj)
