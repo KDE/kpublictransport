@@ -185,6 +185,12 @@ public:
     /** Maximum occpancy over all classes. */
     Q_PROPERTY(KPublicTransport::Load::Category maximumOccupancy READ maximumOccupancy STORED false)
 
+    /** Booking deep link for this section.
+     *  While usually a booking link for an entire journey would be preferable, this is
+     *  often not actually available.
+     */
+    KPUBLICTRANSPORT_PROPERTY(QUrl, bookingUrl, setBookingUrl)
+
 public:
     [[nodiscard]] QDateTime scheduledDepartureTime() const;
     void setScheduledDepartureTime(const QDateTime &value);
@@ -358,6 +364,9 @@ class KPUBLICTRANSPORT_EXPORT Journey
 
     /** Maximum occpancy in all journey sections, over all classes. */
     Q_PROPERTY(KPublicTransport::Load::Category maximumOccupancy READ maximumOccupancy STORED false)
+
+    /** Booking deep link for this entire journey. */
+    KPUBLICTRANSPORT_PROPERTY(QUrl, bookingUrl, setBookingUrl)
 
 public:
     /** The journey sections. */

@@ -47,12 +47,14 @@ public:
     Path path;
     IndividualTransport individualTransport;
     IdentifierSet ids;
+    QUrl bookingUrl;
 };
 
 class JourneyPrivate : public QSharedData
 {
 public:
     std::vector<JourneySection> sections;
+    QUrl bookingUrl;
 };
 
 }
@@ -608,6 +610,23 @@ Load::Category JourneySection::maximumOccupancy() const
     return l;
 }
 
+QUrl JourneySection::bookingUrl() const
+{
+    if (!d->bookingUrl.isEmpty()) {
+        return d->bookingUrl;
+    }
+    if (!d->rentalVehicle.webBookingUrl().isEmpty()) {
+        return d->rentalVehicle.webBookingUrl();
+    }
+    return d->rentalVehicle.appBookingUrl();
+}
+
+void JourneySection::setBookingUrl(const QUrl &value)
+{
+    d.detach();
+    d->bookingUrl = value;
+}
+
 QString JourneySection::identifier(QAnyStringView identifierType) const
 {
     return d->ids.identifier(identifierType);
@@ -881,6 +900,8 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
 
     res.d->path = lhs.d->path.sections().size() < rhs.d->path.sections().size() ? rhs.d->path : lhs.d->path;
 
+    res.d->bookingUrl = lhs.d->bookingUrl.isEmpty() ? rhs.d->bookingUrl : lhs.d->bookingUrl;
+
     return res;
 }
 
@@ -920,6 +941,10 @@ QJsonObject JourneySection::toJson(const JourneySection &section)
 
     if (section.mode() == JourneySection::IndividualTransport) {
         obj.insert("individualTransport"_L1, IndividualTransport::toJson(section.individualTransport()));
+    }
+
+    if (section.d->bookingUrl.isEmpty()) {
+        obj.remove("bookingUrl"_L1);
     }
 
     if (obj.size() <= 1) { // only the mode enums, ie. this is an empty object
@@ -983,6 +1008,7 @@ std::vector<JourneySection> JourneySection::fromJson(const QJsonArray &array)
 
 
 KPUBLICTRANSPORT_MAKE_GADGET(Journey)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Journey, QUrl, bookingUrl, setBookingUrl)
 
 const std::vector<JourneySection>& Journey::sections() const
 {
@@ -1172,13 +1198,14 @@ Journey Journey::merge(const Journey &lhs, const Journey &rhs)
 
     Journey res;
     res.setSections(std::move(sections));
+    res.setBookingUrl(lhs.bookingUrl().isEmpty() ? rhs.bookingUrl() : lhs.bookingUrl());
     return res;
 }
 
 QJsonObject Journey::toJson(const Journey &journey)
 {
-    QJsonObject obj;
-    obj.insert(QLatin1String("sections"), JourneySection::toJson(journey.sections()));
+    auto obj = Json::toJson(journey);
+    obj.insert("sections"_L1, JourneySection::toJson(journey.sections()));
     return obj;
 }
 
@@ -1189,8 +1216,8 @@ QJsonArray Journey::toJson(const std::vector<Journey> &journeys)
 
 Journey Journey::fromJson(const QJsonObject &obj)
 {
-    Journey j;
-    j.setSections(JourneySection::fromJson(obj.value(QLatin1String("sections")).toArray()));
+    auto j = Json::fromJson<Journey>(obj);
+    j.setSections(JourneySection::fromJson(obj.value("sections"_L1).toArray()));
     return j;
 }
 

@@ -180,28 +180,33 @@ Kirigami.ApplicationWindow {
                     QQC2.Label {
                         Layout.fillWidth: true
                         text: {
-                            switch (modelData.mode) {
+                            let bookingLink = "";
+                            if (delegateRoot.modelData.bookingUrl != "") {
+                                bookingLink = " <a href=\"" + delegateRoot.modelData.bookingUrl + "\">Book section</a>";
+                            }
+                            switch (delegateRoot.modelData.mode) {
                             case JourneySection.PublicTransport:
                             {
-                                if (modelData.route.name !== "") {
-                                    return modelData.route.line.modeString + " " + modelData.route.line.name + " (" + modelData.route.name
-                                        + ") " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + KCoreAddons.Format.formatDistance(modelData.distance) + " <a href=\"#trip\">trip</a>";
+                                if (delegateRoot.modelData.route.name !== "") {
+                                    return delegateRoot.modelData.route.line.modeString + " " + delegateRoot.modelData.route.line.name + " (" + delegateRoot.modelData.route.name
+                                        + ") " + KCoreAddons.Format.formatDuration(delegateRoot.modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + KCoreAddons.Format.formatDistance(delegateRoot.modelData.distance) + " <a href=\"#trip\">trip</a>" + bookingLink;
                                 }
-                                return modelData.route.line.modeString + " " + modelData.route.line.name + " " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + KCoreAddons.Format.formatDistance(modelData.distance) + " <a href=\"#trip\">trip</a>";
+                                return delegateRoot.modelData.route.line.modeString + " " + delegateRoot.modelData.route.line.name + " " + KCoreAddons.Format.formatDuration(delegateRoot.modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + KCoreAddons.Format.formatDistance(delegateRoot.modelData.distance) + " <a href=\"#trip\">trip</a>" + bookingLink;
                             }
                             case JourneySection.Walking:
-                                return "Walk " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + KCoreAddons.Format.formatDistance(modelData.distance)
+                                return "Walk " + KCoreAddons.Format.formatDuration(delegateRoot.modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + KCoreAddons.Format.formatDistance(delegateRoot.modelData.distance)
                             case JourneySection.Transfer:
-                                return "Transfer " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds)  + " / " + KCoreAddons.Format.formatDistance(modelData.distance)
+                                return "Transfer " + KCoreAddons.Format.formatDuration(delegateRoot.modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds)  + " / " + KCoreAddons.Format.formatDistance(delegateRoot.modelData.distance)
                             case JourneySection.Waiting:
-                                return "Wait " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds)
+                                return "Wait " + KCoreAddons.Format.formatDuration(delegateRoot.modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds)
                             case JourneySection.RentedVehicle:
-                                return "Drive (<a href=\""+ delegateRoot.modelData.rentalVehicle.network.url + "\">" + delegateRoot.modelData.rentalVehicle.network.name + "</a>) " + KCoreAddons.Format.formatDuration(delegateRoot.modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + KCoreAddons.Format.formatDistance(delegateRoot.modelData.distance);
+                                return "Drive (<a href=\""+ delegateRoot.modelData.rentalVehicle.network.url + "\">" + delegateRoot.modelData.rentalVehicle.network.name + "</a>) " + KCoreAddons.Format.formatDuration(delegateRoot.modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + KCoreAddons.Format.formatDistance(delegateRoot.modelData.distance) + bookingLink;
                             case JourneySection.IndividualTransport:
-                                return "Drive " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + KCoreAddons.Format.formatDistance(modelData.distance)
+                                return "Drive " + KCoreAddons.Format.formatDuration(delegateRoot.modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + KCoreAddons.Format.formatDistance(delegateRoot.modelData.distance) + bookingLink;
+                            }
                             return "???";
-                        }}
-                        onLinkActivated: (link) => { delegateRoot.ListView.view.showTrip(modelData); }
+                        }
+                        onLinkActivated: (link) => { link.startsWith("#") ? delegateRoot.ListView.view.showTrip(delegateRoot.modelData) : Qt.openUrlExternally(link); }
                     }
                     RowLayout {
                         QQC2.Label {
@@ -638,10 +643,20 @@ Kirigami.ApplicationWindow {
                         wrapMode: Text.Wrap
                     }
 
-                    footer: QQC2.Button {
-                        text: "Map view"
-                        visible: journeySelector.currentIndex >= 0
-                        onClicked: applicationWindow().pageStack.push(journeyMapPage, {journey: journeyModel.data(journeyModel.index(journeySelector.currentIndex, 0), 256)});
+                    footer: RowLayout {
+                        QQC2.Button {
+                            text: "Map view"
+                            visible: journeySelector.currentIndex >= 0
+                            onClicked: applicationWindow().pageStack.push(journeyMapPage, {journey: journeyModel.data(journeyModel.index(journeySelector.currentIndex, 0), 256)});
+                        }
+                        QQC2.Button {
+                            text: "Book journey"
+                            visible: {
+                                const jny = journeyModel.data(journeyModel.index(journeySelector.currentIndex, 0), 256);
+                                return jny != undefined && jny.bookingUrl != ""
+                            }
+                            onClicked: Qt.openUrlExternally(journeyModel.data(journeyModel.index(journeySelector.currentIndex, 0), 256).bookingUrl)
+                        }
                     }
                 }
 
