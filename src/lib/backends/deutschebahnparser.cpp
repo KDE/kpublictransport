@@ -14,6 +14,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QUrlQuery>
 
 using namespace Qt::Literals;
 using namespace KPublicTransport;
@@ -374,6 +375,21 @@ std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journey
         }
 
         journey.setSections(std::move(sections));
+
+        {
+            QUrl url(u"https://www.bahn.de/buchung/fahrplan/suche"_s);
+            QUrlQuery query;
+            query.addQueryItem(u"so"_s, journey.sections().front().departure().stopPoint().name());
+            query.addQueryItem(u"zo"_s, journey.sections().back().arrival().stopPoint().name());
+            query.addQueryItem(u"soid"_s, journey.sections().front().departure().stopPoint().identifier(hafasParser.locationIdentifierType()));
+            query.addQueryItem(u"zoid"_s, journey.sections().back().arrival().stopPoint().identifier(hafasParser.locationIdentifierType()));
+            query.addQueryItem(u"cbs"_s, u"true"_s);
+            query.addQueryItem(u"hd"_s, journey.scheduledDepartureTime().toString(Qt::ISODate));
+            query.addQueryItem(u"gh"_s, journeyObj.value("ctxRecon"_L1).toString());
+            url.setQuery(query);
+            journey.setBookingUrl(url);
+        }
+
         journeys.push_back(std::move(journey));
     }
 
