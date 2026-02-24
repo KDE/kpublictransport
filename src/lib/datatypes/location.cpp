@@ -542,7 +542,9 @@ QJsonObject Location::toJson(const Location &loc)
             }
             break;
         case RentedVehicleStation:
-            obj.insert("rentalVehicleStation"_L1, RentalVehicleStation::toJson(loc.rentalVehicleStation()));
+            if (const auto rvObj = RentalVehicleStation::toJson(loc.rentalVehicleStation()); !rvObj.isEmpty()) {
+                obj.insert("rentalVehicleStation"_L1, rvObj);
+            }
             break;
         case RentedVehicle:
             obj.insert("rentalVehicle"_L1, RentalVehicle::toJson(loc.rentalVehicle()));

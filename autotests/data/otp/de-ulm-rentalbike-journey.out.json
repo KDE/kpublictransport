@@ -15,7 +15,6 @@
                         "name": "Bürgerdienste",
                         "rentalVehicleStation": {
                             "availableVehicles": 2,
-                            "capacity": -1,
                             "network": {
                                 "name": "RegioRad",
                                 "vehicleTypes": "Bicycle"

@@ -12,7 +12,6 @@
                 "Car": 2
             },
             "availableVehicles": 2,
-            "capacity": -1,
             "network": {
                 "name": "Stadtmobil Karlsruhe",
                 "url": "https://karlsruhe.stadtmobil.de/privatkunden/kunde-werden/",
@@ -35,7 +34,6 @@
                 "Bicycle": 1
             },
             "availableVehicles": 1,
-            "capacity": -1,
             "network": {
                 "name": "KVV.nextbike",
                 "url": "https://www.kvv-nextbike.de/de/",
@@ -55,7 +53,6 @@
         "name": "Nancystraße - CAMPUSbike KIT",
         "rentalVehicleStation": {
             "availableVehicles": 0,
-            "capacity": -1,
             "network": {
                 "name": "KVV.nextbike",
                 "url": "https://www.kvv-nextbike.de/de/",

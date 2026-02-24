@@ -329,7 +329,6 @@
                         "region": "DE-BW",
                         "rentalVehicleStation": {
                             "availableVehicles": 12,
-                            "capacity": -1,
                             "network": {
                                 "name": "RegioRad",
                                 "vehicleTypes": "Bicycle"
@@ -416,7 +415,6 @@
                         "region": "DE-BW",
                         "rentalVehicleStation": {
                             "availableVehicles": 23,
-                            "capacity": -1,
                             "network": {
                                 "name": "RegioRad",
                                 "vehicleTypes": "Bicycle"

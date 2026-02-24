@@ -205,16 +205,22 @@ static QJsonValue typeVectorToJson(const std::vector<int> &v)
 QJsonObject RentalVehicleStation::toJson(const RentalVehicleStation &station)
 {
     auto obj = Json::toJson(station);
+    if (station.d->capacity < 0) {
+        obj.remove("capacity"_L1);
+    }
+    if (station.d->availableVehicles < 0) {
+        obj.remove("availableVehicles"_L1);
+    }
     if (station.network().isValid()) {
-        obj.insert(QLatin1String("network"), RentalVehicleNetwork::toJson(station.network()));
+        obj.insert("network"_L1, RentalVehicleNetwork::toJson(station.network()));
     }
     auto v = typeVectorToJson(station.d->capacities);
     if (v.isObject()) {
-        obj.insert(QLatin1String("capacitiesByType"), v);
+        obj.insert("capacitiesByType"_L1, v);
     }
     v = typeVectorToJson(station.d->availabilities);
     if (v.isObject()) {
-        obj.insert(QLatin1String("availabilitiesByType"), v);
+        obj.insert("availabilitiesByType"_L1, v);
     }
     return obj;
 }

@@ -1028,10 +1028,6 @@
                         "name": "Location vélos (Toulouse)",
                         "postalCode": "",
                         "region": "FR-OCC",
-                        "rentalVehicleStation": {
-                            "availableVehicles": -1,
-                            "capacity": -1
-                        },
                         "type": "RentedVehicleStation"
                     }
                 },
@@ -1105,10 +1101,6 @@
                         "name": "Location vélos (Toulouse)",
                         "postalCode": "",
                         "region": "FR-OCC",
-                        "rentalVehicleStation": {
-                            "availableVehicles": -1,
-                            "capacity": -1
-                        },
                         "type": "RentedVehicleStation"
                     }
                 },
