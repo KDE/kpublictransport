@@ -92,7 +92,7 @@ void JourneyUtil::propagateTimeZones(JourneySection &sec)
 
 void JourneyUtil::postProcessPath(JourneySection &section)
 {
-    if (!section.from().hasCoordinate() || !section.to().hasCoordinate() || section.path().isEmpty()) {
+    if (!section.from().hasCoordinate() || !section.to().hasCoordinate() || section.path().isEmpty() || section.path().sections().size() - 2 <= section.intermediateStops().size()) {
         return;
     }
 
