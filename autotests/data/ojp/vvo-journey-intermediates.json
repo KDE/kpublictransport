@@ -24,6 +24,7 @@
                         "region": "DE-SN"
                     }
                 },
+                "distance": 154,
                 "mode": "Walking"
             },
             {
@@ -135,7 +136,7 @@
                 "mode": "PublicTransport",
                 "notes": [
                     "Fahrradmitnahme begrenzt möglich",
-                    "Linienaenderung: Fahrplanabweichungen und Schienenersatzverkehr"
+                    "<b>Linienaenderung</b><br/>Fahrplanabweichungen und Schienenersatzverkehr"
                 ]
             },
             {
@@ -186,6 +187,7 @@
                         "name": "Falkenau (Sachs), Süd"
                     }
                 },
+                "distance": 58,
                 "mode": "Walking"
             }
         ]

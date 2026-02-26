@@ -51,7 +51,7 @@ private:
     std::vector<Location> parseLocationInformationDelivery(ScopedXmlStreamReader &&r);
     Location parseLocationInformationLocationResult(ScopedXmlStreamReader &&r) const;
     Location parseLocationInformationLocation(ScopedXmlStreamReader &&r) const;
-    QString parseTextElement(ScopedXmlStreamReader &&r) const;
+    QString parseTextElement(ScopedXmlStreamReader &&r, const char *elementName = "Text") const;
     QPointF parseGeoPosition(ScopedXmlStreamReader &&r) const;
 
     std::vector<Stopover> parseStopEventDelivery(ScopedXmlStreamReader &&r);
@@ -71,6 +71,8 @@ private:
     TimePair parseTime(ScopedXmlStreamReader &&r) const;
     Line::Mode parseMode(ScopedXmlStreamReader &&r) const;
     QString parseSituationRef(ScopedXmlStreamReader &&r) const;
+    std::pair<QString, QString> parsePublishingAction(ScopedXmlStreamReader &&r) const;
+    std::pair<QString, QString> parsePassengerInformationAction(ScopedXmlStreamReader &&r) const;
     LoadInfo parseExpectedDepartureOccupancy(ScopedXmlStreamReader &&r) const;
 
     std::vector<Journey> parseTripDelivery(ScopedXmlStreamReader &&r);

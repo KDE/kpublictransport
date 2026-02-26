@@ -9,6 +9,7 @@
 
 #include <gtfs/hvt.h>
 #include <ifopt/ifoptutil.h>
+#include <siri/duration.h>
 #include <siri/occupancy.h>
 #include <uic/uicstationcode.h>
 
@@ -163,11 +164,11 @@ Location OpenJourneyPlannerParser::parseLocationInformationLocation(ScopedXmlStr
     return loc;
 }
 
-QString OpenJourneyPlannerParser::parseTextElement(ScopedXmlStreamReader &&r) const
+QString OpenJourneyPlannerParser::parseTextElement(ScopedXmlStreamReader &&r, const char *elementName) const
 {
     QString t;
     while (r.readNextSibling()) {
-        if (r.isElement("Text")) {
+        if (r.isElement(elementName)) {
             t = r.readElementText();
         }
     }
@@ -242,11 +243,56 @@ void OpenJourneyPlannerParser::parseSituation(ScopedXmlStreamReader &&r)
             id = r.readElementText();
         } else if (r.isElement("Summary")) {
             summary = r.readElementText();
-        } else if (r.isElement("Description")) {
+        } else if (r.isElement("Description")) { // TODO there's also <Detail>, but that seems a bit excessive?
             desc = r.readElementText();
-        } // TODO there's also <Detail>, but that seems a bit excessive?
+        } else if  (r.isElement("PublishingActions")) {
+            auto subR = r.subReader();
+            while (subR.readNextSibling()) {
+                if (subR.isElement("PublishingAction")) {
+                    auto [s, d] = parsePublishingAction(subR.subReader());
+                    summary = std::move(s);
+                    desc = std::move(d);
+                }
+            }
+        }
     }
-    m_contextSituations.insert(source + QLatin1Char('-') + id, summary + QLatin1String(": ") + desc);
+    m_contextSituations.insert(source + '-'_L1 + id, "<b>"_L1 + summary + "</b><br/>"_L1 + desc);
+}
+
+std::pair<QString, QString>OpenJourneyPlannerParser::parsePublishingAction(ScopedXmlStreamReader &&r) const
+{
+    std::pair<QString, QString> situation;
+    while (r.readNextSibling()) {
+        if (r.isElement("PassengerInformationAction")) {
+            situation = parsePassengerInformationAction(r.subReader());
+        }
+    }
+    return situation;
+}
+
+std::pair<QString, QString>OpenJourneyPlannerParser::parsePassengerInformationAction(ScopedXmlStreamReader &&r) const
+{
+    QString summary;
+    QStringList desc;
+    while (r.readNextSibling()) {
+        if (r.isElement("TextualContent")) {
+            auto subR = r.subReader();
+            while (subR.readNextSibling()) {
+                if (subR.isElement("SummaryContent")) {
+                    summary = parseTextElement(subR.subReader(), "SummaryText");
+                } else if (subR.isElement("ReasonContent")) {
+                    desc.push_back(parseTextElement(subR.subReader(), "ReasonText"));
+                } else if (subR.isElement("DescriptionContent")) {
+                    desc.push_back(parseTextElement(subR.subReader(), "DescriptionText"));
+                } else if (subR.isElement("ConsequenceContent")) {
+                    desc.push_back(parseTextElement(subR.subReader(), "ConsequenceText"));
+                } else if (subR.isElement("DurationContent")) {
+                    desc.push_back(parseTextElement(subR.subReader(), "DurationText"));
+                }
+            }
+        }
+    }
+    return std::make_pair(summary, desc.join("<br/>"_L1));
 }
 
 Stopover OpenJourneyPlannerParser::parseStopEventResult(ScopedXmlStreamReader &&r) const
@@ -355,6 +401,14 @@ void OpenJourneyPlannerParser::parseService(ScopedXmlStreamReader &&r, Route &ro
         } else if (r.isElement("SituationFullRef")) {
             const auto situationId = parseSituationRef(r.subReader());
             attributes.push_back(m_contextSituations.value(situationId));
+        } else if (r.isElement("SituationFullRefs")) {
+            auto subR = r.subReader();
+            while (subR.readNextElement()) {
+                if (subR.isElement("SituationFullRef")) {
+                    const auto situationId = parseSituationRef(subR.subReader());
+                    attributes.push_back(m_contextSituations.value(situationId));
+                }
+            }
         } else if (r.isElement("TrainNumber")) {
             route.setName(r.readElementText());
         }
@@ -452,23 +506,57 @@ Journey OpenJourneyPlannerParser::parseTrip(ScopedXmlStreamReader &&r) const
     Journey jny;
     std::vector<JourneySection> sections;
     while (r.readNextSibling()) {
-        if (r.isElement("TripLeg")) {
+        if (r.isElement("TripLeg") || r.isElement("Leg")) {
+            JourneySection section;
+            double emission = NAN;
+
             auto subR = r.subReader();
             while (subR.readNextSibling()) {
                 if (subR.isElement("TimedLeg")) {
-                    sections.push_back(parseTimedLeg(subR.subReader()));
+                    section = parseTimedLeg(subR.subReader());
                 } else if (subR.isElement("TransferLeg") || subR.isElement("InterchangeLeg")) {
-                    auto section = parseTransferLeg(subR.subReader());
+                    section = parseTransferLeg(subR.subReader());
                     section.setMode(JourneySection::Transfer);
-                    sections.push_back(std::move(section));
                 } else if (subR.isElement("ContinuousLeg")) {
-                    auto section = parseTransferLeg(subR.subReader());
+                    section = parseTransferLeg(subR.subReader());
                     section.setMode(JourneySection::Walking);
-                    sections.push_back(std::move(section));
+                } else if (subR.isElement("EmissionCO2")) {
+                    auto sub2R = subR.subReader();
+                    while (sub2R.readNextSibling()) {
+                        if (sub2R.isElement("KilogramPerPersonKm")) {
+                            bool ok = false;
+                            emission = sub2R.readElementText().toDouble(&ok);
+                            if (!ok) {
+                                emission = NAN;
+                            }
+                        }
+                    }
                 }
             }
+
+            if (!std::isnan(emission) && section.distance() > 0) {
+                section.setCo2Emission((int)std::round(emission * section.distance()));
+            }
+
+            sections.push_back(std::move(section));
         }
     }
+
+    // resolve times on duration-only legs in relation to adjacent legs
+    for (auto it = sections.begin(); it != sections.end(); ++it) {
+        if ((*it).scheduledDepartureTime().isValid()) {
+            continue;
+        }
+        const auto dur = std::chrono::seconds(QDateTime::fromSecsSinceEpoch(0).secsTo((*it).scheduledArrivalTime()));
+        if (it == sections.begin() && sections.size() > 1) { // first one is connected to the following one
+            (*it).setScheduledArrivalTime((*std::next(it)).scheduledDepartureTime());
+            (*it).setScheduledDepartureTime((*it).scheduledArrivalTime().addDuration(-dur));
+        } else { // all subsequent ones follow the previous one
+            (*it).setScheduledDepartureTime((*std::prev(it)).scheduledArrivalTime());
+            (*it).setScheduledArrivalTime((*it).scheduledDepartureTime().addDuration(dur));
+        }
+    }
+
     jny.setSections(std::move(sections));
     return jny;
 }
@@ -484,23 +572,15 @@ JourneySection OpenJourneyPlannerParser::parseTimedLeg(ScopedXmlStreamReader &&r
         if (r.isElement("LegBoard")) {
             Stopover stop;
             parseCallAtStop(r.subReader(), stop);
-            section.setFrom(stop.stopPoint());
-            section.setScheduledDepartureTime(stop.scheduledDepartureTime());
-            section.setExpectedDepartureTime(stop.expectedDepartureTime());
-            section.setScheduledDeparturePlatform(stop.scheduledPlatform());
-            section.setExpectedDeparturePlatform(stop.expectedPlatform());
-        } else if (r.isElement("LegIntermediates")) {
+            section.setDeparture(stop);
+        } else if (r.isElement("LegIntermediates") || r.isElement("LegIntermediate")) {
             Stopover stop;
             parseCallAtStop(r.subReader(), stop);
             intermediateStops.push_back(std::move(stop));
         } else if (r.isElement("LegAlight")) {
             Stopover stop;
             parseCallAtStop(r.subReader(), stop);
-            section.setTo(stop.stopPoint());
-            section.setScheduledArrivalTime(stop.scheduledArrivalTime());
-            section.setExpectedArrivalTime(stop.expectedArrivalTime());
-            section.setScheduledArrivalPlatform(stop.scheduledPlatform());
-            section.setExpectedArrivalPlatform(stop.expectedPlatform());
+            section.setArrival(stop);
         } else if (r.isElement("Service")) {
             parseService(r.subReader(), route, attributes);
         } else if (r.isElement("LegTrack")) {
@@ -534,6 +614,17 @@ JourneySection OpenJourneyPlannerParser::parseTransferLeg(ScopedXmlStreamReader 
             section.setScheduledArrivalTime(QDateTime::fromString(r.readElementText(), Qt::ISODate));
         } else if (r.isElement("PathGuidance") || r.isElement("NavigationPath")) {
             section.setPath(parsePathGuidance(r.subReader()));
+        } else if (r.isElement("Length")) {
+            bool ok = false;
+            const auto d = r.readElementText().toDouble(&ok);
+            if (ok && d > 0.0) {
+                section.setDistance((int)std::round(d));
+            }
+        } else if (r.isElement("Duration") && !section.scheduledDepartureTime().isValid()) {
+            const auto dur = Siri::fromDuration(r.readElementText());
+            if (dur > std::chrono::seconds(0)) {
+                section.setScheduledArrivalTime(QDateTime::fromMSecsSinceEpoch(0).addDuration(dur));
+            }
         }
     }
     return section;

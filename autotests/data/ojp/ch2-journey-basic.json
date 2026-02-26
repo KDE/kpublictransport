@@ -1,0 +1,1156 @@
+[
+    {
+        "sections": [
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2026-02-26T20:55:30Z",
+                    "expectedPlatform": "7",
+                    "scheduledArrivalTime": "2026-02-26T20:55:00Z",
+                    "scheduledPlatform": "7",
+                    "stopPoint": {
+                        "country": "CH",
+                        "identifier": {
+                            "test_id": "ch:1:sloid:6000:4:7"
+                        },
+                        "latitude": 47.50057,
+                        "longitude": 8.72338,
+                        "name": "Winterthur",
+                        "region": "CH-ZH",
+                        "type": "Stop"
+                    }
+                },
+                "co2Emission": 119,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2026-02-26T20:36:12Z",
+                    "expectedPlatform": "3",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "firstClass"
+                        },
+                        {
+                            "load": "Low",
+                            "seatingClass": "secondClass "
+                        }
+                    ],
+                    "route": {
+                        "direction": "Winterthur",
+                        "line": {
+                            "mode": "LocalTrain",
+                            "name": "S7"
+                        },
+                        "name": "18780"
+                    },
+                    "scheduledDepartureTime": "2026-02-26T20:35:00Z",
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "CH",
+                        "identifier": {
+                            "test_id": "ch:1:sloid:3308:2:3"
+                        },
+                        "latitude": 47.44783,
+                        "longitude": 8.58252,
+                        "name": "Kloten",
+                        "region": "CH-ZH",
+                        "type": "Stop"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T20:38:48Z",
+                        "expectedDepartureTime": "2026-02-26T20:39:36Z",
+                        "expectedPlatform": "2",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T20:38:00Z",
+                        "scheduledDepartureTime": "2026-02-26T20:38:00Z",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "CH",
+                            "identifier": {
+                                "test_id": "ch:1:sloid:3307:2:2"
+                            },
+                            "latitude": 47.43846,
+                            "longitude": 8.62627,
+                            "name": "Bassersdorf",
+                            "region": "CH-ZH",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T20:43:54Z",
+                        "expectedDepartureTime": "2026-02-26T20:47:42Z",
+                        "expectedPlatform": "2",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T20:44:00Z",
+                        "scheduledDepartureTime": "2026-02-26T20:47:00Z",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "CH",
+                            "identifier": {
+                                "test_id": "ch:1:sloid:3305:2:2"
+                            },
+                            "latitude": 47.42549,
+                            "longitude": 8.68666,
+                            "name": "Effretikon",
+                            "region": "CH-ZH",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T20:50:30Z",
+                        "expectedDepartureTime": "2026-02-26T20:51:06Z",
+                        "expectedPlatform": "2",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T20:50:00Z",
+                        "scheduledDepartureTime": "2026-02-26T20:50:00Z",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "CH",
+                            "identifier": {
+                                "test_id": "ch:1:sloid:3304:1:2"
+                            },
+                            "latitude": 47.45275,
+                            "longitude": 8.70572,
+                            "name": "Kemptthal",
+                            "region": "CH-ZH",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Niederflureinstieg"
+                ]
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2026-02-26T20:58:00Z",
+                    "stopPoint": {
+                        "country": "CH",
+                        "identifier": {
+                            "test_id": "ch:1:sloid:6000:5:8"
+                        },
+                        "latitude": 47.50059,
+                        "longitude": 8.72328,
+                        "name": "Winterthur",
+                        "region": "CH-ZH",
+                        "type": "Stop"
+                    }
+                },
+                "co2Emission": 0,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2026-02-26T20:55:00Z",
+                    "stopPoint": {
+                        "country": "CH",
+                        "identifier": {
+                            "test_id": "ch:1:sloid:6000:4:7"
+                        },
+                        "latitude": 47.50057,
+                        "longitude": 8.72338,
+                        "name": "Winterthur",
+                        "region": "CH-ZH",
+                        "type": "Stop"
+                    }
+                },
+                "mode": "Transfer"
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2026-02-26T21:38:00Z",
+                    "expectedPlatform": "1A-C",
+                    "scheduledArrivalTime": "2026-02-26T21:38:00Z",
+                    "scheduledPlatform": "1A-C",
+                    "stopPoint": {
+                        "identifier": {
+                            "test_id": "ch:1:sloid:3424:1:1"
+                        },
+                        "latitude": 47.69697,
+                        "longitude": 8.63162,
+                        "name": "Schaffhausen",
+                        "type": "Stop"
+                    }
+                },
+                "co2Emission": 170,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2026-02-26T21:06:18Z",
+                    "expectedPlatform": "8D-F",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "firstClass"
+                        },
+                        {
+                            "load": "Low",
+                            "seatingClass": "secondClass "
+                        }
+                    ],
+                    "route": {
+                        "direction": "Schaffhausen",
+                        "line": {
+                            "mode": "LocalTrain",
+                            "name": "S33"
+                        },
+                        "name": "20382"
+                    },
+                    "scheduledDepartureTime": "2026-02-26T21:06:00Z",
+                    "scheduledPlatform": "8",
+                    "stopPoint": {
+                        "country": "CH",
+                        "identifier": {
+                            "test_id": "ch:1:sloid:6000:5:8"
+                        },
+                        "latitude": 47.50059,
+                        "longitude": 8.72328,
+                        "name": "Winterthur",
+                        "region": "CH-ZH",
+                        "type": "Stop"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T21:11:36Z",
+                        "expectedDepartureTime": "2026-02-26T21:12:12Z",
+                        "expectedPlatform": "1",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T21:11:00Z",
+                        "scheduledDepartureTime": "2026-02-26T21:11:00Z",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "country": "CH",
+                            "identifier": {
+                                "test_id": "ch:1:sloid:6045:1:1"
+                            },
+                            "latitude": 47.5447,
+                            "longitude": 8.6951,
+                            "name": "Hettlingen",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T21:14:18Z",
+                        "expectedDepartureTime": "2026-02-26T21:14:54Z",
+                        "expectedPlatform": "2",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T21:13:00Z",
+                        "scheduledDepartureTime": "2026-02-26T21:13:00Z",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "CH",
+                            "identifier": {
+                                "test_id": "ch:1:sloid:6046:2:2"
+                            },
+                            "latitude": 47.56537,
+                            "longitude": 8.68471,
+                            "name": "Henggart",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T21:18:12Z",
+                        "expectedDepartureTime": "2026-02-26T21:19:00Z",
+                        "expectedPlatform": "1",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T21:18:00Z",
+                        "scheduledDepartureTime": "2026-02-26T21:18:00Z",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "country": "CH",
+                            "identifier": {
+                                "test_id": "ch:1:sloid:6047:1:1"
+                            },
+                            "latitude": 47.59367,
+                            "longitude": 8.67672,
+                            "name": "Andelfingen",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T21:24:06Z",
+                        "expectedDepartureTime": "2026-02-26T21:25:06Z",
+                        "expectedPlatform": "1",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T21:24:00Z",
+                        "scheduledDepartureTime": "2026-02-26T21:24:00Z",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "identifier": {
+                                "test_id": "ch:1:sloid:6048:2:1"
+                            },
+                            "latitude": 47.63093,
+                            "longitude": 8.65618,
+                            "name": "Marthalen",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T21:29:12Z",
+                        "expectedDepartureTime": "2026-02-26T21:29:54Z",
+                        "expectedPlatform": "2",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T21:29:00Z",
+                        "scheduledDepartureTime": "2026-02-26T21:29:00Z",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "identifier": {
+                                "test_id": "ch:1:sloid:6049:2:2"
+                            },
+                            "latitude": 47.66703,
+                            "longitude": 8.61362,
+                            "name": "Dachsen",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T21:31:24Z",
+                        "expectedDepartureTime": "2026-02-26T21:32:12Z",
+                        "expectedPlatform": "1",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T21:30:00Z",
+                        "scheduledDepartureTime": "2026-02-26T21:30:00Z",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "identifier": {
+                                "test_id": "ch:1:sloid:6039:1:1"
+                            },
+                            "latitude": 47.67608,
+                            "longitude": 8.61311,
+                            "name": "Schloss Laufen am Rheinfall",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T21:34:12Z",
+                        "expectedDepartureTime": "2026-02-26T21:34:48Z",
+                        "expectedPlatform": "3",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T21:34:00Z",
+                        "scheduledDepartureTime": "2026-02-26T21:34:00Z",
+                        "scheduledPlatform": "3",
+                        "stopPoint": {
+                            "identifier": {
+                                "test_id": "ch:1:sloid:3423:1:3"
+                            },
+                            "latitude": 47.68384,
+                            "longitude": 8.62492,
+                            "name": "Neuhausen",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Niederflureinstieg"
+                ]
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2026-02-26T21:02:18Z",
+                    "expectedPlatform": "7",
+                    "scheduledArrivalTime": "2026-02-26T21:02:00Z",
+                    "scheduledPlatform": "7",
+                    "stopPoint": {
+                        "country": "CH",
+                        "identifier": {
+                            "test_id": "ch:1:sloid:3006:4:7"
+                        },
+                        "latitude": 47.41212,
+                        "longitude": 8.54427,
+                        "name": "Zürich Oerlikon",
+                        "region": "CH-ZH",
+                        "type": "Stop"
+                    }
+                },
+                "co2Emission": 35,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2026-02-26T20:55:18Z",
+                    "expectedPlatform": "4",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "firstClass"
+                        },
+                        {
+                            "load": "Low",
+                            "seatingClass": "secondClass "
+                        }
+                    ],
+                    "route": {
+                        "direction": "Rapperswil SG",
+                        "line": {
+                            "mode": "LocalTrain",
+                            "name": "S7"
+                        },
+                        "name": "18785"
+                    },
+                    "scheduledDepartureTime": "2026-02-26T20:55:00Z",
+                    "scheduledPlatform": "4",
+                    "stopPoint": {
+                        "country": "CH",
+                        "identifier": {
+                            "test_id": "ch:1:sloid:3308:2:4"
+                        },
+                        "latitude": 47.44778,
+                        "longitude": 8.58258,
+                        "name": "Kloten",
+                        "region": "CH-ZH",
+                        "type": "Stop"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T20:56:48Z",
+                        "expectedDepartureTime": "2026-02-26T20:57:24Z",
+                        "expectedPlatform": "1",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T20:56:00Z",
+                        "scheduledDepartureTime": "2026-02-26T20:57:00Z",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "country": "CH",
+                            "identifier": {
+                                "test_id": "ch:1:sloid:3309:1:1"
+                            },
+                            "latitude": 47.44249,
+                            "longitude": 8.57127,
+                            "name": "Kloten Balsberg",
+                            "region": "CH-ZH",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T20:59:12Z",
+                        "expectedDepartureTime": "2026-02-26T21:00:00Z",
+                        "expectedPlatform": "2",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T20:59:00Z",
+                        "scheduledDepartureTime": "2026-02-26T20:59:00Z",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "CH",
+                            "identifier": {
+                                "test_id": "ch:1:sloid:3340:1:2"
+                            },
+                            "latitude": 47.4299,
+                            "longitude": 8.56186,
+                            "name": "Opfikon",
+                            "region": "CH-ZH",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Niederflureinstieg"
+                ]
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2026-02-26T21:05:00Z",
+                    "stopPoint": {
+                        "country": "CH",
+                        "identifier": {
+                            "test_id": "ch:1:sloid:3006:4:6"
+                        },
+                        "latitude": 47.41206,
+                        "longitude": 8.54433,
+                        "name": "Zürich Oerlikon",
+                        "region": "CH-ZH",
+                        "type": "Stop"
+                    }
+                },
+                "co2Emission": 0,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2026-02-26T21:02:00Z",
+                    "stopPoint": {
+                        "country": "CH",
+                        "identifier": {
+                            "test_id": "ch:1:sloid:3006:4:7"
+                        },
+                        "latitude": 47.41212,
+                        "longitude": 8.54427,
+                        "name": "Zürich Oerlikon",
+                        "region": "CH-ZH",
+                        "type": "Stop"
+                    }
+                },
+                "mode": "Transfer"
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2026-02-26T21:43:00Z",
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": "2026-02-26T21:43:00Z",
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "identifier": {
+                            "test_id": "ch:1:sloid:3424:2:3"
+                        },
+                        "latitude": 47.69852,
+                        "longitude": 8.63266,
+                        "name": "Schaffhausen",
+                        "type": "Stop"
+                    }
+                },
+                "co2Emission": 232,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2026-02-26T21:11:48Z",
+                    "expectedPlatform": "6",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "firstClass"
+                        },
+                        {
+                            "load": "Low",
+                            "seatingClass": "secondClass "
+                        }
+                    ],
+                    "route": {
+                        "direction": "Schaffhausen",
+                        "line": {
+                            "mode": "LocalTrain",
+                            "name": "RE48"
+                        },
+                        "name": "4940"
+                    },
+                    "scheduledDepartureTime": "2026-02-26T21:11:00Z",
+                    "scheduledPlatform": "6",
+                    "stopPoint": {
+                        "country": "CH",
+                        "identifier": {
+                            "test_id": "ch:1:sloid:3006:4:6"
+                        },
+                        "latitude": 47.41206,
+                        "longitude": 8.54433,
+                        "name": "Zürich Oerlikon",
+                        "region": "CH-ZH",
+                        "type": "Stop"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T21:21:48Z",
+                        "expectedDepartureTime": "2026-02-26T21:23:12Z",
+                        "expectedPlatform": "1",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T21:22:00Z",
+                        "scheduledDepartureTime": "2026-02-26T21:23:00Z",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "country": "CH",
+                            "identifier": {
+                                "test_id": "ch:1:sloid:3400:1:1"
+                            },
+                            "latitude": 47.524,
+                            "longitude": 8.53577,
+                            "name": "Bülach",
+                            "region": "CH-ZH",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Ruhezone in 1. Klasse",
+                    "Familienzone ohne Spielplatz"
+                ]
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2026-02-26T21:25:30Z",
+                    "expectedPlatform": "7",
+                    "scheduledArrivalTime": "2026-02-26T21:25:00Z",
+                    "scheduledPlatform": "7",
+                    "stopPoint": {
+                        "country": "CH",
+                        "identifier": {
+                            "test_id": "ch:1:sloid:6000:4:7"
+                        },
+                        "latitude": 47.50057,
+                        "longitude": 8.72338,
+                        "name": "Winterthur",
+                        "region": "CH-ZH",
+                        "type": "Stop"
+                    }
+                },
+                "co2Emission": 119,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2026-02-26T21:05:54Z",
+                    "expectedPlatform": "3",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "firstClass"
+                        },
+                        {
+                            "load": "Low",
+                            "seatingClass": "secondClass "
+                        }
+                    ],
+                    "route": {
+                        "direction": "Winterthur",
+                        "line": {
+                            "mode": "LocalTrain",
+                            "name": "S7"
+                        },
+                        "name": "18782"
+                    },
+                    "scheduledDepartureTime": "2026-02-26T21:05:00Z",
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "CH",
+                        "identifier": {
+                            "test_id": "ch:1:sloid:3308:2:3"
+                        },
+                        "latitude": 47.44783,
+                        "longitude": 8.58252,
+                        "name": "Kloten",
+                        "region": "CH-ZH",
+                        "type": "Stop"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T21:08:48Z",
+                        "expectedDepartureTime": "2026-02-26T21:09:36Z",
+                        "expectedPlatform": "2",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T21:08:00Z",
+                        "scheduledDepartureTime": "2026-02-26T21:08:00Z",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "CH",
+                            "identifier": {
+                                "test_id": "ch:1:sloid:3307:2:2"
+                            },
+                            "latitude": 47.43846,
+                            "longitude": 8.62627,
+                            "name": "Bassersdorf",
+                            "region": "CH-ZH",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T21:13:54Z",
+                        "expectedDepartureTime": "2026-02-26T21:17:42Z",
+                        "expectedPlatform": "2",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T21:14:00Z",
+                        "scheduledDepartureTime": "2026-02-26T21:17:00Z",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "CH",
+                            "identifier": {
+                                "test_id": "ch:1:sloid:3305:2:2"
+                            },
+                            "latitude": 47.42549,
+                            "longitude": 8.68666,
+                            "name": "Effretikon",
+                            "region": "CH-ZH",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T21:20:30Z",
+                        "expectedDepartureTime": "2026-02-26T21:21:06Z",
+                        "expectedPlatform": "2",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T21:20:00Z",
+                        "scheduledDepartureTime": "2026-02-26T21:20:00Z",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "CH",
+                            "identifier": {
+                                "test_id": "ch:1:sloid:3304:1:2"
+                            },
+                            "latitude": 47.45275,
+                            "longitude": 8.70572,
+                            "name": "Kemptthal",
+                            "region": "CH-ZH",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Niederflureinstieg"
+                ]
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2026-02-26T21:28:00Z",
+                    "stopPoint": {
+                        "country": "CH",
+                        "identifier": {
+                            "test_id": "ch:1:sloid:6000:4:7"
+                        },
+                        "latitude": 47.50057,
+                        "longitude": 8.72338,
+                        "name": "Winterthur",
+                        "region": "CH-ZH",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2026-02-26T21:25:00Z",
+                    "stopPoint": {
+                        "country": "CH",
+                        "identifier": {
+                            "test_id": "ch:1:sloid:6000:4:7"
+                        },
+                        "latitude": 47.50057,
+                        "longitude": 8.72338,
+                        "name": "Winterthur",
+                        "region": "CH-ZH",
+                        "type": "Stop"
+                    }
+                },
+                "mode": "Transfer"
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2026-02-26T22:13:00Z",
+                    "expectedPlatform": "2",
+                    "scheduledArrivalTime": "2026-02-26T22:13:00Z",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "identifier": {
+                            "test_id": "ch:1:sloid:3424:2:2"
+                        },
+                        "latitude": 47.69848,
+                        "longitude": 8.63273,
+                        "name": "Schaffhausen",
+                        "type": "Stop"
+                    }
+                },
+                "co2Emission": 171,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2026-02-26T21:42:18Z",
+                    "expectedPlatform": "7",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "firstClass"
+                        },
+                        {
+                            "load": "Low",
+                            "seatingClass": "secondClass "
+                        }
+                    ],
+                    "route": {
+                        "direction": "Schaffhausen",
+                        "line": {
+                            "mode": "LocalTrain",
+                            "name": "S12"
+                        },
+                        "name": "19285"
+                    },
+                    "scheduledDepartureTime": "2026-02-26T21:42:00Z",
+                    "scheduledPlatform": "7",
+                    "stopPoint": {
+                        "country": "CH",
+                        "identifier": {
+                            "test_id": "ch:1:sloid:6000:4:7"
+                        },
+                        "latitude": 47.50057,
+                        "longitude": 8.72338,
+                        "name": "Winterthur",
+                        "region": "CH-ZH",
+                        "type": "Stop"
+                    }
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T21:47:42Z",
+                        "expectedDepartureTime": "2026-02-26T21:48:18Z",
+                        "expectedPlatform": "1",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T21:48:00Z",
+                        "scheduledDepartureTime": "2026-02-26T21:48:00Z",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "country": "CH",
+                            "identifier": {
+                                "test_id": "ch:1:sloid:6045:1:1"
+                            },
+                            "latitude": 47.5447,
+                            "longitude": 8.6951,
+                            "name": "Hettlingen",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T21:50:24Z",
+                        "expectedDepartureTime": "2026-02-26T21:51:00Z",
+                        "expectedPlatform": "2",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T21:50:00Z",
+                        "scheduledDepartureTime": "2026-02-26T21:50:00Z",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "CH",
+                            "identifier": {
+                                "test_id": "ch:1:sloid:6046:2:2"
+                            },
+                            "latitude": 47.56537,
+                            "longitude": 8.68471,
+                            "name": "Henggart",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T21:54:18Z",
+                        "expectedDepartureTime": "2026-02-26T21:55:06Z",
+                        "expectedPlatform": "1",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T21:54:00Z",
+                        "scheduledDepartureTime": "2026-02-26T21:54:00Z",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "country": "CH",
+                            "identifier": {
+                                "test_id": "ch:1:sloid:6047:1:1"
+                            },
+                            "latitude": 47.59367,
+                            "longitude": 8.67672,
+                            "name": "Andelfingen",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T22:00:12Z",
+                        "expectedDepartureTime": "2026-02-26T22:00:48Z",
+                        "expectedPlatform": "1",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T22:00:00Z",
+                        "scheduledDepartureTime": "2026-02-26T22:00:00Z",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "identifier": {
+                                "test_id": "ch:1:sloid:6048:2:1"
+                            },
+                            "latitude": 47.63093,
+                            "longitude": 8.65618,
+                            "name": "Marthalen",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T22:04:54Z",
+                        "expectedDepartureTime": "2026-02-26T22:05:30Z",
+                        "expectedPlatform": "2",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T22:05:00Z",
+                        "scheduledDepartureTime": "2026-02-26T22:05:00Z",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "identifier": {
+                                "test_id": "ch:1:sloid:6049:2:2"
+                            },
+                            "latitude": 47.66703,
+                            "longitude": 8.61362,
+                            "name": "Dachsen",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T22:07:00Z",
+                        "expectedDepartureTime": "2026-02-26T22:07:36Z",
+                        "expectedPlatform": "1",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T22:06:00Z",
+                        "scheduledDepartureTime": "2026-02-26T22:06:00Z",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "identifier": {
+                                "test_id": "ch:1:sloid:6039:1:1"
+                            },
+                            "latitude": 47.67608,
+                            "longitude": 8.61311,
+                            "name": "Schloss Laufen am Rheinfall",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2026-02-26T22:09:18Z",
+                        "expectedDepartureTime": "2026-02-26T22:09:54Z",
+                        "expectedPlatform": "3",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "firstClass"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "secondClass "
+                            }
+                        ],
+                        "scheduledArrivalTime": "2026-02-26T22:09:00Z",
+                        "scheduledDepartureTime": "2026-02-26T22:09:00Z",
+                        "scheduledPlatform": "3",
+                        "stopPoint": {
+                            "identifier": {
+                                "test_id": "ch:1:sloid:3423:1:3"
+                            },
+                            "latitude": 47.68384,
+                            "longitude": 8.62492,
+                            "name": "Neuhausen",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Niederflureinstieg"
+                ]
+            }
+        ]
+    }
+]

@@ -4,7 +4,7 @@
         "expectedDepartureTime": "2021-09-10T19:41:00Z",
         "expectedPlatform": "1",
         "notes": [
-            "Linienaenderung: Geänderte Verkehrslenkung B170 und Sperrung Boderitzer Straße Ost in Bannewitz"
+            "<b>Linienaenderung</b><br/>Geänderte Verkehrslenkung B170 und Sperrung Boderitzer Straße Ost in Bannewitz"
         ],
         "route": {
             "direction": "Dresden Pirnaischer Platz",

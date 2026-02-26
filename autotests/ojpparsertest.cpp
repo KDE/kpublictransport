@@ -111,7 +111,12 @@ private Q_SLOTS:
         QTest::newRow("vvo-journey-intermediates")
             << s(SOURCE_DIR "/data/ojp/vvo-journey-intermediates.xml")
             << s(SOURCE_DIR "/data/ojp/vvo-journey-intermediates.json");
-    }
+        QTest::newRow("ch2-journey-basic")
+            << s(SOURCE_DIR "/data/ojp/ch2-journey-basic.xml")
+            << s(SOURCE_DIR "/data/ojp/ch2-journey-basic.json");
+        QTest::newRow("ch2-journey-situation")
+            << s(SOURCE_DIR "/data/ojp/ch2-journey-situation.xml")
+            << s(SOURCE_DIR "/data/ojp/ch2-journey-situation.json");    }
 
     void testParseJourney()
     {
