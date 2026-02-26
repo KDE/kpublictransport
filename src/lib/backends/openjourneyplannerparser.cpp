@@ -9,6 +9,7 @@
 
 #include <gtfs/hvt.h>
 #include <ifopt/ifoptutil.h>
+#include <siri/occupancy.h>
 #include <uic/uicstationcode.h>
 
 #include <KPublicTransport/Journey>
@@ -21,6 +22,7 @@
 #include <QPointF>
 #include <QXmlStreamReader>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 bool OpenJourneyPlannerParser::hasError() const
@@ -214,7 +216,7 @@ void OpenJourneyPlannerParser::parseResponseContext(ScopedXmlStreamReader &&r)
 void OpenJourneyPlannerParser::parseResponseContextPlaces(ScopedXmlStreamReader && r)
 {
     while (r.readNextSibling()) {
-        if (r.isElement("Location")) {
+        if (r.isElement("Location") || r.isElement("Place")) {
             auto loc = parseLocationInformationLocation(r.subReader());
             m_contextLocations.insert(loc.identifier(m_identifierType), std::move(loc));
         }
@@ -284,6 +286,7 @@ Stopover OpenJourneyPlannerParser::parseStopEvent(ScopedXmlStreamReader &&r) con
 void OpenJourneyPlannerParser::parseCallAtStop(ScopedXmlStreamReader &&r, Stopover &stop) const
 {
     Location loc;
+    std::vector<LoadInfo> occupancy;
     while (r.readNextSibling()) {
         if (r.isElement("StopPointRef")) {
             const auto id = r.readElementText();
@@ -315,12 +318,15 @@ void OpenJourneyPlannerParser::parseCallAtStop(ScopedXmlStreamReader &&r, Stopov
         } else if (r.isElement("EstimatedQuay") || r.isElement("EstimatedBay")) {
             stop.setExpectedPlatform(parseTextElement(r.subReader()));
         } else if (r.isElement("NotServicedStop")) {
-            if (r.readElementText() == QLatin1String("true")) {
+            if (r.readElementText() == "true"_L1) {
                 stop.setDisruptionEffect(Disruption::NoService);
             }
+        } else if (r.isElement("ExpectedDepartureOccupancy")) {
+            occupancy.push_back(parseExpectedDepartureOccupancy(r.subReader()));
         }
     }
     stop.setStopPoint(std::move(loc));
+    stop.setLoadInformation(std::move(occupancy));
 }
 
 void OpenJourneyPlannerParser::parseService(ScopedXmlStreamReader &&r, Route &route, QStringList &attributes) const
@@ -329,12 +335,12 @@ void OpenJourneyPlannerParser::parseService(ScopedXmlStreamReader &&r, Route &ro
     while (r.readNextSibling()) {
         if (r.isElement("Mode")) {
             line.setMode(parseMode(r.subReader()));
-        } else if (r.isElement("PublishedLineName")) {
+        } else if (r.isElement("PublishedLineName") || r.isElement("PublishedServiceName")) {
             line.setName(parseTextElement(r.subReader()));
         } else if (r.isElement("Attribute")) {
             auto subR = r.subReader();
             while (subR.readNextSibling()) {
-                if (subR.isElement("Text")) {
+                if (subR.isElement("Text") || subR.isElement("UserText")) {
                     attributes.push_back(parseTextElement(subR.subReader()));
                 }
             }
@@ -349,6 +355,8 @@ void OpenJourneyPlannerParser::parseService(ScopedXmlStreamReader &&r, Route &ro
         } else if (r.isElement("SituationFullRef")) {
             const auto situationId = parseSituationRef(r.subReader());
             attributes.push_back(m_contextSituations.value(situationId));
+        } else if (r.isElement("TrainNumber")) {
+            route.setName(r.readElementText());
         }
     }
     route.setLine(std::move(line));
@@ -396,6 +404,20 @@ QString OpenJourneyPlannerParser::parseSituationRef(ScopedXmlStreamReader &&r) c
         }
     }
     return source + QLatin1Char('-') + id;
+}
+
+LoadInfo OpenJourneyPlannerParser::parseExpectedDepartureOccupancy(ScopedXmlStreamReader &&r) const
+{
+    LoadInfo info;
+    while (r.readNextSibling()) {
+        if (r.isElement("OccupancyLevel")) {
+            info.setLoad(Siri::fromOccupancyEnum(r.readElementText()));
+        } else if (r.isElement("FareClass")) {
+            // TODO translate SIRI class enums
+            info.setSeatingClass(r.readElementText());
+        }
+    }
+    return info;
 }
 
 

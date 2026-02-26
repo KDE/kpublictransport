@@ -23,6 +23,7 @@ namespace KPublicTransport {
 
 class Journey;
 class JourneySection;
+class LoadInfo;
 class Location;
 class Path;
 class PathSection;
@@ -70,6 +71,7 @@ private:
     TimePair parseTime(ScopedXmlStreamReader &&r) const;
     Line::Mode parseMode(ScopedXmlStreamReader &&r) const;
     QString parseSituationRef(ScopedXmlStreamReader &&r) const;
+    LoadInfo parseExpectedDepartureOccupancy(ScopedXmlStreamReader &&r) const;
 
     std::vector<Journey> parseTripDelivery(ScopedXmlStreamReader &&r);
     Journey parseTripResult(ScopedXmlStreamReader &&r) const;

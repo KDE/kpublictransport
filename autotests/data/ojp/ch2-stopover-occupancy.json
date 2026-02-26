@@ -1,0 +1,120 @@
+[
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2026-02-26T17:04:12Z",
+        "expectedPlatform": "44",
+        "notes": [
+            "VELOS: Keine Beförderung möglich",
+            "Niederflureinstieg",
+            "Aussteigeseite: Rechts"
+        ],
+        "route": {
+            "direction": "Seuzach",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "S11"
+            },
+            "name": "19169"
+        },
+        "scheduledDepartureTime": "2026-02-26T17:01:00Z",
+        "scheduledPlatform": "43/44",
+        "stopPoint": {
+            "country": "CH",
+            "identifier": {
+                "test_id": "ch:1:sloid:3000:503:43"
+            },
+            "latitude": 47.37897,
+            "longitude": 8.53885,
+            "name": "Zürich HB",
+            "region": "CH-ZH",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2026-02-26T17:04:30Z",
+        "load": [
+            {
+                "load": "Medium",
+                "seatingClass": "firstClass"
+            },
+            {
+                "load": "Medium",
+                "seatingClass": "secondClass "
+            }
+        ],
+        "notes": [
+            "Restaurant",
+            "Gratis-Internet mit der App SBB FreeSurf",
+            "Platzreservierung möglich",
+            "Familienzone ohne Spielplatz",
+            "Neigezug",
+            "Ruhezone in 1. Klasse",
+            "Businesszone in 1. Klasse",
+            "Kein Niederflur",
+            "Aussteigeseite: Links"
+        ],
+        "route": {
+            "direction": "Lausanne",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "IC5"
+            },
+            "name": "532"
+        },
+        "scheduledDepartureTime": "2026-02-26T17:04:00Z",
+        "scheduledPlatform": "32",
+        "stopPoint": {
+            "country": "CH",
+            "identifier": {
+                "test_id": "ch:1:sloid:3000:500:32"
+            },
+            "latitude": 47.37846,
+            "longitude": 8.53672,
+            "name": "Zürich HB",
+            "region": "CH-ZH",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2026-02-26T17:06:00Z",
+        "expectedPlatform": "43",
+        "load": [
+            {
+                "load": "Low",
+                "seatingClass": "firstClass"
+            },
+            {
+                "load": "Medium",
+                "seatingClass": "secondClass "
+            }
+        ],
+        "notes": [
+            "VELOS: Keine Beförderung möglich",
+            "Niederflureinstieg",
+            "Aussteigeseite: Links"
+        ],
+        "route": {
+            "direction": "Wetzikon ZH",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "S3"
+            },
+            "name": "18369"
+        },
+        "scheduledDepartureTime": "2026-02-26T17:04:00Z",
+        "scheduledPlatform": "43/44",
+        "stopPoint": {
+            "country": "CH",
+            "identifier": {
+                "test_id": "ch:1:sloid:3000:503:43"
+            },
+            "latitude": 47.37897,
+            "longitude": 8.53885,
+            "name": "Zürich HB",
+            "region": "CH-ZH",
+            "type": "Stop"
+        }
+    }
+]
