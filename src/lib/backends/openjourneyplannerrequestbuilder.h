@@ -26,12 +26,18 @@ public:
     ~OpenJourneyPlannerRequestBuilder();
 
     void setRequestorRef(const QString &ref);
-    /** Create TRIAS rather than Open Journey Planner requests. */
-    void setUseTrias(bool isTrias);
 
-    QByteArray buildLocationInformationRequest(const LocationRequest &req) const;
-    QByteArray buildStopEventRequest(const StopoverRequest &req) const;
-    QByteArray buildTripRequest(const JourneyRequest &req) const;
+    /** Specify which protocol flavor the output is for. */
+    enum Protocol {
+        OJP1,
+        OJP2,
+        TRIAS,
+    };
+    void setProtocol(Protocol protocol);
+
+    [[nodiscard]] QByteArray buildLocationInformationRequest(const LocationRequest &req) const;
+    [[nodiscard]] QByteArray buildStopEventRequest(const StopoverRequest &req) const;
+    [[nodiscard]] QByteArray buildTripRequest(const JourneyRequest &req) const;
 
     /** @internal produce indented output for unit tests. */
     void setTestMode(bool testMode);
@@ -43,10 +49,11 @@ private:
     void writePlaceRef(QXmlStreamWriter &w, const Location &loc) const;
     void writeRequestTimestamp(QXmlStreamWriter &w) const;
 
-    QString ns() const;
+    [[nodiscard]] QString ns() const;
+    [[nodiscard]] bool isTrias() const;
 
     QString m_requestorRef;
-    bool m_useTrias = false;
+    Protocol m_protocol = OJP1;
     bool m_testMode = false;
 };
 

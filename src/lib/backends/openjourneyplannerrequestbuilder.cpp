@@ -16,11 +16,12 @@
 #include <QTimeZone>
 #include <QXmlStreamWriter>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
-static QString siriNS() { return QStringLiteral("http://www.siri.org.uk/siri"); }
-static QString ojpNS() { return QStringLiteral("http://www.vdv.de/ojp"); }
-static QString triasNS() { return QStringLiteral("http://www.vdv.de/trias"); }
+static constexpr auto siriNS() { return "http://www.siri.org.uk/siri"_L1; }
+static constexpr auto ojpNS() { return "http://www.vdv.de/ojp"_L1; }
+static constexpr auto triasNS() { return "http://www.vdv.de/trias"_L1; }
 
 OpenJourneyPlannerRequestBuilder::OpenJourneyPlannerRequestBuilder() = default;
 OpenJourneyPlannerRequestBuilder::~OpenJourneyPlannerRequestBuilder() = default;
@@ -30,9 +31,9 @@ void OpenJourneyPlannerRequestBuilder::setRequestorRef(const QString &ref)
     m_requestorRef = ref;
 }
 
-void OpenJourneyPlannerRequestBuilder::setUseTrias(bool isTrias)
+void OpenJourneyPlannerRequestBuilder::setProtocol(Protocol protocol)
 {
-    m_useTrias = isTrias;
+    m_protocol = protocol;
 }
 
 void OpenJourneyPlannerRequestBuilder::setTestMode(bool testMode)
@@ -46,28 +47,28 @@ QByteArray OpenJourneyPlannerRequestBuilder::buildLocationInformationRequest(con
     QXmlStreamWriter w(&output);
     setupWriter(w);
     writeStartServiceRequest(w);
-    w.writeStartElement(ns(), m_useTrias ?  QStringLiteral("LocationInformationRequest") : QStringLiteral("OJPLocationInformationRequest"));
+    w.writeStartElement(ns(), isTrias() ?  "LocationInformationRequest" : "OJPLocationInformationRequest");
     writeRequestTimestamp(w);
 
-    w.writeStartElement(ns(), QStringLiteral("InitialInput"));
+    w.writeStartElement(ns(), "InitialInput");
     if (req.hasCoordinate()) {
-        w.writeStartElement(ns(), QStringLiteral("GeoRestriction"));
-        w.writeStartElement(ns(), QStringLiteral("Circle"));
-        w.writeStartElement(ns(), QStringLiteral("Center"));
-        w.writeTextElement(siriNS(), QStringLiteral("Longitude"), QString::number(req.location().longitude()));
-        w.writeTextElement(siriNS(), QStringLiteral("Latitude"), QString::number(req.location().latitude()));
+        w.writeStartElement(ns(), "GeoRestriction");
+        w.writeStartElement(ns(), "Circle");
+        w.writeStartElement(ns(), "Center");
+        w.writeTextElement(siriNS(), "Longitude", QString::number(req.location().longitude()));
+        w.writeTextElement(siriNS(), "Latitude", QString::number(req.location().latitude()));
         w.writeEndElement(); // </Center>
-        w.writeTextElement(ns(), QStringLiteral("Radius"), QString::number(req.maximumDistance()));
+        w.writeTextElement(ns(), "Radius", QString::number(req.maximumDistance()));
         w.writeEndElement(); // </Circle>
         w.writeEndElement(); // </GeoRestriction>
     } else {
-        w.writeTextElement(ns(), QStringLiteral("LocationName"), req.location().name());
+        w.writeTextElement(ns(), m_protocol == OJP2 ? "Name" : "LocationName", req.location().name());
     }
     w.writeEndElement(); // </InitialInput>
 
-    w.writeStartElement(ns(), QStringLiteral("Restrictions"));
-    w.writeTextElement(ns(), QStringLiteral("Type"), QStringLiteral("stop"));
-    w.writeTextElement(ns(), QStringLiteral("NumberOfResults"), QString::number(req.maximumResults()));
+    w.writeStartElement(ns(), "Restrictions");
+    w.writeTextElement(ns(), "Type", "stop");
+    w.writeTextElement(ns(), "NumberOfResults", QString::number(req.maximumResults()));
     // TODO ojp:Language
     w.writeEndElement(); // </Restrictions>
 
@@ -82,21 +83,21 @@ QByteArray OpenJourneyPlannerRequestBuilder::buildStopEventRequest(const Stopove
     QXmlStreamWriter w(&output);
     setupWriter(w);
     writeStartServiceRequest(w);
-    w.writeStartElement(ns(), m_useTrias ? QStringLiteral("StopEventRequest") : QStringLiteral("OJPStopEventRequest"));
+    w.writeStartElement(ns(), isTrias() ? "StopEventRequest" : "OJPStopEventRequest");
     writeRequestTimestamp(w);
 
-    w.writeStartElement(ns(), QStringLiteral("Location"));
+    w.writeStartElement(ns(), "Location");
     writePlaceRef(w, req.stop());
-    w.writeTextElement(ns(), QStringLiteral("DepArrTime"), req.dateTime().toUTC().toString(Qt::ISODate));
+    w.writeTextElement(ns(), "DepArrTime", req.dateTime().toUTC().toString(Qt::ISODate));
     w.writeEndElement(); // </Location>
 
-    w.writeStartElement(ns(), QStringLiteral("Params"));
-    w.writeTextElement(ns(), QStringLiteral("StopEventType"), req.mode() == StopoverRequest::QueryArrival ? QStringLiteral("arrival") : QStringLiteral("departure")); // "both" is also supported
-    w.writeTextElement(ns(), QStringLiteral("IncludePreviousCalls"), QStringLiteral("false"));
-    w.writeTextElement(ns(), QStringLiteral("IncludeOnwardCalls"), QStringLiteral("false"));
-    w.writeTextElement(ns(), QStringLiteral("IncludeOperatingDays"), QStringLiteral("false"));
-    w.writeTextElement(ns(), QStringLiteral("IncludeRealtimeData"), QStringLiteral("true"));
-    w.writeTextElement(ns(), QStringLiteral("NumberOfResults"), QString::number(req.maximumResults()));
+    w.writeStartElement(ns(), "Params");
+    w.writeTextElement(ns(), "StopEventType", req.mode() == StopoverRequest::QueryArrival ? "arrival" : "departure"); // "both" is also supported
+    w.writeTextElement(ns(), "IncludePreviousCalls", "false");
+    w.writeTextElement(ns(), "IncludeOnwardCalls", "false");
+    w.writeTextElement(ns(), "IncludeOperatingDays", "false");
+    w.writeTextElement(ns(), "IncludeRealtimeData", "true");
+    w.writeTextElement(ns(), "NumberOfResults", QString::number(req.maximumResults()));
     w.writeEndElement(); // </Params>
 
     w.writeEndElement(); // </StopEventRequest>
@@ -119,7 +120,7 @@ QByteArray OpenJourneyPlannerRequestBuilder::buildTripRequest(const JourneyReque
     QXmlStreamWriter w(&output);
     setupWriter(w);
     writeStartServiceRequest(w);
-    w.writeStartElement(ns(), m_useTrias ? QStringLiteral("TripRequest") : QStringLiteral("OJPTripRequest"));
+    w.writeStartElement(ns(), isTrias() ? QStringLiteral("TripRequest") : QStringLiteral("OJPTripRequest"));
     writeRequestTimestamp(w);
 
     w.writeStartElement(ns(), QStringLiteral("Origin"));
@@ -136,7 +137,7 @@ QByteArray OpenJourneyPlannerRequestBuilder::buildTripRequest(const JourneyReque
     }
     w.writeEndElement(); // </Destination>
 
-    if (!m_useTrias) {
+    if (m_protocol == OJP1) {
         w.writeStartElement(ns(), QStringLiteral("IndividualTransportOptions"));
         for (const auto &accessMode : req.accessModes()) {
             const auto it = std::find_if(std::begin(individual_transport_modes), std::end(individual_transport_modes), [accessMode](const auto &m) {
@@ -178,36 +179,46 @@ void OpenJourneyPlannerRequestBuilder::setupWriter(QXmlStreamWriter &w) const
 void OpenJourneyPlannerRequestBuilder::writeStartServiceRequest(QXmlStreamWriter &w) const
 {
     w.writeStartDocument();
-    w.writeNamespace(siriNS(), QStringLiteral("siri"));
-    if (m_useTrias) {
-        w.writeNamespace(triasNS(), QStringLiteral("trias"));
-        w.writeStartElement(triasNS(), QStringLiteral("Trias"));
-        w.writeAttribute(QStringLiteral("version"), QStringLiteral("1.2"));
-        w.writeStartElement(triasNS(), QStringLiteral("ServiceRequest"));
-    } else {
-        w.writeNamespace(ojpNS(), QStringLiteral("ojp"));
-        w.writeStartElement(siriNS(), QStringLiteral("OJP"));
-        w.writeAttribute(QStringLiteral("version"), QStringLiteral("1.0"));
-        w.writeStartElement(siriNS(), QStringLiteral("OJPRequest"));
-        w.writeStartElement(siriNS(), QStringLiteral("ServiceRequest"));
+    w.writeNamespace(siriNS(), "siri");
+    switch (m_protocol) {
+    case OJP1:
+        w.writeNamespace(ojpNS(), "ojp");
+        w.writeStartElement(siriNS(), "OJP");
+        w.writeAttribute("version", "1.0");
+        w.writeStartElement(siriNS(), "OJPRequest");
+        w.writeStartElement(siriNS(), "ServiceRequest");
+        break;
+    case OJP2:
+        w.writeNamespace(ojpNS(), "ojp");
+        w.writeStartElement(ojpNS(), "OJP");
+        w.writeAttribute("version", "2.0");
+        w.writeStartElement(ojpNS(), "OJPRequest");
+        w.writeStartElement(siriNS(), "ServiceRequest");
+        break;
+    case TRIAS:
+        w.writeNamespace(triasNS(), "trias");
+        w.writeStartElement(triasNS(), "Trias");
+        w.writeAttribute("version", "1.2");
+        w.writeStartElement(triasNS(), "ServiceRequest");
+        break;
     }
     if (!m_requestorRef.isEmpty()) {
-        w.writeTextElement(siriNS(), QStringLiteral("RequestorRef"), m_requestorRef);
+        w.writeTextElement(siriNS(), "RequestorRef", m_requestorRef);
     }
     writeRequestTimestamp(w);
 
-    if (m_useTrias) {
-        w.writeStartElement(ns(), QStringLiteral("RequestPayload"));
+    if (isTrias()) {
+        w.writeStartElement(ns(), "RequestPayload");
     }
 }
 
 void OpenJourneyPlannerRequestBuilder::writeEndServiceRequest(QXmlStreamWriter &w) const
 {
-    if (m_useTrias) {
+    if (isTrias()) {
         w.writeEndElement(); // </trias:RequestPayload>
     }
     w.writeEndElement(); // </siri:ServiceRequest>
-    if (!m_useTrias) {
+    if (!isTrias()) {
         w.writeEndElement(); // </siri:OJPRequest>
     }
     w.writeEndElement(); // </siri:OJP> or </siri:TRIAS>
@@ -216,19 +227,29 @@ void OpenJourneyPlannerRequestBuilder::writeEndServiceRequest(QXmlStreamWriter &
 
 void OpenJourneyPlannerRequestBuilder::writePlaceRef(QXmlStreamWriter &w, const Location &loc) const
 {
-    w.writeStartElement(ns(), m_useTrias ? QStringLiteral("LocationRef") : QStringLiteral("PlaceRef"));
+    w.writeStartElement(ns(), isTrias() ? "LocationRef" : "PlaceRef");
     const auto id = loc.identifier(QStringLiteral("uic")); // ### TODO configure id type
     if (!id.isEmpty()) {
-        w.writeTextElement(ns(), m_useTrias ? QStringLiteral("StopPointRef") : QStringLiteral("StopPlaceRef"), id);
+        switch (m_protocol) {
+        case OJP1:
+            w.writeTextElement(ns(), "StopPlaceRef", id);
+            break;
+        case OJP2:
+            w.writeTextElement(siriNS(), "StopPointRef", id);
+            break;
+        case TRIAS:
+            w.writeTextElement(ns(), "StopPointRef", id);
+            break;
+        }
     } else if (loc.hasCoordinate()) {
-        w.writeStartElement(ns(), QStringLiteral("GeoPosition"));
-        w.writeTextElement(siriNS(), QStringLiteral("Longitude"), QString::number(loc.longitude()));
-        w.writeTextElement(siriNS(), QStringLiteral("Latitude"), QString::number(loc.latitude()));
+        w.writeStartElement(ns(), "GeoPosition");
+        w.writeTextElement(siriNS(), "Longitude", QString::number(loc.longitude()));
+        w.writeTextElement(siriNS(), "Latitude", QString::number(loc.latitude()));
         w.writeEndElement(); // </GeoPosition>
     }
 
-    w.writeStartElement(ns(), QStringLiteral("LocationName"));
-    w.writeTextElement(ns(), QStringLiteral("Text"), loc.name().isEmpty() ? QStringLiteral(" ") : loc.name());
+    w.writeStartElement(ns(), m_protocol == OJP2 ? "Name" : "LocationName");
+    w.writeTextElement(ns(), "Text", loc.name().isEmpty() ? QStringLiteral(" ") : loc.name());
     w.writeEndElement(); // </LocationName>
 
     w.writeEndElement(); // </PlaceRef>
@@ -245,5 +266,10 @@ void OpenJourneyPlannerRequestBuilder::writeRequestTimestamp(QXmlStreamWriter &w
 
 QString OpenJourneyPlannerRequestBuilder::ns() const
 {
-    return m_useTrias ? triasNS() : ojpNS();
+    return isTrias() ? triasNS() : ojpNS();
+}
+
+bool OpenJourneyPlannerRequestBuilder::isTrias() const
+{
+    return m_protocol == TRIAS;
 }

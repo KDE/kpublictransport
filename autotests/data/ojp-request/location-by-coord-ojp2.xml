@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ojp:OJP xmlns:siri="http://www.siri.org.uk/siri" xmlns:ojp="http://www.vdv.de/ojp" version="2.0">
+ <ojp:OJPRequest>
+  <siri:ServiceRequest>
+   <siri:RequestorRef>KPublicTransport</siri:RequestorRef>
+   <siri:RequestTimestamp>2023-03-24T12:34:56Z</siri:RequestTimestamp>
+   <ojp:OJPLocationInformationRequest>
+    <siri:RequestTimestamp>2023-03-24T12:34:56Z</siri:RequestTimestamp>
+    <ojp:InitialInput>
+     <ojp:GeoRestriction>
+      <ojp:Circle>
+       <ojp:Center>
+        <siri:Longitude>7.78</siri:Longitude>
+        <siri:Latitude>46.1</siri:Latitude>
+       </ojp:Center>
+       <ojp:Radius>500</ojp:Radius>
+      </ojp:Circle>
+     </ojp:GeoRestriction>
+    </ojp:InitialInput>
+    <ojp:Restrictions>
+     <ojp:Type>stop</ojp:Type>
+     <ojp:NumberOfResults>23</ojp:NumberOfResults>
+    </ojp:Restrictions>
+   </ojp:OJPLocationInformationRequest>
+  </siri:ServiceRequest>
+ </ojp:OJPRequest>
+</ojp:OJP>
