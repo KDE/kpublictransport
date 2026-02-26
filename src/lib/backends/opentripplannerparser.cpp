@@ -6,8 +6,10 @@
 
 #include "opentripplannerparser.h"
 #include "gtfs/hvt.h"
+#include "gtfs/occupancy.h"
 #include "geo/polylinedecoder_p.h"
 #include "ifopt/ifoptutil.h"
+#include "siri/occupancy.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/StopInformation>
@@ -299,21 +301,6 @@ OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseLine(const QJsonObj
     return data;
 }
 
-struct {
-    const char *name;
-    const char *enturName;
-    Load::Category occupancy;
-} constexpr inline const occupancy_map[] = {
-    { "CRUSHED_STANDING_ROOM_ONLY", "crushedStandingRoomOnly", Load::High },
-    { "EMPTY", "empty", Load::Low },
-    { "FEW_SEATS_AVAILABLE", "fewSeatsAvailable", Load::Medium },
-    { "FULL", "full", Load::Full },
-    { "MANY_SEATS_AVAILABLE", "manySeatsAvailable", Load::Low },
-    { "NOT_ACCEPTING_PASSENGERS", "notAcceptingPassengers", Load::Full },
-    { "NO_DATA_AVAILABLE", "noData", Load::Unknown },
-    { "STANDING_ROOM_ONLY", "standingRoomOnly", Load::High },
-};
-
 [[nodiscard]] static Load::Category parseOccupancy(const QJsonValue &v)
 {
     QString occupancy;
@@ -323,16 +310,11 @@ struct {
         occupancy = v.toObject().value("occupancyStatus"_L1).toString();
     }
 
-     for (const auto &m : occupancy_map) {
-        if (QLatin1StringView(m.name) == occupancy || QLatin1StringView(m.enturName) == occupancy) {
-            return m.occupancy;
-        }
-    }
-
-    if (!occupancy.isEmpty()) {
+    const auto l = std::max(Gtfs::fromOccupancyStatus(occupancy), Siri::fromOccupancyEnum(occupancy));
+    if (l == Load::Unknown && !occupancy.isEmpty()) {
         qDebug() << "Unknown OTP2 occupancy level:" << occupancy;
     }
-    return Load::Unknown;
+    return l;
 }
 
 struct {

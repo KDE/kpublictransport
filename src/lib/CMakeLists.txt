@@ -116,6 +116,7 @@ target_sources(KPublicTransport PRIVATE
     geo/polylinedecoder.cpp
 
     gtfs/hvt.cpp
+    gtfs/occupancy.cpp
 
     http/useragent.cpp
 
@@ -146,6 +147,8 @@ target_sources(KPublicTransport PRIVATE
     networks/certs/network_certs.qrc
     networks/geometry/geometry.qrc
     networks/stations/stations.qrc
+
+    siri/occupancy.cpp
 
     uic/uicrailwaycoach.cpp
     uic/uicstationcode.cpp
