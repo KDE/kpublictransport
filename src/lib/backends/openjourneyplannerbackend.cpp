@@ -145,7 +145,7 @@ OpenJourneyPlannerRequestBuilder OpenJourneyPlannerBackend::requestBuilder() con
 {
     OpenJourneyPlannerRequestBuilder builder;
     builder.setRequestorRef(m_requestorRef);
-    builder.setUseTrias(m_useTrias);
+    builder.setProtocol(m_useTrias ? OpenJourneyPlannerRequestBuilder::TRIAS :OpenJourneyPlannerRequestBuilder::OJP1);
     return builder;
 }
 

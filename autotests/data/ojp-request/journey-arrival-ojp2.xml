@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ojp:OJP xmlns:siri="http://www.siri.org.uk/siri" xmlns:ojp="http://www.vdv.de/ojp" version="2.0">
+ <ojp:OJPRequest>
+  <siri:ServiceRequest>
+   <siri:RequestorRef>KPublicTransport</siri:RequestorRef>
+   <siri:RequestTimestamp>2023-03-24T12:34:56Z</siri:RequestTimestamp>
+   <ojp:OJPTripRequest>
+    <siri:RequestTimestamp>2023-03-24T12:34:56Z</siri:RequestTimestamp>
+    <ojp:Origin>
+     <ojp:PlaceRef>
+      <ojp:GeoPosition>
+       <siri:Longitude>7.78</siri:Longitude>
+       <siri:Latitude>46.1</siri:Latitude>
+      </ojp:GeoPosition>
+      <ojp:Name>
+       <ojp:Text>Randa</ojp:Text>
+      </ojp:Name>
+     </ojp:PlaceRef>
+    </ojp:Origin>
+    <ojp:Destination>
+     <ojp:PlaceRef>
+      <siri:StopPointRef>8500010</siri:StopPointRef>
+      <ojp:Name>
+       <ojp:Text> </ojp:Text>
+      </ojp:Name>
+     </ojp:PlaceRef>
+     <ojp:DepArrTime>2020-09-06T20:54:00Z</ojp:DepArrTime>
+    </ojp:Destination>
+    <ojp:Params>
+     <ojp:IncludeTrackSections>true</ojp:IncludeTrackSections>
+     <ojp:IncludeLegProjection>true</ojp:IncludeLegProjection>
+     <ojp:IncludeTurnDescription>true</ojp:IncludeTurnDescription>
+     <ojp:IncludeAccessibility>true</ojp:IncludeAccessibility>
+     <ojp:IncludeIntermediateStops>false</ojp:IncludeIntermediateStops>
+     <ojp:IncludeFares>false</ojp:IncludeFares>
+     <ojp:NumberOfResults>3</ojp:NumberOfResults>
+    </ojp:Params>
+   </ojp:OJPTripRequest>
+  </siri:ServiceRequest>
+ </ojp:OJPRequest>
+</ojp:OJP>

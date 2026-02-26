@@ -57,22 +57,22 @@ private Q_SLOTS:
         OpenJourneyPlannerRequestBuilder builder;
         builder.setRequestorRef(QStringLiteral("KPublicTransport"));
         builder.setTestMode(true);
+
         auto res = builder.buildLocationInformationRequest(request);
         auto ref = Test::readFile(refFileName);
-        if (res != ref) {
-            qDebug().noquote() << res;
-        }
-        QVERIFY(!res.isEmpty());
-        QCOMPARE(res, ref);
+        QVERIFY(Test::compareXml(refFileName, res, ref));
 
-        builder.setUseTrias(true);
+        const auto ojp2FileName = QString(refFileName).insert(refFileName.size() -4, u"-ojp2");
+        builder.setProtocol(OpenJourneyPlannerRequestBuilder::OJP2);
         res = builder.buildLocationInformationRequest(request);
-        ref = Test::readFile(refFileName.insert(refFileName.size() -4, u"-trias"));
-        if (res != ref) {
-            qDebug().noquote() << res;
-        }
-        QVERIFY(!res.isEmpty());
-        QCOMPARE(res, ref);
+        ref = Test::readFile(ojp2FileName);
+        QVERIFY(Test::compareXml(ojp2FileName, res, ref));
+
+        const auto triasFileName = QString(refFileName).insert(refFileName.size() -4, u"-trias");
+        builder.setProtocol(OpenJourneyPlannerRequestBuilder::TRIAS);
+        res = builder.buildLocationInformationRequest(request);
+        ref = Test::readFile(triasFileName);
+        QVERIFY(Test::compareXml(triasFileName, res, ref));
     }
 
     void testStopoverRequest_data()
@@ -104,7 +104,16 @@ private Q_SLOTS:
         auto ref = Test::readFile(refFileName);
         QVERIFY(Test::compareXml(refFileName, res, ref));
 
-        builder.setUseTrias(true);
+        builder.setProtocol(OpenJourneyPlannerRequestBuilder::TRIAS);
+
+        const auto ojp2FileName = QString(refFileName).insert(refFileName.size() -4, u"-ojp2");
+        builder.setProtocol(OpenJourneyPlannerRequestBuilder::OJP2);
+        res = builder.buildStopEventRequest(request);
+        ref = Test::readFile(ojp2FileName);
+        QVERIFY(Test::compareXml(ojp2FileName, res, ref));
+
+        const auto triasFileName = QString(refFileName).insert(refFileName.size() -4, u"-trias");
+        builder.setProtocol(OpenJourneyPlannerRequestBuilder::TRIAS);
         res = builder.buildStopEventRequest(request);
         refFileName = refFileName.insert(refFileName.size() -4, u"-trias");
         ref = Test::readFile(refFileName);
@@ -149,7 +158,14 @@ private Q_SLOTS:
         auto ref = Test::readFile(refFileName);
         QVERIFY(Test::compareXml(refFileName, res, ref));
 
-        builder.setUseTrias(true);
+        const auto ojp2FileName = QString(refFileName).insert(refFileName.size() -4, u"-ojp2");
+        builder.setProtocol(OpenJourneyPlannerRequestBuilder::OJP2);
+        res = builder.buildTripRequest(request);
+        ref = Test::readFile(ojp2FileName);
+        QVERIFY(Test::compareXml(ojp2FileName, res, ref));
+
+        const auto triasFileName = QString(refFileName).insert(refFileName.size() -4, u"-trias");
+        builder.setProtocol(OpenJourneyPlannerRequestBuilder::TRIAS);
         res = builder.buildTripRequest(request);
         refFileName = refFileName.insert(refFileName.size() -4, u"-trias");
         ref = Test::readFile(refFileName);
