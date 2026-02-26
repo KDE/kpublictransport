@@ -1,0 +1,154 @@
+[
+    {
+        "country": "CH",
+        "identifier": {
+            "test_id": "8504106",
+            "uic": "8504106"
+        },
+        "latitude": 46.93749,
+        "longitude": 7.39524,
+        "name": "Bern Bümpliz Süd",
+        "region": "CH-BE",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "LocalTrain"
+                }
+            ]
+        },
+        "type": "Stop"
+    },
+    {
+        "country": "CH",
+        "identifier": {
+            "test_id": "8589226",
+            "uic": "8589226"
+        },
+        "latitude": 46.93753,
+        "longitude": 7.39556,
+        "name": "Bern Bümpliz Süd, Bahnhof",
+        "region": "CH-BE",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
+        "type": "Stop"
+    },
+    {
+        "country": "CH",
+        "identifier": {
+            "test_id": "8589002",
+            "uic": "8589002"
+        },
+        "latitude": 46.93774,
+        "longitude": 7.48558,
+        "name": "Bern, Saali",
+        "region": "CH-BE",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Tramway"
+                },
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
+        "type": "Stop"
+    },
+    {
+        "country": "CH",
+        "identifier": {
+            "test_id": "8587483",
+            "uic": "8587483"
+        },
+        "latitude": 46.9539,
+        "longitude": 7.45441,
+        "name": "Bern, Salem",
+        "region": "CH-BE",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
+        "type": "Stop"
+    },
+    {
+        "country": "CH",
+        "identifier": {
+            "test_id": "8590023",
+            "uic": "8590023"
+        },
+        "latitude": 46.93166,
+        "longitude": 7.44515,
+        "name": "Bern, Sandrain",
+        "region": "CH-BE",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Tramway"
+                },
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
+        "type": "Stop"
+    },
+    {
+        "identifier": {
+            "test_id": "8509867",
+            "uic": "8509867"
+        },
+        "latitude": 46.46183,
+        "longitude": 9.18985,
+        "name": "San Bernardino, Posta",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
+        "type": "Stop"
+    },
+    {
+        "identifier": {
+            "test_id": "8511941",
+            "uic": "8511941"
+        },
+        "latitude": 46.46128,
+        "longitude": 9.19268,
+        "name": "S. Bernardino, Centro",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
+        "type": "Stop"
+    },
+    {
+        "identifier": {
+            "test_id": "8511936",
+            "uic": "8511936"
+        },
+        "latitude": 46.45201,
+        "longitude": 9.20059,
+        "name": "S. Bernardino, Fornas",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
+        "type": "Stop"
+    }
+]

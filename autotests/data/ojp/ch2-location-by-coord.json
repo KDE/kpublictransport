@@ -1,0 +1,68 @@
+[
+    {
+        "country": "CH",
+        "identifier": {
+            "test_id": "8591067",
+            "uic": "8591067"
+        },
+        "latitude": 47.37622,
+        "longitude": 8.53946,
+        "name": "Zürich, Bahnhofstrasse/HB",
+        "region": "CH-ZH",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Tramway"
+                },
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
+        "type": "Stop"
+    },
+    {
+        "country": "CH",
+        "identifier": {
+            "test_id": "8587348",
+            "uic": "8587348"
+        },
+        "latitude": 47.37724,
+        "longitude": 8.53934,
+        "name": "Zürich, Bahnhofplatz/HB",
+        "region": "CH-ZH",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Tramway"
+                },
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
+        "type": "Stop"
+    },
+    {
+        "country": "CH",
+        "identifier": {
+            "test_id": "8591262",
+            "uic": "8591262"
+        },
+        "latitude": 47.3759,
+        "longitude": 8.53742,
+        "name": "Zürich, Löwenplatz",
+        "region": "CH-ZH",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Tramway"
+                },
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
+        "type": "Stop"
+    }
+]

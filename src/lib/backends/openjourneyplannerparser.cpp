@@ -14,6 +14,7 @@
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
 #include <KPublicTransport/Stopover>
+#include <KPublicTransport/StopInformation>
 
 #include <QByteArray>
 #include <QDebug>
@@ -94,7 +95,7 @@ std::vector<Location> OpenJourneyPlannerParser::parseLocationInformationDelivery
 {
     std::vector<Location> l;
     while (r.readNextSibling()) {
-        if (r.isElement("Location") || r.isElement("LocationResult")) {
+        if (r.isElement("Location") || r.isElement("LocationResult") || r.isElement("PlaceResult")) {
             auto loc = parseLocationInformationLocationResult(r.subReader());
             if (!loc.isEmpty()) {
                 l.push_back(std::move(loc));
@@ -110,7 +111,7 @@ Location OpenJourneyPlannerParser::parseLocationInformationLocationResult(Scoped
 {
     Location loc;
     while (r.readNextSibling()) {
-        if (r.isElement("Location")) {
+        if (r.isElement("Location") || r.isElement("Place")) {
             loc = parseLocationInformationLocation(r.subReader());
         }
     }
@@ -119,6 +120,7 @@ Location OpenJourneyPlannerParser::parseLocationInformationLocationResult(Scoped
 
 Location OpenJourneyPlannerParser::parseLocationInformationLocation(ScopedXmlStreamReader &&r) const
 {
+    StopInformation info;
     Location loc;
     while (r.readNextSibling()) {
         if (r.isElement("StopPlace") || r.isElement("StopPoint")) {
@@ -138,7 +140,14 @@ Location OpenJourneyPlannerParser::parseLocationInformationLocation(ScopedXmlStr
             loc.setLatitude(p.y());
         } else if (r.isElement("LocationName")) {
             loc.setLocality(parseTextElement(r.subReader()));
+        } else if (r.isElement("Mode")) {
+            Line l;
+            l.setMode(parseMode(r.subReader()));
+            info.addLine(l);
         }
+    }
+    if (!info.lines().empty()) {
+        loc.setData(info);
     }
 
     // cleanup locality also containing the stop name
