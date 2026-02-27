@@ -20,14 +20,6 @@ using namespace KPublicTransport;
 class DepartureTest : public QObject
 {
     Q_OBJECT
-private:
-    QByteArray readFile(const QString &fn) const
-    {
-        QFile f(fn);
-        f.open(QFile::ReadOnly);
-        return f.readAll();
-    }
-
 private Q_SLOTS:
     void initTestCase()
     {
@@ -51,9 +43,9 @@ private Q_SLOTS:
     {
         QFETCH(QString, baseName);
 
-        const auto lhs = Stopover::fromJson(QJsonDocument::fromJson(readFile(baseName + QLatin1String(".lhs.json"))).object());
-        const auto rhs = Stopover::fromJson(QJsonDocument::fromJson(readFile(baseName + QLatin1String(".rhs.json"))).object());
-        const auto expected = QJsonDocument::fromJson(readFile(baseName + QLatin1String(".merged.json"))).object();
+        const auto lhs = Stopover::fromJson(QJsonDocument::fromJson(Test::readFile(baseName + QLatin1String(".lhs.json"))).object());
+        const auto rhs = Stopover::fromJson(QJsonDocument::fromJson(Test::readFile(baseName + QLatin1String(".rhs.json"))).object());
+        const auto expected = QJsonDocument::fromJson(Test::readFile(baseName + QLatin1String(".merged.json"))).object();
 
         QVERIFY(Stopover::isSame(lhs, rhs));
         QVERIFY(Stopover::isSame(rhs, lhs));

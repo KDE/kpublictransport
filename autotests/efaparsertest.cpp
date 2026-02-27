@@ -27,14 +27,6 @@ using namespace KPublicTransport;
 class EfaParserTest : public QObject
 {
     Q_OBJECT
-private:
-    QByteArray readFile(const QString &fn)
-    {
-        QFile f(fn);
-        f.open(QFile::ReadOnly);
-        return f.readAll();
-    }
-
 private Q_SLOTS:
     void initTestCase()
     {
@@ -72,10 +64,10 @@ private Q_SLOTS:
         KPublicTransport::EfaXmlParser parser;
         parser.setLocationIdentifierType(s("testid"));
 
-        const auto res = parser.parseStopFinderResponse(readFile(inFileName));
+        const auto res = parser.parseStopFinderResponse(Test::readFile(inFileName));
         const auto jsonRes = Location::toJson(res);
 
-        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
         QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
     }
 
@@ -97,10 +89,10 @@ private Q_SLOTS:
         KPublicTransport::EfaCompactParser parser;
         parser.setLocationIdentifierType(s("testid"));
 
-        const auto res = parser.parseStopFinderResponse(readFile(inFileName));
+        const auto res = parser.parseStopFinderResponse(Test::readFile(inFileName));
         const auto jsonRes = Location::toJson(res);
 
-        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
         QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
     }
 
@@ -122,10 +114,10 @@ private Q_SLOTS:
         KPublicTransport::EfaXmlParser parser;
         parser.setLocationIdentifierType(s("testid"));
 
-        const auto res = parser.parseDmResponse(readFile(inFileName));
+        const auto res = parser.parseDmResponse(Test::readFile(inFileName));
         const auto jsonRes = Stopover::toJson(res);
 
-        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
 
         QVERIFY(!jsonRes.empty());
         QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
@@ -153,10 +145,10 @@ private Q_SLOTS:
         KPublicTransport::EfaCompactParser parser;
         parser.setLocationIdentifierType(s("testid"));
 
-        const auto res = parser.parseDmResponse(readFile(inFileName));
+        const auto res = parser.parseDmResponse(Test::readFile(inFileName));
         const auto jsonRes = Stopover::toJson(res);
 
-        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
         QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
 
         QVERIFY(!parser.requestContext().isEmpty());
@@ -194,10 +186,10 @@ private Q_SLOTS:
         KPublicTransport::EfaXmlParser parser;
         parser.setLocationIdentifierType(s("testid"));
 
-        const auto res = parser.parseTripResponse(readFile(inFileName));
+        const auto res = parser.parseTripResponse(Test::readFile(inFileName));
         const auto jsonRes = Journey::toJson(res);
 
-        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
 
         QVERIFY(!jsonRes.empty());
         QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
@@ -225,10 +217,10 @@ private Q_SLOTS:
         KPublicTransport::EfaCompactParser parser;
         parser.setLocationIdentifierType(s("testid"));
 
-        const auto res = parser.parseTripResponse(readFile(inFileName));
+        const auto res = parser.parseTripResponse(Test::readFile(inFileName));
         const auto jsonRes = Journey::toJson(res);
 
-        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
 
         QVERIFY(!jsonRes.empty());
         QVERIFY(Test::compareJson(refFileName, jsonRes, ref));

@@ -15,7 +15,7 @@ namespace Test {
     [[nodiscard]] inline QByteArray readFile(const QString &fn)
     {
         QFile f(fn);
-        f.open(QFile::ReadOnly | QFile::Text);
+        std::ignore = f.open(QFile::ReadOnly | QFile::Text);
         return f.readAll();
     }
     [[nodiscard]] inline QByteArray readFile(const char *fn) { return readFile(QLatin1StringView(fn)); }
@@ -25,7 +25,7 @@ namespace Test {
     {
         if (output != ref) {
             QFile failFile(refFile + QLatin1String(".fail"));
-            failFile.open(QFile::WriteOnly);
+            std::ignore = failFile.open(QFile::WriteOnly);
             failFile.write(QJsonDocument(output).toJson());
             failFile.close();
 
@@ -48,7 +48,7 @@ namespace Test {
     {
         if (output != ref) {
             QFile failFile(refFile + QLatin1String(".fail"));
-            failFile.open(QFile::WriteOnly);
+            std::ignore = failFile.open(QFile::WriteOnly);
             failFile.write(output);
             failFile.close();
 

@@ -22,14 +22,6 @@ using namespace KPublicTransport;
 class AccessibilityCloudTest : public QObject
 {
     Q_OBJECT
-private:
-    QByteArray readFile(const QString &fn)
-    {
-        QFile f(fn);
-        f.open(QFile::ReadOnly);
-        return f.readAll();
-    }
-
 private Q_SLOTS:
     void testParseLocation_data()
     {
@@ -50,14 +42,14 @@ private Q_SLOTS:
         QFETCH(QString, attrFileName);
 
         AccessibilityCloudParser p;
-        QVERIFY(p.parseLocations(readFile(inFileName)));
+        QVERIFY(p.parseLocations(Test::readFile(inFileName)));
         const auto jsonRes = Location::toJson(p.locations);
 
-        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
         QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
 
         const auto attrRes = Attribution::toJson(p.attributions);
-        const auto attrRef = QJsonDocument::fromJson(readFile(attrFileName)).array();
+        const auto attrRef = QJsonDocument::fromJson(Test::readFile(attrFileName)).array();
         QVERIFY(Test::compareJson(attrFileName, attrRes, attrRef));
     }
 };

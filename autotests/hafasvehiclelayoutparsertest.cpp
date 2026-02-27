@@ -22,14 +22,6 @@ using namespace KPublicTransport;
 class HafasVehicleLayoutParserTest : public QObject
 {
     Q_OBJECT
-private:
-    QByteArray readFile(const QString &fn)
-    {
-        QFile f(fn);
-        f.open(QFile::ReadOnly);
-        return f.readAll();
-    }
-
 private Q_SLOTS:
     void testPlatformParse_stcL_data()
     {
@@ -46,9 +38,9 @@ private Q_SLOTS:
         QFETCH(QString, inFileName);
         QFETCH(QString, vehicleFileName);
 
-        const auto vehicles = HafasVehicleLayoutParser::parseVehicleLayouts(QJsonDocument::fromJson(readFile(inFileName)).object());
+        const auto vehicles = HafasVehicleLayoutParser::parseVehicleLayouts(QJsonDocument::fromJson(Test::readFile(inFileName)).object());
         const auto vehicleJson = Vehicle::toJson(vehicles);
-        const auto vehicleRef = QJsonDocument::fromJson(readFile(vehicleFileName)).array();
+        const auto vehicleRef = QJsonDocument::fromJson(Test::readFile(vehicleFileName)).array();
         QVERIFY(!vehicleJson.isEmpty());
         QVERIFY(Test::compareJson(vehicleFileName, vehicleJson, vehicleRef));
     }
@@ -76,9 +68,9 @@ private Q_SLOTS:
         QFETCH(QString, inFileName);
         QFETCH(QString, vehicleFileName);
 
-        const auto vehicle = HafasVehicleLayoutParser::parseTrainFormation(readFile(inFileName));
+        const auto vehicle = HafasVehicleLayoutParser::parseTrainFormation(Test::readFile(inFileName));
         const auto vehicleJson = Vehicle::toJson(vehicle);
-        const auto vehicleRef = QJsonDocument::fromJson(readFile(vehicleFileName)).object();
+        const auto vehicleRef = QJsonDocument::fromJson(Test::readFile(vehicleFileName)).object();
         QVERIFY(!vehicleJson.isEmpty());
         QVERIFY(Test::compareJson(vehicleFileName, vehicleJson, vehicleRef));
     }
@@ -101,9 +93,9 @@ private Q_SLOTS:
         QFETCH(QString, inFileName);
         QFETCH(QString, platformFileName);
 
-        const auto platform = HafasVehicleLayoutParser::parsePlatformSectors(readFile(inFileName));
+        const auto platform = HafasVehicleLayoutParser::parsePlatformSectors(Test::readFile(inFileName));
         const auto platformJson = Platform::toJson(platform);
-        const auto platformRef = QJsonDocument::fromJson(readFile(platformFileName)).object();
+        const auto platformRef = QJsonDocument::fromJson(Test::readFile(platformFileName)).object();
         QVERIFY(!platformJson.isEmpty());
         QVERIFY(Test::compareJson(platformFileName, platformJson, platformRef));
     }
@@ -123,9 +115,9 @@ private Q_SLOTS:
         QFETCH(QString, inFileName);
         QFETCH(QString, platformFileName);
 
-        const auto platforms = HafasVehicleLayoutParser::parsePlatforms(QJsonDocument::fromJson(readFile(inFileName)).object());
+        const auto platforms = HafasVehicleLayoutParser::parsePlatforms(QJsonDocument::fromJson(Test::readFile(inFileName)).object());
         const auto platformJson = Platform::toJson(platforms);
-        const auto platformRef = QJsonDocument::fromJson(readFile(platformFileName)).array();
+        const auto platformRef = QJsonDocument::fromJson(Test::readFile(platformFileName)).array();
         QVERIFY(!platformJson.isEmpty());
         QVERIFY(Test::compareJson(platformFileName, platformJson, platformRef));
     }
