@@ -28,7 +28,15 @@ class OpenJourneyPlannerBackend : public AbstractBackend
     Q_PROPERTY(QUrl endpoint MEMBER m_endpoint)
     Q_PROPERTY(QString authorization MEMBER m_authorization)
     Q_PROPERTY(QString requestorRef MEMBER m_requestorRef)
-    Q_PROPERTY(bool useTrias MEMBER m_useTrias)
+
+    /** The protocol variant this uses. */
+    enum Protocol {
+        OJP1,
+        OJP2,
+        TRIAS,
+    };
+    Q_ENUM(Protocol)
+    Q_PROPERTY(Protocol protocol MEMBER m_protocol)
     /** Override the default HTTP ContentType header in the request. */
     Q_PROPERTY(QByteArray contentType MEMBER m_contentType)
     /** Location identifier type for UIC station codes.
@@ -53,7 +61,7 @@ private:
     QUrl m_endpoint;
     QString m_authorization;
     QString m_requestorRef = QStringLiteral("KPublicTransport");
-    bool m_useTrias = false;
+    Protocol m_protocol = OJP1;
     QByteArray m_contentType = "application/xml";
     QString m_uicLocationIdentifierType;
 };

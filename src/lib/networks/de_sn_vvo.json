@@ -103,8 +103,8 @@
     "options": {
         "contentType": "text/xml",
         "endpoint": "http://efa.vvo-online.de:8080/std3/trias",
-        "requestorRef": "OpenService",
-        "useTrias": true
+        "protocol": "TRIAS",
+        "requestorRef": "OpenService"
     },
     "supportedLanguages": [
         "en",
