@@ -280,6 +280,14 @@ static void applyBackendOptions(AbstractBackend *backend, const QMetaObject *mo,
             } else {
                 mp.writeOnGadget(backend, it.value().toArray());
             }
+        } else if (it.value().isString() && mp.isEnumType()) {
+            bool ok = false;
+            const auto value = mp.enumerator().keyToValue(it.value().toString().toUtf8().constData(), &ok);
+            if (ok) {
+                mp.writeOnGadget(backend, value);
+            } else {
+                qCWarning(Log) << "Failed to parse enum option:" << it.value();
+            }
         } else {
             mp.writeOnGadget(backend, it.value().toVariant());
         }
