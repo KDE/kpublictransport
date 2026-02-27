@@ -39,7 +39,10 @@
                         "direction": "Winterthur",
                         "line": {
                             "mode": "LocalTrain",
-                            "name": "S7"
+                            "name": "S7",
+                            "operatorIdentifiers": {
+                                "test_id": "11"
+                            }
                         },
                         "name": "18780"
                     },
@@ -224,7 +227,10 @@
                         "direction": "Schaffhausen",
                         "line": {
                             "mode": "LocalTrain",
-                            "name": "S33"
+                            "name": "S33",
+                            "operatorIdentifiers": {
+                                "test_id": "11"
+                            }
                         },
                         "name": "20382"
                     },
@@ -490,7 +496,10 @@
                         "direction": "Rapperswil SG",
                         "line": {
                             "mode": "LocalTrain",
-                            "name": "S7"
+                            "name": "S7",
+                            "operatorIdentifiers": {
+                                "test_id": "11"
+                            }
                         },
                         "name": "18785"
                     },
@@ -645,7 +654,10 @@
                         "direction": "Schaffhausen",
                         "line": {
                             "mode": "LocalTrain",
-                            "name": "RE48"
+                            "name": "RE48",
+                            "operatorIdentifiers": {
+                                "test_id": "11"
+                            }
                         },
                         "name": "4940"
                     },
@@ -743,7 +755,10 @@
                         "direction": "Winterthur",
                         "line": {
                             "mode": "LocalTrain",
-                            "name": "S7"
+                            "name": "S7",
+                            "operatorIdentifiers": {
+                                "test_id": "11"
+                            }
                         },
                         "name": "18782"
                     },
@@ -927,7 +942,10 @@
                         "direction": "Schaffhausen",
                         "line": {
                             "mode": "LocalTrain",
-                            "name": "S12"
+                            "name": "S12",
+                            "operatorIdentifiers": {
+                                "test_id": "11"
+                            }
                         },
                         "name": "19285"
                     },

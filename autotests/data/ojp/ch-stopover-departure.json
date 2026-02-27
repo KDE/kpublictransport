@@ -9,7 +9,10 @@
             "direction": "Brig Bahnhofplatz",
             "line": {
                 "mode": "LocalTrain",
-                "name": "R"
+                "name": "R",
+                "operatorIdentifiers": {
+                    "test_id": "ojp:93"
+                }
             }
         },
         "scheduledDepartureTime": "2021-09-06T20:27:00Z",
@@ -37,7 +40,10 @@
             "direction": "Zermatt",
             "line": {
                 "mode": "LocalTrain",
-                "name": "R"
+                "name": "R",
+                "operatorIdentifiers": {
+                    "test_id": "ojp:93"
+                }
             }
         },
         "scheduledDepartureTime": "2021-09-06T21:29:00Z",

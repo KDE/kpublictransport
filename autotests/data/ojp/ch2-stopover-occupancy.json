@@ -12,7 +12,10 @@
             "direction": "Seuzach",
             "line": {
                 "mode": "LocalTrain",
-                "name": "S11"
+                "name": "S11",
+                "operatorIdentifiers": {
+                    "test_id": "11"
+                }
             },
             "name": "19169"
         },
@@ -58,7 +61,10 @@
             "direction": "Lausanne",
             "line": {
                 "mode": "LongDistanceTrain",
-                "name": "IC5"
+                "name": "IC5",
+                "operatorIdentifiers": {
+                    "test_id": "11"
+                }
             },
             "name": "532"
         },
@@ -99,7 +105,10 @@
             "direction": "Wetzikon ZH",
             "line": {
                 "mode": "LocalTrain",
-                "name": "S3"
+                "name": "S3",
+                "operatorIdentifiers": {
+                    "test_id": "11"
+                }
             },
             "name": "18369"
         },

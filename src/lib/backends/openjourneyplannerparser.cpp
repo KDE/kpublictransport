@@ -411,6 +411,8 @@ void OpenJourneyPlannerParser::parseService(ScopedXmlStreamReader &&r, Route &ro
             }
         } else if (r.isElement("TrainNumber")) {
             route.setName(r.readElementText());
+        } else if (r.isElement("OperatorRef")) {
+            line.setOperatorIdentifier(m_identifierType, r.readElementText());
         }
     }
     route.setLine(std::move(line));

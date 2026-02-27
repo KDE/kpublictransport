@@ -73,7 +73,10 @@
                         "direction": "Dresden Hauptbahnhof",
                         "line": {
                             "mode": "LocalTrain",
-                            "name": "RB30"
+                            "name": "RB30",
+                            "operatorIdentifiers": {
+                                "test_id": "ddb:CX"
+                            }
                         }
                     },
                     "scheduledDepartureTime": "2021-09-11T11:30:00Z",
