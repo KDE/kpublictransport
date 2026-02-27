@@ -125,7 +125,7 @@ private Q_SLOTS:
             QVERIFY(!idx.data(BackendModel::NameRole).toString().isEmpty());
             QVERIFY(!idx.data(BackendModel::DescriptionRole).toString().isEmpty());
             QCOMPARE(idx.data(BackendModel::SecureRole), idx.data(BackendModel::ItemEnabledRole));
-            if (!idx.data(BackendModel::SecureRole).toBool() && !backendId.endsWith("_staging"_L1)) {
+            if (!idx.data(BackendModel::SecureRole).toBool() && !(backendId.endsWith("_staging"_L1) || backendId.endsWith("_legacy"_L1))) {
                 QVERIFY(!idx.data(BackendModel::BackendEnabledRole).toBool());
             }
             QVERIFY(!idx.data(BackendModel::CountryCodeRole).toString().isEmpty());
@@ -138,7 +138,7 @@ private Q_SLOTS:
             const auto idx = model.index(i, 0);
             QVERIFY(idx.data(BackendModel::ItemEnabledRole).toBool());
             const auto backendId = idx.data(BackendModel::IdentifierRole).toString();
-            QCOMPARE(idx.data(BackendModel::BackendEnabledRole).toBool(), !backendId.endsWith("_staging"_L1));
+            QCOMPARE(idx.data(BackendModel::BackendEnabledRole).toBool(), !(backendId.endsWith("_staging"_L1) || backendId.endsWith("_legacy"_L1)));
         }
 
         QCOMPARE(mgr.isBackendEnabled(QStringLiteral("un_transitous")), true);

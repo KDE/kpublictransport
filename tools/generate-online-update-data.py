@@ -37,7 +37,12 @@ def get_current_version():
 
 
 allowed_types = ['.json', '.geojson', '.pem', '.p12']
-ignore_patterns = ['ch_sbb.json', 'eu_motislocal.json', 'un_transitous_staging.json']
+ignore_patterns = [
+    'ch_opentransportdata_legacy.json',
+    'ch_sbb.json',
+    'eu_motislocal.json',
+    'un_transitous_staging.json'
+]
 
 
 def is_ignored(f: str) -> bool:
