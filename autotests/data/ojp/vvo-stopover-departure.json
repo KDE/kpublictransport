@@ -10,7 +10,10 @@
             "direction": "Dresden Pirnaischer Platz",
             "line": {
                 "mode": "Bus",
-                "name": "360"
+                "name": "360",
+                "operatorIdentifiers": {
+                    "test_id": "voe:3"
+                }
             }
         },
         "scheduledDepartureTime": "2021-09-10T19:41:00Z",
@@ -30,7 +33,10 @@
             "direction": "Weixdorf",
             "line": {
                 "mode": "Tramway",
-                "name": "7"
+                "name": "7",
+                "operatorIdentifiers": {
+                    "test_id": "voe:16"
+                }
             }
         },
         "scheduledDepartureTime": "2021-09-10T19:41:00Z",

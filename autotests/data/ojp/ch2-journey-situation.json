@@ -64,7 +64,10 @@
                         "direction": "Brig",
                         "line": {
                             "mode": "LongDistanceTrain",
-                            "name": "IC6"
+                            "name": "IC6",
+                            "operatorIdentifiers": {
+                                "test_id": "11"
+                            }
                         },
                         "name": "629"
                     },
@@ -149,7 +152,10 @@
                         "direction": "Zermatt",
                         "line": {
                             "mode": "LocalTrain",
-                            "name": "R42"
+                            "name": "R42",
+                            "operatorIdentifiers": {
+                                "test_id": "93"
+                            }
                         },
                         "name": "359"
                     },

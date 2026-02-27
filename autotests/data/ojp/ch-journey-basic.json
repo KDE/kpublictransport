@@ -29,7 +29,10 @@
                         "direction": "Brig",
                         "line": {
                             "mode": "Train",
-                            "name": "IC8"
+                            "name": "IC8",
+                            "operatorIdentifiers": {
+                                "test_id": "ojp:11"
+                            }
                         }
                     },
                     "scheduledDepartureTime": "2021-09-07T15:45:00Z",
@@ -123,7 +126,10 @@
                         "direction": "Zermatt",
                         "line": {
                             "mode": "LocalTrain",
-                            "name": "R"
+                            "name": "R",
+                            "operatorIdentifiers": {
+                                "test_id": "ojp:93"
+                            }
                         }
                     },
                     "scheduledDepartureTime": "2021-09-07T18:08:00Z",
