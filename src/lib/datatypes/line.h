@@ -124,6 +124,11 @@ public:
     [[nodiscard]] static bool modeIsRailBound(KPublicTransport::Line::Mode mode);
     [[nodiscard]] bool isRailBound() const;
 
+    /** Backend-specific operator identifiers. */
+    [[nodiscard]] QString operatorIdentifier(QAnyStringView identifierType) const;
+    [[nodiscard]] bool hasOperatorIdentifier(QAnyStringView identifierType) const;
+    void setOperatorIdentifier(const QString &identifierType, const QString &id);
+
     /** Look up line meta data and apply what is found.
      *  @param location A location on or close to the line.
      *  @param download When set to @c true, not yet locally present logo URLs are retrieved.

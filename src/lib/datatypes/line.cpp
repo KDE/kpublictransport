@@ -7,6 +7,7 @@
 #include "line.h"
 #include "lineutil_p.h"
 #include "datatypes_p.h"
+#include "identifier_p.h"
 #include "json_p.h"
 #include "mergeutil_p.h"
 #include "assetrepository_p.h"
@@ -31,6 +32,7 @@ public:
     LineMetaData metaData;
     QString operatorName;
     QUrl operatorUrl;
+    IdentifierSet operatorIds;
 };
 
 class RoutePrivate : public QSharedData {
@@ -171,9 +173,29 @@ QString Line::iconName() const
     return modeIconName();
 }
 
+QString Line::operatorIdentifier(QAnyStringView identifierType) const
+{
+    return d->operatorIds.identifier(identifierType);
+}
+
+bool Line::hasOperatorIdentifier(QAnyStringView identifierType) const
+{
+    return d->operatorIds.hasIdentifier(identifierType);
+}
+
+void Line::setOperatorIdentifier(const QString &identifierType, const QString &id)
+{
+    d.detach();
+    d->operatorIds.setIdentifier(identifierType, id);
+}
+
 bool Line::isSame(const Line &lhs, const Line &rhs)
 {
     if (!LineUtil::isCompatibleMode(lhs.mode(), rhs.mode())) {
+        return false;
+    }
+
+    if (lhs.d->operatorIds.compare(rhs.d->operatorIds) == IdentifierSet::NotEqual) {
         return false;
     }
 
@@ -219,6 +241,7 @@ Line Line::merge(const Line &lhs, const Line &rhs)
 
     l.setOperatorName(MergeUtil::mergeString(lhs.operatorName(), rhs.operatorName()));
     l.setOperatorUrl(MergeUtil::mergeUrl(lhs.operatorUrl(), rhs.operatorUrl()));
+    l.d->operatorIds.merge(rhs.d->operatorIds);
     return l;
 }
 
@@ -244,7 +267,10 @@ QJsonObject Line::toJson(const Line &l)
 {
     auto obj = Json::toJson(l);
     if (l.mode() == Unknown) {
-        obj.remove(QLatin1String("mode"));
+        obj.remove("mode"_L1);
+    }
+    if (!l.d->operatorIds.isEmpty()) {
+        obj.insert("operatorIdentifiers"_L1, l.d->operatorIds.toJson());
     }
     return obj;
 }
@@ -257,6 +283,7 @@ QJsonArray Line::toJson(const std::vector<Line> &lines)
 Line Line::fromJson(const QJsonObject &obj)
 {
     auto l = Json::fromJson<Line>(obj);
+    l.d->operatorIds.fromJson(obj.value("operatorIdentifiers"_L1).toObject());
     return l;
 }
 
