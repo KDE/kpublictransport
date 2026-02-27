@@ -211,6 +211,17 @@
     "options": {
         "authorization": "Bearer 57c5dbbbf1fe4d000100001833a821a9de3748e5876bfb6c1efe6973",
         "endpoint": "https://api.opentransportdata.swiss/ojp20",
+        "formationAuthorization": "Bearer eyJvcmciOiI2NDA2NTFhNTIyZmEwNTAwMDEyOWJiZTEiLCJpZCI6ImIwNDYyOWNlYzk0ZTQ1ODk4OGUyZWVmYmExMDhkYWVkIiwiaCI6Im11cm11cjEyOCJ9",
+        "formationOperatorMap": {
+            "11": "SBBP",
+            "29": "MBC",
+            "33": "BLS",
+            "53": "TPF",
+            "65": "THURBO",
+            "72": "RhB",
+            "82": "SOB",
+            "86": "ZB"
+        },
         "protocol": "OJP2",
         "supportedModes": [
             { "mode": "rail", "submode": "international" },
@@ -233,6 +244,6 @@
     ],
     "timezone": "Europe/Zurich",
     "type": {
-        "openJourneyPlanner": true
+        "opentransportswiss": true
     }
 }
