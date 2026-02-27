@@ -41,8 +41,8 @@ public:
     std::vector<Stopover> parseStopEventResponse(const QByteArray &responseData);
     std::vector<Journey> parseTripResponse(const QByteArray &responseData);
 
-    bool hasError() const;
-    QString errorMessage() const;
+    [[nodiscard]] bool hasError() const;
+    [[nodiscard]] QString errorMessage() const;
 
     void setLocationIdentifierType(const QString &idType);
     void setUicLocationIdentifierType(const QString &uicIdType);

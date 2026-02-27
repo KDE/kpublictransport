@@ -19,6 +19,7 @@
 
 #define s(x) QStringLiteral(x)
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 class OjpParserTest : public QObject
@@ -154,6 +155,16 @@ private Q_SLOTS:
             QVERIFY(res.empty());
             QVERIFY(p.hasError());
             QCOMPARE(p.errorMessage(), QLatin1String("Premature end of document."));
+        }
+
+        {
+            OpenJourneyPlannerParser p;
+            p.setLocationIdentifierType(u"test_id"_s);
+            p.setUicLocationIdentifierType(u"uic"_s);
+            auto res = p.parseTripResponse(Test::readFile(u"" SOURCE_DIR "/data/ojp/ch2-journey-error-not-found.xml"_s));
+            QVERIFY(res.empty());
+            QVERIFY(p.hasError());
+            QCOMPARE(p.errorMessage(), "TRIP_NOTRIPFOUND"_L1);
         }
     }
 };

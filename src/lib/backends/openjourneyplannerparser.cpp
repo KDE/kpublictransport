@@ -677,7 +677,7 @@ PathSection OpenJourneyPlannerParser::parseTrackSection(ScopedXmlStreamReader &&
 void OpenJourneyPlannerParser::parseError(ScopedXmlStreamReader &&r)
 {
     while (r.readNextSibling()) {
-        if (r.isElement("Description")) {
+        if (r.isElement("Description") || r.isElement("TripProblemType")) {
             m_errorMsg = r.readElementText();
         }
     }

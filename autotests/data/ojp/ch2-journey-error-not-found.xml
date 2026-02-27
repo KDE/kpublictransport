@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OJP xmlns:siri="http://www.siri.org.uk/siri" xmlns="http://www.vdv.de/ojp" version="2.0">
+  <OJPResponse>
+    <siri:ServiceDelivery>
+      <siri:ResponseTimestamp>2026-02-26T21:35:22.5000635+01:00</siri:ResponseTimestamp>
+      <siri:ProducerRef>MENTZ-prod-asg_1.0.41.451_i-0788be24175ef2cc2.eu-central-1.compute.internal</siri:ProducerRef>
+      <siri:ResponseMessageIdentifier>00-83accb8d74ec61fa23922</siri:ResponseMessageIdentifier>
+      <OJPTripDelivery>
+        <siri:ResponseTimestamp>2026-02-26T21:35:22.5000153+01:00</siri:ResponseTimestamp>
+        <siri:DefaultLanguage>de</siri:DefaultLanguage>
+        <ErrorCondition>
+          <TripProblemType>TRIP_NOTRIPFOUND</TripProblemType>
+        </ErrorCondition>
+      </OJPTripDelivery>
+    </siri:ServiceDelivery>
+  </OJPResponse>
+</OJP>
