@@ -51,7 +51,8 @@ public:
     [[nodiscard]] bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
     [[nodiscard]] bool queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const override;
     [[nodiscard]] bool queryStopover(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const override;
-    [[nodiscard]] bool queryJourney(const JourneyRequest &request, JourneyReply * reply, QNetworkAccessManager *nam) const override;
+    [[nodiscard]] bool queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const override;
+    [[nodiscard]] bool queryTrip(const TripRequest &request, TripReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
     [[nodiscard]] QNetworkRequest networkRequest() const;

@@ -18,6 +18,8 @@
 #include <KPublicTransport/Stopover>
 #include <KPublicTransport/StopoverReply>
 #include <KPublicTransport/StopoverRequest>
+#include <KPublicTransport/TripReply>
+#include <KPublicTransport/TripRequest>
 
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -131,6 +133,40 @@ bool OpenJourneyPlannerBackend::queryJourney(const JourneyRequest &request, Jour
     return true;
 }
 
+bool OpenJourneyPlannerBackend::queryTrip(const TripRequest &request, TripReply *reply, QNetworkAccessManager *nam) const
+{
+    if (m_protocol != OJP2) {
+        return false;
+    }
+
+    const auto postData = requestBuilder().buildTripInfoRequest(request);
+    const auto netReq = networkRequest();
+    logRequest(request, netReq, postData);
+
+    const auto netReply = nam->post(netReq, postData);
+    netReply->setParent(reply);
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
+        netReply->deleteLater();
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
+        if (netReply->error() != QNetworkReply::NoError) {
+            addError(reply, Reply::NetworkError, netReply->errorString());
+            return;
+        }
+
+        auto p = parser();
+        auto trip = p.parseTripInfoResponse(data);
+        if (p.hasError()) {
+            addError(reply, Reply::NotFoundError, p.errorMessage());
+        } else {
+            addResult(reply, this, std::move(trip));
+        }
+    });
+
+    return true;
+}
+
 QNetworkRequest OpenJourneyPlannerBackend::networkRequest() const
 {
     QNetworkRequest req(m_endpoint);
@@ -145,6 +181,7 @@ OpenJourneyPlannerRequestBuilder OpenJourneyPlannerBackend::requestBuilder() con
 {
     OpenJourneyPlannerRequestBuilder builder;
     builder.setRequestorRef(m_requestorRef);
+    builder.setIdentifierType(backendId());
     builder.setProtocol(static_cast<OpenJourneyPlannerRequestBuilder::Protocol>(m_protocol));
     return builder;
 }
