@@ -309,8 +309,6 @@ Stopover OpenJourneyPlannerParser::parseStopEventResult(ScopedXmlStreamReader &&
 Stopover OpenJourneyPlannerParser::parseStopEvent(ScopedXmlStreamReader &&r) const
 {
     Stopover stop;
-    Route route;
-    QStringList attrs;
     while (r.readNextSibling()) {
         if (r.isElement("ThisCall")) {
             auto subR = r.subReader();
@@ -320,12 +318,14 @@ Stopover OpenJourneyPlannerParser::parseStopEvent(ScopedXmlStreamReader &&r) con
                 }
             }
         } else if (r.isElement("Service")) {
-            parseService(r.subReader(), route, attrs);
+            Service service;
+            parseService(r.subReader(), service);
+            stop.setRoute(service.route);
+            stop.setTripIdentifier(m_identifierType, service.identifier);
+            stop.addNotes(std::move(service.attributes));
         }
         // Extensions?
     }
-    stop.setRoute(route);
-    stop.addNotes(std::move(attrs));
     return stop;
 }
 
@@ -375,9 +375,10 @@ void OpenJourneyPlannerParser::parseCallAtStop(ScopedXmlStreamReader &&r, Stopov
     stop.setLoadInformation(std::move(occupancy));
 }
 
-void OpenJourneyPlannerParser::parseService(ScopedXmlStreamReader &&r, Route &route, QStringList &attributes) const
+void OpenJourneyPlannerParser::parseService(ScopedXmlStreamReader &&r, Service &service) const
 {
-    auto line = route.line();
+    auto line = service.route.line();
+    QString jnyRef, opDate;
     while (r.readNextSibling()) {
         if (r.isElement("Mode")) {
             line.setMode(parseMode(r.subReader()));
@@ -387,35 +388,40 @@ void OpenJourneyPlannerParser::parseService(ScopedXmlStreamReader &&r, Route &ro
             auto subR = r.subReader();
             while (subR.readNextSibling()) {
                 if (subR.isElement("Text") || subR.isElement("UserText")) {
-                    attributes.push_back(parseTextElement(subR.subReader()));
+                    service.attributes.push_back(parseTextElement(subR.subReader()));
                 }
             }
         } else if (r.isElement("DestinationStopPointRef")) {
             // TODO
         } else if (r.isElement("DestinationText")) {
-            route.setDirection(parseTextElement(r.subReader()));
+            service.route.setDirection(parseTextElement(r.subReader()));
         } else if (r.isElement("ServiceSection")) {
-            route.setLine(std::move(line));
-            parseService(r.subReader(), route, attributes);
-            line = route.line();
+            service.route.setLine(std::move(line));
+            parseService(r.subReader(), service);
+            line = service.route.line();
         } else if (r.isElement("SituationFullRef")) {
             const auto situationId = parseSituationRef(r.subReader());
-            attributes.push_back(m_contextSituations.value(situationId));
+            service.attributes.push_back(m_contextSituations.value(situationId));
         } else if (r.isElement("SituationFullRefs")) {
             auto subR = r.subReader();
             while (subR.readNextElement()) {
                 if (subR.isElement("SituationFullRef")) {
                     const auto situationId = parseSituationRef(subR.subReader());
-                    attributes.push_back(m_contextSituations.value(situationId));
+                    service.attributes.push_back(m_contextSituations.value(situationId));
                 }
             }
         } else if (r.isElement("TrainNumber")) {
-            route.setName(r.readElementText());
+            service.route.setName(r.readElementText());
         } else if (r.isElement("OperatorRef")) {
             line.setOperatorIdentifier(m_identifierType, r.readElementText());
+        } else if (r.isElement("JourneyRef")) {
+            jnyRef = r.readElementText();
+        } else if (r.isElement("OperatingDayRef")) {
+            opDate = r.readElementText();
         }
     }
-    route.setLine(std::move(line));
+    service.route.setLine(std::move(line));
+    service.identifier = jnyRef + '|'_L1 + opDate;
 }
 
 OpenJourneyPlannerParser::TimePair OpenJourneyPlannerParser::parseTime(ScopedXmlStreamReader &&r) const
@@ -568,8 +574,6 @@ JourneySection OpenJourneyPlannerParser::parseTimedLeg(ScopedXmlStreamReader &&r
     JourneySection section;
     section.setMode(JourneySection::PublicTransport);
     std::vector<Stopover> intermediateStops;
-    Route route;
-    QStringList attributes;
     while (r.readNextSibling()) {
         if (r.isElement("LegBoard")) {
             Stopover stop;
@@ -584,15 +588,17 @@ JourneySection OpenJourneyPlannerParser::parseTimedLeg(ScopedXmlStreamReader &&r
             parseCallAtStop(r.subReader(), stop);
             section.setArrival(stop);
         } else if (r.isElement("Service")) {
-            parseService(r.subReader(), route, attributes);
+            Service service;
+            parseService(r.subReader(), service);
+            section.setRoute(std::move(service.route));
+            section.setIdentifier(m_identifierType, service.identifier);
+            section.addNotes(std::move(service.attributes));
         } else if (r.isElement("LegTrack")) {
             Path path;
             path.setSections({parsePathGuidanceSection(r.subReader())});
             section.setPath(std::move(path));
         }
     }
-    section.setRoute(std::move(route));
-    section.addNotes(std::move(attributes));
     section.setIntermediateStops(std::move(intermediateStops));
     return section;
 }

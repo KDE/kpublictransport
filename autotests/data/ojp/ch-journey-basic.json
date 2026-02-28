@@ -51,6 +51,9 @@
                         "type": "Stop"
                     }
                 },
+                "identifiers": {
+                    "test_id": "ojp:91008:E:R:j21:396|2021-09-07"
+                },
                 "mode": "PublicTransport",
                 "notes": [
                     "Gratis-Internet mit der App SBB FreeSurf",
@@ -147,6 +150,9 @@
                         "region": "CH-VS",
                         "type": "Stop"
                     }
+                },
+                "identifiers": {
+                    "test_id": "ojp:91003:Y:H:j21:121|2021-09-07"
                 },
                 "mode": "PublicTransport",
                 "notes": [

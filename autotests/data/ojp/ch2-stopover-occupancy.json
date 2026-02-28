@@ -31,6 +31,9 @@
             "name": "Zürich HB",
             "region": "CH-ZH",
             "type": "Stop"
+        },
+        "tripIdentifiers": {
+            "test_id": "ch:1:sjyid:100001:19169-001|2026-02-26"
         }
     },
     {
@@ -80,6 +83,9 @@
             "name": "Zürich HB",
             "region": "CH-ZH",
             "type": "Stop"
+        },
+        "tripIdentifiers": {
+            "test_id": "ch:1:sjyid:100001:532-001|2026-02-26"
         }
     },
     {
@@ -124,6 +130,9 @@
             "name": "Zürich HB",
             "region": "CH-ZH",
             "type": "Stop"
+        },
+        "tripIdentifiers": {
+            "test_id": "ch:1:sjyid:100001:18369-002|2026-02-26"
         }
     }
 ]

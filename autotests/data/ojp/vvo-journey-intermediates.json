@@ -89,6 +89,9 @@
                         "name": "Chemnitz, Hauptbahnhof"
                     }
                 },
+                "identifiers": {
+                    "test_id": "ddb:90D30::R:j21:140|2021-09-11"
+                },
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",

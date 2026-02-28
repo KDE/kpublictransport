@@ -63,7 +63,12 @@ private:
     Stopover parseStopEventResult(ScopedXmlStreamReader &&r) const;
     Stopover parseStopEvent(ScopedXmlStreamReader &&r) const;
     void parseCallAtStop(ScopedXmlStreamReader &&r, Stopover &stop) const;
-    void parseService(ScopedXmlStreamReader &&r, Route &route, QStringList &attributes) const;
+    struct Service {
+        Route route;
+        QString identifier;
+        QStringList attributes;
+    };
+    void parseService(ScopedXmlStreamReader &&r, Service &service) const;
     struct TimePair {
         QDateTime scheduledTime;
         QDateTime expectedTime;

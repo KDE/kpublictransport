@@ -83,6 +83,9 @@
                         "type": "Stop"
                     }
                 },
+                "identifiers": {
+                    "test_id": "ch:1:sjyid:100001:629-001|2026-02-27"
+                },
                 "mode": "PublicTransport",
                 "notes": [
                     "Niederflureinstieg",
@@ -172,6 +175,9 @@
                         "region": "CH-VS",
                         "type": "Stop"
                     }
+                },
+                "identifiers": {
+                    "test_id": "ojp:91042:D:R:j26:42|2026-02-27"
                 },
                 "mode": "PublicTransport",
                 "notes": [
