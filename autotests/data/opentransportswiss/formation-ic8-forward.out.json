@@ -1,0 +1,249 @@
+{
+    "disruptionEffect": "NormalService",
+    "platformLayout": {
+        "length": 268,
+        "sections": [
+            {
+                "begin": 0,
+                "end": 0.10000000149011612,
+                "name": "A"
+            },
+            {
+                "begin": 0.10000000149011612,
+                "end": 0.5,
+                "name": "B"
+            },
+            {
+                "begin": 0.5,
+                "end": 0.800000011920929,
+                "name": "C"
+            },
+            {
+                "begin": 0.800000011920929,
+                "end": 1,
+                "name": "D"
+            }
+        ]
+    },
+    "route": {
+        "line": {
+            "operatorIdentifiers": {
+                "test_id": "11"
+            }
+        },
+        "name": "833"
+    },
+    "scheduledDepartureTime": "2026-03-07T18:45:00+01:00",
+    "scheduledPlatform": "3",
+    "stopPoint": {
+        "identifier": {
+            "uic": "8501609"
+        },
+        "name": "Brig"
+    },
+    "tripIdentifiers": {
+        "test_id": "ch:1:sjyid:100001:833-001|2026-03-07"
+    },
+    "vehicleLayout": {
+        "direction": "Forward",
+        "sections": [
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "BikeStorage"
+                    }
+                ],
+                "length": 26.8,
+                "name": "9",
+                "platformPositionBegin": 0,
+                "platformPositionEnd": 0.10000000149011612,
+                "platformSectionName": "A",
+                "type": "ControlCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "BikeStorage"
+                    }
+                ],
+                "length": 26.8,
+                "name": "8",
+                "platformPositionBegin": 0.10000000149011612,
+                "platformPositionEnd": 0.20000000298023224,
+                "platformSectionName": "B",
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
+                "length": 26.8,
+                "name": "7",
+                "platformPositionBegin": 0.20000000298023224,
+                "platformPositionEnd": 0.30000001192092896,
+                "platformSectionName": "B",
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
+                "length": 26.8,
+                "name": "6",
+                "platformPositionBegin": 0.30000001192092896,
+                "platformPositionEnd": 0.4000000059604645,
+                "platformSectionName": "B",
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
+                "length": 26.8,
+                "name": "5",
+                "platformPositionBegin": 0.4000000059604645,
+                "platformPositionEnd": 0.5,
+                "platformSectionName": "B",
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "Restaurant"
+                    }
+                ],
+                "length": 26.8,
+                "name": "4",
+                "platformPositionBegin": 0.5,
+                "platformPositionEnd": 0.6000000238418579,
+                "platformSectionName": "C",
+                "type": "RestaurantCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
+                "length": 26.8,
+                "name": "3",
+                "platformPositionBegin": 0.6000000238418579,
+                "platformPositionEnd": 0.699999988079071,
+                "platformSectionName": "C",
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
+                "length": 26.8,
+                "name": "2",
+                "platformPositionBegin": 0.699999988079071,
+                "platformPositionEnd": 0.800000011920929,
+                "platformSectionName": "C",
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "WheelchairAccessible"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "BusinessArea"
+                    }
+                ],
+                "length": 26.8,
+                "name": "1",
+                "platformPositionBegin": 0.800000011920929,
+                "platformPositionEnd": 0.8999999761581421,
+                "platformSectionName": "D",
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "UnknownClass",
+                "connectedSides": "Front",
+                "deckCount": 1,
+                "length": 26.8,
+                "platformPositionBegin": 0.8999999761581421,
+                "platformPositionEnd": 1,
+                "platformSectionName": "D",
+                "type": "Engine"
+            }
+        ]
+    }
+}

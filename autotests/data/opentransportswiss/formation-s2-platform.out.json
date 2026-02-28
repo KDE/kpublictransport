@@ -1,0 +1,126 @@
+{
+    "disruptionEffect": "NormalService",
+    "platformLayout": {
+        "length": 132,
+        "sections": [
+            {
+                "begin": 0,
+                "end": 0.1428571492433548,
+                "name": "A"
+            },
+            {
+                "begin": 0.1428571492433548,
+                "end": 0.2857142984867096,
+                "name": "B"
+            },
+            {
+                "begin": 0.2857142984867096,
+                "end": 0.8571428656578064,
+                "name": "C"
+            },
+            {
+                "begin": 0.8571428656578064,
+                "end": 1,
+                "name": "D"
+            }
+        ]
+    },
+    "route": {
+        "line": {
+            "operatorIdentifiers": {
+                "test_id": "72"
+            }
+        },
+        "name": "1518"
+    },
+    "scheduledArrivalTime": "2026-03-07T14:52:00+01:00",
+    "scheduledDepartureTime": "2026-03-07T14:53:00+01:00",
+    "scheduledPlatform": "11",
+    "stopPoint": {
+        "identifier": {
+            "uic": "8509000"
+        },
+        "name": "Chur"
+    },
+    "tripIdentifiers": {
+        "test_id": "ch:1:sjyid:100053:01518|2026-03-07"
+    },
+    "vehicleLayout": {
+        "direction": "Forward",
+        "sections": [
+            {
+                "classes": "FirstClass|SecondClass",
+                "connectedSides": "Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "BikeStorage"
+                    }
+                ],
+                "length": 18.8,
+                "platformPositionBegin": 0.2857142984867096,
+                "platformPositionEnd": 0.4285714328289032,
+                "platformSectionName": "C",
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "BikeStorage"
+                    }
+                ],
+                "length": 18.8,
+                "platformPositionBegin": 0.4285714328289032,
+                "platformPositionEnd": 0.5714285969734192,
+                "platformSectionName": "C",
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "WheelchairAccessible"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "BikeStorage"
+                    }
+                ],
+                "length": 18.8,
+                "platformPositionBegin": 0.5714285969734192,
+                "platformPositionEnd": 0.7142857313156128,
+                "platformSectionName": "C",
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass|SecondClass",
+                "connectedSides": "Front",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "BikeStorage"
+                    }
+                ],
+                "length": 18.8,
+                "platformPositionBegin": 0.7142857313156128,
+                "platformPositionEnd": 0.8571428656578064,
+                "platformSectionName": "C",
+                "type": "PassengerCar"
+            }
+        ]
+    }
+}
