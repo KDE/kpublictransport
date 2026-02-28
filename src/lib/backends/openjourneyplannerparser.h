@@ -77,7 +77,7 @@ private:
     JourneySection parseTimedLeg(ScopedXmlStreamReader &&r) const;
     JourneySection parseTransferLeg(ScopedXmlStreamReader &&r) const;
     Path parsePathGuidance(ScopedXmlStreamReader &&r) const;
-    PathSection parsePathGuildanceSection(ScopedXmlStreamReader &&r) const;
+    PathSection parsePathGuidanceSection(ScopedXmlStreamReader &&r) const;
     PathSection parseTrackSection(ScopedXmlStreamReader &&r) const;
 
     void parseError(ScopedXmlStreamReader &&r);

@@ -474,7 +474,7 @@ JourneySection OpenJourneyPlannerParser::parseTimedLeg(ScopedXmlStreamReader &&r
             parseService(r.subReader(), route, attributes);
         } else if (r.isElement("LegTrack")) {
             Path path;
-            path.setSections({parsePathGuildanceSection(r.subReader())});
+            path.setSections({parsePathGuidanceSection(r.subReader())});
             section.setPath(std::move(path));
         }
     }
@@ -514,14 +514,14 @@ Path OpenJourneyPlannerParser::parsePathGuidance(ScopedXmlStreamReader &&r) cons
     std::vector<PathSection> sections;
     while (r.readNextSibling()) {
         if (r.isElement("PathGuidanceSection") || r.isElement("NavigationSection")) {
-            sections.push_back(parsePathGuildanceSection(r.subReader()));
+            sections.push_back(parsePathGuidanceSection(r.subReader()));
         }
     }
     path.setSections(std::move(sections));
     return path;
 }
 
-PathSection OpenJourneyPlannerParser::parsePathGuildanceSection(ScopedXmlStreamReader &&r) const
+PathSection OpenJourneyPlannerParser::parsePathGuidanceSection(ScopedXmlStreamReader &&r) const
 {
     PathSection section;
     while (r.readNextSibling()) {
