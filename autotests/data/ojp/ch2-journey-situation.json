@@ -7,7 +7,8 @@
                     "scheduledArrivalTime": "2026-02-27T15:30:00Z",
                     "stopPoint": {
                         "identifier": {
-                            "test_id": "ch:1:sloid:10:4:7"
+                            "test_id": "ch:1:sloid:10:4:7",
+                            "uic": "8500010"
                         },
                         "latitude": 47.54681,
                         "longitude": 7.59005,
@@ -36,7 +37,8 @@
                     "stopPoint": {
                         "country": "CH",
                         "identifier": {
-                            "test_id": "ch:1:sloid:1605:4:7"
+                            "test_id": "ch:1:sloid:1605:4:7",
+                            "uic": "8501605"
                         },
                         "latitude": 46.29421,
                         "longitude": 7.8823,
@@ -75,7 +77,8 @@
                     "scheduledPlatform": "7",
                     "stopPoint": {
                         "identifier": {
-                            "test_id": "ch:1:sloid:10:4:7"
+                            "test_id": "ch:1:sloid:10:4:7",
+                            "uic": "8500010"
                         },
                         "latitude": 47.54681,
                         "longitude": 7.59005,
@@ -104,7 +107,8 @@
                     "stopPoint": {
                         "country": "CH",
                         "identifier": {
-                            "test_id": "ch:1:sloid:1605:2:3"
+                            "test_id": "ch:1:sloid:1605:2:3",
+                            "uic": "8501605"
                         },
                         "latitude": 46.29396,
                         "longitude": 7.88164,
@@ -120,7 +124,8 @@
                     "stopPoint": {
                         "country": "CH",
                         "identifier": {
-                            "test_id": "ch:1:sloid:1605:4:7"
+                            "test_id": "ch:1:sloid:1605:4:7",
+                            "uic": "8501605"
                         },
                         "latitude": 46.29421,
                         "longitude": 7.8823,
@@ -167,7 +172,8 @@
                     "stopPoint": {
                         "country": "CH",
                         "identifier": {
-                            "test_id": "ch:1:sloid:1605:2:3"
+                            "test_id": "ch:1:sloid:1605:2:3",
+                            "uic": "8501605"
                         },
                         "latitude": 46.29396,
                         "longitude": 7.88164,
@@ -202,7 +208,8 @@
                     "stopPoint": {
                         "country": "CH",
                         "identifier": {
-                            "test_id": "ch:1:sloid:1687:0:148772"
+                            "test_id": "ch:1:sloid:1687:0:148772",
+                            "uic": "8501687"
                         },
                         "latitude": 46.09984,
                         "longitude": 7.7815,
