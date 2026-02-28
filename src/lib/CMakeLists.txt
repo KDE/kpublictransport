@@ -59,6 +59,7 @@ target_sources(KPublicTransport PRIVATE
     backends/openjourneyplannerbackend.cpp
     backends/openjourneyplannerparser.cpp
     backends/openjourneyplannerrequestbuilder.cpp
+    backends/opentransportswissformationparser.cpp
     backends/opentripplannergraphqlbackend.cpp
     backends/opentripplannerparser.cpp
     backends/opentripplannerrestbackend.cpp
