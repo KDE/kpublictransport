@@ -24,7 +24,8 @@
         "stopPoint": {
             "country": "CH",
             "identifier": {
-                "test_id": "ch:1:sloid:3000:503:43"
+                "test_id": "ch:1:sloid:3000:503:43",
+                "uic": "8503000"
             },
             "latitude": 47.37897,
             "longitude": 8.53885,
@@ -76,7 +77,8 @@
         "stopPoint": {
             "country": "CH",
             "identifier": {
-                "test_id": "ch:1:sloid:3000:500:32"
+                "test_id": "ch:1:sloid:3000:500:32",
+                "uic": "8503000"
             },
             "latitude": 47.37846,
             "longitude": 8.53672,
@@ -123,7 +125,8 @@
         "stopPoint": {
             "country": "CH",
             "identifier": {
-                "test_id": "ch:1:sloid:3000:503:43"
+                "test_id": "ch:1:sloid:3000:503:43",
+                "uic": "8503000"
             },
             "latitude": 47.37897,
             "longitude": 8.53885,

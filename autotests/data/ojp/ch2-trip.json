@@ -6,7 +6,8 @@
         "scheduledPlatform": "5",
         "stopPoint": {
             "identifier": {
-                "test_id": "ch:1:sloid:1689:0:78915"
+                "test_id": "ch:1:sloid:1689:0:78915",
+                "uic": "8501689"
             },
             "latitude": 46.02417,
             "longitude": 7.74801,
@@ -33,7 +34,8 @@
         "stopPoint": {
             "country": "CH",
             "identifier": {
-                "test_id": "ch:1:sloid:1605:2:3"
+                "test_id": "ch:1:sloid:1605:2:3",
+                "uic": "8501605"
             },
             "latitude": 46.29396,
             "longitude": 7.88164,
@@ -56,7 +58,8 @@
             "stopPoint": {
                 "country": "CH",
                 "identifier": {
-                    "test_id": "ch:1:sloid:1683:0:863786"
+                    "test_id": "ch:1:sloid:1683:0:863786",
+                    "uic": "8501683"
                 },
                 "latitude": 46.23184,
                 "longitude": 7.87073,
@@ -76,7 +79,8 @@
             "stopPoint": {
                 "country": "CH",
                 "identifier": {
-                    "test_id": "ch:1:sloid:1684:0:468948"
+                    "test_id": "ch:1:sloid:1684:0:468948",
+                    "uic": "8501684"
                 },
                 "latitude": 46.21441,
                 "longitude": 7.83718,
@@ -153,7 +157,8 @@
             "stopPoint": {
                 "country": "CH",
                 "identifier": {
-                    "test_id": "ch:1:sloid:1688:0:517731"
+                    "test_id": "ch:1:sloid:1688:0:517731",
+                    "uic": "8501688"
                 },
                 "latitude": 46.0673,
                 "longitude": 7.77456,

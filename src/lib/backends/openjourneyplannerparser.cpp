@@ -151,6 +151,13 @@ Location OpenJourneyPlannerParser::parseLocationInformationLocation(ScopedXmlStr
                     setLocationIdentifier(loc, id);
                 } else if (subR.isElement("StopPlaceName") || subR.isElement("StopPointName")) {
                     loc.setName(parseTextElement(subR.subReader()));
+                } else if (subR.isElement("ParentRef") && !m_uicIdentifierType.isEmpty() && !loc.hasIdentifier(m_uicIdentifierType)) {
+                    const auto id = subR.readElementText();
+                    const auto parentLoc = m_contextLocations.value(id);
+                    const auto uicId = parentLoc.identifier(m_uicIdentifierType);
+                    if (!uicId.isEmpty()) {
+                        loc.setIdentifier(m_uicIdentifierType, uicId);
+                    }
                 }
             }
         } else if (r.isElement("GeoPosition")) {
