@@ -57,6 +57,7 @@ ecm_add_test(gbfsreadertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(ojprequesttest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(ojpparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(motis2parsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport KF6::I18nLocaleData)
+ecm_add_test(opentransportswissformationtest LINK_LIBRARIES Qt::Test KPublicTransport)
 
 ecm_add_test(publictransportmanagertest.cpp mocknetworkaccessmanager.cpp TEST_NAME publictransportmanagertest LINK_LIBRARIES Qt::Network Qt::Test KPublicTransport)
 set_property(TEST publictransportmanagertest PROPERTY RUN_SERIAL 1)

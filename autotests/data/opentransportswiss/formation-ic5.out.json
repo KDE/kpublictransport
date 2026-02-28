@@ -1,0 +1,253 @@
+{
+    "disruptionEffect": "NormalService",
+    "route": {
+        "line": {
+            "operatorIdentifiers": {
+                "test_id": "11"
+            }
+        },
+        "name": "526"
+    },
+    "tripIdentifiers": {
+        "test_id": "ch:1:sjyid:100001:526-001|2026-02-28"
+    },
+    "vehicleLayout": {
+        "direction": "UnknownDirection",
+        "sections": [
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
+                "name": "17",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "ControlCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
+                "name": "16",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass|SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "Restaurant"
+                    }
+                ],
+                "name": "15",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "RestaurantCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
+                "name": "14",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
+                "name": "13",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
+                "name": "12",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
+                "name": "11",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "ControlCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
+                "name": "7",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "ControlCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
+                "name": "6",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass|SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "Restaurant"
+                    }
+                ],
+                "name": "5",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "RestaurantCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
+                "name": "4",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
+                "name": "3",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
+                "name": "2",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
+                "name": "1",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "ControlCar"
+            }
+        ]
+    }
+}
