@@ -9,6 +9,7 @@
 #include <KPublicTransport/JourneyRequest>
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/StopoverRequest>
+#include <KPublicTransport/TripRequest>
 
 #include <QByteArray>
 #include <QDateTime>
@@ -29,6 +30,11 @@ OpenJourneyPlannerRequestBuilder::~OpenJourneyPlannerRequestBuilder() = default;
 void OpenJourneyPlannerRequestBuilder::setRequestorRef(const QString &ref)
 {
     m_requestorRef = ref;
+}
+
+void OpenJourneyPlannerRequestBuilder::setIdentifierType(const QString &identifierType)
+{
+    m_identifierType = identifierType;
 }
 
 void OpenJourneyPlannerRequestBuilder::setProtocol(Protocol protocol)
@@ -164,6 +170,32 @@ QByteArray OpenJourneyPlannerRequestBuilder::buildTripRequest(const JourneyReque
     w.writeEndElement(); // </Params>
 
     w.writeEndElement(); // </TripRequest>
+    writeEndServiceRequest(w);
+    return output;
+}
+
+QByteArray OpenJourneyPlannerRequestBuilder::buildTripInfoRequest(const TripRequest &req) const
+{
+    QByteArray output;
+    QXmlStreamWriter w(&output);
+    setupWriter(w);
+    writeStartServiceRequest(w);
+    w.writeStartElement(ns(), "OJPTripInfoRequest");
+    writeRequestTimestamp(w);
+
+    const auto id = req.identifier(m_identifierType);
+    const auto idx = id.lastIndexOf('|'_L1);
+    if (idx > 0) {
+        w.writeTextElement(ns(), "JourneyRef", QStringView(id).left(idx));
+        w.writeTextElement(ns(), "OperatingDayRef", QStringView(id).mid(idx + 1));
+    }
+
+    w.writeStartElement(ns(), "Params");
+    w.writeTextElement(ns(), "IncludeTrackSections", "true");
+    w.writeTextElement(ns(), "IncludeTrackProjection", "true");
+    w.writeEndElement(); // </Params>
+
+    w.writeEndElement(); // </OJPTripInfoRequest>
     writeEndServiceRequest(w);
     return output;
 }

@@ -17,6 +17,7 @@ class JourneyRequest;
 class Location;
 class LocationRequest;
 class StopoverRequest;
+class TripRequest;
 
 /** Generate XML requests for Open Journey Planner and TRIAS. */
 class OpenJourneyPlannerRequestBuilder
@@ -26,6 +27,7 @@ public:
     ~OpenJourneyPlannerRequestBuilder();
 
     void setRequestorRef(const QString &ref);
+    void setIdentifierType(const QString &identifierType);
 
     /** Specify which protocol flavor the output is for. */
     enum Protocol {
@@ -38,6 +40,7 @@ public:
     [[nodiscard]] QByteArray buildLocationInformationRequest(const LocationRequest &req) const;
     [[nodiscard]] QByteArray buildStopEventRequest(const StopoverRequest &req) const;
     [[nodiscard]] QByteArray buildTripRequest(const JourneyRequest &req) const;
+    [[nodiscard]] QByteArray buildTripInfoRequest(const TripRequest &req) const;
 
     /** @internal produce indented output for unit tests. */
     void setTestMode(bool testMode);
@@ -53,6 +56,7 @@ private:
     [[nodiscard]] bool isTrias() const;
 
     QString m_requestorRef;
+    QString m_identifierType;
     Protocol m_protocol = OJP1;
     bool m_testMode = false;
 };
