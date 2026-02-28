@@ -37,9 +37,10 @@ class Stopover;
 class KPUBLICTRANSPORT_EXPORT OpenJourneyPlannerParser
 {
 public:
-    std::vector<Location> parseLocationInformationResponse(const QByteArray &responseData);
-    std::vector<Stopover> parseStopEventResponse(const QByteArray &responseData);
-    std::vector<Journey> parseTripResponse(const QByteArray &responseData);
+    [[nodiscard]] std::vector<Location> parseLocationInformationResponse(const QByteArray &responseData);
+    [[nodiscard]] std::vector<Stopover> parseStopEventResponse(const QByteArray &responseData);
+    [[nodiscard]] std::vector<Journey> parseTripResponse(const QByteArray &responseData);
+    [[nodiscard]] JourneySection parseTripInfoResponse(const QByteArray &responseData);
 
     [[nodiscard]] bool hasError() const;
     [[nodiscard]] QString errorMessage() const;
@@ -88,6 +89,9 @@ private:
     Path parsePathGuidance(ScopedXmlStreamReader &&r) const;
     PathSection parsePathGuidanceSection(ScopedXmlStreamReader &&r) const;
     PathSection parseTrackSection(ScopedXmlStreamReader &&r) const;
+
+    [[nodiscard]] JourneySection parseTripInfoDelivery(ScopedXmlStreamReader &&r);
+    [[nodiscard]] JourneySection parseTripInfoResult(ScopedXmlStreamReader &&r) const;
 
     void parseError(ScopedXmlStreamReader &&r);
 

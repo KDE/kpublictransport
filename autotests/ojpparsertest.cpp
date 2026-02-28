@@ -14,6 +14,7 @@
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QJsonObject>
 #include <QLocale>
 #include <QTest>
 
@@ -132,6 +133,32 @@ private Q_SLOTS:
         const auto jsonRes = Journey::toJson(res);
 
         const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
+        QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
+    }
+
+    void testParseTrip_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("refFileName");
+
+        QTest::newRow("ch2-trip")
+            << s(SOURCE_DIR "/data/ojp/ch2-trip.xml")
+            << s(SOURCE_DIR "/data/ojp/ch2-trip.json");
+    }
+
+    void testParseTrip()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, refFileName);
+
+        OpenJourneyPlannerParser p;
+        p.setLocationIdentifierType(QStringLiteral("test_id"));
+        p.setUicLocationIdentifierType(QStringLiteral("uic"));
+        const auto res = p.parseTripInfoResponse(Test::readFile(inFileName));
+        QVERIFY(!p.hasError());
+        const auto jsonRes = JourneySection::toJson(res);
+
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).object();
         QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
     }
 

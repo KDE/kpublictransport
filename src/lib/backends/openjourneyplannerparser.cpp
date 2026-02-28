@@ -94,6 +94,22 @@ std::vector<Journey> OpenJourneyPlannerParser::parseTripResponse(const QByteArra
     return res;
 }
 
+JourneySection OpenJourneyPlannerParser::parseTripInfoResponse(const QByteArray &responseData)
+{
+    QXmlStreamReader reader(responseData);
+    ScopedXmlStreamReader r(reader);
+    JourneySection section;
+    while (r.readNextElement()) {
+        if (r.isElement("OJPTripInfoDelivery")) {
+            section = parseTripInfoDelivery(r.subReader());
+        }
+    }
+    if (reader.hasError() && m_errorMsg.isEmpty()) {
+        m_errorMsg = reader.errorString();
+    }
+    return section;
+}
+
 std::vector<Location> OpenJourneyPlannerParser::parseLocationInformationDelivery(ScopedXmlStreamReader &&r)
 {
     std::vector<Location> l;
@@ -679,6 +695,55 @@ PathSection OpenJourneyPlannerParser::parseTrackSection(ScopedXmlStreamReader &&
             section.setDescription(r.readElementText());
         }
     }
+    return section;
+}
+
+JourneySection OpenJourneyPlannerParser::parseTripInfoDelivery(ScopedXmlStreamReader &&r)
+{
+    JourneySection section;
+    while (r.readNextSibling()) {
+        if (r.isElement("TripInfoResponseContext")) {
+            parseResponseContext(r.subReader());
+        } else if (r.isElement("TripInfoResult")) {
+            section = parseTripInfoResult(r.subReader());
+        } else if (r.isElement("ErrorCondition")) {
+            parseError(r.subReader());
+        }
+    }
+    return section;
+}
+
+JourneySection OpenJourneyPlannerParser::parseTripInfoResult(ScopedXmlStreamReader &&r) const
+{
+    JourneySection section;
+    std::vector<Stopover> stops;
+    while (r.readNextSibling()) {
+        if (r.isElement("PreviousCall") || r.isElement("OnwardCall")) {
+            Stopover stop;
+            parseCallAtStop(r.subReader(), stop);
+            stops.push_back(std::move(stop));
+        } else if (r.isElement("Service")) {
+            Service service;
+            parseService(r.subReader(), service);
+            section.setRoute(service.route);
+            section.setIdentifier(m_identifierType, service.identifier);
+            section.addNotes(service.attributes);
+        } else if (r.isElement("JourneyTrack")) {
+            Path path;
+            path.setSections({parsePathGuidanceSection(r.subReader())});
+            section.setPath(path);
+        }
+    }
+
+    if (stops.size() < 2) {
+        return section;
+    }
+    section.setDeparture(stops.front());
+    section.setArrival(stops.back());
+    stops.pop_back();
+    stops.erase(stops.begin());
+    section.setIntermediateStops(std::move(stops));
+    section.setMode(JourneySection::PublicTransport);
     return section;
 }
 
