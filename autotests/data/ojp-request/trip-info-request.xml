@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<siri:OJP xmlns:siri="http://www.siri.org.uk/siri" xmlns:ojp="http://www.vdv.de/ojp" version="1.0">
+ <siri:OJPRequest>
+  <siri:ServiceRequest>
+   <siri:RequestorRef>KPublicTransport</siri:RequestorRef>
+   <siri:RequestTimestamp>2023-03-24T12:34:56Z</siri:RequestTimestamp>
+   <ojp:OJPTripInfoRequest>
+    <siri:RequestTimestamp>2023-03-24T12:34:56Z</siri:RequestTimestamp>
+    <ojp:JourneyRef>ch:1:sjyid:100001:19169-001</ojp:JourneyRef>
+    <ojp:OperatingDayRef>2026-02-26</ojp:OperatingDayRef>
+    <ojp:Params>
+     <ojp:IncludeTrackSections>true</ojp:IncludeTrackSections>
+     <ojp:IncludeTrackProjection>true</ojp:IncludeTrackProjection>
+    </ojp:Params>
+   </ojp:OJPTripInfoRequest>
+  </siri:ServiceRequest>
+ </siri:OJPRequest>
+</siri:OJP>

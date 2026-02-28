@@ -9,7 +9,9 @@
 
 #include <KPublicTransport/JourneyRequest>
 #include <KPublicTransport/LocationRequest>
+#include <KPublicTransport/Stopover>
 #include <KPublicTransport/StopoverRequest>
+#include <KPublicTransport/TripRequest>
 
 #include <QFile>
 #include <QJsonArray>
@@ -170,6 +172,21 @@ private Q_SLOTS:
         refFileName = refFileName.insert(refFileName.size() -4, u"-trias");
         ref = Test::readFile(refFileName);
         QVERIFY(Test::compareXml(refFileName, res, ref));
+    }
+
+    void testTripRequest()
+    {
+        Stopover stop;
+        stop.setTripIdentifier(u"test_id"_s, u"ch:1:sjyid:100001:19169-001|2026-02-26"_s);
+        TripRequest req(stop);
+
+        OpenJourneyPlannerRequestBuilder builder;
+        builder.setRequestorRef(u"KPublicTransport"_s);
+        builder.setIdentifierType(u"test_id"_s);
+        builder.setTestMode(true);
+        auto res = builder.buildTripInfoRequest(req);
+        auto ref = Test::readFile(u"" SOURCE_DIR "/data/ojp-request/trip-info-request.xml"_s);
+        QVERIFY(Test::compareXml(u"" SOURCE_DIR "/data/ojp-request/trip-info-request.xml"_s, res, ref));
     }
 };
 
