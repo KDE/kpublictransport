@@ -1,0 +1,298 @@
+{
+    "arrival": {
+        "disruptionEffect": "NormalService",
+        "expectedArrivalTime": "2026-02-28T12:17:00Z",
+        "scheduledArrivalTime": "2026-02-28T12:17:00Z",
+        "scheduledPlatform": "5",
+        "stopPoint": {
+            "identifier": {
+                "test_id": "ch:1:sloid:1689:0:78915"
+            },
+            "latitude": 46.02417,
+            "longitude": 7.74801,
+            "name": "Zermatt",
+            "type": "Stop"
+        }
+    },
+    "departure": {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2026-02-28T11:11:00Z",
+        "route": {
+            "direction": "Zermatt",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "R41",
+                "operatorIdentifiers": {
+                    "test_id": "93"
+                }
+            },
+            "name": "233"
+        },
+        "scheduledDepartureTime": "2026-02-28T11:11:00Z",
+        "scheduledPlatform": "3",
+        "stopPoint": {
+            "country": "CH",
+            "identifier": {
+                "test_id": "ch:1:sloid:1605:2:3"
+            },
+            "latitude": 46.29396,
+            "longitude": 7.88164,
+            "name": "Visp",
+            "region": "CH-VS",
+            "type": "Stop"
+        }
+    },
+    "identifiers": {
+        "test_id": "ojp:91041:G:H:j26:5|2026-02-28"
+    },
+    "intermediateStops": [
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2026-02-28T11:20:00Z",
+            "expectedDepartureTime": "2026-02-28T11:21:00Z",
+            "scheduledArrivalTime": "2026-02-28T11:20:00Z",
+            "scheduledDepartureTime": "2026-02-28T11:21:00Z",
+            "scheduledPlatform": "2",
+            "stopPoint": {
+                "country": "CH",
+                "identifier": {
+                    "test_id": "ch:1:sloid:1683:0:863786"
+                },
+                "latitude": 46.23184,
+                "longitude": 7.87073,
+                "name": "Stalden-Saas",
+                "region": "CH-VS",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2026-02-28T11:28:00Z",
+            "expectedDepartureTime": "2026-02-28T11:28:00Z",
+            "expectedPlatform": "2",
+            "scheduledArrivalTime": "2026-02-28T11:28:00Z",
+            "scheduledDepartureTime": "2026-02-28T11:28:00Z",
+            "scheduledPlatform": "1",
+            "stopPoint": {
+                "country": "CH",
+                "identifier": {
+                    "test_id": "ch:1:sloid:1684:0:468948"
+                },
+                "latitude": 46.21441,
+                "longitude": 7.83718,
+                "name": "Kalpetran",
+                "region": "CH-VS",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2026-02-28T11:37:00Z",
+            "expectedDepartureTime": "2026-02-28T11:38:00Z",
+            "scheduledArrivalTime": "2026-02-28T11:37:00Z",
+            "scheduledDepartureTime": "2026-02-28T11:38:00Z",
+            "stopPoint": {
+                "country": "CH",
+                "identifier": {
+                    "test_id": "8501685",
+                    "uic": "8501685"
+                },
+                "latitude": 46.17734,
+                "longitude": 7.80208,
+                "name": "St. Niklaus VS",
+                "region": "CH-VS",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2026-02-28T11:48:00Z",
+            "expectedDepartureTime": "2026-02-28T11:48:00Z",
+            "scheduledArrivalTime": "2026-02-28T11:48:00Z",
+            "scheduledDepartureTime": "2026-02-28T11:48:00Z",
+            "stopPoint": {
+                "country": "CH",
+                "identifier": {
+                    "test_id": "8501686",
+                    "uic": "8501686"
+                },
+                "latitude": 46.13215,
+                "longitude": 7.79164,
+                "name": "Herbriggen",
+                "region": "CH-VS",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2026-02-28T11:56:00Z",
+            "expectedDepartureTime": "2026-02-28T11:57:00Z",
+            "scheduledArrivalTime": "2026-02-28T11:56:00Z",
+            "scheduledDepartureTime": "2026-02-28T11:57:00Z",
+            "stopPoint": {
+                "country": "CH",
+                "identifier": {
+                    "test_id": "8501687",
+                    "uic": "8501687"
+                },
+                "latitude": 46.09993,
+                "longitude": 7.78146,
+                "name": "Randa",
+                "region": "CH-VS",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2026-02-28T12:02:00Z",
+            "expectedDepartureTime": "2026-02-28T12:02:00Z",
+            "expectedPlatform": "3",
+            "scheduledArrivalTime": "2026-02-28T12:02:00Z",
+            "scheduledDepartureTime": "2026-02-28T12:02:00Z",
+            "scheduledPlatform": "4",
+            "stopPoint": {
+                "country": "CH",
+                "identifier": {
+                    "test_id": "ch:1:sloid:1688:0:517731"
+                },
+                "latitude": 46.0673,
+                "longitude": 7.77456,
+                "name": "T\\xC3\\xA4sch",
+                "region": "CH-VS",
+                "type": "Stop"
+            }
+        }
+    ],
+    "mode": "PublicTransport",
+    "path": {
+        "sections": [
+            {
+                "path": {
+                    "coordinates": [
+                        [
+                            7.88163,
+                            46.29397
+                        ],
+                        [
+                            7.88082,
+                            46.29398
+                        ],
+                        [
+                            7.8807,
+                            46.29398
+                        ],
+                        [
+                            7.88057,
+                            46.29398
+                        ],
+                        [
+                            7.88034,
+                            46.29397
+                        ],
+                        [
+                            7.88012,
+                            46.29395
+                        ],
+                        [
+                            7.88,
+                            46.29394
+                        ],
+                        [
+                            7.87993,
+                            46.29393
+                        ],
+                        [
+                            7.87981,
+                            46.2939
+                        ],
+                        [
+                            7.8797,
+                            46.29386
+                        ],
+                        [
+                            7.87958,
+                            46.29382
+                        ],
+                        [
+                            7.8795,
+                            46.29377
+                        ],
+                        [
+                            7.87937,
+                            46.29371
+                        ],
+                        [
+                            7.87931,
+                            46.29367
+                        ],
+                        [
+                            7.87925,
+                            46.29362
+                        ],
+                        [
+                            7.87918,
+                            46.29356
+                        ],
+                        [
+                            7.87911,
+                            46.29349
+                        ],
+                        [
+                            7.87905,
+                            46.29342
+                        ],
+                        [
+                            7.87899,
+                            46.29331
+                        ],
+                        [
+                            7.87897,
+                            46.29326
+                        ],
+                        [
+                            7.87895,
+                            46.29319
+                        ],
+                        [
+                            7.87893,
+                            46.29313
+                        ],
+                        [
+                            7.87893,
+                            46.29306
+                        ],
+                        [
+                            7.74966,
+                            46.02626
+                        ],
+                        [
+                            7.74945,
+                            46.02609
+                        ],
+                        [
+                            7.74915,
+                            46.02579
+                        ],
+                        [
+                            7.74903,
+                            46.02563
+                        ],
+                        [
+                            7.74895,
+                            46.02551
+                        ],
+                        [
+                            7.74861,
+                            46.02505
+                        ],
+                        [
+                            7.74797,
+                            46.02418
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            }
+        ]
+    }
+}
