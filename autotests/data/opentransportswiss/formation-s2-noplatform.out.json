@@ -1,0 +1,100 @@
+{
+    "disruptionEffect": "NormalService",
+    "platformLayout": {
+        "length": 75
+    },
+    "route": {
+        "line": {
+            "operatorIdentifiers": {
+                "test_id": "72"
+            }
+        },
+        "name": "1518"
+    },
+    "scheduledArrivalTime": "2026-03-07T14:46:00+01:00",
+    "scheduledDepartureTime": "2026-03-07T14:46:00+01:00",
+    "scheduledPlatform": "2",
+    "stopPoint": {
+        "identifier": {
+            "uic": "8509180"
+        },
+        "name": "Felsberg"
+    },
+    "tripIdentifiers": {
+        "test_id": "ch:1:sjyid:100053:01518|2026-03-07"
+    },
+    "vehicleLayout": {
+        "direction": "Forward",
+        "sections": [
+            {
+                "classes": "FirstClass|SecondClass",
+                "connectedSides": "Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "BikeStorage"
+                    }
+                ],
+                "length": 18.799999237060547,
+                "platformPositionBegin": 0,
+                "platformPositionEnd": 0.25,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "BikeStorage"
+                    }
+                ],
+                "length": 18.799999237060547,
+                "platformPositionBegin": 0.25,
+                "platformPositionEnd": 0.5,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "WheelchairAccessible"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "BikeStorage"
+                    }
+                ],
+                "length": 18.799999237060547,
+                "platformPositionBegin": 0.5,
+                "platformPositionEnd": 0.75,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass|SecondClass",
+                "connectedSides": "Front",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "BikeStorage"
+                    }
+                ],
+                "length": 18.799999237060547,
+                "platformPositionBegin": 0.75,
+                "platformPositionEnd": 1,
+                "type": "PassengerCar"
+            }
+        ]
+    }
+}
