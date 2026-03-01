@@ -7,9 +7,9 @@
 #include "openjourneyplannerparser.h"
 #include "scopedxmlstreamreader.h"
 
-#include <gtfs/hvt.h>
 #include <ifopt/ifoptutil.h>
 #include <siri/duration.h>
+#include <siri/mode.h>
 #include <siri/occupancy.h>
 #include <uic/uicstationcode.h>
 
@@ -471,11 +471,7 @@ Line::Mode OpenJourneyPlannerParser::parseMode(ScopedXmlStreamReader &&r) const
         }
     }
 
-    const auto m = Gtfs::Hvt::typeToMode(subMode);
-    if (m == Line::Unknown) {
-        return Gtfs::Hvt::typeToMode(mode);
-    }
-    return m;
+    return Siri::Mode::fromString(mode, subMode).toMode();
 }
 
 QString OpenJourneyPlannerParser::parseSituationRef(ScopedXmlStreamReader &&r) const
