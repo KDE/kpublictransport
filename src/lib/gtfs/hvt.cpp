@@ -6,6 +6,8 @@
 
 #include "hvt.h"
 
+#include <siri/mode.h>
+
 #include <QDebug>
 
 using namespace KPublicTransport;
@@ -105,102 +107,6 @@ Line::Mode Gtfs::Hvt::typeToMode(int hvt)
     }
     if (hvt == 1700) { // not officially specified, but de-facto standard in a number of OTP deployments
         return Line::RideShare;
-    }
-
-    qDebug() << "encountered unknown GTFS (extended) route type:" << hvt;
-    return Line::Unknown;
-}
-
-// top-level types, complete list
-struct {
-    const char *typeName;
-    Line::Mode mode;
-} static const coarse_mode_map[] = {
-    { "air", Line::Air },
-    { "bus", Line::Bus },
-    { "cableway", Line::AerialLift },
-    { "coach", Line::Coach },
-    { "funicular", Line::Funicular },
-    { "lift", Line::AerialLift },
-    { "metro", Line::Metro },
-    { "rail", Line::Train },
-    { "subway", Line::Metro },
-    { "tram", Line::Tramway },
-    { "unknown", Line::Unknown },
-    { "water", Line::Boat },
-};
-
-// fine-grained types, special cases that can't be found by pattern matches
-struct {
-    const char *typeName;
-    Line::Mode mode;
-} static const fine_mode_map[] = {
-    { "airportlinkrail", Line::RapidTransit },
-    { "airshipservice", Line::Air },
-    { "blackcab", Line::Taxi },
-    { "canalbarge", Line::Boat },
-    { "cablecar", Line::AerialLift },
-    { "helicopterservice", Line::Air },
-    { "international", Line::LongDistanceTrain },
-    { "interregionalrail", Line::Train },
-    { "local", Line::LocalTrain },
-    { "longdistance", Line::LongDistanceTrain },
-    { "minicab", Line::Taxi },
-    { "regionalrail", Line::LocalTrain },
-    { "riverbus", Line::Boat },
-    { "streetcablecar", Line::Tramway },
-    { "suburbanrailway", Line::RapidTransit },
-    { "trainFerry", Line::Ferry }, // disambiguate as this matches multiple patterns
-    { "tube", Line::Metro },
-    { "urbanrailway", Line::RapidTransit },
-    { "watertaxi", Line::Boat },
-};
-
-// patterns for groups of fine-grained types
-struct {
-    const char *namePattern;
-    Line::Mode mode;
-} static const mode_pattern_map[] = {
-    { "boat", Line::Boat },
-    { "bus", Line::Bus },
-    { "coach", Line::Coach },
-    { "ferry", Line::Ferry },
-    { "flight", Line::Air },
-    { "funicular", Line::Funicular },
-    { "highspeed", Line::LongDistanceTrain },
-    { "lift", Line::AerialLift },
-    { "rail", Line::Train },
-    { "taxi", Line::Taxi },
-    { "telecabin", Line::AerialLift },
-    { "train", Line::Train },
-    { "tram", Line::Tramway },
-};
-
-Line::Mode Gtfs::Hvt::typeToMode(const QString &hvt)
-{
-    if (hvt.isEmpty()) {
-        return Line::Unknown;
-    }
-
-    // fine-grained types, exact matches
-    for (const auto &m : fine_mode_map) {
-        if (hvt.compare(QLatin1String(m.typeName), Qt::CaseInsensitive) == 0) {
-            return m.mode;
-        }
-    }
-
-    // top-level types, exact matches
-    for (const auto &m : coarse_mode_map) {
-        if (hvt.compare(QLatin1String(m.typeName), Qt::CaseInsensitive) == 0) {
-            return m.mode;
-        }
-    }
-
-    // pattern matches on fine grained types
-    for (const auto &m : mode_pattern_map) {
-        if (hvt.contains(QLatin1String(m.namePattern), Qt::CaseInsensitive)) {
-            return m.mode;
-        }
     }
 
     qDebug() << "encountered unknown GTFS (extended) route type:" << hvt;

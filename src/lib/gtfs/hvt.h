@@ -21,8 +21,6 @@ namespace Hvt
 {
     /** Maps the numerical HVT value to a Line::Mode mode. */
     Line::Mode typeToMode(int hvt);
-    /** Maps HVT names to a Line::Mode mode. */
-    Line::Mode typeToMode(const QString &hvt);
 }
 
 }

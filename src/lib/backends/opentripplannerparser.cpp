@@ -9,6 +9,7 @@
 #include "gtfs/occupancy.h"
 #include "geo/polylinedecoder_p.h"
 #include "ifopt/ifoptutil.h"
+#include "siri/mode.h"
 #include "siri/occupancy.h"
 
 #include <KPublicTransport/Journey>
@@ -112,7 +113,7 @@ bool OpenTripPlannerParser::parseLocationFragment(const QJsonObject &obj, Locati
         StopInformation info;
         for (const auto &mode : modes) {
             Line line;
-            line.setMode(Gtfs::Hvt::typeToMode(mode.toString()));
+            line.setMode(Siri::Mode::fromString(mode.toString(), {}));
             info.addLine(line);
         }
         loc.setType(Location::Stop);
@@ -278,14 +279,11 @@ OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseLine(const QJsonObj
     line.setOperatorName(obj.value("agency"_L1).toObject().value("name"_L1).toString());
     line.setOperatorUrl(QUrl(obj.value("agency"_L1).toObject().value("url"_L1).toString()));
 
-    const auto type = obj.value(QLatin1String("type"));
+    const auto type = obj.value("type"_L1);
     if (type.isString()) {
-        line.setMode(Gtfs::Hvt::typeToMode(type.toString()));
+        line.setMode(Siri::Mode::fromString(obj.value("transportMode"_L1).toString(), type.toString()));
     } else if (type.isDouble()) {
         line.setMode(Gtfs::Hvt::typeToMode(type.toInt(-1)));
-    }
-    if (line.mode() == Line::Unknown) {
-        line.setMode(Gtfs::Hvt::typeToMode(obj.value(QLatin1String("transportMode")).toString()));
     }
 
     auto presentation = obj.value(QLatin1String("presentation")).toObject();
