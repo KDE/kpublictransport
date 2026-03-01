@@ -8,6 +8,8 @@
 #include "opentripplannerparser.h"
 #include "cache.h"
 
+#include <siri/mode.h>
+
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
@@ -105,23 +107,22 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
 
 struct {
     const char *otpMode;
-    const char *enturMode;
     Line::Mode mode;
 } static constexpr const otp_mode_map[] = {
-    { "AIRPLANE", "air", Line::Air },
-    { "BUS", "bus", Line::Bus },
-    { "CABLE_CAR", "cableway", Line::AerialLift },
-    { "CARPOOL", nullptr, Line::RideShare },
-    { "COACH", "coach", Line::Coach },
-    { "FERRY", "water", Line::Ferry },
-    { "FUNICULAR", "funicular", Line::Funicular },
-    { "GONDOLA", "lift", Line::AerialLift },
-    { "RAIL", "rail", Line::LongDistanceTrain },
-    { "RAIL", "rail", Line::Train },
-    { "RAIL", "rail", Line::LocalTrain },
-    { "RAIL", "rail", Line::RapidTransit },
-    { "SUBWAY", "metro", Line::Metro },
-    { "TRAM", "tram", Line::Tramway },
+    { "AIRPLANE", Line::Air },
+    { "BUS", Line::Bus },
+    { "CABLE_CAR", Line::AerialLift },
+    { "CARPOOL", Line::RideShare },
+    { "COACH", Line::Coach },
+    { "FERRY", Line::Ferry },
+    { "FUNICULAR", Line::Funicular },
+    { "GONDOLA", Line::AerialLift },
+    { "RAIL", Line::LongDistanceTrain },
+    { "RAIL", Line::Train },
+    { "RAIL", Line::LocalTrain },
+    { "RAIL", Line::RapidTransit },
+    { "SUBWAY", Line::Metro },
+    { "TRAM", Line::Tramway },
 };
 
 bool OpenTripPlannerGraphQLBackend::queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
@@ -144,11 +145,17 @@ bool OpenTripPlannerGraphQLBackend::queryStopover(const StopoverRequest &req, St
     // TODO arrival/departure selection?
 
     // for unconstrained searches we need all modes, the "TRANSIT" special mode results in an empty result...
-    const auto isEntur = m_apiVersion == QLatin1String("entur");
+    const auto isEntur = m_apiVersion == "entur"_L1;
     QStringList modes;
     for (const auto &m : otp_mode_map) {
-        if ((!isEntur || m.enturMode) && (req.lineModes().empty() || std::binary_search(req.lineModes().begin(), req.lineModes().end(), m.mode))) {
-            modes.push_back(QLatin1String(isEntur ? m.enturMode : m.otpMode));
+        if (req.lineModes().empty() || std::binary_search(req.lineModes().begin(), req.lineModes().end(), m.mode)) {
+            if (isEntur) {
+                for (const auto &m : Siri::Mode::fromMode(m.mode)) {
+                    modes.push_back(QLatin1StringView(m.modeString()));
+                }
+            } else {
+                modes.push_back(QLatin1StringView(m.otpMode));
+            }
         }
     }
     modes.removeDuplicates();
@@ -283,8 +290,10 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
         if ((req.modes() & JourneySection::PublicTransport) && !req.lineModes().empty()) {
             QStringList modes;
             for (const auto &m : otp_mode_map) {
-                if (m.enturMode && std::binary_search(req.lineModes().begin(), req.lineModes().end(), m.mode)) {
-                    modes.push_back(QLatin1StringView(m.enturMode));
+                if (std::binary_search(req.lineModes().begin(), req.lineModes().end(), m.mode)) {
+                    for (const auto &m : Siri::Mode::fromMode(m.mode)) {
+                        modes.push_back(QLatin1StringView(m.modeString()));
+                    }
                 }
             }
             modes.removeDuplicates();
