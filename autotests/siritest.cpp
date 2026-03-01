@@ -4,6 +4,7 @@
 */
 
 #include <siri/duration.cpp>
+#include <siri/mode.h>
 
 #include <QTest>
 
@@ -33,6 +34,19 @@ private Q_SLOTS:
         QFETCH(QString, duration);
         QFETCH(int, seconds);
         QCOMPARE(Siri::fromDuration(duration), std::chrono::seconds(seconds));
+    }
+
+    void testMode()
+    {
+        QCOMPARE(Siri::Mode::fromString(u"rail", {}), Line::Train);
+        QCOMPARE(Siri::Mode::fromString(u"rail", u"highSpeedRail"), Line::LongDistanceTrain);
+        QCOMPARE(Siri::Mode::fromString({}, u"local"), Line::LocalTrain);
+        QCOMPARE(Siri::Mode::fromString({}, u"localBus"), Line::Bus);
+        QCOMPARE(Siri::Mode::fromString(u"foo", u"bar"), Line::Unknown);
+        QCOMPARE(Siri::Mode::fromString(u"metro", u"newMetroServer"), Line::Metro);
+
+        QCOMPARE(Siri::Mode::toString(Siri::Mode::VehicleMode::bus), "bus");
+        QCOMPARE(Siri::Mode::toString(Siri::Mode::CoachSubmode::internationalCoach), "internationalCoach");
     }
 };
 

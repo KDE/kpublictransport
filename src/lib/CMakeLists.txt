@@ -151,6 +151,7 @@ target_sources(KPublicTransport PRIVATE
     networks/stations/stations.qrc
 
     siri/duration.cpp
+    siri/mode.cpp
     siri/occupancy.cpp
 
     uic/uicrailwaycoach.cpp
