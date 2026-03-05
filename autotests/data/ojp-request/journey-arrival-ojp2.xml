@@ -34,6 +34,22 @@
      <ojp:IncludeIntermediateStops>false</ojp:IncludeIntermediateStops>
      <ojp:IncludeFares>false</ojp:IncludeFares>
      <ojp:NumberOfResults>3</ojp:NumberOfResults>
+     <ojp:ModeAndModeOfOperationFilter>
+      <ojp:Exclude>true</ojp:Exclude>
+      <siri:BusSubmode>demandAndResponseBus</siri:BusSubmode>
+     </ojp:ModeAndModeOfOperationFilter>
+     <ojp:ModeAndModeOfOperationFilter>
+      <ojp:Exclude>true</ojp:Exclude>
+      <ojp:PtMode>water</ojp:PtMode>
+     </ojp:ModeAndModeOfOperationFilter>
+     <ojp:ModeAndModeOfOperationFilter>
+      <ojp:Exclude>true</ojp:Exclude>
+      <siri:RailSubmode>highSpeedRail</siri:RailSubmode>
+     </ojp:ModeAndModeOfOperationFilter>
+     <ojp:ModeAndModeOfOperationFilter>
+      <ojp:Exclude>true</ojp:Exclude>
+      <siri:RailSubmode>international</siri:RailSubmode>
+     </ojp:ModeAndModeOfOperationFilter>
     </ojp:Params>
    </ojp:OJPTripRequest>
   </siri:ServiceRequest>

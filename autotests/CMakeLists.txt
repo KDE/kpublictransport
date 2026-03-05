@@ -54,7 +54,7 @@ ecm_add_test(otpparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(oebbparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(ivvassparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(gbfsreadertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
-ecm_add_test(ojprequesttest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
+ecm_add_test(ojprequesttest.cpp ../src/lib/siri/mode.cpp  TEST_NAME ojprequesttest LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(ojpparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(motis2parsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport KF6::I18nLocaleData)
 
