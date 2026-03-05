@@ -9,10 +9,16 @@
 
 #include "abstractbackend.h"
 
+#include <siri/mode.h>
+
 #include <QByteArray>
 #include <QUrl>
 
 class QNetworkRequest;
+
+namespace Siri {
+class Mode;
+}
 
 namespace KPublicTransport {
 
@@ -28,6 +34,7 @@ class OpenJourneyPlannerBackend : public AbstractBackend
     Q_PROPERTY(QUrl endpoint MEMBER m_endpoint)
     Q_PROPERTY(QString authorization MEMBER m_authorization)
     Q_PROPERTY(QString requestorRef MEMBER m_requestorRef)
+    Q_PROPERTY(QJsonArray supportedModes WRITE setSupportedModes)
 
     /** The protocol variant this uses. */
     enum Protocol {
@@ -59,12 +66,15 @@ private:
     [[nodiscard]] OpenJourneyPlannerRequestBuilder requestBuilder() const;
     [[nodiscard]] OpenJourneyPlannerParser parser() const;
 
+    void setSupportedModes(const QJsonArray &modes);
+
     QUrl m_endpoint;
     QString m_authorization;
     QString m_requestorRef = QStringLiteral("KPublicTransport");
     Protocol m_protocol = OJP1;
     QByteArray m_contentType = "application/xml";
     QString m_uicLocationIdentifierType;
+    std::vector<Siri::Mode> m_supportedModes;
 };
 
 }
