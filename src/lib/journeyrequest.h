@@ -152,6 +152,12 @@ public:
      *  provide any guarantee that the results wont contain other modes as well.
      */
     void setLineModes(std::vector <Line::Mode> &&modes);
+    /**
+     * Inverted list of requested line modes.
+     * Provided for convenience for backends that use an exclusion rather than an
+     * inclusion list.
+     */
+    [[nodiscard]] std::vector<Line::Mode> invertedLineModes() const;
 
     /** Requested individual transport modes.
      *  Individual transport modes for direct journeys.
