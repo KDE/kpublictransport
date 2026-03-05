@@ -230,6 +230,24 @@ void JourneyRequest::setLineModes(std::vector<Line::Mode> &&lineModes)
     d->lineModes.erase(std::unique(d->lineModes.begin(), d->lineModes.end()), d->lineModes.end());
 }
 
+std::vector<Line::Mode> JourneyRequest::invertedLineModes() const
+{
+    if (d->lineModes.empty()) {
+        return {};
+    }
+
+    std::vector<Line::Mode> inv;
+    const auto me = QMetaEnum::fromType<Line::Mode>();
+    for (auto i = 0; i < me.keyCount(); ++i) {
+        const auto m = static_cast<Line::Mode>(me.value(i));
+        if (m == Line::Unknown || std::ranges::binary_search(d->lineModes, m)) {
+            continue;
+        }
+        inv.push_back(m);
+    }
+    return inv;
+}
+
 QVariantList JourneyRequest::lineModesVariant() const
 {
     return toVariantList(d->lineModes);
