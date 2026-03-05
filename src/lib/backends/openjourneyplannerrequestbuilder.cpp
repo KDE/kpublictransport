@@ -42,6 +42,11 @@ void OpenJourneyPlannerRequestBuilder::setProtocol(Protocol protocol)
     m_protocol = protocol;
 }
 
+void OpenJourneyPlannerRequestBuilder::setSupportedModes(const std::vector<Siri::Mode> *modes)
+{
+    m_supportedModes = modes;
+}
+
 void OpenJourneyPlannerRequestBuilder::setTestMode(bool testMode)
 {
     m_testMode = testMode;
@@ -167,6 +172,21 @@ QByteArray OpenJourneyPlannerRequestBuilder::buildTripRequest(const JourneyReque
     w.writeTextElement(ns(), QStringLiteral("NumberOfResults"), QString::number(req.maximumResults()));
     // TODO NumberOfResultsBefore|After for next/prev requests
     // TODO BikeTransport
+
+    if (m_protocol == OJP2 && !req.lineModes().empty() && m_supportedModes) {
+        const auto excludedModes = Siri::Mode::intersection(Siri::Mode::fromModes(req.invertedLineModes()), *m_supportedModes);
+        for (const auto &m : excludedModes) {
+            w.writeStartElement(ns(), "ModeAndModeOfOperationFilter");
+            w.writeTextElement(ns(), "Exclude", "true");
+            if (m.hasSubmode()) {
+                w.writeTextElement(siriNS(), m.submodeTypeName(), m.submodeString());
+            } else {
+                w.writeTextElement(ns(), "PtMode", m.modeString());
+            }
+            w.writeEndElement();
+        }
+    }
+
     w.writeEndElement(); // </Params>
 
     w.writeEndElement(); // </TripRequest>

@@ -7,6 +7,8 @@
 #ifndef KPUBLICTRANSPORT_OPENJOURNEYPLANNERREQUESTBUILDER_H
 #define KPUBLICTRANSPORT_OPENJOURNEYPLANNERREQUESTBUILDER_H
 
+#include <siri/mode.h>
+
 #include <QString>
 
 class QXmlStreamWriter;
@@ -28,6 +30,7 @@ public:
 
     void setRequestorRef(const QString &ref);
     void setIdentifierType(const QString &identifierType);
+    void setSupportedModes(const std::vector<Siri::Mode> *supportedModes);
 
     /** Specify which protocol flavor the output is for. */
     enum Protocol {
@@ -57,6 +60,7 @@ private:
 
     QString m_requestorRef;
     QString m_identifierType;
+    const std::vector<Siri::Mode> *m_supportedModes = nullptr;
     Protocol m_protocol = OJP1;
     bool m_testMode = false;
 };

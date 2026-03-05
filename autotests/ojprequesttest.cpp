@@ -145,6 +145,7 @@ private Q_SLOTS:
         req.setIncludeIntermediateStops(false);
         req.setIncludePaths(true);
         req.setDateTimeMode(JourneyRequest::Arrival);
+        req.setLineModes({Line::LocalTrain, Line::Train, Line::Shuttle, Line::Bus, Line::Coach, Line::Tramway});
         QTest::newRow("journey-arrival") << req << s(SOURCE_DIR "/data/ojp-request/journey-arrival.xml");
     }
 
@@ -156,6 +157,21 @@ private Q_SLOTS:
         OpenJourneyPlannerRequestBuilder builder;
         builder.setRequestorRef(QStringLiteral("KPublicTransport"));
         builder.setTestMode(true);
+
+        const auto modes = Siri::Mode::fromJson(QJsonDocument::fromJson(R"(
+        [
+            { "mode": "rail", "submode": "international" },
+            { "mode": "rail", "submode": "highSpeedRail" },
+            { "mode": "rail", "submode": "interregionalRail" },
+            { "mode": "rail", "submode": "local" },
+            { "mode": "rail", "submode": "railShuttle" },
+            { "mode": "bus" },
+            { "mode": "tram" },
+            { "mode": "water" }
+        ])").array());
+        builder.setSupportedModes(&modes);
+
+
         auto res = builder.buildTripRequest(request);
         auto ref = Test::readFile(refFileName);
         QVERIFY(Test::compareXml(refFileName, res, ref));
