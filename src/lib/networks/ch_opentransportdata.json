@@ -212,6 +212,16 @@
         "authorization": "Bearer 57c5dbbbf1fe4d000100001833a821a9de3748e5876bfb6c1efe6973",
         "endpoint": "https://api.opentransportdata.swiss/ojp20",
         "protocol": "OJP2",
+        "supportedModes": [
+            { "mode": "rail", "submode": "international" },
+            { "mode": "rail", "submode": "highSpeedRail" },
+            { "mode": "rail", "submode": "interregionalRail" },
+            { "mode": "rail", "submode": "local" },
+            { "mode": "rail", "submode": "railShuttle" },
+            { "mode": "bus" },
+            { "mode": "tram" },
+            { "mode": "water" }
+        ],
         "uicLocationIdentifierType": "uic"
     },
     "supportedLanguages": [

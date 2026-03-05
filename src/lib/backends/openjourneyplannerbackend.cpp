@@ -21,6 +21,7 @@
 #include <KPublicTransport/TripReply>
 #include <KPublicTransport/TripRequest>
 
+#include <QJsonArray>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
@@ -183,6 +184,7 @@ OpenJourneyPlannerRequestBuilder OpenJourneyPlannerBackend::requestBuilder() con
     builder.setRequestorRef(m_requestorRef);
     builder.setIdentifierType(backendId());
     builder.setProtocol(static_cast<OpenJourneyPlannerRequestBuilder::Protocol>(m_protocol));
+    builder.setSupportedModes(&m_supportedModes);
     return builder;
 }
 
@@ -192,4 +194,10 @@ OpenJourneyPlannerParser OpenJourneyPlannerBackend::parser() const
     p.setLocationIdentifierType(backendId());
     p.setUicLocationIdentifierType(m_uicLocationIdentifierType);
     return p;
+}
+
+void OpenJourneyPlannerBackend::setSupportedModes(const QJsonArray &json)
+{
+    m_supportedModes = Siri::Mode::fromJson(json);
+    std::sort(m_supportedModes.begin(), m_supportedModes.end());
 }
