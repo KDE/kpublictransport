@@ -171,6 +171,12 @@ QJsonObject VehicleSection::toJson(const VehicleSection &section)
     if (section.load() == Load::Unknown) {
         obj.remove("load"_L1);
     }
+    if (section.d->platformPositionBegin < 0) {
+        obj.remove("platformPositionBegin"_L1);
+    }
+    if (section.d->platformPositionEnd < 0) {
+        obj.remove("platformPositionEnd"_L1);
+    }
     return obj;
 }
 

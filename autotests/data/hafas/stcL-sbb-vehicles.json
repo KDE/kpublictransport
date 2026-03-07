@@ -13,16 +13,12 @@
                         "type": "WheelchairAccessible"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
                 "classes": "FirstClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -36,8 +32,6 @@
                         "type": "BikeStorage"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -51,8 +45,6 @@
                         "type": "BikeStorage"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -66,16 +58,12 @@
                         "type": "WheelchairAccessible"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
                 "classes": "FirstClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -89,8 +77,6 @@
                         "type": "BikeStorage"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -104,8 +90,6 @@
                         "type": "BikeStorage"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             }
         ]
@@ -124,16 +108,12 @@
                         "type": "WheelchairAccessible"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
                 "classes": "FirstClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -147,8 +127,6 @@
                         "type": "BikeStorage"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -162,8 +140,6 @@
                         "type": "BikeStorage"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             }
         ]
@@ -182,16 +158,12 @@
                         "type": "WheelchairAccessible"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
                 "classes": "FirstClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -205,8 +177,6 @@
                         "type": "BikeStorage"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -220,8 +190,6 @@
                         "type": "BikeStorage"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             }
         ]
@@ -240,16 +208,12 @@
                         "type": "WheelchairAccessible"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
                 "classes": "FirstClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -263,8 +227,6 @@
                         "type": "BikeStorage"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -278,8 +240,6 @@
                         "type": "BikeStorage"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -293,16 +253,12 @@
                         "type": "WheelchairAccessible"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
                 "classes": "FirstClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -316,8 +272,6 @@
                         "type": "BikeStorage"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -331,8 +285,6 @@
                         "type": "BikeStorage"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -346,16 +298,12 @@
                         "type": "WheelchairAccessible"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
                 "classes": "FirstClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -369,8 +317,6 @@
                         "type": "BikeStorage"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -384,8 +330,6 @@
                         "type": "BikeStorage"
                     }
                 ],
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             }
         ]
@@ -397,8 +341,6 @@
                 "classes": "UnknownClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "Engine"
             },
             {
@@ -413,8 +355,6 @@
                     }
                 ],
                 "name": "1",
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -422,8 +362,6 @@
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
                 "name": "3",
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -431,8 +369,6 @@
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
                 "name": "2",
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -440,8 +376,6 @@
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
                 "name": "4",
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -449,8 +383,6 @@
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
                 "name": "6",
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -458,8 +390,6 @@
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
                 "name": "7",
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -467,8 +397,6 @@
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
                 "name": "8",
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -476,8 +404,6 @@
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
                 "name": "5",
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -492,8 +418,6 @@
                     }
                 ],
                 "name": "9",
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             }
         ]
@@ -513,8 +437,6 @@
                     }
                 ],
                 "name": "9",
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -529,8 +451,6 @@
                     }
                 ],
                 "name": "6",
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -545,8 +465,6 @@
                     }
                 ],
                 "name": "7",
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -561,8 +479,6 @@
                     }
                 ],
                 "name": "8",
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -582,8 +498,6 @@
                     }
                 ],
                 "name": "5",
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -591,8 +505,6 @@
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
                 "name": "4",
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "RestaurantCar"
             },
             {
@@ -607,8 +519,6 @@
                     }
                 ],
                 "name": "3",
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -616,8 +526,6 @@
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
                 "name": "2",
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
@@ -625,16 +533,12 @@
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
                 "name": "1",
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "PassengerCar"
             },
             {
                 "classes": "UnknownClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "platformPositionBegin": -1,
-                "platformPositionEnd": -1,
                 "type": "Engine"
             }
         ]
