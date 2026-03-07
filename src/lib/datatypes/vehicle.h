@@ -129,6 +129,10 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
     /** Returns @c true if this vehicle section has a valid platform position set. */
     [[nodiscard]] bool hasPlatformPosition() const;
 
+    /** Physical length of this coach, in meters. */
+    KPUBLICTRANSPORT_PROPERTY(float, length, setLength)
+    [[nodiscard]] bool hasLength() const;
+
     /** Returns a suitable icon to represent the coach type.
      *  Can be a qrc: URL, an XDG icon name or empty.
      *  @since 24.08
