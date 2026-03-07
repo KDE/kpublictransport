@@ -45,7 +45,7 @@ Item {
             property alias section: platformDelegateRoot.modelData
             width: parent.width
             y: section.begin * root.fullLength + root.directionIndicatorSize
-            height: section.end * root.fullLength - y
+            height: section.end * root.fullLength - y + root.directionIndicatorSize
 
             Kirigami.Separator {
                 visible: platformDelegateRoot.index === 0
