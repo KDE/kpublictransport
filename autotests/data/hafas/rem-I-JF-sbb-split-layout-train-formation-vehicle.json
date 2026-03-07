@@ -12,8 +12,6 @@
                     "type": "WheelchairAccessible"
                 }
             ],
-            "platformPositionBegin": -1,
-            "platformPositionEnd": -1,
             "platformSectionName": "A",
             "type": "PassengerCar"
         },
@@ -21,8 +19,6 @@
             "classes": "FirstClass",
             "connectedSides": "Front|Back",
             "deckCount": 1,
-            "platformPositionBegin": -1,
-            "platformPositionEnd": -1,
             "platformSectionName": "B",
             "type": "PassengerCar"
         },
@@ -37,8 +33,6 @@
                     "type": "BikeStorage"
                 }
             ],
-            "platformPositionBegin": -1,
-            "platformPositionEnd": -1,
             "platformSectionName": "B",
             "type": "PassengerCar"
         },
@@ -53,8 +47,6 @@
                     "type": "BikeStorage"
                 }
             ],
-            "platformPositionBegin": -1,
-            "platformPositionEnd": -1,
             "platformSectionName": "B",
             "type": "PassengerCar"
         },
@@ -69,8 +61,6 @@
                     "type": "WheelchairAccessible"
                 }
             ],
-            "platformPositionBegin": -1,
-            "platformPositionEnd": -1,
             "platformSectionName": "C",
             "type": "PassengerCar"
         },
@@ -78,8 +68,6 @@
             "classes": "FirstClass",
             "connectedSides": "Front|Back",
             "deckCount": 1,
-            "platformPositionBegin": -1,
-            "platformPositionEnd": -1,
             "platformSectionName": "C",
             "type": "PassengerCar"
         },
@@ -94,8 +82,6 @@
                     "type": "BikeStorage"
                 }
             ],
-            "platformPositionBegin": -1,
-            "platformPositionEnd": -1,
             "platformSectionName": "C",
             "type": "PassengerCar"
         },
@@ -110,8 +96,6 @@
                     "type": "BikeStorage"
                 }
             ],
-            "platformPositionBegin": -1,
-            "platformPositionEnd": -1,
             "platformSectionName": "C",
             "type": "PassengerCar"
         }
