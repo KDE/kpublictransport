@@ -39,6 +39,7 @@ public:
     std::vector<Feature> sectionFeatures;
     Disruption::Effect disruptionEffect = Disruption::NormalService;
     Load::Category load = Load::Unknown;
+    float length = NAN;
 };
 
 class VehiclePrivate : public QSharedData
@@ -63,6 +64,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Sides, connectedS
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, QString, platformSectionName, setPlatformSectionName)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, KPublicTransport::Disruption::Effect, disruptionEffect, setDisruptionEffect)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, KPublicTransport::Load::Category, load, setLoad)
+KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, float, length, setLength)
 
 QString VehicleSection::typeName() const
 {
@@ -109,6 +111,11 @@ void VehicleSection::setSectionFeatures(std::vector<KPublicTransport::Feature> &
 KPublicTransport::Feature VehicleSection::feature(KPublicTransport::Feature::Type type) const
 {
     return FeatureUtil::findByType(d->sectionFeatures, type);
+}
+
+bool VehicleSection::hasLength() const
+{
+    return !std::isnan(d->length) && d->length > 0.0f;
 }
 
 QString VehicleSection::vehicleTypeIconName(VehicleSection::Type type)
@@ -176,6 +183,9 @@ QJsonObject VehicleSection::toJson(const VehicleSection &section)
     }
     if (section.d->platformPositionEnd < 0) {
         obj.remove("platformPositionEnd"_L1);
+    }
+    if (!section.hasLength()) {
+        obj.remove("length"_L1);
     }
     return obj;
 }
