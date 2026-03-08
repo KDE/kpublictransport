@@ -151,6 +151,7 @@
             "expectedArrivalTime": "2026-02-28T12:02:00Z",
             "expectedDepartureTime": "2026-02-28T12:02:00Z",
             "expectedPlatform": "3",
+            "pickupType": "NotAllowed",
             "scheduledArrivalTime": "2026-02-28T12:02:00Z",
             "scheduledDepartureTime": "2026-02-28T12:02:00Z",
             "scheduledPlatform": "4",
