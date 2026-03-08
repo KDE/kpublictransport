@@ -39,7 +39,7 @@ public:
     std::vector<Feature> sectionFeatures;
     Disruption::Effect disruptionEffect = Disruption::NormalService;
     Load::Category load = Load::Unknown;
-    float length = NAN;
+    double length = NAN;
 };
 
 class VehiclePrivate : public QSharedData
@@ -64,7 +64,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Sides, connectedS
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, QString, platformSectionName, setPlatformSectionName)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, KPublicTransport::Disruption::Effect, disruptionEffect, setDisruptionEffect)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, KPublicTransport::Load::Category, load, setLoad)
-KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, float, length, setLength)
+KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, double, length, setLength)
 
 QString VehicleSection::typeName() const
 {
@@ -115,7 +115,7 @@ KPublicTransport::Feature VehicleSection::feature(KPublicTransport::Feature::Typ
 
 bool VehicleSection::hasLength() const
 {
-    return !std::isnan(d->length) && d->length > 0.0f;
+    return !std::isnan(d->length) && d->length > 0.0;
 }
 
 QString VehicleSection::vehicleTypeIconName(VehicleSection::Type type)

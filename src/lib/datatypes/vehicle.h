@@ -130,7 +130,7 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
     [[nodiscard]] bool hasPlatformPosition() const;
 
     /** Physical length of this coach, in meters. */
-    KPUBLICTRANSPORT_PROPERTY(float, length, setLength)
+    KPUBLICTRANSPORT_PROPERTY(double, length, setLength)
     [[nodiscard]] bool hasLength() const;
 
     /** Returns a suitable icon to represent the coach type.
