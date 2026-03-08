@@ -15,6 +15,10 @@ Files: src/lib/networks/certs/*.pem src/lib/networks/certs/*.pfx src/lib/network
 Copyright: none
 License: CC0-1.0
 
+Files: src/lib/networks/hafas-attributes/*.json
+Copyright: none
+License: CC0-1.0
+
 Files: src/onboard/data/*.json
 Copyright: Volker Krause <vkrause@kde.org>
 License: CC0-1.0

@@ -69,6 +69,7 @@ using namespace KPublicTransport;
 
 static inline void initResources() {
     Q_INIT_RESOURCE(asset_attributions);
+    Q_INIT_RESOURCE(attributes);
     Q_INIT_RESOURCE(gbfs);
     Q_INIT_RESOURCE(geometry);
     Q_INIT_RESOURCE(images);
