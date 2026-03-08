@@ -44,6 +44,11 @@ class OpenJourneyPlannerBackend : public AbstractBackend
     };
     Q_ENUM(Protocol)
     Q_PROPERTY(Protocol protocol MEMBER m_protocol)
+    /** Enable support for trip queries.
+     *  This is on for OJP 2.0 by default, but can be disabled for backends where this
+     *  doesn't work properly.
+     */
+    Q_PROPERTY(bool supportsTripQueries MEMBER m_supportsTripQueries)
     /** Override the default HTTP ContentType header in the request. */
     Q_PROPERTY(QByteArray contentType MEMBER m_contentType)
     /** Location identifier type for UIC station codes.
@@ -72,6 +77,7 @@ private:
     QString m_authorization;
     QString m_requestorRef = QStringLiteral("KPublicTransport");
     Protocol m_protocol = OJP1;
+    bool m_supportsTripQueries = true;
     QByteArray m_contentType = "application/xml";
     QString m_uicLocationIdentifierType;
     std::vector<Siri::Mode> m_supportedModes;
