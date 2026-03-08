@@ -222,6 +222,7 @@
             { "mode": "tram" },
             { "mode": "water" }
         ],
+        "supportsTripQueries": false,
         "uicLocationIdentifierType": "uic"
     },
     "supportedLanguages": [
