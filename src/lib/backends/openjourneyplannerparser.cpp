@@ -390,6 +390,14 @@ void OpenJourneyPlannerParser::parseCallAtStop(ScopedXmlStreamReader &&r, Stopov
             if (r.readElementText() == "true"_L1) {
                 stop.setDisruptionEffect(Disruption::NoService);
             }
+        } else if (r.isElement("NoBoardingAtStop")) {
+            if (r.readElementText() == "true"_L1) {
+                stop.setPickupType(PickupDropoff::NotAllowed);
+            }
+        } else if (r.isElement("NoAlightingAtStop")) {
+            if (r.readElementText() == "true"_L1) {
+                stop.setDropoffType(PickupDropoff::NotAllowed);
+            }
         } else if (r.isElement("ExpectedDepartureOccupancy")) {
             occupancy.push_back(parseExpectedDepartureOccupancy(r.subReader()));
         }
