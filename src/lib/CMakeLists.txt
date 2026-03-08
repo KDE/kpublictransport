@@ -36,6 +36,7 @@ target_sources(KPublicTransport PRIVATE
     backends/efacompactparser.cpp
     backends/efamodeoftransport.cpp
     backends/efaxmlparser.cpp
+    backends/hafasattributemap.cpp
     backends/hafasbackend.cpp
     backends/hafasparser.cpp
     backends/hafasmgatebackend.cpp
@@ -148,6 +149,7 @@ target_sources(KPublicTransport PRIVATE
     networks/networks.qrc
     networks/certs/network_certs.qrc
     networks/geometry/geometry.qrc
+    networks/hafas-attributes/attributes.qrc
     networks/stations/stations.qrc
 
     siri/duration.cpp

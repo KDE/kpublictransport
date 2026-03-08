@@ -1,0 +1,23 @@
+{
+    "inherits": "base",
+    "attributes": [
+        { "category": "A", "code": "1", "type": "Ignore", "comment": "different name formats for the line, used by SBB" },
+        { "category": "A", "code": "2", "type": "Ignore" },
+        { "category": "A", "code": "3", "type": "Ignore" },
+        { "category": "A", "code": "4", "type": "Ignore", "comment": "same as above, containing product, line number and journey number" },
+        { "category": "A", "code": "FS", "type": "Feature", "feature": "WiFi", "availability": "Available" },
+        { "category": "A", "code": "NF", "type": "Note", "comment": "low floor vehicle" },
+        { "category": "A", "code": "RZ", "type": "Feature", "feature": "SilentArea", "availability": "Available" },
+        { "category": "A", "code": "moreAttr", "type": "Ignore", "comment": "ZVV: pointless note about checking intermediate stops for more details" },
+        { "category": "I", "code": "FD", "type": "Ignore", "comment": "SBB line number?" },
+        { "category": "I", "code": "JF", "type": "TrainFormation" },
+        { "category": "I", "code": "JY", "type": "Ignore", "comment": "Swiss journey id" },
+        { "category": "I", "code": "RN", "type": "Ignore", "comment": "SBB: some unknown number for buses" },
+        { "category": "I", "code": "TC", "type": "Ignore" },
+        { "category": "I", "code": "XC", "type": "Ignore", "comment": "SBB: some XML structure of unknown content, related to train/platform layouts" },
+        { "category": "I", "code": "XG", "type": "Ignore" },
+        { "category": "I", "code": "XP", "type": "Platform" },
+        { "category": "I", "code": "XT", "type": "Ignore", "comment": "SBB: some XML structure of unknown content, related to train/platform layouts" },
+        { "category": "I", "code": "sj", "type": "Ignore", "comment": "Swiss journey id" }
+    ]
+}
