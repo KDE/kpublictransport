@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-25 00:45+0000\n"
+"POT-Creation-Date: 2026-03-09 00:42+0000\n"
 "PO-Revision-Date: 2025-11-30 15:40+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -166,26 +166,26 @@ msgctxt "rental vehicle type"
 msgid "Rented car"
 msgstr "Vuokra-auto"
 
-#: lib/datatypes/vehicle.cpp:77
+#: lib/datatypes/vehicle.cpp:79
 #, kde-format
 msgctxt "train coach type"
 msgid "Sleeping car"
 msgstr "Makuuvaunu"
 
 # Ilmeisesti nimenomaan tämä on Suomessakin käytetyn mallin mukainen makuuvaunu: hyteittäin on muutama vuode. ”Sleeping car” taas on meikäläisittäin outo mutta elokuvista tuttu malli, jossa on pitkällä käytävällä vuoteita. En tiedä, onko tarpeen kääntää näitä eri sanoilla.
-#: lib/datatypes/vehicle.cpp:79
+#: lib/datatypes/vehicle.cpp:81
 #, kde-format
 msgctxt "train coach type"
 msgid "Couchette car"
 msgstr "Makuuvaunu"
 
-#: lib/datatypes/vehicle.cpp:81
+#: lib/datatypes/vehicle.cpp:83
 #, kde-format
 msgctxt "train coach type"
 msgid "Restaurant car"
 msgstr "Ravintolavaunu"
 
-#: lib/datatypes/vehicle.cpp:83
+#: lib/datatypes/vehicle.cpp:85
 #, kde-format
 msgctxt "train coach type"
 msgid "Car transport car"

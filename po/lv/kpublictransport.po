@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-25 00:45+0000\n"
+"POT-Creation-Date: 2026-03-09 00:42+0000\n"
 "PO-Revision-Date: 2025-08-22 13:59+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -167,25 +167,25 @@ msgctxt "rental vehicle type"
 msgid "Rented car"
 msgstr "Nomāts automobilis"
 
-#: lib/datatypes/vehicle.cpp:77
+#: lib/datatypes/vehicle.cpp:79
 #, kde-format
 msgctxt "train coach type"
 msgid "Sleeping car"
 msgstr "Guļamvagons"
 
-#: lib/datatypes/vehicle.cpp:79
+#: lib/datatypes/vehicle.cpp:81
 #, kde-format
 msgctxt "train coach type"
 msgid "Couchette car"
 msgstr "Kupeju vagons"
 
-#: lib/datatypes/vehicle.cpp:81
+#: lib/datatypes/vehicle.cpp:83
 #, kde-format
 msgctxt "train coach type"
 msgid "Restaurant car"
 msgstr "Restorāna vagons"
 
-#: lib/datatypes/vehicle.cpp:83
+#: lib/datatypes/vehicle.cpp:85
 #, kde-format
 msgctxt "train coach type"
 msgid "Car transport car"
