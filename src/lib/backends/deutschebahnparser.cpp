@@ -235,7 +235,7 @@ static std::vector<LoadInfo> parseOccupancyInformation(const QJsonObject &obj)
     return stop;
 }
 
-static void parseVehicleFeatures(const QJsonArray &trainAttributes, JourneySection &section, Line &line)
+static void parseVehicleFeatures(const QJsonArray &trainAttributes, const HafasAttributeMap &attrMap, JourneySection &section, Line &line)
 {
     std::vector<Feature> features;
     for (const auto &trainAttrV : trainAttributes) {
@@ -254,17 +254,17 @@ static void parseVehicleFeatures(const QJsonArray &trainAttributes, JourneySecti
 
         const auto type = trainAttrObj.value("kategorie"_L1).toString();
         if (type == "INFORMATION"_L1 || type == "FAHRRADMITNAHME"_L1 || type == "BORDBISTRO"_L1) {
-            const auto remarkData = HafasParser::lookupRemarkData(u"A", key);
-            if (remarkData.msg == FeatureRemark) {
-                Feature f(remarkData.featureType, remarkData.featureAvailability);
+            const auto remarkData = attrMap.lookup(u"A", key);
+            if (remarkData.type() == HafasAttribute::Feature) {
+                auto f = remarkData.feature();
                 f.setName(value);
                 FeatureUtil::add(features, std::move(f));
                 continue;
             }
-            if (remarkData.msg == IgnoreRemark) {
+            if (remarkData.type() == HafasAttribute::Ignore) {
                 continue;
             }
-            if (remarkData.msg == UndefinedRemark) {
+            if (remarkData.type() == HafasAttribute::Undefined) {
                 qDebug() << "unknown vehicle attribute" << type << key << value;
             }
         }
@@ -287,6 +287,8 @@ static void parseCoordinateName(Location &loc, const HafasMgateParser &hafasPars
 
 std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journeysArray, const HafasMgateParser &hafasParser)
 {
+    HafasAttributeMap attrMap(u"base");
+
     std::vector<Journey> journeys;
     journeys.reserve(journeysArray.size());
     for (const auto &journeyV : journeysArray) {
@@ -347,7 +349,7 @@ std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journey
             route.setDirection(routeObj.value("richtung"_L1).toString());
             auto line = route.line();
 
-            parseVehicleFeatures(routeObj.value("zugattribute"_L1).toArray(), section, line);
+            parseVehicleFeatures(routeObj.value("zugattribute"_L1).toArray(), attrMap, section, line);
 
             route.setLine(line);
             section.setRoute(route);
@@ -409,7 +411,7 @@ JourneySection DeutscheBahnParser::parseTrip(const QJsonObject &sectionObj, cons
 
     Line line;
     line.setName(sectionObj.value("zugName"_L1).toString());
-    parseVehicleFeatures(sectionObj.value("zugattribute"_L1).toArray(), section, line);
+    parseVehicleFeatures(sectionObj.value("zugattribute"_L1).toArray(), HafasAttributeMap(u"base"), section, line);
     route.setLine(line);
     section.setRoute(route);
 
