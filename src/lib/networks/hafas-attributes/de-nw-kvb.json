@@ -1,0 +1,12 @@
+{
+    "attributes": [
+        { "category": "A", "code": "A4", "type": "Feature", "feature": "BikeStorage", "availability": "Limited" },
+        { "category": "A", "code": "by", "type": "Feature", "feature": "BikeStorage", "availability": "Limited" },
+        { "category": "A", "code": "cc", "type": "Feature", "feature": "WheelchairAccessible", "availability": "Available" },
+        { "category": "A", "code": "cd", "type": "Feature", "feature": "WheelchairAccessible", "availability": "Available" },
+        { "category": "A", "code": "cg", "type": "Feature", "feature": "WiFi", "availability": "Available" },
+        { "category": "A", "code": "ci", "type": "Feature", "feature": "WheelchairAccessibleToilet", "availability": "Available" },
+        { "category": "A", "code": "cj", "type": "Feature", "feature": "Toilet", "availability": "Available" },
+        { "category": "A", "code": "dh", "type": "Feature", "feature": "WheelchairAccessible", "availability": "Available" }
+    ]
+}

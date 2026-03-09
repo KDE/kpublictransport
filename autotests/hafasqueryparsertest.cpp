@@ -49,6 +49,7 @@ private Q_SLOTS:
         const auto data = f.readAll(); // can't use Test::readFile here as that assumes text files!
 
         HafasQueryParser p;
+        p.setAttributeMapName(u"base");
         const auto res = p.parseQueryJourneyResponse(data);
         QVERIFY(!res.empty());
         QCOMPARE(p.error(), Reply::NoError);

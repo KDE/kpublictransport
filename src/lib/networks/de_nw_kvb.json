@@ -111,6 +111,7 @@
         },
         "customCaCertificate": "thawte-tls-rsa-ca-g1.crt.pem",
         "endpoint": "https://auskunft.kvb.koeln/gate",
+        "hafasAttributeMap": "de-nw-kvb",
         "productNameMappings": [
             {
                 "cls": 512,

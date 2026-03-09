@@ -55,6 +55,12 @@
                                 "type": "FamilyArea"
                             },
                             {
+                                "availability": "Unavailable",
+                                "disruptionEffect": "NormalService",
+                                "name": "no bicycle transport",
+                                "type": "BikeStorage"
+                            },
+                            {
                                 "availability": "Available",
                                 "disruptionEffect": "NormalService",
                                 "name": "Wifi available",
@@ -90,7 +96,6 @@
                 "mode": "PublicTransport",
                 "notes": [
                     "Subject to compulsory reservation",
-                    "no bicycle transport",
                     "Global price"
                 ]
             },

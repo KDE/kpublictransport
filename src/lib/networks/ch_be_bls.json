@@ -122,6 +122,7 @@
             "type": "WEB"
         },
         "endpoint": "https://bls.hafas.de/gate",
+        "hafasAttributeMap": "base-ch",
         "products": [
             {
                 "bitmasks": [

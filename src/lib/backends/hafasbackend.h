@@ -32,15 +32,18 @@ class HafasBackend : public AbstractBackend
     Q_PROPERTY(QString standardLocationIdentifierType MEMBER m_standardLocationIdentifierType)
     /** UIC country codes for countries this produces valid IBNR or UIC station codes. */
     Q_PROPERTY(QJsonArray standardLocationIdentifierCountries WRITE setStandardLocationIdentifierCountries)
+    /** Hafas attribute mapping table name. */
+    Q_PROPERTY(QString hafasAttributeMap MEMBER m_hafasAttrMapName)
 
 protected:
-    QString locationIdentifierType() const;
-    QString standardLocationIdentifierType() const;
-    QString locationIdentifier(const Location &loc) const;
+    [[nodiscard]] QString locationIdentifierType() const;
+    [[nodiscard]] QString standardLocationIdentifierType() const;
+    [[nodiscard]] QString locationIdentifier(const Location &loc) const;
 
     QString m_endpoint;
     std::vector<HafasLineModeMapEntry> m_lineModeMap;
     std::vector<uint8_t> m_uicCountryCodes;
+    QString m_hafasAttrMapName = QStringLiteral("base");
 
 private:
     void setStandardLocationIdentifierCountries(const QJsonArray &a);

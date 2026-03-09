@@ -15,6 +15,7 @@
 #include <KPublicTransport/Feature>
 #include <KPublicTransport/Line>
 #include <KPublicTransport/Reply>
+#include <KPublicTransport/Stopover>
 
 #include <vector>
 
@@ -33,6 +34,16 @@ class Stopover;
 struct Ico {
     QColor bg;
     QColor fg;
+};
+
+// REM or HIM elements
+struct Message {
+    QVariant content;
+    Disruption::Effect effect = Disruption::NormalService;
+    LoadInfo loadInfo;
+    QString operatorName;
+    PickupDropoff::Type pickupType = PickupDropoff::Normal;
+    PickupDropoff::Type dropoffType = PickupDropoff::Normal;
 };
 
 struct HafasMgateParserContext;
@@ -58,6 +69,7 @@ public:
     QString m_nextJourneyContext;
 private:
     Q_DISABLE_COPY(HafasMgateParser)
+    std::vector<Message> parseRemarks(const QJsonArray &remL) const;
     std::vector<Stopover> parseStationBoardResponse(const QJsonObject &obj) const;
     std::vector<Route> parseProducts(const QJsonArray &prodL, const std::vector<Ico> &icos, const std::vector<QString> &ops) const;
     std::vector<Location> parseLocations(const QJsonArray &locL, const std::vector<Route> &products = {}) const;

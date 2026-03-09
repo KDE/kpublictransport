@@ -118,6 +118,7 @@
         },
         "endpoint": "https://online.fahrplan.zvv.ch/gate",
         "ext": "ZVV.2",
+        "hafasAttributeMap": "base-ch",
         "products": [
             {
                 "bitmasks": [
