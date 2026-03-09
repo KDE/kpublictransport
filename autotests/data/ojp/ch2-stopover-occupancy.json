@@ -4,7 +4,6 @@
         "expectedDepartureTime": "2026-02-26T17:04:12Z",
         "expectedPlatform": "44",
         "notes": [
-            "VELOS: Keine Beförderung möglich",
             "Niederflureinstieg",
             "Aussteigeseite: Rechts"
         ],
@@ -35,6 +34,17 @@
         },
         "tripIdentifiers": {
             "test_id": "ch:1:sjyid:100001:19169-001|2026-02-26"
+        },
+        "vehicleLayout": {
+            "direction": "UnknownDirection",
+            "features": [
+                {
+                    "availability": "Unavailable",
+                    "disruptionEffect": "NormalService",
+                    "name": "VELOS: Keine Beförderung möglich",
+                    "type": "BikeStorage"
+                }
+            ]
         }
     },
     {
@@ -51,14 +61,8 @@
             }
         ],
         "notes": [
-            "Restaurant",
-            "Gratis-Internet mit der App SBB FreeSurf",
             "Platzreservierung möglich",
-            "Familienzone ohne Spielplatz",
             "Neigezug",
-            "Ruhezone in 1. Klasse",
-            "Businesszone in 1. Klasse",
-            "Kein Niederflur",
             "Aussteigeseite: Links"
         ],
         "route": {
@@ -88,6 +92,47 @@
         },
         "tripIdentifiers": {
             "test_id": "ch:1:sjyid:100001:532-001|2026-02-26"
+        },
+        "vehicleLayout": {
+            "direction": "UnknownDirection",
+            "features": [
+                {
+                    "availability": "Available",
+                    "disruptionEffect": "NormalService",
+                    "name": "Restaurant",
+                    "type": "Restaurant"
+                },
+                {
+                    "availability": "Available",
+                    "disruptionEffect": "NormalService",
+                    "name": "Familienzone ohne Spielplatz",
+                    "type": "FamilyArea"
+                },
+                {
+                    "availability": "Unavailable",
+                    "disruptionEffect": "NormalService",
+                    "name": "Kein Niederflur",
+                    "type": "WheelchairAccessible"
+                },
+                {
+                    "availability": "Available",
+                    "disruptionEffect": "NormalService",
+                    "name": "Ruhezone in 1. Klasse",
+                    "type": "SilentArea"
+                },
+                {
+                    "availability": "Available",
+                    "disruptionEffect": "NormalService",
+                    "name": "Businesszone in 1. Klasse",
+                    "type": "BusinessArea"
+                },
+                {
+                    "availability": "Available",
+                    "disruptionEffect": "NormalService",
+                    "name": "Gratis-Internet mit der App SBB FreeSurf",
+                    "type": "WiFi"
+                }
+            ]
         }
     },
     {
@@ -105,7 +150,6 @@
             }
         ],
         "notes": [
-            "VELOS: Keine Beförderung möglich",
             "Niederflureinstieg",
             "Aussteigeseite: Links"
         ],
@@ -136,6 +180,17 @@
         },
         "tripIdentifiers": {
             "test_id": "ch:1:sjyid:100001:18369-002|2026-02-26"
+        },
+        "vehicleLayout": {
+            "direction": "UnknownDirection",
+            "features": [
+                {
+                    "availability": "Unavailable",
+                    "disruptionEffect": "NormalService",
+                    "name": "VELOS: Keine Beförderung möglich",
+                    "type": "BikeStorage"
+                }
+            ]
         }
     }
 ]

@@ -49,6 +49,41 @@
                         "name": "Zürich Flughafen",
                         "region": "CH-ZH",
                         "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Restaurant",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Familienwagen mit Spielplatz",
+                                "type": "FamilyArea"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Ruhezone in 1. Klasse",
+                                "type": "SilentArea"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Businesszone in 1. Klasse",
+                                "type": "BusinessArea"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Gratis-Internet mit der App SBB FreeSurf",
+                                "type": "WiFi"
+                            }
+                        ]
                     }
                 },
                 "identifiers": {
@@ -56,13 +91,8 @@
                 },
                 "mode": "PublicTransport",
                 "notes": [
-                    "Gratis-Internet mit der App SBB FreeSurf",
                     "Maskenpflicht für Reisende ab 12 Jahren",
                     "Platzreservierung möglich",
-                    "Businesszone in 1. Klasse",
-                    "Familienwagen mit Spielplatz",
-                    "Ruhezone in 1. Klasse",
-                    "Restaurant",
                     "Aussteigeseite: Rechts"
                 ]
             },

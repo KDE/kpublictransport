@@ -56,6 +56,8 @@ class OpenJourneyPlannerBackend : public AbstractBackend
      */
     Q_PROPERTY(QString uicLocationIdentifierType MEMBER m_uicLocationIdentifierType)
 
+    /** Hafas attribute mapping table name. */
+    Q_PROPERTY(QString hafasAttributeMap MEMBER m_hafasAttrMapName)
 public:
     static  constexpr const char* type() { return "openJourneyPlanner"; }
     [[nodiscard]] AbstractBackend::Capabilities capabilities() const override;
@@ -81,6 +83,7 @@ private:
     QByteArray m_contentType = "application/xml";
     QString m_uicLocationIdentifierType;
     std::vector<Siri::Mode> m_supportedModes;
+    QString m_hafasAttrMapName;
 };
 
 }

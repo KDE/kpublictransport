@@ -193,6 +193,7 @@ OpenJourneyPlannerParser OpenJourneyPlannerBackend::parser() const
     OpenJourneyPlannerParser p;
     p.setLocationIdentifierType(backendId());
     p.setUicLocationIdentifierType(m_uicLocationIdentifierType);
+    p.setHafasAttributeMapName(m_hafasAttrMapName);
     return p;
 }
 

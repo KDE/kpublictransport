@@ -9,6 +9,8 @@
 
 #include "kpublictransport_export.h"
 
+#include "hafasattributemap.h"
+
 #include <KPublicTransport/Line>
 
 #include <QDateTime>
@@ -21,6 +23,7 @@ class QPointF;
 
 namespace KPublicTransport {
 
+class Feature;
 class Journey;
 class JourneySection;
 class LoadInfo;
@@ -47,6 +50,7 @@ public:
 
     void setLocationIdentifierType(const QString &idType);
     void setUicLocationIdentifierType(const QString &uicIdType);
+    void setHafasAttributeMapName(QStringView hafasAttrMap);
 
 private:
     std::vector<Location> parseLocationInformationDelivery(ScopedXmlStreamReader &&r);
@@ -68,6 +72,7 @@ private:
         Route route;
         QString identifier;
         QStringList attributes;
+        std::vector<Feature> features;
     };
     void parseService(ScopedXmlStreamReader &&r, Service &service) const;
     struct TimePair {
@@ -99,6 +104,7 @@ private:
 
     QString m_identifierType;
     QString m_uicIdentifierType;
+    HafasAttributeMap m_hafasAttrMap;
     QHash<QString, Location> m_contextLocations;
     QHash<QString, QString> m_contextSituations;
     QString m_errorMsg;
