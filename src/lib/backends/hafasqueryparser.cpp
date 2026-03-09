@@ -341,17 +341,17 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
                     // format: XX - <human readable comment>, where XX is two character code for the comment
                     const auto note = stringTable.lookup(*commentPtr);
                     if (note.size() > 5 && QStringView(note).mid(2, 3) == QLatin1String(" - ")) {
-                        const auto remarkData = HafasParser::lookupRemarkData(u"A", QStringView(note).left(2));
-                        if (remarkData.msg == FeatureRemark) {
-                            Feature f(remarkData.featureType, remarkData.featureAvailability);
+                        const auto remarkData = lookupAttribute(u"A", QStringView(note).left(2));
+                        if (remarkData.type() == HafasAttribute::Feature) {
+                            auto f = remarkData.feature();
                             f.setName(note.mid(5));
                             FeatureUtil::add(features, std::move(f));
                             continue;
                         }
-                        if (remarkData.msg == IgnoreRemark) {
+                        if (remarkData.type() == HafasAttribute::Ignore) {
                             continue;
                         }
-                        if (remarkData.msg == UndefinedRemark) {
+                        if (remarkData.type() == HafasAttribute::Undefined) {
                             qDebug() << "unknown vehicle attribute" << note;
                         }
                         section.addNote(note.mid(5));

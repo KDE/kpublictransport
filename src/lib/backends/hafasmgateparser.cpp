@@ -35,15 +35,6 @@ using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
-// REM or HIM elements
-struct Message {
-    QVariant content;
-    Disruption::Effect effect = Disruption::NormalService;
-    LoadInfo loadInfo;
-    QString operatorName;
-    PickupDropoff::Type pickupType = PickupDropoff::Normal;
-    PickupDropoff::Type dropoffType = PickupDropoff::Normal;
-};
 
 struct HafasMgateParserContext {
     std::vector<Ico> icos;
@@ -82,7 +73,7 @@ static std::vector<Ico> parseIcos(const QJsonArray &icoL)
     return icos;
 }
 
-static std::vector<Message> parseRemarks(const QJsonArray &remL)
+std::vector<Message> HafasMgateParser::parseRemarks(const QJsonArray &remL) const
 {
     std::vector<Message> rems;
     rems.reserve(remL.size());
@@ -91,30 +82,32 @@ static std::vector<Message> parseRemarks(const QJsonArray &remL)
 
         const auto type = remObj.value("type"_L1).toString();
         const auto code = remObj.value("code"_L1).toString();
-        HafasRemarkData remark = HafasParser::lookupRemarkData(type, code);
-        qDebug() << type << code << remark.msg <<remObj;
+        const auto remark = lookupAttribute(type, code);
 
         Message m;
-        switch (remark.msg) {
-            case IgnoreRemark:
+        switch (remark.type()) {
+            case HafasAttribute::Ignore:
                 // still needs to be inserted into rems to make sure the indices still match!
                 break;
-            case TrainFormationRemark:
+            case HafasAttribute::TrainFormation:
                 m.content = HafasVehicleLayoutParser::parseTrainFormation(remObj.value("txtN"_L1).toString().toUtf8());
                 break;
-            case PlatformSectorsRemark:
+            case HafasAttribute::PlatformSectors:
                 m.content = HafasVehicleLayoutParser::parsePlatformSectors(remObj.value("txtN"_L1).toString().toUtf8());
                 break;
-            case OperatorRemark:
+            case HafasAttribute::Operator:
                 m.operatorName = remObj.value("txtN"_L1).toString();
                 break;
-            case FeatureRemark: {
-                Feature f(remark.featureType, remark.featureAvailability);
+            case HafasAttribute::Feature: {
+                auto f = remark.feature();
                 f.setName(remObj.value("txtN"_L1).toString());
                 m.content = f;
                 break;
             }
-            case UndefinedRemark:
+            case HafasAttribute::Undefined:
+                qDebug() << type << code << remark.type() << remObj;
+                [[fallthrough]];
+            case HafasAttribute::Note:
                 if (type == 'A'_L1 && (code.startsWith("text.occup.loc."_L1) || code.startsWith("text.occup.jny."_L1))) {
                     static const QRegularExpression rx(u"\\.(max|1st|2nd)(?:\\.rt)?\\.1([1-4])$"_s);
                     const auto match = rx.match(code);

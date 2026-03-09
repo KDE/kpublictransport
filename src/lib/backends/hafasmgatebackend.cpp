@@ -62,6 +62,7 @@ void HafasMgateBackend::init()
     m_parser.setLocationIdentifierTypes(locationIdentifierType(), standardLocationIdentifierType());
     m_parser.setLineModeMap(m_lineModeMap);
     m_parser.setStandardLocationIdentfierCountries(std::move(m_uicCountryCodes));
+    m_parser.setAttributeMapName(m_hafasAttrMapName);
     m_parser.setProductNameMappings(std::move(m_productNameMappings));
 }
 

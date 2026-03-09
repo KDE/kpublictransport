@@ -9,6 +9,7 @@
 
 #include "kpublictransport_export.h"
 
+#include "hafasattributemap.h"
 #include "hafasbackend.h"
 
 #include <KPublicTransport/Feature>
@@ -25,33 +26,17 @@ namespace KPublicTransport {
 
 class Location;
 
-enum HafasMessageType {
-    UndefinedRemark,
-    IgnoreRemark,
-    FeatureRemark,
-    OperatorRemark,
-    TrainFormationRemark,
-    PlatformSectorsRemark,
-};
-
-struct HafasRemarkData {
-    const char *type = nullptr;
-    const char *code = nullptr;
-    HafasMessageType msg = UndefinedRemark;
-    Feature::Type featureType = Feature::NoFeature;
-    Feature::Availability featureAvailability = Feature::Unknown;
-};
-
 /** Common base for the various Hafas response parsers.
  *  @internal only exported for unit tests
  */
 class KPUBLICTRANSPORT_EXPORT HafasParser
 {
 public:
-    [[nodiscard]] inline QString locationIdentifierType() const { return m_locationIdentifierType; }
+    [[nodiscard]] QString locationIdentifierType() const { return m_locationIdentifierType; }
     void setLocationIdentifierTypes(const QString &idType, const QString &standardIdType = {});
     void setLineModeMap(std::span<HafasLineModeMapEntry> modeMap);
     void setStandardLocationIdentfierCountries(std::vector<uint8_t> &&uicCountryCodes);
+    void setAttributeMapName(QStringView attrMap);
 
     Reply::Error error() const;
     QString errorMessage() const;
@@ -62,7 +47,7 @@ public:
     /** Convert occupancy level. */
     [[nodiscard]] static Load::Category parseLoadLevel(int level);
 
-    static HafasRemarkData lookupRemarkData(QStringView type, QStringView code);
+    [[nodiscard]] HafasAttribute lookupAttribute(QStringView category, QStringView code) const;
 
     /** Coordinate conversion */
     [[nodiscard]] static double coordHafas2Geo(int hafasCoord) { return hafasCoord / 1000000.0; }
@@ -95,6 +80,7 @@ private:
     QString m_standardLocationIdentifierType;
     std::span<HafasLineModeMapEntry> m_lineModeMap;
     std::vector<uint8_t> m_uicCountryCodes;
+    HafasAttributeMap m_attrMap;
 };
 
 }

@@ -150,6 +150,7 @@ private Q_SLOTS:
 
         HafasMgateParser p;
         p.setLocationIdentifierTypes(QStringLiteral("unit-test"));
+        p.setAttributeMapName(u"base");
         const auto res = p.parseDepartures(Test::readFile(inFileName));
         const auto jsonRes = Stopover::toJson(res);
 
@@ -185,6 +186,7 @@ private Q_SLOTS:
 
         HafasMgateParser p;
         p.setLocationIdentifierTypes(QStringLiteral("unit-test"));
+        p.setAttributeMapName(u"base");
         const auto res = p.parseJourneys(Test::readFile(inFileName));
         const auto jsonRes = Journey::toJson(res);
 
@@ -214,6 +216,7 @@ private Q_SLOTS:
 
         HafasMgateParser p;
         p.setLocationIdentifierTypes(QStringLiteral("unit-test"));
+        p.setAttributeMapName(u"base");
         const auto res = p.parseTrip(Test::readFile(inFileName));
         const auto jsonRes = JourneySection::toJson(res);
 

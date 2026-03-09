@@ -213,6 +213,7 @@
     },
     "options": {
         "endpoint": "http://fahrplan.sbb.ch/bin/",
+        "hafasAttributeMap": "base-ch",
         "locationIdentifierType": "sbb",
         "products": [
             {
