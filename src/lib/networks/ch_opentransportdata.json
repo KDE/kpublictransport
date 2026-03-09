@@ -222,6 +222,7 @@
             "82": "SOB",
             "86": "ZB"
         },
+        "hafasAttributeMap": "base-ch",
         "protocol": "OJP2",
         "supportedModes": [
             {

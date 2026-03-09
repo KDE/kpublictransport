@@ -5,8 +5,10 @@
 */
 
 #include "openjourneyplannerparser.h"
+
 #include "scopedxmlstreamreader.h"
 
+#include <datatypes/featureutil_p.h>
 #include <ifopt/ifoptutil.h>
 #include <siri/duration.h>
 #include <siri/mode.h>
@@ -44,6 +46,11 @@ void OpenJourneyPlannerParser::setLocationIdentifierType(const QString &idType)
 void OpenJourneyPlannerParser::setUicLocationIdentifierType(const QString &uicIdType)
 {
     m_uicIdentifierType = uicIdType;
+}
+
+void OpenJourneyPlannerParser::setHafasAttributeMapName(QStringView hafasAttrMap)
+{
+    m_hafasAttrMap = HafasAttributeMap(hafasAttrMap);
 }
 
 std::vector<Location> OpenJourneyPlannerParser::parseLocationInformationResponse(const QByteArray &responseData)
@@ -345,6 +352,7 @@ Stopover OpenJourneyPlannerParser::parseStopEvent(ScopedXmlStreamReader &&r) con
             parseService(r.subReader(), service);
             stop.setRoute(service.route);
             stop.setTripIdentifier(m_identifierType, service.identifier);
+            stop.setFeatures(std::move(service.features));
             stop.addNotes(std::move(service.attributes));
         }
         // Extensions?
@@ -417,10 +425,38 @@ void OpenJourneyPlannerParser::parseService(ScopedXmlStreamReader &&r, Service &
             line.setName(parseTextElement(r.subReader()));
         } else if (r.isElement("Attribute")) {
             auto subR = r.subReader();
+            QString code, text;
             while (subR.readNextSibling()) {
                 if (subR.isElement("Text") || subR.isElement("UserText")) {
-                    service.attributes.push_back(parseTextElement(subR.subReader()));
+                    text = parseTextElement(subR.subReader());
+                } else if (subR.isElement("Code")) {
+                    code = subR.readElementText();
                 }
+            }
+            if (const auto splitCode = QStringView(code).split(u"__"); splitCode.size() == 2) {
+                const auto attr = m_hafasAttrMap.lookup(splitCode[0], splitCode[1].startsWith('_'_L1) ? splitCode[1].left(1) : splitCode[1]);
+                switch (attr.type()) {
+                    case HafasAttribute::Ignore:
+                    case HafasAttribute::PlatformSectors:
+                    case HafasAttribute::TrainFormation:
+                        break;
+                    case HafasAttribute::Feature:
+                    {
+                        auto f = attr.feature();
+                        f.setName(text);
+                        FeatureUtil::add(service.features, std::move(f));
+                        break;
+                    }
+                    case HafasAttribute::Undefined:
+                        qDebug() << "unknown attribute code:" << splitCode[0] << splitCode[1] << text;
+                        [[fallthrough]];
+                    case HafasAttribute::Note:
+                    case HafasAttribute::Operator: // TODO?
+                        service.attributes.push_back(text);
+                        break;
+                }
+            } else {
+                service.attributes.push_back(text);
             }
         } else if (r.isElement("DestinationStopPointRef")) {
             // TODO
@@ -620,6 +656,7 @@ JourneySection OpenJourneyPlannerParser::parseTimedLeg(ScopedXmlStreamReader &&r
             section.setRoute(std::move(service.route));
             section.setIdentifier(m_identifierType, service.identifier);
             section.addNotes(std::move(service.attributes));
+            section.setFeatures(std::move(service.features));
         } else if (r.isElement("LegTrack")) {
             Path path;
             path.setSections({parsePathGuidanceSection(r.subReader())});
@@ -738,6 +775,7 @@ JourneySection OpenJourneyPlannerParser::parseTripInfoResult(ScopedXmlStreamRead
             parseService(r.subReader(), service);
             section.setRoute(service.route);
             section.setIdentifier(m_identifierType, service.identifier);
+            section.setFeatures(std::move(service.features));
             section.addNotes(service.attributes);
         } else if (r.isElement("JourneyTrack")) {
             Path path;

@@ -84,6 +84,35 @@
                         "longitude": 7.59005,
                         "name": "Basel SBB",
                         "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bistro",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Familienwagen mit Spielplatz",
+                                "type": "FamilyArea"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Businesszone in 1. Klasse",
+                                "type": "BusinessArea"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Gratis-Internet mit der App SBB FreeSurf",
+                                "type": "WiFi"
+                            }
+                        ]
                     }
                 },
                 "identifiers": {
@@ -92,11 +121,7 @@
                 "mode": "PublicTransport",
                 "notes": [
                     "Niederflureinstieg",
-                    "Gratis-Internet mit der App SBB FreeSurf",
-                    "Businesszone in 1. Klasse",
-                    "Familienwagen mit Spielplatz",
                     "Platzreservierung möglich",
-                    "Bistro",
                     "<b>Der stufenfreie Zugang zum Bahnhof Basel SBB ist für Reisende mit Mobilitätseinschränkung nicht mehr garantiert.</b><br/>Der Grund dafür ist eine Liftstörung.<br/>Betroffen ist der Personenlift Gleis 7/8.<br/>Die Einschränkung dauert bis zirka 28.02.2026, 22:00."
                 ]
             },

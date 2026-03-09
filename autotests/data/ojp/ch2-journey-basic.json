@@ -706,6 +706,23 @@
                         "name": "Zürich Oerlikon",
                         "region": "CH-ZH",
                         "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Familienzone ohne Spielplatz",
+                                "type": "FamilyArea"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Ruhezone in 1. Klasse",
+                                "type": "SilentArea"
+                            }
+                        ]
                     }
                 },
                 "identifiers": {
@@ -744,11 +761,7 @@
                         }
                     }
                 ],
-                "mode": "PublicTransport",
-                "notes": [
-                    "Ruhezone in 1. Klasse",
-                    "Familienzone ohne Spielplatz"
-                ]
+                "mode": "PublicTransport"
             }
         ]
     },

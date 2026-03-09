@@ -149,6 +149,7 @@
     "options": {
         "authorization": "Bearer 57c5dbbbf1fe4d000100001833a821a9de3748e5876bfb6c1efe6973",
         "endpoint": "https://api.opentransportdata.swiss/ojp2020",
+        "hafasAttributeMap": "base-ch",
         "protocol": "OJP1",
         "uicLocationIdentifierType": "uic"
     },

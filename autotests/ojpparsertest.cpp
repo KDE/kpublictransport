@@ -94,6 +94,7 @@ private Q_SLOTS:
         OpenJourneyPlannerParser p;
         p.setLocationIdentifierType(QStringLiteral("test_id"));
         p.setUicLocationIdentifierType(QStringLiteral("uic"));
+        p.setHafasAttributeMapName(u"base-ch");
         const auto res = p.parseStopEventResponse(Test::readFile(inFileName));
         QVERIFY(!p.hasError());
         const auto jsonRes = Stopover::toJson(res);
@@ -128,6 +129,7 @@ private Q_SLOTS:
         OpenJourneyPlannerParser p;
         p.setLocationIdentifierType(QStringLiteral("test_id"));
         p.setUicLocationIdentifierType(QStringLiteral("uic"));
+        p.setHafasAttributeMapName(u"base-ch");
         const auto res = p.parseTripResponse(Test::readFile(inFileName));
         QVERIFY(!p.hasError());
         const auto jsonRes = Journey::toJson(res);
@@ -154,6 +156,7 @@ private Q_SLOTS:
         OpenJourneyPlannerParser p;
         p.setLocationIdentifierType(QStringLiteral("test_id"));
         p.setUicLocationIdentifierType(QStringLiteral("uic"));
+        p.setHafasAttributeMapName(u"base-ch");
         const auto res = p.parseTripInfoResponse(Test::readFile(inFileName));
         QVERIFY(!p.hasError());
         const auto jsonRes = JourneySection::toJson(res);
