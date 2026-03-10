@@ -37,6 +37,7 @@
 #include "backends/cache.h"
 #include "backends/deutschebahnbackend.h"
 #include "backends/efabackend.h"
+#include "backends/hafasattributemap.h"
 #include "backends/hafasmgatebackend.h"
 #include "backends/hafasquerybackend.h"
 #include "backends/ivvassbackend.h"
@@ -1048,6 +1049,7 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
 
 void Manager::reload()
 {
+    HafasAttributeMap::reload();
     if (d->m_backends.empty()) { // not loaded yet, nothing to do
         return;
     }
