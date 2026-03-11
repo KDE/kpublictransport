@@ -1,0 +1,7 @@
+{
+    "attributes": [
+        { "category": "R", "code": "text.realtime.stop.entry.disabled", "type": "PickupDropoff", "pickup": "NotAllowed", "dropoff": "Normal" },
+        { "category": "R", "code": "text.realtime.stop.exit.disabled", "type": "PickupDropoff", "pickup": "Normal", "dropoff": "NotAllowed" },
+        { "category": "R", "code": "text.realtime.stop.entry.exit.disabled", "type": "PickupDropoff", "pickup": "NotAllowed", "dropoff": "NotAllowed" }
+    ]
+}

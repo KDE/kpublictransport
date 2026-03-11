@@ -6,6 +6,7 @@
     <qresource prefix="/org.kde.kpublictransport/networks/hafas-attributes/">
         <file>base.json</file>
         <file>base-ch.json</file>
+        <file>hafas.json</file>
 
         <file>de-he-nvv.json</file>
         <file>de-nw-kvb.json</file>

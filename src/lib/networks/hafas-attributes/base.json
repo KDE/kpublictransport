@@ -1,4 +1,5 @@
 {
+    "inherits": "hafas",
     "attributes": [
         { "category": "A", "code": "A4", "type": "Feature", "feature": "Toilet", "availability": "Available" },
         { "category": "A", "code": "BO", "type": "Feature", "feature": "Restaurant", "availability": "Available" },
