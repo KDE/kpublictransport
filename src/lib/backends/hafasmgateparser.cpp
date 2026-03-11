@@ -104,6 +104,11 @@ std::vector<Message> HafasMgateParser::parseRemarks(const QJsonArray &remL) cons
                 m.content = f;
                 break;
             }
+            case HafasAttribute::PickupDropoff:
+                m.content = remObj.value("txtN"_L1).toString();
+                m.pickupType = remark.pickupType();
+                m.dropoffType = remark.dropoffType();
+                break;
             case HafasAttribute::Undefined:
                 qDebug() << type << code << remark.type() << remObj;
                 [[fallthrough]];
@@ -125,12 +130,6 @@ std::vector<Message> HafasMgateParser::parseRemarks(const QJsonArray &remL) cons
                     m.content = remObj.value("txtN"_L1).toString();
                     if (code == HAFAS_RT_STOP_CANCELLED || code == HAFAS_RT_JOURNEY_CANCELLED) {
                         m.effect = Disruption::NoService;
-                    }
-                    if (code == HAFAS_RT_ENTRY_DISABLED || code == HAFAS_RT_ENTRY_EXIT_DISABLED) {
-                        m.pickupType = PickupDropoff::NotAllowed;
-                    }
-                    if (code == HAFAS_RT_EXIT_DISABLED || code == HAFAS_RT_ENTRY_EXIT_DISABLED) {
-                        m.dropoffType = PickupDropoff::NotAllowed;
                     }
                 }
                 break;
@@ -209,8 +208,12 @@ static void applyMessage(T &elem, const Message &msg)
         elem.setRoute(route);
     }
     if constexpr (!std::is_same_v<T, JourneySection>) {
-        elem.setPickupType(msg.pickupType);
-        elem.setDropoffType(msg.dropoffType);
+        if (msg.pickupType != PickupDropoff::Normal) {
+            elem.setPickupType(msg.pickupType);
+        }
+        if (msg.dropoffType != PickupDropoff::Normal) {
+            elem.setDropoffType(msg.dropoffType);
+        }
     }
 }
 
