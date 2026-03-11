@@ -264,6 +264,18 @@ static void parseVehicleFeatures(const QJsonArray &trainAttributes, const HafasA
             if (remarkData.type() == HafasAttribute::Ignore) {
                 continue;
             }
+            if (remarkData.type() == HafasAttribute::PickupDropoff) {
+                if (remarkData.pickupType() != PickupDropoff::Normal) {
+                    auto dep = section.departure();
+                    dep.setPickupType(remarkData.pickupType());
+                    section.setDeparture(dep);
+                }
+                if (remarkData.dropoffType() != PickupDropoff::Normal) {
+                    auto arr = section.arrival();
+                    arr.setDropoffType(remarkData.dropoffType());
+                    section.setArrival(arr);
+                }
+            }
             if (remarkData.type() == HafasAttribute::Undefined) {
                 qDebug() << "unknown vehicle attribute" << type << key << value;
             }
