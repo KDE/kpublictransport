@@ -155,9 +155,7 @@
                 "bitmasks": [
                     32
                 ],
-                "id": "ferry",
-                "mode": "Ferry",
-                "name": "Ferry"
+                "mode": "Bus"
             },
             {
                 "bitmasks": [
