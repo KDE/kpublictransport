@@ -185,6 +185,7 @@
             "type": "AND"
         },
         "endpoint": "https://vmt.hafas.de/bin/mgate.exe",
+        "hafasAttributeMap": "de-th-vmt",
         "products": [
             {
                 "bitmasks": [

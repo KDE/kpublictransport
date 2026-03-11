@@ -1,6 +1,7 @@
 {
     "inherits": "base",
     "attributes": [
-        { "category": "A", "code": "FZ", "type": "Note" }
+        { "category": "A", "code": "FZ", "type": "Note" },
+        { "category": "A", "code": "N ", "type": "PickupDropoff", "pickup": "CallAgency" }
     ]
 }

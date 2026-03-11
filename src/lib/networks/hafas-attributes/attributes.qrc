@@ -9,6 +9,11 @@
         <file>hafas.json</file>
 
         <file>de-he-nvv.json</file>
+        <file>de-ni-vbn.json</file>
+        <file>de-nw-avv.json</file>
         <file>de-nw-kvb.json</file>
+        <file>de-sl-saarvv.json</file>
+        <file>de-th-vmt.json</file>
+        <file>se-resrobot.json</file>
     </qresource>
 </RCC>

@@ -125,6 +125,7 @@
             "type": "WEB"
         },
         "endpoint": "https://auskunft.avv.de/bin/mgate.exe",
+        "hafasAttributeMap": "de-nw-avv",
         "products": [
             {
                 "bitmasks": [

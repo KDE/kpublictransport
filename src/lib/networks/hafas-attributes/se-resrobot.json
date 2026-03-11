@@ -1,0 +1,12 @@
+{
+    "inherits": "base",
+    "attributes": [
+        { "category": "A", "code": "AD", "type": "Feature", "feature": "Restaurant", "availability": "Available" },
+        { "category": "A", "code": "AV", "type": "Feature", "feature": "WiFi", "availability": "Available" },
+        { "category": "A", "code": "BL", "type": "Feature", "feature": "SilentArea", "availability": "Available" },
+        { "category": "A", "code": "PC", "type": "Feature", "feature": "WheelchairAccessible", "availability": "Available" },
+        { "category": "A", "code": "PC", "type": "Feature", "feature": "WheelchairAccessible", "availability": "Conditional" },
+        { "category": "A", "code": "SG", "type": "Feature", "feature": "Restaurant", "availability": "Available" },
+        { "category": "A", "code": "SZ", "type": "Feature", "feature": "Restaurant", "availability": "Conditional" }
+    ]
+}

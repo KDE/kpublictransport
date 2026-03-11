@@ -1,0 +1,6 @@
+{
+    "inherits": "base",
+    "attributes": [
+        { "category": "A", "code": "bh", "type": "Feature", "feature": "WheelchairAccessible", "availability": "Available" }
+    ]
+}
