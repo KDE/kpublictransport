@@ -97,6 +97,7 @@ Kirigami.ApplicationWindow {
                     id: icon
                     source: departure.route.line.iconName
                     iconHeight: Kirigami.Units.iconSizes.smallMedium
+                    Layout.minimumWidth: 48
                 }
 
                 ColumnLayout {
@@ -138,6 +139,16 @@ Kirigami.ApplicationWindow {
                             scheduledTime: KCoreAddons.Format.formatTime(departure, "scheduledDepartureTime", Locale.ShortFormat, KCoreAddons.FormatTypes.AddTimezoneAbbreviationIfNeeded)
                             delay: departure.departureDelay
                             hasExpectedTime: departure.hasExpectedDepartureTime
+                        }
+                        Kirigami.Icon {
+                            Layout.preferredHeight: Kirigami.Units.gridUnit
+                            Layout.preferredWidth: Kirigami.Units.gridUnit
+                            source: switch (departure.pickupType) {
+                                case PickupDropoff.CallAgency:
+                                    return "call-start"
+                                case PickupDropoff.CoordinateWithDriver:
+                                    return "kalarm-symbolic"
+                            }
                         }
                     }
                     RowLayout {
