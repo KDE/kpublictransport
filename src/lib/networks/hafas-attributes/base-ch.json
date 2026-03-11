@@ -16,7 +16,7 @@
         { "category": "I", "code": "TC", "type": "Ignore" },
         { "category": "I", "code": "XC", "type": "Ignore", "comment": "SBB: some XML structure of unknown content, related to train/platform layouts" },
         { "category": "I", "code": "XG", "type": "Ignore" },
-        { "category": "I", "code": "XP", "type": "Platform" },
+        { "category": "I", "code": "XP", "type": "PlatformSectors" },
         { "category": "I", "code": "XT", "type": "Ignore", "comment": "SBB: some XML structure of unknown content, related to train/platform layouts" },
         { "category": "I", "code": "sj", "type": "Ignore", "comment": "Swiss journey id" }
     ]
