@@ -122,6 +122,7 @@
         { "category": "A", "code": "op", "type": "PickupDropoff", "pickup": "CallAgency" },
         { "category": "A", "code": "oq", "type": "PickupDropoff", "pickup": "CallAgency" },
         { "category": "A", "code": "or", "type": "PickupDropoff", "pickup": "CallAgency" },
+        { "category": "A", "code": "pA", "type": "PickupDropoff", "pickup": "CallAgency" },
         { "category": "A", "code": "pb", "type": "PickupDropoff", "pickup": "CallAgency" },
         { "category": "A", "code": "pd", "type": "PickupDropoff", "pickup": "CallAgency" },
         { "category": "A", "code": "t0", "type": "PickupDropoff", "pickup": "CallAgency" },
