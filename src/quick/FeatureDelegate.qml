@@ -32,6 +32,7 @@ RowLayout {
         Layout.fillWidth: true
         enabled: delegateRoot.feature.availability !== KPublicTransport.Feature.Unavailable
         title: delegateRoot.feature.displayName
+        wrapMode: Text.WordWrap
         subtitle: {
             if (delegateRoot.feature.description !== "")
                 return delegateRoot.feature.description;
