@@ -8,6 +8,8 @@
 
 #include <kpublictransport_export.h>
 
+#include <KPublicTransport/Stopover>
+
 #include <QAnyStringView>
 #include <QExplicitlySharedDataPointer>
 #include <qobjectdefs.h>
@@ -34,11 +36,14 @@ public:
         Operator, ///< operator name
         TrainFormation,
         PlatformSectors,
+        PickupDropoff, ///< boarding/alighting constraints
     };
     Q_ENUM(Type)
 
     [[nodiscard]] Type type() const;
     [[nodiscard]] class Feature feature() const;
+    [[nodiscard]] PickupDropoff::Type pickupType() const;
+    [[nodiscard]] PickupDropoff::Type dropoffType() const;
 private:
     friend class HafasAttributeMap;
     friend class HafasAttributeMapData;

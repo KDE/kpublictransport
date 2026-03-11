@@ -30,6 +30,8 @@ class KPublicTransport::HafasAttributeData {
     Q_PROPERTY(KPublicTransport::HafasAttribute::Type type MEMBER type)
     Q_PROPERTY(KPublicTransport::Feature::Type feature MEMBER featureType)
     Q_PROPERTY(KPublicTransport::Feature::Availability availability MEMBER featureAvailability)
+    Q_PROPERTY(KPublicTransport::PickupDropoff::Type pickup MEMBER pickupType)
+    Q_PROPERTY(KPublicTransport::PickupDropoff::Type dropoff MEMBER dropoffType)
 public:
     [[nodiscard]] static HafasAttributeData fromJson(const QJsonObject &obj);
 
@@ -38,6 +40,8 @@ public:
     HafasAttribute::Type type = HafasAttribute::Undefined;
     Feature::Type featureType = Feature::NoFeature;
     Feature::Availability featureAvailability = Feature::Unknown;
+    PickupDropoff::Type pickupType = PickupDropoff::Normal;
+    PickupDropoff::Type dropoffType = PickupDropoff::Normal;
 };
 
 class KPublicTransport::HafasAttributeMapData : public QSharedData {
@@ -79,6 +83,16 @@ HafasAttribute::Type HafasAttribute::type() const
 Feature HafasAttribute::feature() const
 {
     return d ? ::Feature(d->featureType, d->featureAvailability) : ::Feature(Feature::NoFeature);
+}
+
+PickupDropoff::Type HafasAttribute::pickupType() const
+{
+    return d ? d->pickupType : PickupDropoff::Normal;
+}
+
+PickupDropoff::Type HafasAttribute::dropoffType() const
+{
+    return d ? d->dropoffType :PickupDropoff::Normal;
 }
 
 [[nodiscard]] static QExplicitlySharedDataPointer<HafasAttributeMapData> loadMap(QStringView name)
