@@ -128,6 +128,7 @@
             "type": "AND"
         },
         "endpoint": "https://saarfahrplan.de/bin/mgate.exe",
+        "hafasAttributeMap": "de-sl-saarvv",
         "micMacSalt": "484A746C756269737678694A787373",
         "products": [
             {

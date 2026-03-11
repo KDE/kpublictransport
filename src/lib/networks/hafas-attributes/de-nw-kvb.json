@@ -3,6 +3,7 @@
     "attributes": [
         { "category": "A", "code": "A4", "type": "Feature", "feature": "BikeStorage", "availability": "Limited" },
         { "category": "A", "code": "by", "type": "Feature", "feature": "BikeStorage", "availability": "Limited" },
+        { "category": "A", "code": "ca", "type": "Feature", "feature": "BikeStorage", "availability": "Conditional" },
         { "category": "A", "code": "cc", "type": "Feature", "feature": "WheelchairAccessible", "availability": "Available" },
         { "category": "A", "code": "cd", "type": "Feature", "feature": "WheelchairAccessible", "availability": "Available" },
         { "category": "A", "code": "cg", "type": "Feature", "feature": "WiFi", "availability": "Available" },

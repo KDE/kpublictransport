@@ -1,0 +1,11 @@
+{
+    "inherits": "base",
+    "attributes": [
+        { "category": "A", "code": "BE", "type": "Feature", "feature": "WheelchairAccessible", "availability": "Available" },
+        { "category": "A", "code": "cg", "type": "Note" },
+        { "category": "A", "code": "dS", "type": "Operator" },
+        { "category": "A", "code": "fH", "type": "Operator" },
+        { "category": "A", "code": "gK", "type": "Operator" },
+        { "category": "A", "code": "ga", "type": "Note" }
+    ]
+}

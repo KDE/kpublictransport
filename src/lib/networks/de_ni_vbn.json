@@ -176,6 +176,7 @@
             "type": "AND"
         },
         "endpoint": "https://fahrplaner.vbn.de/hafas/mgate.exe",
+        "hafasAttributeMap": "de-ni-vbn",
         "micMacSalt": "535033316D4275665379434C6D4E7870",
         "products": [
             {

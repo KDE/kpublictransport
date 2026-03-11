@@ -119,6 +119,7 @@
             "type": "WEB"
         },
         "endpoint": "https://reseplanerare.resrobot.se/bin/mgate.exe",
+        "hafasAttributeMap": "se-resrobot",
         "products": [
             {
                 "bitmasks": [

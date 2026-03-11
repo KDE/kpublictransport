@@ -1,0 +1,7 @@
+{
+    "inherits": "base",
+    "attributes": [
+        { "category": "A", "code": "dm", "type": "PickupDropoff", "pickup": "CallAgency" },
+        { "category": "A", "code": "jb", "type": "Feature", "feature": "WheelchairAccessible", "availability": "Available" }
+    ]
+}
