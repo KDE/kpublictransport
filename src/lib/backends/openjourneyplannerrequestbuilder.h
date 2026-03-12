@@ -9,6 +9,7 @@
 
 #include <siri/mode.h>
 
+#include <QDateTime>
 #include <QString>
 
 class QXmlStreamWriter;
@@ -40,9 +41,15 @@ public:
     };
     void setProtocol(Protocol protocol);
 
+    enum PagingMode {
+        None,
+        After,
+        Before,
+    };
+
     [[nodiscard]] QByteArray buildLocationInformationRequest(const LocationRequest &req) const;
     [[nodiscard]] QByteArray buildStopEventRequest(const StopoverRequest &req) const;
-    [[nodiscard]] QByteArray buildTripRequest(const JourneyRequest &req) const;
+    [[nodiscard]] QByteArray buildTripRequest(const JourneyRequest &req, const QDateTime &contextDt = {}, PagingMode pageMode = None) const;
     [[nodiscard]] QByteArray buildTripInfoRequest(const TripRequest &req) const;
 
     /** @internal produce indented output for unit tests. */

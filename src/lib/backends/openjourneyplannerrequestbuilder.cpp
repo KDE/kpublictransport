@@ -125,52 +125,63 @@ struct {
     // TODO taxi, self-drive-car others-drive-car motorcycle truck
 };
 
-QByteArray OpenJourneyPlannerRequestBuilder::buildTripRequest(const JourneyRequest &req) const
+QByteArray OpenJourneyPlannerRequestBuilder::buildTripRequest(const JourneyRequest &req, const QDateTime &contextDt, PagingMode pageMode) const
 {
     QByteArray output;
     QXmlStreamWriter w(&output);
     setupWriter(w);
     writeStartServiceRequest(w);
-    w.writeStartElement(ns(), isTrias() ? QStringLiteral("TripRequest") : QStringLiteral("OJPTripRequest"));
+    w.writeStartElement(ns(), isTrias() ? "TripRequest" : "OJPTripRequest");
     writeRequestTimestamp(w);
 
-    w.writeStartElement(ns(), QStringLiteral("Origin"));
+    const auto dt = ((contextDt.isValid() && pageMode != None) ? contextDt : req.dateTime()).toUTC();
+
+    w.writeStartElement(ns(), "Origin");
     writePlaceRef(w, req.from());
     if (req.dateTimeMode() == JourneyRequest::Departure) {
-        w.writeTextElement(ns(), QStringLiteral("DepArrTime"), req.dateTime().toUTC().toString(Qt::ISODate));
+        w.writeTextElement(ns(), "DepArrTime", dt.toString(Qt::ISODate));
     }
     w.writeEndElement(); // </Origin>
 
-    w.writeStartElement(ns(), QStringLiteral("Destination"));
+    w.writeStartElement(ns(), "Destination");
     writePlaceRef(w, req.to());
     if (req.dateTimeMode() == JourneyRequest::Arrival) {
-        w.writeTextElement(ns(), QStringLiteral("DepArrTime"), req.dateTime().toUTC().toString(Qt::ISODate));
+        w.writeTextElement(ns(), "DepArrTime", dt.toString(Qt::ISODate));
     }
     w.writeEndElement(); // </Destination>
 
     if (m_protocol == OJP1) {
-        w.writeStartElement(ns(), QStringLiteral("IndividualTransportOptions"));
+        w.writeStartElement(ns(), "IndividualTransportOptions");
         for (const auto &accessMode : req.accessModes()) {
             const auto it = std::find_if(std::begin(individual_transport_modes), std::end(individual_transport_modes), [accessMode](const auto &m) {
                 return m.mode == accessMode.mode();
             });
             if (it != std::end(individual_transport_modes)) {
-                w.writeTextElement(ns(),  QStringLiteral("Mode"), QLatin1String((*it).ojpMode));
+                w.writeTextElement(ns(),  "Mode", QLatin1String((*it).ojpMode));
                 break;
             }
         }
         w.writeEndElement(); // </IndividualTransportOptions>
     }
 
-    w.writeStartElement(ns(), QStringLiteral("Params"));
-    w.writeTextElement(ns(), QStringLiteral("IncludeTrackSections"), req.includePaths() ? QStringLiteral("true") : QStringLiteral("false"));
-    w.writeTextElement(ns(), QStringLiteral("IncludeLegProjection"), req.includePaths() ? QStringLiteral("true") : QStringLiteral("false"));
-    w.writeTextElement(ns(), QStringLiteral("IncludeTurnDescription"), req.includePaths() ? QStringLiteral("true") : QStringLiteral("false"));
-    w.writeTextElement(ns(), QStringLiteral("IncludeAccessibility"), QStringLiteral("true")); // ???
-    w.writeTextElement(ns(), QStringLiteral("IncludeIntermediateStops"), req.includeIntermediateStops() ? QStringLiteral("true") : QStringLiteral("false"));
-    w.writeTextElement(ns(), QStringLiteral("IncludeFares"), QStringLiteral("false")); // TODO
-    w.writeTextElement(ns(), QStringLiteral("NumberOfResults"), QString::number(req.maximumResults()));
-    // TODO NumberOfResultsBefore|After for next/prev requests
+    w.writeStartElement(ns(), "Params");
+    w.writeTextElement(ns(), "IncludeTrackSections", req.includePaths() ? "true" : "false");
+    w.writeTextElement(ns(), "IncludeLegProjection", req.includePaths() ? "true" : "false");
+    w.writeTextElement(ns(), "IncludeTurnDescription", req.includePaths() ? "true" : "false");
+    w.writeTextElement(ns(), "IncludeAccessibility", "true"); // ???
+    w.writeTextElement(ns(), "IncludeIntermediateStops", req.includeIntermediateStops() ? "true" : "false");
+    w.writeTextElement(ns(), "IncludeFares", "false"); // TODO
+    switch (pageMode) {
+        case None:
+            w.writeTextElement(ns(), "NumberOfResults", QString::number(req.maximumResults()));
+            break;
+        case After:
+            w.writeTextElement(ns(), "NumberOfResultsAfter", QString::number(req.maximumResults()));
+            break;
+        case Before:
+            w.writeTextElement(ns(), "NumberOfResultsBefore", QString::number(req.maximumResults()));
+            break;
+    }
     // TODO BikeTransport
 
     if (m_protocol == OJP2 && !req.lineModes().empty() && m_supportedModes) {
