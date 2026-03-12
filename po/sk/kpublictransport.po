@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-09 00:42+0000\n"
+"POT-Creation-Date: 2026-03-12 00:42+0000\n"
 "PO-Revision-Date: 2024-11-11 17:48+0100\n"
 "Last-Translator: Roman Paholík <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -258,25 +258,25 @@ msgctxt "@info"
 msgid "On time"
 msgstr ""
 
-#: quick/FeatureDelegate.qml:39
+#: quick/FeatureDelegate.qml:40
 #, fuzzy, kde-format
 #| msgid "%1 (not available)"
 msgid "Availability unknown"
 msgstr "%1 (nedostupné)"
 
-#: quick/FeatureDelegate.qml:41
+#: quick/FeatureDelegate.qml:42
 #, fuzzy, kde-format
 #| msgid "%1 (not available)"
 msgid "Not available"
 msgstr "%1 (nedostupné)"
 
-#: quick/FeatureDelegate.qml:43
+#: quick/FeatureDelegate.qml:44
 #, fuzzy, kde-format
 #| msgid "%1 (not available)"
 msgid "Currently not available"
 msgstr "%1 (nedostupné)"
 
-#: quick/FeatureDelegate.qml:45
+#: quick/FeatureDelegate.qml:46
 #, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "One space"
