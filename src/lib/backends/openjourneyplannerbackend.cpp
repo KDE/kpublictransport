@@ -31,6 +31,7 @@ using namespace KPublicTransport;
 AbstractBackend::Capabilities OpenJourneyPlannerBackend::capabilities() const
 {
     return AbstractBackend::CanQueryArrivals |
+        (m_protocol == OJP2 ? AbstractBackend::CanQueryNextJourney | AbstractBackend::CanQueryPreviousJourney :AbstractBackend::NoCapability) |
         (m_endpoint.scheme() == QLatin1String("https") ? AbstractBackend::Secure : AbstractBackend::NoCapability);
 }
 
@@ -106,12 +107,23 @@ bool OpenJourneyPlannerBackend::queryStopover(const StopoverRequest &request, St
 
 bool OpenJourneyPlannerBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
-    const auto postData = requestBuilder().buildTripRequest(request);
+    QByteArray postData;
+    switch (requestContext(request).type) {
+        case RequestContext::Normal:
+            postData = requestBuilder().buildTripRequest(request);
+            break;
+        case RequestContext::Previous:
+            postData = requestBuilder().buildTripRequest(request, requestContextData(request).toDateTime(), OpenJourneyPlannerRequestBuilder::Before);
+            break;
+        case RequestContext::Next:
+            postData = requestBuilder().buildTripRequest(request, requestContextData(request).toDateTime(), OpenJourneyPlannerRequestBuilder::After);
+            break;
+    }
     const auto netReq = networkRequest();
     logRequest(request, netReq, postData);
     const auto netReply = nam->post(netReq, postData);
     netReply->setParent(reply);
-    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, request, netReply, reply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
@@ -123,10 +135,21 @@ bool OpenJourneyPlannerBackend::queryJourney(const JourneyRequest &request, Jour
 
         auto p = parser();
         auto jnys = p.parseTripResponse(data);
-        if (p.hasError()) {
+        if (p.hasError() || jnys.empty()) {
             addError(reply, Reply::NotFoundError, p.errorMessage());
         } else {
-            // TODO caching
+            QDateTime nextCtx, prevCtx;
+            for (const auto &jny : jnys) {
+                if (request.dateTimeMode() == JourneyRequest::Departure) {
+                    prevCtx = prevCtx.isValid() ? std::min(jny.scheduledDepartureTime(), prevCtx) : jny.scheduledDepartureTime();
+                    nextCtx = nextCtx.isValid() ? std::max(jny.scheduledDepartureTime(), nextCtx) : jny.scheduledDepartureTime();
+                } else {
+                    prevCtx = prevCtx.isValid() ? std::min(jny.scheduledArrivalTime(), prevCtx) : jny.scheduledArrivalTime();
+                    nextCtx = nextCtx.isValid() ? std::max(jny.scheduledArrivalTime(), nextCtx) : jny.scheduledArrivalTime();
+                }
+            }
+            setPreviousRequestContext(reply, prevCtx);
+            setNextRequestContext(reply, nextCtx);
             addResult(reply, this, std::move(jnys));
         }
     });
