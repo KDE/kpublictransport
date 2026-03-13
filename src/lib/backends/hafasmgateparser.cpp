@@ -38,7 +38,7 @@ namespace KPublicTransport {
 
 struct HafasMgateParserContext {
     std::vector<Ico> icos;
-    std::vector<Location> locs;
+    std::vector<Loc> locs;
     std::vector<QString> ops;
     std::vector<Route> products;
     std::vector<Message> remarks;
@@ -244,35 +244,35 @@ static std::vector<LoadInfo> parseLoadInformation(const QJsonArray &tcocL)
     return loadInfos;
 }
 
-std::vector<Location> HafasMgateParser::parseLocations(const QJsonArray &locL, const std::vector<Route> &products) const
+std::vector<Loc> HafasMgateParser::parseLocL(const QJsonArray &locL, const std::vector<Message> &msgs,  const std::vector<Route> &products) const
 {
-    std::vector<Location> locs;
+    std::vector<Loc> locs;
     locs.reserve(locL.size());
     for (const auto &locV : locL) {
         const auto locObj = locV.toObject();
 
         // resolve references to the master location
-        const auto masterIdx = locObj.value(QLatin1String("mMastLocX")).toInt(-1);
+        const auto masterIdx = locObj.value("mMastLocX"_L1).toInt(-1);
         if (masterIdx >= 0 && masterIdx < (int)locs.size()) {
             locs.push_back(locs[masterIdx]);
             continue;
         }
 
         Location loc;
-        loc.setName(locObj.value(QLatin1String("name")).toString());
-        loc.setType(locObj.value(QLatin1String("type")).toString() == QLatin1Char('S') ? Location::Stop : Location::Place);
-        setLocationIdentifier(loc, locObj.value(QLatin1String("extId")).toString());
-        const auto coordObj = locObj.value(QLatin1String("crd")).toObject();
+        loc.setName(locObj.value("name"_L1).toString());
+        loc.setType(locObj.value("type"_L1).toString() == 'S'_L1 ? Location::Stop : Location::Place);
+        setLocationIdentifier(loc, locObj.value("extId"_L1).toString());
+        const auto coordObj = locObj.value("crd"_L1).toObject();
         loc.setCoordinate(coordHafas2Geo(coordObj.value("y"_L1).toInt()), coordHafas2Geo(coordObj.value("x"_L1).toInt()));
 
-        const auto gidL = locObj.value(QLatin1String("gidL")).toArray();
+        const auto gidL = locObj.value("gidL"_L1).toArray();
         for (const auto &gidV : gidL) {
             const auto gid = gidV.toString() ;
             // ### is this A× prefix actually standard or do we need to configure that per provider?
-            if (gid.startsWith(QStringLiteral("A×")) && IfoptUtil::isValid(QStringView(gid).mid(2))) {
+            if (gid.startsWith(u"A×") && IfoptUtil::isValid(QStringView(gid).mid(2))) {
                 loc.setIdentifier(IfoptUtil::identifierType(), gid.mid(2));
             }
-            if (gid.startsWith(QStringLiteral("U×00")) && UicStationCode::isValid(QStringView(gid).mid(4))) {
+            if (gid.startsWith(u"U×00") && UicStationCode::isValid(QStringView(gid).mid(4))) {
                 loc.setIdentifier(UicStationCode::identifierType(), gid.mid(4));
             }
         }
@@ -304,7 +304,12 @@ std::vector<Location> HafasMgateParser::parseLocations(const QJsonArray &locL, c
             loc.setData(info);
         }
 
-        locs.push_back(loc);
+        Loc l;
+        l.loc = loc;
+        processMessageList(locObj, msgs, {}, [&l](const auto &msg, [[maybe_unused]] const auto &msgObj) {
+            l.msgs.push_back(msg);
+        });
+        locs.push_back(std::move(l));
     }
     return locs;
 }
@@ -380,13 +385,7 @@ static QString parsePlatform(const QJsonObject &obj, char ad, char rs)
 
 std::vector<Stopover> HafasMgateParser::parseStationBoardResponse(const QJsonObject &obj) const
 {
-    const auto commonObj = obj.value(QLatin1String("common")).toObject();
-    const auto icos = parseIcos(commonObj.value(QLatin1String("icoL")).toArray());
-    const auto locs = parseLocations(commonObj.value(QLatin1String("locL")).toArray());
-    const auto ops = parseOperators(commonObj.value("opL"_L1).toArray());
-    const auto products = parseProducts(commonObj.value(QLatin1String("prodL")).toArray(), icos, ops);
-    const auto remarks = parseRemarks(commonObj.value(QLatin1String("remL")).toArray());
-    const auto warnings = parseWarnings(commonObj.value(QLatin1String("himL")).toArray());
+    const auto common = parseCommon(obj);
 
     std::vector<Stopover> res;
     const auto jnyL = obj.value(QLatin1String("jnyL")).toArray();
@@ -400,8 +399,8 @@ std::vector<Stopover> HafasMgateParser::parseStationBoardResponse(const QJsonObj
         dep.setTripIdentifier(locationIdentifierType(), jnyObj.value("jid"_L1).toString());
         Route route;
         const auto prodIdx = jnyObj.value(QLatin1String("prodX")).toInt(-1);
-        if (prodIdx >= 0 && (unsigned int)prodIdx < products.size()) {
-            route = products[prodIdx];
+        if (prodIdx >= 0 && (unsigned int)prodIdx < common.products.size()) {
+            route = common.products[prodIdx];
         }
         route.setDirection(jnyObj.value(QLatin1String("dirTxt")).toString());
 
@@ -423,9 +422,13 @@ std::vector<Stopover> HafasMgateParser::parseStationBoardResponse(const QJsonObj
             dep.setDisruptionEffect(Disruption::NoService);
         }
 
-        const auto startLocIdx = stbStop.value(QLatin1String("locX")).toInt(-1);
-        if (startLocIdx >= 0 && (unsigned int)startLocIdx < locs.size()) {
-            dep.setStopPoint(locs[startLocIdx]);
+        const auto startLocIdx = stbStop.value("locX"_L1).toInt(-1);
+        if (startLocIdx >= 0 && (unsigned int)startLocIdx < common.locs.size()) {
+            const auto &loc = common.locs[startLocIdx];
+            dep.setStopPoint(loc.loc);
+            for (const auto &msg : loc.msgs) {
+                applyMessage(dep, msg);
+            }
         }
 
         const auto stopL = jnyObj.value(QLatin1String("stopL")).toArray();
@@ -437,13 +440,13 @@ std::vector<Stopover> HafasMgateParser::parseStationBoardResponse(const QJsonObj
             }
         }
         const auto destLocX = stopL.last().toObject().value(QLatin1String("locX")).toInt(-1);
-        if (!foundLoop && destLocX >= 0 && (unsigned int)destLocX < locs.size() && startLocIdx != destLocX) {
-            route.setDestination(locs[destLocX]);
+        if (!foundLoop && destLocX >= 0 && (unsigned int)destLocX < common.locs.size() && startLocIdx != destLocX) {
+            route.setDestination(common.locs[destLocX].loc);
         }
 
         dep.setRoute(route);
-        parseMessageList(dep, jnyObj, remarks, warnings);
-        parseMessageList(dep, stbStop, remarks, warnings);
+        parseMessageList(dep, jnyObj, common.remarks, common.warnings);
+        parseMessageList(dep, stbStop, common.remarks, common.warnings);
         res.push_back(dep);
     }
 
@@ -507,15 +510,21 @@ std::vector<Location> HafasMgateParser::parseLocations(const QByteArray &data) c
                 const auto icos = parseIcos(commonObj.value("icoL"_L1).toArray());
                 const auto ops = parseOperators(commonObj.value("opL"_L1).toArray());
                 const auto products = parseProducts(commonObj.value("prodL"_L1).toArray(), icos, ops);
+                const auto remarks = parseRemarks(commonObj.value("remL"_L1).toArray());
 
+                std::vector<Loc> locs;
                 if (resObj.contains("locL"_L1)) {
-                    return parseLocations(resObj.value("locL"_L1).toArray(), products);
+                    locs = parseLocL(resObj.value("locL"_L1).toArray(), remarks, products);
                 }
-                if (resObj.contains("match"_L1)) {
-                    return parseLocations(resObj.value("match"_L1).toObject().value("locL"_L1).toArray(), products);
+                else if (resObj.contains("match"_L1)) {
+                    locs = parseLocL(resObj.value("match"_L1).toObject().value("locL"_L1).toArray(), remarks, products);
+                } else {
+                    qCDebug(Log).noquote() << "Failed to parse location query response:" << QJsonDocument(obj).toJson();
                 }
-                qCDebug(Log).noquote() << "Failed to parse location query response:" << QJsonDocument(obj).toJson();
-                return {};
+                std::vector<Location> res;
+                res.reserve(locs.size());
+                std::ranges::transform(locs, std::back_inserter(res), [](const auto &l) { return l.loc; });
+                return res;
             }
             return {};
         }
@@ -608,7 +617,7 @@ static void parseTrainComposition(const QJsonObject &obj, T &result,
     }
 }
 
-static std::vector<Path> parsePaths(const QJsonArray &polyL, const std::vector<Location> &locs)
+static std::vector<Path> parsePaths(const QJsonArray &polyL, const std::vector<Loc> &locs)
 {
     std::vector<Path> paths;
     paths.reserve(polyL.size());
@@ -652,7 +661,7 @@ static std::vector<Path> parsePaths(const QJsonArray &polyL, const std::vector<L
 
             const auto locX = ppLocRef.value(QLatin1String("locX")).toInt();
             if (locX >= 0 && locX < (int)locs.size()) {
-                section.setDescription(locs[locX].name());
+                section.setDescription(locs[locX].loc.name());
             }
 
             sections.push_back(std::move(section));
@@ -735,10 +744,10 @@ HafasMgateParserContext HafasMgateParser::parseCommon(const QJsonObject &obj) co
 
     const auto commonObj = obj.value("common"_L1).toObject();
     common.icos = parseIcos(commonObj.value("icoL"_L1).toArray());
-    common.locs = parseLocations(commonObj.value("locL"_L1).toArray());
     common.ops = parseOperators(commonObj.value("opL"_L1).toArray());
     common.products = parseProducts(commonObj.value("prodL"_L1).toArray(), common.icos, common.ops);
     common.remarks = parseRemarks(commonObj.value("remL"_L1).toArray());
+    common.locs = parseLocL(commonObj.value("locL"_L1).toArray(), common.remarks, common.products);
     common.warnings = parseWarnings(commonObj.value("himL"_L1).toArray());
     common.loadInfos = parseLoadInformation(commonObj.value("tcocL"_L1).toArray());
     common.paths = parsePaths(commonObj.value("polyL"_L1).toArray(), common.locs);
@@ -753,15 +762,15 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj)
     const auto common = parseCommon(obj);
 
     std::vector<Journey> res;
-    const auto outConL = obj.value(QLatin1String("outConL")).toArray();
+    const auto outConL = obj.value("outConL"_L1).toArray();
     res.reserve(outConL.size());
 
     for (const auto &outConV: outConL) {
         const auto outCon = outConV.toObject();
 
-        const auto dateStr = outCon.value(QLatin1String("date")).toString();
+        const auto dateStr = outCon.value("date"_L1).toString();
 
-        const auto secL = outCon.value(QLatin1String("secL")).toArray();
+        const auto secL = outCon.value("secL"_L1).toArray();
         std::vector<JourneySection> sections;
         sections.reserve(secL.size());
 
@@ -770,41 +779,51 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj)
             const auto secObj = secV.toObject();
             JourneySection section;
 
-            const auto dep = secObj.value(QLatin1String("dep")).toObject();
-            section.setScheduledDepartureTime(parseDateTime(dateStr, dep.value(QLatin1String("dTimeS")), dep.value(QLatin1String("dTZOffset"))));
-            section.setExpectedDepartureTime(parseDateTime(dateStr, dep.value(QLatin1String("dTimeR")), dep.value(QLatin1String("dTZOffset"))));
-            const auto fromIdx = dep.value(QLatin1String("locX")).toInt(-1);
+            const auto depObj = secObj.value("dep"_L1).toObject();
+            Stopover dep;
+            dep.setScheduledDepartureTime(parseDateTime(dateStr, depObj.value("dTimeS"_L1), depObj.value("dTZOffset"_L1)));
+            dep.setExpectedDepartureTime(parseDateTime(dateStr, depObj.value("dTimeR"_L1), depObj.value("dTZOffset"_L1)));
+            const auto fromIdx = depObj.value("locX"_L1).toInt(-1);
             if ((unsigned int)fromIdx < common.locs.size()) {
-                auto loc = common.locs[fromIdx];
-                parseMcpData(dep, loc);
-                section.setFrom(std::move(loc));
+                auto loc = common.locs[fromIdx].loc;
+                parseMcpData(depObj, loc);
+                dep.setStopPoint(std::move(loc));
+                for (const auto &msg : common.locs[fromIdx].msgs) {
+                    applyMessage(dep, msg);
+                }
             }
-            section.setScheduledDeparturePlatform(parsePlatform(dep, 'd', 'S'));
-            section.setExpectedDeparturePlatform(parsePlatform(dep, 'd', 'R'));
-            if (dep.value(QLatin1String("dCncl")).toBool()) {
+            dep.setScheduledPlatform(parsePlatform(depObj, 'd', 'S'));
+            dep.setExpectedPlatform(parsePlatform(depObj, 'd', 'R'));
+            if (depObj.value("dCncl"_L1).toBool()) {
                 section.setDisruptionEffect(Disruption::NoService);
             }
+            section.setDeparture(dep);
 
-            const auto arr = secObj.value(QLatin1String("arr")).toObject();
-            section.setScheduledArrivalTime(parseDateTime(dateStr, arr.value(QLatin1String("aTimeS")), arr.value(QLatin1String("aTZOffset"))));
-            section.setExpectedArrivalTime(parseDateTime(dateStr, arr.value(QLatin1String("aTimeR")), arr.value(QLatin1String("aTZOffset"))));
-            const auto toIdx = arr.value(QLatin1String("locX")).toInt(-1);
+            const auto arrObj = secObj.value("arr"_L1).toObject();
+            Stopover arr;
+            arr.setScheduledArrivalTime(parseDateTime(dateStr, arrObj.value("aTimeS"_L1), arrObj.value("aTZOffset"_L1)));
+            arr.setExpectedArrivalTime(parseDateTime(dateStr, arrObj.value("aTimeR"_L1), arrObj.value("aTZOffset"_L1)));
+            const auto toIdx = arrObj.value("locX"_L1).toInt(-1);
             if ((unsigned int)toIdx < common.locs.size()) {
-                auto loc = common.locs[toIdx];
-                parseMcpData(arr, loc);
-                section.setTo(loc);
+                auto loc = common.locs[toIdx].loc;
+                parseMcpData(arrObj, loc);
+                arr.setStopPoint(loc);
+                for (const auto &msg : common.locs[toIdx].msgs) {
+                    applyMessage(arr, msg);
+                }
             }
-            section.setScheduledArrivalPlatform(parsePlatform(arr, 'a', 'S'));
-            section.setExpectedArrivalPlatform(parsePlatform(arr, 'a', 'R'));
-            if (arr.value(QLatin1String("aCncl")).toBool()) {
+            arr.setScheduledPlatform(parsePlatform(arrObj, 'a', 'S'));
+            arr.setExpectedPlatform(parsePlatform(arrObj, 'a', 'R'));
+            if (arrObj.value("aCncl"_L1).toBool()) {
                 section.setDisruptionEffect(Disruption::NoService);
             }
+            section.setArrival(arr);
 
-            const auto typeStr = secObj.value(QLatin1String("type")).toString();
-            if (typeStr == QLatin1String("JNY")) {
+            const auto typeStr = secObj.value("type"_L1).toString();
+            if (typeStr == "JNY"_L1) {
                 const auto jnyObj = secObj.value("jny"_L1).toObject();
                 parsePublicTransportSection(common, jnyObj, fromIdx, toIdx, dateStr, section);
-                parseTrainComposition(dep, section, common.loadInfos, common.platforms, common.vehicles);
+                parseTrainComposition(depObj, section, common.loadInfos, common.platforms, common.vehicles);
             } else {
                 const auto gis = secObj.value(QLatin1String("gis")).toObject();
                 section.setDistance(gis.value(QLatin1String("dist")).toInt());
@@ -889,7 +908,10 @@ void HafasMgateParser::parsePublicTransportSection(const HafasMgateParserContext
         Stopover stop;
         const auto locIdx = stopObj.value("locX"_L1).toInt();
         if ((unsigned int)locIdx < common.locs.size()) {
-            stop.setStopPoint(common.locs[locIdx]);
+            stop.setStopPoint(common.locs[locIdx].loc);
+            for (const auto &msg : common.locs[locIdx].msgs) {
+                applyMessage(stop, msg);
+            }
             if (fromIdx < 0) {
                 fromIdx = locIdx;
             }
