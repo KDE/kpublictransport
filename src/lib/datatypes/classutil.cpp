@@ -13,10 +13,10 @@ using namespace KPublicTransport;
 VehicleSection::Classes ClassUtil::fromString(const QString &className)
 {
     VehicleSection::Classes c = VehicleSection::UnknownClass;
-    if (className.contains('1'_L1)) {
+    if (className.contains('1'_L1) || className.contains("first"_L1)) {
         c |= VehicleSection::FirstClass;
     }
-    if (className.contains('2'_L1)) {
+    if (className.contains('2'_L1) || className.contains("second"_L1)) {
         c |= VehicleSection::SecondClass;
     }
 
