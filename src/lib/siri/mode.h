@@ -63,7 +63,6 @@ public:
         trolleybus,
         monorail,
         coach,
-        carpool,
         other,
         unknown,
     };
