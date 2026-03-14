@@ -40,7 +40,6 @@ constexpr const ModeMap<Siri::Mode::VehicleMode> mode_map<Siri::Mode::VehicleMod
     { Siri::Mode::VehicleMode::trolleybus, Line::Bus },
     { Siri::Mode::VehicleMode::monorail, Line::Train },
     { Siri::Mode::VehicleMode::coach, Line::Coach },
-    { Siri::Mode::VehicleMode::carpool, Line::RideShare },
     { Siri::Mode::VehicleMode::other, Line::Unknown },
     { Siri::Mode::VehicleMode::unknown, Line::Unknown },
 };
