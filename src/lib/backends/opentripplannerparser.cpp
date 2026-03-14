@@ -455,6 +455,9 @@ Stopover OpenTripPlannerParser::parseStoptime(const QJsonObject &obj) const
     if (const auto v = obj.value("forAlighting"_L1); v.isBool()) {
         s.setDropoffType(v.toBool() ? (requestStop ? PickupDropoff::CoordinateWithDriver : PickupDropoff::Normal) : PickupDropoff::NotAllowed);
     }
+    if (const auto v = obj.value("cancellation"_L1); v.isBool() && v.toBool()) {
+        s.setDisruptionEffect(Disruption::NoService);
+    }
 
     return s;
 }
@@ -759,12 +762,21 @@ JourneySection OpenTripPlannerParser::parseTrip(const QJsonObject &obj) const
     for (const auto &stoptimeV :stoptimesA) {
         const auto stopObj = stoptimeV.toObject();
         auto stop = parseStoptime(stopObj);
-        const auto serviceDay = stopObj.value("serviceDay"_L1).toInteger();
-        stop.setScheduledDepartureTime(QDateTime::fromSecsSinceEpoch(serviceDay + stopObj.value("scheduledDeparture"_L1).toInteger()));
-        stop.setScheduledArrivalTime(QDateTime::fromSecsSinceEpoch(serviceDay + stopObj.value("scheduledArrival"_L1).toInteger()));
-        if (stopObj.value("realtime"_L1).toBool()) {
-            stop.setExpectedDepartureTime(stop.scheduledDepartureTime().addSecs(stopObj.value("departureDelay"_L1).toInteger()));
-            stop.setExpectedArrivalTime(stop.scheduledArrivalTime().addSecs(stopObj.value("arrivalDelay"_L1).toInteger()));
+        const auto hasRealtime = stopObj.value("realtime"_L1).toBool();
+        if (const auto serviceDay = stopObj.value("serviceDay"_L1).toInteger(-1); serviceDay > 0) {
+            stop.setScheduledDepartureTime(QDateTime::fromSecsSinceEpoch(serviceDay + stopObj.value("scheduledDeparture"_L1).toInteger()));
+            stop.setScheduledArrivalTime(QDateTime::fromSecsSinceEpoch(serviceDay + stopObj.value("scheduledArrival"_L1).toInteger()));
+            if (hasRealtime) {
+                stop.setExpectedDepartureTime(stop.scheduledDepartureTime().addSecs(stopObj.value("departureDelay"_L1).toInteger()));
+                stop.setExpectedArrivalTime(stop.scheduledArrivalTime().addSecs(stopObj.value("arrivalDelay"_L1).toInteger()));
+            }
+        } else {
+            stop.setScheduledDepartureTime(parseJourneyDateTime(stopObj.value("scheduledDepartureTime"_L1)));
+            stop.setScheduledArrivalTime(parseJourneyDateTime(stopObj.value("scheduledDepartureTime"_L1)));
+            if (hasRealtime) {
+                stop.setExpectedDepartureTime(parseJourneyDateTime(stopObj.value("expectedDepartureTime"_L1)));
+                stop.setExpectedArrivalTime(parseJourneyDateTime(stopObj.value("expectedDepartureTime"_L1)));
+            }
         }
 
         stops.push_back(std::move(stop));

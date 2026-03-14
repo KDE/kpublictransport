@@ -1,0 +1,72 @@
+# SPDX-FileCopyrightText: 2026 Volker Krause <vkrause@kde.org>
+# SPDX-License-Identifier: CC0-1.0
+
+query trip(
+    $id: String!
+) {
+    trip: serviceJourney(id: $id) {
+        id
+        route: line {
+            presentation {
+                color: colour
+                textColor: textColour
+            }
+            transportMode
+            type: transportSubmode
+            shortName: publicCode
+            name
+            agency: operator {
+                name
+                url
+            }
+            alerts: situations {
+                alertHeaderTextTranslations: summary {
+                    language
+                    text: value
+                }
+                alertDescriptionTextTranslations: description {
+                    language
+                    text: value
+                }
+            }
+        }
+        bikesAllowed
+        tripShortName: publicCode
+        wheelchairAccessible
+        stoptimes: estimatedCalls {
+            stop: quay {
+                id
+                name
+                platformCode: publicCode
+                lat: latitude
+                lon: longitude
+                timezone: timeZone
+                # TODO wheelchairAccessible
+            }
+            scheduledArrivalTime: aimedArrivalTime
+            expectedArrivalTime: actualArrivalTime
+            scheduledDepartureTime: aimedDepartureTime
+            expectedDepartureTime: actualDepartureTime
+            occupancyStatus
+            realtime
+            forBoarding
+            forAlighting
+            requestStop
+            cancellation
+        }
+        tripGeometry: pointsOnLink {
+          length
+          points
+        }
+        alerts: situations {
+            alertHeaderTextTranslations: summary {
+                language
+                text: value
+            }
+            alertDescriptionTextTranslations: description {
+                language
+                text: value
+            }
+        }
+    }
+}

@@ -17,6 +17,7 @@
       <file>entur/journey.graphql</file>
       <file>entur/stationByCoordinate.graphql</file>
       <file>entur/stationByName.graphql</file>
+      <file>entur/trip.graphql</file>
 
       <file>otp2/departure.graphql</file>
       <file>otp2/journey.graphql</file>

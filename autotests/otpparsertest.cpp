@@ -212,6 +212,9 @@ private Q_SLOTS:
         QTest::newRow("de-stadtnavi-trip")
             << QStringLiteral(SOURCE_DIR "/data/otp/de-stadtnavi-trip.in.json")
             << QStringLiteral(SOURCE_DIR "/data/otp/de-stadtnavi-trip.out.json");
+        QTest::newRow("no-entur-trip")
+            << QStringLiteral(SOURCE_DIR "/data/otp/no-entur-trip.in.json")
+            << QStringLiteral(SOURCE_DIR "/data/otp/no-entur-trip.out.json");
     }
 
     void testParseTrip()
