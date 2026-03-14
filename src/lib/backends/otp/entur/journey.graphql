@@ -41,6 +41,7 @@ query journeys(
         fromStoptime: fromEstimatedCall { ...estimatedCallFragment }
         toStoptime: toEstimatedCall { ...estimatedCallFragment }
         trip: serviceJourney {
+            id
             route: line {
                 presentation {
                     color: colour
@@ -119,4 +120,5 @@ fragment estimatedCallFragment on EstimatedCall {
     forBoarding
     forAlighting
     requestStop
+    cancellation
 }

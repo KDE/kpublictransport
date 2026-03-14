@@ -38,7 +38,9 @@ query departures(
               forBoarding
               forAlighting
               requestStop
+              cancellation
               trip: serviceJourney {
+                id
                 route: line {
                   transportMode
                   type: transportSubmode

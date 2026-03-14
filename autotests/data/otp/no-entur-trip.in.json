@@ -1,0 +1,770 @@
+{
+    "trip": {
+      "id": "RUT:ServiceJourney:1aab7094d7e36d7ff67dd3e7f3ff9c59",
+      "route": {
+        "presentation": {
+          "color": "EC700C",
+          "textColor": "FFFFFF"
+        },
+        "transportMode": "metro",
+        "type": "metro",
+        "shortName": "4",
+        "name": "Vestli - Bergkrystallen",
+        "agency": {
+          "name": "Sporveien T-banen AS",
+          "url": null
+        },
+        "alerts": []
+      },
+      "bikesAllowed": "noInformation",
+      "tripShortName": null,
+      "wheelchairAccessible": "noInformation",
+      "stoptimes": [
+        {
+          "stop": {
+            "id": "NSR:Quay:10682",
+            "name": "Bergkrystallen",
+            "platformCode": "2",
+            "lat": 59.867117,
+            "lon": 10.82174,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:23:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:23:41+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:23:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:23:41+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": false,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:10667",
+            "name": "Munkelia",
+            "platformCode": "2",
+            "lat": 59.868879,
+            "lon": 10.812746,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:25:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:26:24+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:25:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:26:24+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:10630",
+            "name": "Lambertseter",
+            "platformCode": "2",
+            "lat": 59.873562,
+            "lon": 10.810324,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:26:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:32:12+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:26:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:32:12+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:12286",
+            "name": "Karlsrud",
+            "platformCode": "2",
+            "lat": 59.880459,
+            "lon": 10.805456,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:28:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:32:12+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:28:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:32:12+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:12292",
+            "name": "Brattlikollen",
+            "platformCode": "2",
+            "lat": 59.887367,
+            "lon": 10.80114,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:30:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:32:12+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:30:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:32:12+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:10819",
+            "name": "Ryen",
+            "platformCode": "2",
+            "lat": 59.895653,
+            "lon": 10.804898,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:32:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:32:30+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:32:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:32:30+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:10851",
+            "name": "Manglerud",
+            "platformCode": "2",
+            "lat": 59.89799,
+            "lon": 10.81284,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:33:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:33:30+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:33:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:33:30+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:10883",
+            "name": "Høyenhall",
+            "platformCode": "2",
+            "lat": 59.906187,
+            "lon": 10.819613,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:35:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:35:58+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:35:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:35:58+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:11176",
+            "name": "Brynseng",
+            "platformCode": "2",
+            "lat": 59.90921,
+            "lon": 10.812089,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:36:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:36:23+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:36:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:36:23+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:11135",
+            "name": "Helsfyr",
+            "platformCode": "2",
+            "lat": 59.912697,
+            "lon": 10.801446,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:38:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:39:12+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:38:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:39:12+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:11107",
+            "name": "Ensjø",
+            "platformCode": "2",
+            "lat": 59.913797,
+            "lon": 10.78777,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:40:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:41:11+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:40:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:41:11+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:11895",
+            "name": "Tøyen",
+            "platformCode": "2",
+            "lat": 59.915679,
+            "lon": 10.775828,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:42:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:42:22+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:42:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:42:22+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:11929",
+            "name": "Grønland",
+            "platformCode": "2",
+            "lat": 59.91283,
+            "lon": 10.76018,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:44:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:44:49+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:44:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:44:49+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:7184",
+            "name": "Jernbanetorget",
+            "platformCode": "2",
+            "lat": 59.912268,
+            "lon": 10.751326,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:45:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:45:57+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:45:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:45:57+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:7255",
+            "name": "Stortinget",
+            "platformCode": "2",
+            "lat": 59.913478,
+            "lon": 10.743221,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:46:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:47:04+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:46:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:47:05+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:7334",
+            "name": "Nationaltheatret",
+            "platformCode": "2",
+            "lat": 59.91535,
+            "lon": 10.73233,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:48:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:48:57+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:48:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:48:57+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:8028",
+            "name": "Majorstuen",
+            "platformCode": "2",
+            "lat": 59.930279,
+            "lon": 10.714647,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:51:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:51:06+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:51:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:51:06+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:11635",
+            "name": "Blindern",
+            "platformCode": "2",
+            "lat": 59.94019,
+            "lon": 10.716259,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:53:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:53:52+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:53:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:53:52+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:11654",
+            "name": "Forskningsparken",
+            "platformCode": "2",
+            "lat": 59.943674,
+            "lon": 10.720934,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:54:00+01:00",
+          "expectedArrivalTime": "2026-03-14T14:55:12+01:00",
+          "scheduledDepartureTime": "2026-03-14T14:54:00+01:00",
+          "expectedDepartureTime": "2026-03-14T14:55:12+01:00",
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:11289",
+            "name": "Ullevål stadion",
+            "platformCode": "2",
+            "lat": 59.946754,
+            "lon": 10.732194,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:56:00+01:00",
+          "expectedArrivalTime": null,
+          "scheduledDepartureTime": "2026-03-14T14:56:00+01:00",
+          "expectedDepartureTime": null,
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:11153",
+            "name": "Nydalen",
+            "platformCode": "2",
+            "lat": 59.949433,
+            "lon": 10.765322,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T14:59:00+01:00",
+          "expectedArrivalTime": null,
+          "scheduledDepartureTime": "2026-03-14T14:59:00+01:00",
+          "expectedDepartureTime": null,
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:11117",
+            "name": "Storo",
+            "platformCode": "2",
+            "lat": 59.94481,
+            "lon": 10.778368,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T15:00:00+01:00",
+          "expectedArrivalTime": null,
+          "scheduledDepartureTime": "2026-03-14T15:00:00+01:00",
+          "expectedDepartureTime": null,
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:11078",
+            "name": "Sinsen",
+            "platformCode": "2",
+            "lat": 59.93717,
+            "lon": 10.78174,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T15:02:00+01:00",
+          "expectedArrivalTime": null,
+          "scheduledDepartureTime": "2026-03-14T15:02:00+01:00",
+          "expectedDepartureTime": null,
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:102017",
+            "name": "Løren",
+            "platformCode": "1",
+            "lat": 59.929785,
+            "lon": 10.790245,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T15:04:00+01:00",
+          "expectedArrivalTime": null,
+          "scheduledDepartureTime": "2026-03-14T15:04:00+01:00",
+          "expectedDepartureTime": null,
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:10827",
+            "name": "Økern",
+            "platformCode": "1",
+            "lat": 59.928208,
+            "lon": 10.806108,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T15:06:00+01:00",
+          "expectedArrivalTime": null,
+          "scheduledDepartureTime": "2026-03-14T15:06:00+01:00",
+          "expectedDepartureTime": null,
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:10863",
+            "name": "Risløkka",
+            "platformCode": "1",
+            "lat": 59.932433,
+            "lon": 10.823016,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T15:08:00+01:00",
+          "expectedArrivalTime": null,
+          "scheduledDepartureTime": "2026-03-14T15:08:00+01:00",
+          "expectedDepartureTime": null,
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:10884",
+            "name": "Vollebekk",
+            "platformCode": "1",
+            "lat": 59.935903,
+            "lon": 10.831221,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T15:09:00+01:00",
+          "expectedArrivalTime": null,
+          "scheduledDepartureTime": "2026-03-14T15:09:00+01:00",
+          "expectedDepartureTime": null,
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:10906",
+            "name": "Linderud",
+            "platformCode": "1",
+            "lat": 59.940954,
+            "lon": 10.838544,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T15:10:00+01:00",
+          "expectedArrivalTime": null,
+          "scheduledDepartureTime": "2026-03-14T15:10:00+01:00",
+          "expectedDepartureTime": null,
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:10938",
+            "name": "Veitvet",
+            "platformCode": "1",
+            "lat": 59.944524,
+            "lon": 10.847049,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T15:11:00+01:00",
+          "expectedArrivalTime": null,
+          "scheduledDepartureTime": "2026-03-14T15:11:00+01:00",
+          "expectedDepartureTime": null,
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:10639",
+            "name": "Rødtvet",
+            "platformCode": "1",
+            "lat": 59.951344,
+            "lon": 10.859288,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T15:14:00+01:00",
+          "expectedArrivalTime": null,
+          "scheduledDepartureTime": "2026-03-14T15:14:00+01:00",
+          "expectedDepartureTime": null,
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:10651",
+            "name": "Kalbakken",
+            "platformCode": "1",
+            "lat": 59.95455,
+            "lon": 10.86687,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T15:15:00+01:00",
+          "expectedArrivalTime": null,
+          "scheduledDepartureTime": "2026-03-14T15:15:00+01:00",
+          "expectedDepartureTime": null,
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:10693",
+            "name": "Ammerud",
+            "platformCode": "1",
+            "lat": 59.958236,
+            "lon": 10.872026,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T15:16:00+01:00",
+          "expectedArrivalTime": null,
+          "scheduledDepartureTime": "2026-03-14T15:16:00+01:00",
+          "expectedDepartureTime": null,
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:10718",
+            "name": "Grorud",
+            "platformCode": "1",
+            "lat": 59.961371,
+            "lon": 10.880783,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T15:17:00+01:00",
+          "expectedArrivalTime": null,
+          "scheduledDepartureTime": "2026-03-14T15:17:00+01:00",
+          "expectedDepartureTime": null,
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:10603",
+            "name": "Romsås",
+            "platformCode": "1",
+            "lat": 59.962505,
+            "lon": 10.892725,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T15:18:00+01:00",
+          "expectedArrivalTime": null,
+          "scheduledDepartureTime": "2026-03-14T15:18:00+01:00",
+          "expectedDepartureTime": null,
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:10461",
+            "name": "Rommen",
+            "platformCode": "1",
+            "lat": 59.962042,
+            "lon": 10.909451,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T15:20:00+01:00",
+          "expectedArrivalTime": null,
+          "scheduledDepartureTime": "2026-03-14T15:20:00+01:00",
+          "expectedDepartureTime": null,
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:10489",
+            "name": "Stovner",
+            "platformCode": "1",
+            "lat": 59.9622,
+            "lon": 10.92338,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T15:21:00+01:00",
+          "expectedArrivalTime": null,
+          "scheduledDepartureTime": "2026-03-14T15:21:00+01:00",
+          "expectedDepartureTime": null,
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": true,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        },
+        {
+          "stop": {
+            "id": "NSR:Quay:10509",
+            "name": "Vestli",
+            "platformCode": "1",
+            "lat": 59.972727,
+            "lon": 10.929707,
+            "timezone": "Europe/Oslo"
+          },
+          "scheduledArrivalTime": "2026-03-14T15:25:00+01:00",
+          "expectedArrivalTime": null,
+          "scheduledDepartureTime": "2026-03-14T15:25:00+01:00",
+          "expectedDepartureTime": null,
+          "occupancyStatus": "noData",
+          "realtime": true,
+          "forBoarding": false,
+          "forAlighting": true,
+          "requestStop": false,
+          "cancellation": false
+        }
+      ],
+      "tripGeometry": {
+        "length": 1257,
+        "points": "yxklJ_n`aA?@QzDE~@Ar@Av@EtDG`FGtGO~Ca@lCc@rAc@dAg@p@e@\\kBpA??_Al@_@R]Pm@Rk@LcF|@aATg@P_@PUJSJa@Vi@\\iAt@iBjA??}CnBuH|EiAr@MJw@h@_Aj@{@h@eAr@{@h@}BxAmFnDsAv@m@Zo@X]L_@H??_@JiEn@y@Po@Z]Ti@d@g@l@Y`@Wb@yBdEc@p@a@j@iDhEa@h@_@d@e@`@WPQHMFMDMBOBM@K@K?MAK?OCMCMEKEKCUKSK}Aw@A?}Au@YKYO_@OYKWIUGSEUG[GWEYCQC]C[AYA[AY?Y@iCD]@U@S@UBUD]F]HoBd@SDUHSJOHs@^SJOHQFQDOBOBM@O?O?Q?OAOCMEOEOGOGOKOKOMMKMOOQKOKQKMGQIQO[KYK]I[GWEUG[EUE]E]E_@E_@_@qE?A_@oEYmDUiCS_CQ}AQiAWuA[sA[qAs@}B[aAa@eAk@}A{AwDAAuBmFo@mAo@eAy@oAe@s@{BgDi@w@cCqDiA}Ao@}@[]YW_Ay@w@u@}@w@m@e@o@c@u@a@q@Ym@Um@Qw@SYCUCWAY@a@DYJUHQJOFSLQLQLA@QNOLWXSTQTQRKPQZSd@M^M`@IVIXKj@]vAI^GVIXITKVGPKPKROVIJGHKLIHONq@t@QROTQVMVMTKTGPGRIXIXIXGZGb@G^E^E`@Cb@C^Ch@Aj@C`AGjD?BKfFCnACrACbACjAEnCCt@Cn@Cl@Ef@E`@It@If@K`@ETGTENGPEPMXITKNKNMPMNONOLOHm@^QLKHIFIHONKHKH[RUNQNQTQTOVOXO\\Qd@Mb@Yt@Qd@IRCNERIr@Ih@Iv@In@Y`CKx@o@rFMfAOtAGx@IfAE~@k@nOAz@Al@Ax@?p@?j@@l@@p@@b@Bv@Dt@Dr@Dp@TxCDl@Bj@@\\@d@?b@?b@Af@Af@C\\Cf@E\\C`@EXEXEXOp@I^a@lBS|@G\\o@|CI\\S~@Kd@K\\AHQl@Md@Ob@GTKXIPMXIRKROTQVORONOLMLOHSJSHm@VSFQJSNUPWVSXSXS^O^O`@M`@Mb@Mj@Kl@G`@E^Gh@Ej@Ch@Ch@Af@?l@?p@@l@Dr@@VBRFr@D`@Fd@H`@Jd@Lf@L^JZL\\NZRb@Zl@pA|BvAlCJPhAtBVf@Tf@NZL^L`@Ld@Jd@Ll@Jp@Hr@XpCPlAVtAVfAXv@\\r@\\l@zBjCX^`@x@`@hAVbARpAP~AFvABpAAvAGlAKvASvBaAvIIhAGv@ErAAbBAv@I~F?d@KdI?pA@~@DpAJlALdALv@v@lELv@Hx@Fv@D`ABfAAjAAtAKxEAZItD?JCfAEhCAb@Cb@Ch@Gz@Iv@O~@UlAQ|@[dBWxAQbAO`AK`AKjAEl@Cr@Ex@MnEEz@KbDOhE?n@En@QzE?VE|@EjAE`AIvAIt@Gr@Kr@In@Mv@Mr@g@nCWxA?@Mn@Ij@Mr@Mt@Kv@Mz@OtAKt@ADOf@Wj@KRKTg@x@U^W^c@j@kApAu@n@g@`@{Az@kBfAa[rQmAp@y@j@m@h@k@p@m@v@o@lAcAhBKTqOzYoA~B]p@OZc@hAg@pAg@pA]x@a@dA]z@_@x@{@bBu@zAi@fAYf@_@n@k@fAc@z@OVKNW^OTQTQZk@dAc@v@CDqBtD]n@Wd@Yj@KVKVMX?@Qf@Wp@K\\M^KXMZMXMXKRINKNOPKLKJKHKHOHOFMBMDO@OBQ@a@@[?Y?YA_@A[AYCWEUCYEYGUGUISIQKSKUOOMSOUUmAoAOOMMIOIIIMGMIQIOGMIUGSIYK_@K]Mk@g@qBKc@K]IYIYK[IWKUKUMUMWMSKQKQS[s@iAw@oAaA}AcBkCIMwA}BMQOSMOSWQSQQQOUQSOQMYQs@c@OMSMWWUSOQQUQSMQKSOUS]Q]Q]O]M]KUIYM_@K[K]I[Ka@Qm@?CI[?AMe@Ia@Ia@G_@Ia@G]Gc@E_@E_@Gi@Ee@Cg@Eq@a@cGEe@Ce@Ea@Ce@Ec@Gm@Iu@Gi@Kq@Gi@Ii@Km@Kk@Ki@Ic@I]Kc@Mg@Qu@Qo@iBaHOm@Oe@K_@Ma@Oc@O_@M]M[Se@c@eAkAsCaA}Bq@_Bg@oAwAiD}@yBWk@[q@M[O[_@s@Ue@S_@O[S_@M[Qa@O]K[KYSs@Ok@Uy@S}@QiAOeAOaBMcBK}AG{AEyBCuB?oBDcCj@eVbAof@~@uc@LkFPyCr@mJZsE^yF~AqPzB}TrA{KjA_GrAoD`A_AzFcCvAk@bAa@FAtBy@r@WBAj@SrBq@vCcAVKPGTIRKPGlAo@TMZOZMr@WfBm@h@QzA]d@KREz@Qr@Qv@Sd@Qf@QfBo@\\KlBq@^OfAa@r@Yp@_@p@c@b@[h@c@b@a@h@k@z@aAdBkBdAkAHKBCxAeAn@]`Aa@dA[\\Qb@_@Z[Va@LSJOn@cBx@_D^yA~C}L@C~@oDl@{B\\{@\\o@Xa@`@a@b@a@ZQZKtEo@j@In@I`@M`@S`@[`@_@d@u@l@uAj@uBV_BL}AFiABo@?O@_@AcAC_ACi@G{@Is@Ks@G]Ic@Ok@Qo@Wm@Wm@GIoC_FCCQ[[k@S_@O[GMISEIQa@Qe@c@mAi@iBU_AUiAUmAMw@Eg@Eg@E{@WyE?EGcAg@mJk@}KW_E[yEUiDQuBUkBOcAMy@U_ASq@Qk@k@wAa@u@]k@qB_De@}@a@w@_@eAU{@WaAMq@O{@U{AiAcIM}@g@qDACm@gEo@{Eg@iDWuASkA]}Aa@_B[mAi@cBm@cBo@aB_@u@[g@a@g@g@c@{BaBKImA{@gAu@wAiAy@o@k@i@i@k@a@c@c@e@c@i@e@m@s@cAc@q@q@kAq@iA[q@_@s@Yo@[q@Qa@Qg@Y}@e@kBYqAaAiEACgA}E_@cB]qAe@}AgAeDmAuDc@qAyCeJ]cA_@eA}@{Bk@qAWo@ACgAiCM[M[IOGMKQKOKOMOeAoAQSa@e@OSMSMSMWKUMYIUIYIWIUI[Qs@i@wBc@cBUs@e@eB[kAWaAUu@Qo@K_@M_@KYKUKUMUMUKMKOMOOOMMMIMIOIICKEKEKAIAKCcBKIAMCMCKCMGKEOIOMKKQOMQKMKQKQKSIUKWISIWIYIa@G[I_@E]E_@CWC]C[C[EeAOcE?CO_E[qHG}AIoAIaAIi@Kw@Q{@Sw@Y{@a@aA]o@c@m@a@g@s@k@cD}BkAy@_BiA??i@a@y@i@mCgB}@aAqAiBm@gAk@wA}@yBeBqFs@sBEMeAcD]_A_@}@c@{@W]Ya@k@m@{ByB_@a@e@o@Ye@Wg@_@eAUy@UkAQmAKy@G{@Ey@AcAAmA?cB@_H?O@yD@aO?kB?aAAo@?m@Cm@Ag@EaAEm@Eq@Gu@MsAGo@OuAO{ASsBo@}Ge@yE_@{D??mAyLKmAGi@Gs@Gy@GcAEy@CeAA{@AeA?qABeBFiBHiBxDcw@NwCBa@RiED}@Bq@B_@@]@_@@]@e@?k@@m@FcGFuGNaN@aBBqB?i@@a@?e@AW?[Ag@A[Ac@Ca@A]Eg@Em@E_@Ec@Ek@UaC_@{DMyAY}CMsAKs@Im@Kc@Ke@Mi@Qk@Wo@Yo@_@o@OUSWUWUQQOUOQIOGSI[Me@O}YwKg@S[Ia@Kk@Mc@Gc@C]A[A]?W@[@y@@cANiFH"
+      },
+      "alerts": []
+    }
+}
