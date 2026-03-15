@@ -159,7 +159,7 @@ bool OpenJourneyPlannerBackend::queryJourney(const JourneyRequest &request, Jour
 
 bool OpenJourneyPlannerBackend::queryTrip(const TripRequest &request, TripReply *reply, QNetworkAccessManager *nam) const
 {
-    if (m_protocol != OJP2 || !m_supportsTripQueries) {
+    if (m_protocol != OJP2 || !m_supportsTripQueries || request.identifier(backendId()).isEmpty()) {
         return false;
     }
 
