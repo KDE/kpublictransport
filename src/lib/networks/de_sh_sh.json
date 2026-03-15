@@ -180,6 +180,7 @@
             "type": "AND"
         },
         "endpoint": "https://nah.sh.hafas.de/bin/mgate.exe",
+        "hafasAttributeMap": "de-sh-sh",
         "locationIdentifierType": "sh",
         "products": [
             {

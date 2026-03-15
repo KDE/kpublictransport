@@ -1,0 +1,7 @@
+{
+    "inherits": "base",
+    "attributes": [
+        { "category": "A", "code": "FK", "type": "Feature", "feature": "BikeStorage", "availability": "Limited" },
+        { "category": "A", "code": "F_", "type": "Feature", "feature": "WheelchairAccessible", "availability": "Conditional" }
+    ]
+}
