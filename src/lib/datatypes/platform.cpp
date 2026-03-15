@@ -11,6 +11,7 @@
 #include <QDebug>
 #include <QVariant>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
@@ -100,7 +101,7 @@ QJsonObject Platform::toJson(const Platform &platform)
 {
     auto obj = Json::toJson(platform);
     if (!platform.sections().empty()) {
-        obj.insert(QLatin1String("sections"), PlatformSection::toJson(platform.sections()));
+        obj.insert("sections"_L1, PlatformSection::toJson(platform.sections()));
     }
     return obj;
 }
@@ -113,21 +114,13 @@ QJsonArray Platform::toJson(const std::vector<Platform> &platforms)
 Platform Platform::fromJson(const QJsonObject &obj)
 {
     auto p = Json::fromJson<Platform>(obj);
-    p.setSections(PlatformSection::fromJson(obj.value(QLatin1String("sections")).toArray()));
+    p.setSections(PlatformSection::fromJson(obj.value("sections"_L1).toArray()));
     return p;
 }
 
 std::vector<Platform> Platform::fromJson(const QJsonArray &array)
 {
     return Json::fromJson<Platform>(array);
-}
-
-QVariantList Platform::sectionsVariant() const
-{
-    QVariantList l;
-    l.reserve(d->sections.size());
-    std::transform(d->sections.begin(), d->sections.end(), std::back_inserter(l), [](const auto &sec) { return QVariant::fromValue(sec); });
-    return l;
 }
 
 #include "moc_platform.cpp"

@@ -59,7 +59,7 @@ class KPUBLICTRANSPORT_EXPORT Platform
     KPUBLICTRANSPORT_PROPERTY(int, length, setLength)
 
     /** Platform sections for consumption by QML. */
-    Q_PROPERTY(QVariantList sections READ sectionsVariant)
+    Q_PROPERTY(std::vector<PlatformSection> sections READ sections)
 
     /** @c true if the absolute length of the platform in meter is known.
      *  A platform can have a positive length if proportional section sizes are
@@ -69,16 +69,16 @@ class KPUBLICTRANSPORT_EXPORT Platform
 
 public:
     /** Returns @c true if this object contains no information beyond default values. */
-    bool isEmpty() const;
+    [[nodiscard]] bool isEmpty() const;
 
     /** The platform sections. */
-    const std::vector<PlatformSection>& sections() const;
+    [[nodiscard]] const std::vector<PlatformSection>& sections() const;
     /** Moves the platform sections out of this object. */
-    std::vector<PlatformSection>&& takeSections();
+    [[nodiscard]] std::vector<PlatformSection>&& takeSections();
     /** Sets the platform sections. */
     void setSections(std::vector<PlatformSection> &&sections);
 
-    bool hasAbsoluteLength() const;
+    [[nodiscard]] bool hasAbsoluteLength() const;
 
     /** Merge two platform instances. */
     static Platform merge(const Platform &lhs, const Platform &rhs);
@@ -91,9 +91,6 @@ public:
     static Platform fromJson(const QJsonObject &obj);
     /** Deserialize an array from JSON. */
     static std::vector<Platform> fromJson(const QJsonArray &array);
-
-private:
-    QVariantList sectionsVariant() const;
 };
 
 }
