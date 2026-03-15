@@ -161,7 +161,7 @@ Kirigami.ApplicationWindow {
                         }
                         QQC2.Label {
                             visible: departure.scheduledPlatform != ""
-                            text: "Platform: " + departure.scheduledPlatform + (platformChange.visible ? " -> " : "")
+                            text: Platform.displayString(departure.route.line.mode, departure.scheduledPlatform + (platformChange.visible ? " -> " : ""))
                             color: (!platformChange.visible && departure.hasExpectedPlatform) ? Kirigami.Theme.positiveTextColor : Kirigami.Theme.textColor
                         }
                         QQC2.Label {

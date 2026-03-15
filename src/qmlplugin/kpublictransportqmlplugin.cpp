@@ -36,4 +36,8 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "ClassUtil", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
         return engine->toScriptValue(KPublicTransport::ClassUtil());
     });
+    qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "Platform", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
+        return engine->toScriptValue(KPublicTransport::Platform());
+    });
+
 }

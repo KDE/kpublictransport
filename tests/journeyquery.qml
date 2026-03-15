@@ -147,7 +147,7 @@ Kirigami.ApplicationWindow {
                     Layout.fillWidth: true
                     RowLayout {
                         QQC2.Label {
-                            text: "From: <a href=\"#from\">" + locationName(modelData.from) + "</a> Platform: " + modelData.scheduledDeparturePlatform
+                            text: "From: <a href=\"#from\">" + locationName(delegateRoot.modelData.from) + "</a> " + Platform.displayString(delegateRoot.modelData.route.line.mode, delegateRoot.modelData.scheduledDeparturePlatform)
                             onLinkActivated: {
                                 locationDetailsSheet.location = modelData.from;
                                 locationDetailsSheet.open();
@@ -205,7 +205,7 @@ Kirigami.ApplicationWindow {
                     }
                     RowLayout {
                         QQC2.Label {
-                            text: "To: <a href=\"#to\">" + locationName(modelData.to) + "</a> Platform: " + modelData.scheduledArrivalPlatform
+                            text: "To: <a href=\"#to\">" + locationName(delegateRoot.modelData.to) + "</a> " + Platform.displayString(delegateRoot.modelData.route.line.mode, delegateRoot.modelData.scheduledArrivalPlatform)
                             onLinkActivated: {
                                 locationDetailsSheet.location = modelData.to;
                                 locationDetailsSheet.open();

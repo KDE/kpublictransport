@@ -38,7 +38,7 @@ Kirigami.ScrollablePage {
             topPadding: Kirigami.Units.largeSpacing
         }
         QQC2.Label {
-            text: "Platform: " + vehicleModel.platform.name
+            text: Platform.displayString(root.departure.route.line.mode, vehicleModel.platform.name)
             leftPadding: Kirigami.Units.largeSpacing
         }
         RowLayout {

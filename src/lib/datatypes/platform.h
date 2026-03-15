@@ -10,6 +10,9 @@
 #include "kpublictransport_export.h"
 
 #include "datatypes.h"
+#include "line.h"
+
+#include <QLocale>
 
 namespace KPublicTransport {
 
@@ -79,6 +82,19 @@ public:
     void setSections(std::vector<PlatformSection> &&sections);
 
     [[nodiscard]] bool hasAbsoluteLength() const;
+
+    /** Mode-dependent display string for a platform.
+     *  This returns for example "Platform X" or "Pl. X" for trains, "Pier X" for ferries and "Gate X" for aircraft.
+     *  @since 26.08
+     */
+    [[nodiscard]] Q_INVOKABLE static QString displayString(Line::Mode mode, const QString &name, QLocale::FormatType format = QLocale::LongFormat);
+    /** Mode-dependent display string for platforms.
+     *  This returns for example "Platform" for trains, "Pier" for ferries and "Gate" for aircraft.
+     *  Prefer the above method when referring to a specific platform, use this when
+     *  needing a separate label e.g. for an input field.
+     *  @since 26.08
+     */
+    [[nodiscard]] Q_INVOKABLE static QString displayString(Line::Mode mode);
 
     /** Merge two platform instances. */
     static Platform merge(const Platform &lhs, const Platform &rhs);

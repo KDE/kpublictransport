@@ -8,6 +8,8 @@
 #include "json_p.h"
 #include "datatypes_p.h"
 
+#include <KLocalizedString>
+
 #include <QDebug>
 #include <QVariant>
 
@@ -89,6 +91,72 @@ void Platform::setSections(std::vector<PlatformSection> &&sections)
 bool Platform::hasAbsoluteLength() const
 {
     return d->length > 1.0;
+}
+
+QString Platform::displayString(Line::Mode mode, const QString &name, QLocale::FormatType format)
+{
+    if (name.isEmpty()) {
+        return {};
+    }
+
+    switch (mode) {
+        case Line::Unknown:
+        case Line::Funicular:
+        case Line::LocalTrain:
+        case Line::LongDistanceTrain:
+        case Line::Metro:
+        case Line::RailShuttle:
+        case Line::RapidTransit:
+        case Line::Train:
+        case Line::Tramway:
+            return format == QLocale::LongFormat ? i18nc("train platform", "Platform %1", name) : i18nc("abbreviated train platform", "Pl. %1", name);
+        case Line::Bus:
+        case Line::Coach:
+        case Line::Shuttle:
+            return format == QLocale::LongFormat ? i18nc("bus platform", "Platform %1", name) : i18nc("abbreviated bus platform", "Pl. %1", name);
+        case Line::Boat:
+        case Line::Ferry:
+            return format == QLocale::LongFormat ? i18nc("boat/ferry pier/terminal", "Pier %1", name) : i18nc("abbreviated boat/ferry pier/terminal", "Pier %1", name);
+        case Line::Air:
+            return format == QLocale::LongFormat ? i18nc("airport gate", "Gate %1", name) : i18nc("abbreviated airport gate", "Gate %1", name);
+        case Line::Taxi:
+        case Line::RideShare:
+        case Line::AerialLift:
+            return {};
+    }
+
+    return {};
+}
+
+QString Platform::displayString(Line::Mode mode)
+{
+    switch (mode) {
+        case Line::Unknown:
+        case Line::Funicular:
+        case Line::LocalTrain:
+        case Line::LongDistanceTrain:
+        case Line::Metro:
+        case Line::RailShuttle:
+        case Line::RapidTransit:
+        case Line::Train:
+        case Line::Tramway:
+            return i18nc("train platform", "Platform");
+        case Line::Bus:
+        case Line::Coach:
+        case Line::Shuttle:
+            return i18nc("bus platform", "Platform");
+        case Line::Boat:
+        case Line::Ferry:
+            return i18nc("boat/ferry pier/terminal", "Pier");
+        case Line::Air:
+            return i18nc("airport gate", "Gate");
+        case Line::Taxi:
+        case Line::RideShare:
+        case Line::AerialLift:
+            return {};
+    }
+
+    return {};
 }
 
 Platform Platform::merge(const Platform &lhs, const Platform &rhs)
