@@ -71,7 +71,7 @@ bool OpenTransportSwissBackend::queryVehicleLayout(const VehicleLayoutRequest &r
                 Cache::addVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey(), p.stopover, {}, std::chrono::minutes(2));
                 addResult(reply, p.stopover);
             } else {
-                addError(reply, Reply::UnknownError, {});
+                addError(reply, Reply::UnknownError, p.errorMsg);
             }
         } else {
             addError(reply, Reply::NetworkError, reply->errorString());
