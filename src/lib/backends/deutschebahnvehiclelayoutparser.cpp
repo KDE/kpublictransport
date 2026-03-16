@@ -120,14 +120,23 @@ void DeutscheBahnVehicleLayoutParser::parseVehicleSection(Vehicle &vehicle, cons
         section.setType(VehicleSection::PowerCar);
     } else if (cat.contains("CONTROLCAR"_L1, Qt::CaseInsensitive)) {
         section.setType(VehicleSection::ControlCar);
+    } else if (cat.compare("DININGCAR"_L1, Qt::CaseInsensitive) == 0) {
+        section.setType(VehicleSection::RestaurantCar);
     } else {
         section.setType(VehicleSection::PassengerCar);
+    }
+    if (cat.contains("FIRST_CLASS"_L1, Qt::CaseInsensitive)) {
+        section.setClasses(VehicleSection::FirstClass);
+    } else if (cat.contains("ECONOMY_CLASS"_L1, Qt::CaseInsensitive)) {
+        section.setClasses(VehicleSection::SecondClass);
     }
 
     // see https://en.wikipedia.org/wiki/UIC_classification_of_railway_coaches
     const auto num = obj.value("vehicleID"_L1).toString();
     const auto cls = typeObj.value("constructionType"_L1).toString();
-    section.setClasses(UicRailwayCoach::coachClass(num, cls));
+    if (const auto classes = UicRailwayCoach::coachClass(num, cls); classes != VehicleSection::UnknownClass) {
+        section.setClasses(classes);
+    }
     section.setDeckCount(UicRailwayCoach::deckCount(num, cls));
     if (const auto type = UicRailwayCoach::type(num, cls); section.type() == VehicleSection::PassengerCar && type != VehicleSection::UnknownType) {
         section.setType(type);
