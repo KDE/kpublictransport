@@ -487,6 +487,15 @@ void OpenJourneyPlannerParser::parseService(ScopedXmlStreamReader &&r, Service &
             opDate = r.readElementText();
         }
     }
+
+    // postprocess line/route names (e.g. international trips in CH)
+    if (!service.route.name().isEmpty() && !line.name().isEmpty() &&
+        std::ranges::none_of(line.name(), [](QChar c) { return c.isDigit(); }) &&
+        std::ranges::all_of(service.route.name(), [](QChar c) { return c.isDigit(); })) {
+        line.setName(line.name() + ' '_L1 + service.route.name());
+        service.route.setName({});
+    }
+
     service.route.setLine(std::move(line));
     service.identifier = jnyRef + '|'_L1 + opDate;
 }
