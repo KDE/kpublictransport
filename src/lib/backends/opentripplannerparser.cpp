@@ -314,7 +314,7 @@ OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseLine(const QJsonObj
         qDebug() << "Unknown OTP2 occupancy level:" << occupancy;
         return Load::Unknown;
     }
-    return gtfsOcc ? *gtfsOcc : *siriOcc;
+    return gtfsOcc.value_or(siriOcc.value_or(Load::Unknown));
 }
 
 struct {
