@@ -13,7 +13,7 @@ namespace KPublicTransport {
 namespace Gtfs {
 
 /** Convert a GTFS-RT OccupancyStatus enum value to our own occupancy representation. */
-Load::Category fromOccupancyStatus(QStringView occupancyStatus);
+std::optional<Load::Category> fromOccupancyStatus(QStringView occupancyStatus);
 
 }
 }

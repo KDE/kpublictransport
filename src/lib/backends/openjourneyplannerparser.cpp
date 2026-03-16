@@ -451,6 +451,7 @@ void OpenJourneyPlannerParser::parseService(ScopedXmlStreamReader &&r, Service &
                         qDebug() << "unknown attribute code:" << splitCode[0] << splitCode[1] << text;
                         [[fallthrough]];
                     case HafasAttribute::Note:
+                    case HafasAttribute::PickupDropoff:
                     case HafasAttribute::Operator: // TODO?
                         service.attributes.push_back(text);
                         break;
@@ -545,7 +546,9 @@ LoadInfo OpenJourneyPlannerParser::parseExpectedDepartureOccupancy(ScopedXmlStre
     LoadInfo info;
     while (r.readNextSibling()) {
         if (r.isElement("OccupancyLevel")) {
-            info.setLoad(Siri::fromOccupancyEnum(r.readElementText()));
+            if (const auto occ = Siri::fromOccupancyEnum(r.readElementText()); occ) {
+                info.setLoad(*occ);
+            }
         } else if (r.isElement("FareClass")) {
             // TODO translate SIRI class enums
             info.setSeatingClass(r.readElementText());

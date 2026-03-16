@@ -16,20 +16,20 @@ struct {
     { "fewSeatsAvailable", Load::Medium },
     { "full", Load::Full },
     { "manySeatsAvailable", Load::Low },
-    { "notAcceptingPassengers", Load::Full },
     { "noData", Load::Unknown },
+    { "notAcceptingPassengers", Load::Full },
     { "seatsAvailable", Load::Medium }, // deprecated in SIRI 2.1
     { "standingAvailable", Load::High }, // deprecated in SIRI 2.1
     { "standingRoomOnly", Load::High },
 };
 
-Load::Category Siri::fromOccupancyEnum(QStringView occupancyEnumName)
+std::optional<Load::Category> Siri::fromOccupancyEnum(QStringView occupancyEnumName)
 {
     const auto it = std::lower_bound(std::begin(occupancy_map), std::end(occupancy_map), occupancyEnumName, [](const auto &lhs, auto rhs) {
         return QLatin1StringView(lhs.name) < rhs;
     });
     if (it == std::end(occupancy_map) || QLatin1StringView((*it).name) != occupancyEnumName) {
-        return Load::Unknown;
+        return {};
     }
     return (*it).occupancy;
 }

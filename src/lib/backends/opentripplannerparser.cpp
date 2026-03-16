@@ -308,11 +308,13 @@ OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseLine(const QJsonObj
         occupancy = v.toObject().value("occupancyStatus"_L1).toString();
     }
 
-    const auto l = std::max(Gtfs::fromOccupancyStatus(occupancy), Siri::fromOccupancyEnum(occupancy));
-    if (l == Load::Unknown && !occupancy.isEmpty()) {
+    const auto gtfsOcc = Gtfs::fromOccupancyStatus(occupancy);
+    const auto siriOcc = Siri::fromOccupancyEnum(occupancy);
+    if (!gtfsOcc && !siriOcc && !occupancy.isEmpty()) {
         qDebug() << "Unknown OTP2 occupancy level:" << occupancy;
+        return Load::Unknown;
     }
-    return l;
+    return gtfsOcc ? *gtfsOcc : *siriOcc;
 }
 
 struct {

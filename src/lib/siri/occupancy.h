@@ -14,7 +14,7 @@ namespace KPublicTransport {
 namespace Siri {
 
 /** Convert a SIRI Occupancy Enum value to our own occupancy representation. */
-Load::Category fromOccupancyEnum(QStringView occupancyEnumName);
+std::optional<Load::Category> fromOccupancyEnum(QStringView occupancyEnumName);
 
 }
 }

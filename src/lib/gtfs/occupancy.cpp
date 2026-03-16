@@ -21,13 +21,13 @@ struct {
     { "STANDING_ROOM_ONLY", Load::High },
 };
 
-Load::Category Gtfs::fromOccupancyStatus(QStringView occupancyStatus)
+std::optional<Load::Category> Gtfs::fromOccupancyStatus(QStringView occupancyStatus)
 {
     const auto it = std::lower_bound(std::begin(occupancy_map), std::end(occupancy_map), occupancyStatus, [](const auto &lhs, auto rhs) {
         return QLatin1StringView(lhs.name) < rhs;
     });
     if (it == std::end(occupancy_map) || QLatin1StringView((*it).name) != occupancyStatus) {
-        return Load::Unknown;
+        return {};
     }
     return (*it).occupancy;
 }
