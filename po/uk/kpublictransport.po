@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-12 00:42+0000\n"
+"POT-Creation-Date: 2026-03-17 00:42+0000\n"
 "PO-Revision-Date: 2025-10-30 14:31+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -142,6 +142,78 @@ msgstr "Пішки"
 #, kde-format
 msgid "Wait"
 msgstr "Очікування"
+
+#: lib/datatypes/platform.cpp:112
+#, kde-format
+msgctxt "train platform"
+msgid "Platform %1"
+msgstr ""
+
+#: lib/datatypes/platform.cpp:112
+#, kde-format
+msgctxt "abbreviated train platform"
+msgid "Pl. %1"
+msgstr ""
+
+#: lib/datatypes/platform.cpp:116
+#, kde-format
+msgctxt "bus platform"
+msgid "Platform %1"
+msgstr ""
+
+#: lib/datatypes/platform.cpp:116
+#, kde-format
+msgctxt "abbreviated bus platform"
+msgid "Pl. %1"
+msgstr ""
+
+#: lib/datatypes/platform.cpp:119
+#, kde-format
+msgctxt "boat/ferry pier/terminal"
+msgid "Pier %1"
+msgstr ""
+
+#: lib/datatypes/platform.cpp:119
+#, kde-format
+msgctxt "abbreviated boat/ferry pier/terminal"
+msgid "Pier %1"
+msgstr ""
+
+#: lib/datatypes/platform.cpp:121
+#, kde-format
+msgctxt "airport gate"
+msgid "Gate %1"
+msgstr ""
+
+#: lib/datatypes/platform.cpp:121
+#, kde-format
+msgctxt "abbreviated airport gate"
+msgid "Gate %1"
+msgstr ""
+
+#: lib/datatypes/platform.cpp:143
+#, kde-format
+msgctxt "train platform"
+msgid "Platform"
+msgstr ""
+
+#: lib/datatypes/platform.cpp:147
+#, kde-format
+msgctxt "bus platform"
+msgid "Platform"
+msgstr ""
+
+#: lib/datatypes/platform.cpp:150
+#, kde-format
+msgctxt "boat/ferry pier/terminal"
+msgid "Pier"
+msgstr ""
+
+#: lib/datatypes/platform.cpp:152
+#, kde-format
+msgctxt "airport gate"
+msgid "Gate"
+msgstr ""
 
 #: lib/datatypes/rentalvehicle.cpp:295
 #, kde-format
