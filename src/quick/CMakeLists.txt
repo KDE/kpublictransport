@@ -13,8 +13,10 @@ ecm_add_qml_module(kpublictransportquickplugin
         "QtQuick.Controls"
         "QtLocation"
         "QtPositioning"
+        "org.kde.coreaddons"
         "org.kde.kirigami"
         "org.kde.kirigamiaddons.delegates"
+        "org.kde.kirigamiaddons.formcard"
         "org.kde.i18n.localeData"
         "org.kde.kitemmodels"
 )
@@ -35,6 +37,7 @@ ecm_target_qml_sources(kpublictransportquickplugin SOURCES
     OccupancyDelegate.qml
     OccupancyIndicator.qml
     StopPickerPage.qml
+    StopoverFormDelegate.qml
     StopoverInformationView.qml
     TransportIcon.qml
     TransportNameControl.qml
