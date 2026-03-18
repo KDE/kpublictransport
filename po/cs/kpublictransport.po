@@ -194,7 +194,7 @@ msgstr ""
 #, kde-format
 msgctxt "train platform"
 msgid "Platform"
-msgstr ""
+msgstr "Nástupiště"
 
 #: lib/datatypes/platform.cpp:147
 #, kde-format
