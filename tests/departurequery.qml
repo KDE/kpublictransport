@@ -78,150 +78,6 @@ Kirigami.ApplicationWindow {
     }
 
     Component {
-        id: departureDelegate
-        QQC2.ItemDelegate {
-            enabled: departure.disruptionEffect != Disruption.NoService
-            highlighted: false
-            width: ListView.view.width
-            contentItem: RowLayout {
-                id: delegateLayout
-
-                Rectangle {
-                    id: colorBar
-                    width: Kirigami.Units.largeSpacing
-                    color: departure.route.line.hasColor ? departure.route.line.color : "transparent"
-                    Layout.fillHeight: true
-                }
-
-                TransportIcon {
-                    id: icon
-                    source: departure.route.line.iconName
-                    iconHeight: Kirigami.Units.iconSizes.smallMedium
-                    Layout.minimumWidth: 48
-                }
-
-                ColumnLayout {
-                    Layout.fillWidth: true
-                    QQC2.Label {
-                        Layout.fillWidth: true
-                        text: {
-                            if (departure.route.name !== "") {
-                                return departure.route.line.modeString + " " + departure.route.line.name + " (" + departure.route.name
-                                    + ") to <a href=\"#dest\">" + departure.route.direction + "</a>"
-                            }
-                            return departure.route.line.modeString + " " + departure.route.line.name
-                                + " to <a href=\"#dest\">" + departure.route.direction + "</a>";
-                        }
-                        onLinkActivated: {
-                            locationDetailsSheet.location = departure.route.destination;
-                            locationDetailsSheet.open();
-                        }
-                    }
-                    RowLayout {
-                        QQC2.Label {
-                            text: "Arrival:"
-                            visible: arrivalTimeLabel.scheduledTime !== ""
-                        }
-                        ExpectedTimeLabel {
-                            id: arrivalTimeLabel
-                            stopover: departure
-                            scheduledTime: KCoreAddons.Format.formatTime(departure, "scheduledArrivalTime", Locale.ShortFormat, KCoreAddons.FormatTypes.AddTimezoneAbbreviationIfNeeded)
-                            delay: departure.arrivalDelay
-                            hasExpectedTime: departure.hasExpectedArrivalTime
-                        }
-                        QQC2.Label {
-                            text: "Departure:"
-                            visible: departureTimeLabel.scheduledTime !== ""
-                        }
-                        ExpectedTimeLabel {
-                            id: departureTimeLabel
-                            stopover: departure
-                            scheduledTime: KCoreAddons.Format.formatTime(departure, "scheduledDepartureTime", Locale.ShortFormat, KCoreAddons.FormatTypes.AddTimezoneAbbreviationIfNeeded)
-                            delay: departure.departureDelay
-                            hasExpectedTime: departure.hasExpectedDepartureTime
-                        }
-                        Kirigami.Icon {
-                            Layout.preferredHeight: Kirigami.Units.gridUnit
-                            Layout.preferredWidth: Kirigami.Units.gridUnit
-                            source: switch (departure.pickupType) {
-                                case PickupDropoff.CallAgency:
-                                    return "call-start"
-                                case PickupDropoff.CoordinateWithDriver:
-                                    return "kalarm-symbolic"
-                            }
-                        }
-                    }
-                    RowLayout {
-                        QQC2.Label {
-                            text: "From: <a href=\"#from\">" + departure.stopPoint.name + "</a>"
-                            onLinkActivated: {
-                                locationDetailsSheet.location = departure.stopPoint;
-                                locationDetailsSheet.open();
-                            }
-                        }
-                        QQC2.Label {
-                            visible: departure.scheduledPlatform != ""
-                            text: Platform.displayString(departure.route.line.mode, departure.scheduledPlatform + (platformChange.visible ? " -> " : ""))
-                            color: (!platformChange.visible && departure.hasExpectedPlatform) ? Kirigami.Theme.positiveTextColor : Kirigami.Theme.textColor
-                        }
-                        QQC2.Label {
-                            id: platformChange
-                            text: departure.expectedPlatform
-                            visible: departure.hasExpectedPlatform && departure.scheduledPlatform != departure.expectedPlatform
-                            color: Kirigami.Theme.negativeTextColor
-                        }
-                    }
-                    RowLayout {
-                        Repeater {
-                            model: departure.features
-                            delegate: FeatureIcon {
-                                feature: modelData
-                                Layout.preferredHeight: Kirigami.Units.iconSizes.small
-                                Layout.preferredWidth: Kirigami.Units.iconSizes.small
-                            }
-                        }
-                    }
-                    RowLayout {
-                        visible: departure.loadInformation.length > 0
-                        Repeater {
-                            model: departure.loadInformation
-                            RowLayout {
-                                id: loadDelegateRoot
-                                required property loadInfo modelData
-                                OccupancyIndicator {
-                                    occupancy: loadDelegateRoot.modelData.load
-                                    Layout.preferredHeight: Kirigami.Units.iconSizes.small
-                                    Layout.preferredWidth: Kirigami.Units.iconSizes.small
-                                }
-                                QQC2.Label {
-                                    text: "(class " + loadDelegateRoot.modelData.seatingClass + ")"
-                                    visible: loadDelegateRoot.modelData.seatingClass != ""
-                                }
-                            }
-                        }
-                    }
-                    QQC2.Label {
-                        text: departure.notes.join("<br/>")
-                        visible: departure.notes.length > 0
-                        font.italic: true
-                        textFormat: Text.RichText
-                    }
-                }
-            }
-
-            onClicked: {
-                if (stopover.stopPoint.hasCoordinate || stopover.hasTripIdentifiers)
-                    applicationWindow().pageStack.push(detailsPage, {
-                        stopover: departure,
-                        backendIds: backendBox.checked ? [ backendSelector.currentText ] : [],
-                        isArrival: arrivalBox.checked,
-                        ptMgr: ptMgr
-                    });
-            }
-        }
-    }
-
-    Component {
         id: backendPage
         BackendPage {
             publicTransportManager: ptMgr
@@ -399,7 +255,18 @@ Kirigami.ApplicationWindow {
                 Layout.fillWidth: true
                 model: departureModel
                 clip: true
-                delegate: departureDelegate
+                delegate: StopoverFormDelegate {
+                    width: ListView.view.width
+                    onClicked: {
+                        if (stopover.stopPoint.hasCoordinate || stopover.hasTripIdentifiers)
+                            applicationWindow().pageStack.push(detailsPage, {
+                            stopover: stopover,
+                            backendIds: backendBox.checked ? [ backendSelector.currentText ] : [],
+                            isArrival: arrivalBox.checked,
+                            ptMgr: ptMgr
+                        });
+                    }
+                }
 
                 QQC2.BusyIndicator {
                     anchors.centerIn: parent
