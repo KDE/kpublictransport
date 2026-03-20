@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-17 00:42+0000\n"
+"POT-Creation-Date: 2026-03-20 00:42+0000\n"
 "PO-Revision-Date: 2026-03-17 08:14-0300\n"
 "Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -432,6 +432,18 @@ msgstr "Falha ao determinar a localização com precisão suficiente."
 #, kde-format
 msgid "Failed to determine location."
 msgstr "Falha ao determinar a localização."
+
+#: quick/StopoverFormDelegate.qml:98
+#, kde-format
+msgctxt "departure stop"
+msgid "From %1"
+msgstr ""
+
+#: quick/StopoverFormDelegate.qml:151
+#, kde-format
+msgctxt "@action:button"
+msgid "Show More…"
+msgstr ""
 
 #: quick/StopoverInformationView.qml:43
 #, kde-format
