@@ -176,60 +176,6 @@ bool Motis2Backend::queryLocation(const LocationRequest &req, LocationReply *rep
     return true;
 }
 
-bool Motis2Backend::queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
-{
-    const auto stopId = req.stop().identifier(m_locationIdentifierType);
-    if (stopId.isEmpty()) {
-        return false;
-    }
-
-    QUrlQuery query;
-    query.addQueryItem(u"time"_s, req.dateTime().toUTC().toString(Qt::ISODate));
-    query.addQueryItem(u"stopId"_s, stopId);
-    query.addQueryItem(u"n"_s, QString::number(req.maximumResults()));
-    query.addQueryItem(u"arriveBy"_s, req.mode() == StopoverRequest::QueryArrival ? u"true"_s : u"false"_s);
-    if (const auto pageCursor = requestContextData(req).toString(); !pageCursor.isEmpty()) {
-        query.addQueryItem(u"pageCursor"_s, pageCursor);
-    }
-    query.addQueryItem(u"radius"_s, u"200"_s);
-
-    auto netReply = makeRequest(req, reply, "v4/stoptimes"_L1, query, nam);
-    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply, req]() {
-        netReply->deleteLater();
-        const auto data = netReply->readAll();
-        logReply(reply, netReply, data);
-
-        Motis2Parser p(m_locationIdentifierType);
-        auto result = p.parseStopTimes(data, reply->request().mode() == StopoverRequest::QueryArrival);
-        if (netReply->error() == QNetworkReply::NoError) {
-            setNextRequestContext(reply, p.m_nextPageCursor);
-            setPreviousRequestContext(reply, p.m_previousPageCursor);
-
-            // MOTIS has no support for doing mode filtering on the server
-            if (!req.lineModes().empty()) {
-                auto it = std::remove_if(result.begin(), result.end(), [req](const auto &s) {
-                    return !std::binary_search(req.lineModes().begin(), req.lineModes().end(), s.route().line().mode());
-                });
-                result.erase(it, result.end());
-            }
-
-            addResult(reply, this, std::move(result));
-        } else {
-            addError(reply, Reply::NetworkError, netReply->errorString() + ' '_L1 + QString::fromUtf8(data));
-        }
-    });
-
-    return true;
-}
-
-QString Motis2Backend::encodeLocation(const Location &loc) const
-{
-    if (loc.hasCoordinate() && m_supportsStreetRouting) {
-        return QString::number(loc.latitude()) + ','_L1 + QString::number(loc.longitude()) + ','_L1 + QString::number(loc.hasFloorLevel() ? loc.floorLevel() : 0);
-    }
-    return loc.identifier(m_locationIdentifierType);
-}
-
 struct {
     Line::Mode mode;
     const char *name;
@@ -260,6 +206,70 @@ struct {
     { Line::RideShare, "RIDE_SHARING" },
     { Line::AerialLift, "AERIAL_LIFT" },
 };
+
+[[nodiscard]] static QStringList toMotisModes(const std::vector<Line::Mode> &modes)
+{
+    QStringList l;
+    for (auto mode : modes) {
+        for (const auto &m : transit_mode_map) {
+            if (mode == m.mode) {
+                l.push_back(QLatin1StringView(m.name));
+            }
+        }
+    }
+    return l;
+}
+
+
+bool Motis2Backend::queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
+{
+    const auto stopId = req.stop().identifier(m_locationIdentifierType);
+    if (stopId.isEmpty()) {
+        return false;
+    }
+
+    QUrlQuery query;
+    query.addQueryItem(u"time"_s, req.dateTime().toUTC().toString(Qt::ISODate));
+    query.addQueryItem(u"stopId"_s, stopId);
+    query.addQueryItem(u"n"_s, QString::number(req.maximumResults()));
+    query.addQueryItem(u"arriveBy"_s, req.mode() == StopoverRequest::QueryArrival ? u"true"_s : u"false"_s);
+    if (const auto pageCursor = requestContextData(req).toString(); !pageCursor.isEmpty()) {
+        query.addQueryItem(u"pageCursor"_s, pageCursor);
+    }
+    query.addQueryItem(u"radius"_s, u"200"_s);
+    if (!req.lineModes().empty()) {
+        auto l = toMotisModes(req.lineModes());
+        l.removeDuplicates();
+        query.addQueryItem(u"mode"_s, l.join(','_L1));
+    }
+
+    auto netReply = makeRequest(req, reply, "v4/stoptimes"_L1, query, nam);
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply, req]() {
+        netReply->deleteLater();
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
+        Motis2Parser p(m_locationIdentifierType);
+        auto result = p.parseStopTimes(data, reply->request().mode() == StopoverRequest::QueryArrival);
+        if (netReply->error() == QNetworkReply::NoError) {
+            setNextRequestContext(reply, p.m_nextPageCursor);
+            setPreviousRequestContext(reply, p.m_previousPageCursor);
+            addResult(reply, this, std::move(result));
+        } else {
+            addError(reply, Reply::NetworkError, netReply->errorString() + ' '_L1 + QString::fromUtf8(data));
+        }
+    });
+
+    return true;
+}
+
+QString Motis2Backend::encodeLocation(const Location &loc) const
+{
+    if (loc.hasCoordinate() && m_supportsStreetRouting) {
+        return QString::number(loc.latitude()) + ','_L1 + QString::number(loc.longitude()) + ','_L1 + QString::number(loc.hasFloorLevel() ? loc.floorLevel() : 0);
+    }
+    return loc.identifier(m_locationIdentifierType);
+}
 
 struct {
     IndividualTransport::Mode mode;
@@ -318,13 +328,7 @@ bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
         if (req.lineModes().empty()) {
             transitModes.push_back(u"TRANSIT"_s);
         } else {
-            for (auto mode : req.lineModes()) {
-                for (const auto &m : transit_mode_map) {
-                    if (mode == m.mode) {
-                        transitModes.push_back(QLatin1StringView(m.name));
-                    }
-                }
-            }
+            transitModes = toMotisModes(req.lineModes());
         }
         if (req.requiresBikeTransport()) {
             query.addQueryItem(u"requireBikeTransport"_s, u"true"_s);
