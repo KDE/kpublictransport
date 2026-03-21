@@ -592,6 +592,7 @@ std::vector<Location> Motis2Parser::parseRentals(const QByteArray &data) const
         } else {
             provider.setUrl(QUrl(providerObj.value("url"_L1).toString()));
         }
+        provider.setBrandColor(QColor::fromString(providerObj.value("color"_L1).toString()));
         const auto providerId = providerObj.value("id"_L1).toString();
 
         std::unordered_map<QString, GBFSVehicleType> providerVehicleTypes;
