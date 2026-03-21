@@ -95,6 +95,14 @@ Kirigami.ApplicationWindow {
                     Layout.preferredHeight: Kirigami.Units.iconSizes.medium
                     Layout.preferredWidth: Kirigami.Units.iconSizes.medium
                     Layout.alignment: Qt.AlignCenter
+                    isMask: true
+                    color: {
+                        if (delegateRoot.location.type === Location.RentedVehicleStation && delegateRoot.location.rentalVehicleStation.network.hasBrandColor)
+                            return delegateRoot.location.rentalVehicleStation.network.brandColor;
+                        if (delegateRoot.location.type === Location.RentedVehicle && delegateRoot.location.rentalVehicle.network.hasBrandColor)
+                            return delegateRoot.location.rentalVehicle.network.brandColor;
+                        return Kirigami.Theme.textColor
+                    }
                 }
                 ColumnLayout {
                     id: delegateLayout
@@ -129,9 +137,42 @@ Kirigami.ApplicationWindow {
                         text: "Lat: " + delegateRoot.location.latitude + " Lon: " + delegateRoot.location.longitude
                     }
                     QQC2.Label {
-                        text: "<a href=\"" + delegateRoot.location.rentalVehicleStation.network.url + "\">" + delegateRoot.location.rentalVehicleStation.network.name + "</a> (" + delegateRoot.location.rentalVehicleStation.availableVehicles
-                            + "/" + delegateRoot.location.rentalVehicleStation.capacity + ")"
+                        function dockDetails(loc: location): string {
+                            let s = "";
+                            for (const type in [RentalVehicle.Bicycle, RentalVehicle.Pedelec, RentalVehicle.ElectricKickScooter, RentalVehicle.ElectricMoped, RentalVehicle.Car]) {
+                                if (loc.rentalVehicleStation.capacity(type) === -1 && loc.rentalVehicleStation.availableVehicles(type) === -1)
+                                    continue;
+                                switch (type) {
+                                    case RentalVehicle.Bicycle:
+                                        s += "Bike ";
+                                        break;
+                                    case RentalVehicle.Pedelec:
+                                        s += "Pedelec ";
+                                        break;
+                                    case RentalVehicle.ElectricKickScooter:
+                                        s += "Scooter ";
+                                        break;
+                                    case RentalVehicle.ElectricMoped:
+                                        s += "Moped ";
+                                        break;
+                                    case RentalVehicle.Car:
+                                        s += "Car ";
+                                        break;
+                                }
+                                s += loc.rentalVehicleStation.availableVehicles(type);
+                                s += "/";
+                                s += loc.rentalVehicleStation.capacity(type);
+                                s += " ";
+                            }
+                            return s.trim();
+                        }
+                        text: "<a href=\"" + delegateRoot.location.rentalVehicleStation.network.url + "\">" + delegateRoot.location.rentalVehicleStation.network.name + "</a> (" + dockDetails(delegateRoot.location) + ")"
                         visible: delegateRoot.location.rentalVehicleStation.isValid
+                        onLinkActivated: (link) => { Qt.openUrlExternally(link); }
+                    }
+                    QQC2.Label {
+                        text: "<a href=\"" + delegateRoot.location.rentalVehicle.network.url + "\">" + delegateRoot.location.rentalVehicle.network.name + "</a>"
+                        visible: delegateRoot.location.rentalVehicle.network.name
                         onLinkActivated: (link) => { Qt.openUrlExternally(link); }
                     }
                     QQC2.Label {
