@@ -91,6 +91,7 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
         p.setKnownRentalVehicleNetworks(m_rentalNetworks);
         std::vector<Location> res;
         if (req.hasCoordinate()) {
+            qDebug().noquote() <<gqlReply.data();
             res = p.parseLocationsByCoordinate(gqlReply.data());
         } else {
             res = p.parseLocationsByName(gqlReply.data());

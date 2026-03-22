@@ -63,7 +63,7 @@ private Q_SLOTS:
         networks.insert(s("taxi"), {});
         RentalVehicleNetwork n;
         n.setName(s("RegioRad"));
-        n.setVehicleTypes(RentalVehicle::Bicycle);
+        // n.setVehicleTypes(RentalVehicle::Bicycle);
         networks.insert(s("regiorad"), n);
         QTest::newRow("de-stadtnavi-rental-vehicle-locations")
             << s(SOURCE_DIR "/data/otp/de-stadtnavi-rental-vehicle-locations.in.json")

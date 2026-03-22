@@ -42,12 +42,7 @@ query journeys(
                         platformCode
                         timezone
                     }
-                    bikeRentalStation {
-                        id
-                        networks,
-                        bikesAvailable,
-                        spacesAvailable
-                    }
+                    rentalVehicleStation: bikeRentalStation { ...bikeRentalStationFragment }
                 }
                 to {
                     name
@@ -110,4 +105,22 @@ query journeys(
             }
         }
     }
+}
+
+fragment bikeRentalStationFragment on BikeRentalStation {
+    id
+    stationId
+    name
+    bikesAvailable
+    spacesAvailable
+    capacity
+    state
+    realtime
+    allowDropoff
+    allowOverloading
+    isFloatingBike
+    isCarStation
+    networks
+    lat
+    lon
 }

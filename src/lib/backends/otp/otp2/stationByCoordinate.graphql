@@ -41,16 +41,73 @@ query stopsByCoordinate(
                         }
                     }
                 }}
-                bikeRentalStation: place { ...on BikeRentalStation {
-                    id
-                    name
-                    lat
-                    lon
-                    networks,
-                    bikesAvailable,
-                    spacesAvailable
-                }}
+                rentalVehicleStation: place { ...rentalVehicleStationFragment }
+                rentalVehicle: place { ...rentalVehicleFragment }
             }
         }
     }
+}
+
+fragment rentalVehicleStationFragment on VehicleRentalStation {
+    allowDropoff
+    allowDropoffNow
+    allowOverloading
+    allowPickup
+    allowPickupNow
+    availableSpaces { ...rentalVehicleEntityCountsFragment }
+    availableVehicles { ...rentalVehicleEntityCountsFragment }
+    capacity
+    id
+    lat
+    lon
+    name
+    operative
+    realtime
+    rentalNetwork { ...rentalNetworkFragment }
+    rentalUris { ...rentalUrisFragment }
+    stationId
+}
+
+fragment rentalVehicleFragment on RentalVehicle {
+    allowPickupNow
+    availableUntil
+    fuel { ...rentalVehicleFuelFragment }
+    id
+    lat
+    lon
+    name
+    operative
+    rentalNetwork { ...rentalNetworkFragment }
+    rentalUris { ...rentalUrisFragment }
+    vehicleId
+    vehicleType { ...rentalVehicleTypeFragment }
+}
+
+fragment rentalVehicleEntityCountsFragment on RentalVehicleEntityCounts {
+    byType {
+        count
+        vehicleType { ...rentalVehicleTypeFragment }
+    }
+    total
+}
+
+fragment rentalNetworkFragment on VehicleRentalNetwork {
+    networkId
+    url
+}
+
+fragment rentalUrisFragment on VehicleRentalUris {
+    android
+    ios
+    web
+}
+
+fragment rentalVehicleFuelFragment on RentalVehicleFuel {
+    percent
+    range
+}
+
+fragment rentalVehicleTypeFragment on RentalVehicleType {
+    formFactor
+    propulsionType
 }

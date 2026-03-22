@@ -12,6 +12,7 @@
 namespace KPublicTransport {
 
 class RentalVehicleNetwork;
+class RentalVehicleType;
 class RentalVehiclePrivate;
 
 /** An individual rental vehicle used on a JourneySection, ie. a vehicle you don't own yourself but have to drive yourself.
@@ -81,6 +82,14 @@ public:
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(RentalVehicle::VehicleTypes)
+
+class RentalVehicleTypePrivate;
+
+/** TODO */
+class KPUBLICTRANSPORT_EXPORT RentalVehicleType
+{
+    KPUBLICTRANSPORT_GADGET(RentalVehicleType)
+};
 
 class RentalVehicleStationPrivate;
 
@@ -162,7 +171,7 @@ class KPUBLICTRANSPORT_EXPORT RentalVehicleNetwork
     /** URL e.g. to a website of this network. */
     KPUBLICTRANSPORT_PROPERTY(QUrl, url, setUrl)
     /** Supported vehicle types by this network. */
-    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicle::VehicleTypes, vehicleTypes, setVehicleTypes)
+    // KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicle::VehicleTypes, vehicleTypes, setVehicleTypes)
     /** Brand color of this network, if available. */
     KPUBLICTRANSPORT_PROPERTY(QColor, brandColor, setBrandColor)
     /** @c true if a brand color is set. */

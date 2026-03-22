@@ -101,10 +101,49 @@ fragment locationFragment on Place {
         id: gtfsId
         platformCode
     }
-    bikeRentalStation {
-        id
-        stationId,
-        networks,
-        bikesAvailable
+    rentalVehicleStation: vehicleRentalStation { ...rentalVehicleStationFragment }
+}
+
+fragment rentalVehicleStationFragment on VehicleRentalStation {
+    allowDropoff
+    allowDropoffNow
+    allowOverloading
+    allowPickup
+    allowPickupNow
+    availableSpaces { ...rentalVehicleEntityCountsFragment }
+    availableVehicles { ...rentalVehicleEntityCountsFragment }
+    capacity
+    id
+    lat
+    lon
+    name
+    operative
+    realtime
+    rentalNetwork { ...rentalNetworkFragment }
+    rentalUris { ...rentalUrisFragment }
+    stationId
+}
+
+fragment rentalVehicleEntityCountsFragment on RentalVehicleEntityCounts {
+    byType {
+        count
+        vehicleType { ...rentalVehicleTypeFragment }
     }
+    total
+}
+
+fragment rentalNetworkFragment on VehicleRentalNetwork {
+    networkId
+    url
+}
+
+fragment rentalUrisFragment on VehicleRentalUris {
+    android
+    ios
+    web
+}
+
+fragment rentalVehicleTypeFragment on RentalVehicleType {
+    formFactor
+    propulsionType
 }

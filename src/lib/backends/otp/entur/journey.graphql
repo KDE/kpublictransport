@@ -109,11 +109,7 @@ fragment locationFragment on Place {
         id
         timezone: timeZone
     }
-    bikeRentalStation {
-        id
-        networks,
-        bikesAvailable
-    }
+    rentalVehicleStation: bikeRentalStation { ...bikeRentalStationFragment }
 }
 
 fragment estimatedCallFragment on EstimatedCall {
@@ -121,4 +117,16 @@ fragment estimatedCallFragment on EstimatedCall {
     forAlighting
     requestStop
     cancellation
+}
+
+fragment bikeRentalStationFragment on BikeRentalStation {
+    id
+    name
+    bikesAvailable
+    spacesAvailable
+    realtime: realtimeOccupancyAvailable
+    allowDropoff
+    networks
+    lat: latitude
+    lon: longitude
 }

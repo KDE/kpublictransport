@@ -30,16 +30,20 @@ query stopsByCoordinate(
           }
           transportMode
         }}
-        bikeRentalStation: place { ...on BikeRentalStation {
-            id
-            name
-            lat: latitude
-            lon: longitude
-            networks
-            bikesAvailable
-            spacesAvailable
-        }}
+        rentalVehicleStation: bikeRentalStation: place { ...bikeRentalStationFragment }
       }
     }
   }
+}
+
+fragment bikeRentalStationFragment on BikeRentalStation {
+    id
+    name
+    bikesAvailable
+    spacesAvailable
+    realtime: realtimeOccupancyAvailable
+    allowDropoff
+    networks
+    lat: latitude
+    lon: longitude
 }
