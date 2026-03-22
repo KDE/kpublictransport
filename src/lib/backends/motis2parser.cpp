@@ -70,7 +70,7 @@ struct {
     { "CAR_TO_PARK", Line::Mode::Unknown, JourneySection::IndividualTransport, IndividualTransport::Car, IndividualTransport::Park },
     { "CAR_HAILING", Line::Mode::Taxi, JourneySection::PublicTransport, IndividualTransport::Car, IndividualTransport::None },
     { "CAR_PICKUP", Line::Mode::Unknown, JourneySection::IndividualTransport, IndividualTransport::Car, IndividualTransport::Pickup },
-    { "FLEXIBLE", Line::Mode::Taxi, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None }, // TODO not properly modelled yet
+    { "FLEX", Line::Mode::Taxi, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None }, // TODO not properly modelled yet
     { "TRANSIT", Line::Mode::Unknown, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
     { "TRAM", Line::Mode::Tramway, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },
     { "SUBWAY", Line::Mode::Metro, JourneySection::PublicTransport, IndividualTransport::Walk, IndividualTransport::None },

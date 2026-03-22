@@ -196,13 +196,10 @@ struct {
     { Line::RapidTransit, "SUBURBAN" },
     { Line::Shuttle, "BUS" },
     { Line::Shuttle, "COACH" },
+    { Line::Taxi, "FLEX" },
     { Line::Taxi, "ODM" },
-    { Line::Taxi, "FLEXIBLE" },
-    { Line::Taxi, "CAR_HAILING" },
     { Line::Train, "RAIL" },
     { Line::Tramway, "TRAM" },
-    { Line::Tramway, "CABLE_CAR" },
-    { Line::RideShare, "CAR_SHARING" },
     { Line::RideShare, "RIDE_SHARING" },
     { Line::AerialLift, "AERIAL_LIFT" },
 };
@@ -243,7 +240,7 @@ bool Motis2Backend::queryStopover(const StopoverRequest &req, StopoverReply *rep
         query.addQueryItem(u"mode"_s, l.join(','_L1));
     }
 
-    auto netReply = makeRequest(req, reply, "v4/stoptimes"_L1, query, nam);
+    auto netReply = makeRequest(req, reply, "v5/stoptimes"_L1, query, nam);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply, req]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
@@ -386,7 +383,7 @@ bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
     }
     query.addQueryItem(u"arriveBy"_s, req.dateTimeMode() == JourneyRequest::Arrival ? u"true"_s : u"false"_s);
 
-    auto netReply = makeRequest(req, reply, "v4/plan"_L1, query, nam);
+    auto netReply = makeRequest(req, reply, "v5/plan"_L1, query, nam);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
@@ -416,7 +413,7 @@ bool Motis2Backend::queryTrip(const TripRequest &req, TripReply *reply, QNetwork
 
     QUrlQuery query;
     query.addQueryItem(u"tripId"_s, tripId);
-    auto netReply = makeRequest(req, reply, "v4/trip"_L1, query, nam);
+    auto netReply = makeRequest(req, reply, "v5/trip"_L1, query, nam);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
