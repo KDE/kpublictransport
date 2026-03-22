@@ -28,7 +28,7 @@ class OpenTripPlannerGraphQLBackend : public AbstractBackend
     Q_PROPERTY(QStringList supportedTransitModes MEMBER m_supportedTransitModes)
     Q_PROPERTY(QStringList supportedRentalModes MEMBER m_supportedRentalModes)
     Q_PROPERTY(QJsonValue extraHttpHeaders WRITE setExtraHttpHeaders)
-    Q_PROPERTY(QJsonObject rentalVehicleNetworks WRITE setRentalVehicleNetworks)
+    Q_PROPERTY(QJsonObject rentalVehicleNetworks)
     Q_PROPERTY(QString ifoptPrefix MEMBER m_ifoptPrefix)
 
 public:
@@ -56,7 +56,7 @@ private:
     QStringList m_supportedTransitModes = { QStringLiteral("TRANSIT") };
     QStringList m_supportedRentalModes = { QStringLiteral("BICYCLE") };
     std::vector<std::pair<QByteArray, QByteArray>> m_extraHeaders;
-    QHash<QString, RentalVehicleNetwork> m_rentalNetworks;
+    QJsonObject m_rentalNetworks;
     QString m_ifoptPrefix;
 };
 

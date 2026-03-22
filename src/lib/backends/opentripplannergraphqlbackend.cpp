@@ -439,12 +439,3 @@ void OpenTripPlannerGraphQLBackend::setExtraHttpHeaders(const QJsonValue &v)
         m_extraHeaders.push_back(std::make_pair(name, val));
     }
 }
-
-void OpenTripPlannerGraphQLBackend::setRentalVehicleNetworks(const QJsonObject &obj)
-{
-    m_rentalNetworks.reserve(obj.size());
-    for (auto it = obj.begin(); it != obj.end(); ++it) {
-        auto n = RentalVehicleNetwork::fromJson(it.value().toObject());
-        m_rentalNetworks.insert(it.key(), std::move(n));
-    }
-}

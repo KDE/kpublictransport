@@ -25,8 +25,6 @@
 using namespace Qt::Literals;
 using namespace KPublicTransport;
 
-using RentalVehicleNetworkMap = QHash<QString, RentalVehicleNetwork>;
-
 class OtpParserTest : public QObject
 {
     Q_OBJECT
@@ -43,28 +41,25 @@ private Q_SLOTS:
     {
         QTest::addColumn<QString>("inFileName");
         QTest::addColumn<QString>("refFileName");
-        QTest::addColumn<RentalVehicleNetworkMap>("networks");
+        QTest::addColumn<QJsonObject>("networks");
 
         QTest::newRow("fi-digitransit-location")
             << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-coordinate.in.json")
             << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-coordinate.out.json")
-            << RentalVehicleNetworkMap();
+            << QJsonObject();
         QTest::newRow("fi-digitransit-location-with-routes")
             << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-coordinate-with-routes.in.json")
             << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-coordinate-with-routes.out.json")
-            << RentalVehicleNetworkMap();
+            << QJsonObject();
         QTest::newRow("no-entur-location-with-modes")
             << s(SOURCE_DIR "/data/otp/no-entur-location-by-coordinate-with-modes.in.json")
             << s(SOURCE_DIR "/data/otp/no-entur-location-by-coordinate-with-modes.out.json")
-            << RentalVehicleNetworkMap();
+            << QJsonObject();
 
-        RentalVehicleNetworkMap networks;
-        networks.insert(s("car-sharing"), {});
-        networks.insert(s("taxi"), {});
-        RentalVehicleNetwork n;
-        n.setName(s("RegioRad"));
-        n.setVehicleTypes(RentalVehicle::Bicycle);
-        networks.insert(s("regiorad"), n);
+        QJsonObject networks;
+        networks.insert("car-sharing"_L1, {});
+        networks.insert("taxi"_L1, {});
+        networks.insert("regiorad"_L1, {{{ "name"_L1, "RegioRad"_L1 }, { "vehicleTypes"_L1, "Bicycle"_L1}}});
         QTest::newRow("de-stadtnavi-rental-vehicle-locations")
             << s(SOURCE_DIR "/data/otp/de-stadtnavi-rental-vehicle-locations.in.json")
             << s(SOURCE_DIR "/data/otp/de-stadtnavi-rental-vehicle-locations.out.json")
@@ -75,7 +70,7 @@ private Q_SLOTS:
     {
         QFETCH(QString, inFileName);
         QFETCH(QString, refFileName);
-        QFETCH(RentalVehicleNetworkMap, networks);
+        QFETCH(QJsonObject, networks);
 
         OpenTripPlannerParser p(s("gtfs"));
         p.setKnownRentalVehicleNetworks(networks);
@@ -239,14 +234,9 @@ private Q_SLOTS:
 
         const auto configObj = QJsonDocument::fromJson(Test::readFile(networkConfig)).object();
         const auto networkConfigObj = configObj.value(QLatin1String("options")).toObject().value(QLatin1String("rentalVehicleNetworks")).toObject();
-        QHash <QString, RentalVehicleNetwork> rentalVehicleNetworks;
-        for (auto it = networkConfigObj.begin(); it != networkConfigObj.end(); ++it) {
-            auto n = RentalVehicleNetwork::fromJson(it.value().toObject());
-            rentalVehicleNetworks.insert(it.key(), std::move(n));
-        }
 
         OpenTripPlannerParser p(s("gtfs"), s("1"));
-        p.setKnownRentalVehicleNetworks(rentalVehicleNetworks);
+        p.setKnownRentalVehicleNetworks(networkConfigObj);
         const auto res = p.parseJourneys(QJsonDocument::fromJson(Test::readFile(inFileName)).object());
         const auto jsonRes = Journey::toJson(res);
 

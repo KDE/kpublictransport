@@ -16,14 +16,13 @@
 #include <KPublicTransport/Location>
 #include <KPublicTransport/RentalVehicle>
 
-#include <QHash>
+#include <QJsonObject>
 #include <QString>
 #include <QStringList>
 
 #include <vector>
 
 class QJsonArray;
-class QJsonObject;
 
 namespace KPublicTransport {
 
@@ -41,7 +40,7 @@ class KPUBLICTRANSPORT_EXPORT OpenTripPlannerParser
 public:
     explicit OpenTripPlannerParser(const QString &identifierType, const QString &ifoptPrefix = {});
     ~OpenTripPlannerParser();
-    void setKnownRentalVehicleNetworks(const QHash<QString, RentalVehicleNetwork> &networks);
+    void setKnownRentalVehicleNetworks(const QJsonObject &networks);
 
     std::vector<Location> parseLocationsByCoordinate(const QJsonObject &obj) const;
     std::vector<Location> parseLocationsByName(const QJsonObject &obj) const;
@@ -81,7 +80,7 @@ private:
 
     QString m_identifierType;
     QString m_ifoptPrefix;
-    QHash<QString, RentalVehicleNetwork> m_rentalVehicleNetworks;
+    QJsonObject m_rentalVehicleNetworks;
     mutable QStringList m_alerts;
 };
 

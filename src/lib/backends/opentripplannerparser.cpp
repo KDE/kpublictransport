@@ -5,6 +5,8 @@
 */
 
 #include "opentripplannerparser.h"
+#include "datatypes/rentalvehicleutil_p.h"
+#include "gbfs/gbfsvehicletypes.h"
 #include "gtfs/hvt.h"
 #include "gtfs/occupancy.h"
 #include "geo/polylinedecoder_p.h"
@@ -19,7 +21,6 @@
 #include <QColor>
 #include <QDebug>
 #include <QJsonArray>
-#include <QJsonObject>
 #include <QTimeZone>
 
 #include <bitset>
@@ -35,7 +36,7 @@ OpenTripPlannerParser::OpenTripPlannerParser(const QString &identifierType, cons
 
 OpenTripPlannerParser::~OpenTripPlannerParser() = default;
 
-void OpenTripPlannerParser::setKnownRentalVehicleNetworks(const QHash<QString, RentalVehicleNetwork> &networks)
+void OpenTripPlannerParser::setKnownRentalVehicleNetworks(const QJsonObject &networks)
 {
     m_rentalVehicleNetworks = networks;
 }
@@ -43,12 +44,16 @@ void OpenTripPlannerParser::setKnownRentalVehicleNetworks(const QHash<QString, R
 QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj) const
 {
     RentalVehicleNetwork network;
+    RentalVehicle::VehicleType type = RentalVehicle::Unknown;
     // TODO id
     const auto networks = obj.value(QLatin1String("networks")).toArray();
     if (!networks.empty()) {
         const auto it = m_rentalVehicleNetworks.find(networks.at(0).toString());
         if (it != m_rentalVehicleNetworks.end()) {
-            network = it.value();
+            const auto config = it.value().toObject();
+            network.setName(config.value("name"_L1).toString());
+            type = static_cast<RentalVehicle::VehicleType>(QMetaEnum::fromType<RentalVehicle::VehicleType>().keyToValue(config.value("vehicleTypes"_L1).toString().toUtf8().constData()));
+            network.setVehicleTypes(type);
         } else {
             network.setName(networks.at(0).toString());
         }
@@ -59,7 +64,14 @@ QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj) c
     if (capacity == 0 && available == 1) { // heuristic for distinguishing floating vehicles and docks
         RentalVehicle v;
         v.setNetwork(network);
-        v.setType(static_cast<RentalVehicle::VehicleType>(static_cast<int>(network.vehicleTypes())));
+        if (const auto typeObj = obj.value("vehicleType"_L1).toObject(); !typeObj.empty()) {
+            GBFSVehicleType vt;
+            vt.formFactor = GBFSVehicleType::parseFormFactor(typeObj.value("formFactor"_L1).toString());
+            vt.propulsionType = GBFSVehicleType::parsePropulsionType(typeObj.value("propulsionType"_L1).toString());
+            v.setType(RentalVehicleUtil::fromGbfsVehicleType(vt));
+        } else {
+            v.setType(type);
+        }
         return v;
     }
 
@@ -543,14 +555,6 @@ static QDateTime parseJourneyDateTime(const QJsonValue &val)
     return {};
 }
 
-static RentalVehicle::VehicleType vehicleTypeFromTypes(RentalVehicle::VehicleTypes types, RentalVehicle::VehicleType fallback = RentalVehicle::Unknown)
-{
-    if (std::bitset<sizeof(types)>(types).count() == 1) {
-        return static_cast<RentalVehicle::VehicleType>(static_cast<int>(types));
-    }
-    return fallback;
-}
-
 JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj) const
 {
     auto dep = parseStoptime(obj.value("fromStoptime"_L1).toObject()); // Entur only
@@ -621,7 +625,7 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
             } else if (to.rentalVehicleStation().network().isValid()) {
                 v.setNetwork(to.rentalVehicleStation().network());
             }
-            v.setType(vehicleTypeFromTypes(v.network().vehicleTypes(), RentalVehicle::Bicycle));
+            v.setType(RentalVehicle::Bicycle);
             if (v.network().isValid() || isRented) {
                 section.setMode(JourneySection::RentedVehicle);
                 section.setRentalVehicle(v);
