@@ -315,6 +315,7 @@ bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
     query.addQueryItem(u"toPlace"_s, encodeLocation(req.to()));
     query.addQueryItem(u"time"_s, req.dateTime().toUTC().toString(Qt::ISODate));
     query.addQueryItem(u"detailedTransfers"_s, req.includePaths() ? u"true"_s : u"false"_s);
+    query.addQueryItem(u"detailedLegs"_s, req.includePaths() ? u"true"_s : u"false"_s);
 
     QStringList transitModes, directModes;
     QStringList directModeFormFactors;
