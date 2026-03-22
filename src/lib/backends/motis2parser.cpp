@@ -194,6 +194,15 @@ Stopover Motis2Parser::parsePlace(const QJsonObject &obj, bool hasRealTime) cons
     return s;
 }
 
+[[nodiscard]] static QStringView stripLeadingZeros(QStringView s)
+{
+    auto res = s;
+    while (res.startsWith('0'_L1)) {
+        res = res.mid(1);
+    }
+    return res;
+}
+
 Route Motis2Parser::parseRoute(const QJsonObject &obj) const
 {
     Line line;
@@ -215,8 +224,14 @@ Route Motis2Parser::parseRoute(const QJsonObject &obj) const
     if (line.name().isEmpty()) {
         line.setName(obj.value("routeShortName"_L1).toString());
     }
-    if (const auto tripName = obj.value("tripShortName"_L1).toString(); !tripName.isEmpty() && !line.name().contains(tripName)) {
-        route.setName(tripName);
+    if (const auto tripName = obj.value("tripShortName"_L1).toString(); !tripName.isEmpty()) {
+        const auto cleanedTripName = stripLeadingZeros(tripName);
+        if (line.name().endsWith(" ("_L1 + cleanedTripName + ')'_L1)) {
+            line.setName(line.name().chopped(cleanedTripName.size() + 3));
+            route.setName(cleanedTripName.toString());
+        } else if (!line.name().contains(cleanedTripName)) {
+            route.setName(tripName);
+        }
     }
 
     line.setOperatorName(obj.value("agencyName"_L1).toString());
