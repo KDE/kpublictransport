@@ -1,0 +1,102 @@
+[
+    {
+        "country": "US",
+        "identifier": {
+            "gtfs": "1_12761"
+        },
+        "latitude": 45.52304,
+        "longitude": -122.591438,
+        "name": "E Burnside & SE 69th (12761)",
+        "region": "US-OR"
+    },
+    {
+        "country": "US",
+        "identifier": {
+            "gtfs": "1_801"
+        },
+        "latitude": 45.523175,
+        "longitude": -122.591818,
+        "name": "E Burnside & NE 69th (801)",
+        "region": "US-OR"
+    },
+    {
+        "country": "US",
+        "identifier": {
+            "gtfs": "1_7751"
+        },
+        "latitude": 45.52288,
+        "longitude": -122.676415,
+        "name": "SW 6th & W Burnside (7751)",
+        "region": "US-OR"
+    },
+    {
+        "country": "US",
+        "identifier": {
+            "gtfs": "1_799"
+        },
+        "latitude": 45.523045,
+        "longitude": -122.595376,
+        "name": "E Burnside & SE 67th (799)",
+        "region": "US-OR"
+    },
+    {
+        "country": "US",
+        "identifier": {
+            "gtfs": "1_800"
+        },
+        "latitude": 45.523182,
+        "longitude": -122.594959,
+        "name": "E Burnside & NE 67th (800)",
+        "region": "US-OR"
+    },
+    {
+        "country": "US",
+        "identifier": {
+            "gtfs": "1_793"
+        },
+        "latitude": 45.522799,
+        "longitude": -122.602622,
+        "name": "E Burnside & SE 60th (793)",
+        "region": "US-OR"
+    },
+    {
+        "country": "US",
+        "identifier": {
+            "gtfs": "1_794"
+        },
+        "latitude": 45.522946,
+        "longitude": -122.602155,
+        "name": "E Burnside & NE 60th (794)",
+        "region": "US-OR"
+    },
+    {
+        "country": "US",
+        "identifier": {
+            "gtfs": "1_7814"
+        },
+        "latitude": 45.522607,
+        "longitude": -122.60246,
+        "name": "SE 60th & E Burnside (7814)",
+        "region": "US-OR"
+    },
+    {
+        "country": "US",
+        "identifier": {
+            "gtfs": "1_7815"
+        },
+        "latitude": 45.522737,
+        "longitude": -122.602228,
+        "name": "SE 60th & E Burnside (7815)",
+        "region": "US-OR"
+    },
+    {
+        "country": "US",
+        "identifier": {
+            "gtfs": "1_726"
+        },
+        "latitude": 45.52281,
+        "longitude": -122.649193,
+        "name": "E Burnside & SE 16th (726)",
+        "region": "US-OR"
+    }
+]

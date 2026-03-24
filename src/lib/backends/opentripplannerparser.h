@@ -45,8 +45,10 @@ public:
 
     std::vector<Location> parseLocationsByCoordinate(const QJsonObject &obj) const;
     std::vector<Location> parseLocationsByName(const QJsonObject &obj) const;
-    std::vector<Location> parseLocationsArray(const QJsonArray &array) const;
-    std::vector<Location> parseGeocodeResult(const QJsonArray &array) const;
+    /** For OTP REST reverse geocoding responses. */
+    [[nodiscard]] std::vector<Location> parseLocationsArray(const QJsonArray &array) const;
+    /** For OTP REST geocoding responses. */
+    [[nodiscard]] std::vector<Location> parseGeocodeResult(const QJsonArray &array) const;
     std::vector<Stopover> parseDepartures(const QJsonObject &obj) const;
     std::vector<Stopover> parseDeparturesArray(const QJsonArray &array) const;
     std::vector<Journey> parseJourneys(const QJsonObject &obj);

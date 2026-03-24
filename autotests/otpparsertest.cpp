@@ -124,6 +124,58 @@ private Q_SLOTS:
         QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
     }
 
+    void testParseRestLocationByCoord_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("refFileName");
+
+        QTest::newRow("us-trimet-location-by-name")
+            << u"" SOURCE_DIR "/data/otp/us-trimet-location-by-coord.in.json"_s
+            << u"" SOURCE_DIR "/data/otp/us-trimet-location-by-coord.out.json"_s;
+    }
+
+    void testParseRestLocationByCoord()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, refFileName);
+
+        OpenTripPlannerParser p(s("gtfs"));
+        const auto inDoc = QJsonDocument::fromJson(Test::readFile(inFileName));
+        QVERIFY(!inDoc.isEmpty());
+        const auto res = p.parseLocationsArray(inDoc.array());
+        QVERIFY(!res.empty());
+        const auto jsonRes = Location::toJson(res);
+
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
+        QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
+    }
+
+    void testParseRestLocationByName_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("refFileName");
+
+        QTest::newRow("us-trimet-location-by-name")
+            << u"" SOURCE_DIR "/data/otp/us-trimet-location-by-name.in.json"_s
+            << u"" SOURCE_DIR "/data/otp/us-trimet-location-by-name.out.json"_s;
+    }
+
+    void testParseRestLocationByName()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, refFileName);
+
+        OpenTripPlannerParser p(s("gtfs"));
+        const auto inDoc = QJsonDocument::fromJson(Test::readFile(inFileName));
+        QVERIFY(!inDoc.isEmpty());
+        const auto res = p.parseGeocodeResult(inDoc.array());
+        QVERIFY(!res.empty());
+        const auto jsonRes = Location::toJson(res);
+
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
+        QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
+    }
+
     void testParseDepartures_data()
     {
         QTest::addColumn<QString>("inFileName");

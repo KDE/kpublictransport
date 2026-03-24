@@ -1,0 +1,62 @@
+[
+    {
+        "country": "US",
+        "identifier": {
+            "gtfs": "1:799"
+        },
+        "latitude": 45.523045,
+        "longitude": -122.595376,
+        "name": "E Burnside & SE 67th",
+        "region": "US-OR"
+    },
+    {
+        "country": "US",
+        "identifier": {
+            "gtfs": "1:12761"
+        },
+        "latitude": 45.52304,
+        "longitude": -122.591438,
+        "name": "E Burnside & SE 69th",
+        "region": "US-OR"
+    },
+    {
+        "country": "US",
+        "identifier": {
+            "gtfs": "1:807"
+        },
+        "latitude": 45.523167,
+        "longitude": -122.588825,
+        "name": "E Burnside & NE 72nd",
+        "region": "US-OR"
+    },
+    {
+        "country": "US",
+        "identifier": {
+            "gtfs": "1:800"
+        },
+        "latitude": 45.523182,
+        "longitude": -122.594959,
+        "name": "E Burnside & NE 67th",
+        "region": "US-OR"
+    },
+    {
+        "country": "US",
+        "identifier": {
+            "gtfs": "1:801"
+        },
+        "latitude": 45.523175,
+        "longitude": -122.591818,
+        "name": "E Burnside & NE 69th",
+        "region": "US-OR"
+    },
+    {
+        "country": "US",
+        "identifier": {
+            "gtfs": "1:806"
+        },
+        "latitude": 45.523035,
+        "longitude": -122.589044,
+        "name": "E Burnside & SE 72nd",
+        "region": "US-OR"
+    }
+]
