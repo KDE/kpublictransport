@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-20 00:42+0000\n"
-"PO-Revision-Date: 2026-03-17 11:24+0100\n"
+"PO-Revision-Date: 2026-03-23 17:12+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -437,13 +437,13 @@ msgstr "Falleva a determinar location."
 #, kde-format
 msgctxt "departure stop"
 msgid "From %1"
-msgstr ""
+msgstr "Ex %1"
 
 #: quick/StopoverFormDelegate.qml:151
 #, kde-format
 msgctxt "@action:button"
 msgid "Show More…"
-msgstr ""
+msgstr "Monstra  plus…"
 
 #: quick/StopoverInformationView.qml:43
 #, kde-format
