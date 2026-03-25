@@ -24,5 +24,11 @@
       <file>otp2/stationByCoordinate.graphql</file>
       <file>otp2/stationByName.graphql</file>
       <file>otp2/trip.graphql</file>
+
+      <file>peatus/stationByCoordinate.graphql</file>
+      <file>peatus/stationByName.graphql</file>
+
+      <file>torino/stationByCoordinate.graphql</file>
+      <file>torino/stationByName.graphql</file>
     </qresource>
 </RCC>

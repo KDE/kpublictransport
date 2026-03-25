@@ -12,6 +12,7 @@
 #include <KPublicTransport/Manager>
 
 #include <QDebug>
+#include <QJsonObject>
 
 using namespace KPublicTransport;
 
@@ -71,6 +72,7 @@ void VehicleLayoutQueryModelPrivate::doClearResults()
 
 void VehicleLayoutQueryModelPrivate::interpolatePlatformPositionsFromSectionName()
 {
+    qDebug() << "XXXXXX";
     auto vehicle = m_stopover.vehicleLayout();
     auto vehicleSections = vehicle.takeSections();
     const auto startSection = vehicleSections.front().platformSectionName();
@@ -89,6 +91,7 @@ void VehicleLayoutQueryModelPrivate::interpolatePlatformPositionsFromSectionName
 
     vehicle.setSections(std::move(vehicleSections));
     m_stopover.setVehicleLayout(std::move(vehicle));
+    qDebug() << Stopover::toJson(m_stopover);
 }
 
 template<typename Iter>

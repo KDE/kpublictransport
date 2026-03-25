@@ -77,6 +77,7 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
         gqlReq.setVariable(QStringLiteral("name"), req.name());
     }
 
+    qDebug().noquote() << gqlReq.rawData();
     if (isLoggingEnabled()) {
         logRequest(req, gqlReq.networkRequest(), gqlReq.rawData());
     }
@@ -90,8 +91,8 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
         OpenTripPlannerParser p(backendId(), m_ifoptPrefix);
         p.setKnownRentalVehicleNetworks(m_rentalNetworks);
         std::vector<Location> res;
+        qDebug().noquote() <<gqlReply.data();
         if (req.hasCoordinate()) {
-            qDebug().noquote() <<gqlReply.data();
             res = p.parseLocationsByCoordinate(gqlReply.data());
         } else {
             res = p.parseLocationsByName(gqlReply.data());

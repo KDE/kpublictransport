@@ -43,11 +43,9 @@ fragment bikeRentalStationFragment on BikeRentalStation {
     name
     bikesAvailable
     spacesAvailable
-    capacity
     state
     realtime
     allowDropoff
-    allowOverloading
     isFloatingBike
     isCarStation
     networks

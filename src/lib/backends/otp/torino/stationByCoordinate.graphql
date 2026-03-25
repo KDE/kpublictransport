@@ -43,11 +43,11 @@ fragment bikeRentalStationFragment on BikeRentalStation {
     name
     bikesAvailable
     spacesAvailable
-    capacity
+    capacity - missing in Torino, available w/ Peatus
     state
     realtime
     allowDropoff
-    allowOverloading
+    allowOverloading - same
     isFloatingBike
     isCarStation
     networks
