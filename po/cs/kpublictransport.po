@@ -444,7 +444,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "Show More…"
-msgstr ""
+msgstr "Ukázat víc..."
 
 #: quick/StopoverInformationView.qml:43
 #, kde-format

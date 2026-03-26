@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-20 00:42+0000\n"
-"PO-Revision-Date: 2026-03-18 16:28+0200\n"
+"PO-Revision-Date: 2026-03-25 10:11+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -441,13 +441,13 @@ msgstr "קביעת המקום נכשלה."
 #, kde-format
 msgctxt "departure stop"
 msgid "From %1"
-msgstr ""
+msgstr "מ־%1"
 
 #: quick/StopoverFormDelegate.qml:151
 #, kde-format
 msgctxt "@action:button"
 msgid "Show More…"
-msgstr ""
+msgstr "להציג עוד…"
 
 #: quick/StopoverInformationView.qml:43
 #, kde-format
