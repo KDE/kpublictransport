@@ -34,7 +34,7 @@ int main(int argc, char **argv)
     nam.setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
 
     KGraphQLRequest req(QUrl(parser.value(endpointOption)));
-    req.setQueryFromFile(parser.value(queryOption));
+    req.setQueryFromPath(parser.value(queryOption));
 
     for (const auto &var : parser.values(variableOption)) {
         const auto split = var.split(QLatin1Char('='));

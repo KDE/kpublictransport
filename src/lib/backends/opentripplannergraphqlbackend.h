@@ -23,7 +23,7 @@ class RentalVehicleNetwork;
 class OpenTripPlannerGraphQLBackend : public AbstractBackend
 {
     Q_GADGET
-    Q_PROPERTY(QString endpoint MEMBER m_endpoint)
+    Q_PROPERTY(QUrl endpoint MEMBER m_endpoint)
     Q_PROPERTY(QString apiVersion MEMBER m_apiVersion)
     Q_PROPERTY(QStringList supportedTransitModes MEMBER m_supportedTransitModes)
     Q_PROPERTY(QStringList supportedRentalModes MEMBER m_supportedRentalModes)
@@ -47,12 +47,11 @@ public:
 private:
     [[nodiscard]] KGraphQLRequest graphQLRequest() const;
     [[nodiscard]] QUrl graphQLEndpoint() const;
-    [[nodiscard]] QString graphQLPath(const QString &fileName) const;
 
     void setExtraHttpHeaders(const QJsonValue &v);
     void setRentalVehicleNetworks(const QJsonObject &obj);
 
-    QString m_endpoint;
+    QUrl m_endpoint;
     QString m_apiVersion;
     QStringList m_supportedTransitModes = { QStringLiteral("TRANSIT") };
     QStringList m_supportedRentalModes = { QStringLiteral("BICYCLE") };

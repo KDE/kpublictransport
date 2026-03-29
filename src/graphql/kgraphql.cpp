@@ -16,6 +16,8 @@
 #include <QNetworkRequest>
 #include <QUrl>
 
+using namespace Qt::Literals;
+
 class KGraphQLRequestPrivate : public QSharedData
 {
 public:
@@ -23,6 +25,7 @@ public:
 
     QNetworkRequest m_request;
     QString m_query;
+    QStringList m_searchPaths;
     QJsonObject m_variables;
 };
 
@@ -59,7 +62,7 @@ void KGraphQLRequest::setQuery(const QString &query)
     d->m_query = query;
 }
 
-void KGraphQLRequest::setQueryFromFile(const QString &fileName)
+void KGraphQLRequest::setQueryFromPath(const QString &fileName)
 {
     QFile f(fileName);
     if (!f.open(QFile::ReadOnly)) {
@@ -70,6 +73,24 @@ void KGraphQLRequest::setQueryFromFile(const QString &fileName)
     d.detach();
     KGraphQLMinimizer m;
     d->m_query = QString::fromUtf8(m.minimizeQuery(f.readAll()));
+}
+
+void KGraphQLRequest::setSearchPaths(const QStringList &searchPaths)
+{
+    d.detach();
+    d->m_searchPaths = searchPaths;
+}
+
+bool KGraphQLRequest::setQueryFromFile(QStringView fileName)
+{
+    for (const auto &searchPath : d->m_searchPaths) {
+        const QString path = searchPath + '/'_L1 + fileName;
+        if (QFile::exists(path)) {
+            setQueryFromPath(path);
+            return true;
+        }
+    }
+    return false;
 }
 
 void KGraphQLRequest::setVariable(const QString &name, const QJsonValue &value)
