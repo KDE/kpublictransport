@@ -49,17 +49,24 @@ public:
     /** Set GraphQL query to perform. */
     void setQuery(const QString &query);
     /** Read GraphQL query from a file. */
-    void setQueryFromFile(const QString &fileName);
+    void setQueryFromPath(const QString &fileName);
+
+    /** Set search paths for GraphQL query files. */
+    void setSearchPaths(const QStringList &searchPaths);
+    /** Find GraphQL query in one of the above search paths.
+     *  @returns @c false when the requested files could not be found in any of the paths.
+     */
+    bool setQueryFromFile(QStringView fileName);
 
     /** Sets query variable @p name to @p value. */
     void setVariable(const QString &name, const QJsonValue &value);
 
     /** Access to the underlying HTTP request. */
-    QNetworkRequest& networkRequest();
-    const QNetworkRequest& networkRequest() const;
+    [[nodiscard]] QNetworkRequest& networkRequest();
+    [[nodiscard]] const QNetworkRequest& networkRequest() const;
 
     /** @internal */
-    QByteArray rawData() const;
+    [[nodiscard]] QByteArray rawData() const;
 
 private:
     QExplicitlySharedDataPointer<KGraphQLRequestPrivate> d;

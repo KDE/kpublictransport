@@ -39,7 +39,7 @@ OpenTripPlannerGraphQLBackend::~OpenTripPlannerGraphQLBackend() = default;
 
 AbstractBackend::Capabilities OpenTripPlannerGraphQLBackend::capabilities() const
 {
-    return (m_endpoint.startsWith(QLatin1String("https://")) ? Secure : NoCapability)
+    return (m_endpoint.scheme() == "https"_L1 ? Secure : NoCapability)
         |  (m_apiVersion == QLatin1String("otp2") ? (CanQueryNextJourney | CanQueryPreviousJourney) : NoCapability);
 }
 
@@ -58,7 +58,7 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
 {
     auto gqlReq = graphQLRequest();
     if (req.hasCoordinate()) {
-        gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("stationByCoordinate.graphql")));
+        gqlReq.setQueryFromFile(u"stationByCoordinate.graphql");
         gqlReq.setVariable(QStringLiteral("lat"), req.latitude());
         gqlReq.setVariable(QStringLiteral("lon"), req.longitude());
         gqlReq.setVariable(QStringLiteral("radius"), req.maximumDistance());
@@ -73,7 +73,7 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
         // TODO: also supports BIKE_PARK, CAR_PARK
         gqlReq.setVariable(QStringLiteral("placeType"), placeTypeFilter);
     } else {
-        gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("stationByName.graphql")));
+        gqlReq.setQueryFromFile(u"stationByName.graphql");
         gqlReq.setVariable(QStringLiteral("name"), req.name());
     }
 
@@ -132,7 +132,7 @@ bool OpenTripPlannerGraphQLBackend::queryStopover(const StopoverRequest &req, St
     }
 
     auto gqlReq = graphQLRequest();
-    gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("departure.graphql")));
+    gqlReq.setQueryFromFile(u"departure.graphql");
     gqlReq.setVariable(QStringLiteral("lat"), req.stop().latitude());
     gqlReq.setVariable(QStringLiteral("lon"), req.stop().longitude());
     auto dt = req.dateTime();
@@ -252,7 +252,7 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
     }
 
     auto gqlReq = graphQLRequest();
-    gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("journey.graphql")));
+    gqlReq.setQueryFromFile(u"journey.graphql");
     gqlReq.setVariable(QStringLiteral("fromLat"), req.from().latitude());
     gqlReq.setVariable(QStringLiteral("fromLon"), req.from().longitude());
     gqlReq.setVariable(QStringLiteral("toLat"), req.to().latitude());
@@ -387,9 +387,7 @@ bool OpenTripPlannerGraphQLBackend::queryTrip(const TripRequest &req, TripReply 
     const auto dt = req.journeySection().mode() != JourneySection::Invalid ? req.journeySection().scheduledDepartureTime() : req.stopover().scheduledDepartureTime();
 
     auto gqlReq = graphQLRequest();
-    if (const auto &f = graphQLPath(u"trip.graphql"_s); !f.isEmpty()) {
-        gqlReq.setQueryFromFile(f);
-    } else {
+    if (!gqlReq.setQueryFromFile(u"trip.graphql")) {
         // Not supported by this API flavor
         return false;
     }
@@ -412,9 +410,12 @@ bool OpenTripPlannerGraphQLBackend::queryTrip(const TripRequest &req, TripReply 
     return true;
 }
 
+constexpr inline auto GRAPHQL_BASE_PATH = ":/org.kde.kpublictransport/otp/"_L1;
+
 KGraphQLRequest OpenTripPlannerGraphQLBackend::graphQLRequest() const
 {
-    KGraphQLRequest req(graphQLEndpoint());
+    KGraphQLRequest req(m_endpoint);
+    req.setSearchPaths(m_apiVersion.isEmpty() ? QStringList{ GRAPHQL_BASE_PATH } : QStringList{ GRAPHQL_BASE_PATH + '/'_L1 + m_apiVersion, GRAPHQL_BASE_PATH });
     for (const auto &header : m_extraHeaders) {
         req.networkRequest().setRawHeader(header.first, header.second);
     }
@@ -422,26 +423,6 @@ KGraphQLRequest OpenTripPlannerGraphQLBackend::graphQLRequest() const
     applySslConfiguration(req.networkRequest());
     req.networkRequest().setRawHeader("Accept-Language", preferredLanguages().join(", "_L1).toUtf8());
     return req;
-}
-
-QUrl OpenTripPlannerGraphQLBackend::graphQLEndpoint() const
-{
-    return QUrl(m_endpoint);
-}
-
-constexpr inline auto GRAPHQL_BASE_PATH = ":/org.kde.kpublictransport/otp/"_L1;
-
-QString OpenTripPlannerGraphQLBackend::graphQLPath(const QString &fileName) const
-{
-    if (!m_apiVersion.isEmpty()) {
-        const QString versionedPath = GRAPHQL_BASE_PATH + m_apiVersion + QLatin1Char('/') + fileName;
-        if (QFile::exists(versionedPath)) {
-            return versionedPath;
-        }
-    }
-
-    const QString path = GRAPHQL_BASE_PATH + fileName;
-    return QFile::exists(path) ? path : QString();
 }
 
 void OpenTripPlannerGraphQLBackend::setExtraHttpHeaders(const QJsonValue &v)
