@@ -1,39 +1,39 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kpublictransport package.
-# SPDX-FileCopyrightText: 2024 Vit Pelcak <vit@pelcak.org>
+# SPDX-FileCopyrightText: 2024, 2026 Vit Pelcak <vit@pelcak.org>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-12 02:36+0000\n"
-"PO-Revision-Date: 2024-08-14 09:12+0200\n"
-"Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
+"PO-Revision-Date: 2026-03-30 11:38+0200\n"
+"Last-Translator:  Vít Pelčák <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 24.05.2\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
 msgctxt "train seating class"
 msgid "First class"
-msgstr ""
+msgstr "První třída"
 
 #: lib/datatypes/classutil.cpp:32
 #, kde-format
 msgctxt "train seating class"
 msgid "Second class"
-msgstr ""
+msgstr "Druhá třída"
 
 #: lib/datatypes/classutil.cpp:35
 #, kde-format
 msgctxt "train seating class"
 msgid "First/second class"
-msgstr ""
+msgstr "První/druhá třída"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
@@ -51,13 +51,13 @@ msgstr "Bistro nebo restaurace"
 #, kde-format
 msgctxt "train coach feature"
 msgid "Toddler area"
-msgstr ""
+msgstr "Koutek pro batolata"
 
 #: lib/datatypes/feature.cpp:58
 #, kde-format
 msgctxt "train coach feature"
 msgid "Family area"
-msgstr ""
+msgstr "Rodinná zóna"
 
 #: lib/datatypes/feature.cpp:60
 #, kde-format
@@ -69,19 +69,19 @@ msgstr "Přístupné pro vozíčkáře"
 #, kde-format
 msgctxt "train coach feature"
 msgid "Quiet area"
-msgstr ""
+msgstr "Klidová zóna"
 
 #: lib/datatypes/feature.cpp:64
 #, kde-format
 msgctxt "train coach feature"
 msgid "Business area"
-msgstr ""
+msgstr "Byznys zóna"
 
 #: lib/datatypes/feature.cpp:66
 #, kde-format
 msgctxt "train coach feature"
 msgid "Bike storage"
-msgstr ""
+msgstr "Úschovna kol"
 
 #: lib/datatypes/feature.cpp:68
 #, kde-format
@@ -93,13 +93,13 @@ msgstr "Toaleta"
 #, kde-format
 msgctxt "train coach feature"
 msgid "Wheelchair accessible toilet"
-msgstr ""
+msgstr "Toaleta přístupná pro vozíčkáře"
 
 #: lib/datatypes/feature.cpp:72
 #, kde-format
 msgctxt "train coach feature"
 msgid "Information point"
-msgstr ""
+msgstr "Informační centrum"
 
 #: lib/datatypes/feature.cpp:74
 #, kde-format
@@ -117,25 +117,25 @@ msgstr "Elektrické zásuvky"
 #, kde-format
 msgctxt "train coach feature"
 msgid "Sleeper Compartment"
-msgstr ""
+msgstr "Lůžkový oddíl"
 
 #: lib/datatypes/individualtransport.cpp:73
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Bike"
-msgstr ""
+msgstr "Kolo"
 
 #: lib/datatypes/individualtransport.cpp:75
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Car"
-msgstr ""
+msgstr "Auto"
 
 #: lib/datatypes/individualtransport.cpp:77 lib/datatypes/journey.cpp:584
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Walk"
-msgstr ""
+msgstr "Chůze"
 
 #: lib/datatypes/journey.cpp:586
 #, kde-format
@@ -146,49 +146,49 @@ msgstr "Čekejte"
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented bike"
-msgstr ""
+msgstr "Zapůjčené kolo"
 
 #: lib/datatypes/rentalvehicle.cpp:297
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented moped"
-msgstr ""
+msgstr "Zapůjčený moped"
 
 #: lib/datatypes/rentalvehicle.cpp:299
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented kick scooter"
-msgstr ""
+msgstr "Zapůjčená koloběžka"
 
 #: lib/datatypes/rentalvehicle.cpp:301
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"
-msgstr ""
+msgstr "Zapůjčené auto"
 
 #: lib/datatypes/vehicle.cpp:79
 #, kde-format
 msgctxt "train coach type"
 msgid "Sleeping car"
-msgstr ""
+msgstr "Lůžkový vůz"
 
 #: lib/datatypes/vehicle.cpp:81
 #, kde-format
 msgctxt "train coach type"
 msgid "Couchette car"
-msgstr ""
+msgstr "Lehátkový vůz"
 
 #: lib/datatypes/vehicle.cpp:83
 #, kde-format
 msgctxt "train coach type"
 msgid "Restaurant car"
-msgstr ""
+msgstr "Restaurační vůz"
 
 #: lib/datatypes/vehicle.cpp:85
 #, kde-format
 msgctxt "train coach type"
 msgid "Car transport car"
-msgstr ""
+msgstr "Autobusová doprava"
 
 #: quick/BackendPage.qml:24
 #, kde-format
@@ -203,12 +203,12 @@ msgstr "Již je aktuální."
 #: quick/BackendPage.qml:41
 #, kde-format
 msgid "Update successful."
-msgstr ""
+msgstr "Aktualizace byla úspěšná."
 
 #: quick/BackendPage.qml:47
 #, kde-format
 msgid "Update failed."
-msgstr ""
+msgstr "Aktualizace selhala."
 
 #: quick/BackendPage.qml:53
 #, kde-format
@@ -246,24 +246,24 @@ msgstr "Zrušeno"
 #, kde-format
 msgctxt "duration of the delay"
 msgid "Delayed %1"
-msgstr ""
+msgstr "Zpožděno %1"
 
 #: quick/ExpectedTimeLabel.qml:40
 #, kde-format
 msgctxt "earlier arrival/departure"
 msgid "%1 earlier"
-msgstr ""
+msgstr "%1 dříve"
 
 #: quick/ExpectedTimeLabel.qml:42
 #, kde-format
 msgctxt "@info"
 msgid "On time"
-msgstr ""
+msgstr "Včas"
 
 #: quick/FeatureDelegate.qml:40
 #, kde-format
 msgid "Availability unknown"
-msgstr ""
+msgstr "Neznámá dostupnost"
 
 #: quick/FeatureDelegate.qml:42
 #, kde-format
@@ -273,35 +273,35 @@ msgstr "Není k dispozici"
 #: quick/FeatureDelegate.qml:44
 #, kde-format
 msgid "Currently not available"
-msgstr ""
+msgstr "Momentálně nedostupné"
 
 #: quick/FeatureDelegate.qml:46
 #, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "One space"
 msgid_plural "%1 spaces"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "1 místo"
+msgstr[1] "%1 místa"
+msgstr[2] "%1 míst"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format
 msgid "%1 (availability unknown)"
-msgstr ""
+msgstr "%1 (neznámá dostupnost)"
 
 #: quick/FeatureIcon.qml:60
 #, kde-format
 msgid "%1 (not available)"
-msgstr "%1 (Nedostupný)"
+msgstr "%1 (Nedostupné)"
 
 #: quick/FeatureIcon.qml:62
 #, kde-format
 msgctxt "bike/wheelchair spaces on a train/bus"
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%2 (1 místo)"
+msgstr[1] "%2 (%1 místa)"
+msgstr[2] "%2 (%1 míst)"
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
@@ -325,7 +325,7 @@ msgstr "Vysoká obsazenost"
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "Full"
-msgstr "-Plný"
+msgstr "Plno"
 
 #: quick/private/CountryComboBox.qml:45
 #, kde-format
@@ -340,27 +340,27 @@ msgstr "Současná poloha"
 #: quick/private/CurrentLocationDelegate.qml:100
 #, kde-format
 msgid "Determining Location…"
-msgstr ""
+msgstr "Zjišťování polohy…"
 
 #: quick/private/CurrentLocationDelegate.qml:102
 #, kde-format
 msgid "Waiting for more accurate location…"
-msgstr ""
+msgstr "Čeká se na přesnější polohu…"
 
 #: quick/private/CurrentLocationDelegate.qml:105
 #, kde-format
 msgid "Looking up address…"
-msgstr ""
+msgstr "Vyhledávání adresy…"
 
 #: quick/private/CurrentLocationDelegate.qml:174
 #, kde-format
 msgid "Failed to determine accurate enough location."
-msgstr ""
+msgstr "Nepodařilo se určit dostatečně přesnou polohu."
 
 #: quick/private/CurrentLocationDelegate.qml:176
 #, kde-format
 msgid "Failed to determine location."
-msgstr ""
+msgstr "Nepodařilo se určit polohu."
 
 #: quick/StopoverInformationView.qml:43
 #, kde-format
@@ -370,30 +370,30 @@ msgstr "Informace"
 #: quick/StopoverInformationView.qml:61
 #, kde-format
 msgid "Occupancy"
-msgstr ""
+msgstr "Obsazenost"
 
 #: quick/StopoverInformationView.qml:76
 #, kde-format
 msgid "Amenities"
-msgstr ""
+msgstr "Vybavení"
 
 #: quick/StopoverInformationView.qml:91
 #, kde-format
 msgctxt "operator/provider of a rail/bus service"
 msgid "Operator"
-msgstr ""
+msgstr "Operátor"
 
 #: quick/StopPickerPage.qml:48
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Clear History"
-msgstr ""
+msgstr "Vymazat historii"
 
 #: quick/StopPickerPage.qml:49
 #, kde-format
 msgctxt "@info"
 msgid "Do you really want to remove all previously searched locations?"
-msgstr ""
+msgstr "Opravdu chcete odstranit všechna dříve vyhledaná místa?"
 
 #: quick/StopPickerPage.qml:53
 #, kde-format
@@ -405,76 +405,76 @@ msgstr "Odstranit"
 #, kde-format
 msgctxt "@action"
 msgid "Clear history"
-msgstr ""
+msgstr "Vymazat historii"
 
 #: quick/StopPickerPage.qml:77
 #, kde-format
 msgctxt "@action"
 msgid "Sort by name"
-msgstr ""
+msgstr "Seřadit podle názvu"
 
 #: quick/StopPickerPage.qml:85
 #, kde-format
 msgctxt "@action"
 msgid "Most recently used"
-msgstr ""
+msgstr "Naposledy použité"
 
 #: quick/StopPickerPage.qml:92
 #, kde-format
 msgctxt "@action"
 msgid "Most often used"
-msgstr ""
+msgstr "Nejčastěji používané"
 
 #: quick/StopPickerPage.qml:186
 #, kde-format
 msgctxt "locality, region, country"
 msgid "%1, %2, %3"
-msgstr ""
+msgstr "%1, %2, %3"
 
 #: quick/StopPickerPage.qml:191
 #, kde-format
 msgctxt "locality, country"
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: quick/StopPickerPage.qml:195
 #, kde-format
 msgctxt "region, country"
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: quick/StopPickerPage.qml:218
 #, kde-format
 msgctxt "location name, locality, region, country"
 msgid "%1, %2, %3, %4"
-msgstr ""
+msgstr "%1, %2, %3, %4"
 
 #: quick/StopPickerPage.qml:224
 #, kde-format
 msgctxt "location name, locality, country"
 msgid "%1, %2, %3"
-msgstr ""
+msgstr "%1, %2, %3"
 
 #: quick/StopPickerPage.qml:229
 #, kde-format
 msgctxt "location name, region, country"
 msgid "%1, %2, %3"
-msgstr ""
+msgstr "%1, %2, %3"
 
 #: quick/StopPickerPage.qml:234
 #, kde-format
 msgctxt "location name, country"
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: quick/StopPickerPage.qml:265
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove history entry"
-msgstr ""
+msgstr "Odstranit záznam z historie"
 
 #: quick/StopPickerPage.qml:323
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "No locations found"
-msgstr ""
+msgstr "Nenalezeno žádné místo"
