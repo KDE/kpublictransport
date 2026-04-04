@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-20 00:42+0000\n"
-"PO-Revision-Date: 2026-02-17 17:43+0200\n"
+"PO-Revision-Date: 2026-04-03 22:20+0200\n"
 "Last-Translator: Alexander Yavorskiy <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Lokalize 25.12.2\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
@@ -148,73 +148,73 @@ msgstr "Ожидание"
 #, kde-format
 msgctxt "train platform"
 msgid "Platform %1"
-msgstr ""
+msgstr "Платформа %1"
 
 #: lib/datatypes/platform.cpp:112
 #, kde-format
 msgctxt "abbreviated train platform"
 msgid "Pl. %1"
-msgstr ""
+msgstr "Пл. %1"
 
 #: lib/datatypes/platform.cpp:116
 #, kde-format
 msgctxt "bus platform"
 msgid "Platform %1"
-msgstr ""
+msgstr "Платформа %1"
 
 #: lib/datatypes/platform.cpp:116
 #, kde-format
 msgctxt "abbreviated bus platform"
 msgid "Pl. %1"
-msgstr ""
+msgstr "Пл. %1"
 
 #: lib/datatypes/platform.cpp:119
 #, kde-format
 msgctxt "boat/ferry pier/terminal"
 msgid "Pier %1"
-msgstr ""
+msgstr "Пирс %1"
 
 #: lib/datatypes/platform.cpp:119
 #, kde-format
 msgctxt "abbreviated boat/ferry pier/terminal"
 msgid "Pier %1"
-msgstr ""
+msgstr "Пирс %1"
 
 #: lib/datatypes/platform.cpp:121
 #, kde-format
 msgctxt "airport gate"
 msgid "Gate %1"
-msgstr ""
+msgstr "Выход «%1»"
 
 #: lib/datatypes/platform.cpp:121
 #, kde-format
 msgctxt "abbreviated airport gate"
 msgid "Gate %1"
-msgstr ""
+msgstr "Выход «%1»"
 
 #: lib/datatypes/platform.cpp:143
 #, kde-format
 msgctxt "train platform"
 msgid "Platform"
-msgstr ""
+msgstr "Платформа"
 
 #: lib/datatypes/platform.cpp:147
 #, kde-format
 msgctxt "bus platform"
 msgid "Platform"
-msgstr ""
+msgstr "Платформа"
 
 #: lib/datatypes/platform.cpp:150
 #, kde-format
 msgctxt "boat/ferry pier/terminal"
 msgid "Pier"
-msgstr ""
+msgstr "Пирс"
 
 #: lib/datatypes/platform.cpp:152
 #, kde-format
 msgctxt "airport gate"
 msgid "Gate"
-msgstr ""
+msgstr "Выход"
 
 #: lib/datatypes/rentalvehicle.cpp:295
 #, kde-format
@@ -442,13 +442,13 @@ msgstr "Не удалось определить местоположение."
 #, kde-format
 msgctxt "departure stop"
 msgid "From %1"
-msgstr ""
+msgstr "Откуда: %1"
 
 #: quick/StopoverFormDelegate.qml:151
 #, kde-format
 msgctxt "@action:button"
 msgid "Show More…"
-msgstr ""
+msgstr "Показать больше…"
 
 #: quick/StopoverInformationView.qml:43
 #, kde-format
