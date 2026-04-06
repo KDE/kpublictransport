@@ -30,16 +30,29 @@ query stopsByCoordinate(
           }
           transportMode
         }}
-        bikeRentalStation: place { ...on BikeRentalStation {
-            id
-            name
-            lat: latitude
-            lon: longitude
-            networks
-            bikesAvailable
-            spacesAvailable
-        }}
+        bikeRentalStation: place { ...bikeRentalStationFragment }
+        rentalVehicle: place { ...rentalVehicleFragment }
       }
     }
   }
+}
+
+#include <bikerentalfragment.graphql>
+
+fragment rentalVehicleFragment on RentalVehicle {
+    id
+    vehicleType { ...rentalVehicleTypeFragment }
+    network
+    lon: longitude
+    lat: latitude
+    # TODO currently produces a server-side GraphQL serialization error due to a type mismatch
+    #currentRangeMeters
+}
+
+fragment rentalVehicleTypeFragment on RentalVehicleType {
+    vehicleTypeId
+    name
+    formFactor
+    propulsionType
+    maxRangeMeters
 }

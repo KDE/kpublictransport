@@ -55,7 +55,7 @@ static void parseRentalUris(const QJsonObject &obj, T &rental)
 QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj, bool forceVehicle) const
 {
     RentalVehicleNetwork network;
-    RentalVehicle::VehicleType type = RentalVehicle::Unknown;
+    RentalVehicle::VehicleType type = RentalVehicle::Bicycle;
     if (const auto networkObj = obj.value("rentalNetwork"_L1).toObject(); !networkObj.isEmpty()) {
         // OTP2 GBFS 2/3 model
         // TODO name??
@@ -183,6 +183,9 @@ bool OpenTripPlannerParser::parseLocationFragment(const QJsonObject &obj, Locati
     if (const auto vehicleObj = obj.value("rentalVehicle"_L1).toObject(); !vehicleObj.isEmpty()) {
         loc.setData(parseRentalVehicleData(vehicleObj, true));
         loc.setType(Location::RentedVehicle);
+        if (loc.name().isEmpty()) {
+            loc.setName(vehicleObj.value("vehicleType"_L1).toObject().value("name"_L1).toString());
+        }
         return true;
     }
     if (const auto bss = obj.value("bikeRentalStation"_L1).toObject(); !bss.isEmpty()) {

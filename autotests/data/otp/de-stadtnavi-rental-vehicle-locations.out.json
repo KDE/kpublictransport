@@ -34,7 +34,7 @@
             "network": {
                 "name": "cargo-bike"
             },
-            "type": "Unknown"
+            "type": "Bicycle"
         },
         "type": "RentedVehicle"
     }

@@ -109,11 +109,7 @@ fragment locationFragment on Place {
         id
         timezone: timeZone
     }
-    bikeRentalStation {
-        id
-        networks,
-        bikesAvailable
-    }
+    bikeRentalStation { ...bikeRentalStationFragment }
 }
 
 fragment estimatedCallFragment on EstimatedCall {
@@ -122,3 +118,5 @@ fragment estimatedCallFragment on EstimatedCall {
     requestStop
     cancellation
 }
+
+#include <bikerentalfragment.graphql>
