@@ -18,6 +18,11 @@ using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
+class RentalVehicleTypePrivate : public QSharedData
+{
+public:
+};
+
 class RentalVehicleNetworkPrivate : public QSharedData
 {
 public:
@@ -48,6 +53,8 @@ public:
     QUrl appBookingUrl;
 };
 }
+
+KPUBLICTRANSPORT_MAKE_GADGET(RentalVehicleType)
 
 KPUBLICTRANSPORT_MAKE_GADGET(RentalVehicleNetwork)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleNetwork, QString, name, setName)

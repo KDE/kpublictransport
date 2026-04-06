@@ -67,8 +67,10 @@ bool OpenTripPlannerRestBackend::queryLocation(const LocationRequest &req, Locat
         logRequest(req, netReq);
         auto netReply = nam->get(netReq);
         netReply->setParent(reply);
+        qDebug() << url;
         QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
             const auto data = netReply->readAll();
+            qDebug().noquote() << data;
             logReply(reply, netReply, data);
 
             if (netReply->error() != QNetworkReply::NoError) {
@@ -94,8 +96,10 @@ bool OpenTripPlannerRestBackend::queryLocation(const LocationRequest &req, Locat
         logRequest(req, netReq);
         auto netReply = nam->get(netReq);
         netReply->setParent(reply);
+        qDebug() << url;
         QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
             const auto data = netReply->readAll();
+            qDebug() << data;
             logReply(reply, netReply, data);
 
             if (netReply->error() != QNetworkReply::NoError) {
@@ -126,8 +130,10 @@ bool OpenTripPlannerRestBackend::queryStopover(const StopoverRequest &req, Stopo
     logRequest(req, netReq);
     auto netReply = nam->get(netReq);
     netReply->setParent(reply);
+    qDebug() << url;
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, req, reply] {
         const auto data = netReply->readAll();
+        qDebug().noquote() << data;
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
@@ -170,8 +176,10 @@ bool OpenTripPlannerRestBackend::queryJourney(const JourneyRequest &req, Journey
     logRequest(req, netReq);
     auto netReply = nam->get(netReq);
     netReply->setParent(reply);
+    qDebug() << url;
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
         const auto data = netReply->readAll();
+        qDebug().noquote() << data;
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
