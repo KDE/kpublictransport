@@ -141,6 +141,7 @@ Kirigami.ApplicationWindow {
                     source: modelData.iconName
                     iconHeight: Kirigami.Units.iconSizes.smallMedium
                     visible: source != ""
+                    Layout.minimumWidth: 48
                 }
 
                 ColumnLayout {
