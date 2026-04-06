@@ -41,16 +41,30 @@ query stopsByCoordinate(
                         }
                     }
                 }}
-                bikeRentalStation: place { ...on BikeRentalStation {
-                    id
-                    name
-                    lat
-                    lon
-                    networks,
-                    bikesAvailable,
-                    spacesAvailable
-                }}
+                bikeRentalStation: place { ...rentalVehicleStationFragment }
+                rentalVehicle: place { ...rentalVehicleFragment }
             }
         }
     }
+}
+
+#include <rentalvehiclefragments.graphql>
+
+fragment rentalVehicleFragment on RentalVehicle {
+    allowPickupNow
+    availableUntil
+    fuel { ...rentalVehicleFuelFragment }
+    id: vehicleId
+    lat
+    lon
+    name
+    operative
+    rentalNetwork { ...rentalNetworkFragment }
+    rentalUris { ...rentalUrisFragment }
+    vehicleType { ...rentalVehicleTypeFragment }
+}
+
+fragment rentalVehicleFuelFragment on RentalVehicleFuel {
+    percent
+    range
 }

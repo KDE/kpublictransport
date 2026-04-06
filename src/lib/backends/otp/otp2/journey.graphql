@@ -101,10 +101,7 @@ fragment locationFragment on Place {
         id: gtfsId
         platformCode
     }
-    bikeRentalStation {
-        id
-        stationId,
-        networks,
-        bikesAvailable
-    }
+    bikeRentalStation: vehicleRentalStation { ...rentalVehicleStationFragment }
 }
+
+#include <rentalvehiclefragments.graphql>

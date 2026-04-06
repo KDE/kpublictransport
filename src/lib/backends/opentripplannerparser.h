@@ -56,7 +56,7 @@ public:
     OpenTripPlannerRequestContext m_nextJourneyContext;
     OpenTripPlannerRequestContext m_prevJourneyContext;
 private:
-    QVariant parseRentalVehicleData(const QJsonObject &obj) const;
+    QVariant parseRentalVehicleData(const QJsonObject &obj, bool forceVehicle = false) const;
     /// @return @c false for Location objects that should be discarded entirely
     bool parseLocationFragment(const QJsonObject &obj, Location &loc) const;
     Location parseLocation(const QJsonObject &obj) const;

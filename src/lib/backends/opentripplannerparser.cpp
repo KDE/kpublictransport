@@ -41,13 +41,28 @@ void OpenTripPlannerParser::setKnownRentalVehicleNetworks(const QJsonObject &net
     m_rentalVehicleNetworks = networks;
 }
 
-QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj) const
+template <typename T>
+static void parseRentalUris(const QJsonObject &obj, T &rental)
+{
+    rental.setWebBookingUrl(QUrl(obj.value("web"_L1).toString()));
+#ifdef Q_OS_IOS
+    rental.setAppBookingUrl(QUrl(obj.value("ios"_L1).toString()));
+#else
+    rental.setAppBookingUrl(QUrl(obj.value("android"_L1).toString()));
+#endif
+}
+
+QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj, bool forceVehicle) const
 {
     RentalVehicleNetwork network;
     RentalVehicle::VehicleType type = RentalVehicle::Unknown;
-    // TODO id
-    const auto networks = obj.value(QLatin1String("networks")).toArray();
-    if (!networks.empty()) {
+    if (const auto networkObj = obj.value("rentalNetwork"_L1).toObject(); !networkObj.isEmpty()) {
+        // OTP2 GBFS 2/3 model
+        // TODO name??
+        network.setName(networkObj.value("networkId"_L1).toString());
+        network.setUrl(QUrl(networkObj.value("url"_L1).toString()));
+    } else if (const auto networks = obj.value("networks"_L1).toArray(); !networks.isEmpty()) {
+        // legacy OTP and Entur
         const auto it = m_rentalVehicleNetworks.find(networks.at(0).toString());
         if (it != m_rentalVehicleNetworks.end()) {
             const auto config = it.value().toObject();
@@ -58,11 +73,14 @@ QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj) c
         }
     }
 
-    const auto capacity = obj.value(QLatin1String("spacesAvailable")).toInt(-1);
-    const auto available = obj.value(QLatin1String("bikesAvailable")).toInt(-1);
-    if (capacity == 0 && available == 1) { // heuristic for distinguishing floating vehicles and docks
+    const auto rentalUrisObj = obj.value("rentalUris"_L1).toObject();
+
+    const auto capacity = obj.value("spacesAvailable"_L1).toInt(-1);
+    const auto available = obj.value("bikesAvailable"_L1).toInt(-1);
+    if (forceVehicle || (capacity == 0 && available == 1)) { // heuristic for distinguishing floating vehicles and docks
         RentalVehicle v;
         v.setNetwork(network);
+
         if (const auto typeObj = obj.value("vehicleType"_L1).toObject(); !typeObj.empty()) {
             GBFSVehicleType vt;
             vt.formFactor = GBFSVehicleType::parseFormFactor(typeObj.value("formFactor"_L1).toString());
@@ -71,13 +89,44 @@ QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj) c
         } else {
             v.setType(type);
         }
+
+        v.setRemainingRange(obj.value("fuel"_L1).toObject().value("range"_L1).toInt(-1));
+        parseRentalUris(rentalUrisObj, v);
         return v;
     }
 
     RentalVehicleStation s;
     s.setNetwork(network);
+
+    if (const auto availSpaces = obj.value("availableSpaces"_L1).toObject().value("byType"_L1).toArray(); !availSpaces.empty()) {
+        for (const auto &availV : availSpaces) {
+            const auto availObj = availV.toObject();
+            const auto typeObj = availObj.value("vehicleType"_L1).toObject();
+            GBFSVehicleType vt;
+            vt.formFactor = GBFSVehicleType::parseFormFactor(typeObj.value("formFactor"_L1).toString());
+            vt.propulsionType = GBFSVehicleType::parsePropulsionType(typeObj.value("propulsionType"_L1).toString());
+            s.setCapacity(RentalVehicleUtil::fromGbfsVehicleType(vt), availObj.value("count"_L1).toInt(-1));
+        }
+    } else {
+        s.setCapacity(type, available);
+    }
+
     s.setCapacity(type, capacity);
-    s.setAvailableVehicles(type, available);
+
+    if (const auto availVehicles = obj.value("availableVehicles"_L1).toObject().value("byType"_L1).toArray(); !availVehicles.empty()) {
+        for (const auto &availV : availVehicles) {
+            const auto availObj = availV.toObject();
+            const auto typeObj = availObj.value("vehicleType"_L1).toObject();
+            GBFSVehicleType vt;
+            vt.formFactor = GBFSVehicleType::parseFormFactor(typeObj.value("formFactor"_L1).toString());
+            vt.propulsionType = GBFSVehicleType::parsePropulsionType(typeObj.value("propulsionType"_L1).toString());
+            s.setAvailableVehicles(RentalVehicleUtil::fromGbfsVehicleType(vt), availObj.value("count"_L1).toInt(-1));
+        }
+    } else {
+        s.setAvailableVehicles(type, available);
+    }
+
+    parseRentalUris(rentalUrisObj, s);
     return s;
 }
 
@@ -131,6 +180,11 @@ bool OpenTripPlannerParser::parseLocationFragment(const QJsonObject &obj, Locati
         loc.setData(info);
     }
 
+    if (const auto vehicleObj = obj.value("rentalVehicle"_L1).toObject(); !vehicleObj.isEmpty()) {
+        loc.setData(parseRentalVehicleData(vehicleObj, true));
+        loc.setType(Location::RentedVehicle);
+        return true;
+    }
     if (const auto bss = obj.value("bikeRentalStation"_L1).toObject(); !bss.isEmpty()) {
         loc.setData(parseRentalVehicleData(bss));
         loc.setType(loc.data().userType() == qMetaTypeId<RentalVehicle>() ? Location::RentedVehicle : Location::RentedVehicleStation);
@@ -149,8 +203,11 @@ bool OpenTripPlannerParser::parseLocationFragment(const QJsonObject &obj, Locati
 
 Location OpenTripPlannerParser::parseLocation(const QJsonObject &obj) const
 {
-    const auto stop = obj.value(QLatin1String("stop")).toObject();
-    const auto bikeRental = obj.value(QLatin1String("bikeRentalStation")).toObject();
+    const auto stop = obj.value("stop"_L1).toObject();
+    auto bikeRental = obj.value("bikeRentalStation"_L1).toObject();
+    if (bikeRental.isEmpty()) {
+        bikeRental = obj.value("rentalVehicle"_L1).toObject();
+    }
 
     Location loc;
     auto valid = parseLocationFragment(bikeRental, loc);
