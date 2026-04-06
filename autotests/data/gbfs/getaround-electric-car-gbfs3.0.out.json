@@ -1,0 +1,10 @@
+{
+    "co2EmissionPerKm": 0,
+    "formFactor": "Car",
+    "id": "YGA:VehicleType:1f4d4db11c7c",
+    "maxRangeMeters": 250000,
+    "name": "Nissan e-NV200 Varebil (2019)",
+    "propulsionType": "Electric",
+    "returnConstraint": "RoundtripStation",
+    "riderCapacity": 2
+}

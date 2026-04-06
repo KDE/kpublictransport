@@ -12,6 +12,7 @@
 namespace KPublicTransport {
 
 class RentalVehicleNetwork;
+class RentalVehicleType;
 class RentalVehiclePrivate;
 
 /** An individual rental vehicle used on a JourneySection, ie. a vehicle you don't own yourself but have to drive yourself.
@@ -81,6 +82,87 @@ public:
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(RentalVehicle::VehicleTypes)
+
+class RentalVehicleTypePrivate;
+
+/** Information about the type of a rental vehicle.
+ *  Follows the GBFS vehicle type spec.
+ *
+ *  @see https://gbfs.org/documentation/reference/#vehicle_typesjson
+ */
+class KPUBLICTRANSPORT_EXPORT RentalVehicleType
+{
+    KPUBLICTRANSPORT_GADGET(RentalVehicleType)
+    Q_CLASSINFO("RegisterEnumClassesUnscoped", "false")
+public:
+    KPUBLICTRANSPORT_PROPERTY(QString, id, setId) // TODO should this be an identifier set, per backend?
+
+    /** User-visible (possibly translated) name of the vehicle. */
+    KPUBLICTRANSPORT_PROPERTY(QString, name, setName)
+
+    /** Vehicle form factor. */
+    enum class FormFactor {
+        Undefined,
+        Bicycle,
+        CargoBicycle,
+        Car,
+        Moped,
+        ScooterStanding,
+        ScooterSeated,
+        Other,
+    };
+    Q_ENUM(FormFactor)
+    KPUBLICTRANSPORT_PROPERTY(FormFactor, formFactor, setFormFactor)
+
+    /** Vehicle propulsion type. */
+    enum class PropulsionType {
+        Undefined,
+        Human,
+        ElectricAssist,
+        Electric,
+        Combustion,
+        CombustionDiesel,
+        Hybrid,
+        PlugInHybrid,
+        HydrogenFuelCell,
+    };
+    Q_ENUM(PropulsionType)
+    KPUBLICTRANSPORT_PROPERTY(PropulsionType, propulsionType, setPropulsionType)
+
+    /** For vehicles with a non-human propulsion type, the maximum range in meters
+     *  when fully charged/fueled.
+     *  @c NAN indicates unknown/unset values.
+     */
+    KPUBLICTRANSPORT_PROPERTY(double, maxRangeMeters, setMaxRangeMeters)
+
+    /** Maximum amount of passenger the vehicle can accomdate (driver included).
+     *  @c -1 indicate unknown/unset values.
+     */
+    KPUBLICTRANSPORT_PROPERTY(int, riderCapacity, setRiderCapcatiry)
+
+    /** CO₂ emission per kilometer, in gram.
+     *  @c NAN indicate unknown values.
+     */
+    KPUBLICTRANSPORT_PROPERTY(double, co2EmissionPerKm, setCo2EmissionPerKm)
+
+    /** Vehicle return constraint. */
+    enum class ReturnConstraint {
+        Undefined,
+        FreeFloating,
+        RoundtripStation,
+        AnyStation,
+        Hybrid,
+    };
+    Q_ENUM(ReturnConstraint)
+    KPUBLICTRANSPORT_PROPERTY(ReturnConstraint, returnConstraint, setReturnConstraint)
+
+    /** Serializes one object to JSON. */
+    [[nodiscard]] static QJsonObject toJson(const RentalVehicleType &vehicleType);
+    [[nodiscard]] static QJsonArray toJson(const std::vector<RentalVehicleType> &vehicleTypes);
+    /** Deserialize an object from JSON. */
+    [[nodiscard]] static RentalVehicleType fromJson(const QJsonObject &obj);
+    [[nodiscard]] static std::vector<RentalVehicleType> fromJson(const QJsonArray &array);
+};
 
 class RentalVehicleStationPrivate;
 
@@ -185,6 +267,7 @@ public:
 
 Q_DECLARE_METATYPE(KPublicTransport::RentalVehicleNetwork)
 Q_DECLARE_METATYPE(KPublicTransport::RentalVehicleStation)
+Q_DECLARE_METATYPE(KPublicTransport::RentalVehicleType)
 Q_DECLARE_METATYPE(KPublicTransport::RentalVehicle)
 
 #endif // KPUBLICTRANSPORT_RENTALVEHICLE_H

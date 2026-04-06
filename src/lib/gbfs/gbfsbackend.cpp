@@ -211,8 +211,8 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         }
         const auto vehicleType = vehicleTypes.vehicleType(vehicleTypeId);
         vehicle.setType(RentalVehicleUtil::fromGbfsVehicleType(vehicleType));
-        if (!vehicleType.name.isEmpty()) {
-            loc.setName(vehicleType.name);
+        if (!vehicleType.name().isEmpty()) {
+            loc.setName(vehicleType.name());
         }
 
         const auto range = bike.value(QLatin1String("current_range_meters")).toInt();

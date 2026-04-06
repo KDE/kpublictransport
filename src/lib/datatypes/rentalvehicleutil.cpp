@@ -34,31 +34,33 @@ RentalVehicle RentalVehicleUtil::merge(const RentalVehicle &lhs, const RentalVeh
     return v;
 }
 
-RentalVehicle::VehicleType RentalVehicleUtil::fromGbfsVehicleType(const GBFSVehicleType &vehicle)
+RentalVehicle::VehicleType RentalVehicleUtil::fromGbfsVehicleType(const RentalVehicleType &vehicle)
 {
     static constexpr struct {
-        GBFSVehicleType::FormFactor formFactor;
-        GBFSVehicleType::PropulsionType propulsion;
+        RentalVehicleType::FormFactor formFactor;
+        RentalVehicleType::PropulsionType propulsion;
         RentalVehicle::VehicleType type;
     } const type_map[] = {
-        { GBFSVehicleType::UndefinedFormFactor, GBFSVehicleType::UndefinedPropulsion, RentalVehicle::Unknown },
-        { GBFSVehicleType::Bicycle, GBFSVehicleType::Human, RentalVehicle::Bicycle },
-        { GBFSVehicleType::Bicycle, GBFSVehicleType::ElectricAssist, RentalVehicle::Pedelec },
-        { GBFSVehicleType::Scooter, GBFSVehicleType::Electric, RentalVehicle::ElectricKickScooter },
-        { GBFSVehicleType::Scooter, GBFSVehicleType::ElectricAssist, RentalVehicle::ElectricKickScooter },
-        { GBFSVehicleType::Scooter, GBFSVehicleType::UndefinedPropulsion, RentalVehicle::ElectricKickScooter },
-        { GBFSVehicleType::Moped, GBFSVehicleType::Electric, RentalVehicle::ElectricMoped },
-        { GBFSVehicleType::Moped, GBFSVehicleType::UndefinedPropulsion, RentalVehicle::ElectricMoped },
-        { GBFSVehicleType::Car, GBFSVehicleType::Electric, RentalVehicle::Car },
-        { GBFSVehicleType::Car, GBFSVehicleType::Combustion, RentalVehicle::Car },
+        { RentalVehicleType::FormFactor::Undefined, RentalVehicleType::PropulsionType::Undefined, RentalVehicle::Unknown },
+        { RentalVehicleType::FormFactor::Bicycle, RentalVehicleType::PropulsionType::Human, RentalVehicle::Bicycle },
+        { RentalVehicleType::FormFactor::Bicycle, RentalVehicleType::PropulsionType::ElectricAssist, RentalVehicle::Pedelec },
+        { RentalVehicleType::FormFactor::ScooterStanding, RentalVehicleType::PropulsionType::Electric, RentalVehicle::ElectricKickScooter },
+        { RentalVehicleType::FormFactor::ScooterStanding, RentalVehicleType::PropulsionType::ElectricAssist, RentalVehicle::ElectricKickScooter },
+        { RentalVehicleType::FormFactor::ScooterStanding, RentalVehicleType::PropulsionType::Undefined, RentalVehicle::ElectricKickScooter },
+        { RentalVehicleType::FormFactor::Moped, RentalVehicleType::PropulsionType::Electric, RentalVehicle::ElectricMoped },
+        { RentalVehicleType::FormFactor::Moped, RentalVehicleType::PropulsionType::Undefined, RentalVehicle::ElectricMoped },
+        { RentalVehicleType::FormFactor::Car, RentalVehicleType::PropulsionType::Electric, RentalVehicle::Car },
+        { RentalVehicleType::FormFactor::Car, RentalVehicleType::PropulsionType::Combustion, RentalVehicle::Car },
+        { RentalVehicleType::FormFactor::Car, RentalVehicleType::PropulsionType::CombustionDiesel, RentalVehicle::Car },
+        { RentalVehicleType::FormFactor::Car, RentalVehicleType::PropulsionType::Hybrid, RentalVehicle::Car },
     };
 
     for (const auto &map : type_map) {
-        if (map.formFactor == vehicle.formFactor && map.propulsion == vehicle.propulsionType) {
+        if (map.formFactor == vehicle.formFactor() && map.propulsion == vehicle.propulsionType()) {
             return map.type;
         }
     }
 
-    qCDebug(Log) << "unhandled vehicle type:" << vehicle.formFactor << vehicle.propulsionType;
+    qCDebug(Log) << "unhandled vehicle type:" << vehicle.formFactor() << vehicle.propulsionType();
     return RentalVehicle::Unknown;
 }

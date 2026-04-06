@@ -20,89 +20,29 @@ using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
-static bool operator<(const GBFSVehicleType &lhs, const GBFSVehicleType &rhs)
+static bool operator<(const RentalVehicleType &lhs, const RentalVehicleType &rhs)
 {
-    return lhs.typeId < rhs.typeId;
+    return lhs.id() < rhs.id();
 }
-static bool operator<(const GBFSVehicleType &lhs, QStringView rhs)
+static bool operator<(const RentalVehicleType &lhs, QStringView rhs)
 {
-    return lhs.typeId < rhs;
+    return lhs.id() < rhs;
 }
-}
-
-template <typename T>
-struct value_map_entry
-{
-    const char *name;
-    T value;
-};
-
-static constexpr const value_map_entry<GBFSVehicleType::FormFactor> form_factor_map[] = {
-    { "bicycle", GBFSVehicleType::Bicycle },
-    { "car", GBFSVehicleType::Car },
-    { "cargo_bicycle", GBFSVehicleType::CargoBicycle },
-    { "moped", GBFSVehicleType::Moped },
-    { "scooter", GBFSVehicleType::Scooter },
-    { "scooter_seating", GBFSVehicleType::Scooter },
-    { "scooter_standing", GBFSVehicleType::Scooter },
-    { "other", GBFSVehicleType::Other },
-};
-
-static constexpr const value_map_entry<GBFSVehicleType::PropulsionType> propulsion_map[] = {
-    { "human", GBFSVehicleType::Human },
-    { "electric_assist", GBFSVehicleType::ElectricAssist },
-    { "electric", GBFSVehicleType::Electric },
-    { "combustion", GBFSVehicleType::Combustion },
-    { "combustion_diesel", GBFSVehicleType::Combustion },
-    { "hybrid", GBFSVehicleType::Combustion },
-    { "plug_in_hybrid", GBFSVehicleType::Combustion },
-};
-
-template <typename T, std::size_t N>
-static T lookupValue(const value_map_entry<T>(&map)[N], QStringView name)
-{
-    for (const auto &entry : map) {
-        if (name.compare(QLatin1String(entry.name), Qt::CaseInsensitive) == 0) {
-            return entry.value;
-        }
-    }
-    qDebug() << "unknown value:" << name;
-    return {};
-}
-
-GBFSVehicleType::FormFactor GBFSVehicleType::parseFormFactor(QStringView formFactor)
-{
-    return lookupValue(form_factor_map, formFactor);
-}
-
-GBFSVehicleType::PropulsionType GBFSVehicleType::parsePropulsionType(QStringView propulsionType)
-{
-    return lookupValue(propulsion_map, propulsionType);
 }
 
 // some services don't prove a vehicle_types file but use somewhat descriptive fixed values
 // try to support that as well to the extend possible
-struct fallback_entry {
-    GBFSVehicleType::FormFactor formFactor;
-    GBFSVehicleType::PropulsionType propulsionType;
+struct {
+    const char *name;
+    RentalVehicleType::FormFactor formFactor;
+    RentalVehicleType::PropulsionType propulsionType;
+} static constexpr const fallback_type_map[] = {
+    { "bike", RentalVehicleType::FormFactor::Bicycle, RentalVehicleType::PropulsionType::Human },
+    { "moped", RentalVehicleType::FormFactor::Moped, RentalVehicleType::PropulsionType::Undefined },
+    { "scooter", RentalVehicleType::FormFactor::ScooterStanding, RentalVehicleType::PropulsionType::Undefined },
+    { "ebike", RentalVehicleType::FormFactor::Bicycle, RentalVehicleType::PropulsionType::ElectricAssist },
+    { "electric_moped", RentalVehicleType::FormFactor::Moped, RentalVehicleType::PropulsionType::Electric },
 };
-static constexpr const value_map_entry<fallback_entry> fallback_type_map[] = {
-    { "bike", { GBFSVehicleType::Bicycle, GBFSVehicleType::Human } },
-    { "moped", { GBFSVehicleType::Moped, GBFSVehicleType::UndefinedPropulsion } },
-    { "scooter", { GBFSVehicleType::Scooter, GBFSVehicleType::UndefinedPropulsion } },
-    { "ebike", { GBFSVehicleType::Bicycle, GBFSVehicleType::ElectricAssist } },
-    { "electric_moped", { GBFSVehicleType::Moped, GBFSVehicleType::Electric } },
-};
-
-GBFSVehicleType GBFSVehicleType::fromJson(const QJsonObject &obj)
-{
-    GBFSVehicleType v;
-    v.typeId = obj.value("vehicle_type_id"_L1).toString();
-    v.name = obj.value("name"_L1).toString();
-    v.formFactor = parseFormFactor(obj.value("form_factor"_L1).toString());
-    v.propulsionType = parsePropulsionType(obj.value("propulsion_type"_L1).toString());
-    return v;
-}
 
 GBFSVehicleTypes::GBFSVehicleTypes(const GBFSService &feed)
 {
@@ -112,8 +52,8 @@ GBFSVehicleTypes::GBFSVehicleTypes(const GBFSService &feed)
 
     m_vehicleTypes.reserve(types.size());
     for (const auto &typeVal : types) {
-        auto v = GBFSVehicleType::fromJson(typeVal.toObject());
-        if (!v.typeId.isEmpty()) {
+        auto v = GBFSVehicleType::fromGbfs(typeVal.toObject());
+        if (!v.id().isEmpty()) {
             m_vehicleTypes.push_back(std::move(v));
         }
     }
@@ -124,14 +64,14 @@ GBFSVehicleTypes::GBFSVehicleTypes(const GBFSService &feed)
 
 GBFSVehicleTypes::~GBFSVehicleTypes() = default;
 
-GBFSVehicleType GBFSVehicleTypes::vehicleType(QStringView typeId) const
+RentalVehicleType GBFSVehicleTypes::vehicleType(QStringView typeId) const
 {
     if (typeId.empty()) {
         return {};
     }
 
     const auto it = std::lower_bound(m_vehicleTypes.begin(), m_vehicleTypes.end(), typeId);
-    if (it != m_vehicleTypes.end() && (*it).typeId == typeId) {
+    if (it != m_vehicleTypes.end() && (*it).id() == typeId) {
         return (*it);
     }
 
@@ -139,9 +79,9 @@ GBFSVehicleType GBFSVehicleTypes::vehicleType(QStringView typeId) const
     if (m_vehicleTypes.empty()) {
         for (const auto &val : fallback_type_map) {
             if (QLatin1String(val.name) == typeId) {
-                GBFSVehicleType v;
-                v.formFactor = val.value.formFactor;
-                v.propulsionType = val.value.propulsionType;
+                RentalVehicleType v;
+                v.setFormFactor(val.formFactor);
+                v.setPropulsionType(val.propulsionType);
                 return v;
             }
         }

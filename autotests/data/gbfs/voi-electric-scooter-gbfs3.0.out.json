@@ -1,0 +1,9 @@
+{
+    "formFactor": "ScooterStanding",
+    "id": "YVO:VehicleType:a162fbed-7733-4bc6-b317-55858af4f6a0",
+    "maxRangeMeters": 80000,
+    "name": "Voiager_7",
+    "propulsionType": "Electric",
+    "returnConstraint": "Hybrid",
+    "riderCapacity": 1
+}

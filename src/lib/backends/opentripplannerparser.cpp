@@ -82,9 +82,9 @@ QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj, b
         v.setNetwork(network);
 
         if (const auto typeObj = obj.value("vehicleType"_L1).toObject(); !typeObj.empty()) {
-            GBFSVehicleType vt;
-            vt.formFactor = GBFSVehicleType::parseFormFactor(typeObj.value("formFactor"_L1).toString());
-            vt.propulsionType = GBFSVehicleType::parsePropulsionType(typeObj.value("propulsionType"_L1).toString());
+            RentalVehicleType vt;
+            vt.setFormFactor(GBFSVehicleType::toFormFactor(typeObj.value("formFactor"_L1).toString()));
+            vt.setPropulsionType(GBFSVehicleType::toPropulsionType(typeObj.value("propulsionType"_L1).toString()));
             v.setType(RentalVehicleUtil::fromGbfsVehicleType(vt));
         } else {
             v.setType(type);
@@ -102,9 +102,9 @@ QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj, b
         for (const auto &availV : availSpaces) {
             const auto availObj = availV.toObject();
             const auto typeObj = availObj.value("vehicleType"_L1).toObject();
-            GBFSVehicleType vt;
-            vt.formFactor = GBFSVehicleType::parseFormFactor(typeObj.value("formFactor"_L1).toString());
-            vt.propulsionType = GBFSVehicleType::parsePropulsionType(typeObj.value("propulsionType"_L1).toString());
+            RentalVehicleType vt;
+            vt.setFormFactor(GBFSVehicleType::toFormFactor(typeObj.value("formFactor"_L1).toString()));
+            vt.setPropulsionType(GBFSVehicleType::toPropulsionType(typeObj.value("propulsionType"_L1).toString()));
             s.setCapacity(RentalVehicleUtil::fromGbfsVehicleType(vt), availObj.value("count"_L1).toInt(-1));
         }
     } else {
@@ -117,9 +117,9 @@ QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj, b
         for (const auto &availV : availVehicles) {
             const auto availObj = availV.toObject();
             const auto typeObj = availObj.value("vehicleType"_L1).toObject();
-            GBFSVehicleType vt;
-            vt.formFactor = GBFSVehicleType::parseFormFactor(typeObj.value("formFactor"_L1).toString());
-            vt.propulsionType = GBFSVehicleType::parsePropulsionType(typeObj.value("propulsionType"_L1).toString());
+            RentalVehicleType vt;
+            vt.setFormFactor(GBFSVehicleType::toFormFactor(typeObj.value("formFactor"_L1).toString()));
+            vt.setPropulsionType(GBFSVehicleType::toPropulsionType(typeObj.value("propulsionType"_L1).toString()));
             s.setAvailableVehicles(RentalVehicleUtil::fromGbfsVehicleType(vt), availObj.value("count"_L1).toInt(-1));
         }
     } else {

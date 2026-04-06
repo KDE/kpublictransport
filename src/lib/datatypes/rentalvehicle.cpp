@@ -9,6 +9,9 @@
 #include "individualtransport.h"
 #include "json_p.h"
 
+#include "gbfs/gbfsreader.h"
+#include "gbfs/gbfsvehicletypes.h"
+
 #include <KLocalizedString>
 
 #include <QColor>
@@ -18,6 +21,19 @@ using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
+class RentalVehicleTypePrivate : public QSharedData
+{
+public:
+    RentalVehicleType::FormFactor formFactor = RentalVehicleType::FormFactor::Undefined;
+    RentalVehicleType::PropulsionType propulsionType = RentalVehicleType::PropulsionType::Undefined;
+    QString id; // TODO id set?
+    QString name;
+    double maxRangeMeters = NAN;
+    double co2EmissionPerKm = NAN;
+    int riderCapacity = -1;
+    RentalVehicleType::ReturnConstraint returnConstraint = RentalVehicleType::ReturnConstraint::Undefined;
+};
+
 class RentalVehicleNetworkPrivate : public QSharedData
 {
 public:
@@ -48,6 +64,44 @@ public:
     QUrl appBookingUrl;
 };
 }
+
+KPUBLICTRANSPORT_MAKE_GADGET(RentalVehicleType)
+KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, QString, id, setId)
+KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, QString, name, setName)
+KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, RentalVehicleType::FormFactor, formFactor, setFormFactor)
+KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, RentalVehicleType::PropulsionType, propulsionType, setPropulsionType)
+KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, double, maxRangeMeters, setMaxRangeMeters)
+KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, int, riderCapacity, setRiderCapcatiry)
+KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, double, co2EmissionPerKm, setCo2EmissionPerKm)
+KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, RentalVehicleType::ReturnConstraint, returnConstraint, setReturnConstraint)
+
+QJsonObject RentalVehicleType::toJson(const RentalVehicleType &vehicleType)
+{
+    auto obj = Json::toJson(vehicleType);
+    if (vehicleType.d->riderCapacity < 0) {
+        obj.remove("riderCapacity"_L1);
+    }
+    if (vehicleType.d->returnConstraint == ReturnConstraint::Undefined) {
+        obj.remove("returnConstraint"_L1);
+    }
+    return obj;
+}
+
+QJsonArray RentalVehicleType::toJson(const std::vector<RentalVehicleType> &vehicleTypes)
+{
+    return Json::toJson(vehicleTypes);
+}
+
+RentalVehicleType RentalVehicleType::fromJson(const QJsonObject &obj)
+{
+    return Json::fromJson<RentalVehicleType>(obj);
+}
+
+std::vector<RentalVehicleType> RentalVehicleType::fromJson(const QJsonArray &array)
+{
+    return Json::fromJson<RentalVehicleType>(array);
+}
+
 
 KPUBLICTRANSPORT_MAKE_GADGET(RentalVehicleNetwork)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleNetwork, QString, name, setName)

@@ -7,6 +7,9 @@
 #include "testhelpers.h"
 
 #include "../src/lib/gbfs/gbfsreader.cpp"
+#include "../src/lib/gbfs/gbfsvehicletype.cpp"
+
+#include <KPublicTransport/RentalVehicle>
 
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -56,6 +59,37 @@ private Q_SLOTS:
 
         const auto net = GBFSReader::readSystemInformation(QJsonDocument::fromJson(Test::readFile(inFileName)).object());
         const auto resultJson = RentalVehicleNetwork::toJson(net);
+        const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).object();
+        QVERIFY(!resultJson.isEmpty());
+        QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));
+    }
+
+    void testReadVehicleTypes_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("outFileName");
+
+        QTest::newRow("bolt-electric-scooter-2.3")
+            << u"" SOURCE_DIR "/data/gbfs/bolt-electric-scooter-gbfs2.3.in.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/bolt-electric-scooter-gbfs2.3.out.json"_s;
+        QTest::newRow("getaround-electric-car-3.0")
+            << u"" SOURCE_DIR "/data/gbfs/getaround-electric-car-gbfs3.0.in.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/getaround-electric-car-gbfs3.0.out.json"_s;
+        QTest::newRow("urbansharing-bike-2.3")
+            << u"" SOURCE_DIR "/data/gbfs/urbansharing-bike-gbfs2.3.in.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/urbansharing-bike-gbfs2.3.out.json"_s;
+        QTest::newRow("voi-electric-scooter-3.0")
+            << u"" SOURCE_DIR "/data/gbfs/voi-electric-scooter-gbfs3.0.in.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/voi-electric-scooter-gbfs3.0.out.json"_s;
+    }
+
+    void testReadVehicleTypes()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, outFileName);
+
+        const auto vt = GBFSVehicleType::fromGbfs(QJsonDocument::fromJson(Test::readFile(inFileName)).object());
+        const auto resultJson = RentalVehicleType::toJson(vt);
         const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).object();
         QVERIFY(!resultJson.isEmpty());
         QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));

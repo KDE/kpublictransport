@@ -7,6 +7,10 @@
 #ifndef KPUBLICTRANSPORT_GBFSVEHICLETYPES_H
 #define KPUBLICTRANSPORT_GBFSVEHICLETYPES_H
 
+#include "gbfsvehicletype.h"
+
+#include <KPublicTransport/RentalVehicle>
+
 #include <QString>
 
 #include <vector>
@@ -16,38 +20,6 @@ class QJsonObject;
 namespace KPublicTransport {
 
 class GBFSService;
-
-/** GBFS v2.1 vehicle type entry. */
-class GBFSVehicleType
-{
-public:
-    QString typeId;
-    QString name;
-    enum FormFactor {
-        UndefinedFormFactor,
-        Bicycle,
-        Car,
-        Moped,
-        Scooter,
-        Other,
-        CargoBicycle,
-    };
-    FormFactor formFactor = UndefinedFormFactor;
-    enum PropulsionType {
-        UndefinedPropulsion,
-        Human,
-        ElectricAssist,
-        Electric,
-        Combustion,
-    };
-    PropulsionType propulsionType = UndefinedPropulsion;
-
-    static GBFSVehicleType fromJson(const QJsonObject &obj);
-
-    [[nodiscard]] static FormFactor parseFormFactor(QStringView formFactor);
-    [[nodiscard]] static PropulsionType parsePropulsionType(QStringView propulsionType);
-};
-
 /** GBFS v2.1 vehicle types data parsing. */
 class GBFSVehicleTypes
 {
@@ -55,10 +27,10 @@ public:
     explicit GBFSVehicleTypes(const GBFSService &feed);
     ~GBFSVehicleTypes();
 
-    GBFSVehicleType vehicleType(QStringView typeId) const;
+    [[nodiscard]] RentalVehicleType vehicleType(QStringView typeId) const;
 
 private:
-    std::vector<GBFSVehicleType> m_vehicleTypes;
+    std::vector<RentalVehicleType> m_vehicleTypes;
 };
 
 }

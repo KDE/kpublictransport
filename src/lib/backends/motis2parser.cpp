@@ -362,9 +362,9 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
         } else if (s.mode() == JourneySection::RentedVehicle) {
             const auto rentalObj = leg.value("rental"_L1).toObject();
 
-            GBFSVehicleType vt;
-            vt.formFactor = GBFSVehicleType::parseFormFactor(rentalObj.value("formFactor"_L1).toString());
-            vt.propulsionType = GBFSVehicleType::parsePropulsionType(rentalObj.value("propulsionType"_L1).toString());
+            RentalVehicleType vt;
+            vt.setFormFactor(GBFSVehicleType::toFormFactor(rentalObj.value("formFactor"_L1).toString()));
+            vt.setPropulsionType(GBFSVehicleType::toPropulsionType(rentalObj.value("propulsionType"_L1).toString()));
 
             RentalVehicleNetwork rvNetwork;
             rvNetwork.setName(rentalObj.value("systemName"_L1).toString());
@@ -608,7 +608,7 @@ std::vector<Location> Motis2Parser::parseRentals(const QByteArray &data) const
     const auto providersArray = rentalsObj.value("providers"_L1).toArray();
     std::unordered_map<QString, RentalVehicleNetwork> providers;
     providers.reserve(providersArray.size());
-    std::unordered_map<QString, std::unordered_map<QString, GBFSVehicleType>> vehicleTypes;
+    std::unordered_map<QString, std::unordered_map<QString, RentalVehicleType>> vehicleTypes;
 
     for (const auto &providerV : providersArray) {
         const auto providerObj = providerV.toObject();
@@ -622,19 +622,19 @@ std::vector<Location> Motis2Parser::parseRentals(const QByteArray &data) const
         provider.setBrandColor(QColor::fromString(providerObj.value("color"_L1).toString()));
         const auto providerId = providerObj.value("id"_L1).toString();
 
-        std::unordered_map<QString, GBFSVehicleType> providerVehicleTypes;
+        std::unordered_map<QString, RentalVehicleType> providerVehicleTypes;
         const auto typesArray = providerObj.value("vehicleTypes"_L1).toArray();
         providerVehicleTypes.reserve(typesArray.size());
         for (const auto &typeV : typesArray) {
             const auto typeObj = typeV.toObject();
 
-            GBFSVehicleType vt;
-            vt.typeId = typeObj.value("id"_L1).toString();
-            vt.name = typeObj.value("name"_L1).toString();
-            vt.formFactor = GBFSVehicleType::parseFormFactor(typeObj.value("formFactor"_L1).toString());
-            vt.propulsionType = GBFSVehicleType::parsePropulsionType(typeObj.value("propulsionType"_L1).toString());
+            RentalVehicleType vt;
+            vt.setId(typeObj.value("id"_L1).toString());
+            vt.setName(typeObj.value("name"_L1).toString());
+            vt.setFormFactor(GBFSVehicleType::toFormFactor(typeObj.value("formFactor"_L1).toString()));
+            vt.setPropulsionType(GBFSVehicleType::toPropulsionType(typeObj.value("propulsionType"_L1).toString()));
 
-            providerVehicleTypes[vt.typeId] = std::move(vt);
+            providerVehicleTypes[vt.id()] = std::move(vt);
         }
 
         providers[providerId] = std::move(provider);
@@ -705,8 +705,8 @@ std::vector<Location> Motis2Parser::parseRentals(const QByteArray &data) const
 
         const auto &vt = vehicleTypes[providerId][vehicleObj.value("typeId"_L1).toString()];
         v.setType(RentalVehicleUtil::fromGbfsVehicleType(vt));
-        if (!vt.name.isEmpty()) {
-            l.setName(vt.name);
+        if (!vt.name().isEmpty()) {
+            l.setName(vt.name());
         } else {
             l.setName(v.network().name());
         }
