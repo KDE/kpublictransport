@@ -4,7 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include <kgraphqlminimizer_p.h>
+#include <kgraphqlpreprocessor_p.h>
 
 #include <QObject>
 #include <QTest>
@@ -32,8 +32,15 @@ private Q_SLOTS:
         QFETCH(QByteArray, in);
         QFETCH(QByteArray, out);
 
-        KGraphQLMinimizer m;
-        QCOMPARE(m.minimizeQuery(in), out);
+        KGraphQLPreprocessor m;
+        QVERIFY(m.processQuery(in));
+        QCOMPARE(m.query(), out);
+    }
+
+    void testFailure()
+    {
+        KGraphQLPreprocessor p;
+        QCOMPARE(p.processQuery("#include <bla>\n"), false);
     }
 };
 

@@ -3,9 +3,7 @@
 
 add_library(KGraphQL STATIC
     kgraphql.cpp
-    kgraphqlminimizer.cpp
-    kgraphql.h
-    kgraphqlminimizer_p.h
+    kgraphqlpreprocessor.cpp
 )
 target_link_libraries(KGraphQL PUBLIC Qt::Network)
 set_target_properties(KGraphQL PROPERTIES POSITION_INDEPENDENT_CODE ON)

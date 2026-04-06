@@ -5,7 +5,7 @@
 */
 
 #include "kgraphql.h"
-#include "kgraphqlminimizer_p.h"
+#include "kgraphqlpreprocessor_p.h"
 
 #include <QFile>
 #include <QJsonArray>
@@ -71,8 +71,10 @@ void KGraphQLRequest::setQueryFromPath(const QString &fileName)
     }
 
     d.detach();
-    KGraphQLMinimizer m;
-    d->m_query = QString::fromUtf8(m.minimizeQuery(f.readAll()));
+    KGraphQLPreprocessor p;
+    p.setSearchPaths(d->m_searchPaths);
+    p.processQuery(f.readAll());
+    d->m_query = QString::fromUtf8(p.query());
 }
 
 void KGraphQLRequest::setSearchPaths(const QStringList &searchPaths)
@@ -83,13 +85,13 @@ void KGraphQLRequest::setSearchPaths(const QStringList &searchPaths)
 
 bool KGraphQLRequest::setQueryFromFile(QStringView fileName)
 {
-    for (const auto &searchPath : d->m_searchPaths) {
-        const QString path = searchPath + '/'_L1 + fileName;
-        if (QFile::exists(path)) {
-            setQueryFromPath(path);
-            return true;
-        }
+    d.detach();
+    KGraphQLPreprocessor p;
+    p.setSearchPaths(d->m_searchPaths);
+    if (!p.processQueryFromFile(fileName)) {
+        return false;
     }
+    d->m_query = QString::fromUtf8(p.query());
     return false;
 }
 
