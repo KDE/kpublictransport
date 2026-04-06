@@ -1,0 +1,6 @@
+{
+    "formFactor": "Bicycle",
+    "id": "bike",
+    "name": "Traditional bike",
+    "propulsionType": "Human"
+}

@@ -1,0 +1,8 @@
+{
+    "formFactor": "ScooterStanding",
+    "id": "YBO:VehicleType:4f5e8477-6bde-5857-8408-34ff71e0a40a",
+    "maxRangeMeters": 24000,
+    "name": "SCOOTER",
+    "propulsionType": "Electric",
+    "returnConstraint": "FreeFloating"
+}

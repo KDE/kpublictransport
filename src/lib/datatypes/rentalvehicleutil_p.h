@@ -24,7 +24,7 @@ namespace RentalVehicleUtil
     RentalVehicleStation merge(const RentalVehicleStation &lhs, const RentalVehicleStation &rhs);
     RentalVehicle merge(const RentalVehicle &lhs, const RentalVehicle &rhs);
 
-    [[nodiscard]] RentalVehicle::VehicleType fromGbfsVehicleType(const GBFSVehicleType &vehicle);
+    [[nodiscard]] RentalVehicle::VehicleType fromGbfsVehicleType(const RentalVehicleType &vehicle);
 }
 
 }

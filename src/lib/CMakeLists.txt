@@ -111,6 +111,7 @@ target_sources(KPublicTransport PRIVATE
     gbfs/gbfsreader.cpp
     gbfs/gbfsservice.cpp
     gbfs/gbfsstore.cpp
+    gbfs/gbfsvehicletype.cpp
     gbfs/gbfsvehicletypes.cpp
 
     geo/convexhull.cpp
