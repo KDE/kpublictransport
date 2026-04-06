@@ -622,7 +622,6 @@ std::vector<Location> Motis2Parser::parseRentals(const QByteArray &data) const
             vt.formFactor = GBFSVehicleType::parseFormFactor(typeObj.value("formFactor"_L1).toString());
             vt.propulsionType = GBFSVehicleType::parsePropulsionType(typeObj.value("propulsionType"_L1).toString());
 
-            provider.setVehicleTypes(provider.vehicleTypes() | RentalVehicleUtil::fromGbfsVehicleType(vt));
             providerVehicleTypes[vt.typeId] = std::move(vt);
         }
 

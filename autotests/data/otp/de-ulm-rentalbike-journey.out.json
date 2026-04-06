@@ -14,10 +14,11 @@
                         "longitude": 9.98566,
                         "name": "Bürgerdienste",
                         "rentalVehicleStation": {
-                            "availableVehicles": 2,
+                            "availabilitiesByType": {
+                                "Bicycle": 2
+                            },
                             "network": {
-                                "name": "RegioRad",
-                                "vehicleTypes": "Bicycle"
+                                "name": "RegioRad"
                             }
                         },
                         "type": "RentedVehicleStation"
@@ -59,11 +60,14 @@
                         "longitude": 9.98566,
                         "name": "Bürgerdienste",
                         "rentalVehicleStation": {
-                            "availableVehicles": 2,
-                            "capacity": 8,
+                            "availabilitiesByType": {
+                                "Bicycle": 2
+                            },
+                            "capacitiesByType": {
+                                "Bicycle": 8
+                            },
                             "network": {
-                                "name": "RegioRad",
-                                "vehicleTypes": "Bicycle"
+                                "name": "RegioRad"
                             }
                         },
                         "type": "RentedVehicleStation"
@@ -72,8 +76,7 @@
                 "mode": "RentedVehicle",
                 "rentalVehicle": {
                     "network": {
-                        "name": "RegioRad",
-                        "vehicleTypes": "Bicycle"
+                        "name": "RegioRad"
                     },
                     "type": "Bicycle"
                 }

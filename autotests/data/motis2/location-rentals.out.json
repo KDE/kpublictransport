@@ -14,8 +14,7 @@
             "availableVehicles": 2,
             "network": {
                 "name": "Stadtmobil Karlsruhe",
-                "url": "https://karlsruhe.stadtmobil.de/privatkunden/kunde-werden/",
-                "vehicleTypes": "Car"
+                "url": "https://karlsruhe.stadtmobil.de/privatkunden/kunde-werden/"
             },
             "webBookingUrl": "https://mein.stadtmobil.de/?openPlace=2255"
         },
@@ -36,8 +35,7 @@
             "availableVehicles": 1,
             "network": {
                 "name": "KVV.nextbike",
-                "url": "https://www.kvv-nextbike.de/de/",
-                "vehicleTypes": "Bicycle|Pedelec"
+                "url": "https://www.kvv-nextbike.de/de/"
             },
             "webBookingUrl": "https://nxtb.it/p/280322"
         },
@@ -55,8 +53,7 @@
             "availableVehicles": 0,
             "network": {
                 "name": "KVV.nextbike",
-                "url": "https://www.kvv-nextbike.de/de/",
-                "vehicleTypes": "Bicycle|Pedelec"
+                "url": "https://www.kvv-nextbike.de/de/"
             },
             "webBookingUrl": "https://nxtb.it/p/37983357"
         },
@@ -73,8 +70,7 @@
         "rentalVehicle": {
             "network": {
                 "name": "KVV.nextbike",
-                "url": "https://www.kvv-nextbike.de/de/",
-                "vehicleTypes": "Bicycle|Pedelec"
+                "url": "https://www.kvv-nextbike.de/de/"
             },
             "type": "Bicycle",
             "webBookingUrl": "https://nxtb.it/p/586413358"
@@ -92,8 +88,7 @@
         "rentalVehicle": {
             "network": {
                 "name": "KVV.nextbike",
-                "url": "https://www.kvv-nextbike.de/de/",
-                "vehicleTypes": "Bicycle|Pedelec"
+                "url": "https://www.kvv-nextbike.de/de/"
             },
             "type": "Bicycle",
             "webBookingUrl": "https://nxtb.it/p/586409090"
@@ -111,8 +106,7 @@
         "rentalVehicle": {
             "network": {
                 "name": "KVV.nextbike",
-                "url": "https://www.kvv-nextbike.de/de/",
-                "vehicleTypes": "Bicycle|Pedelec"
+                "url": "https://www.kvv-nextbike.de/de/"
             },
             "type": "Bicycle",
             "webBookingUrl": "https://nxtb.it/p/586403038"
@@ -130,8 +124,7 @@
         "rentalVehicle": {
             "network": {
                 "name": "KVV.nextbike",
-                "url": "https://www.kvv-nextbike.de/de/",
-                "vehicleTypes": "Bicycle|Pedelec"
+                "url": "https://www.kvv-nextbike.de/de/"
             },
             "type": "Bicycle",
             "webBookingUrl": "https://nxtb.it/p/586398258"
@@ -149,8 +142,7 @@
         "rentalVehicle": {
             "network": {
                 "name": "KVV.nextbike",
-                "url": "https://www.kvv-nextbike.de/de/",
-                "vehicleTypes": "Bicycle|Pedelec"
+                "url": "https://www.kvv-nextbike.de/de/"
             },
             "type": "Bicycle",
             "webBookingUrl": "https://nxtb.it/p/586410673"
@@ -168,8 +160,7 @@
         "rentalVehicle": {
             "network": {
                 "name": "KVV.nextbike",
-                "url": "https://www.kvv-nextbike.de/de/",
-                "vehicleTypes": "Bicycle|Pedelec"
+                "url": "https://www.kvv-nextbike.de/de/"
             },
             "type": "Bicycle",
             "webBookingUrl": "https://nxtb.it/p/586411425"

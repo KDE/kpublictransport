@@ -9,11 +9,14 @@
         "name": "Bhf. Herrenberg / Kalkofenstraße",
         "region": "DE-BW",
         "rentalVehicleStation": {
-            "availableVehicles": 11,
-            "capacity": 99,
+            "availabilitiesByType": {
+                "Bicycle": 11
+            },
+            "capacitiesByType": {
+                "Bicycle": 99
+            },
             "network": {
-                "name": "RegioRad",
-                "vehicleTypes": "Bicycle"
+                "name": "RegioRad"
             }
         },
         "type": "RentedVehicleStation"

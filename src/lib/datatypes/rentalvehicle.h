@@ -161,8 +161,6 @@ class KPUBLICTRANSPORT_EXPORT RentalVehicleNetwork
     KPUBLICTRANSPORT_PROPERTY(QString, name, setName)
     /** URL e.g. to a website of this network. */
     KPUBLICTRANSPORT_PROPERTY(QUrl, url, setUrl)
-    /** Supported vehicle types by this network. */
-    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicle::VehicleTypes, vehicleTypes, setVehicleTypes)
     /** Brand color of this network, if available. */
     KPUBLICTRANSPORT_PROPERTY(QColor, brandColor, setBrandColor)
     /** @c true if a brand color is set. */
