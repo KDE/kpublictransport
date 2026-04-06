@@ -31,16 +31,10 @@ query stopsByCoordinate(
                         timezone
                     }
                 }}
-                bikeRentalStation: place { ...on BikeRentalStation {
-                    id
-                    name
-                    lat
-                    lon
-                    networks,
-                    bikesAvailable,
-                    spacesAvailable
-                }}
+                rentalVehicleStation: place { ...bikeRentalStationFragment }
             }
         }
     }
 }
+
+#include <bikerentalfragment.graphql>

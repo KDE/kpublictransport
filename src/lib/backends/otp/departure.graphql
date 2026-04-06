@@ -1,7 +1,12 @@
 # SPDX-FileCopyrightText: 2020 Volker Krause <vkrause@kde.org>
 # SPDX-License-Identifier: CC0-1.0
 
-query departures($lat: Float!, $lon: Float!, $startTime: Long!) {
+query departures(
+    $lat: Float!,
+    $lon: Float!,
+    $startTime: Long!
+    $maxResults: Int!
+) {
   nearest(lat: $lat, lon: $lon, maxDistance: 500, filterByPlaceTypes: DEPARTURE_ROW) {
     edges {
       node {
@@ -21,7 +26,7 @@ query departures($lat: Float!, $lon: Float!, $startTime: Long!) {
                 timezone
               }
             }
-            stoptimes(startTime: $startTime, numberOfDepartures: 12, omitCanceled: false) {
+            stoptimes(startTime: $startTime, numberOfDepartures: $maxResults, omitCanceled: false) {
               stop {
                 platformCode
               }
@@ -33,6 +38,7 @@ query departures($lat: Float!, $lon: Float!, $startTime: Long!) {
               realtime
               trip {
                 tripHeadsign
+                tripShortName
                 route {
                   type
                   desc

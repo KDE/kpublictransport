@@ -9,10 +9,6 @@
       <file>stationByCoordinate.graphql</file>
       <file>stationByName.graphql</file>
 
-      <file>20170808/departure.graphql</file>
-      <file>20170808/journey.graphql</file>
-      <file>20170808/stationByName.graphql</file>
-
       <file>entur/bikerentalfragment.graphql</file>
       <file>entur/departure.graphql</file>
       <file>entur/journey.graphql</file>
@@ -22,8 +18,14 @@
 
       <file>otp2/departure.graphql</file>
       <file>otp2/journey.graphql</file>
+      <file>otp2/rentalvehiclefragments.graphql</file>
       <file>otp2/stationByCoordinate.graphql</file>
       <file>otp2/stationByName.graphql</file>
       <file>otp2/trip.graphql</file>
+
+      <file>peatus/bikerentalfragment.graphql</file>
+
+      <file>torino/bikerentalfragment.graphql</file>
+      <file>torino/stationByName.graphql</file>
     </qresource>
 </RCC>

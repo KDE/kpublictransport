@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: 2026 Volker Krause <vkrause@kde.org>
+# SPDX-License-Identifier: CC0-1.0
+
+fragment bikeRentalStationFragment on BikeRentalStation {
+    id
+    stationId
+    name
+    bikesAvailable
+    spacesAvailable
+    capacity
+    state
+    realtime
+    allowDropoff
+    allowOverloading
+    isFloatingBike
+    isCarStation
+    networks
+    lat
+    lon
+}
