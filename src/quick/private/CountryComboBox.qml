@@ -27,7 +27,7 @@ QQC2.ComboBox {
         required property string code
         text: {
             const c = Country.fromAlpha2(delegate.code);
-            return "<span style='font.family: \"emoji\">'" + c.emojiFlag + '</span> ' + c.name;
+            return "<span style='font.family: \"emoji\">" + c.emojiFlag + '</span> ' + c.name;
         }
         width: parent ? parent.width : undefined
 
