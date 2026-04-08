@@ -38,10 +38,11 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KPUBLICTRANSPORT
     SOVERSION 1
 )
 
-find_package(Qt6 6.8 REQUIRED COMPONENTS Quick Location)
+set(REQUIRED_QT_VERSION 6.8)
+find_package(Qt6 ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS Quick Location)
 
 if (BUILD_TESTING)
-    find_package(Qt6 6.8 REQUIRED COMPONENTS Test Widgets)
+    find_package(Qt6 ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS Test Widgets)
 endif()
 
 find_package(ZLIB REQUIRED)
@@ -63,6 +64,7 @@ if (UNIX AND NOT ANDROID)
 endif()
 if (ANDROID)
     find_package(Gradle)
+    find_package(Qt6 ${REQUIRED_QT_VERSION} CONFIG REQUIRED CorePrivate)
 endif()
 
 find_package(KF6 6.11 REQUIRED COMPONENTS I18n)
