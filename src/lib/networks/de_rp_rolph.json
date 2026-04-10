@@ -28,6 +28,7 @@
         "Description[pt_BR]": "Transporte público em Renânia-Palatinado, Alemanha.",
         "Description[ru]": "Общественный транспорт в Рейнланд-Пфальце, Германия.",
         "Description[sa]": "जर्मनीदेशस्य राइनलैण्ड्-पैलेटिनेट्-नगरे सार्वजनिकयानम् ।",
+        "Description[sk]": "Verejná doprava v Porýní-Falcku, Nemecko.",
         "Description[sl]": "Javni transport v Rhineland-Palatinate, Nemčija.",
         "Description[sv]": "Kollektivtrafik i Rhineland-Palatinate, Tyskland.",
         "Description[tr]": "Almanya, Rhineland-Palatine için toplu taşıma.",
@@ -51,6 +52,7 @@
         "Name[nl]": "moveRLP",
         "Name[pt_BR]": "moveRLP",
         "Name[ru]": "moveRLP",
+        "Name[sk]": "moveRLP",
         "Name[sl]": "moveRLP",
         "Name[tr]": "moveRLP",
         "Name[uk]": "moveRLP"
