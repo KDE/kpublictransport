@@ -2,14 +2,14 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kpublictransport package.
 # SPDX-FileCopyrightText: 2024 Johannes Obermayr <johannesobermayr@gmx.de>
-# SPDX-FileCopyrightText: 2024, 2025 Alois.spitzbart <spitz234@hotmail.com>
-# SPDX-FileCopyrightText: 2025 Philipp Kiemle <l10n.daphipz@fastmail.de>
+# SPDX-FileCopyrightText: 2024-2025 Alois.spitzbart <spitz234@hotmail.com>
+# SPDX-FileCopyrightText: 2025-2026 Philipp Kiemle <l10n.daphipz@fastmail.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-04-20 00:45+0000\n"
-"PO-Revision-Date: 2025-12-06 22:20+0100\n"
+"PO-Revision-Date: 2026-04-21 21:00+0200\n"
 "Last-Translator: Philipp Kiemle <l10n.daphipz@fastmail.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.08.3\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
@@ -148,73 +148,73 @@ msgstr "Warten"
 #, kde-format
 msgctxt "train platform"
 msgid "Platform %1"
-msgstr ""
+msgstr "Bahnsteig %1"
 
 #: lib/datatypes/platform.cpp:112
 #, kde-format
 msgctxt "abbreviated train platform"
 msgid "Pl. %1"
-msgstr ""
+msgstr "Bstg. %1"
 
 #: lib/datatypes/platform.cpp:116
 #, kde-format
 msgctxt "bus platform"
 msgid "Platform %1"
-msgstr ""
+msgstr "Bussteig %1"
 
 #: lib/datatypes/platform.cpp:116
 #, kde-format
 msgctxt "abbreviated bus platform"
 msgid "Pl. %1"
-msgstr ""
+msgstr "Bstg. %1"
 
 #: lib/datatypes/platform.cpp:119
 #, kde-format
 msgctxt "boat/ferry pier/terminal"
 msgid "Pier %1"
-msgstr ""
+msgstr "Anleger %1"
 
 #: lib/datatypes/platform.cpp:119
 #, kde-format
 msgctxt "abbreviated boat/ferry pier/terminal"
 msgid "Pier %1"
-msgstr ""
+msgstr "Anl. %1"
 
 #: lib/datatypes/platform.cpp:121
 #, kde-format
 msgctxt "airport gate"
 msgid "Gate %1"
-msgstr ""
+msgstr "Gate %1"
 
 #: lib/datatypes/platform.cpp:121
 #, kde-format
 msgctxt "abbreviated airport gate"
 msgid "Gate %1"
-msgstr ""
+msgstr "Gt. %1"
 
 #: lib/datatypes/platform.cpp:143
 #, kde-format
 msgctxt "train platform"
 msgid "Platform"
-msgstr ""
+msgstr "Bahnsteig"
 
 #: lib/datatypes/platform.cpp:147
 #, kde-format
 msgctxt "bus platform"
 msgid "Platform"
-msgstr ""
+msgstr "Bussteig"
 
 #: lib/datatypes/platform.cpp:150
 #, kde-format
 msgctxt "boat/ferry pier/terminal"
 msgid "Pier"
-msgstr ""
+msgstr "Anleger"
 
 #: lib/datatypes/platform.cpp:152
 #, kde-format
 msgctxt "airport gate"
 msgid "Gate"
-msgstr ""
+msgstr "Gate"
 
 #: lib/datatypes/rentalvehicle.cpp:290
 #, kde-format
@@ -438,13 +438,13 @@ msgstr "Standort kann nicht ermittelt werden."
 #, kde-format
 msgctxt "departure stop"
 msgid "From %1"
-msgstr ""
+msgstr "Von %1"
 
 #: quick/StopoverFormDelegate.qml:151
 #, kde-format
 msgctxt "@action:button"
 msgid "Show More…"
-msgstr ""
+msgstr "Mehr anzeigen …"
 
 #: quick/StopoverInformationView.qml:43
 #, kde-format
