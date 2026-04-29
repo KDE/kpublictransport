@@ -6,6 +6,9 @@
 
 #include "gbfsreader.h"
 
+#include <KPublicTransport/RentalVehicle>
+
+#include <QColor>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -92,4 +95,15 @@ QString GBFSReader::readLocalizedString(const QJsonObject &obj, QLatin1String ke
 
     auto res = findLang(u"en");
     return res.isEmpty() ? texts.at(0).toObject().value("text"_L1).toString() : res;
+}
+
+RentalVehicleNetwork GBFSReader::readSystemInformation(const QJsonObject &sysInfo)
+{
+    RentalVehicleNetwork network;
+    network.setName(GBFSReader::readLocalizedString(sysInfo, "name"_L1));
+    network.setUrl(QUrl(sysInfo.value("url"_L1).toString()));
+    if (const auto c = sysInfo.value("brand_assets"_L1).toObject().value("color"_L1).toString(); !c.isEmpty()) {
+        network.setBrandColor(QColor::fromString(c));
+    }
+    return network;
 }

@@ -15,6 +15,8 @@ class QString;
 
 namespace KPublicTransport {
 
+class RentalVehicleNetwork;
+
 /** Utility methods for reading GBFS data. */
 namespace GBFSReader
 {
@@ -31,6 +33,9 @@ namespace GBFSReader
 
     /** Read a localized string value. */
     [[nodiscard]] QString readLocalizedString(const QJsonObject &obj, QLatin1String key);
+
+    /** Read system information data. */
+    [[nodiscard]] RentalVehicleNetwork readSystemInformation(const QJsonObject &sysInfo);
 }
 
 }

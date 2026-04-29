@@ -4,6 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include "testhelpers.h"
+
 #include "../src/lib/gbfs/gbfsreader.cpp"
 
 #include <QJsonDocument>
@@ -12,6 +14,7 @@
 
 #include <cmath>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 class GBFSReaderTest : public QObject
@@ -31,6 +34,31 @@ private Q_SLOTS:
         obj = {};
         QCOMPARE(GBFSReader::readLatitude(obj), NAN);
         QCOMPARE(GBFSReader::readLongitude(obj), NAN);
+    }
+
+    void testReadVehicleNetwork_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("outFileName");
+
+        QTest::newRow("bolt-oslo-3.0")
+            << u"" SOURCE_DIR "/data/gbfs/bolt-oslo-gbfs2.3.in.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/bolt-oslo-gbfs2.3.out.json"_s;
+        QTest::newRow("voi-oslo-3.0")
+            << u"" SOURCE_DIR "/data/gbfs/voi-oslo-gbfs3.0.in.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/voi-oslo-gbfs3.0.out.json"_s;
+    }
+
+    void testReadVehicleNetwork()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, outFileName);
+
+        const auto net = GBFSReader::readSystemInformation(QJsonDocument::fromJson(Test::readFile(inFileName)).object());
+        const auto resultJson = RentalVehicleNetwork::toJson(net);
+        const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).object();
+        QVERIFY(!resultJson.isEmpty());
+        QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));
     }
 };
 

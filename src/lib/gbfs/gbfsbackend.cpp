@@ -102,14 +102,9 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
     GBFSStore store(service.systemId);
     GBFSVehicleTypes vehicleTypes(service);
 
-    RentalVehicleNetwork network;
     const auto sysInfoDoc = store.loadData(GBFS::SystemInformation);
     const auto sysInfo = GBFSReader::dataObject(sysInfoDoc);
-    network.setName(sysInfo.value("name"_L1).toString());
-    network.setUrl(QUrl(sysInfo.value("url"_L1).toString()));
-    if (const auto c = sysInfo.value("brand_assets"_L1).toObject().value("color"_L1).toString(); !c.isEmpty()) {
-        network.setBrandColor(QColor::fromString(c));
-    }
+    const auto network = GBFSReader::readSystemInformation(sysInfo);
 
     const auto stationsDoc = store.loadData(GBFS::StationInformation);
     const auto stations = GBFSReader::dataValue(stationsDoc, QLatin1String("stations")).toArray();
@@ -226,15 +221,15 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
     }
 
     Attribution attr;
-    attr.setLicense(sysInfo.value(QLatin1String("license_id")).toString());
-    attr.setLicenseUrl(QUrl(sysInfo.value(QLatin1String("license_url")).toString()));
-    attr.setName(sysInfo.value(QLatin1String("attribution_organization_name")).toString());
+    attr.setLicense(sysInfo.value("license_id"_L1).toString());
+    attr.setLicenseUrl(QUrl(sysInfo.value("license_url"_L1).toString()));
+    attr.setName(GBFSReader::readLocalizedString(sysInfo, "attribution_organization_name"_L1));
     if (attr.name().isEmpty()) {
         attr.setName(network.name());
     }
-    attr.setUrl(QUrl(sysInfo.value(QLatin1String("attribution_url")).toString()));
+    attr.setUrl(QUrl(sysInfo.value("attribution_url"_L1).toString()));
     if (attr.url().isEmpty()) {
-        attr.setUrl(QUrl(sysInfo.value(QLatin1String("url")).toString()));
+        attr.setUrl(QUrl(sysInfo.value("url"_L1).toString()));
     }
 
     if (attr.hasLicense()) {
