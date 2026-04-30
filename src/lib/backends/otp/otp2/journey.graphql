@@ -39,6 +39,11 @@ query journeys(
                 from { ...locationFragment }
                 to { ...locationFragment }
                 pickupType
+                pickupBookingInfo {
+                    contactInfo {
+                        bookingUrl
+                    }
+                }
                 dropoffType
                 trip {
                     id: gtfsId

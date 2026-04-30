@@ -669,6 +669,8 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
         if (routeData.occupancy != Load::Unknown) {
             section.setLoadInformation({routeData.occupancy});
         }
+
+        section.setBookingUrl(QUrl(obj.value("pickupBookingInfo"_L1).toObject().value("contactInfo"_L1).toObject().value("bookingUrl"_L1).toString()));
     } else {
         const auto mode = obj.value(QLatin1String("mode")).toString();
         const auto isRented = obj.value(QLatin1String("rentedBike")).toBool();
