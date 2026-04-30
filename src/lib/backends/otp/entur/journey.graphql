@@ -95,6 +95,11 @@ query journeys(
             legStepText: streetName
         }
         occupancy: fromEstimatedCall { occupancyStatus }
+        pickupBookingInfo: bookingArrangements {
+            contactInfo: bookingContact {
+                bookingUrl: url
+            }
+        }
       }
     }
   }
