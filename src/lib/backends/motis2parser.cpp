@@ -203,10 +203,10 @@ Stopover Motis2Parser::parsePlace(const QJsonObject &obj, bool hasRealTime) cons
     return res;
 }
 
-Route Motis2Parser::parseRoute(const QJsonObject &obj) const
+Motis2Parser::MotisRoute Motis2Parser::parseRoute(const QJsonObject &obj) const
 {
     Line line;
-    Route route;
+    MotisRoute res;
 
     if (const auto mode = Gtfs::Hvt::typeToMode(obj.value("routeType"_L1).toInt(-1)); mode != Line::Unknown) {
         line.setMode(mode);
@@ -228,9 +228,9 @@ Route Motis2Parser::parseRoute(const QJsonObject &obj) const
         const auto cleanedTripName = stripLeadingZeros(tripName);
         if (line.name().endsWith(" ("_L1 + cleanedTripName + ')'_L1)) {
             line.setName(line.name().chopped(cleanedTripName.size() + 3));
-            route.setName(cleanedTripName.toString());
+            res.route.setName(cleanedTripName.toString());
         } else if (!line.name().contains(cleanedTripName)) {
-            route.setName(tripName);
+            res.route.setName(tripName);
         }
     }
 
@@ -239,11 +239,16 @@ Route Motis2Parser::parseRoute(const QJsonObject &obj) const
     line.setColor(QColor::fromString('#'_L1 + obj.value("routeColor"_L1).toString()));
     line.setTextColor(QColor::fromString('#'_L1 + obj.value("routeTextColor"_L1).toString()));
 
-    route.setDirection(obj.value("headsign"_L1).toString());
-    route.setDestination(parsePlace(obj.value("tripTo"_L1).toObject(), false).stopPoint());
-    route.setLine(line);
+    res.route.setDirection(obj.value("headsign"_L1).toString());
+    res.route.setDestination(parsePlace(obj.value("tripTo"_L1).toObject(), false).stopPoint());
+    res.route.setLine(line);
 
-    return route;
+    // Amarillo rideshare booking URLs
+    if (res.route.line().mode() == Line::RideShare) {
+        res.bookingUrl = QUrl(obj.value("routeUrl"_L1).toString());
+    }
+
+    return res;
 }
 
 [[nodiscard]] static QPolygonF parsePolyLine(const QJsonObject &encodedPolyline)
@@ -326,7 +331,9 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
 
         if (s.mode() == JourneySection::PublicTransport) {
             s.setIdentifier(m_locIdentifierType, leg.value("tripId"_L1).toString());
-            s.setRoute(parseRoute(leg));
+            const auto [route, bookingUrl] = parseRoute(leg);
+            s.setRoute(route);
+            s.setBookingUrl(bookingUrl);
 
             const auto intermediateStops = leg.value("intermediateStops"_L1).toArray();
             std::vector<Stopover> stops;
@@ -442,7 +449,7 @@ std::vector<Stopover> Motis2Parser::parseStopTimes(const QByteArray &data, bool 
         const auto hasRealTime = stop.value("realTime"_L1).toBool();
         auto s = parsePlace(stop.value("place"_L1).toObject(), hasRealTime);
         s.setTripIdentifier(m_locIdentifierType, stop.value("tripId"_L1).toString());
-        s.setRoute(parseRoute(stop));
+        s.setRoute(parseRoute(stop).route);
 
         if (stop.value("cancelled"_L1).toBool()) {
             s.setDisruptionEffect(Disruption::NoService);

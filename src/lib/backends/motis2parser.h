@@ -8,6 +8,8 @@
 
 #include "kpublictransport_export.h"
 
+#include <KPublicTransport/Line>
+
 #include <QUrl>
 
 #include <vector>
@@ -19,7 +21,6 @@ namespace KPublicTransport {
 class Location;
 class Journey;
 class Path;
-class Route;
 class Stopover;
 
 /** Response parsing for Motis v2.
@@ -43,7 +44,11 @@ public:
 
 private:
     [[nodiscard]] Stopover parsePlace(const QJsonObject &obj, bool hasRealTime) const;
-    [[nodiscard]] Route parseRoute(const QJsonObject &obj) const;
+    struct MotisRoute {
+        Route route;
+        QUrl bookingUrl;
+    };
+    [[nodiscard]] MotisRoute parseRoute(const QJsonObject &obj) const;
     void parseCursors(const QJsonObject &obj);
 
     QString m_locIdentifierType;
