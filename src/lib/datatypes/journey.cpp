@@ -1008,7 +1008,6 @@ std::vector<JourneySection> JourneySection::fromJson(const QJsonArray &array)
 
 
 KPUBLICTRANSPORT_MAKE_GADGET(Journey)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Journey, QUrl, bookingUrl, setBookingUrl)
 
 const std::vector<JourneySection>& Journey::sections() const
 {
@@ -1123,6 +1122,39 @@ Load::Category Journey::maximumOccupancy() const
     return std::accumulate(d->sections.begin(), d->sections.end(), Load::Unknown, [](auto l, const auto &jny) {
         return std::max(l, jny.maximumOccupancy());
     });
+}
+
+[[nodiscard]] static bool isBookableSection(const JourneySection &sec)
+{
+    return sec.mode() == JourneySection::PublicTransport || sec.mode() == JourneySection::RentedVehicle;
+}
+
+QUrl Journey::bookingUrl() const
+{
+    if (!d->bookingUrl.isEmpty()) {
+        return d->bookingUrl;
+    }
+
+    for (auto it = d->sections.begin(); it != d->sections.end(); ++it) {
+        if (!isBookableSection(*it)) {
+            continue;
+        }
+        if (std::none_of(std::next(it), d->sections.end(), isBookableSection)) {
+            return (*it).bookingUrl();
+        }
+        break;
+    }
+
+    return {};
+}
+
+void Journey::setBookingUrl(const QUrl &value)
+{
+    if (d->bookingUrl == value) {
+        return;
+    }
+    d.detach();
+    d->bookingUrl = value;
 }
 
 void Journey::applyMetaData(bool download)
