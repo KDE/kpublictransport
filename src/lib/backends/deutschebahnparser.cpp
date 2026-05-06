@@ -200,11 +200,21 @@ static std::vector<LoadInfo> parseOccupancyInformation(const QJsonObject &obj)
 [[nodiscard]] static JourneySection parseJourneySection(const QJsonObject &sectionObj)
 {
     JourneySection section;
+    if (const auto depObj = sectionObj.value("abfahrt"_L1).toObject(); !depObj.isEmpty()) {
+        section.setScheduledDepartureTime(QDateTime::fromString(depObj.value("sollzeit"_L1).toString(), Qt::ISODate));
+        section.setExpectedDepartureTime(QDateTime::fromString(depObj.value("echtzeit"_L1).toString(), Qt::ISODate));
+    } else {
+        section.setScheduledDepartureTime(QDateTime::fromString(sectionObj.value("abfahrtsZeitpunkt"_L1).toString(), Qt::ISODate));
+        section.setExpectedDepartureTime(QDateTime::fromString(sectionObj.value("ezAbfahrtsZeitpunkt"_L1).toString(), Qt::ISODate));
+    }
 
-    section.setScheduledDepartureTime(QDateTime::fromString(sectionObj.value("abfahrtsZeitpunkt"_L1).toString(), Qt::ISODate));
-    section.setExpectedDepartureTime(QDateTime::fromString(sectionObj.value("ezAbfahrtsZeitpunkt"_L1).toString(), Qt::ISODate));
-    section.setScheduledArrivalTime(QDateTime::fromString(sectionObj.value("ankunftsZeitpunkt"_L1).toString(), Qt::ISODate));
-    section.setExpectedArrivalTime(QDateTime::fromString(sectionObj.value("ezAnkunftsZeitpunkt"_L1).toString(), Qt::ISODate));
+    if (const auto arrObj = sectionObj.value("ankunft"_L1).toObject(); !arrObj.isEmpty()) {
+        section.setScheduledArrivalTime(QDateTime::fromString(arrObj.value("sollzeit"_L1).toString(), Qt::ISODate));
+        section.setExpectedArrivalTime(QDateTime::fromString(arrObj.value("echtzeit"_L1).toString(), Qt::ISODate));
+    } else {
+        section.setScheduledArrivalTime(QDateTime::fromString(sectionObj.value("ankunftsZeitpunkt"_L1).toString(), Qt::ISODate));
+        section.setExpectedArrivalTime(QDateTime::fromString(sectionObj.value("ezAnkunftsZeitpunkt"_L1).toString(), Qt::ISODate));
+    }
 
     applyNotes(section, sectionObj.value("himMeldungen"_L1).toArray());
     applyNotes(section, sectionObj.value("priorisierteMeldungen"_L1).toArray());
@@ -216,10 +226,22 @@ static std::vector<LoadInfo> parseOccupancyInformation(const QJsonObject &obj)
 [[nodiscard]] static Stopover parseIntermediateStop(const QJsonObject &stopObj, const HafasMgateParser &hafasParser)
 {
     Stopover stop;
-    stop.setScheduledDepartureTime(QDateTime::fromString(stopObj.value("abfahrtsZeitpunkt"_L1).toString(), Qt::ISODate));
-    stop.setExpectedDepartureTime(QDateTime::fromString(stopObj.value("ezAbfahrtsZeitpunkt"_L1).toString(), Qt::ISODate));
-    stop.setScheduledArrivalTime(QDateTime::fromString(stopObj.value("ankunftsZeitpunkt"_L1).toString(), Qt::ISODate));
-    stop.setExpectedArrivalTime(QDateTime::fromString(stopObj.value("ezAnkunftsZeitpunkt"_L1).toString(), Qt::ISODate));
+    if (const auto depObj = stopObj.value("abfahrt"_L1).toObject(); !depObj.isEmpty()) {
+        stop.setScheduledDepartureTime(QDateTime::fromString(depObj.value("sollzeit"_L1).toString(), Qt::ISODate));
+        stop.setExpectedDepartureTime(QDateTime::fromString(depObj.value("echtzeit"_L1).toString(), Qt::ISODate));
+    } else {
+        stop.setScheduledDepartureTime(QDateTime::fromString(stopObj.value("abfahrtsZeitpunkt"_L1).toString(), Qt::ISODate));
+        stop.setExpectedDepartureTime(QDateTime::fromString(stopObj.value("ezAbfahrtsZeitpunkt"_L1).toString(), Qt::ISODate));
+    }
+
+    if (const auto arrObj = stopObj.value("ankunft"_L1).toObject(); !arrObj.isEmpty()) {
+        stop.setScheduledArrivalTime(QDateTime::fromString(arrObj.value("sollzeit"_L1).toString(), Qt::ISODate));
+        stop.setExpectedArrivalTime(QDateTime::fromString(arrObj.value("echtzeit"_L1).toString(), Qt::ISODate));
+    } else {
+        stop.setScheduledArrivalTime(QDateTime::fromString(stopObj.value("ankunftsZeitpunkt"_L1).toString(), Qt::ISODate));
+        stop.setExpectedArrivalTime(QDateTime::fromString(stopObj.value("ezAnkunftsZeitpunkt"_L1).toString(), Qt::ISODate));
+    }
+
     stop.setScheduledPlatform(stopObj.value("gleis"_L1).toString());
     stop.setExpectedPlatform(stopObj.value("ezGleis"_L1).toString());
 
