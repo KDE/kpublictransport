@@ -73,6 +73,12 @@
                 "url": "https://www.kvv-nextbike.de/de/"
             },
             "type": "Bicycle",
+            "vehicleType": {
+                "formFactor": "Bicycle",
+                "id": "196",
+                "name": "mit Rahmenschloss",
+                "propulsionType": "Human"
+            },
             "webBookingUrl": "https://nxtb.it/p/586413358"
         },
         "type": "RentedVehicle"
@@ -91,6 +97,12 @@
                 "url": "https://www.kvv-nextbike.de/de/"
             },
             "type": "Bicycle",
+            "vehicleType": {
+                "formFactor": "Bicycle",
+                "id": "196",
+                "name": "mit Rahmenschloss",
+                "propulsionType": "Human"
+            },
             "webBookingUrl": "https://nxtb.it/p/586409090"
         },
         "type": "RentedVehicle"
@@ -109,6 +121,12 @@
                 "url": "https://www.kvv-nextbike.de/de/"
             },
             "type": "Bicycle",
+            "vehicleType": {
+                "formFactor": "Bicycle",
+                "id": "196",
+                "name": "mit Rahmenschloss",
+                "propulsionType": "Human"
+            },
             "webBookingUrl": "https://nxtb.it/p/586403038"
         },
         "type": "RentedVehicle"
@@ -127,6 +145,12 @@
                 "url": "https://www.kvv-nextbike.de/de/"
             },
             "type": "Bicycle",
+            "vehicleType": {
+                "formFactor": "Bicycle",
+                "id": "196",
+                "name": "mit Rahmenschloss",
+                "propulsionType": "Human"
+            },
             "webBookingUrl": "https://nxtb.it/p/586398258"
         },
         "type": "RentedVehicle"
@@ -145,6 +169,12 @@
                 "url": "https://www.kvv-nextbike.de/de/"
             },
             "type": "Bicycle",
+            "vehicleType": {
+                "formFactor": "Bicycle",
+                "id": "196",
+                "name": "mit Rahmenschloss",
+                "propulsionType": "Human"
+            },
             "webBookingUrl": "https://nxtb.it/p/586410673"
         },
         "type": "RentedVehicle"
@@ -163,6 +193,12 @@
                 "url": "https://www.kvv-nextbike.de/de/"
             },
             "type": "Bicycle",
+            "vehicleType": {
+                "formFactor": "Bicycle",
+                "id": "196",
+                "name": "mit Rahmenschloss",
+                "propulsionType": "Human"
+            },
             "webBookingUrl": "https://nxtb.it/p/586411425"
         },
         "type": "RentedVehicle"

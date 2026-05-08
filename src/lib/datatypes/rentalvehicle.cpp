@@ -8,6 +8,7 @@
 #include "datatypes_p.h"
 #include "individualtransport.h"
 #include "json_p.h"
+#include "rentalvehicleutil_p.h"
 
 #include "gbfs/gbfsreader.h"
 #include "gbfs/gbfsvehicletypes.h"
@@ -57,9 +58,9 @@ public:
 class RentalVehiclePrivate : public QSharedData
 {
 public:
-    RentalVehicle::VehicleType type = RentalVehicle::Unknown;
     int remainingRange = -1;
     KPublicTransport::RentalVehicleNetwork network;
+    KPublicTransport::RentalVehicleType vehicleType;
     QUrl webBookingUrl;
     QUrl appBookingUrl;
 };
@@ -336,11 +337,38 @@ RentalVehicleStation RentalVehicleStation::fromJson(const QJsonObject &obj)
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(RentalVehicle)
-KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, RentalVehicle::VehicleType, type, setType)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, int, remainingRange, setRemainingRange)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, RentalVehicleNetwork, network, setNetwork)
+KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, RentalVehicleType, vehicleType, setVehicleType)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, QUrl, webBookingUrl, setWebBookingUrl)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, QUrl, appBookingUrl, setAppBookingUrl)
+
+RentalVehicle::VehicleType RentalVehicle::type() const
+{
+    return RentalVehicleUtil::fromGbfsVehicleType(d->vehicleType);
+}
+
+void RentalVehicle::setType(RentalVehicle::VehicleType value)
+{
+    struct {
+        RentalVehicle::VehicleType type;
+        RentalVehicleType::FormFactor formFactor;
+        RentalVehicleType::PropulsionType propulsionType;
+    } static constexpr const type_map[] = {
+        { RentalVehicle::Bicycle, RentalVehicleType::FormFactor::Bicycle, RentalVehicleType::PropulsionType::Human },
+        { RentalVehicle::Pedelec, RentalVehicleType::FormFactor::Bicycle, RentalVehicleType::PropulsionType::ElectricAssist },
+        { RentalVehicle::ElectricKickScooter, RentalVehicleType::FormFactor::ScooterStanding, RentalVehicleType::PropulsionType::Electric },
+        { RentalVehicle::ElectricMoped, RentalVehicleType::FormFactor::Moped, RentalVehicleType::PropulsionType::Electric },
+        { RentalVehicle::Car, RentalVehicleType::FormFactor::Car, RentalVehicleType::PropulsionType::Undefined },
+    };
+
+    const auto it = std::ranges::find_if(type_map, [value](const auto &m) { return m.type == value; });
+    if (it == std::end(type_map)) {
+        d->vehicleType = {};
+    }
+    d->vehicleType.setFormFactor((*it).formFactor);
+    d->vehicleType.setPropulsionType((*it).propulsionType);
+}
 
 QString RentalVehicle::vehicleTypeIconName(VehicleType type)
 {
@@ -362,7 +390,7 @@ QString RentalVehicle::vehicleTypeIconName(VehicleType type)
 
 QString RentalVehicle::vehicleTypeIconName() const
 {
-    return vehicleTypeIconName(type());
+    return RentalVehicleType::typeIconName(d->vehicleType.formFactor(), d->vehicleType.propulsionType());
 }
 
 QString RentalVehicle::label() const
@@ -388,18 +416,25 @@ QJsonObject RentalVehicle::toJson(const RentalVehicle &vehicle)
 {
     auto obj = Json::toJson(vehicle);
     if (vehicle.d->remainingRange < 0) {
-        obj.remove(QLatin1String("remainingRange"));
+        obj.remove("remainingRange"_L1);
     }
     if (vehicle.network().isValid()) {
-        obj.insert(QLatin1String("network"), RentalVehicleNetwork::toJson(vehicle.network()));
+        obj.insert("network"_L1, RentalVehicleNetwork::toJson(vehicle.network()));
     }
+    obj.insert("vehicleType"_L1, RentalVehicleType::toJson(vehicle.d->vehicleType));
     return obj;
 }
 
 RentalVehicle RentalVehicle::fromJson(const QJsonObject &obj)
 {
     auto v = Json::fromJson<RentalVehicle>(obj);
-    v.setNetwork(RentalVehicleNetwork::fromJson(obj.value(QLatin1String("network")).toObject()));
+    v.setNetwork(RentalVehicleNetwork::fromJson(obj.value("network"_L1).toObject()));
+    if (const auto vtObj = obj.value("vehicleType"_L1).toObject(); !vtObj.isEmpty()) {
+        v.setVehicleType(RentalVehicleType::fromJson(vtObj));
+    } else if (const auto type = obj.value("type"_L1).toString(); !type.isEmpty()) {
+        // backward compat
+        v.setType(static_cast<RentalVehicle::VehicleType>(QMetaEnum::fromType<RentalVehicle::VehicleType>().keyToValue(type.toUtf8().constData())));
+    }
     return v;
 }
 

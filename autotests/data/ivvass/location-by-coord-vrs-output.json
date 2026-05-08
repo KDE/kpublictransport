@@ -96,7 +96,11 @@
         "name": "KVB-Rad 21596",
         "region": "DE-NW",
         "rentalVehicle": {
-            "type": "Unknown"
+            "type": "Unknown",
+            "vehicleType": {
+                "formFactor": "Undefined",
+                "propulsionType": "Undefined"
+            }
         },
         "type": "RentedVehicle"
     },
@@ -110,7 +114,11 @@
         "name": "KVB-Rad 210004",
         "region": "DE-NW",
         "rentalVehicle": {
-            "type": "Unknown"
+            "type": "Unknown",
+            "vehicleType": {
+                "formFactor": "Undefined",
+                "propulsionType": "Undefined"
+            }
         },
         "type": "RentedVehicle"
     }

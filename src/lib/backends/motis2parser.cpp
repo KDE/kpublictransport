@@ -372,7 +372,7 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
             rvNetwork.setBrandColor(QColor::fromString(rentalObj.value("color"_L1).toString()));
 
             RentalVehicle rv;
-            rv.setType(RentalVehicleUtil::fromGbfsVehicleType(vt));
+            rv.setVehicleType(vt);
             rv.setNetwork(rvNetwork);
             rv.setWebBookingUrl(QUrl(rentalObj.value("rentalUriWeb"_L1).toString()));
 #ifdef Q_OS_ANDROID
@@ -633,6 +633,7 @@ std::vector<Location> Motis2Parser::parseRentals(const QByteArray &data) const
             vt.setName(typeObj.value("name"_L1).toString());
             vt.setFormFactor(GBFSVehicleType::toFormFactor(typeObj.value("formFactor"_L1).toString()));
             vt.setPropulsionType(GBFSVehicleType::toPropulsionType(typeObj.value("propulsionType"_L1).toString()));
+            vt.setReturnConstraint(GBFSVehicleType::toReturnConstraint(typeObj.value("returnConstraint"_L1).toString()));
 
             providerVehicleTypes[vt.id()] = std::move(vt);
         }
@@ -704,7 +705,7 @@ std::vector<Location> Motis2Parser::parseRentals(const QByteArray &data) const
         v.setNetwork(providers[providerId]);
 
         const auto &vt = vehicleTypes[providerId][vehicleObj.value("typeId"_L1).toString()];
-        v.setType(RentalVehicleUtil::fromGbfsVehicleType(vt));
+        v.setVehicleType(vt);
         if (!vt.name().isEmpty()) {
             l.setName(vt.name());
         } else {
