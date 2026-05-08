@@ -48,6 +48,9 @@ public:
     /** Sharing network operator. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicleNetwork, network, setNetwork)
 
+    /** Vehicle type information. */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicleType, vehicleType, setVehicleType)
+
     /** Remaining range of the vehicle in meters.
      *  Negative if unknown.
      */
