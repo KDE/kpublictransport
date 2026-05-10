@@ -85,7 +85,7 @@ QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj, b
             RentalVehicleType vt;
             vt.setFormFactor(GBFSVehicleType::toFormFactor(typeObj.value("formFactor"_L1).toString()));
             vt.setPropulsionType(GBFSVehicleType::toPropulsionType(typeObj.value("propulsionType"_L1).toString()));
-            v.setType(RentalVehicleUtil::fromGbfsVehicleType(vt));
+            v.setVehicleType(vt);
         } else {
             v.setType(type);
         }
@@ -692,7 +692,10 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
             } else if (to.rentalVehicleStation().network().isValid()) {
                 v.setNetwork(to.rentalVehicleStation().network());
             }
-            v.setType(RentalVehicle::Bicycle);
+            RentalVehicleType vt;
+            vt.setFormFactor(RentalVehicleType::FormFactor::Bicycle);
+            vt.setPropulsionType(RentalVehicleType::PropulsionType::Human);
+            v.setVehicleType(vt);
             if (v.network().isValid() || isRented) {
                 section.setMode(JourneySection::RentedVehicle);
                 section.setRentalVehicle(v);

@@ -78,7 +78,6 @@
                     "network": {
                         "name": "RegioRad"
                     },
-                    "type": "Bicycle",
                     "vehicleType": {
                         "formFactor": "Bicycle",
                         "propulsionType": "Human"
@@ -133,7 +132,6 @@
                 "distance": 895,
                 "mode": "RentedVehicle",
                 "rentalVehicle": {
-                    "type": "Bicycle",
                     "vehicleType": {
                         "formFactor": "Bicycle",
                         "propulsionType": "Human"

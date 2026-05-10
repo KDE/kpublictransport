@@ -1543,7 +1543,6 @@
                     ]
                 },
                 "rentalVehicle": {
-                    "type": "Bicycle",
                     "vehicleType": {
                         "formFactor": "Bicycle",
                         "propulsionType": "Human"

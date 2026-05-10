@@ -34,7 +34,6 @@
             "network": {
                 "name": "cargo-bike"
             },
-            "type": "Bicycle",
             "vehicleType": {
                 "formFactor": "Bicycle",
                 "propulsionType": "Human"

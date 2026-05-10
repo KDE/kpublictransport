@@ -20,6 +20,7 @@ class RentalVehicleStation;
 /** Internal helpers for rental vehicles. */
 namespace RentalVehicleUtil
 {
+    RentalVehicleType merge(const RentalVehicleType &lhs, const RentalVehicleType &rhs);
     RentalVehicleNetwork merge(const RentalVehicleNetwork &lhs, const RentalVehicleNetwork &rhs);
     RentalVehicleStation merge(const RentalVehicleStation &lhs, const RentalVehicleStation &rhs);
     RentalVehicle merge(const RentalVehicle &lhs, const RentalVehicle &rhs);

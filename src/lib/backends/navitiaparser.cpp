@@ -307,7 +307,10 @@ JourneySection NavitiaParser::parseJourneySection(const QJsonObject &obj) const
             if (section.from().type() == Location::RentedVehicleStation) {
                 section.setMode(JourneySection::RentedVehicle);
                 RentalVehicle v;
-                v.setType(RentalVehicle::Bicycle);
+                RentalVehicleType vt;
+                vt.setFormFactor(RentalVehicleType::FormFactor::Bicycle);
+                vt.setPropulsionType(RentalVehicleType::PropulsionType::Human);
+                v.setVehicleType(vt);
                 v.setNetwork(section.from().rentalVehicleStation().network());
                 section.setRentalVehicle(v);
             } else {

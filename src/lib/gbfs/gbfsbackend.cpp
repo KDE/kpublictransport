@@ -210,7 +210,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
             vehicleTypeId = bike.value(QLatin1String("vehicle_type")).toString();
         }
         const auto vehicleType = vehicleTypes.vehicleType(vehicleTypeId);
-        vehicle.setType(RentalVehicleUtil::fromGbfsVehicleType(vehicleType));
+        vehicle.setVehicleType(vehicleType);
         if (!vehicleType.name().isEmpty()) {
             loc.setName(vehicleType.name());
         }
