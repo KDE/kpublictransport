@@ -42,8 +42,10 @@ public:
     Q_DECLARE_FLAGS(VehicleTypes, VehicleType)
     Q_FLAG(VehicleTypes)
 
-    /** Vehicle type. */
-    KPUBLICTRANSPORT_PROPERTY(VehicleType, type, setType)
+    /** Vehicle type.
+     *  @deprecated use vehicleType
+     */
+    Q_PROPERTY(VehicleType type READ type WRITE setType STORED false)
 
     /** Sharing network operator. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicleNetwork, network, setNetwork)
@@ -72,6 +74,9 @@ public:
 public:
     [[nodiscard]] QString vehicleTypeIconName() const;
     [[nodiscard]] QString label() const;
+
+    [[nodiscard]] [[deprecated("use RentalVehicleType")]] VehicleType type() const;
+    [[deprecated("use RentalVehicleType")]] void setType(VehicleType value);
 
     /** Icon representing the vehicle type.
      *  Can be a qrc: URL or an XDG icon name.

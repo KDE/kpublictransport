@@ -11,6 +11,12 @@
 
 using namespace KPublicTransport;
 
+RentalVehicleType RentalVehicleUtil::merge(const RentalVehicleType &lhs, const RentalVehicleType &rhs)
+{
+    // TODO
+    return lhs.formFactor() == RentalVehicleType::FormFactor::Undefined ? rhs : lhs;
+}
+
 RentalVehicleNetwork RentalVehicleUtil::merge(const RentalVehicleNetwork &lhs, const RentalVehicleNetwork &rhs)
 {
     // TODO
@@ -30,7 +36,7 @@ RentalVehicle RentalVehicleUtil::merge(const RentalVehicle &lhs, const RentalVeh
 {
     auto v = lhs;
     v.setNetwork(RentalVehicleUtil::merge(lhs.network(), rhs.network()));
-    v.setType(std::max(lhs.type(), rhs.type()));
+    v.setVehicleType(RentalVehicleUtil::merge(lhs.vehicleType(), rhs.vehicleType()));
     return v;
 }
 

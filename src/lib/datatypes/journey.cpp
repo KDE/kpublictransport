@@ -931,7 +931,7 @@ QJsonObject JourneySection::toJson(const JourneySection &section)
     if (section.d->disruptionEffect == Disruption::NormalService) {
         obj.remove("disruptionEffect"_L1);
     }
-    if (section.rentalVehicle().type() != RentalVehicle::Unknown) {
+    if (section.rentalVehicle().vehicleType().formFactor() != RentalVehicleType::FormFactor::Undefined) {
         obj.insert("rentalVehicle"_L1, RentalVehicle::toJson(section.rentalVehicle()));
     }
 

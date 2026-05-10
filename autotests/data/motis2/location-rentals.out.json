@@ -72,7 +72,6 @@
                 "name": "KVV.nextbike",
                 "url": "https://www.kvv-nextbike.de/de/"
             },
-            "type": "Bicycle",
             "vehicleType": {
                 "formFactor": "Bicycle",
                 "id": "196",
@@ -96,7 +95,6 @@
                 "name": "KVV.nextbike",
                 "url": "https://www.kvv-nextbike.de/de/"
             },
-            "type": "Bicycle",
             "vehicleType": {
                 "formFactor": "Bicycle",
                 "id": "196",
@@ -120,7 +118,6 @@
                 "name": "KVV.nextbike",
                 "url": "https://www.kvv-nextbike.de/de/"
             },
-            "type": "Bicycle",
             "vehicleType": {
                 "formFactor": "Bicycle",
                 "id": "196",
@@ -144,7 +141,6 @@
                 "name": "KVV.nextbike",
                 "url": "https://www.kvv-nextbike.de/de/"
             },
-            "type": "Bicycle",
             "vehicleType": {
                 "formFactor": "Bicycle",
                 "id": "196",
@@ -168,7 +164,6 @@
                 "name": "KVV.nextbike",
                 "url": "https://www.kvv-nextbike.de/de/"
             },
-            "type": "Bicycle",
             "vehicleType": {
                 "formFactor": "Bicycle",
                 "id": "196",
@@ -192,7 +187,6 @@
                 "name": "KVV.nextbike",
                 "url": "https://www.kvv-nextbike.de/de/"
             },
-            "type": "Bicycle",
             "vehicleType": {
                 "formFactor": "Bicycle",
                 "id": "196",

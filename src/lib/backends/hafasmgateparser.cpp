@@ -837,7 +837,9 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj)
                         section.setMode(JourneySection::RentedVehicle);
                         RentalVehicle v;
                         v.setNetwork(section.from().rentalVehicleStation().network());
-                        v.setType(RentalVehicle::Bicycle); // TODO we also get here for kick scooters?
+                        RentalVehicleType vt;
+                        vt.setFormFactor(RentalVehicleType::FormFactor::Bicycle); // TODO we also get here for kick scooters?
+                        v.setVehicleType(vt);
                         section.setRentalVehicle(v);
                     } else {
                         section.setMode(JourneySection::IndividualTransport);
@@ -851,7 +853,9 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj)
                 } else if (typeStr == QLatin1String("KISS")) {
                     section.setMode(JourneySection::RentedVehicle);
                     RentalVehicle v;
-                    v.setType(RentalVehicle::Car);
+                    RentalVehicleType vt;
+                    vt.setFormFactor(RentalVehicleType::FormFactor::Car);
+                    v.setVehicleType(vt);
                     section.setRentalVehicle(v);
                 } else {
                     qCWarning(Log) << "Unhandled section mode:" << typeStr;

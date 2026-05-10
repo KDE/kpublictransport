@@ -400,7 +400,6 @@
                     "network": {
                         "name": "RegioRad"
                     },
-                    "type": "Bicycle",
                     "vehicleType": {
                         "formFactor": "Bicycle",
                         "propulsionType": "Human"
@@ -447,7 +446,6 @@
                     "network": {
                         "name": "RegioRad"
                     },
-                    "type": "Bicycle",
                     "vehicleType": {
                         "formFactor": "Bicycle",
                         "propulsionType": "Human"

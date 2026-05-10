@@ -366,6 +366,7 @@ void RentalVehicle::setType(RentalVehicle::VehicleType value)
     if (it == std::end(type_map)) {
         d->vehicleType = {};
     }
+    d.detach();
     d->vehicleType.setFormFactor((*it).formFactor);
     d->vehicleType.setPropulsionType((*it).propulsionType);
 }
@@ -395,18 +396,22 @@ QString RentalVehicle::vehicleTypeIconName() const
 
 QString RentalVehicle::label() const
 {
-    switch (type()) {
-        case RentalVehicle::Unknown:
+    switch (d->vehicleType.formFactor()) {
+        case RentalVehicleType::FormFactor::Undefined:
             break;
-        case RentalVehicle::Bicycle:
-        case RentalVehicle::Pedelec:
+        case RentalVehicleType::FormFactor::Bicycle:
             return i18nc("rental vehicle type", "Rented bike");
-        case RentalVehicle::ElectricMoped:
+        case RentalVehicleType::FormFactor::Moped:
             return i18nc("rental vehicle type", "Rented moped");
-        case RentalVehicle::ElectricKickScooter:
+        case RentalVehicleType::FormFactor::ScooterStanding:
             return i18nc("rental vehicle type", "Rented kick scooter");
-        case RentalVehicle::Car:
+        case RentalVehicleType::FormFactor::Car:
             return i18nc("rental vehicle type", "Rented car");
+        case RentalVehicleType::FormFactor::CargoBicycle:
+            return i18nc("rental vehicle type", "Rented cargo bike");
+        case RentalVehicleType::FormFactor::ScooterSeated: // TODO
+        case RentalVehicleType::FormFactor::Other:
+            return i18nc("rental vehicle type", "Rented vehicle");
     }
 
     return {};

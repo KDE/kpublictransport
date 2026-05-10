@@ -995,7 +995,6 @@
                         "name": "RegioRad Stuttgart",
                         "url": "https://www.regioradstuttgart.de"
                     },
-                    "type": "Bicycle",
                     "vehicleType": {
                         "formFactor": "Bicycle",
                         "propulsionType": "Human"
