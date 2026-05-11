@@ -6,6 +6,7 @@
     <qresource prefix="/">
         <file>journeyquery.qml</file>
         <file>AttributionSheet.qml</file>
+        <file>CoordinatePicker.qml</file>
         <file>IndoorMapPage.qml</file>
         <file>JourneyMapPage.qml</file>
         <file>JourneySectionPage.qml</file>

@@ -21,6 +21,7 @@ Kirigami.ApplicationWindow {
     height: 800
 
     pageStack.initialPage: journyQueryPage
+    pageStack.globalToolBar.style: Kirigami.ApplicationHeaderStyle.ToolBar
 
     Manager {
         id: ptMgr;
@@ -352,6 +353,25 @@ Kirigami.ApplicationWindow {
                 property alias carMode: carMode.checked
             }
 
+            Component {
+                id: fromPicker
+                CoordinatePicker {
+                    onCoordinateChanged: {
+                        fromLat.text = coordinate.latitude;
+                        fromLon.text = coordinate.longitude;
+                    }
+                }
+            }
+            Component {
+                id: toPicker
+                CoordinatePicker {
+                    onCoordinateChanged: {
+                        toLat.text = coordinate.latitude;
+                        toLon.text = coordinate.longitude;
+                    }
+                }
+            }
+
             ColumnLayout {
                 anchors.fill: parent
                 QQC2.CheckBox {
@@ -452,9 +472,15 @@ Kirigami.ApplicationWindow {
                     }
                     QQC2.TextField {
                         id: fromLon
+                        Layout.preferredWidth: 100
                     }
                     QQC2.TextField {
                         id: fromLat
+                        Layout.preferredWidth: 100
+                    }
+                    QQC2.Button {
+                        text: "Pick"
+                        onClicked: Kirigami.ApplicationWindow.window.pageStack.push(fromPicker)
                     }
                 }
 
@@ -479,9 +505,15 @@ Kirigami.ApplicationWindow {
                     }
                     QQC2.TextField {
                         id: toLon
+                        Layout.preferredWidth: 100
                     }
                     QQC2.TextField {
                         id: toLat
+                        Layout.preferredWidth: 100
+                    }
+                    QQC2.Button {
+                        text: "Pick"
+                        onClicked: Kirigami.ApplicationWindow.window.pageStack.push(toPicker)
                     }
                 }
                 QQC2.ComboBox {
