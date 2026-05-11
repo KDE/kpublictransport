@@ -373,15 +373,16 @@ struct {
     { IndividualTransport::Car, 158 }
 };
 
+// undefined acts as a wildcard, evaluation happens in order
 struct {
-    RentalVehicle::VehicleType mode;
+    RentalVehicleType::FormFactor formFactor;
+    RentalVehicleType::PropulsionType propulsion;
     int gramPerKm;
 } static constexpr const emissionForRvModeMap[] = {
-    { RentalVehicle::Bicycle, 0 },
-    // { RentalVehicle::Pedelec, -1 }, TODO
-    // { RentalVehicle::ElectricKickScooter, -1 }, TODO
-    // { RentalVehicle::ElectricMoped, -1 }, TODO
-    { RentalVehicle::Car, 158 },
+    // TODO add more variants
+    { RentalVehicleType::FormFactor::Undefined, RentalVehicleType::PropulsionType::Human, 0 },
+    { RentalVehicleType::FormFactor::Car, RentalVehicleType::PropulsionType::Combustion, 158 },
+    { RentalVehicleType::FormFactor::Car, RentalVehicleType::PropulsionType::CombustionDiesel, 158 },
 };
 
 int JourneySection::co2Emission() const
@@ -421,13 +422,20 @@ int JourneySection::co2Emission() const
         }
         case JourneySection::RentedVehicle:
         {
-            const auto mode = rentalVehicle().type();
-            for (const auto &map :emissionForRvModeMap) {
-                if (map.mode == mode) {
-                    return (map.gramPerKm *distance()) / 1000;
+            const auto vt = rentalVehicle().vehicleType();
+            if (!std::isnan(vt.co2EmissionPerKm())) {
+                return (int)std::round((vt.co2EmissionPerKm() * distance()) / 1000.0);
+            }
+            if (vt.formFactor() != RentalVehicleType::FormFactor::Undefined && vt.propulsionType() != RentalVehicleType::PropulsionType::Undefined) {
+                for (const auto &map : emissionForRvModeMap) {
+                    if ((map.formFactor == vt.formFactor() || map.formFactor == RentalVehicleType::FormFactor::Undefined)
+                     || (map.propulsion == vt.propulsionType() || map.propulsion == RentalVehicleType::PropulsionType::Undefined))
+                    {
+                        return (map.gramPerKm * distance()) / 1000;
+                    }
                 }
             }
-            qCDebug(Log) << "No CO2 emission estimate for vehicle type" << mode;
+            qCDebug(Log) << "No CO2 emission estimate for vehicle type" << vt.formFactor() << vt.propulsionType();
             return -1;
         }
     }
