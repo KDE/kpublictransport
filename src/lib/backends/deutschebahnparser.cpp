@@ -421,7 +421,18 @@ std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journey
             query.addQueryItem(u"hd"_s, sections.front().scheduledDepartureTime().toString(Qt::ISODate));
             query.addQueryItem(u"gh"_s, journeyObj.value("ctxRecon"_L1).toString());
             url.setQuery(query);
-            sections.size() == 1 ? sections[0].setBookingUrl(url) : journey.setBookingUrl(url);
+
+            for (auto it = sections.begin(); it != sections.end(); ++it) {
+                if ((*it).mode() != JourneySection::PublicTransport) {
+                    continue;
+                }
+                if (std::none_of(std::next(it), sections.end(), [](const auto &sec) { return sec.mode() == JourneySection::PublicTransport; })) {
+                    (*it).setBookingUrl(url);
+                    url = {};
+                }
+                break;
+            }
+            journey.setBookingUrl(url);
         }
 
         journey.setSections(std::move(sections));
