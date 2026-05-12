@@ -173,6 +173,10 @@ private Q_SLOTS:
             << s(SOURCE_DIR "/data/otp/de-stadtnavi-bike-parking-journey.in.json")
             << s(SOURCE_DIR "/data/otp/de-stadtnavi-bike-parking-journey.out.json")
             << s(SOURCE_DIR "/../src/lib/networks/de_bw_stadtnavi.json");
+        QTest::newRow("de-stadtnavi-route-name-journey")
+            << s(SOURCE_DIR "/data/otp/de-stadtnavi-route-name-journey.in.json")
+            << s(SOURCE_DIR "/data/otp/de-stadtnavi-route-name-journey.out.json")
+            << s(SOURCE_DIR "/../src/lib/networks/de_bw_stadtnavi.json");
         QTest::newRow("no-entur-navigation-guides")
             << s(SOURCE_DIR "/data/otp/no-entur-navigation-guides.in.json")
             << s(SOURCE_DIR "/data/otp/no-entur-navigation-guides.out.json")
