@@ -567,7 +567,7 @@ QString JourneySection::modeIconName(JourneySection::Mode mode)
         case JourneySection::Waiting:
             return u"qrc:///org.kde.kpublictransport/assets/images/journey-mode-wait.svg"_s;
         case JourneySection::RentedVehicle:
-            return RentalVehicle::vehicleTypeIconName(RentalVehicle::ElectricKickScooter);
+            return RentalVehicleType::typeIconName(RentalVehicleType::FormFactor::ScooterStanding, RentalVehicleType::PropulsionType::Human);
         case JourneySection::IndividualTransport:
             return IndividualTransport::modeIconName(IndividualTransport::Bike);
     }

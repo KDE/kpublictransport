@@ -73,7 +73,7 @@ public:
     /** Icon representing the vehicle type.
      *  Can be a qrc: URL or an XDG icon name.
      */
-    Q_INVOKABLE [[nodiscard]] static QString vehicleTypeIconName(KPublicTransport::RentalVehicle::VehicleType type);
+    Q_INVOKABLE [[nodiscard]] [[deprecated("use RentalVehicleType")]] static QString vehicleTypeIconName(KPublicTransport::RentalVehicle::VehicleType type);
 
     /** Serializes one object to JSON. */
     [[nodiscard]] static QJsonObject toJson(const RentalVehicle &vehicle);
@@ -155,6 +155,11 @@ public:
     };
     Q_ENUM(ReturnConstraint)
     KPUBLICTRANSPORT_PROPERTY(ReturnConstraint, returnConstraint, setReturnConstraint)
+
+    /** Icon representing the vehicle type.
+     *  Can be a qrc: URL or an XDG icon name.
+     */
+    Q_INVOKABLE [[nodiscard]] static QString typeIconName(KPublicTransport::RentalVehicleType::FormFactor formFactor, KPublicTransport::RentalVehicleType::PropulsionType propulsionType);
 
     /** Serializes one object to JSON. */
     [[nodiscard]] static QJsonObject toJson(const RentalVehicleType &vehicleType);
