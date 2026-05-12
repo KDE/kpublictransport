@@ -416,8 +416,14 @@ OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseRoute(const QJsonOb
 {
     auto data = parseLine(obj.value("route"_L1).toObject());
     auto line = data.route.line();
+
+    // heuristic when to use trip rather than route name
     if (const auto name = obj.value("tripShortName"_L1).toString(); !name.isEmpty()) {
-        line.setName(name);
+        if (!line.name().isEmpty() && std::ranges::all_of(name, [](QChar c) { return c.isDigit(); })) {
+            data.route.setName(name);
+        } else {
+            line.setName(name);
+        }
     }
 
     data.route.setLine(line);

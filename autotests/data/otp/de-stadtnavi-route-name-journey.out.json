@@ -1,0 +1,992 @@
+[
+    {
+        "sections": [
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2026-05-13T16:42:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "hbg:de:08111:6002:1:1"
+                        },
+                        "latitude": 48.72707,
+                        "longitude": 9.113927,
+                        "name": "Vaihingen",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2026-05-13T16:38:38Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 48.7257765,
+                        "longitude": 9.1136,
+                        "name": "Origin",
+                        "region": "DE-BW"
+                    }
+                },
+                "distance": 232,
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        9.11364,
+                                        48.72574
+                                    ],
+                                    [
+                                        9.11371,
+                                        48.72578
+                                    ],
+                                    [
+                                        9.11369,
+                                        48.72579
+                                    ],
+                                    [
+                                        9.11306,
+                                        48.72622
+                                    ],
+                                    [
+                                        9.11293,
+                                        48.72632
+                                    ],
+                                    [
+                                        9.1128,
+                                        48.72641
+                                    ],
+                                    [
+                                        9.11272,
+                                        48.72647
+                                    ],
+                                    [
+                                        9.11276,
+                                        48.72649
+                                    ],
+                                    [
+                                        9.11287,
+                                        48.72656
+                                    ],
+                                    [
+                                        9.1129,
+                                        48.72658
+                                    ],
+                                    [
+                                        9.11294,
+                                        48.72655
+                                    ],
+                                    [
+                                        9.11295,
+                                        48.72654
+                                    ],
+                                    [
+                                        9.11307,
+                                        48.7266
+                                    ],
+                                    [
+                                        9.11392,
+                                        48.72711
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2026-05-13T18:26:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "hbg:de:08335:6588:2:3"
+                        },
+                        "latitude": 47.758976,
+                        "longitude": 8.841479,
+                        "name": "Singen (Htw) Bahnhof",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Singen (Htw) Bahnhof",
+                        "line": {
+                            "mode": "Train",
+                            "name": "RE 87",
+                            "operatorName": "DB Fernverkehr AG",
+                            "operatorUrl": "http://www.nvbw.de"
+                        },
+                        "name": "50283"
+                    },
+                    "scheduledDepartureTime": "2026-05-13T16:42:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "hbg:de:08111:6002:1:1"
+                        },
+                        "latitude": 48.72707,
+                        "longitude": 9.113927,
+                        "name": "Vaihingen",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Unknown",
+                                "disruptionEffect": "NormalService",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Unavailable",
+                                "disruptionEffect": "NormalService",
+                                "type": "WheelchairAccessible"
+                            }
+                        ]
+                    }
+                },
+                "distance": 155944,
+                "identifiers": {
+                    "gtfs": "hbg:ddb-90-X87-1-1-73-H-55-Special#12753-203-42"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T16:48:00Z",
+                        "scheduledDepartureTime": "2026-05-13T16:50:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08115:7100:1:5"
+                            },
+                            "latitude": 48.688,
+                            "longitude": 9.004382,
+                            "name": "Böblingen",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T17:13:00Z",
+                        "scheduledDepartureTime": "2026-05-13T17:14:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08237:5001:3:2"
+                            },
+                            "latitude": 48.441578,
+                            "longitude": 8.688354,
+                            "name": "Horb (N)",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T17:42:00Z",
+                        "scheduledDepartureTime": "2026-05-13T17:43:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08325:6584:3:5"
+                            },
+                            "latitude": 48.165443,
+                            "longitude": 8.639292,
+                            "name": "Rottweil",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T18:00:00Z",
+                        "scheduledDepartureTime": "2026-05-13T18:01:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08327:1748:11:2"
+                            },
+                            "latitude": 47.98064,
+                            "longitude": 8.798831,
+                            "name": "Tuttlingen",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport"
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2026-05-13T18:26:15Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 47.75889,
+                        "longitude": 8.841116,
+                        "name": "Destination",
+                        "region": "DE-BW"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2026-05-13T18:26:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "hbg:de:08335:6588:2:3"
+                        },
+                        "latitude": 47.758976,
+                        "longitude": 8.841479,
+                        "name": "Singen (Htw) Bahnhof",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                "distance": 29,
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        8.84088,
+                                        47.75881
+                                    ],
+                                    [
+                                        8.84108,
+                                        47.75888
+                                    ],
+                                    [
+                                        8.84111,
+                                        47.75889
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2026-05-13T17:30:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "hbg:de:08111:6002:1:1"
+                        },
+                        "latitude": 48.72707,
+                        "longitude": 9.113927,
+                        "name": "Vaihingen",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2026-05-13T17:26:38Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 48.7257765,
+                        "longitude": 9.1136,
+                        "name": "Origin",
+                        "region": "DE-BW"
+                    }
+                },
+                "distance": 232,
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        9.11364,
+                                        48.72574
+                                    ],
+                                    [
+                                        9.11371,
+                                        48.72578
+                                    ],
+                                    [
+                                        9.11369,
+                                        48.72579
+                                    ],
+                                    [
+                                        9.11306,
+                                        48.72622
+                                    ],
+                                    [
+                                        9.11293,
+                                        48.72632
+                                    ],
+                                    [
+                                        9.1128,
+                                        48.72641
+                                    ],
+                                    [
+                                        9.11272,
+                                        48.72647
+                                    ],
+                                    [
+                                        9.11276,
+                                        48.72649
+                                    ],
+                                    [
+                                        9.11287,
+                                        48.72656
+                                    ],
+                                    [
+                                        9.1129,
+                                        48.72658
+                                    ],
+                                    [
+                                        9.11294,
+                                        48.72655
+                                    ],
+                                    [
+                                        9.11295,
+                                        48.72654
+                                    ],
+                                    [
+                                        9.11307,
+                                        48.7266
+                                    ],
+                                    [
+                                        9.11392,
+                                        48.72711
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2026-05-13T19:26:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "hbg:de:08335:6588:2:3"
+                        },
+                        "latitude": 47.758976,
+                        "longitude": 8.841479,
+                        "name": "Singen (Htw) Bahnhof",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Singen (Htw) Bahnhof",
+                        "line": {
+                            "mode": "Train",
+                            "name": "RE 87",
+                            "operatorName": "DB Fernverkehr AG",
+                            "operatorUrl": "http://www.nvbw.de"
+                        },
+                        "name": "50389"
+                    },
+                    "scheduledDepartureTime": "2026-05-13T17:30:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "hbg:de:08111:6002:1:1"
+                        },
+                        "latitude": 48.72707,
+                        "longitude": 9.113927,
+                        "name": "Vaihingen",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Unknown",
+                                "disruptionEffect": "NormalService",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Unavailable",
+                                "disruptionEffect": "NormalService",
+                                "type": "WheelchairAccessible"
+                            }
+                        ]
+                    }
+                },
+                "distance": 155946,
+                "identifiers": {
+                    "gtfs": "hbg:ddb-90-X87-1-1-102-H-84-Special#14645-186-69"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T17:37:00Z",
+                        "scheduledDepartureTime": "2026-05-13T17:38:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08115:7100:1:5"
+                            },
+                            "latitude": 48.688,
+                            "longitude": 9.004382,
+                            "name": "Böblingen",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T17:46:00Z",
+                        "scheduledDepartureTime": "2026-05-13T17:47:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08115:4512:3:4"
+                            },
+                            "latitude": 48.59411,
+                            "longitude": 8.86272,
+                            "name": "Herrenberg",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T17:50:00Z",
+                        "scheduledDepartureTime": "2026-05-13T17:51:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08115:5776:1:1"
+                            },
+                            "latitude": 48.559734,
+                            "longitude": 8.850037,
+                            "name": "Gäufelden",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T17:54:00Z",
+                        "scheduledDepartureTime": "2026-05-13T17:55:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08115:4510:1:3"
+                            },
+                            "latitude": 48.52328,
+                            "longitude": 8.827739,
+                            "name": "Bondorf",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T18:06:00Z",
+                        "scheduledDepartureTime": "2026-05-13T18:07:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08237:5001:3:2"
+                            },
+                            "latitude": 48.441578,
+                            "longitude": 8.688354,
+                            "name": "Horb (N)",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T18:17:00Z",
+                        "scheduledDepartureTime": "2026-05-13T18:17:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08325:6590:1:2"
+                            },
+                            "latitude": 48.366863,
+                            "longitude": 8.636862,
+                            "name": "Sulz (N)",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T18:26:00Z",
+                        "scheduledDepartureTime": "2026-05-13T18:29:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08325:6596:2:3"
+                            },
+                            "latitude": 48.295986,
+                            "longitude": 8.575556,
+                            "name": "Oberndorf (N)",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T18:41:00Z",
+                        "scheduledDepartureTime": "2026-05-13T18:42:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08325:6584:3:5"
+                            },
+                            "latitude": 48.165443,
+                            "longitude": 8.639292,
+                            "name": "Rottweil",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T18:51:00Z",
+                        "scheduledDepartureTime": "2026-05-13T18:51:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08327:1510:10:1"
+                            },
+                            "latitude": 48.06911,
+                            "longitude": 8.740561,
+                            "name": "Spaichingen",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T18:59:00Z",
+                        "scheduledDepartureTime": "2026-05-13T19:00:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08327:1748:11:2"
+                            },
+                            "latitude": 47.98064,
+                            "longitude": 8.798831,
+                            "name": "Tuttlingen",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T19:11:00Z",
+                        "scheduledDepartureTime": "2026-05-13T19:12:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08335:6551:2:3"
+                            },
+                            "latitude": 47.856388,
+                            "longitude": 8.772851,
+                            "name": "Engen",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport"
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2026-05-13T19:26:15Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 47.75889,
+                        "longitude": 8.841116,
+                        "name": "Destination",
+                        "region": "DE-BW"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2026-05-13T19:26:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "hbg:de:08335:6588:2:3"
+                        },
+                        "latitude": 47.758976,
+                        "longitude": 8.841479,
+                        "name": "Singen (Htw) Bahnhof",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                "distance": 29,
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        8.84088,
+                                        47.75881
+                                    ],
+                                    [
+                                        8.84108,
+                                        47.75888
+                                    ],
+                                    [
+                                        8.84111,
+                                        47.75889
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2026-05-13T18:40:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "hbg:de:08111:6002:1:1"
+                        },
+                        "latitude": 48.72707,
+                        "longitude": 9.113927,
+                        "name": "Vaihingen",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2026-05-13T18:36:38Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 48.7257765,
+                        "longitude": 9.1136,
+                        "name": "Origin",
+                        "region": "DE-BW"
+                    }
+                },
+                "distance": 232,
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        9.11364,
+                                        48.72574
+                                    ],
+                                    [
+                                        9.11371,
+                                        48.72578
+                                    ],
+                                    [
+                                        9.11369,
+                                        48.72579
+                                    ],
+                                    [
+                                        9.11306,
+                                        48.72622
+                                    ],
+                                    [
+                                        9.11293,
+                                        48.72632
+                                    ],
+                                    [
+                                        9.1128,
+                                        48.72641
+                                    ],
+                                    [
+                                        9.11272,
+                                        48.72647
+                                    ],
+                                    [
+                                        9.11276,
+                                        48.72649
+                                    ],
+                                    [
+                                        9.11287,
+                                        48.72656
+                                    ],
+                                    [
+                                        9.1129,
+                                        48.72658
+                                    ],
+                                    [
+                                        9.11294,
+                                        48.72655
+                                    ],
+                                    [
+                                        9.11295,
+                                        48.72654
+                                    ],
+                                    [
+                                        9.11307,
+                                        48.7266
+                                    ],
+                                    [
+                                        9.11392,
+                                        48.72711
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2026-05-13T20:26:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "hbg:de:08335:6588:2:3"
+                        },
+                        "latitude": 47.758976,
+                        "longitude": 8.841479,
+                        "name": "Singen (Htw) Bahnhof",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Singen (Htw) Bahnhof",
+                        "line": {
+                            "mode": "Train",
+                            "name": "RE 87",
+                            "operatorName": "DB Fernverkehr AG",
+                            "operatorUrl": "http://www.nvbw.de"
+                        },
+                        "name": "50285"
+                    },
+                    "scheduledDepartureTime": "2026-05-13T18:40:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "hbg:de:08111:6002:1:1"
+                        },
+                        "latitude": 48.72707,
+                        "longitude": 9.113927,
+                        "name": "Vaihingen",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Unknown",
+                                "disruptionEffect": "NormalService",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Unavailable",
+                                "disruptionEffect": "NormalService",
+                                "type": "WheelchairAccessible"
+                            }
+                        ]
+                    }
+                },
+                "distance": 155935,
+                "identifiers": {
+                    "gtfs": "hbg:ddb-90-X87-1-1-100-H-82-Special#12753-184-53"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T18:47:00Z",
+                        "scheduledDepartureTime": "2026-05-13T18:48:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08115:7100:1:5"
+                            },
+                            "latitude": 48.688,
+                            "longitude": 9.004382,
+                            "name": "Böblingen",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T19:12:00Z",
+                        "scheduledDepartureTime": "2026-05-13T19:13:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08237:5001:3:2"
+                            },
+                            "latitude": 48.441578,
+                            "longitude": 8.688354,
+                            "name": "Horb (N)",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T19:23:00Z",
+                        "scheduledDepartureTime": "2026-05-13T19:23:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08325:6590:1:2"
+                            },
+                            "latitude": 48.366863,
+                            "longitude": 8.636862,
+                            "name": "Sulz (N)",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T19:32:00Z",
+                        "scheduledDepartureTime": "2026-05-13T19:32:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08325:6596:2:3"
+                            },
+                            "latitude": 48.295986,
+                            "longitude": 8.575556,
+                            "name": "Oberndorf (N)",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T19:44:00Z",
+                        "scheduledDepartureTime": "2026-05-13T19:45:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08325:6584:3:5"
+                            },
+                            "latitude": 48.165443,
+                            "longitude": 8.639292,
+                            "name": "Rottweil",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2026-05-13T20:01:00Z",
+                        "scheduledDepartureTime": "2026-05-13T20:03:00Z",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "gtfs": "hbg:de:08327:1748:12:5"
+                            },
+                            "latitude": 47.980774,
+                            "longitude": 8.798482,
+                            "name": "Tuttlingen",
+                            "region": "DE-BW",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport"
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2026-05-13T20:26:15Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 47.75889,
+                        "longitude": 8.841116,
+                        "name": "Destination",
+                        "region": "DE-BW"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2026-05-13T20:26:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "hbg:de:08335:6588:2:3"
+                        },
+                        "latitude": 47.758976,
+                        "longitude": 8.841479,
+                        "name": "Singen (Htw) Bahnhof",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                "distance": 29,
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        8.84088,
+                                        47.75881
+                                    ],
+                                    [
+                                        8.84108,
+                                        47.75888
+                                    ],
+                                    [
+                                        8.84111,
+                                        47.75889
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]
