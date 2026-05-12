@@ -75,6 +75,32 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, int, riderCapacity, setRiderCa
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, double, co2EmissionPerKm, setCo2EmissionPerKm)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, RentalVehicleType::ReturnConstraint, returnConstraint, setReturnConstraint)
 
+QString RentalVehicleType::typeIconName() const
+{
+    return RentalVehicleType::typeIconName(d->formFactor, d->propulsionType);
+}
+
+QString RentalVehicleType::typeIconName(RentalVehicleType::FormFactor formFactor, [[maybe_unused]] RentalVehicleType::PropulsionType propulsionType)
+{
+    // TODO propulsionType variants
+    switch (formFactor) {
+        case RentalVehicleType::FormFactor::Undefined:
+            break;
+        case RentalVehicleType::FormFactor::CargoBicycle: // TODO
+        case RentalVehicleType::FormFactor::Bicycle:
+            return IndividualTransport::modeIconName(IndividualTransport::Bike);
+        case RentalVehicleType::FormFactor::Moped:
+            return u"qrc:///org.kde.kpublictransport/assets/images/motorcycle.svg"_s;
+        case RentalVehicleType::FormFactor::Other: // TODO?
+        case RentalVehicleType::FormFactor::ScooterSeated: // TODO
+        case RentalVehicleType::FormFactor::ScooterStanding:
+            return u"qrc:///org.kde.kpublictransport/assets/images/scooter.svg"_s;
+        case RentalVehicleType::FormFactor::Car:
+            return IndividualTransport::modeIconName(IndividualTransport::Car);
+    }
+    return u"question"_s;
+}
+
 QJsonObject RentalVehicleType::toJson(const RentalVehicleType &vehicleType)
 {
     auto obj = Json::toJson(vehicleType);

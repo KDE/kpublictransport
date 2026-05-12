@@ -24,6 +24,9 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "RentalVehicleType", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
         return engine->toScriptValue(KPublicTransport::RentalVehicle());
     });
+    qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "RentalVehicleTypeData", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
+        return engine->toScriptValue(KPublicTransport::RentalVehicleType());
+    });
     qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "IndividualTransportMode", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
         return engine->toScriptValue(KPublicTransport::IndividualTransport());
     });
