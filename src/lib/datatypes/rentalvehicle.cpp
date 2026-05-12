@@ -173,6 +173,11 @@ QString RentalVehicleStation::iconName() const
             return RentalVehicle::vehicleTypeIconName((RentalVehicle::VehicleType)me.value(i));
         }
     }
+    for (auto i = 0; i < me.keyCount() && i < (int)d->availabilities.size(); ++i) {
+        if (d->availabilities[i] >= 0) {
+            return RentalVehicle::vehicleTypeIconName((RentalVehicle::VehicleType)me.value(i));
+        }
+    }
     return RentalVehicle::vehicleTypeIconName(RentalVehicle::Bicycle);
 }
 
