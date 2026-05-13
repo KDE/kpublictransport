@@ -134,7 +134,7 @@ void GBFSProbe::discoverNextFeed()
     }
 
     auto job = new GBFSJob(&m_nam);
-    job->setRequestedData({GBFS::StationInformation, GBFS::FreeBikeStatus, GBFS::GeofencingZones}); // everything we can use for the bounding box
+    job->setRequestedData({GBFS::StationInformation, GBFS::VehicleStatus, GBFS::GeofencingZones}); // everything we can use for the bounding box
     QObject::connect(job, &GBFSJob::finished, this, [job, this]() {
         job->deleteLater();
         if (job->error() == GBFSJob::TooManyRequestsError) {

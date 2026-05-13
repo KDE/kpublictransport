@@ -22,7 +22,7 @@ struct {
     { "system_information", GBFS::SystemInformation },
     { "station_information", GBFS::StationInformation },
     { "station_status", GBFS::StationStatus },
-    { "free_bike_status", GBFS::FreeBikeStatus },
+    { "free_bike_status", GBFS::VehicleStatus }, // < v3 backward compat
     { "gbfs_versions", GBFS::Versions },
     { "vehicle_types", GBFS::VehicleTypes },
     { "geofencing_zones", GBFS::GeofencingZones },
@@ -31,6 +31,9 @@ struct {
     { "system_regions", GBFS::SystemRegions },
     { "system_pricing_plans", GBFS::SystemPricingPlans },
     { "system_alerts", GBFS::SystemAlerts },
+
+    // GBFS v3 renames
+    { "vehicle_status", GBFS::VehicleStatus },
 
     // typos observed in the wild
     { "vehicles_types", GBFS::VehicleTypes },

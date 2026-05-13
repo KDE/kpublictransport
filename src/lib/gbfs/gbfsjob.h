@@ -66,7 +66,7 @@ private:
     void parseData(const QJsonDocument &doc, GBFS::FileType type);
     void parseSystemInformation(const QJsonDocument &doc);
     void parseStationInformation(const QJsonDocument &doc);
-    void parseFreeBikeStatus(const QJsonDocument &doc);
+    void parseVehicleStatus(const QJsonDocument &doc);
     void collectCoordinates(const QJsonArray &array);
     void parseVersionData(const QJsonDocument &doc);
     void parseGeofencingZones(const QJsonDocument &doc);

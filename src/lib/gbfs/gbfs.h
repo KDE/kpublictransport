@@ -22,7 +22,7 @@ namespace GBFS
         SystemInformation,
         StationInformation,
         StationStatus,
-        FreeBikeStatus,
+        VehicleStatus,
         Versions,
         VehicleTypes,
         GeofencingZones,
