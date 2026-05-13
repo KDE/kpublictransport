@@ -11,7 +11,6 @@
 #include <QColor>
 #include <QJsonArray>
 #include <QJsonDocument>
-#include <QJsonObject>
 #include <QLocale>
 
 #include <cmath>

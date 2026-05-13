@@ -7,11 +7,9 @@
 #ifndef KPUBLICTRANSPORT_GBFSREADER_H
 #define KPUBLICTRANSPORT_GBFSREADER_H
 
-class QJsonDocument;
-class QJsonObject;
-class QJsonValue;
-class QLatin1String;
-class QString;
+#include <QJsonObject>
+
+#include <initializer_list>
 
 namespace KPublicTransport {
 
@@ -29,10 +27,21 @@ namespace GBFSReader
      *  on the top level directly.
      */
     [[nodiscard]] QJsonObject dataObject(const QJsonDocument &doc);
-    [[nodiscard]] QJsonValue dataValue(const QJsonDocument &doc, QLatin1String name);
+    [[nodiscard]] QJsonValue dataValue(const QJsonDocument &doc, QLatin1StringView name);
+    [[nodiscard]] inline QJsonValue dataValue(const QJsonDocument &doc, std::initializer_list<QLatin1StringView> names)
+    {
+        const auto dataObj = dataObject(doc);
+        for (const auto name : names) {
+            const auto it = dataObj.find(name);
+            if (it != dataObj.end()) {
+                return (*it);
+            }
+        }
+        return {};
+    }
 
     /** Read a localized string value. */
-    [[nodiscard]] QString readLocalizedString(const QJsonObject &obj, QLatin1String key);
+    [[nodiscard]] QString readLocalizedString(const QJsonObject &obj, QLatin1StringView key);
 
     /** Read system information data. */
     [[nodiscard]] RentalVehicleNetwork readSystemInformation(const QJsonObject &sysInfo);

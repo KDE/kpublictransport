@@ -20,6 +20,7 @@
 #include <cassert>
 #include <cmath>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 GBFSJob::GBFSJob(QNetworkAccessManager *nam, QObject *parent)
@@ -154,7 +155,7 @@ void GBFSJob::processFeeds()
                 break;
             case GBFS::StationInformation:
             case GBFS::StationStatus:
-            case GBFS::FreeBikeStatus:
+            case GBFS::VehicleStatus:
             case GBFS::VehicleTypes:
             case GBFS::GeofencingZones:
                 if (state != State::Data || !shouldFetchFile(type)) {
@@ -174,7 +175,7 @@ void GBFSJob::processFeeds()
         }
 
         if (!m_store.isValid() || !m_store.hasCurrentData(type)) {
-            qDebug() << "fetching" << name;
+            qDebug() << "fetching" << name << url;
             auto reply = m_nam->get(QNetworkRequest(url));
             connect(reply, &QNetworkReply::finished, this, [this, reply, type]() { fetchFinished(reply, type); });
             ++m_pendingJobs;
@@ -249,8 +250,8 @@ void GBFSJob::parseData(const QJsonDocument &doc, GBFS::FileType type)
         case GBFS::StationInformation:
             parseStationInformation(doc);
             break;
-        case GBFS::FreeBikeStatus:
-            parseFreeBikeStatus(doc);
+        case GBFS::VehicleStatus:
+            parseVehicleStatus(doc);
             break;
         case GBFS::Versions:
             parseVersionData(doc);
@@ -292,9 +293,9 @@ void GBFSJob::parseStationInformation(const QJsonDocument &doc)
     qDebug() << stations.size() << "stations/docks";
 }
 
-void GBFSJob::parseFreeBikeStatus(const QJsonDocument &doc)
+void GBFSJob::parseVehicleStatus(const QJsonDocument &doc)
 {
-    const auto bikes = GBFSReader::dataValue(doc, QLatin1String("bikes")).toArray();
+    const auto bikes = GBFSReader::dataValue(doc, {"vehicles"_L1, "bikes"_L1}).toArray();
     collectCoordinates(bikes);
     qDebug() << bikes.size() << "free floating vehicles";
 }
@@ -454,7 +455,7 @@ void GBFSJob::finalize()
     m_service.boundingBox.setRight(std::ceil(m_service.boundingBox.right() * COORD_RESOLUTION) / COORD_RESOLUTION);
     m_service.boundingBox.setBottom(std::ceil(m_service.boundingBox.bottom() * COORD_RESOLUTION) / COORD_RESOLUTION);
 
-    qDebug() << "bounding box:" << m_service.boundingBox;
+    qDebug() << "bounding box:" << m_service.boundingBox << m_service.systemId;
     GBFSServiceRepository::store(m_service);
     Q_EMIT finished();
 }

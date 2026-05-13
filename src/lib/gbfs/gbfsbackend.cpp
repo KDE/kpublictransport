@@ -167,8 +167,8 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         loc.setData(s);
     }
 
-    const auto floatingDoc = store.loadData(GBFS::FreeBikeStatus);
-    const auto floating = GBFSReader::dataValue(floatingDoc, QLatin1String("bikes")).toArray();
+    const auto floatingDoc = store.loadData(GBFS::VehicleStatus);
+    const auto floating = GBFSReader::dataValue(floatingDoc, {"vehicles"_L1, "bikes"_L1}).toArray();
     for (const auto &bikeV : floating) {
         const auto bike = bikeV.toObject();
         if (bike.value(QLatin1String("is_reserved")).toBool() || bike.value(QLatin1String("is_disabled")).toBool()) {
@@ -194,8 +194,12 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
             const auto &station = context->result[context->result.size() - selectedStationIds.size() + std::distance(selectedStationIds.begin(), it)];
             loc.setCoordinate(station.latitude(), station.longitude());
         }
-        const auto bikeId = bike.value(QLatin1String("bike_id")).toString();
-        loc.setIdentifier(service.systemId, bikeId);
+        for (const auto key : {"vehicle_id"_L1, "bike_id"_L1}) {
+            if (auto id = bike.value(key).toString(); !id.isEmpty()) {
+                loc.setIdentifier(service.systemId, id);
+                break;
+            }
+        }
 
         RentalVehicle vehicle;
         vehicle.setNetwork(network);
@@ -257,7 +261,7 @@ bool GBFSBackend::queryLocation(const LocationRequest &req, LocationReply *reply
 
         context->pendingJobs++;
         auto updateJob = new GBFSJob(nam, reply);
-        updateJob->setRequestedData({GBFS::StationInformation, GBFS::StationStatus, GBFS::FreeBikeStatus, GBFS::VehicleTypes});
+        updateJob->setRequestedData({GBFS::StationInformation, GBFS::StationStatus, GBFS::VehicleStatus, GBFS::VehicleTypes});
         QObject::connect(updateJob, &GBFSJob::finished, reply, [this, context, reply, updateJob, req]() {
             context->pendingJobs--;
             updateJob->deleteLater();
