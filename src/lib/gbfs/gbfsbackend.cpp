@@ -107,7 +107,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
     const auto network = GBFSReader::readSystemInformation(sysInfo);
 
     const auto stationsDoc = store.loadData(GBFS::StationInformation);
-    const auto stations = GBFSReader::dataValue(stationsDoc, QLatin1String("stations")).toArray();
+    const auto stations = GBFSReader::dataValue(stationsDoc, "stations"_L1).toArray();
 
     std::vector<QString> selectedStationIds;
     for (const auto &stationV : stations) {
@@ -120,12 +120,12 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         Location loc;
         loc.setType(Location::RentedVehicleStation);
         loc.setCoordinate(lat, lon);
-        loc.setName(station.value(QLatin1String("name")).toString());
-        const auto stationId = stationIdToString(station.value(QLatin1String("station_id")));
+        loc.setName(GBFSReader::readLocalizedString(station, "name"_L1));
+        const auto stationId = stationIdToString(station.value("station_id"_L1));
         loc.setIdentifier(service.systemId, stationId);
-        loc.setStreetAddress(cleanAddress(station.value(QLatin1String("address")).toString()));
-        loc.setPostalCode(station.value(QLatin1String("post_code")).toString());
-        loc.setLocality(station.value(QLatin1String("city")).toString()); // non-standard extension
+        loc.setStreetAddress(cleanAddress(station.value("address"_L1).toString()));
+        loc.setPostalCode(station.value("post_code"_L1).toString());
+        loc.setLocality(station.value("city"_L1).toString()); // non-standard extension
         // TODO cover more properties
 
         RentalVehicleStation s;
