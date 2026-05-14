@@ -280,6 +280,13 @@ struct RentalVehicleStationForeign {
     QML_VALUE_TYPE(rentalVehicleStation)
 };
 
+struct RentalVehicleTypeForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::RentalVehicleType)
+    QML_VALUE_TYPE(rentalVehicleType)
+};
+FOREIGN_ENUM_GADGET(RentalVehicleType)
+
 struct ReplyForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::Reply)
