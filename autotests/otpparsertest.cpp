@@ -59,7 +59,7 @@ private Q_SLOTS:
         QJsonObject networks;
         networks.insert("car-sharing"_L1, {});
         networks.insert("taxi"_L1, {});
-        networks.insert("regiorad"_L1, {{{ "name"_L1, "RegioRad"_L1 }, { "vehicleTypes"_L1, "Bicycle"_L1}}});
+        networks.insert("regiorad"_L1, {{{ "name"_L1, "RegioRad"_L1 }, { "vehicleTypes"_L1, "Bicycle"_L1 }, { "formFactor"_L1,  "bicycle"_L1 }, { "propulsionType"_L1, "human"_L1}}});
         QTest::newRow("de-stadtnavi-rental-vehicle-locations")
             << s(SOURCE_DIR "/data/otp/de-stadtnavi-rental-vehicle-locations.in.json")
             << s(SOURCE_DIR "/data/otp/de-stadtnavi-rental-vehicle-locations.out.json")
