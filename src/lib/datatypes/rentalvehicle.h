@@ -81,7 +81,7 @@ public:
     /** Icon representing the vehicle type.
      *  Can be a qrc: URL or an XDG icon name.
      */
-    Q_INVOKABLE [[nodiscard]] [[deprecated("use RentalVehicleType")]] static QString vehicleTypeIconName(KPublicTransport::RentalVehicle::VehicleType type);
+    [[nodiscard]] [[deprecated("use RentalVehicleType")]] static QString vehicleTypeIconName(KPublicTransport::RentalVehicle::VehicleType type);
 
     /** Serializes one object to JSON. */
     [[nodiscard]] static QJsonObject toJson(const RentalVehicle &vehicle);
