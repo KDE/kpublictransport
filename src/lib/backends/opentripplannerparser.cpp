@@ -56,6 +56,9 @@ QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj, b
 {
     RentalVehicleNetwork network;
     RentalVehicle::VehicleType type = RentalVehicle::Bicycle;
+    RentalVehicleType vt;
+    vt.setFormFactor(RentalVehicleType::FormFactor::Bicycle);
+    vt.setPropulsionType(RentalVehicleType::PropulsionType::Human);
     if (const auto networkObj = obj.value("rentalNetwork"_L1).toObject(); !networkObj.isEmpty()) {
         // OTP2 GBFS 2/3 model
         // TODO name??
@@ -67,6 +70,8 @@ QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj, b
         if (it != m_rentalVehicleNetworks.end()) {
             const auto config = it.value().toObject();
             network.setName(config.value("name"_L1).toString());
+            vt.setFormFactor(GBFSVehicleType::toFormFactor(config.value("formFactor"_L1).toString()));
+            vt.setPropulsionType(GBFSVehicleType::toPropulsionType(config.value("propulsionType"_L1).toString()));
             type = static_cast<RentalVehicle::VehicleType>(QMetaEnum::fromType<RentalVehicle::VehicleType>().keyToValue(config.value("vehicleTypes"_L1).toString().toUtf8().constData()));
         } else {
             network.setName(networks.at(0).toString());
@@ -87,7 +92,7 @@ QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj, b
             vt.setPropulsionType(GBFSVehicleType::toPropulsionType(typeObj.value("propulsionType"_L1).toString()));
             v.setVehicleType(vt);
         } else {
-            v.setType(type);
+            v.setVehicleType(vt);
         }
 
         v.setRemainingRange(obj.value("fuel"_L1).toObject().value("range"_L1).toInt(-1));

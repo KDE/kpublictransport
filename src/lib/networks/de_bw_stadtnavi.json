@@ -90,7 +90,9 @@
             "car-sharing": {},
             "regiorad": {
                 "name": "RegioRad",
-                "vehicleTypes": "Bicycle"
+                "vehicleTypes": "Bicycle",
+                "formFactor": "bicycle",
+                "propulsionType": "human"
             },
             "taxi": {}
         },
