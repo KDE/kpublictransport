@@ -67,7 +67,6 @@ public:
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(RentalVehicleType)
-KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, QString, id, setId)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, QString, name, setName)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, RentalVehicleType::FormFactor, formFactor, setFormFactor)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, RentalVehicleType::PropulsionType, propulsionType, setPropulsionType)
@@ -75,6 +74,22 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, double, maxRangeMeters, setMax
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, int, riderCapacity, setRiderCapcatiry)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, double, co2EmissionPerKm, setCo2EmissionPerKm)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleType, RentalVehicleType::ReturnConstraint, returnConstraint, setReturnConstraint)
+
+QString RentalVehicleType::id() const
+{
+    if (!d->id.isEmpty() || d->formFactor == RentalVehicleType::FormFactor::Undefined) {
+        return d->id;
+    }
+
+    // make sure we always have an id, for RentalVehicleStation to use this as a key
+    return "generic:"_L1 + QLatin1StringView(GBFSVehicleType::toString(d->formFactor)) + '-'_L1 + QLatin1StringView(GBFSVehicleType::toString(d->propulsionType));
+}
+
+void RentalVehicleType::setId(const QString &value)
+{
+    d.detach();
+    d->id = value;
+}
 
 QString RentalVehicleType::typeIconName() const
 {

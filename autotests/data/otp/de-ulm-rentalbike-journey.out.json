@@ -80,6 +80,7 @@
                     },
                     "vehicleType": {
                         "formFactor": "Bicycle",
+                        "id": "generic:bicycle-human",
                         "propulsionType": "Human"
                     }
                 }
@@ -134,6 +135,7 @@
                 "rentalVehicle": {
                     "vehicleType": {
                         "formFactor": "Bicycle",
+                        "id": "generic:bicycle-human",
                         "propulsionType": "Human"
                     }
                 }

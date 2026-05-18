@@ -36,6 +36,7 @@
             },
             "vehicleType": {
                 "formFactor": "Bicycle",
+                "id": "generic:bicycle-human",
                 "propulsionType": "Human"
             }
         },
