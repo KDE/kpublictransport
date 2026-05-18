@@ -9,13 +9,30 @@
         "name": "KIT-Straße-am-Forum",
         "rentalVehicleStation": {
             "availabilitiesByType": {
-                "Car": 2
+                "SMK:VehicleType:fordtransittransporter": 1,
+                "SMK:VehicleType:seatibiza": 1
             },
             "availableVehicles": 2,
             "network": {
                 "name": "Stadtmobil Karlsruhe",
                 "url": "https://karlsruhe.stadtmobil.de/privatkunden/kunde-werden/"
             },
+            "vehicleTypes": [
+                {
+                    "formFactor": "Car",
+                    "id": "SMK:VehicleType:fordtransittransporter",
+                    "name": "Ford Transit Transporter",
+                    "propulsionType": "CombustionDiesel",
+                    "returnConstraint": "RoundtripStation"
+                },
+                {
+                    "formFactor": "Car",
+                    "id": "SMK:VehicleType:seatibiza",
+                    "name": "Seat Ibiza",
+                    "propulsionType": "Combustion",
+                    "returnConstraint": "RoundtripStation"
+                }
+            ],
             "webBookingUrl": "https://mein.stadtmobil.de/?openPlace=2255"
         },
         "type": "RentedVehicleStation"
@@ -30,13 +47,21 @@
         "name": "KIT Süd",
         "rentalVehicleStation": {
             "availabilitiesByType": {
-                "Bicycle": 1
+                "196": 1
             },
             "availableVehicles": 1,
             "network": {
                 "name": "KVV.nextbike",
                 "url": "https://www.kvv-nextbike.de/de/"
             },
+            "vehicleTypes": [
+                {
+                    "formFactor": "Bicycle",
+                    "id": "196",
+                    "name": "mit Rahmenschloss",
+                    "propulsionType": "Human"
+                }
+            ],
             "webBookingUrl": "https://nxtb.it/p/280322"
         },
         "type": "RentedVehicleStation"

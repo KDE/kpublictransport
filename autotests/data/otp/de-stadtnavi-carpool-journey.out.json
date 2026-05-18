@@ -329,11 +329,26 @@
                         "region": "DE-BW",
                         "rentalVehicleStation": {
                             "availabilitiesByType": {
-                                "Bicycle": 12
+                                "generic:bicycle-human": 12
                             },
+                            "capacitiesByType": [
+                                {
+                                    "count": -1,
+                                    "vehicleTypes": [
+                                        "generic:bicycle-human"
+                                    ]
+                                }
+                            ],
                             "network": {
                                 "name": "RegioRad"
-                            }
+                            },
+                            "vehicleTypes": [
+                                {
+                                    "formFactor": "Bicycle",
+                                    "id": "generic:bicycle-human",
+                                    "propulsionType": "Human"
+                                }
+                            ]
                         },
                         "type": "RentedVehicleStation"
                     }
@@ -382,14 +397,26 @@
                         "region": "DE-BW",
                         "rentalVehicleStation": {
                             "availabilitiesByType": {
-                                "Bicycle": 12
+                                "generic:bicycle-human": 12
                             },
-                            "capacitiesByType": {
-                                "Bicycle": 99
-                            },
+                            "capacitiesByType": [
+                                {
+                                    "count": 99,
+                                    "vehicleTypes": [
+                                        "generic:bicycle-human"
+                                    ]
+                                }
+                            ],
                             "network": {
                                 "name": "RegioRad"
-                            }
+                            },
+                            "vehicleTypes": [
+                                {
+                                    "formFactor": "Bicycle",
+                                    "id": "generic:bicycle-human",
+                                    "propulsionType": "Human"
+                                }
+                            ]
                         },
                         "type": "RentedVehicleStation"
                     }
@@ -422,11 +449,26 @@
                         "region": "DE-BW",
                         "rentalVehicleStation": {
                             "availabilitiesByType": {
-                                "Bicycle": 23
+                                "generic:bicycle-human": 23
                             },
+                            "capacitiesByType": [
+                                {
+                                    "count": -1,
+                                    "vehicleTypes": [
+                                        "generic:bicycle-human"
+                                    ]
+                                }
+                            ],
                             "network": {
                                 "name": "RegioRad"
-                            }
+                            },
+                            "vehicleTypes": [
+                                {
+                                    "formFactor": "Bicycle",
+                                    "id": "generic:bicycle-human",
+                                    "propulsionType": "Human"
+                                }
+                            ]
                         },
                         "type": "RentedVehicleStation"
                     }
@@ -480,14 +522,26 @@
                         "region": "DE-BW",
                         "rentalVehicleStation": {
                             "availabilitiesByType": {
-                                "Bicycle": 23
+                                "generic:bicycle-human": 23
                             },
-                            "capacitiesByType": {
-                                "Bicycle": 99
-                            },
+                            "capacitiesByType": [
+                                {
+                                    "count": 99,
+                                    "vehicleTypes": [
+                                        "generic:bicycle-human"
+                                    ]
+                                }
+                            ],
                             "network": {
                                 "name": "RegioRad"
-                            }
+                            },
+                            "vehicleTypes": [
+                                {
+                                    "formFactor": "Bicycle",
+                                    "id": "generic:bicycle-human",
+                                    "propulsionType": "Human"
+                                }
+                            ]
                         },
                         "type": "RentedVehicleStation"
                     }

@@ -108,7 +108,17 @@ Kirigami.ApplicationWindow {
                     id: delegateLayout
                     Layout.fillWidth: true
                     QQC2.Label {
-                        text: delegateRoot.location.name
+                        text: {
+                            let s = delegateRoot.location.name;
+                            switch (delegateRoot.location.type) {
+                                case Location.RentedVehicle:
+                                    s += " (vehicle)";
+                                    break;
+                                case Location.RentedVehicleStation:
+                                    s += " (station)";
+                                    break;
+                            }
+                        }
                         color: {
                             if (delegateRoot.location && delegateRoot.location.type == Location.Equipment) {
                                 switch (delegateRoot.location.equipment.disruptionEffect) {
@@ -139,29 +149,12 @@ Kirigami.ApplicationWindow {
                     QQC2.Label {
                         function dockDetails(loc: location): string {
                             let s = "";
-                            for (const type in [RentalVehicle.Bicycle, RentalVehicle.Pedelec, RentalVehicle.ElectricKickScooter, RentalVehicle.ElectricMoped, RentalVehicle.Car]) {
-                                if (loc.rentalVehicleStation.capacity(type) === -1 && loc.rentalVehicleStation.availableVehicles(type) === -1)
-                                    continue;
-                                switch (type) {
-                                    case RentalVehicle.Bicycle:
-                                        s += "Bike ";
-                                        break;
-                                    case RentalVehicle.Pedelec:
-                                        s += "Pedelec ";
-                                        break;
-                                    case RentalVehicle.ElectricKickScooter:
-                                        s += "Scooter ";
-                                        break;
-                                    case RentalVehicle.ElectricMoped:
-                                        s += "Moped ";
-                                        break;
-                                    case RentalVehicle.Car:
-                                        s += "Car ";
-                                        break;
-                                }
-                                s += loc.rentalVehicleStation.availableVehicles(type);
+                            for (const type of loc.rentalVehicleStation.availableVehicleTypes) {
+                                s += type.name ?? type.label;
+                                s += " ";
+                                s += loc.rentalVehicleStation.availableVehiclesByType(type);
                                 s += "/";
-                                s += loc.rentalVehicleStation.capacity(type);
+                                s += loc.rentalVehicleStation.capacityByType(type);
                                 s += " ";
                             }
                             return s.trim();

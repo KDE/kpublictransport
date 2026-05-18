@@ -15,11 +15,26 @@
                         "name": "Bürgerdienste",
                         "rentalVehicleStation": {
                             "availabilitiesByType": {
-                                "Bicycle": 2
+                                "generic:bicycle-human": 2
                             },
+                            "capacitiesByType": [
+                                {
+                                    "count": -1,
+                                    "vehicleTypes": [
+                                        "generic:bicycle-human"
+                                    ]
+                                }
+                            ],
                             "network": {
                                 "name": "RegioRad"
-                            }
+                            },
+                            "vehicleTypes": [
+                                {
+                                    "formFactor": "Bicycle",
+                                    "id": "generic:bicycle-human",
+                                    "propulsionType": "Human"
+                                }
+                            ]
                         },
                         "type": "RentedVehicleStation"
                     }
@@ -61,14 +76,26 @@
                         "name": "Bürgerdienste",
                         "rentalVehicleStation": {
                             "availabilitiesByType": {
-                                "Bicycle": 2
+                                "generic:bicycle-human": 2
                             },
-                            "capacitiesByType": {
-                                "Bicycle": 8
-                            },
+                            "capacitiesByType": [
+                                {
+                                    "count": 8,
+                                    "vehicleTypes": [
+                                        "generic:bicycle-human"
+                                    ]
+                                }
+                            ],
                             "network": {
                                 "name": "RegioRad"
-                            }
+                            },
+                            "vehicleTypes": [
+                                {
+                                    "formFactor": "Bicycle",
+                                    "id": "generic:bicycle-human",
+                                    "propulsionType": "Human"
+                                }
+                            ]
                         },
                         "type": "RentedVehicleStation"
                     }

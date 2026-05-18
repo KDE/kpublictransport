@@ -665,21 +665,20 @@ std::vector<Location> Motis2Parser::parseRentals(const QByteArray &data) const
         s.setAvailableVehicles(stationObj.value("numVehiclesAvailable"_L1).toInt(-1));
 
         s.setNetwork(providers[providerId]);
-        std::unordered_map<RentalVehicle::VehicleType, std::pair<int, int>> docks;
+        std::unordered_map<QString, std::pair<int, int>> docks;
         const auto availableVehicles = stationObj.value("vehicleTypesAvailable"_L1).toObject();
         for (auto it = availableVehicles.begin(); it != availableVehicles.end(); ++it) {
-            const auto t = RentalVehicleUtil::fromGbfsVehicleType(vehicleTypes[providerId][it.key()]);
-            s.setAvailableVehicles(t, std::max(0, s.availableVehicles(t)) + it.value().toInt());
-            docks[t].first = s.availableVehicles(t);
+            const auto &vt = vehicleTypes[providerId][it.key()];
+            s.setAvailableVehicles(vt, it.value().toInt());
+            docks[vt.id()].first = it.value().toInt();
         }
         const auto availableDocks = stationObj.value("vehicleDocksAvailable"_L1).toObject();
         for (auto it = availableDocks.begin(); it != availableDocks.end(); ++it) {
-            const auto t = RentalVehicleUtil::fromGbfsVehicleType(vehicleTypes[providerId][it.key()]);
-            docks[t].second += it.value().toInt();
+            docks[vehicleTypes[providerId][it.key()].id()].second += it.value().toInt();
         }
         if (!availableDocks.isEmpty()) {
             for (auto it = docks.begin(); it != docks.end(); ++it) {
-                s.setCapacity((*it).first, (*it).second.first + (*it).second.second);
+                s.setCapacity({vehicleTypes[providerId][(*it).first]}, (*it).second.first + (*it).second.second);
             }
         }
 
