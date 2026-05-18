@@ -130,11 +130,21 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
 
         RentalVehicleStation s;
         s.setNetwork(network);
-        s.setCapacity(station.value(QLatin1String("capacity")).toInt(-1));
-        const auto vehicleCapacities = station.value(QLatin1String("vehicle_capacity")).toObject();
+        s.setCapacity(station.value("capacity"_L1).toInt(-1));
+        // legacy pre GBFS v3
+        const auto vehicleCapacities = station.value("vehicle_capacity"_L1).toObject();
         for (auto it = vehicleCapacities.begin(); it != vehicleCapacities.end(); ++it) {
-            const auto type = RentalVehicleUtil::fromGbfsVehicleType(vehicleTypes.vehicleType(it.key()));
-            s.setCapacity(type, it.value().toInt(-1));
+            s.setCapacity({vehicleTypes.vehicleType(it.key())}, it.value().toInt(-1));
+        }
+        // GBFS v3 capcaities
+        const auto vehicleTypesCapacity = station.value("vehicle_types_capacity"_L1).toArray();
+        for (const auto &capV : vehicleTypesCapacity) {
+            const auto capObj = capV.toObject();
+            const auto ids = capObj.value("vehicle_type_ids"_L1).toArray();
+            std::vector<RentalVehicleType> vts;
+            vts.reserve(ids.size());
+            std::ranges::transform(ids, std::back_inserter(vts), [&vehicleTypes](const auto &id) { return vehicleTypes.vehicleType(id.toString()); });
+            s.setCapacity(vts, capObj.value("count"_L1).toInt(-1));
         }
         readRentalUris(station, s);
 
@@ -156,12 +166,17 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         auto &loc = context->result[context->result.size() - selectedStationIds.size() + std::distance(selectedStationIds.begin(), it)];
         auto s = loc.rentalVehicleStation();
 
-        s.setAvailableVehicles(stat.value(QLatin1String("num_bikes_available")).toInt(-1));
-        const auto availableVehicleTypes = stat.value(QLatin1String("vehicle_types_available")).toArray();
+        if (const auto num = stat.value("num_vehicles_available"_L1); num.isDouble()) {
+            s.setAvailableVehicles(num.toInt(-1));
+        } else {
+            // legacy, before GBFS v3
+            s.setAvailableVehicles(stat.value("num_bikes_available"_L1).toInt(-1));
+        }
+        const auto availableVehicleTypes = stat.value("vehicle_types_available"_L1).toArray();
         for (const auto &v : availableVehicleTypes) {
             const auto obj = v.toObject();
-            const auto type = RentalVehicleUtil::fromGbfsVehicleType(vehicleTypes.vehicleType(obj.value(QLatin1String("vehicle_type_id")).toString()));
-            s.setAvailableVehicles(type, obj.value(QLatin1String("count")).toInt(-1));
+            const auto type = vehicleTypes.vehicleType(obj.value("vehicle_type_id"_L1).toString());
+            s.setAvailableVehicles(type, obj.value("count"_L1).toInt(-1));
         }
 
         loc.setData(s);

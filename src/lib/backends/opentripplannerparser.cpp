@@ -55,7 +55,6 @@ static void parseRentalUris(const QJsonObject &obj, T &rental)
 QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj, bool forceVehicle) const
 {
     RentalVehicleNetwork network;
-    RentalVehicle::VehicleType type = RentalVehicle::Bicycle;
     RentalVehicleType vt;
     vt.setFormFactor(RentalVehicleType::FormFactor::Bicycle);
     vt.setPropulsionType(RentalVehicleType::PropulsionType::Human);
@@ -72,9 +71,6 @@ QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj, b
             network.setName(config.value("name"_L1).toString());
             vt.setFormFactor(GBFSVehicleType::toFormFactor(config.value("formFactor"_L1).toString()));
             vt.setPropulsionType(GBFSVehicleType::toPropulsionType(config.value("propulsionType"_L1).toString()));
-            if (const auto s = config.value("vehicleTypes"_L1); s.isString()) {
-                type = static_cast<RentalVehicle::VehicleType>(QMetaEnum::fromType<RentalVehicle::VehicleType>().keyToValue(s.toString().toUtf8().constData()));
-            }
         } else {
             network.setName(networks.at(0).toString());
         }
@@ -112,13 +108,11 @@ QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj, b
             RentalVehicleType vt;
             vt.setFormFactor(GBFSVehicleType::toFormFactor(typeObj.value("formFactor"_L1).toString()));
             vt.setPropulsionType(GBFSVehicleType::toPropulsionType(typeObj.value("propulsionType"_L1).toString()));
-            s.setCapacity(RentalVehicleUtil::fromGbfsVehicleType(vt), availObj.value("count"_L1).toInt(-1));
+            s.setCapacity({vt}, availObj.value("count"_L1).toInt(-1));
         }
     } else {
-        s.setCapacity(type, available);
+        s.setCapacity({vt}, capacity);
     }
-
-    s.setCapacity(type, capacity);
 
     if (const auto availVehicles = obj.value("availableVehicles"_L1).toObject().value("byType"_L1).toArray(); !availVehicles.empty()) {
         for (const auto &availV : availVehicles) {
@@ -127,10 +121,10 @@ QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj, b
             RentalVehicleType vt;
             vt.setFormFactor(GBFSVehicleType::toFormFactor(typeObj.value("formFactor"_L1).toString()));
             vt.setPropulsionType(GBFSVehicleType::toPropulsionType(typeObj.value("propulsionType"_L1).toString()));
-            s.setAvailableVehicles(RentalVehicleUtil::fromGbfsVehicleType(vt), availObj.value("count"_L1).toInt(-1));
+            s.setAvailableVehicles(vt, availObj.value("count"_L1).toInt(-1));
         }
     } else {
-        s.setAvailableVehicles(type, available);
+        s.setAvailableVehicles(vt, available);
     }
 
     parseRentalUris(rentalUrisObj, s);

@@ -22,6 +22,19 @@ using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
+static bool operator<(const RentalVehicleType &lhs, const RentalVehicleType &rhs)
+{
+    return lhs.id() < rhs.id();
+}
+static bool operator<(const RentalVehicleType &lhs, QStringView rhs)
+{
+    return lhs.id() < rhs;
+}
+static bool operator==(const RentalVehicleType &lhs, QStringView rhs)
+{
+    return lhs.id() == rhs;
+}
+
 class RentalVehicleTypePrivate : public QSharedData
 {
 public:
@@ -46,11 +59,26 @@ public:
 class RentalVehicleStationPrivate : public QSharedData
 {
 public:
+    [[nodiscard]] RentalVehicleType vehicleType(QStringView id) const
+    {
+        auto it = std::lower_bound(vehicleTypes.begin(), vehicleTypes.end(), id);
+        return it != vehicleTypes.end() && (*it).id() == id ? (*it) : RentalVehicleType();
+    }
+
+    void addVehicleType(const RentalVehicleType &vt)
+    {
+        const auto it = std::lower_bound(vehicleTypes.begin(), vehicleTypes.end(), vt);
+        if (it == vehicleTypes.end() || (*it).id() != vt.id()) {
+            vehicleTypes.insert(it, vt);
+        }
+    }
+
     int availableVehicles = -1;
     int capacity = -1;
     RentalVehicleNetwork network;
-    std::vector<int> capacities;
-    std::vector<int> availabilities;
+    std::vector<RentalVehicleType> vehicleTypes;
+    std::vector<std::pair<std::vector<QString>, int>> capacities;
+    std::unordered_map<QString, int> availabilities;
     QUrl webBookingUrl;
     QUrl appBookingUrl;
 };
@@ -64,6 +92,31 @@ public:
     QUrl webBookingUrl;
     QUrl appBookingUrl;
 };
+}
+
+struct {
+    const char *name;
+    RentalVehicleType::FormFactor formFactor;
+    RentalVehicleType::PropulsionType propulsionType;
+} static constexpr const legacy_type_map[] = {
+    { "Bicycle", RentalVehicleType::FormFactor::Bicycle, RentalVehicleType::PropulsionType::Human },
+    { "Pedelec", RentalVehicleType::FormFactor::Bicycle, RentalVehicleType::PropulsionType::ElectricAssist },
+    { "ElectricKickScooter", RentalVehicleType::FormFactor::ScooterStanding, RentalVehicleType::PropulsionType::Electric },
+    { "ElectricMoped", RentalVehicleType::FormFactor::Moped, RentalVehicleType::PropulsionType::Electric },
+    { "Car", RentalVehicleType::FormFactor::Car, RentalVehicleType::PropulsionType::Undefined },
+};
+
+[[nodiscard]] static RentalVehicleType legacyVehicleType(QStringView name)
+{
+    const auto it = std::ranges::find_if(legacy_type_map, [name](const auto &m) {
+        return name == QLatin1StringView(m.name);
+    });
+    RentalVehicleType vt;
+    if (it != std::end(legacy_type_map)) {
+        vt.setFormFactor((*it).formFactor);
+        vt.setPropulsionType((*it).propulsionType);
+    }
+    return vt;
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(RentalVehicleType)
@@ -212,113 +265,95 @@ bool RentalVehicleStation::isValid() const
     return d->network.isValid() || d->capacity >= 0 || d->availableVehicles >= 0;
 }
 
-RentalVehicle::VehicleTypes RentalVehicleStation::supportedVehicleTypes() const
+QList<RentalVehicleType> RentalVehicleStation::supportedVehicleTypes() const
 {
-    RentalVehicle::VehicleTypes types = {};
-    const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
-    for (auto i = 0; i < me.keyCount() && i < (int)d->capacities.size(); ++i) {
-        if (d->capacities[i] >= 0) {
-            types |= (RentalVehicle::VehicleType)me.value(i);
+    QList<RentalVehicleType> res = availableVehicleTypes();
+    for (const auto &c : d->capacities) {
+        for (const auto &id : c.first) {
+            if (!res.contains(id)) {
+                res.push_back(d->vehicleType(id));
+            }
         }
     }
-    return types | availableVehicleTypes();
+    return res;
 }
 
-RentalVehicle::VehicleTypes RentalVehicleStation::availableVehicleTypes() const
+QList<RentalVehicleType> RentalVehicleStation::availableVehicleTypes() const
 {
-    RentalVehicle::VehicleTypes types = {};
-    const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
-    for (auto i = 0; i < me.keyCount() && i < (int)d->availabilities.size(); ++i) {
-        if (d->availabilities[i] >= 0) {
-            types |= (RentalVehicle::VehicleType)me.value(i);
+    QList<RentalVehicleType> res;
+    for (auto it = d->availabilities.begin(); it != d->availabilities.end(); ++it) {
+        if ((*it).second <= 0) {
+            continue;
         }
+        res.push_back(d->vehicleType((*it).first));
     }
-    return types;
+    return res;
 }
 
-int RentalVehicleStation::capacity(RentalVehicle::VehicleType type) const
+int RentalVehicleStation::capacityByType(const RentalVehicleType &type) const
 {
-    const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
-    for (auto i = 0; i < me.keyCount() && i < (int)d->capacities.size(); ++i) {
-        if (me.value(i) == type) {
-            return d->capacities[i];
+    for (const auto &c : d->capacities) {
+        if (std::ranges::binary_search(c.first, type.id())) {
+            return c.second;
         }
     }
     return -1;
 }
 
-void RentalVehicleStation::setCapacity(RentalVehicle::VehicleType type, int capacity)
+void RentalVehicleStation::setCapacity(const std::vector<RentalVehicleType> &types, int capacity)
 {
-    const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
-    for (auto i = 0; i < me.keyCount(); ++i) {
-        if (me.value(i) != type) {
-            continue;
-        }
-        d->capacities.resize(std::max(d->capacities.size(), (std::size_t)(i + 1)), -1);
-        d->capacities[i] = capacity;
+    if (types.empty()) {
         return;
     }
+
+    d.detach();
+    for (const auto &vt : types) {
+        d->addVehicleType(vt);
+    }
+
+    std::vector<QString> ids;
+    ids.reserve(types.size());
+    std::ranges::transform(types, std::back_inserter(ids), [](const auto &vt) { return vt.id(); });
+    std::ranges::sort(ids);
+
+    d->capacities.erase(std::remove_if(d->capacities.begin(), d->capacities.end(), [&ids](const auto &c) {
+        return std::ranges::includes(c.first, ids) || std::ranges::includes(ids, c.first);
+    }), d->capacities.end());
+
+    d->capacities.emplace_back(ids, capacity);
 }
 
-int RentalVehicleStation::availableVehicles(RentalVehicle::VehicleType type) const
+int RentalVehicleStation::availableVehiclesByType(const RentalVehicleType &type) const
 {
-    const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
-    for (auto i = 0; i < me.keyCount() && i < (int)d->availabilities.size(); ++i) {
-        if (me.value(i) == type) {
-            return d->availabilities[i];
-        }
-    }
-    return -1;
+    const auto it = d->availabilities.find(type.id());
+    return it != d->availabilities.end() ? (*it).second : -1;
 }
 
-void RentalVehicleStation::setAvailableVehicles(RentalVehicle::VehicleType type, int count)
+void RentalVehicleStation::setAvailableVehicles(const RentalVehicleType &type, int count)
 {
-    const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
-    for (auto i = 0; i < me.keyCount(); ++i) {
-        if (me.value(i) != type) {
-            continue;
-        }
-        d->availabilities.resize(std::max(d->availabilities.size(), (std::size_t)(i + 1)), -1);
-        d->availabilities[i] = count;
-        return;
-    }
+    d.detach();
+    d->addVehicleType(type);
+    d->availabilities[type.id()] = count;
 }
 
 QString RentalVehicleStation::iconName() const
 {
-    const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
-    for (auto i = 0; i < me.keyCount() && i < (int)d->capacities.size(); ++i) {
-        if (d->capacities[i] >= 0) {
-            return RentalVehicle::vehicleTypeIconName((RentalVehicle::VehicleType)me.value(i));
+    for (const auto &c : d->capacities) {
+        if (c.second >= 0) {
+            return d->vehicleType(c.first.front()).typeIconName();
         }
     }
-    for (auto i = 0; i < me.keyCount() && i < (int)d->availabilities.size(); ++i) {
-        if (d->availabilities[i] >= 0) {
-            return RentalVehicle::vehicleTypeIconName((RentalVehicle::VehicleType)me.value(i));
+    for (auto it = d->availabilities.begin(); it != d->availabilities.end(); ++it) {
+        if ((*it).second >= 0) {
+            return d->vehicleType((*it).first).typeIconName();
         }
     }
-    return RentalVehicle::vehicleTypeIconName(RentalVehicle::Bicycle);
+    return RentalVehicleType::typeIconName(RentalVehicleType::FormFactor::Bicycle, RentalVehicleType::PropulsionType::Human);
 }
 
 bool RentalVehicleStation::isSame(const RentalVehicleStation &lhs, const RentalVehicleStation &rhs)
 {
     return RentalVehicleNetwork::isSame(lhs.network(), rhs.network());
-}
-
-static QJsonValue typeVectorToJson(const std::vector<int> &v)
-{
-    if (v.empty()) {
-        return {};
-    }
-    QJsonObject obj;
-    const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
-    for (auto i = 0; i < me.keyCount() && i < (int)v.size(); ++i) {
-        if (v[i] < 0) {
-            continue;
-        }
-        obj.insert(QLatin1String(me.key(i)), v[i]);
-    }
-    return obj.isEmpty() ? QJsonValue() : obj;
 }
 
 QJsonObject RentalVehicleStation::toJson(const RentalVehicleStation &station)
@@ -333,44 +368,71 @@ QJsonObject RentalVehicleStation::toJson(const RentalVehicleStation &station)
     if (station.network().isValid()) {
         obj.insert("network"_L1, RentalVehicleNetwork::toJson(station.network()));
     }
-    auto v = typeVectorToJson(station.d->capacities);
-    if (v.isObject()) {
-        obj.insert("capacitiesByType"_L1, v);
+    if (!station.d->vehicleTypes.empty()) {
+        obj.insert("vehicleTypes"_L1, RentalVehicleType::toJson(station.d->vehicleTypes));
     }
-    v = typeVectorToJson(station.d->availabilities);
-    if (v.isObject()) {
-        obj.insert("availabilitiesByType"_L1, v);
+    if (!station.d->capacities.empty()) {
+        QJsonArray capsArray;
+        for (const auto &c : station.d->capacities) {
+            QJsonObject capObj;
+            QJsonArray types;
+            std::ranges::copy(c.first, std::back_inserter(types));
+            capObj.insert("vehicleTypes"_L1, types);
+            capObj.insert("count"_L1, c.second);
+            capsArray.push_back(std::move(capObj));
+        }
+        obj.insert("capacitiesByType"_L1, capsArray);
+    }
+    if (!station.d->availabilities.empty()) {
+        QJsonObject availObj;
+        for (auto it = station.d->availabilities.begin(); it != station.d->availabilities.end(); ++it) {
+            availObj.insert((*it).first, (*it).second);
+        }
+        obj.insert("availabilitiesByType"_L1, availObj);
     }
     return obj;
-}
-
-static std::vector<int> typeVectorFromJson(const QJsonValue &v)
-{
-    std::vector<int> out;
-    const auto obj = v.toObject();
-    if (obj.isEmpty()) {
-        return out;
-    }
-
-    const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
-    for (auto i = 0; i < me.keyCount(); ++i) {
-        const auto it = obj.find(QLatin1String(me.key(i)));
-        if (it == obj.end()) {
-            continue;
-        }
-        out.resize(i + 1, -1);
-        out[i] = it.value().toInt();
-    }
-
-    return out;
 }
 
 RentalVehicleStation RentalVehicleStation::fromJson(const QJsonObject &obj)
 {
     auto station = Json::fromJson<RentalVehicleStation>(obj);
-    station.setNetwork(RentalVehicleNetwork::fromJson(obj.value(QLatin1String("network")).toObject()));
-    station.d->capacities = typeVectorFromJson(obj.value(QLatin1String("capacitiesByType")));
-    station.d->availabilities = typeVectorFromJson(obj.value(QLatin1String("availabilitiesByType")));
+    station.setNetwork(RentalVehicleNetwork::fromJson(obj.value("network"_L1).toObject()));
+    station.d->vehicleTypes = RentalVehicleType::fromJson(obj.value("vehicleTypes"_L1).toArray());
+
+    const auto capsByType = obj.value("capacitiesByType"_L1);
+    if (capsByType.isArray()) {
+        const auto caps = capsByType.toArray();
+        for (const auto capV : caps) {
+            const auto capObj = capV.toObject();
+            const auto idsArray = capObj.value("vehicleTypes"_L1).toArray();
+            std::vector<QString> ids;
+            ids.reserve(idsArray.size());
+            std::ranges::transform(idsArray, std::back_inserter(ids), [](const auto &v) { return v.toString(); });
+            station.d->capacities.emplace_back(std::move(ids), capObj.value("count"_L1).toInt(-1));
+        }
+    } else if (capsByType.isObject()) {
+        // backward compat
+        const auto capsObj = capsByType.toObject();
+        for (auto it = capsObj.begin(); it != capsObj.end(); ++it) {
+            const auto vt = legacyVehicleType(it.key());
+            station.d->addVehicleType(vt);
+            station.d->capacities.emplace_back(std::vector<QString>{vt.id()}, it.value().toInt(-1));
+        }
+    }
+
+    const auto availObj = obj.value("availabilitiesByType"_L1).toObject();
+    for (auto it = availObj.begin(); it != availObj.end(); ++it) {
+        const auto id = it.key();
+        const auto hasType = std::ranges::find_if(station.d->vehicleTypes, [id](const auto &vt) { return vt.id() == id; }) != station.d->vehicleTypes.end();
+        if (hasType) {
+            station.d->availabilities[id] = it.value().toInt(-1);
+        } else {
+            const auto vt = legacyVehicleType(id);
+            station.d->addVehicleType(vt);
+            station.d->availabilities[vt.id()] = it.value().toInt(-1);
+        }
+    }
+
     return station;
 }
 
@@ -384,29 +446,6 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, QUrl, appBookingUrl, setAppBooking
 RentalVehicle::VehicleType RentalVehicle::type() const
 {
     return RentalVehicleUtil::fromGbfsVehicleType(d->vehicleType);
-}
-
-void RentalVehicle::setType(RentalVehicle::VehicleType value)
-{
-    struct {
-        RentalVehicle::VehicleType type;
-        RentalVehicleType::FormFactor formFactor;
-        RentalVehicleType::PropulsionType propulsionType;
-    } static constexpr const type_map[] = {
-        { RentalVehicle::Bicycle, RentalVehicleType::FormFactor::Bicycle, RentalVehicleType::PropulsionType::Human },
-        { RentalVehicle::Pedelec, RentalVehicleType::FormFactor::Bicycle, RentalVehicleType::PropulsionType::ElectricAssist },
-        { RentalVehicle::ElectricKickScooter, RentalVehicleType::FormFactor::ScooterStanding, RentalVehicleType::PropulsionType::Electric },
-        { RentalVehicle::ElectricMoped, RentalVehicleType::FormFactor::Moped, RentalVehicleType::PropulsionType::Electric },
-        { RentalVehicle::Car, RentalVehicleType::FormFactor::Car, RentalVehicleType::PropulsionType::Undefined },
-    };
-
-    const auto it = std::ranges::find_if(type_map, [value](const auto &m) { return m.type == value; });
-    d.detach();
-    if (it == std::end(type_map)) {
-        d->vehicleType = {};
-    }
-    d->vehicleType.setFormFactor((*it).formFactor);
-    d->vehicleType.setPropulsionType((*it).propulsionType);
 }
 
 QString RentalVehicle::vehicleTypeIconName(VehicleType type)
@@ -429,7 +468,7 @@ QString RentalVehicle::vehicleTypeIconName(VehicleType type)
 
 QString RentalVehicle::vehicleTypeIconName() const
 {
-    return RentalVehicleType::typeIconName(d->vehicleType.formFactor(), d->vehicleType.propulsionType());
+    return d->vehicleType.typeIconName();
 }
 
 QString RentalVehicle::label() const
@@ -458,7 +497,7 @@ RentalVehicle RentalVehicle::fromJson(const QJsonObject &obj)
         v.setVehicleType(RentalVehicleType::fromJson(vtObj));
     } else if (const auto type = obj.value("type"_L1).toString(); !type.isEmpty()) {
         // backward compat
-        v.setType(static_cast<RentalVehicle::VehicleType>(QMetaEnum::fromType<RentalVehicle::VehicleType>().keyToValue(type.toUtf8().constData())));
+        v.setVehicleType(legacyVehicleType(type));
     }
     return v;
 }

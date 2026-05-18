@@ -45,7 +45,7 @@ public:
     /** Vehicle type.
      *  @deprecated use vehicleType
      */
-    Q_PROPERTY(VehicleType type READ type WRITE setType STORED false)
+    Q_PROPERTY(VehicleType type READ type STORED false)
 
     /** Sharing network operator. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicleNetwork, network, setNetwork)
@@ -76,7 +76,6 @@ public:
     [[nodiscard]] QString label() const;
 
     [[nodiscard]] [[deprecated("use RentalVehicleType")]] VehicleType type() const;
-    [[deprecated("use RentalVehicleType")]] void setType(VehicleType value);
 
     /** Icon representing the vehicle type.
      *  Can be a qrc: URL or an XDG icon name.
@@ -208,9 +207,9 @@ class KPUBLICTRANSPORT_EXPORT RentalVehicleStation
     Q_PROPERTY(bool isValid READ isValid STORED false)
 
     /** Supported vehicle types at this station. */
-    Q_PROPERTY(KPublicTransport::RentalVehicle::VehicleTypes supportedVehicleTypes READ supportedVehicleTypes STORED false)
+    Q_PROPERTY(QList<KPublicTransport::RentalVehicleType> supportedVehicleTypes READ supportedVehicleTypes STORED false)
     /** Available vehicle types at this station. */
-    Q_PROPERTY(KPublicTransport::RentalVehicle::VehicleTypes availableVehicleTypes READ availableVehicleTypes STORED false)
+    Q_PROPERTY(QList<KPublicTransport::RentalVehicleType> availableVehicleTypes READ availableVehicleTypes STORED false)
 
     /** Deep booking link via a web UI. */
     KPUBLICTRANSPORT_PROPERTY(QUrl, webBookingUrl, setWebBookingUrl)
@@ -224,18 +223,18 @@ class KPUBLICTRANSPORT_EXPORT RentalVehicleStation
 
 public:
     [[nodiscard]] bool isValid() const;
-    [[nodiscard]] RentalVehicle::VehicleTypes supportedVehicleTypes() const;
-    [[nodiscard]] RentalVehicle::VehicleTypes availableVehicleTypes() const;
+    [[nodiscard]] QList<RentalVehicleType> supportedVehicleTypes() const;
+    [[nodiscard]] QList<RentalVehicleType> availableVehicleTypes() const;
 
     /** Capacity for a given vehicle type. */
-    [[nodiscard]] Q_INVOKABLE int capacity(KPublicTransport::RentalVehicle::VehicleType type) const;
-    /** Set the capacity for a specific vehicle type. */
-    void setCapacity(RentalVehicle::VehicleType type, int capacity);
+    [[nodiscard]] Q_INVOKABLE int capacityByType(const KPublicTransport::RentalVehicleType &type) const;
+    /** Set the capacity for a set of vehicle types. */
+    void setCapacity(const std::vector<RentalVehicleType> &types, int capacity);
 
     /** Available vehicles for a given vehicle type. */
-    [[nodiscard]] Q_INVOKABLE int availableVehicles(KPublicTransport::RentalVehicle::VehicleType type) const;
+    [[nodiscard]] Q_INVOKABLE int availableVehiclesByType(const KPublicTransport::RentalVehicleType &type) const;
     /** Sets the number of available vehicles for a given vehicle type. */
-    void setAvailableVehicles(RentalVehicle::VehicleType type, int count);
+    void setAvailableVehicles(const RentalVehicleType &type, int count);
 
     [[nodiscard]] QString iconName() const;
 
