@@ -24,6 +24,8 @@
 
 #include "localbackendutils.h"
 
+using namespace Qt::StringLiterals;
+
 constexpr auto LTGLINK_IDENTIFIER = QLatin1StringView("ltglinkint");
 
 using namespace KPublicTransport;
@@ -197,6 +199,14 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
 
                 Journey journey;
                 journey.setSections(std::move(sections));
+
+                QUrl bookingUrl(u"https://bilietas.ltglink.lt/journeys"_s);
+                QUrlQuery query;
+                query.addQueryItem(u"oStop"_s, req.from().identifier(LTGLINK_IDENTIFIER));
+                query.addQueryItem(u"dStop"_s, req.to().identifier(LTGLINK_IDENTIFIER));
+                query.addQueryItem(u"oDate"_s, date.toString(Qt::ISODate));
+                bookingUrl.setQuery(query);
+                journey.setBookingUrl(bookingUrl);
 
                 journeys->push_back(std::move(journey));
                 (*runningRequests)--;
