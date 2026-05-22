@@ -117,6 +117,29 @@ QString RentalVehicleType::typeIconName(RentalVehicleType::FormFactor formFactor
     return u"question"_s;
 }
 
+QString RentalVehicleType::label() const
+{
+    switch (d->formFactor) {
+        case RentalVehicleType::FormFactor::Undefined:
+            break;
+        case RentalVehicleType::FormFactor::Bicycle:
+            return i18nc("rental vehicle type", "Rented bike");
+        case RentalVehicleType::FormFactor::Moped:
+            return i18nc("rental vehicle type", "Rented moped");
+        case RentalVehicleType::FormFactor::ScooterStanding:
+            return i18nc("rental vehicle type", "Rented kick scooter");
+        case RentalVehicleType::FormFactor::Car:
+            return i18nc("rental vehicle type", "Rented car");
+        case RentalVehicleType::FormFactor::CargoBicycle:
+            return i18nc("rental vehicle type", "Rented cargo bike");
+        case RentalVehicleType::FormFactor::ScooterSeated: // TODO
+        case RentalVehicleType::FormFactor::Other:
+            return i18nc("rental vehicle type", "Rented vehicle");
+    }
+
+    return {};
+}
+
 QJsonObject RentalVehicleType::toJson(const RentalVehicleType &vehicleType)
 {
     auto obj = Json::toJson(vehicleType);
@@ -411,25 +434,7 @@ QString RentalVehicle::vehicleTypeIconName() const
 
 QString RentalVehicle::label() const
 {
-    switch (d->vehicleType.formFactor()) {
-        case RentalVehicleType::FormFactor::Undefined:
-            break;
-        case RentalVehicleType::FormFactor::Bicycle:
-            return i18nc("rental vehicle type", "Rented bike");
-        case RentalVehicleType::FormFactor::Moped:
-            return i18nc("rental vehicle type", "Rented moped");
-        case RentalVehicleType::FormFactor::ScooterStanding:
-            return i18nc("rental vehicle type", "Rented kick scooter");
-        case RentalVehicleType::FormFactor::Car:
-            return i18nc("rental vehicle type", "Rented car");
-        case RentalVehicleType::FormFactor::CargoBicycle:
-            return i18nc("rental vehicle type", "Rented cargo bike");
-        case RentalVehicleType::FormFactor::ScooterSeated: // TODO
-        case RentalVehicleType::FormFactor::Other:
-            return i18nc("rental vehicle type", "Rented vehicle");
-    }
-
-    return {};
+    return d->vehicleType.label();
 }
 
 QJsonObject RentalVehicle::toJson(const RentalVehicle &vehicle)

@@ -171,6 +171,10 @@ public:
     [[nodiscard]] QString typeIconName() const;
     Q_INVOKABLE [[nodiscard]] static QString typeIconName(KPublicTransport::RentalVehicleType::FormFactor formFactor, KPublicTransport::RentalVehicleType::PropulsionType propulsionType);
 
+    /** Label shortly describing this transport for display. */
+    Q_PROPERTY(QString label READ label STORED false)
+    [[nodiscard]] QString label() const;
+
     /** Serializes one object to JSON. */
     [[nodiscard]] static QJsonObject toJson(const RentalVehicleType &vehicleType);
     [[nodiscard]] static QJsonArray toJson(const std::vector<RentalVehicleType> &vehicleTypes);
