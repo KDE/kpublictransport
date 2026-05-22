@@ -333,6 +333,7 @@ static int isSameDistanceThreshold(Location::Type type, const StopInformation &s
                         return 25;
                 }
             }
+            [[fallthrough]];
         case Location::Address:
             return 25; // meter
         case Location::CarpoolPickupDropoff:
