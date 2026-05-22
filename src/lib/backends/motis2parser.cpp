@@ -316,6 +316,11 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
         if (leg["bikesAllowed"_L1].toBool()) {
             features.push_back(Feature(Feature::BikeStorage));
         }
+
+        if (leg["wheelchairAccessible"_L1] == "ACCESSIBLE"_L1) {
+            features.emplace_back(Feature::WheelchairAccessible);
+        }
+
         from.setFeatures(std::move(features));
         s.setDeparture(from);
         const auto to = parsePlace(leg.value("to"_L1).toObject(), hasRealTime);
