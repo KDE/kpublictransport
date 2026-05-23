@@ -443,29 +443,6 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, RentalVehicleType, vehicleType, se
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, QUrl, webBookingUrl, setWebBookingUrl)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, QUrl, appBookingUrl, setAppBookingUrl)
 
-RentalVehicle::VehicleType RentalVehicle::type() const
-{
-    return RentalVehicleUtil::fromGbfsVehicleType(d->vehicleType);
-}
-
-QString RentalVehicle::vehicleTypeIconName(VehicleType type)
-{
-    switch (type) {
-        case RentalVehicle::Unknown:
-            break;
-        case RentalVehicle::Bicycle:
-        case RentalVehicle::Pedelec: // TODO
-            return IndividualTransport::modeIconName(IndividualTransport::Bike);
-        case RentalVehicle::ElectricMoped:
-            return u"qrc:///org.kde.kpublictransport/assets/images/motorcycle.svg"_s;
-        case RentalVehicle::ElectricKickScooter:
-            return u"qrc:///org.kde.kpublictransport/assets/images/scooter.svg"_s;
-        case RentalVehicle::Car:
-            return IndividualTransport::modeIconName(IndividualTransport::Car);
-    }
-    return u"question"_s;
-}
-
 QString RentalVehicle::vehicleTypeIconName() const
 {
     return d->vehicleType.typeIconName();

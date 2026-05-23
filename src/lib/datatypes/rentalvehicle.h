@@ -29,24 +29,6 @@ class KPUBLICTRANSPORT_EXPORT RentalVehicle
 {
     KPUBLICTRANSPORT_GADGET(RentalVehicle)
 public:
-    /** Type of vehicle. */
-    enum VehicleType {
-        Unknown = 0,
-        Bicycle = 1, ///< human-powered bicylce
-        Pedelec = 2, ///< bicycle with electric assistance
-        ElectricKickScooter = 4, ///< "e scooter", electrically assisted kick scooters, not to be confused with motorcycle-like scooters
-        ElectricMoped = 8, ///< motorcycle-like electric scooters
-        Car = 16, ///< electrical- or combustion-powered car
-    };
-    Q_ENUM(VehicleType)
-    Q_DECLARE_FLAGS(VehicleTypes, VehicleType)
-    Q_FLAG(VehicleTypes)
-
-    /** Vehicle type.
-     *  @deprecated use vehicleType
-     */
-    Q_PROPERTY(VehicleType type READ type STORED false)
-
     /** Sharing network operator. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicleNetwork, network, setNetwork)
 
@@ -75,20 +57,11 @@ public:
     [[nodiscard]] QString vehicleTypeIconName() const;
     [[nodiscard]] QString label() const;
 
-    [[nodiscard]] [[deprecated("use RentalVehicleType")]] VehicleType type() const;
-
-    /** Icon representing the vehicle type.
-     *  Can be a qrc: URL or an XDG icon name.
-     */
-    [[nodiscard]] [[deprecated("use RentalVehicleType")]] static QString vehicleTypeIconName(KPublicTransport::RentalVehicle::VehicleType type);
-
     /** Serializes one object to JSON. */
     [[nodiscard]] static QJsonObject toJson(const RentalVehicle &vehicle);
     /** Deserialize an object from JSON. */
     [[nodiscard]] static RentalVehicle fromJson(const QJsonObject &obj);
 };
-
-Q_DECLARE_OPERATORS_FOR_FLAGS(RentalVehicle::VehicleTypes)
 
 class RentalVehicleTypePrivate;
 

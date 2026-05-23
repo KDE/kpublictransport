@@ -9,8 +9,6 @@
 
 #include <KPublicTransport/RentalVehicle>
 
-#include "gbfs/gbfsvehicletypes.h"
-
 namespace KPublicTransport {
 
 class RentalVehicle;
@@ -24,8 +22,6 @@ namespace RentalVehicleUtil
     RentalVehicleNetwork merge(const RentalVehicleNetwork &lhs, const RentalVehicleNetwork &rhs);
     RentalVehicleStation merge(const RentalVehicleStation &lhs, const RentalVehicleStation &rhs);
     RentalVehicle merge(const RentalVehicle &lhs, const RentalVehicle &rhs);
-
-    [[nodiscard]] RentalVehicle::VehicleType fromGbfsVehicleType(const RentalVehicleType &vehicle);
 }
 
 }
