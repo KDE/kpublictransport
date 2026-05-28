@@ -67,7 +67,9 @@ QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj, b
         if (it != m_rentalVehicleNetworks.end()) {
             const auto config = it.value().toObject();
             network.setName(config.value("name"_L1).toString());
-            type = static_cast<RentalVehicle::VehicleType>(QMetaEnum::fromType<RentalVehicle::VehicleType>().keyToValue(config.value("vehicleTypes"_L1).toString().toUtf8().constData()));
+            if (const auto s = config.value("vehicleTypes"_L1); s.isString()) {
+                type = static_cast<RentalVehicle::VehicleType>(QMetaEnum::fromType<RentalVehicle::VehicleType>().keyToValue(s.toString().toUtf8().constData()));
+            }
         } else {
             network.setName(networks.at(0).toString());
         }

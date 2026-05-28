@@ -378,10 +378,10 @@ void RentalVehicle::setType(RentalVehicle::VehicleType value)
     };
 
     const auto it = std::ranges::find_if(type_map, [value](const auto &m) { return m.type == value; });
+    d.detach();
     if (it == std::end(type_map)) {
         d->vehicleType = {};
     }
-    d.detach();
     d->vehicleType.setFormFactor((*it).formFactor);
     d->vehicleType.setPropulsionType((*it).propulsionType);
 }
