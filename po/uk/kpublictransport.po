@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-28 00:42+0000\n"
+"POT-Creation-Date: 2026-05-29 00:42+0000\n"
 "PO-Revision-Date: 2026-03-20 08:41+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -132,13 +132,13 @@ msgctxt "mode of individual transport"
 msgid "Car"
 msgstr "Автомобіль"
 
-#: lib/datatypes/individualtransport.cpp:77 lib/datatypes/journey.cpp:586
+#: lib/datatypes/individualtransport.cpp:77 lib/datatypes/journey.cpp:594
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Walk"
 msgstr "Пішки"
 
-#: lib/datatypes/journey.cpp:588
+#: lib/datatypes/journey.cpp:596
 #, kde-format
 msgid "Wait"
 msgstr "Очікування"
@@ -215,29 +215,45 @@ msgctxt "airport gate"
 msgid "Gate"
 msgstr "Термінал"
 
-#: lib/datatypes/rentalvehicle.cpp:375
+#: lib/datatypes/rentalvehicle.cpp:418
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented bike"
 msgstr "Орендований велосипед"
 
-#: lib/datatypes/rentalvehicle.cpp:377
+#: lib/datatypes/rentalvehicle.cpp:420
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented moped"
 msgstr "Орендований мопед"
 
-#: lib/datatypes/rentalvehicle.cpp:379
+#: lib/datatypes/rentalvehicle.cpp:422
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented kick scooter"
 msgstr "Орендований самокат"
 
-#: lib/datatypes/rentalvehicle.cpp:381
+#: lib/datatypes/rentalvehicle.cpp:424
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"
 msgstr "Орендований автомобіль"
+
+#: lib/datatypes/rentalvehicle.cpp:426
+#, fuzzy, kde-format
+#| msgctxt "rental vehicle type"
+#| msgid "Rented bike"
+msgctxt "rental vehicle type"
+msgid "Rented cargo bike"
+msgstr "Орендований велосипед"
+
+#: lib/datatypes/rentalvehicle.cpp:429
+#, fuzzy, kde-format
+#| msgctxt "rental vehicle type"
+#| msgid "Rented bike"
+msgctxt "rental vehicle type"
+msgid "Rented vehicle"
+msgstr "Орендований велосипед"
 
 #: lib/datatypes/vehicle.cpp:79
 #, kde-format

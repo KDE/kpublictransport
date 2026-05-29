@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-28 00:42+0000\n"
+"POT-Creation-Date: 2026-05-29 00:42+0000\n"
 "PO-Revision-Date: 2026-04-21 21:00+0200\n"
 "Last-Translator: Philipp Kiemle <l10n.daphipz@fastmail.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -133,13 +133,13 @@ msgctxt "mode of individual transport"
 msgid "Car"
 msgstr "Auto"
 
-#: lib/datatypes/individualtransport.cpp:77 lib/datatypes/journey.cpp:586
+#: lib/datatypes/individualtransport.cpp:77 lib/datatypes/journey.cpp:594
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Walk"
 msgstr "Zu Fuß"
 
-#: lib/datatypes/journey.cpp:588
+#: lib/datatypes/journey.cpp:596
 #, kde-format
 msgid "Wait"
 msgstr "Warten"
@@ -216,29 +216,45 @@ msgctxt "airport gate"
 msgid "Gate"
 msgstr "Gate"
 
-#: lib/datatypes/rentalvehicle.cpp:375
+#: lib/datatypes/rentalvehicle.cpp:418
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented bike"
 msgstr "Mietfahrrad"
 
-#: lib/datatypes/rentalvehicle.cpp:377
+#: lib/datatypes/rentalvehicle.cpp:420
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented moped"
 msgstr "Mietmoped"
 
-#: lib/datatypes/rentalvehicle.cpp:379
+#: lib/datatypes/rentalvehicle.cpp:422
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented kick scooter"
 msgstr "Miettretroller"
 
-#: lib/datatypes/rentalvehicle.cpp:381
+#: lib/datatypes/rentalvehicle.cpp:424
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"
 msgstr "Mietwagen"
+
+#: lib/datatypes/rentalvehicle.cpp:426
+#, fuzzy, kde-format
+#| msgctxt "rental vehicle type"
+#| msgid "Rented bike"
+msgctxt "rental vehicle type"
+msgid "Rented cargo bike"
+msgstr "Mietfahrrad"
+
+#: lib/datatypes/rentalvehicle.cpp:429
+#, fuzzy, kde-format
+#| msgctxt "rental vehicle type"
+#| msgid "Rented bike"
+msgctxt "rental vehicle type"
+msgid "Rented vehicle"
+msgstr "Mietfahrrad"
 
 #: lib/datatypes/vehicle.cpp:79
 #, kde-format
