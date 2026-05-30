@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-29 00:42+0000\n"
-"PO-Revision-Date: 2026-03-20 03:43+0100\n"
+"POT-Creation-Date: 2026-05-30 00:43+0000\n"
+"PO-Revision-Date: 2026-05-29 06:05+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -215,45 +215,41 @@ msgctxt "airport gate"
 msgid "Gate"
 msgstr "გეითი"
 
-#: lib/datatypes/rentalvehicle.cpp:418
+#: lib/datatypes/rentalvehicle.cpp:126
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented bike"
 msgstr "გაქირავებული ველოსიპედი"
 
-#: lib/datatypes/rentalvehicle.cpp:420
+#: lib/datatypes/rentalvehicle.cpp:128
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented moped"
 msgstr "ნაქირავები მოპედი"
 
-#: lib/datatypes/rentalvehicle.cpp:422
+#: lib/datatypes/rentalvehicle.cpp:130
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented kick scooter"
 msgstr "ნაქირავები წასაკრავი სკუტერი"
 
-#: lib/datatypes/rentalvehicle.cpp:424
+#: lib/datatypes/rentalvehicle.cpp:132
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"
 msgstr "ნაქირავები მანქანა"
 
-#: lib/datatypes/rentalvehicle.cpp:426
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented bike"
+#: lib/datatypes/rentalvehicle.cpp:134
+#, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented cargo bike"
-msgstr "გაქირავებული ველოსიპედი"
+msgstr "დაქირავებული სატვირთო ველოსიპედი"
 
-#: lib/datatypes/rentalvehicle.cpp:429
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented bike"
+#: lib/datatypes/rentalvehicle.cpp:137
+#, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented vehicle"
-msgstr "გაქირავებული ველოსიპედი"
+msgstr "დაქირავებული ავტომობილი"
 
 #: lib/datatypes/vehicle.cpp:79
 #, kde-format

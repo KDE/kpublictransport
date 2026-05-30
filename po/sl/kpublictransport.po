@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-29 00:42+0000\n"
-"PO-Revision-Date: 2026-03-20 06:39+0100\n"
+"POT-Creation-Date: 2026-05-30 00:43+0000\n"
+"PO-Revision-Date: 2026-05-29 06:38+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <kde-i18n-doc@kde.org>\n"
 "Language: sl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
@@ -216,45 +216,41 @@ msgctxt "airport gate"
 msgid "Gate"
 msgstr "Izhod"
 
-#: lib/datatypes/rentalvehicle.cpp:418
+#: lib/datatypes/rentalvehicle.cpp:126
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented bike"
 msgstr "Najeto kolo"
 
-#: lib/datatypes/rentalvehicle.cpp:420
+#: lib/datatypes/rentalvehicle.cpp:128
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented moped"
 msgstr "Najet moped"
 
-#: lib/datatypes/rentalvehicle.cpp:422
+#: lib/datatypes/rentalvehicle.cpp:130
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented kick scooter"
 msgstr "Najeto skiro"
 
-#: lib/datatypes/rentalvehicle.cpp:424
+#: lib/datatypes/rentalvehicle.cpp:132
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"
 msgstr "Najeti avtomobil"
 
-#: lib/datatypes/rentalvehicle.cpp:426
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented bike"
+#: lib/datatypes/rentalvehicle.cpp:134
+#, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented cargo bike"
-msgstr "Najeto kolo"
+msgstr "Najeto tovorno kolo"
 
-#: lib/datatypes/rentalvehicle.cpp:429
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented bike"
+#: lib/datatypes/rentalvehicle.cpp:137
+#, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented vehicle"
-msgstr "Najeto kolo"
+msgstr "Najeto vozilo"
 
 #: lib/datatypes/vehicle.cpp:79
 #, kde-format

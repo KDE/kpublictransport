@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-29 00:42+0000\n"
+"POT-Creation-Date: 2026-05-30 00:43+0000\n"
 "PO-Revision-Date: 2025-02-18 15:48+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -214,31 +214,31 @@ msgctxt "airport gate"
 msgid "Gate"
 msgstr ""
 
-#: lib/datatypes/rentalvehicle.cpp:418
+#: lib/datatypes/rentalvehicle.cpp:126
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented bike"
 msgstr "租借腳踏車"
 
-#: lib/datatypes/rentalvehicle.cpp:420
+#: lib/datatypes/rentalvehicle.cpp:128
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented moped"
 msgstr "租借機車"
 
-#: lib/datatypes/rentalvehicle.cpp:422
+#: lib/datatypes/rentalvehicle.cpp:130
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented kick scooter"
 msgstr "租借滑班車"
 
-#: lib/datatypes/rentalvehicle.cpp:424
+#: lib/datatypes/rentalvehicle.cpp:132
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"
 msgstr "租借汽車"
 
-#: lib/datatypes/rentalvehicle.cpp:426
+#: lib/datatypes/rentalvehicle.cpp:134
 #, fuzzy, kde-format
 #| msgctxt "rental vehicle type"
 #| msgid "Rented bike"
@@ -246,7 +246,7 @@ msgctxt "rental vehicle type"
 msgid "Rented cargo bike"
 msgstr "租借腳踏車"
 
-#: lib/datatypes/rentalvehicle.cpp:429
+#: lib/datatypes/rentalvehicle.cpp:137
 #, fuzzy, kde-format
 #| msgctxt "rental vehicle type"
 #| msgid "Rented bike"

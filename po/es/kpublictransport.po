@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the kpublictransport package.
 # Automatically generated, 2024.
 #
-# SPDX-FileCopyrightText: 2024, 2025, 2026 Eloy Cuadra <ecuadra@eloihr.net>
+# SPDX-FileCopyrightText: 2024-2026 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-29 00:42+0000\n"
-"PO-Revision-Date: 2026-03-21 01:23+0100\n"
+"POT-Creation-Date: 2026-05-30 00:43+0000\n"
+"PO-Revision-Date: 2026-05-29 17:47+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.12.3\n"
+"X-Generator: Lokalize 26.04.1\n"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
@@ -216,45 +216,41 @@ msgctxt "airport gate"
 msgid "Gate"
 msgstr "Puerta"
 
-#: lib/datatypes/rentalvehicle.cpp:418
+#: lib/datatypes/rentalvehicle.cpp:126
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented bike"
 msgstr "Bicicleta alquilada"
 
-#: lib/datatypes/rentalvehicle.cpp:420
+#: lib/datatypes/rentalvehicle.cpp:128
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented moped"
 msgstr "Ciclomotor alquilado"
 
-#: lib/datatypes/rentalvehicle.cpp:422
+#: lib/datatypes/rentalvehicle.cpp:130
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented kick scooter"
 msgstr "Monopatín alquilado"
 
-#: lib/datatypes/rentalvehicle.cpp:424
+#: lib/datatypes/rentalvehicle.cpp:132
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"
 msgstr "Automóvil alquilado"
 
-#: lib/datatypes/rentalvehicle.cpp:426
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented bike"
+#: lib/datatypes/rentalvehicle.cpp:134
+#, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented cargo bike"
-msgstr "Bicicleta alquilada"
+msgstr "Bicicleta de carga alquilada"
 
-#: lib/datatypes/rentalvehicle.cpp:429
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented bike"
+#: lib/datatypes/rentalvehicle.cpp:137
+#, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented vehicle"
-msgstr "Bicicleta alquilada"
+msgstr "Vehículo alquilado"
 
 #: lib/datatypes/vehicle.cpp:79
 #, kde-format

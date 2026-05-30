@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-29 00:42+0000\n"
-"PO-Revision-Date: 2026-03-20 09:48+0100\n"
+"POT-Creation-Date: 2026-05-30 00:43+0000\n"
+"PO-Revision-Date: 2026-05-29 10:29+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.12.3\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
@@ -216,45 +216,41 @@ msgctxt "airport gate"
 msgid "Gate"
 msgstr "Porta"
 
-#: lib/datatypes/rentalvehicle.cpp:418
+#: lib/datatypes/rentalvehicle.cpp:126
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented bike"
 msgstr "Bicicleta elèctrica llogada"
 
-#: lib/datatypes/rentalvehicle.cpp:420
+#: lib/datatypes/rentalvehicle.cpp:128
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented moped"
 msgstr "Ciclomotor llogat"
 
-#: lib/datatypes/rentalvehicle.cpp:422
+#: lib/datatypes/rentalvehicle.cpp:130
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented kick scooter"
 msgstr "Patinet elèctric llogat"
 
-#: lib/datatypes/rentalvehicle.cpp:424
+#: lib/datatypes/rentalvehicle.cpp:132
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"
 msgstr "Cotxe llogat"
 
-#: lib/datatypes/rentalvehicle.cpp:426
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented bike"
+#: lib/datatypes/rentalvehicle.cpp:134
+#, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented cargo bike"
-msgstr "Bicicleta elèctrica llogada"
+msgstr "Bicicleta de càrrega llogada"
 
-#: lib/datatypes/rentalvehicle.cpp:429
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented bike"
+#: lib/datatypes/rentalvehicle.cpp:137
+#, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented vehicle"
-msgstr "Bicicleta elèctrica llogada"
+msgstr "Vehicle llogat"
 
 #: lib/datatypes/vehicle.cpp:79
 #, kde-format
