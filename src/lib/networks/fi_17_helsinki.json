@@ -153,16 +153,16 @@
         ],
         "rentalVehicleNetworks": {
             "smoove": {
-                "name": "CityBike Helsinki/Espoo",
-                "vehicleTypes": "Bicycle",
                 "formFactor": "bicycle",
-                "propulsionType": "human"
+                "name": "CityBike Helsinki/Espoo",
+                "propulsionType": "human",
+                "vehicleTypes": "Bicycle"
             },
             "vantaa": {
-                "name": "CityBike Vantaa",
-                "vehicleTypes": "Bicycle",
                 "formFactor": "bicycle",
-                "propulsionType": "human"
+                "name": "CityBike Vantaa",
+                "propulsionType": "human",
+                "vehicleTypes": "Bicycle"
             }
         },
         "supportedTransitModes": [

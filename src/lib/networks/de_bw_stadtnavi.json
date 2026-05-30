@@ -89,10 +89,10 @@
         "rentalVehicleNetworks": {
             "car-sharing": {},
             "regiorad": {
-                "name": "RegioRad",
-                "vehicleTypes": "Bicycle",
                 "formFactor": "bicycle",
-                "propulsionType": "human"
+                "name": "RegioRad",
+                "propulsionType": "human",
+                "vehicleTypes": "Bicycle"
             },
             "taxi": {}
         },
