@@ -410,7 +410,8 @@ std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journey
             }
         }
 
-        {
+        if (journeyObj.contains("angebotsPreis"_L1)
+            || journeyObj.value("isAngebotseinholungNachgelagert"_L1).toBool()) {
             QUrl url(u"https://www.bahn.de/buchung/fahrplan/suche"_s);
             QUrlQuery query;
             query.addQueryItem(u"so"_s, sections.front().departure().stopPoint().name());
