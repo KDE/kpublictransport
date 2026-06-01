@@ -13,7 +13,10 @@
 
 namespace KPublicTransport {
 
+class GBFSVehicleTypes;
+class RentalVehicle;
 class RentalVehicleNetwork;
+class RentalVehicleStation;
 
 /** Utility methods for reading GBFS data. */
 namespace GBFSReader
@@ -45,6 +48,14 @@ namespace GBFSReader
 
     /** Read system information data. */
     [[nodiscard]] RentalVehicleNetwork readSystemInformation(const QJsonObject &sysInfo);
+
+    /** Read station information data. */
+    [[nodiscard]] RentalVehicleStation readStationInformation(const QJsonObject &station, const GBFSVehicleTypes &vehicleTypes);
+    /** Read station status data. */
+    void readStationStatus(const QJsonObject &stat, RentalVehicleStation &s, const GBFSVehicleTypes &vehicleTypes);
+
+    /** Read vehicle status data. */
+    [[nodiscard]] RentalVehicle readVehicleStatus(const QJsonObject &vehicle, const GBFSVehicleTypes &vehicleTypes);
 }
 
 }

@@ -1,0 +1,9 @@
+{
+    "remainingRange": 32850,
+    "vehicleType": {
+        "formFactor": "ScooterStanding",
+        "id": "YDT:VehicleType:dott_scooter",
+        "maxRangeMeters": 30000,
+        "propulsionType": "Electric"
+    }
+}

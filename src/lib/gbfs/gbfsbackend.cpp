@@ -85,22 +85,10 @@ static QString cleanAddress(const QString &input)
     return {};
 }
 
-template <typename T>
-static void readRentalUris(const QJsonObject &obj, T &rental)
-{
-    const auto rental_uris = obj.value("rental_uris"_L1).toObject();
-    rental.setWebBookingUrl(QUrl(rental_uris.value("web"_L1).toString()));
-#ifdef Q_OS_ANDROID
-    rental.setAppBookingUrl(QUrl(rental_uris.value("android"_L1).toString()));
-#elif defined(Q_OS_IOS)
-    rental.setAppBookingUrl(QUrl(rental_uris.value("ios"_L1).toString()));
-#endif
-}
-
 static void appendResults(const GBFSService &service, const LocationRequest &req, QueryContext *context)
 {
     GBFSStore store(service.systemId);
-    GBFSVehicleTypes vehicleTypes(service);
+    GBFSVehicleTypes vehicleTypes(store.loadData(GBFS::VehicleTypes));
 
     const auto sysInfoDoc = store.loadData(GBFS::SystemInformation);
     const auto sysInfo = GBFSReader::dataObject(sysInfoDoc);
@@ -128,25 +116,8 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         loc.setLocality(station.value("city"_L1).toString()); // non-standard extension
         // TODO cover more properties
 
-        RentalVehicleStation s;
+        auto s = GBFSReader::readStationInformation(station, vehicleTypes);
         s.setNetwork(network);
-        s.setCapacity(station.value("capacity"_L1).toInt(-1));
-        // legacy pre GBFS v3
-        const auto vehicleCapacities = station.value("vehicle_capacity"_L1).toObject();
-        for (auto it = vehicleCapacities.begin(); it != vehicleCapacities.end(); ++it) {
-            s.setCapacity({vehicleTypes.vehicleType(it.key())}, it.value().toInt(-1));
-        }
-        // GBFS v3 capcaities
-        const auto vehicleTypesCapacity = station.value("vehicle_types_capacity"_L1).toArray();
-        for (const auto &capV : vehicleTypesCapacity) {
-            const auto capObj = capV.toObject();
-            const auto ids = capObj.value("vehicle_type_ids"_L1).toArray();
-            std::vector<RentalVehicleType> vts;
-            vts.reserve(ids.size());
-            std::ranges::transform(ids, std::back_inserter(vts), [&vehicleTypes](const auto &id) { return vehicleTypes.vehicleType(id.toString()); });
-            s.setCapacity(vts, capObj.value("count"_L1).toInt(-1));
-        }
-        readRentalUris(station, s);
 
         loc.setData(s);
         selectedStationIds.push_back(stationId);
@@ -165,20 +136,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
 
         auto &loc = context->result[context->result.size() - selectedStationIds.size() + std::distance(selectedStationIds.begin(), it)];
         auto s = loc.rentalVehicleStation();
-
-        if (const auto num = stat.value("num_vehicles_available"_L1); num.isDouble()) {
-            s.setAvailableVehicles(num.toInt(-1));
-        } else {
-            // legacy, before GBFS v3
-            s.setAvailableVehicles(stat.value("num_bikes_available"_L1).toInt(-1));
-        }
-        const auto availableVehicleTypes = stat.value("vehicle_types_available"_L1).toArray();
-        for (const auto &v : availableVehicleTypes) {
-            const auto obj = v.toObject();
-            const auto type = vehicleTypes.vehicleType(obj.value("vehicle_type_id"_L1).toString());
-            s.setAvailableVehicles(type, obj.value("count"_L1).toInt(-1));
-        }
-
+        GBFSReader::readStationStatus(stat, s, vehicleTypes);
         loc.setData(s);
     }
 
@@ -216,25 +174,11 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
             }
         }
 
-        RentalVehicle vehicle;
+        auto vehicle = GBFSReader::readVehicleStatus(bike, vehicleTypes);
         vehicle.setNetwork(network);
-        readRentalUris(bike, vehicle);
-
-        auto vehicleTypeId = bike.value(QLatin1String("vehicle_type_id")).toString();
-        if (vehicleTypeId.isEmpty()) { // non-compliant format used eg. by Lime
-            vehicleTypeId = bike.value(QLatin1String("vehicle_type")).toString();
+        if (!vehicle.vehicleType().name().isEmpty()) {
+            loc.setName(vehicle.vehicleType().name());
         }
-        const auto vehicleType = vehicleTypes.vehicleType(vehicleTypeId);
-        vehicle.setVehicleType(vehicleType);
-        if (!vehicleType.name().isEmpty()) {
-            loc.setName(vehicleType.name());
-        }
-
-        const auto range = bike.value(QLatin1String("current_range_meters")).toInt();
-        if (range > 0) { // there's too many reporting 0 for unknown that we can assume 0 means actually empty...
-            vehicle.setRemainingRange(range);
-        }
-
         loc.setData(vehicle);
         context->result.push_back(loc);
     }

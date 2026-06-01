@@ -15,16 +15,16 @@
 
 #include <vector>
 
+class QJsonDocument;
 class QJsonObject;
 
 namespace KPublicTransport {
 
-class GBFSService;
 /** GBFS v2.1 vehicle types data parsing. */
 class GBFSVehicleTypes
 {
 public:
-    explicit GBFSVehicleTypes(const GBFSService &feed);
+    explicit GBFSVehicleTypes(const QJsonDocument &doc);
     ~GBFSVehicleTypes();
 
     [[nodiscard]] RentalVehicleType vehicleType(QStringView typeId) const;

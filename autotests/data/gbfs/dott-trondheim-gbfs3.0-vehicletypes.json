@@ -1,0 +1,1 @@
+{"last_updated":"2026-06-01T13:29:16.000+00:00","ttl":0,"version":"3.0","data":{"vehicle_types":[{"vehicle_type_id":"YDT:VehicleType:dott_scooter","form_factor":"scooter","propulsion_type":"electric","max_range_meters":30000.0,"pricing_plan_ids":["YDT:PricingPlan:258df6ec-db05-490a-8379-d5f0905f3cb4"]}]}}

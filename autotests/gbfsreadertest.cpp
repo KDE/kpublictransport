@@ -8,6 +8,7 @@
 
 #include "../src/lib/gbfs/gbfsreader.cpp"
 #include "../src/lib/gbfs/gbfsvehicletype.cpp"
+#include "../src/lib/gbfs/gbfsvehicletypes.cpp"
 
 #include <KPublicTransport/RentalVehicle>
 
@@ -90,6 +91,63 @@ private Q_SLOTS:
 
         const auto vt = GBFSVehicleType::fromGbfs(QJsonDocument::fromJson(Test::readFile(inFileName)).object());
         const auto resultJson = RentalVehicleType::toJson(vt);
+        const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).object();
+        QVERIFY(!resultJson.isEmpty());
+        QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));
+    }
+
+    void testReadStation_data()
+    {
+        QTest::addColumn<QString>("vehicleTypesFileName");
+        QTest::addColumn<QString>("stationInfoFileName");
+        QTest::addColumn<QString>("stationStatusFileName");
+        QTest::addColumn<QString>("outFileName");
+
+        QTest::newRow("dott-trondheim-3.0")
+            << u"" SOURCE_DIR "/data/gbfs/dott-trondheim-gbfs3.0-vehicletypes.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/dott-trondheim-station-gbfs3.0-station.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/dott-trondheim-station-gbfs3.0-status.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/dott-trondheim-station-gbfs3.0-out.json"_s;
+    }
+
+    void testReadStation()
+    {
+        QFETCH(QString, vehicleTypesFileName);
+        QFETCH(QString, stationInfoFileName);
+        QFETCH(QString, stationStatusFileName);
+        QFETCH(QString, outFileName);
+
+        const GBFSVehicleTypes vehicleTypes(QJsonDocument::fromJson(Test::readFile(vehicleTypesFileName)));
+        auto s = GBFSReader::readStationInformation(QJsonDocument::fromJson(Test::readFile(stationInfoFileName)).object(), vehicleTypes);
+        GBFSReader::readStationStatus(QJsonDocument::fromJson(Test::readFile(stationStatusFileName)).object(), s, vehicleTypes);
+        const auto resultJson = RentalVehicleStation::toJson(s);
+        const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).object();
+        QVERIFY(!resultJson.isEmpty());
+        QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));
+    }
+
+    void testReadVehicle_data()
+    {
+        QTest::addColumn<QString>("vehicleTypesFileName");
+        QTest::addColumn<QString>("vehicleFileName");
+        QTest::addColumn<QString>("outFileName");
+
+        QTest::newRow("dott-trondheim-3.0")
+            << u"" SOURCE_DIR "/data/gbfs/dott-trondheim-gbfs3.0-vehicletypes.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/dott-trondheim-vehicle-gbfs3.0-status.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/dott-trondheim-vehicle-gbfs3.0-out.json"_s;
+    }
+
+    void testReadVehicle()
+    {
+        QFETCH(QString, vehicleTypesFileName);
+        QFETCH(QString, vehicleFileName);
+        QFETCH(QString, outFileName);
+
+        const GBFSVehicleTypes vehicleTypes(QJsonDocument::fromJson(Test::readFile(vehicleTypesFileName)));
+        const auto v = GBFSReader::readVehicleStatus(QJsonDocument::fromJson(Test::readFile(vehicleFileName)).object(), vehicleTypes);
+        const auto resultJson = RentalVehicle::toJson(v);
+        qDebug() << resultJson;
         const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).object();
         QVERIFY(!resultJson.isEmpty());
         QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));

@@ -1,0 +1,22 @@
+{
+    "availabilitiesByType": {
+        "YDT:VehicleType:dott_scooter": 12
+    },
+    "availableVehicles": 0,
+    "capacitiesByType": [
+        {
+            "count": 12,
+            "vehicleTypes": [
+                "YDT:VehicleType:dott_scooter"
+            ]
+        }
+    ],
+    "vehicleTypes": [
+        {
+            "formFactor": "ScooterStanding",
+            "id": "YDT:VehicleType:dott_scooter",
+            "maxRangeMeters": 30000,
+            "propulsionType": "Electric"
+        }
+    ]
+}

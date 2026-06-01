@@ -44,10 +44,8 @@ struct {
     { "electric_moped", RentalVehicleType::FormFactor::Moped, RentalVehicleType::PropulsionType::Electric },
 };
 
-GBFSVehicleTypes::GBFSVehicleTypes(const GBFSService &feed)
+GBFSVehicleTypes::GBFSVehicleTypes(const QJsonDocument &doc)
 {
-    GBFSStore store(feed.systemId);
-    const auto doc = store.loadData(GBFS::VehicleTypes);
     const auto types = GBFSReader::dataValue(doc, QLatin1String("vehicle_types")).toArray();
 
     m_vehicleTypes.reserve(types.size());
