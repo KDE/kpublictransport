@@ -1,0 +1,23 @@
+{
+    "availabilitiesByType": {
+        "YOS:VehicleType:bike": 20,
+        "YOS:VehicleType:ebike": 6
+    },
+    "availableVehicles": 26,
+    "capacity": 35,
+    "vehicleTypes": [
+        {
+            "formFactor": "Bicycle",
+            "id": "YOS:VehicleType:bike",
+            "name": "Traditional bike",
+            "propulsionType": "Human"
+        },
+        {
+            "formFactor": "Bicycle",
+            "id": "YOS:VehicleType:ebike",
+            "maxRangeMeters": 70000,
+            "name": "Electric bike",
+            "propulsionType": "ElectricAssist"
+        }
+    ]
+}

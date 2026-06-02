@@ -108,6 +108,21 @@ private Q_SLOTS:
             << u"" SOURCE_DIR "/data/gbfs/dott-trondheim-station-gbfs3.0-station.json"_s
             << u"" SOURCE_DIR "/data/gbfs/dott-trondheim-station-gbfs3.0-status.json"_s
             << u"" SOURCE_DIR "/data/gbfs/dott-trondheim-station-gbfs3.0-out.json"_s;
+        QTest::newRow("bysykkel-oslo-3.0")
+            << u"" SOURCE_DIR "/data/gbfs/bysykkel-oslo-gbfs3.0-vehicletypes.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/bysykkel-oslo-station-gbfs3.0-station.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/bysykkel-oslo-station-gbfs3.0-status.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/bysykkel-oslo-station-gbfs3.0-out.json"_s;
+        QTest::newRow("bysykkel-oslo-2.3")
+            << u"" SOURCE_DIR "/data/gbfs/bysykkel-oslo-gbfs2.3-vehicletypes.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/bysykkel-oslo-station-gbfs2.3-station.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/bysykkel-oslo-station-gbfs2.3-status.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/bysykkel-oslo-station-gbfs2.3-out.json"_s;
+        QTest::newRow("ch-2.1")
+            << QString()
+            << u"" SOURCE_DIR "/data/gbfs/ch-station-gbfs2.1-station.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/ch-station-gbfs2.1-status.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/ch-station-gbfs2.1-out.json"_s;
     }
 
     void testReadStation()
@@ -147,7 +162,6 @@ private Q_SLOTS:
         const GBFSVehicleTypes vehicleTypes(QJsonDocument::fromJson(Test::readFile(vehicleTypesFileName)));
         const auto v = GBFSReader::readVehicleStatus(QJsonDocument::fromJson(Test::readFile(vehicleFileName)).object(), vehicleTypes);
         const auto resultJson = RentalVehicle::toJson(v);
-        qDebug() << resultJson;
         const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).object();
         QVERIFY(!resultJson.isEmpty());
         QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));
