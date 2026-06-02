@@ -204,7 +204,8 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
                 QUrlQuery query;
                 query.addQueryItem(u"oStop"_s, req.from().identifier(LTGLINK_IDENTIFIER));
                 query.addQueryItem(u"dStop"_s, req.to().identifier(LTGLINK_IDENTIFIER));
-                query.addQueryItem(u"oDate"_s, date.toString(Qt::ISODate));
+                query.addQueryItem(u"oDate"_s,
+                                   journey.expectedDepartureTime().date().toString(Qt::ISODate));
                 query.addQueryItem(u"fareClasses"_s, u"BONUS_SCHEME_GROUP.ADULT,1"_s);
                 bookingUrl.setQuery(query);
                 journey.setBookingUrl(bookingUrl);
