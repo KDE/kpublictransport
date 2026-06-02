@@ -254,15 +254,41 @@ RentalVehicleNetwork RentalVehicleNetwork::fromJson(const QJsonObject &obj)
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(RentalVehicleStation)
-KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleStation, int, availableVehicles, setAvailableVehicles)
-KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleStation, int, capacity, setCapacity)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleStation, RentalVehicleNetwork, network, setNetwork)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleStation, QUrl, webBookingUrl, setWebBookingUrl)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleStation, QUrl, appBookingUrl, setAppBookingUrl)
 
+int RentalVehicleStation::availableVehicles() const
+{
+    if (d->availableVehicles > 0 || d->availabilities.empty()) {
+        return d->availableVehicles;
+    }
+    return std::accumulate(d->availabilities.begin(), d->availabilities.end(), 0, [](int count, const auto &it) { return count + std::max(0, it.second); });
+}
+
+void RentalVehicleStation::setAvailableVehicles(int value)
+{
+    d.detach();
+    d->availableVehicles = value;
+}
+
+int RentalVehicleStation::capacity() const
+{
+    if (d->capacity > 0 || d->capacities.empty()) {
+        return d->capacity;
+    }
+    return std::accumulate(d->capacities.begin(), d->capacities.end(), 0, [](int count, const auto &it) { return count + std::max(0, it.second); });
+}
+
+void RentalVehicleStation::setCapacity(int value)
+{
+    d.detach();
+    d->capacity = value;
+}
+
 bool RentalVehicleStation::isValid() const
 {
-    return d->network.isValid() || d->capacity >= 0 || d->availableVehicles >= 0;
+    return d->network.isValid() || capacity() >= 0 || availableVehicles() >= 0;
 }
 
 QList<RentalVehicleType> RentalVehicleStation::supportedVehicleTypes() const

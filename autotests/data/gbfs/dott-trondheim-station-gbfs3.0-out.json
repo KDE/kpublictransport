@@ -2,7 +2,7 @@
     "availabilitiesByType": {
         "YDT:VehicleType:dott_scooter": 12
     },
-    "availableVehicles": 0,
+    "availableVehicles": 12,
     "capacitiesByType": [
         {
             "count": 12,
