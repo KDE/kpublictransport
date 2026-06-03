@@ -15,12 +15,13 @@
 #include <QJsonArray>
 #include <QTimeZone>
 
-#include "datatypes/stopover.h"
-#include "journeyrequest.h"
-#include "journeyreply.h"
-#include "locationrequest.h"
-#include "locationreply.h"
 #include "datatypes/journey.h"
+#include "datatypes/stopover.h"
+#include "geomath.h"
+#include "journeyreply.h"
+#include "journeyrequest.h"
+#include "locationreply.h"
+#include "locationrequest.h"
 
 #include "localbackendutils.h"
 
@@ -262,7 +263,29 @@ bool LTGLinkBackend::queryLocation(const LocationRequest &req, LocationReply *re
     std::vector<Location> locations;
     QString name = LocalBackendUtils::makeSearchableName(req.name());
 
-    for (auto [id, station] : std::as_const(m_stations)) {
+    int64_t smallest_distance = INT_MAX;
+    const LTGLink::Station *best_station = nullptr;
+    if (req.location().hasCoordinate()) {
+        for (auto &[id, station] : std::as_const(m_stations)) {
+            auto dist = OSM ::distance(station.latitude,
+                                       station.longitude,
+                                       req.location().latitude(),
+                                       req.location().longitude());
+
+            auto dist_meter = int64_t(std::round(dist));
+
+            if (dist_meter < 1000 && dist_meter < smallest_distance) {
+                smallest_distance = dist_meter;
+                best_station = &station;
+            }
+        }
+    }
+
+    if (best_station) {
+        locations.push_back(stationToLocation(*best_station));
+    }
+
+    for (auto &[id, station] : std::as_const(m_stations)) {
         if (station.searchableName.contains(name)) {
             auto loc = stationToLocation(station);
             locations.push_back(std::move(loc));
