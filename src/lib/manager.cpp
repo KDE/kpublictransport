@@ -41,6 +41,7 @@
 #include "backends/hafasmgatebackend.h"
 #include "backends/hafasquerybackend.h"
 #include "backends/ivvassbackend.h"
+#include "backends/ltglinkbackend.h"
 #include "backends/motis2backend.h"
 #include "backends/navitiabackend.h"
 #include "backends/oebbbackend.h"
@@ -48,7 +49,7 @@
 #include "backends/opentransportswissbackend.h"
 #include "backends/opentripplannergraphqlbackend.h"
 #include "backends/opentripplannerrestbackend.h"
-#include "backends/ltglinkbackend.h"
+#include "backends/photonbackend.h"
 #include "gbfs/gbfsbackend.h"
 
 #include <QCoreApplication>
@@ -223,24 +224,23 @@ std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &
 {
     const auto type = obj.value("type"_L1).toObject();
     // backends need to be topologically sorted according to their preference/priority here
-    return loadNetwork<
-        NavitiaBackend,
-        OpenTripPlannerGraphQLBackend,
-        OpenTripPlannerRestBackend,
-        DeutscheBahnBackend,
-        OebbBackend,
-        HafasMgateBackend,
-        HafasQueryBackend,
-        EfaBackend,
-        IvvAssBackend,
-        OpenTransportSwissBackend,
-        OpenJourneyPlannerBackend,
-        Motis2Backend,
-        GBFSBackend,
-        AccessibilityCloudBackend,
-        LTGLinkBackend,
-        SrbijavozBackend
-    >(type, obj);
+    return loadNetwork<NavitiaBackend,
+                       OpenTripPlannerGraphQLBackend,
+                       OpenTripPlannerRestBackend,
+                       DeutscheBahnBackend,
+                       OebbBackend,
+                       HafasMgateBackend,
+                       HafasQueryBackend,
+                       EfaBackend,
+                       IvvAssBackend,
+                       OpenTransportSwissBackend,
+                       OpenJourneyPlannerBackend,
+                       Motis2Backend,
+                       GBFSBackend,
+                       AccessibilityCloudBackend,
+                       LTGLinkBackend,
+                       SrbijavozBackend,
+                       PhotonBackend>(type, obj);
 }
 
 template <typename Backend, typename Backend2, typename ...Backends>

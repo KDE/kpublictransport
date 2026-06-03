@@ -8,6 +8,7 @@
         <file>un_accessibilitycloud.json</file>
         <file>un_gbfs.json</file>
         <file>un_transitous.json</file>
+        <file>un_photon.json</file>
 
         <!-- national providers -->
         <file>at_oebb.json</file>

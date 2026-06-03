@@ -14,12 +14,17 @@ QQC2.ComboBox {
     id: root
 
     /** The currently selected country, as a KCountry object. */
-    readonly property var currentCountry: Country.fromAlpha2(currentValue)
+    readonly property var currentCountry: currentIndex == -1 ? null : Country.fromAlpha2(currentValue)
 
     /** Initially selected country. */
     property string initialCountry
 
-    displayText: currentCountry ? (currentCountry.emojiFlag + ' ' + currentCountry.name) : ""
+    // No country selected by default
+    currentIndex: -1
+
+    displayText: currentCountry
+                 ? (currentCountry.emojiFlag + ' ' + currentCountry.name)
+                 : i18nd("kpublictransport", "Worldwide")
     valueRole: "code"
 
     delegate: QQC2.ItemDelegate {
@@ -36,12 +41,12 @@ QQC2.ComboBox {
     }
 
     Component.onCompleted: {
-        if (initialCountry) {
+        if (initialCountry != "") {
             currentIndex = Math.max(indexOfValue(initialCountry), 0);
         }
     }
 
-    Accessible.name: currentCountry.name
-    Accessible.description: i18nd("publictransport", "Select country")
+    Accessible.name: currentCountry ? currentCountry.name : i18nd("kpublictransport", "Worldwide")
+    Accessible.description: i18nd("kpublictransport", "Select country")
     Accessible.onPressAction: root.popup.open()
 }

@@ -20,9 +20,10 @@ Kirigami.ScrollablePage {
 
     /**
      * Initially selected country.
-     * If not specified the country from the current locale is used.
+     * Default: Worldwide
      */
-    property string initialCountry: Qt.locale().name.match(/_([A-Z]{2})/)[1]
+    property string initialCountry
+
     required property PublicTransport.Manager publicTransportManager
     property PublicTransport.location location
 
@@ -95,14 +96,16 @@ Kirigami.ScrollablePage {
     ]
 
     function updateQuery(): void {
-        if (queryTextField.text !== "" && countryCombo.currentValue !== "") {
+        if (queryTextField.text !== "") {
             locationQueryModel.request = {
                 location: {
                     name: queryTextField.text,
-                    country: countryCombo.currentValue
+                    country: countryCombo.currentIndex != -1 ? countryCombo.currentValue : null
                 },
                 types: PublicTransport.Location.Stop | PublicTransport.Location.Address,
-                downloadAssets: root.downloadAssets
+                downloadAssets: root.downloadAssets,
+                // If no country is selected, use Photon and Transitous, they should work everywhere
+                backends: countryCombo.currentIndex == -1 ? ["un_photon", "un_transitous"] : []
             };
         }
     }

@@ -1,0 +1,50 @@
+{
+    "KPlugin": {
+        "Description": "Global location search",
+        "Name": "Komoot"
+    },
+    "attribution": {
+        "name": "OpenStreetMap",
+        "url": "https://www.openstreetmap.org"
+    },
+    "coverage": {
+        "realtimeCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            -180.0,
+                            -90.0
+                        ],
+                        [
+                            180.0,
+                            -90.0
+                        ],
+                        [
+                            180.0,
+                            90.0
+                        ],
+                        [
+                            -180.0,
+                            90.0
+                        ],
+                        [
+                            -180.0,
+                            -90.0
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "region": [
+                "UN"
+            ]
+        }
+    },
+    "options": {
+       "url": "https://photon.komoot.io/api/"
+    },
+    "type": {
+        "photon": true
+    }
+}

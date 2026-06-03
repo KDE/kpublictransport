@@ -142,6 +142,10 @@ private Q_SLOTS:
     void testNoBackendError()
     {
         Manager mgr;
+
+        // Otherwise we have a backend everywhere
+        mgr.setBackendEnabled(u"un_photon"_s, false);
+
         Location loc;
         loc.setCoordinate(-89.5, 0.0);
         {
