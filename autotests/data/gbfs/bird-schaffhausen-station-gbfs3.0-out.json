@@ -1,0 +1,16 @@
+{
+    "availabilitiesByType": {
+        "BRD:VehicleType:bae2102b-56ba-42ba-9097-720e5990b4b2": 0
+    },
+    "availableVehicles": 0,
+    "capacity": 5,
+    "vehicleTypes": [
+        {
+            "formFactor": "ScooterStanding",
+            "id": "BRD:VehicleType:bae2102b-56ba-42ba-9097-720e5990b4b2",
+            "maxRangeMeters": 24000,
+            "propulsionType": "Electric",
+            "returnConstraint": "FreeFloating"
+        }
+    ]
+}

@@ -123,6 +123,11 @@ private Q_SLOTS:
             << u"" SOURCE_DIR "/data/gbfs/ch-station-gbfs2.1-station.json"_s
             << u"" SOURCE_DIR "/data/gbfs/ch-station-gbfs2.1-status.json"_s
             << u"" SOURCE_DIR "/data/gbfs/ch-station-gbfs2.1-out.json"_s;
+        QTest::newRow("bird-schaffhausen-3.0")
+            << u"" SOURCE_DIR "/data/gbfs/bird-schaffhausen-gbfs3.0-vehicletypes.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/bird-schaffhausen-station-gbfs3.0-station.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/bird-schaffhausen-station-gbfs3.0-status.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/bird-schaffhausen-station-gbfs3.0-out.json"_s;
     }
 
     void testReadStation()

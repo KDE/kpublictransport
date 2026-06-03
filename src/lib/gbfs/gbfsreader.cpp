@@ -158,6 +158,12 @@ void GBFSReader::readStationStatus(const QJsonObject &stat, RentalVehicleStation
         const auto type = vehicleTypes.vehicleType(obj.value("vehicle_type_id"_L1).toString());
         s.setAvailableVehicles(type, obj.value("count"_L1).toInt(-1));
     }
+
+    if (s.capacity() < 0) {
+        if (const auto num = stat.value("num_docks_available"_L1).toInt(-1); num >= 0) {
+            s.setCapacity(num + std::max(0, s.availableVehicles()));
+        }
+    }
 }
 
 RentalVehicle GBFSReader::readVehicleStatus(const QJsonObject &vehicle, const GBFSVehicleTypes &vehicleTypes)
