@@ -17,11 +17,13 @@ class LocationRequest;
 /** Internal methods around Location. */
 namespace LocationUtil
 {
-    /** Request specific sorting/comparison for replies/models. */
-    bool sortLessThan(const LocationRequest &request, const Location &lhs, const Location &rhs);
+float score(const LocationRequest &request, const Location &loc);
 
-    /** Returns the key used for caching a location @p loc. */
-    QString cacheKey(const Location &loc);
+/** Request specific sorting/comparison for replies/models. */
+bool sortLessThan(const LocationRequest &request, const Location &lhs, const Location &rhs);
+
+/** Returns the key used for caching a location @p loc. */
+QString cacheKey(const Location &loc);
 }
 
 }

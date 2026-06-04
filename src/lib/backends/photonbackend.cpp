@@ -38,6 +38,10 @@ bool PhotonBackend::queryLocation(const LocationRequest &request,
                                   LocationReply *reply,
                                   QNetworkAccessManager *nam) const
 {
+    if (request.name().size() <= 3) {
+        return false;
+    }
+
     QUrl url = m_url;
     QUrlQuery query;
     query.addQueryItem(u"q"_s, request.name());

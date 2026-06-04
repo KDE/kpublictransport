@@ -15,8 +15,7 @@
 namespace KPublicTransport {
 
 namespace LocalBackendUtils {
-
-QString makeSearchableName(const QString &name);
-
+QString normalizeName(QString name);
+QString makeSearchableName(QString name);
 }
 }
