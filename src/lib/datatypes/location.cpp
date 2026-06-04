@@ -305,9 +305,7 @@ static QString applyTransliterations(const QString &s)
 
 static bool isCompatibleLocationType(Location::Type lhs, Location::Type rhs)
 {
-    return lhs == rhs
-        || (lhs == Location::Place && rhs == Location::Stop)
-        || (rhs == Location::Place && lhs == Location::Stop);
+    return lhs == rhs;
 }
 
 static int isSameDistanceThreshold(Location::Type type, const StopInformation &stopInfo)
