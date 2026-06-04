@@ -130,6 +130,8 @@ Kirigami.ScrollablePage {
                         return i18nd("kpublictransport", "Global");
                     case "EU":
                         return i18nd("kpublictransport", "🇪🇺 European Union");
+                    case "XK": // not yet in iso-codes
+                        return i18nd("kpublictransport", "🇽🇰 Kosovo");
                     default:
                         const c = Country.fromAlpha2(section);
                         return i18ndc("kpublictransport", "emoji flag, country name", "%1 %2", c.emojiFlag, c.name);
@@ -142,6 +144,8 @@ Kirigami.ScrollablePage {
                             return i18nd("kpublictransport", "Global")
                         case "EU":
                             return i18nd("kpublictransport", "European Union");
+                        case "XK": // not yet in iso-codes
+                            return i18nd("kpublictransport", "Kosovo");
                         default:
                             return Country.fromAlpha2(section).name;
                     }

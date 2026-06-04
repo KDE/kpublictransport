@@ -9,8 +9,13 @@
 #include <KPublicTransport/Backend>
 #include <KPublicTransport/Manager>
 
+#include <KCountry>
+#include <KLocalizedString>
+
+#include <QCollator>
 #include <QDebug>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
@@ -87,11 +92,35 @@ void BackendModelPrivate::repopulateGrouped()
     }
 }
 
+[[nodiscard]] static QString sortableCountryName(const QString &code)
+{
+    // special cases for country codes not in the iso-codes database
+    if (code == "EU"_L1) {
+        return i18n("European Union");
+    }
+    if (code == "XK"_L1) {
+        return i18n("Kosovo");
+    }
+    if (auto name = KCountry::fromAlpha2(code).name(); !name.isEmpty()) {
+        return name;
+    }
+    return code;
+}
+
 void BackendModelPrivate::sortModel()
 {
     // group by country
-    const auto orderByCountry = [](const auto &lhs, const auto &rhs) {
-        return lhs.country < rhs.country;
+    QCollator collator;
+    const auto orderByCountry = [&collator](const auto &lhs, const auto &rhs) {
+        // global services go first
+        if (lhs.country == "UN"_L1 && rhs.country != "UN"_L1) {
+            return true;
+        }
+        if (rhs.country == "UN"_L1) {
+            return false;
+        }
+        // sort by name (special-casing EU as that's not covered by KCountry)
+        return collator.compare(sortableCountryName(lhs.country), sortableCountryName(rhs.country)) < 0;
     };
     std::sort(rows.begin(), rows.end(), orderByCountry);
 
