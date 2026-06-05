@@ -23,6 +23,7 @@
 #include <iostream>
 #include <random>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 /** Determine bounding boxes of the initial set of GBFS feeds we ship. */
@@ -60,9 +61,43 @@ void GBFSProbe::start()
     getFeedList();
 }
 
+[[nodiscard]] static std::vector<QByteArrayView> splitCsvLine(QByteArrayView line)
+{
+    std::vector<QByteArrayView> fields;
+    while (!line.empty()) {
+        if (line[0] == '\n' || line[0] == '\r') {
+            fields.emplace_back();
+            break;
+        }
+        if (line[0] == ',') {
+            fields.emplace_back();
+            line = line.mid(1);
+            continue;
+        }
+        if (line[0] == '"') {
+            line = line.mid(1);
+            const auto idx = line.indexOf('"');
+            fields.push_back(line.left(idx));
+            line = line.mid(idx + 2);
+            continue;
+        }
+        if (const auto idx = line.indexOf(','); idx > 0) {
+            fields.push_back(line.left(idx));
+            line = line.mid(idx + 1);
+        } else {
+            while (line.endsWith('\n') || line.endsWith('\r')) {
+                line = line.chopped(1);
+            }
+            fields.push_back(line);
+            break;
+        }
+    }
+    return fields;
+}
+
 void GBFSProbe::getFeedList()
 {
-    auto reply = m_nam.get(QNetworkRequest(QUrl(QStringLiteral("https://raw.githubusercontent.com/NABSA/gbfs/master/systems.csv"))));
+    auto reply = m_nam.get(QNetworkRequest(QUrl(u"https://raw.githubusercontent.com/MobilityData/gbfs/refs/heads/master/systems.csv"_s)));
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         reply->deleteLater();
         if (reply->error() != QNetworkReply::NoError) {
@@ -73,17 +108,19 @@ void GBFSProbe::getFeedList()
 
         reply->readLine(); // skip header line
         while (!reply->atEnd()) {
-            auto line = reply->readLine();
-            line.replace("http:", "https:");
-            const auto idx = line.lastIndexOf("https");
-            if (idx < 0) {
+            const auto line = reply->readLine();
+            const auto fields = splitCsvLine(line);
+            if (fields.size() < 10) {
+                qDebug() << "missing columns?" << fields;
                 continue;
             }
-            line = line.mid(idx).trimmed();
-            if (line.endsWith('"')) {
-                line.chop(1);
+            if (!fields[8].isEmpty() && fields[8] != "0") {
+                qDebug() << "skipping feed needing authentication:" << fields;
             }
-            m_gbfsFeeds.push_back(QString::fromUtf8(line));
+
+            auto url = fields[5].trimmed().toByteArray();
+            url.replace("http:", "https:");
+            m_gbfsFeeds.push_back(QString::fromUtf8(url));
         }
 
         std::sort(m_gbfsFeeds.begin(), m_gbfsFeeds.end());
@@ -104,7 +141,7 @@ void GBFSProbe::getFeedList()
 
             const auto it = std::lower_bound(m_gbfsFeeds.begin(), m_gbfsFeeds.end(), extraFeed);
             if (it != m_gbfsFeeds.end() && (*it) == extraFeed) {
-                qDebug() << "Extra feed already in NABSA systems.csv:" << extraFeed;
+                qDebug() << "Extra feed already in GBFS systems.csv:" << extraFeed;
                 continue;
             }
             m_gbfsFeeds.insert(it, extraFeed);
