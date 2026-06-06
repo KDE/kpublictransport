@@ -33,8 +33,10 @@
 
 using namespace KPublicTransport;
 using namespace Qt::Literals;
+namespace ranges = std::ranges;
 
-namespace KPublicTransport {
+namespace KPublicTransport
+{
 
 class LocationPrivate : public QSharedData
 {
@@ -456,7 +458,15 @@ Location Location::merge(const Location &lhs, const Location &rhs)
         l.setCoordinate(rhs.latitude(), rhs.longitude());
     }
 
-    l.setName(MergeUtil::mergeString(lhs.name(), rhs.name()));
+    // Prefer name of the larger (hopefully more notable) station
+    const auto lhsRadius = isSameDistanceThreshold(lhs.type(), lhs.stopInformation());
+    const auto rhsRadius = isSameDistanceThreshold(rhs.type(), rhs.stopInformation());
+
+    if (lhsRadius != rhsRadius) {
+        l.setName(lhsRadius > rhsRadius ? lhs.name() : rhs.name());
+    } else {
+        l.setName(MergeUtil::mergeStationName(lhs.name(), rhs.name()));
+    }
 
     if (!lhs.d->timeZone.isValid()) {
         l.setTimeZone(rhs.d->timeZone);

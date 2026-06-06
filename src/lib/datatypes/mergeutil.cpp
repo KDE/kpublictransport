@@ -9,10 +9,19 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QString>
+#include <QStringView>
 #include <QTimeZone>
 #include <QUrl>
+#include <algorithm>
+#include <array>
+#include <cstddef>
+#include <ranges>
 
 using namespace KPublicTransport;
+
+namespace ranges = std::ranges;
+
+using namespace Qt::StringLiterals;
 
 static QDateTime applyTimeZone(QDateTime dt, const QDateTime &refDt)
 {
@@ -163,4 +172,102 @@ QString MergeUtil::mergeString(const QString &lhs, const QString &rhs)
 QUrl MergeUtil::mergeUrl(const QUrl &lhs, const QUrl &rhs)
 {
     return lhs.isEmpty() ? rhs : lhs;
+}
+
+QString MergeUtil::mergeStationName(const QString &lhs, const QString &rhs)
+{
+    // Prefer strings without numbers (Gleis 1-10 etc. case)
+    const bool lhsNum = ranges::any_of(lhs, [](QChar c) {
+        return c.isNumber();
+    });
+    const bool rhsNum = ranges::any_of(rhs, [](QChar c) {
+        return c.isNumber();
+    });
+    if (lhsNum && !rhsNum) {
+        return rhs;
+    }
+    if (rhsNum && !lhsNum) {
+        return lhs;
+    }
+
+    // prefer Unicode over ASCII normalization
+    const auto lhsNonAscii = containsNonAscii(lhs);
+    const auto rhsNonAscii = containsNonAscii(rhs);
+    if (lhsNonAscii && !rhsNonAscii) {
+        return lhs;
+    }
+    if (!lhsNonAscii && rhsNonAscii) {
+        return rhs;
+    }
+
+    // prefer better casing
+    const auto lhsMixedCase = isMixedCase(lhs);
+    const auto rhsMixedCase = isMixedCase(rhs);
+    if (lhsMixedCase && !rhsMixedCase) {
+        return lhs;
+    }
+    if (!lhsMixedCase && rhsMixedCase) {
+        return rhs;
+    }
+
+    // Prefer strings without parantheses
+    const bool lhsParan = containsParantheses(lhs);
+    const bool rhsParan = containsParantheses(rhs);
+    if (lhsParan && !rhsParan) {
+        return rhs;
+    }
+    if (rhsParan && !lhsParan) {
+        return lhs;
+    }
+
+    // Choose longer name (ignoring generic words)
+    constexpr auto genericNames = std::array{
+        u"Hauptbahnhof"_sv,
+        u"Hbf"_sv,
+        u"Bahnhof"_sv,
+        u"train station"_sv,
+        u"railway station"_sv,
+    };
+
+    const auto countChars = [&](QStringView name) -> std::size_t {
+        return ranges::count_if(name, [](QChar c) {
+            return !c.isSpace() && !c.isPunct();
+        });
+    };
+
+    const auto nonGenericLen = [&](QStringView name) -> std::size_t {
+        const auto genericName = ranges::find_if(genericNames, [&](auto generic) {
+            return name.contains(generic, Qt::CaseInsensitive);
+        });
+        if (genericName == genericNames.end()) {
+            return countChars(name);
+        }
+        return countChars(name) - countChars(*genericName);
+    };
+
+    auto const lhsnglen = nonGenericLen(lhs);
+    auto const rhsnglen = nonGenericLen(rhs);
+
+    if (lhsnglen != rhsnglen) {
+        return lhsnglen < rhsnglen ? rhs : lhs;
+    }
+
+    // Prefer names without generic words
+    auto const containsGeneric = [&](QStringView name) {
+        return ranges::any_of(genericNames, [&](QStringView word) {
+            return name.contains(word, Qt::CaseInsensitive);
+        });
+    };
+
+    if (containsGeneric(lhs) != containsGeneric(rhs)) {
+        return containsGeneric(lhs) ? rhs : lhs;
+    }
+
+    // Prefer longer string
+    if (lhs.size() != rhs.size()) {
+        return lhs.size() < rhs.size() ? rhs : lhs;
+    }
+
+    // whatever, but at least commutative
+    return lhs < rhs ? lhs : rhs;
 }
