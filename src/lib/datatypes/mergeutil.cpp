@@ -9,10 +9,14 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QString>
+#include <QStringView>
 #include <QTimeZone>
 #include <QUrl>
+#include <array>
 
 using namespace KPublicTransport;
+
+using namespace Qt::StringLiterals;
 
 static QDateTime applyTimeZone(QDateTime dt, const QDateTime &refDt)
 {
@@ -156,8 +160,24 @@ QString MergeUtil::mergeString(const QString &lhs, const QString &rhs)
         return lhs;
     }
 
+    constexpr auto genericNames = std::array{
+        u"Hauptbahnhof"_sv,
+        u"Bahnhof"_sv,
+        u"train station"_sv,
+        u"railway station"_sv,
+    };
+
+    const auto nonGenericLen = [&](QStringView name) {
+        const auto genericName = std::find(genericNames.begin(), genericNames.end(), lhs);
+        if (genericName == genericNames.end()) {
+            return name.size();
+        } else {
+            return name.size() - genericName->size();
+        }
+    };
+
     // Prefer longer string
-    return lhs.size() < rhs.size() ? rhs : lhs;
+    return nonGenericLen(lhs) < nonGenericLen(rhs) ? rhs : lhs;
 }
 
 QUrl MergeUtil::mergeUrl(const QUrl &lhs, const QUrl &rhs)
