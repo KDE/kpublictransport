@@ -34,6 +34,8 @@ namespace MergeUtil
     /** Takes the longer input string. */
     QString mergeString(const QString &lhs, const QString &rhs);
     QUrl mergeUrl(const QUrl &lhs, const QUrl &rhs);
+
+    QString mergeStationName(const QString &lhs, const QString &rhs);
 }
 
 }
