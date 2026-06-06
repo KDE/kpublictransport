@@ -9,10 +9,17 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QString>
+#include <QStringView>
 #include <QTimeZone>
 #include <QUrl>
+#include <array>
+#include <ranges>
 
 using namespace KPublicTransport;
+
+namespace ranges = std::ranges;
+
+using namespace Qt::StringLiterals;
 
 static QDateTime applyTimeZone(QDateTime dt, const QDateTime &refDt)
 {
@@ -142,13 +149,9 @@ QString MergeUtil::mergeString(const QString &lhs, const QString &rhs)
         return rhs;
     }
 
-    if (lhs.size() == rhs.size()) {
-        return lhs < rhs ? lhs : rhs;
-    }
-
     // Prefer strings without parantheses
-    bool lhsParan = containsParantheses(lhs);
-    bool rhsParan = containsParantheses(rhs);
+    const bool lhsParan = containsParantheses(lhs);
+    const bool rhsParan = containsParantheses(rhs);
     if (lhsParan && !rhsParan) {
         return rhs;
     }
@@ -156,8 +159,43 @@ QString MergeUtil::mergeString(const QString &lhs, const QString &rhs)
         return lhs;
     }
 
+    // Prefer strings without numbers (Gleis 1-10 etc. case)
+    const bool lhsNum = ranges::any_of(lhs, [](QChar c) {
+        return c.isNumber();
+    });
+    const bool rhsNum = ranges::any_of(rhs, [](QChar c) {
+        return c.isNumber();
+    });
+    if (lhsNum && !rhsNum) {
+        return rhs;
+    }
+    if (rhsNum && !lhsNum) {
+        return lhs;
+    }
+
+    constexpr auto genericNames = std::array{
+        u"Hauptbahnhof"_sv,
+        u"Bahnhof"_sv,
+        u"train station"_sv,
+        u"railway station"_sv,
+    };
+
+    const auto nonGenericLen = [&](QStringView name) {
+        const auto genericName = ranges::find_if(genericNames, [&](auto generic) {
+            return name.contains(generic);
+        });
+        if (genericName == genericNames.end()) {
+            return name.size();
+        }
+        return name.size() - genericName->size();
+    };
+
+    if (nonGenericLen(lhs) == nonGenericLen(rhs)) {
+        return lhs < rhs ? lhs : rhs;
+    }
+
     // Prefer longer string
-    return lhs.size() < rhs.size() ? rhs : lhs;
+    return nonGenericLen(lhs) < nonGenericLen(rhs) ? rhs : lhs;
 }
 
 QUrl MergeUtil::mergeUrl(const QUrl &lhs, const QUrl &rhs)
