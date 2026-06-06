@@ -42,7 +42,7 @@
         }
     },
     "options": {
-       "url": "https://photon.komoot.io/api/"
+        "url": "https://photon.komoot.io/api/"
     },
     "type": {
         "photon": true
