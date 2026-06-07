@@ -131,21 +131,23 @@ bool Motis2Backend::queryLocation(const LocationRequest &req, LocationReply *rep
         return true;
     }
 
+    query.addQueryItem(u"numResults"_s, QString::number(req.maximumResults()));
+    QStringList types;
+    if (req.types() & Location::Stop) {
+        types.push_back(u"STOP"_s);
+    }
+    if (req.types() & Location::Address) {
+        types.push_back(u"ADDRESS"_s);
+    }
+    if (!types.empty()) {
+        query.addQueryItem(u"type"_s, types.join(','_L1));
+    }
+
     if (req.hasCoordinate()) {
         query.addQueryItem(u"place"_s, QString::number(req.latitude()) + ','_L1 + QString::number(req.longitude()));
-        if (req.types() == Location::Stop) {
-            query.addQueryItem(u"type"_s, u"STOP"_s);
-        } else if (req.types() == Location::Address) {
-            query.addQueryItem(u"type"_s, u"ADDRESS"_s);
-        }
         netReply = makeRequest(req, reply, "v1/reverse-geocode"_L1, query, nam);
     } else {
         query.addQueryItem(u"text"_s, req.name());
-        if (req.types() == Location::Stop) {
-            query.addQueryItem(u"type"_s, u"STOP"_s);
-        } else if (req.types() == Location::Address) {
-            query.addQueryItem(u"type"_s, u"ADDRESS"_s);
-        }
         if (req.viewbox().isValid()) {
             query.addQueryItem(u"place"_s, QString::number(req.viewbox().center().y()) + ','_L1 + QString::number(req.viewbox().center().x()));
         }
