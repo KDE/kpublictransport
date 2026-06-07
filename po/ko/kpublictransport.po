@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-06-06 00:42+0000\n"
-"PO-Revision-Date: 2026-02-03 23:58+0100\n"
+"PO-Revision-Date: 2026-06-06 14:25+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 25.08.1\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
@@ -146,73 +146,73 @@ msgstr "대기"
 #, kde-format
 msgctxt "train platform"
 msgid "Platform %1"
-msgstr ""
+msgstr "승강장 %1"
 
 #: lib/datatypes/platform.cpp:112
 #, kde-format
 msgctxt "abbreviated train platform"
 msgid "Pl. %1"
-msgstr ""
+msgstr "%1번"
 
 #: lib/datatypes/platform.cpp:116
 #, kde-format
 msgctxt "bus platform"
 msgid "Platform %1"
-msgstr ""
+msgstr "승강장 %1"
 
 #: lib/datatypes/platform.cpp:116
 #, kde-format
 msgctxt "abbreviated bus platform"
 msgid "Pl. %1"
-msgstr ""
+msgstr "%1번"
 
 #: lib/datatypes/platform.cpp:119
 #, kde-format
 msgctxt "boat/ferry pier/terminal"
 msgid "Pier %1"
-msgstr ""
+msgstr "%1부두"
 
 #: lib/datatypes/platform.cpp:119
 #, kde-format
 msgctxt "abbreviated boat/ferry pier/terminal"
 msgid "Pier %1"
-msgstr ""
+msgstr "%1부두"
 
 #: lib/datatypes/platform.cpp:121
 #, kde-format
 msgctxt "airport gate"
 msgid "Gate %1"
-msgstr ""
+msgstr "탑승구 %1"
 
 #: lib/datatypes/platform.cpp:121
 #, kde-format
 msgctxt "abbreviated airport gate"
 msgid "Gate %1"
-msgstr ""
+msgstr "탑승구 %1"
 
 #: lib/datatypes/platform.cpp:143
 #, kde-format
 msgctxt "train platform"
 msgid "Platform"
-msgstr ""
+msgstr "승강장"
 
 #: lib/datatypes/platform.cpp:147
 #, kde-format
 msgctxt "bus platform"
 msgid "Platform"
-msgstr ""
+msgstr "승강장"
 
 #: lib/datatypes/platform.cpp:150
 #, kde-format
 msgctxt "boat/ferry pier/terminal"
 msgid "Pier"
-msgstr ""
+msgstr "부두"
 
 #: lib/datatypes/platform.cpp:152
 #, kde-format
 msgctxt "airport gate"
 msgid "Gate"
-msgstr ""
+msgstr "탑승구"
 
 #: lib/datatypes/rentalvehicle.cpp:179
 #, kde-format
@@ -239,20 +239,16 @@ msgid "Rented car"
 msgstr "렌터카"
 
 #: lib/datatypes/rentalvehicle.cpp:187
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented bike"
+#, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented cargo bike"
-msgstr "대여한 자전거"
+msgstr "대여한 화물 자전거"
 
 #: lib/datatypes/rentalvehicle.cpp:190
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented bike"
+#, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented vehicle"
-msgstr "대여한 자전거"
+msgstr "대여한 차량"
 
 #: lib/datatypes/vehicle.cpp:79
 #, kde-format
@@ -286,7 +282,7 @@ msgstr "유럽 연합"
 #: lib/models/backendmodel.cpp:102 quick/BackendPage.qml:148
 #, kde-format
 msgid "Kosovo"
-msgstr ""
+msgstr "코소보"
 
 #: quick/BackendPage.qml:24
 #, kde-format
@@ -326,7 +322,7 @@ msgstr "🇪🇺 유럽 연합"
 #: quick/BackendPage.qml:134
 #, kde-format
 msgid "🇽🇰 Kosovo"
-msgstr ""
+msgstr "🇽🇰 코소보"
 
 #: quick/BackendPage.qml:137
 #, kde-format
@@ -424,7 +420,7 @@ msgstr "만차"
 #: quick/private/CountryComboBox.qml:27 quick/private/CountryComboBox.qml:49
 #, kde-format
 msgid "Worldwide"
-msgstr ""
+msgstr "전 세계"
 
 #: quick/private/CountryComboBox.qml:50
 #, kde-format
@@ -465,13 +461,13 @@ msgstr "위치를 결정할 수 없습니다."
 #, kde-format
 msgctxt "departure stop"
 msgid "From %1"
-msgstr ""
+msgstr "%1에서"
 
 #: quick/StopoverFormDelegate.qml:151
 #, kde-format
 msgctxt "@action:button"
 msgid "Show More…"
-msgstr ""
+msgstr "더 보기…"
 
 #: quick/StopoverInformationView.qml:43
 #, kde-format

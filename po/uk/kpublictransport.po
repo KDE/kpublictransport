@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-06-06 00:42+0000\n"
-"PO-Revision-Date: 2026-05-29 19:15+0300\n"
+"PO-Revision-Date: 2026-06-06 09:20+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -283,7 +283,7 @@ msgstr "Європейський Союз"
 #: lib/models/backendmodel.cpp:102 quick/BackendPage.qml:148
 #, kde-format
 msgid "Kosovo"
-msgstr ""
+msgstr "Косово"
 
 #: quick/BackendPage.qml:24
 #, kde-format
@@ -323,7 +323,7 @@ msgstr "🇪🇺 Європейський Союз"
 #: quick/BackendPage.qml:134
 #, kde-format
 msgid "🇽🇰 Kosovo"
-msgstr ""
+msgstr "🇽🇰 Косово"
 
 #: quick/BackendPage.qml:137
 #, kde-format
@@ -427,7 +427,7 @@ msgstr "Повний"
 #: quick/private/CountryComboBox.qml:27 quick/private/CountryComboBox.qml:49
 #, kde-format
 msgid "Worldwide"
-msgstr ""
+msgstr "У всьому світі"
 
 #: quick/private/CountryComboBox.qml:50
 #, kde-format

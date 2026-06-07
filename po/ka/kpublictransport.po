@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-06-06 00:42+0000\n"
-"PO-Revision-Date: 2026-05-29 06:05+0200\n"
+"PO-Revision-Date: 2026-06-06 04:26+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -283,7 +283,7 @@ msgstr "ევროკავშირი"
 #: lib/models/backendmodel.cpp:102 quick/BackendPage.qml:148
 #, kde-format
 msgid "Kosovo"
-msgstr ""
+msgstr "კოსოვო"
 
 #: quick/BackendPage.qml:24
 #, kde-format
@@ -323,7 +323,7 @@ msgstr "🇪🇺 ევროკავშირი"
 #: quick/BackendPage.qml:134
 #, kde-format
 msgid "🇽🇰 Kosovo"
-msgstr ""
+msgstr "🇽🇰 კოსოვო"
 
 #: quick/BackendPage.qml:137
 #, kde-format
@@ -423,7 +423,7 @@ msgstr "სავსე"
 #: quick/private/CountryComboBox.qml:27 quick/private/CountryComboBox.qml:49
 #, kde-format
 msgid "Worldwide"
-msgstr ""
+msgstr "მსოფლიოს მასშტაბით"
 
 #: quick/private/CountryComboBox.qml:50
 #, kde-format
