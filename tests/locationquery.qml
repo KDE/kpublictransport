@@ -118,6 +118,7 @@ Kirigami.ApplicationWindow {
                                     s += " (station)";
                                     break;
                             }
+                            return s;
                         }
                         color: {
                             if (delegateRoot.location && delegateRoot.location.type == Location.Equipment) {
