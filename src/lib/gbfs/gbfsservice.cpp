@@ -30,9 +30,19 @@ QJsonObject GBFSService::toJson(const GBFSService &service)
     return Json::toJson(service);
 }
 
+QJsonArray GBFSService::toJson(const std::vector<GBFSService> &services)
+{
+    return Json::toJson(services);
+}
+
 GBFSService GBFSService::fromJson(const QJsonObject &obj)
 {
     return Json::fromJson<GBFSService>(obj);
+}
+
+std::vector<GBFSService> GBFSService::fromJson(const QJsonArray &array)
+{
+    return Json::fromJson<GBFSService>(array);
 }
 
 

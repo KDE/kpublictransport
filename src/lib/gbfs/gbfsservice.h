@@ -15,6 +15,7 @@
 
 #include <vector>
 
+class QJsonArray;
 class QJsonObject;
 
 namespace KPublicTransport {
@@ -40,7 +41,9 @@ public:
     void generateSystemId();
 
     static QJsonObject toJson(const GBFSService &service);
+    static QJsonArray toJson(const std::vector<GBFSService> &services);
     static GBFSService fromJson(const QJsonObject &obj);
+    static std::vector<GBFSService> fromJson(const QJsonArray &array);
 };
 
 /** All GBFS services.

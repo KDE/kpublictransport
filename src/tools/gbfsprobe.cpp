@@ -8,6 +8,8 @@
 #include <gbfs/gbfsjob.h>
 #include <gbfs/gbfsservice.h>
 
+#include <QCommandLineParser>
+#include <QCommandLineOption>
 #include <QCoreApplication>
 #include <QDebug>
 #include <QDirIterator>
@@ -45,6 +47,7 @@ public:
     int m_throttleTime = 0;
     QStringList m_throttledFeeds;
     bool m_syntheticSystemId = false;
+    bool m_incremental = false;
 
     std::vector<GBFSService> m_services;
     QString m_outputFileName;
@@ -58,6 +61,14 @@ GBFSProbe::GBFSProbe(QObject *parent)
 
 void GBFSProbe::start()
 {
+    if (m_incremental) {
+        QFile file(m_outputFileName);
+        if (!file.open(QFile::ReadOnly)) {
+            qFatal() << file.errorString() << file.fileName();
+        }
+        m_services = GBFSService::fromJson(QJsonDocument::fromJson(file.readAll()).array());
+    }
+
     getFeedList();
 }
 
@@ -147,7 +158,17 @@ void GBFSProbe::getFeedList()
             m_gbfsFeeds.insert(it, extraFeed);
         }
 
-        qDebug() << "Found" << m_gbfsFeeds.size() << "possible feeds - running discovery on them...";
+        qDebug() << "Found" << m_gbfsFeeds.size() << "possible feeds.";
+        if (m_incremental) {
+            for (const auto &service : m_services) {
+                auto it = std::ranges::lower_bound(m_gbfsFeeds, service.discoveryUrl.toString());
+                if (it != m_gbfsFeeds.end() && (*it) == service.discoveryUrl.toString()) {
+                    m_gbfsFeeds.erase(it);
+                }
+            }
+        }
+
+        qDebug() << "Running discovery on" << m_gbfsFeeds.size() << "feeds...";
         std::shuffle(m_gbfsFeeds.begin(), m_gbfsFeeds.end(), std::default_random_engine()); // reduce risk of spamming the same service with too many requests
         discoverNextFeed();
     });
@@ -211,6 +232,12 @@ void GBFSProbe::checkDuplicateSystemIds()
         if (std::next(it) == range.second) {
             it = range.second;
         } else {
+            if (std::all_of(range.first, range.second, [&it](const auto &s) { return s.discoveryUrl == (*it).discoveryUrl; })) {
+                // duplicated services rather that system id clashes
+                qDebug() << "Dropping duplicated service" << (*it).systemId << (*it).discoveryUrl;
+                it = m_services.erase(std::next(range.first), range.second);
+                continue;
+            }
             for (auto it2 = range.first; it2 != range.second; ++it2) {
                 m_gbfsFeeds.push_back((*it2).discoveryUrl.toString());
             }
@@ -232,11 +259,7 @@ void GBFSProbe::checkDuplicateSystemIds()
 
 void GBFSProbe::writeFeeds()
 {
-    QJsonArray array;
-    for (const auto &service : m_services) {
-        array.push_back(GBFSService::toJson(service));
-    };
-
+    const auto array = GBFSService::toJson(m_services);
     auto b = QJsonDocument(array).toJson(QJsonDocument::Compact);
     b.replace("},{", "},\n {");
     b.replace("[{", "[\n {");
@@ -257,17 +280,21 @@ void GBFSProbe::writeFeeds()
 
 int main(int argc, char **argv)
 {
+    QCommandLineParser parser;
+    parser.addHelpOption();
+    parser.addPositionalArgument(u"file"_s, u"GBFS service file"_s);
+    QCommandLineOption incrementalOpt(u"incremental"_s, u"Only check feeds not in the service file yet."_s);
+    parser.addOption(incrementalOpt);
+
     QCoreApplication app(argc, argv);
-    if (app.arguments().size() <= 1) {
-        std::cerr << "Usage: " << argv[0] << " [path to GBFS services file]" << std::endl;
-        return 1;
-    }
+    parser.process(app);
 
     GBFSProbe probe;
-    probe.m_outputFileName = app.arguments().at(1);
+    probe.m_outputFileName = parser.positionalArguments().front();
+    probe.m_incremental = parser.isSet(incrementalOpt);
     QMetaObject::invokeMethod(&probe, &GBFSProbe::start, Qt::QueuedConnection);
 
-    return app.exec();
+    return QCoreApplication::exec();
 }
 
 #include "gbfsprobe.moc"
