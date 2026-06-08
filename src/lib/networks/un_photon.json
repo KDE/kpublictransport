@@ -1,7 +1,27 @@
 {
     "KPlugin": {
         "Description": "Global location search",
-        "Name": "Komoot"
+        "Description[ca]": "Cerca global d'ubicacions",
+        "Description[cs]": "Globální vyhledávání polohy",
+        "Description[es]": "Búsqueda de ubicación global",
+        "Description[ka]": "გლობალური მდებარეობის ძებნა",
+        "Description[ko]": "전세계 위치 검색",
+        "Description[nl]": "Globaal zoeken op locatie",
+        "Description[pt_BR]": "Busca de localização global",
+        "Description[sl]": "Globalno iskanje lokacij",
+        "Description[tr]": "Global konum arama",
+        "Description[uk]": "Глобальний пошук місця",
+        "Name": "Komoot",
+        "Name[ca]": "Komoot",
+        "Name[cs]": "Komoot",
+        "Name[es]": "Komoot",
+        "Name[ka]": "Komoot",
+        "Name[ko]": "Komoot",
+        "Name[nl]": "Komoot",
+        "Name[pt_BR]": "Komoot",
+        "Name[sl]": "Komoot",
+        "Name[tr]": "Komoot",
+        "Name[uk]": "Komoot"
     },
     "attribution": {
         "name": "OpenStreetMap",
