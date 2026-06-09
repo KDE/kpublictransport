@@ -69,7 +69,11 @@ void GBFSProbe::start()
         m_services = GBFSService::fromJson(QJsonDocument::fromJson(file.readAll()).array());
     }
 
-    getFeedList();
+    if (m_gbfsFeeds.empty()) {
+        getFeedList();
+    } else {
+        discoverNextFeed();
+    }
 }
 
 [[nodiscard]] static std::vector<QByteArrayView> splitCsvLine(QByteArrayView line)
@@ -285,13 +289,22 @@ int main(int argc, char **argv)
     parser.addPositionalArgument(u"file"_s, u"GBFS service file"_s);
     QCommandLineOption incrementalOpt(u"incremental"_s, u"Only check feeds not in the service file yet."_s);
     parser.addOption(incrementalOpt);
+    QCommandLineOption addOpt(u"add"_s, u"Add the given URL only (implies incremental)"_s, u"url"_s);
+    parser.addOption(addOpt);
 
     QCoreApplication app(argc, argv);
     parser.process(app);
+    if (parser.positionalArguments().size() != 1) {
+        parser.showHelp(-1);
+    }
 
     GBFSProbe probe;
     probe.m_outputFileName = parser.positionalArguments().front();
     probe.m_incremental = parser.isSet(incrementalOpt);
+    if (parser.isSet(addOpt)) {
+        probe.m_gbfsFeeds.push_back(parser.value(addOpt));
+        probe.m_incremental = true;
+    }
     QMetaObject::invokeMethod(&probe, &GBFSProbe::start, Qt::QueuedConnection);
 
     return QCoreApplication::exec();

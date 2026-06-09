@@ -16,6 +16,7 @@
 #include <QObject>
 #include <QRectF>
 #include <QUrl>
+#include <QVersionNumber>
 
 class QNetworkAccessManager;
 class QNetworkReply;
@@ -87,6 +88,7 @@ private:
     QUrl m_previousDiscoveryUrl;
     GBFSStore m_store;
     QJsonDocument m_discoverDoc;
+    QVersionNumber m_currentVersion;
     QJsonDocument m_versionDoc;
     QJsonArray m_feeds;
 

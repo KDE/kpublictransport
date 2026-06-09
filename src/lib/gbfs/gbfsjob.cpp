@@ -15,7 +15,6 @@
 #include <QNetworkReply>
 #include <QNetworkReply>
 #include <QPolygonF>
-#include <QVersionNumber>
 
 #include <cassert>
 #include <cmath>
@@ -93,6 +92,7 @@ void GBFSJob::parseDiscoverData()
     const auto top = m_discoverDoc.object();
     //qDebug() << QJsonDocument(top).toJson();
 
+    m_currentVersion = QVersionNumber::fromString(top.value("version"_L1).toString());
     const auto data = top.value(QLatin1String("data")).toObject();
     // pick the feeds with the best language for our current locale
     if (data.size() == 1) {
@@ -365,21 +365,24 @@ void GBFSJob::collectCoordinates(const QJsonArray &array)
 void GBFSJob::parseVersionData(const QJsonDocument &doc)
 {
     m_versionDoc = doc;
-    const auto versions = GBFSReader::dataValue(doc, QLatin1String("versions")).toArray();
-    QJsonObject bestVersion;
+    const auto versions = GBFSReader::dataValue(doc, "versions"_L1).toArray();
+    QJsonObject bestVersionObj;
+    QVersionNumber bestVersion;
     for (const auto &verVal : versions) {
         const auto version = verVal.toObject();
-        if (bestVersion.isEmpty()) {
-            bestVersion = version;
+        if (bestVersionObj.isEmpty()) {
+            bestVersionObj= version;
         }
-        if (QVersionNumber::fromString(bestVersion.value(QLatin1String("version")).toString()) < QVersionNumber::fromString(version.value(QLatin1String("version")).toString())) {
-            bestVersion = version;
+        auto verNum = QVersionNumber::fromString(version.value("version"_L1).toString());
+        if (bestVersion < verNum) {
+            bestVersionObj = version;
+            bestVersion = verNum;
         }
     }
 
-    const auto url = QUrl(bestVersion.value(QLatin1String("url")).toString());
-    if (!url.isEmpty() && m_service.discoveryUrl != url) {
-        qDebug() << "found newer version:" << url << m_service.discoveryUrl;
+    const auto url = QUrl(bestVersionObj.value("url"_L1).toString());
+    if (!url.isEmpty() && m_service.discoveryUrl != url && m_currentVersion < bestVersion) {
+        qDebug() << "found newer version:" << url << m_service.discoveryUrl << m_currentVersion << bestVersion;
         m_previousDiscoveryUrl = m_service.discoveryUrl;
         m_service.discoveryUrl = url;
         m_state = State::DiscoverRestart;
