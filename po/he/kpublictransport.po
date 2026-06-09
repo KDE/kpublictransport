@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-06-06 00:42+0000\n"
-"PO-Revision-Date: 2026-06-02 09:30+0300\n"
+"PO-Revision-Date: 2026-06-06 22:24+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -283,7 +283,7 @@ msgstr "האיחוד האירופי"
 #: lib/models/backendmodel.cpp:102 quick/BackendPage.qml:148
 #, kde-format
 msgid "Kosovo"
-msgstr ""
+msgstr "קוסובו"
 
 #: quick/BackendPage.qml:24
 #, kde-format
@@ -323,7 +323,7 @@ msgstr "🇪🇺 האיחוד האירופי"
 #: quick/BackendPage.qml:134
 #, kde-format
 msgid "🇽🇰 Kosovo"
-msgstr ""
+msgstr "🇽🇰 קוסובו"
 
 #: quick/BackendPage.qml:137
 #, kde-format
@@ -427,7 +427,7 @@ msgstr "מלא"
 #: quick/private/CountryComboBox.qml:27 quick/private/CountryComboBox.qml:49
 #, kde-format
 msgid "Worldwide"
-msgstr ""
+msgstr "ברחבי העולם"
 
 #: quick/private/CountryComboBox.qml:50
 #, kde-format
