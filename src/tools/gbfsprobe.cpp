@@ -25,6 +25,10 @@
 #include <iostream>
 #include <random>
 
+#ifdef Q_OS_UNIX
+#include <signal.h>
+#endif
+
 using namespace Qt::Literals;
 using namespace KPublicTransport;
 
@@ -282,6 +286,17 @@ void GBFSProbe::writeFeeds()
     QCoreApplication::quit();
 }
 
+static GBFSProbe* s_probe = nullptr;
+
+static void signalHandler([[maybe_unused]] int sig)
+{
+    if (s_probe) {
+        s_probe->m_gbfsFeeds.clear();
+        s_probe->m_syntheticSystemId = true;
+        s_probe->checkDuplicateSystemIds();
+    }
+}
+
 int main(int argc, char **argv)
 {
     QCommandLineParser parser;
@@ -305,7 +320,14 @@ int main(int argc, char **argv)
         probe.m_gbfsFeeds.push_back(parser.value(addOpt));
         probe.m_incremental = true;
     }
+    s_probe = &probe;
     QMetaObject::invokeMethod(&probe, &GBFSProbe::start, Qt::QueuedConnection);
+
+#ifdef Q_OS_UNIX
+    struct sigaction sa;
+    sa.sa_handler = signalHandler;
+    sigaction(SIGINT, &sa, nullptr);
+#endif
 
     return QCoreApplication::exec();
 }
