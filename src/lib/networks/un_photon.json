@@ -1,10 +1,12 @@
 {
     "KPlugin": {
         "Description": "Global location search",
+        "Description[ar]": "بحث مواقع عالمي",
         "Description[ca@valencia]": "Busca global d'ubicacions",
         "Description[ca]": "Cerca global d'ubicacions",
         "Description[cs]": "Globální vyhledávání polohy",
         "Description[es]": "Búsqueda de ubicación global",
+        "Description[he]": "חיפוש מקום גלובלי",
         "Description[ka]": "გლობალური მდებარეობის ძებნა",
         "Description[ko]": "전세계 위치 검색",
         "Description[nl]": "Globaal zoeken op locatie",
@@ -14,6 +16,7 @@
         "Description[tr]": "Global konum arama",
         "Description[uk]": "Глобальний пошук місця",
         "Name": "Komoot",
+        "Name[ar]": "Komoot",
         "Name[ca@valencia]": "Komoot",
         "Name[ca]": "Komoot",
         "Name[cs]": "Komoot",
