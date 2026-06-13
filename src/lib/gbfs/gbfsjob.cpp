@@ -127,6 +127,12 @@ void GBFSJob::parseDiscoverData()
         Q_EMIT finished();
         return;
     }
+    if (m_feeds.size() > 20) {
+        m_error = DataError;
+        m_errorMsg = u"too many feeds in discovery response - pre v3.0 pseudo-manifest?"_s;
+        Q_EMIT finished();
+        return;
+    }
 
     m_state = m_state == State::Discover ? State::Version : State::SystemInformation;
     processFeeds();
