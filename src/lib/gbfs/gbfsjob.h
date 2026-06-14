@@ -20,6 +20,7 @@
 
 class QNetworkAccessManager;
 class QNetworkReply;
+class QNetworkRequest;
 
 namespace KPublicTransport {
 
@@ -41,7 +42,7 @@ public:
     void setRequestedData(std::vector<GBFS::FileType> &&fileTypes);
 
     /** The service that is updated, or which has been discovered. */
-    GBFSService service() const;
+    [[nodiscard]] GBFSService service() const;
 
     enum Error {
         NoError,
@@ -49,8 +50,8 @@ public:
         TooManyRequestsError, ///< API endpoint call limit, try again later
         DataError,
     };
-    Error error() const;
-    QString errorMessage() const;
+    [[nodiscard]] Error error() const;
+    [[nodiscard]] QString errorMessage() const;
 
 Q_SIGNALS:
     /** Emitted when the discovery and/or update process has finished.
@@ -61,6 +62,7 @@ Q_SIGNALS:
 private:
     void discoverFinished(QNetworkReply *reply);
     void parseDiscoverData();
+    void scheduleProcessFeeds();
     void processFeeds();
     void fetchFinished(QNetworkReply *reply, GBFS::FileType type);
     void handleNetworkError(QNetworkReply *reply);
@@ -72,7 +74,8 @@ private:
     void parseVersionData(const QJsonDocument &doc);
     void parseGeofencingZones(const QJsonDocument &doc);
     void finalize();
-    bool shouldFetchFile(GBFS::FileType fileType) const;
+    [[nodiscard]] bool shouldFetchFile(GBFS::FileType fileType) const;
+    [[nodiscard]] QNetworkRequest makeRequest(const QUrl &url) const;
 
     enum class State {
         Discover,

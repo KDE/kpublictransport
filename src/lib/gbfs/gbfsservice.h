@@ -9,6 +9,7 @@
 
 #include "kpublictransport_export.h"
 
+#include <QHash>
 #include <QRectF>
 #include <QString>
 #include <QUrl>
@@ -34,6 +35,8 @@ public:
     QUrl discoveryUrl;
     QString systemId;
     QRectF boundingBox;
+    /** Additional HTTP headers, e.g. for authentication/API tokens. */
+    QHash<QByteArray, QByteArray> httpHeaders;
 
     /** Generate a systemId based on the URL.
      *  This is used for cases of colliding systemIds.

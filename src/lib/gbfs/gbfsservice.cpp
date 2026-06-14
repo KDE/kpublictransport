@@ -15,6 +15,7 @@
 #include <QJsonObject>
 #include <QStandardPaths>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 void GBFSService::generateSystemId()
@@ -27,7 +28,15 @@ void GBFSService::generateSystemId()
 
 QJsonObject GBFSService::toJson(const GBFSService &service)
 {
-    return Json::toJson(service);
+    auto obj = Json::toJson(service);
+    if (!service.httpHeaders.empty()) {
+        QJsonObject headers;
+        for (const auto [key, value] : service.httpHeaders.asKeyValueRange()) {
+            headers.insert(QLatin1StringView(key), QLatin1StringView(value));
+        }
+        obj.insert("httpHeaders"_L1, headers);
+    }
+    return obj;
 }
 
 QJsonArray GBFSService::toJson(const std::vector<GBFSService> &services)
@@ -37,7 +46,12 @@ QJsonArray GBFSService::toJson(const std::vector<GBFSService> &services)
 
 GBFSService GBFSService::fromJson(const QJsonObject &obj)
 {
-    return Json::fromJson<GBFSService>(obj);
+    auto service = Json::fromJson<GBFSService>(obj);
+    const auto headersObj = obj.value("httpHeaders"_L1).toObject();
+    for (auto it = headersObj.begin(); it != headersObj.end(); ++it) {
+        service.httpHeaders.insert(it.key().toLatin1(), it.value().toString().toLatin1());
+    }
+    return service;
 }
 
 std::vector<GBFSService> GBFSService::fromJson(const QJsonArray &array)

@@ -66,7 +66,7 @@ void GBFSJob::discoverAndUpdate(const GBFSService &service)
     }
 
     qDebug() << "fetching discovery data" << m_service.discoveryUrl;
-    auto reply = m_nam->get(QNetworkRequest(m_service.discoveryUrl));
+    auto reply = m_nam->get(makeRequest(m_service.discoveryUrl));
     connect(reply, &QNetworkReply::finished, this, [this, reply]() { discoverFinished(reply); });
 }
 
@@ -135,7 +135,12 @@ void GBFSJob::parseDiscoverData()
     }
 
     m_state = m_state == State::Discover ? State::Version : State::SystemInformation;
-    processFeeds();
+    scheduleProcessFeeds();
+}
+
+void GBFSJob::scheduleProcessFeeds()
+{
+    QMetaObject::invokeMethod(this, &GBFSJob::processFeeds, Qt::QueuedConnection);
 }
 
 void GBFSJob::processFeeds()
@@ -182,7 +187,7 @@ void GBFSJob::processFeeds()
 
         if (!m_store.isValid() || !m_store.hasCurrentData(type)) {
             qDebug() << "fetching" << name << url;
-            auto reply = m_nam->get(QNetworkRequest(url));
+            auto reply = m_nam->get(makeRequest(url));
             connect(reply, &QNetworkReply::finished, this, [this, reply, type]() { fetchFinished(reply, type); });
             ++m_pendingJobs;
         } else {
@@ -205,7 +210,7 @@ void GBFSJob::processFeeds()
             default:
                 Q_UNREACHABLE();
         }
-        QMetaObject::invokeMethod(this, &GBFSJob::processFeeds, Qt::QueuedConnection);
+        scheduleProcessFeeds();
     } else if (m_pendingJobs == 0 && state == State::Data) {
         finalize();
     }
@@ -289,7 +294,7 @@ void GBFSJob::parseSystemInformation(const QJsonDocument &doc)
     }
 
     m_state = State::Data;
-    QMetaObject::invokeMethod(this, &GBFSJob::processFeeds, Qt::QueuedConnection);
+    scheduleProcessFeeds();
 }
 
 void GBFSJob::parseStationInformation(const QJsonDocument &doc)
@@ -395,7 +400,7 @@ void GBFSJob::parseVersionData(const QJsonDocument &doc)
         discoverAndUpdate(m_service);
     } else {
         m_state = State::SystemInformation;
-        QMetaObject::invokeMethod(this, &GBFSJob::processFeeds, Qt::QueuedConnection);
+        scheduleProcessFeeds();
     }
 }
 
@@ -472,4 +477,13 @@ void GBFSJob::finalize()
 bool GBFSJob::shouldFetchFile(GBFS::FileType fileType) const
 {
     return m_fileTypes.empty() || std::find(m_fileTypes.begin(), m_fileTypes.end(), fileType) != m_fileTypes.end();
+}
+
+QNetworkRequest GBFSJob::makeRequest(const QUrl &url) const
+{
+    QNetworkRequest req(url);
+    for (const auto [key, value] : m_service.httpHeaders.asKeyValueRange()) {
+        req.setRawHeader(key, value);
+    }
+    return req;
 }
