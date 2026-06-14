@@ -51,6 +51,9 @@ private Q_SLOTS:
         QTest::newRow("voi-oslo-3.0")
             << u"" SOURCE_DIR "/data/gbfs/voi-oslo-gbfs3.0.in.json"_s
             << u"" SOURCE_DIR "/data/gbfs/voi-oslo-gbfs3.0.out.json"_s;
+        QTest::newRow("getaround-pau-3.0")
+            << u"" SOURCE_DIR "/data/gbfs/getaround-pau-gbfs3.0.in.json"_s
+            << u"" SOURCE_DIR "/data/gbfs/getaround-pau-gbfs3.0.out.json"_s;
     }
 
     void testReadVehicleNetwork()
