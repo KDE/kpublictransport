@@ -1,5 +1,4 @@
 https://api.openbike.ulm.dev/gbfs/gbfs.json
-https://mds.bird.co/gbfs/v2/public/ulm/gbfs.json
 https://www.bolt.miami/bolt2/chi/gbfs/gbfs.json
 https://portal.clevrmobility.com/api/gbfs/chicago/en/discovery/?format=json
 https://gbfs.uber.com/v1/chicago/gbfs.json
@@ -7,7 +6,6 @@ https://web.spin.pm/api/gbfs/v1/chicago/gbfs.json
 https://chicago-gbfs.getwheelsapp.com/gbfs.json
 https://share.veoride.com/api/share/gbfs.json
 https://cykel.jenarad.de/gbfs/gbfs.json
-https://ixsi.swu.de/gbfs.json
 https://gbfs.conficars.de/gbfs.json
 https://opendata.bbnavi.de/barshare/gbfs.json
 https://www.mobidata-bw.de/data/LastenveloFR/gbfs.json
