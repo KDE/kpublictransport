@@ -10,7 +10,9 @@
 #include <QJsonObject>
 #include <QPointF>
 #include <QPolygonF>
+#include <QRectF>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 static QPointF readPointCoordinates(const QJsonArray &coords)
@@ -97,6 +99,22 @@ std::vector<QPolygonF> GeoJson::readOuterPolygons(const QJsonObject &obj)
     }
 
     return {};
+}
+
+QRectF GeoJson::boundingRect(const QJsonObject &geometry)
+{
+    // this could be made even fast by not allocating the polygons in full,
+    // but the main point here is avoiding the expensive polygon unite operation
+    const auto polys = GeoJson::readOuterPolygons(geometry);
+    QRectF bbox;
+    for (const auto &poly : polys) {
+        if (bbox.isNull()) {
+            bbox = poly.boundingRect();
+        } else {
+            bbox |= poly.boundingRect();
+        }
+    }
+    return bbox;
 }
 
 static QJsonArray writePoint(const QPointF &p)

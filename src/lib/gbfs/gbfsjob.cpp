@@ -406,11 +406,10 @@ void GBFSJob::parseVersionData(const QJsonDocument &doc)
 
 void GBFSJob::parseGeofencingZones(const QJsonDocument &doc)
 {
-    const auto features = GBFSReader::dataValue(doc, QLatin1String("geofencing_zones")).toObject()
-        .value(QLatin1String("features")).toArray();
+    const auto features = GBFSReader::dataValue(doc, "geofencing_zones"_L1).toObject().value("features"_L1).toArray();
     for (const auto &featureVal : features) {
-        const auto geo = featureVal.toObject().value(QLatin1String("geometry")).toObject();
-        const auto rect = GeoJson::readOuterPolygon(geo).boundingRect();
+        const auto geo = featureVal.toObject().value("geometry"_L1).toObject();
+        const auto rect = GeoJson::boundingRect(geo);
         if (rect.isNull() || rect.left() < -180.0 || rect.right() > 180.0 || rect.top() < -90.0 || rect.bottom() > 90.0) {
             qDebug() << "invalid geofence box:" << rect;
             continue;
