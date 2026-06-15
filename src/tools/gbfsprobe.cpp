@@ -221,6 +221,10 @@ void GBFSProbe::discoverNextFeed()
     if (m_syntheticSystemId) {
         service.generateSystemId();
     }
+    // TODO make this configurable
+    if (service.discoveryUrl.host().startsWith("api.entur"_L1)) {
+        service.httpHeaders.insert("ET-Client-Name", "kde-kpublictransport");
+    }
     job->discoverAndUpdate(service);
 }
 
