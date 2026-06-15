@@ -12,6 +12,7 @@
 class QJsonObject;
 class QPointF;
 class QPolygonF;
+class QRectF;
 
 namespace KPublicTransport {
 
@@ -30,6 +31,12 @@ namespace GeoJson
     QPolygonF readOuterPolygon(const QJsonObject &obj);
     /** Outer paths of a polygon or multi-polygon geometry object. */
     std::vector<QPolygonF> readOuterPolygons(const QJsonObject &obj);
+
+    /** Compute bounding rect for the given geometry.
+     *  This is vastly more efficient than reading the actual out geometry
+     *  and determining the bounding rect from that.
+     */
+    [[nodiscard]] QRectF boundingRect(const QJsonObject &geometry);
 
     /** Creates a line string object. */
     QJsonObject writeLineString(const QPolygonF &lineString);
