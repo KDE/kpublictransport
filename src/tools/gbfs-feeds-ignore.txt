@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: CC0-1.0
+# SPDX-FileCopyrightText: none
+
+# test feeds
+nextbike_tb
+pbsn
+
+# swapped coordinates
+clem-france

@@ -40,12 +40,14 @@ public:
     explicit GBFSProbe(QObject *parent = nullptr);
 
     void start();
+    void loadIgnoreList();
     void getFeedList();
     void discoverNextFeed();
     void checkDuplicateSystemIds();
     void writeFeeds();
 
     QNetworkAccessManager m_nam;
+    std::vector<QByteArray> m_ignoredFeedIds;
     QStringList m_gbfsFeeds;
     int m_currentFeedIdx = -1;
     int m_throttleTime = 0;
@@ -114,8 +116,27 @@ void GBFSProbe::start()
     return fields;
 }
 
+void GBFSProbe::loadIgnoreList()
+{
+     QFile ignoreFile(u"gbfs-feeds-ignore.txt"_s);
+    if (!ignoreFile.open(QFile::ReadOnly)) {
+        qCritical() << ignoreFile.errorString() << ignoreFile.fileName();
+        QCoreApplication::exit(1);
+        return;
+    }
+    while (!ignoreFile.atEnd()) {
+        const auto line = ignoreFile.readLine().trimmed();
+        if (line.isEmpty() || line.startsWith('#')) {
+            continue;
+        }
+        m_ignoredFeedIds.push_back(line);
+    }
+    std::ranges::sort(m_ignoredFeedIds);
+}
+
 void GBFSProbe::getFeedList()
 {
+    loadIgnoreList();
     auto reply = m_nam.get(QNetworkRequest(QUrl(u"https://raw.githubusercontent.com/MobilityData/gbfs/refs/heads/master/systems.csv"_s)));
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         reply->deleteLater();
@@ -136,6 +157,9 @@ void GBFSProbe::getFeedList()
             if (!fields[8].isEmpty() && fields[8] != "0") {
                 qDebug() << "skipping feed needing authentication:" << fields;
             }
+            if (std::ranges::binary_search(m_ignoredFeedIds, fields[3])) {
+                qDebug() << "skipping ignored feed:" << fields;
+            }
 
             auto url = fields[5].trimmed().toByteArray();
             url.replace("http:", "https:");
@@ -147,7 +171,7 @@ void GBFSProbe::getFeedList()
 
         QFile extraFeeds(QStringLiteral("gbfs-feeds.txt"));
         if (!extraFeeds.open(QFile::ReadOnly)) {
-            qCritical() << extraFeeds.errorString();
+            qCritical() << extraFeeds.errorString() << extraFeeds.fileName();
             QCoreApplication::exit(1);
             return;
         }
