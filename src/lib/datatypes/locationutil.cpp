@@ -154,7 +154,7 @@ bool LocationUtil::sortLessThan(const LocationRequest &request,
                                 const Location &lhs,
                                 const Location &rhs)
 {
-    return score(request, lhs) >= score(request, rhs);
+    return score(request, lhs) > score(request, rhs);
 }
 
 static QString normalizeString(const QString &str)
