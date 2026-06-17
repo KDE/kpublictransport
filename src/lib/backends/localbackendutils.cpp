@@ -31,7 +31,7 @@ QString KPublicTransport::LocalBackendUtils::normalizeName(QString name)
         // Split accents into their own charcters
         .normalized(QString::NormalizationForm_D)
         // filter those characters out
-        .replace(QRegularExpression(QStringLiteral("[^a-zA-Z0-9\\s\\-\\/]")), QString())
+        .replace(QRegularExpression(QStringLiteral("[\\p{Mn}\\p{Mc}\\p{Me}]")), QString())
         .toLower()
         .trimmed();
 }
