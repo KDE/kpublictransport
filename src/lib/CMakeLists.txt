@@ -4,7 +4,9 @@
 add_subdirectory(knowledgedb)
 
 add_library(KPublicTransport)
-qt_extract_metatypes(KPublicTransport)
+qt_extract_metatypes(KPublicTransport OUTPUT_FILES METATYPES_FILE)
+get_filename_component(METATYPES_FILE_NAME ${METATYPES_FILE} NAME)
+target_sources(KPublicTransport INTERFACE $<INSTALL_INTERFACE:${KDE_INSTALL_QTMETATYPESDIR}/${METATYPES_FILE_NAME}>)
 
 target_sources(KPublicTransport PRIVATE
     assetrepository.cpp
@@ -299,7 +301,9 @@ install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/kpublictransport_export.h
     DESTINATION ${KPUBLICTRANSPORT_INSTALL_INCLUDEDIR}/kpublictransport
 )
-
+if (KDE_INSTALL_QTMETATYPESDIR) # since 6.27
+    install(FILES ${METATYPES_FILE} DESTINATION ${KDE_INSTALL_QTMETATYPESDIR})
+endif()
 
 if (BUILD_QCH)
     ecm_add_qch(

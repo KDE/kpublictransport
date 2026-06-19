@@ -6,7 +6,9 @@ if (TARGET KF6::NetworkManagerQt)
 endif()
 
 add_library(KPublicTransportOnboard)
-qt_extract_metatypes(KPublicTransportOnboard)
+qt_extract_metatypes(KPublicTransportOnboard OUTPUT_FILES METATYPES_FILE)
+get_filename_component(METATYPES_FILE_NAME ${METATYPES_FILE} NAME)
+target_sources(KPublicTransportOnboard INTERFACE $<INSTALL_INTERFACE:${KDE_INSTALL_QTMETATYPESDIR}/${METATYPES_FILE_NAME}>)
 
 target_sources(KPublicTransportOnboard PRIVATE
     onboardstatus.cpp
@@ -81,3 +83,6 @@ install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/kpublictransportonboard_export.h
     DESTINATION ${KPUBLICTRANSPORT_INSTALL_INCLUDEDIR}/kpublictransport
 )
+if (KDE_INSTALL_QTMETATYPESDIR) # since 6.27
+    install(FILES ${METATYPES_FILE} DESTINATION ${KDE_INSTALL_QTMETATYPESDIR})
+endif()
