@@ -108,7 +108,6 @@ target_sources(KPublicTransport PRIVATE
     datatypes/vehicle.cpp
 
     gbfs/gbfs.cpp
-    gbfs/gbfs.qrc
     gbfs/gbfsbackend.cpp
     gbfs/gbfsjob.cpp
     gbfs/gbfsreader.cpp
@@ -152,6 +151,7 @@ target_sources(KPublicTransport PRIVATE
 
     networks/networks.qrc
     networks/certs/network_certs.qrc
+    networks/gbfs/gbfs.qrc
     networks/geometry/geometry.qrc
     networks/hafas-attributes/attributes.qrc
     networks/stations/stations.qrc

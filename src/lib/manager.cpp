@@ -25,6 +25,7 @@
 #include "datatypes/backend_p.h"
 #include "datatypes/disruption.h"
 #include "datatypes/json_p.h"
+#include "gbfs/gbfsservice.h"
 #include "geo/geojson_p.h"
 #include "update/updatejob_p.h"
 #include "update/updatestate_p.h"
@@ -1050,6 +1051,7 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
 void Manager::reload()
 {
     HafasAttributeMap::reload();
+    GBFSServiceRepository::reload();
     if (d->m_backends.empty()) { // not loaded yet, nothing to do
         return;
     }

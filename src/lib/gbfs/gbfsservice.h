@@ -58,6 +58,9 @@ public:
     static const std::vector<GBFSService>& services();
     static void store(const GBFSService &service);
 
+    /** Reloads GBFS service data, e.g. following an online update. */
+    static void reload();
+
 private:
     static void load();
     static std::vector<GBFSService> m_services;

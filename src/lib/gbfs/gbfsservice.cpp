@@ -6,6 +6,7 @@
 
 #include "gbfsservice.h"
 #include "datatypes/json_p.h"
+#include "standardpaths_p.h"
 
 #include <QCryptographicHash>
 #include <QDebug>
@@ -94,6 +95,13 @@ void GBFSServiceRepository::store(const GBFSService &service)
     f.write(QJsonDocument(GBFSService::toJson(service)).toJson(QJsonDocument::Compact));
 }
 
+void GBFSServiceRepository::reload()
+{
+    // next access will load on-demand again
+    // clearing this is save as GBFSService is an implicitly shared type, existing instances will thus remain valid
+    m_services.clear();
+}
+
 void GBFSServiceRepository::load()
 {
     QDirIterator it(basePath(), QDir::Files);
@@ -118,7 +126,7 @@ void GBFSServiceRepository::load()
     std::sort(m_services.begin(), m_services.end(), [](const auto &lhs, const auto &rhs) { return lhs.systemId < rhs.systemId; });
 
     // load missing ones from the initial built-in list
-    QFile f(QStringLiteral(":/org.kde.kpublictransport/gbfs/gbfs-feeds.json"));
+    QFile f(StandardPaths::locateFile(u"networks/gbfs/gbfs-feeds.json"_s));
     if (!f.open(QFile::ReadOnly)) {
         qWarning() << f.errorString();
         return;
