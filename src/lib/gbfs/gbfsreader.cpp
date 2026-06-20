@@ -106,6 +106,7 @@ RentalVehicleNetwork GBFSReader::readSystemInformation(const QJsonObject &sysInf
     if (const auto c = sysInfo.value("brand_assets"_L1).toObject().value("color"_L1).toString(); !c.isEmpty()) {
         network.setBrandColor(QColor::fromString(c));
     }
+    network.setOpeningHours(sysInfo.value("opening_hours"_L1).toString());
     return network;
 }
 

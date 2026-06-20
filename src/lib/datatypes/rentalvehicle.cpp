@@ -54,6 +54,7 @@ public:
     QString name;
     QUrl url;
     QColor brandColor;
+    QString openingHours;
 };
 
 class RentalVehicleStationPrivate : public QSharedData
@@ -225,6 +226,7 @@ KPUBLICTRANSPORT_MAKE_GADGET(RentalVehicleNetwork)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleNetwork, QString, name, setName)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleNetwork, QUrl, url, setUrl)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleNetwork, QColor, brandColor, setBrandColor)
+KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleNetwork, QString, openingHours, setOpeningHours)
 
 bool RentalVehicleNetwork::hasBrandColor() const
 {

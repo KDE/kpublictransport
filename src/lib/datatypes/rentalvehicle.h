@@ -265,6 +265,8 @@ class KPUBLICTRANSPORT_EXPORT RentalVehicleNetwork
     KPUBLICTRANSPORT_PROPERTY(QColor, brandColor, setBrandColor)
     /** @c true if a brand color is set. */
     Q_PROPERTY(bool hasBrandColor READ hasBrandColor STORED false)
+    /** Opening hours for the entire network (in OSM format). */
+    KPUBLICTRANSPORT_PROPERTY(QString, openingHours, setOpeningHours)
 
     /** Not an empty/default constructed object. */
     Q_PROPERTY(bool isValid READ isValid STORED false)
