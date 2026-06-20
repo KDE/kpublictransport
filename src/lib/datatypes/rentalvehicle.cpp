@@ -82,6 +82,7 @@ public:
     std::unordered_map<QString, int> availabilities;
     QUrl webBookingUrl;
     QUrl appBookingUrl;
+    QString openingHours;
 };
 
 class RentalVehiclePrivate : public QSharedData
@@ -364,6 +365,17 @@ void RentalVehicleStation::setAvailableVehicles(const RentalVehicleType &type, i
     d->availabilities[type.id()] = count;
 }
 
+QString RentalVehicleStation::openingHours() const
+{
+    return d->openingHours.isEmpty() ? d->network.openingHours() : d->openingHours;
+}
+
+void RentalVehicleStation::setOpeningHours(const QString &value)
+{
+    d.detach();
+    d->openingHours = value;
+}
+
 QString RentalVehicleStation::iconName() const
 {
     for (const auto &c : d->capacities) {
@@ -392,6 +404,9 @@ QJsonObject RentalVehicleStation::toJson(const RentalVehicleStation &station)
     }
     if (station.d->availableVehicles < 0) {
         obj.remove("availableVehicles"_L1);
+    }
+    if (station.d->openingHours.isEmpty()) {
+        obj.remove("openingHours"_L1);
     }
     if (station.network().isValid()) {
         obj.insert("network"_L1, RentalVehicleNetwork::toJson(station.network()));

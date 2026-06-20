@@ -216,6 +216,9 @@ class KPUBLICTRANSPORT_EXPORT RentalVehicleStation
     /** Deep booking link via an app. */
     KPUBLICTRANSPORT_PROPERTY(QUrl, appBookingUrl, setAppBookingUrl)
 
+    /** Opening hours for this station (in OSM format). */
+    KPUBLICTRANSPORT_PROPERTY(QString, openingHours, setOpeningHours)
+
     /** Icon representing this rental vehicle station.
      *  Can be a qrc: URL or an XDG icon name.
      */

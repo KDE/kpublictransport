@@ -142,6 +142,7 @@ RentalVehicleStation GBFSReader::readStationInformation(const QJsonObject &stati
         s.setCapacity(vts, capObj.value("count"_L1).toInt(-1));
     }
     readRentalUris(station, s);
+    s.setOpeningHours(station.value("opening_hours"_L1).toString());
     return s;
 }
 
