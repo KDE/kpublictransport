@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-06 00:42+0000\n"
+"POT-Creation-Date: 2026-06-21 00:42+0000\n"
 "PO-Revision-Date: 2026-06-06 12:17+0200\n"
 "Last-Translator: Libor Filípek <libor.filipek@gmail.com>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -215,37 +215,37 @@ msgctxt "airport gate"
 msgid "Gate"
 msgstr "Brána"
 
-#: lib/datatypes/rentalvehicle.cpp:179
+#: lib/datatypes/rentalvehicle.cpp:181
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented bike"
 msgstr "Zapůjčené kolo"
 
-#: lib/datatypes/rentalvehicle.cpp:181
+#: lib/datatypes/rentalvehicle.cpp:183
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented moped"
 msgstr "Zapůjčený moped"
 
-#: lib/datatypes/rentalvehicle.cpp:183
+#: lib/datatypes/rentalvehicle.cpp:185
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented kick scooter"
 msgstr "Zapůjčená koloběžka"
 
-#: lib/datatypes/rentalvehicle.cpp:185
+#: lib/datatypes/rentalvehicle.cpp:187
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"
 msgstr "Zapůjčené auto"
 
-#: lib/datatypes/rentalvehicle.cpp:187
+#: lib/datatypes/rentalvehicle.cpp:189
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented cargo bike"
 msgstr "Zapůjčené nákladní kolo"
 
-#: lib/datatypes/rentalvehicle.cpp:190
+#: lib/datatypes/rentalvehicle.cpp:192
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented vehicle"
