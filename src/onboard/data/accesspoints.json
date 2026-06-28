@@ -3,6 +3,7 @@
     { "ssid": "_SNCF_WIFI_INTERCITES", "id": "sncf-ic" },
     { "ssid": "_WIFI_LYRIA", "id": "sncf-tgv" },
     { "ssid": "AegeanWiFi", "id": "aegean" },
+    { "ssid": "Amtrak_WiFi", "id": "icomera-omboard" },
     { "ssid": "Cathay Pacific", "id": "panasonic-inflight-v2" },
     { "ssid": "CDWiFi", "id": "ceskedrahy" },
     { "ssid": "EurostarTrainsWiFi", "id": "icomera-omboard" },
