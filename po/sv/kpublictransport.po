@@ -1,13 +1,13 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kpublictransport package.
 #
-# SPDX-FileCopyrightText: 2024, 2025 Stefan Asserhäll <stefan.asserhall@gmail.com>
+# SPDX-FileCopyrightText: 2024-2026 Stefan Asserhäll <stefan.asserhall@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-06-21 00:42+0000\n"
-"PO-Revision-Date: 2025-11-21 01:42+0100\n"
+"PO-Revision-Date: 2026-07-07 16:02+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.08.3\n"
+"X-Generator: Lokalize 26.04.2\n"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
@@ -146,73 +146,73 @@ msgstr "Vänta"
 #, kde-format
 msgctxt "train platform"
 msgid "Platform %1"
-msgstr ""
+msgstr "Plattform %1"
 
 #: lib/datatypes/platform.cpp:112
 #, kde-format
 msgctxt "abbreviated train platform"
 msgid "Pl. %1"
-msgstr ""
+msgstr "Pl. %1"
 
 #: lib/datatypes/platform.cpp:116
 #, kde-format
 msgctxt "bus platform"
 msgid "Platform %1"
-msgstr ""
+msgstr "Plattform %1"
 
 #: lib/datatypes/platform.cpp:116
 #, kde-format
 msgctxt "abbreviated bus platform"
 msgid "Pl. %1"
-msgstr ""
+msgstr "Pl. %1"
 
 #: lib/datatypes/platform.cpp:119
 #, kde-format
 msgctxt "boat/ferry pier/terminal"
 msgid "Pier %1"
-msgstr ""
+msgstr "Kaj %1"
 
 #: lib/datatypes/platform.cpp:119
 #, kde-format
 msgctxt "abbreviated boat/ferry pier/terminal"
 msgid "Pier %1"
-msgstr ""
+msgstr "Kaj %1"
 
 #: lib/datatypes/platform.cpp:121
 #, kde-format
 msgctxt "airport gate"
 msgid "Gate %1"
-msgstr ""
+msgstr "Utgång %1"
 
 #: lib/datatypes/platform.cpp:121
 #, kde-format
 msgctxt "abbreviated airport gate"
 msgid "Gate %1"
-msgstr ""
+msgstr "Utgång %1"
 
 #: lib/datatypes/platform.cpp:143
 #, kde-format
 msgctxt "train platform"
 msgid "Platform"
-msgstr ""
+msgstr "Plattform"
 
 #: lib/datatypes/platform.cpp:147
 #, kde-format
 msgctxt "bus platform"
 msgid "Platform"
-msgstr ""
+msgstr "Plattform"
 
 #: lib/datatypes/platform.cpp:150
 #, kde-format
 msgctxt "boat/ferry pier/terminal"
 msgid "Pier"
-msgstr ""
+msgstr "Kaj"
 
 #: lib/datatypes/platform.cpp:152
 #, kde-format
 msgctxt "airport gate"
 msgid "Gate"
-msgstr ""
+msgstr "Utgång"
 
 #: lib/datatypes/rentalvehicle.cpp:181
 #, kde-format
@@ -239,20 +239,16 @@ msgid "Rented car"
 msgstr "Hyrbil"
 
 #: lib/datatypes/rentalvehicle.cpp:189
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented bike"
+#, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented cargo bike"
-msgstr "Hyrcykel"
+msgstr "Hyrd lastcykel"
 
 #: lib/datatypes/rentalvehicle.cpp:192
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented bike"
+#, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented vehicle"
-msgstr "Hyrcykel"
+msgstr "Hyrfordon"
 
 #: lib/datatypes/vehicle.cpp:79
 #, kde-format
@@ -286,7 +282,7 @@ msgstr "Europeiska unionen"
 #: lib/models/backendmodel.cpp:102 quick/BackendPage.qml:148
 #, kde-format
 msgid "Kosovo"
-msgstr ""
+msgstr "Kosovo"
 
 #: quick/BackendPage.qml:24
 #, kde-format
@@ -326,7 +322,7 @@ msgstr "🇪🇺 Europeiska unionen"
 #: quick/BackendPage.qml:134
 #, kde-format
 msgid "🇽🇰 Kosovo"
-msgstr ""
+msgstr "🇽🇰 Kosovo"
 
 #: quick/BackendPage.qml:137
 #, kde-format
@@ -426,7 +422,7 @@ msgstr "Fullt"
 #: quick/private/CountryComboBox.qml:27 quick/private/CountryComboBox.qml:49
 #, kde-format
 msgid "Worldwide"
-msgstr ""
+msgstr "Över hela världen"
 
 #: quick/private/CountryComboBox.qml:50
 #, kde-format
@@ -467,13 +463,13 @@ msgstr "Misslyckades bestämma position."
 #, kde-format
 msgctxt "departure stop"
 msgid "From %1"
-msgstr ""
+msgstr "Från %1"
 
 #: quick/StopoverFormDelegate.qml:151
 #, kde-format
 msgctxt "@action:button"
 msgid "Show More…"
-msgstr ""
+msgstr "Visa fler…"
 
 #: quick/StopoverInformationView.qml:43
 #, kde-format
