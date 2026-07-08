@@ -15,6 +15,7 @@
         "Description[pt_BR]": "Busca de localização global",
         "Description[sk]": "Globálne vyhľadávanie polohy",
         "Description[sl]": "Globalno iskanje lokacij",
+        "Description[sv]": "Global platssökning",
         "Description[tr]": "Global konum arama",
         "Description[uk]": "Глобальний пошук місця",
         "Name": "Komoot",
@@ -31,6 +32,7 @@
         "Name[pt_BR]": "Komoot",
         "Name[sk]": "Komoot",
         "Name[sl]": "Komoot",
+        "Name[sv]": "Komoot",
         "Name[tr]": "Komoot",
         "Name[uk]": "Komoot"
     },
