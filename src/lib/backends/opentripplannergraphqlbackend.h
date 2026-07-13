@@ -28,7 +28,7 @@ class OpenTripPlannerGraphQLBackend : public AbstractBackend
     Q_PROPERTY(QStringList supportedTransitModes MEMBER m_supportedTransitModes)
     Q_PROPERTY(QStringList supportedRentalModes MEMBER m_supportedRentalModes)
     Q_PROPERTY(QJsonValue extraHttpHeaders WRITE setExtraHttpHeaders)
-    Q_PROPERTY(QJsonObject rentalVehicleNetworks)
+    Q_PROPERTY(QJsonObject rentalVehicleNetworks MEMBER m_rentalNetworks)
     Q_PROPERTY(QString ifoptPrefix MEMBER m_ifoptPrefix)
 
 public:
