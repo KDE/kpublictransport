@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-06-21 00:42+0000\n"
-"PO-Revision-Date: 2026-03-23 17:12+0100\n"
+"PO-Revision-Date: 2026-07-17 11:33+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
@@ -240,20 +240,16 @@ msgid "Rented car"
 msgstr "Auto de location"
 
 #: lib/datatypes/rentalvehicle.cpp:189
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented bike"
+#, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented cargo bike"
-msgstr "Bicycletta locate"
+msgstr "Bicycletta de cargo locate"
 
 #: lib/datatypes/rentalvehicle.cpp:192
-#, fuzzy, kde-format
-#| msgctxt "rental vehicle type"
-#| msgid "Rented bike"
+#, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented vehicle"
-msgstr "Bicycletta locate"
+msgstr "Vehiculo locate"
 
 #: lib/datatypes/vehicle.cpp:79
 #, kde-format
@@ -287,7 +283,7 @@ msgstr "Union Europee"
 #: lib/models/backendmodel.cpp:102 quick/BackendPage.qml:148
 #, kde-format
 msgid "Kosovo"
-msgstr ""
+msgstr "Kosovo"
 
 #: quick/BackendPage.qml:24
 #, kde-format
@@ -327,7 +323,7 @@ msgstr "🇪🇺 Union Europee"
 #: quick/BackendPage.qml:134
 #, kde-format
 msgid "🇽🇰 Kosovo"
-msgstr ""
+msgstr "🇽🇰 Kosovo"
 
 #: quick/BackendPage.qml:137
 #, kde-format
@@ -427,7 +423,7 @@ msgstr "Plen"
 #: quick/private/CountryComboBox.qml:27 quick/private/CountryComboBox.qml:49
 #, kde-format
 msgid "Worldwide"
-msgstr ""
+msgstr "Toto le mundo"
 
 #: quick/private/CountryComboBox.qml:50
 #, kde-format
