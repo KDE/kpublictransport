@@ -243,9 +243,23 @@ Motis2Parser::MotisRoute Motis2Parser::parseRoute(const QJsonObject &obj) const
     res.route.setDestination(parsePlace(obj.value("tripTo"_L1).toObject(), false).stopPoint());
     res.route.setLine(line);
 
+    res.bookingUrl = QUrl(obj.value("agencyFareUrl"_L1).toString());
+
     // Amarillo rideshare booking URLs
     if (res.route.line().mode() == Line::RideShare) {
         res.bookingUrl = QUrl(obj.value("routeUrl"_L1).toString());
+    }
+
+    if (obj.contains("ticketUrls"_L1)) {
+        const auto urls = obj.value("ticketUrls"_L1).toObject();
+        // prefer web url even on android
+        // in the hope that it requires installing less third-party apps
+        res.bookingUrl = QUrl(urls.value("web"_L1).toString());
+#ifdef Q_OS_ANDROID
+        if (res.bookingUrl.isEmpty()) {
+            res.bookingUrl = QUrl(urls.value("android"_L1).toString());
+        }
+#endif
     }
 
     return res;
