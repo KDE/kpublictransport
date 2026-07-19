@@ -46,6 +46,8 @@ Line::Mode Gtfs::Hvt::typeToMode(int hvt)
             return Line::RailShuttle;
         case 1502:
             return Line::Boat;
+        case 1551:
+            return Line::RideShare;
     }
 
     // coarse top-level types - https://developers.google.com/transit/gtfs/reference/#routestxt
