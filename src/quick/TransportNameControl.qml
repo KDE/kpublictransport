@@ -114,7 +114,9 @@ Kirigami.Padding {
                     // Test case U4 in Berlin
                 }
 
-                return backgroundIsDark && isDarkTheme ? Kirigami.Theme.textColor : Kirigami.Theme.backgroundColor;
+                if (backgroundIsDark)
+                    return isDarkTheme ? Kirigami.Theme.textColor : Kirigami.Theme.backgroundColor;
+                return isDarkTheme ? Kirigami.Theme.backgroundColor : Kirigami.Theme.textColor;
             }
             level: 4
             text: root.lineName
