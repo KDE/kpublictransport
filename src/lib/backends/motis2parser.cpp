@@ -241,15 +241,8 @@ Motis2Parser::MotisRoute Motis2Parser::parseRoute(const QJsonObject &obj) const
 
     res.route.setDirection(obj.value("headsign"_L1).toString());
     res.route.setDestination(parsePlace(obj.value("tripTo"_L1).toObject(), false).stopPoint());
-    res.route.setLine(line);
 
     res.bookingUrl = QUrl(obj.value("agencyFareUrl"_L1).toString());
-
-    // Amarillo rideshare booking URLs
-    if (res.route.line().mode() == Line::RideShare) {
-        res.bookingUrl = QUrl(obj.value("routeUrl"_L1).toString());
-    }
-
     if (obj.contains("ticketUrls"_L1)) {
         const auto urls = obj.value("ticketUrls"_L1).toObject();
         // prefer web url even on android
@@ -262,6 +255,19 @@ Motis2Parser::MotisRoute Motis2Parser::parseRoute(const QJsonObject &obj) const
 #endif
     }
 
+    // Amarillo rideshare workarounds
+    if (line.mode() == Line::RideShare) {
+        // routeUrl has the booking URL
+        if (res.bookingUrl.isEmpty()) {
+            res.bookingUrl = QUrl(obj.value("routeUrl"_L1).toString());
+        }
+        // deal with the unreasonably long display names
+        if (line.name().size() > 20 && line.name().contains(" -> "_L1) && !line.operatorName().isEmpty() && line.operatorName().size() < line.name().size()) {
+            line.setName(line.operatorName());
+        }
+    }
+
+    res.route.setLine(line);
     return res;
 }
 
