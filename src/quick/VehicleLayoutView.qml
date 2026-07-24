@@ -3,6 +3,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls as QQC2
@@ -22,7 +24,7 @@ Item {
     property real sectionWidth: 48
 
     /** Name of the vehicle section to highlight. */
-    property string highlightedVehicleSection: ""
+    property list<string> highlightedVehicleSection: []
     /** Vehicle seating classes to highlight. */
     property int higlightedClassTypes: KPublicTransport.VehicleSection.UnknownClass
 
@@ -83,10 +85,10 @@ Item {
             id: delegateRoot
 
             highlighted: {
-                if (root.highlightedVehicleSection === "") {
+                if (root.highlightedVehicleSection.length === 0) {
                     return root.higlightedClassTypes & section.classes;
                 }
-                return section.name === root.highlightedVehicleSection
+                return root.highlightedVehicleSection.includes(section.name)
             }
 
             y: delegateRoot.vehicleSection.platformPositionBegin * root.fullLength + root.directionIndicatorSize
