@@ -121,8 +121,12 @@ void parseAlerts(T &elem, const QJsonArray &alerts)
             elem.addNote(headline);
             elem.addNote(desc);
         }
-        if (alertObj.value("effect"_L1).toString() == "NO_SERVICE"_L1) {
-            elem.setDisruptionEffect(Disruption::NoService);
+        // we also get NO_SERVICE alerts for intermediate stops not serviced here from e.g. RER
+        // that doesn't imply the entire section is out of service though
+        if constexpr (!std::is_same_v<JourneySection, T>) {
+            if (alertObj.value("effect"_L1).toString() == "NO_SERVICE"_L1) {
+                elem.setDisruptionEffect(Disruption::NoService);
+            }
         }
     }
 }
