@@ -167,6 +167,10 @@ private Q_SLOTS:
             << QStringLiteral(SOURCE_DIR "/data/motis2/journey-direct-walk.in.json")
             << QStringLiteral(SOURCE_DIR "/data/motis2/journey-direct-walk.out.json")
             << false;
+        QTest::newRow("alerts")
+            << QStringLiteral(SOURCE_DIR "/data/motis2/journey-alerts.in.json")
+            << QStringLiteral(SOURCE_DIR "/data/motis2/journey-alerts.out.json")
+            << true;
     }
 
     void testParseJourneys()

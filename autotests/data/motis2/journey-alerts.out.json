@@ -1,0 +1,1703 @@
+[
+    {
+        "sections": [
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2026-08-27T10:44:00Z",
+                    "notes": [
+                        "<b>RER B : Châtelet <-> Aéroport CDG2 - Mitry - Claye 01/06-31/12</b><p>P&#233;riode : en semaine &#224; partir de 22h45.<br/>Dates : du lundi 1er juin au jeudi 31 d&#233;cembre<br/>Le trafic est interrompu entre Ch&#226;telet Les Halles et A&#233;rop. C De Gaulle 2 et entre Ch&#226;telet Les Halles et Mitry - Claye.<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Pour plus d'informations, consultez le site du RER B<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>"
+                    ],
+                    "scheduledArrivalTime": "2026-08-27T10:44:00Z",
+                    "stopPoint": {
+                        "country": "FR",
+                        "floorLevel": -5,
+                        "identifier": {
+                            "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:45102"
+                        },
+                        "latitude": 48.861743999999995,
+                        "longitude": 2.3469765,
+                        "name": "Châtelet - Les Halles",
+                        "region": "FR-IDF",
+                        "stopInformation": {
+                            "lines": [
+                                {
+                                    "mode": "LocalTrain"
+                                }
+                            ]
+                        },
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
+                },
+                "bookingUrl": "https://app.idf-mobilites.fr/gtfs?service_date=%5B%2220260827%22%5D&ticketing_trip_id=%5B%22IDFM:TN:SNCF:34ea3741-536a-4c9a-b440-68c276ab35b9%22%5D&from_ticketing_stop_time_id=%5B%2212%22%5D&to_ticketing_stop_time_id=%5B%2212%22%5D&boarding_time=%5B%222026-08-27T10:41:00%2B00:00%22%5D&arrival_time=%5B%222026-08-27T10:44:00%2B00:00%22%5D",
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2026-08-27T10:41:00Z",
+                    "notes": [
+                        "<b>RER B : Châtelet <-> Aéroport CDG2 - Mitry - Claye 01/06-31/12</b><p>P&#233;riode : en semaine &#224; partir de 22h45.<br/>Dates : du lundi 1er juin au jeudi 31 d&#233;cembre<br/>Le trafic est interrompu entre Ch&#226;telet Les Halles et A&#233;rop. C De Gaulle 2 et entre Ch&#226;telet Les Halles et Mitry - Claye.<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Pour plus d'informations, consultez le site du RER B<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                        "<b>Grands Travaux d'été 2026 : week-end du 12 et 13/09</b><p><b>P&#233;riode : </b>toute la journ&#233;e<br/><b>Dates :</b> les samedi 12 et dimanche 13 septembre<br/><b>- Gare du Nord &lt;&gt; Paris Gare de Lyon : </b>trafic interrompu<br/><b>- Creil &lt;&gt; Gare du Nord :</b> offre de transport r&#233;duite<br/><b>- Corbeil Essonnes &lt;&gt; Paris Gare de Lyon :</b> offre de transport r&#233;duite<br/><b>- Melun &lt;&gt; Paris Gare de Lyon :</b> offre de transport r&#233;duite<br/><b>Itin&#233;raires recommand&#233;s depuis Gare du Nord :</b><br/>- Pour Ch&#226;telet-les-Halles et Paris Gare de Lyon : M&#233;tro 5 jusqu&#8217;&#224; Bastille puis M&#233;tro 1 jusqu&#8217;&#224; Ch&#226;telet-les-Halles ou Paris Gare de Lyon.<br/><b>Itin&#233;raires recommand&#233;s depuis Paris Gare de Lyon :</b><br/>- Pour Ch&#226;telet-les-Halles : M&#233;tro 1<br/>- Pour Paris Nord : M&#233;tro 1 jusqu&#8217;&#224; Bastille puis M&#233;tro 5 jusqu&#8217;&#224; Paris Nord.<br/><b>Durant toute la p&#233;riode :</b><br/>- A Gare du Nord : trains au d&#233;part des voies Grandes Lignes<br/>- A Paris Gare de Lyon : trains au d&#233;part des voies Grandes Lignes</p><p><b>A noter :</b><br/><b>- Stade de France St Denis :</b> la gare n&#8217;est pas desservie dans les deux sens de circulation.<br/>Pour rejoindre Paris depuis cette gare, veuillez emprunter le m&#233;tro 14 &#224; Saint Denis Pleyel.<br/>Pour rejoindre cette gare depuis le nord de la ligne, veuillez descendre &#224; Paris Nord, puis emprunter le RER B jusqu&#8217;&#224; la Plaine Stade de France.</p><p>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Pour plus d'informations sur ces travaux, consultez le <a href=\"https://maligned.transilien.com/\">blog du RER D</a>.<br/><b>Motif :</b> Travaux sur le r&#233;seau ferr&#233;.</p>",
+                        "<b>RER B : Aér. CDG2/Mitry - Claye <-> Châtelet interrompu en soirée</b><p>P&#233;riode : les week-ends de 22h45 &#224; Fin de service<br/>Dates : Les samedi 25, dimanche 26 juillet et samedi 1er, dimanche 2, samedi 8, dimanche 9, samedi 15, dimanche 16 aout</p><p>Le trafic est interrompu entre Ch&#226;telet les Halles et A&#233;roport Charles de Gaulle/Mitry-Claye<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire</p>",
+                        "<b>RER D : Paris Nord <-> Paris Lyon 29-30/08, le week-end</b><p><b>P&#233;riode :</b> toute la journ&#233;e<br><b>Dates :</b> les samedi 29 et dimanche 30 ao&#251;t<br/><b>- Paris Gare du Nord &lt;&gt; Paris Gare de Lyon : </b>trafic interrompu<br><b>- Creil &lt;&gt; Paris Gare du Nord : </b>offre de transport r&#233;duite<br><b>- Corbeil Essonnes &lt;&gt; Paris Gare de Lyon : </b>offre de transport r&#233;duite<br><b>- Melun &lt;&gt; Paris Gare de Lyon : </b>offre de transport r&#233;duite<br/><b>Itin&#233;raires recommand&#233;s depuis Gare du Nord :</b><br/>- Pour rejoindre Ch&#226;telet-les-Halles et Paris Gare de Lyon : M&#233;tro 5 jusqu&#8217;&#224; Bastille puis M&#233;tro 1 jusqu&#8217;&#224; Ch&#226;telet-les-Halles ou Paris Gare de Lyon.</p><p><b>Itin&#233;raires recommand&#233;s depuis Paris Gare de Lyon :</b><br/>- Pour rejoindre Ch&#226;telet-les-Halles : M&#233;tro 1<br/>- Pour rejoindre Paris Gare du Nord : M&#233;tro 1 jusqu&#8217;&#224; Bastille puis M&#233;tro 5 jusqu&#8217;&#224; Paris Nord.<br/><b>Durant toute la p&#233;riode :</b><br/>- A Paris Gare du Nord : trains au d&#233;part des voies Grandes Lignes<br/>- A Paris Gare de Lyon : trains au d&#233;part des voies Grandes Lignes<br/><b>A noter :</b><br/><b>- Stade de France St Denis : </b>la gare n&#8217;est pas desservie dans les deux sens de circulation.<br/>Pour rejoindre Paris depuis cette gare, veuillez emprunter le m&#233;tro 14 &#224; Saint Denis Pleyel.<br/>Pour rejoindre cette gare depuis le nord de la ligne, veuillez descendre &#224; Paris Nord, puis emprunter le RER B jusqu&#8217;&#224; la Plaine Stade de France.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Pour plus d'informations sur ces travaux, consultez <a href=\"https://maligned.transilien.com/\">le blog du RER D.</a><br/><b>Motif : </b>Travaux sur le r&#233;seau ferr&#233;.</p>",
+                        "<b>1 ascenseur hors service — Gare du Nord</b><br/>1 ascenseur sur 8 est actuellement hors service dans cette station."
+                    ],
+                    "route": {
+                        "destination": {
+                            "country": "FR",
+                            "identifier": {
+                                "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:474011"
+                            },
+                            "latitude": 48.70281200000001,
+                            "longitude": 2.0712962,
+                            "name": "Saint-Rémy-lès-Chevreuse",
+                            "region": "FR-IDF",
+                            "stopInformation": {
+                                "lines": [
+                                    {
+                                        "mode": "LocalTrain"
+                                    },
+                                    {
+                                        "mode": "Bus"
+                                    }
+                                ]
+                            },
+                            "timezone": "Europe/Paris",
+                            "type": "Stop"
+                        },
+                        "direction": "PITO",
+                        "line": {
+                            "color": "#5091cb",
+                            "mode": "Train",
+                            "name": "B",
+                            "operatorName": "RER",
+                            "operatorUrl": "https://www.iledefrance-mobilites.fr",
+                            "textColor": "#ffffff"
+                        },
+                        "name": "PITO68"
+                    },
+                    "scheduledDepartureTime": "2026-08-27T10:41:00Z",
+                    "stopPoint": {
+                        "country": "FR",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:462394"
+                        },
+                        "latitude": 48.882305,
+                        "longitude": 2.3566934999999996,
+                        "name": "Gare du Nord",
+                        "region": "FR-IDF",
+                        "stopInformation": {
+                            "lines": [
+                                {
+                                    "mode": "LocalTrain"
+                                },
+                                {
+                                    "mode": "Metro"
+                                },
+                                {
+                                    "mode": "Bus"
+                                }
+                            ]
+                        },
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "type": "WheelchairAccessible"
+                            }
+                        ]
+                    }
+                },
+                "identifiers": {
+                    "motis": "20260827_12:05_fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:TN:SNCF:34ea3741-536a-4c9a-b440-68c276ab35b9"
+                },
+                "mode": "PublicTransport",
+                "notes": [
+                    "<b>RER B : Châtelet <-> Aéroport CDG2 - Mitry - Claye 01/06-31/12</b><p>P&#233;riode : en semaine &#224; partir de 22h45.<br/>Dates : du lundi 1er juin au jeudi 31 d&#233;cembre<br/>Le trafic est interrompu entre Ch&#226;telet Les Halles et A&#233;rop. C De Gaulle 2 et entre Ch&#226;telet Les Halles et Mitry - Claye.<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Pour plus d'informations, consultez le site du RER B<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER B : Aér. CDG2/Mitry - Claye <-> Châtelet interrompu en soirée</b><p>P&#233;riode : les week-ends de 22h45 &#224; Fin de service<br/>Dates : Les samedi 25, dimanche 26 juillet et samedi 1er, dimanche 2, samedi 8, dimanche 9, samedi 15, dimanche 16 aout</p><p>Le trafic est interrompu entre Ch&#226;telet les Halles et A&#233;roport Charles de Gaulle/Mitry-Claye<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire</p>",
+                    "<b>RER B : Paris Nord <-> Denfert Rochereau 29-30/08</b><p>P&#233;riode : les week-ends, toute la journ&#233;e.<br/>Dates : du samedi 29 au dimanche 30 ao&#251;t.<br/>Le trafic est interrompu entre Gare du Nord et Denfert-Rochereau <br/>Les lignes 38 et m&#233;tro 4 seront renforc&#233;es et desservent les gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>"
+                ],
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.356693,
+                                        48.882305
+                                    ],
+                                    [
+                                        2.358037,
+                                        48.882145
+                                    ],
+                                    [
+                                        2.357927,
+                                        48.881847
+                                    ],
+                                    [
+                                        2.357698,
+                                        48.881348
+                                    ],
+                                    [
+                                        2.357382,
+                                        48.88066
+                                    ],
+                                    [
+                                        2.357287,
+                                        48.88049
+                                    ],
+                                    [
+                                        2.357152,
+                                        48.880276
+                                    ],
+                                    [
+                                        2.356929,
+                                        48.880005
+                                    ],
+                                    [
+                                        2.356827,
+                                        48.879898
+                                    ],
+                                    [
+                                        2.355374,
+                                        48.8786
+                                    ],
+                                    [
+                                        2.355082,
+                                        48.87836
+                                    ],
+                                    [
+                                        2.354722,
+                                        48.878094
+                                    ],
+                                    [
+                                        2.353615,
+                                        48.87741
+                                    ],
+                                    [
+                                        2.351202,
+                                        48.876026
+                                    ],
+                                    [
+                                        2.350754,
+                                        48.875736
+                                    ],
+                                    [
+                                        2.350455,
+                                        48.8755
+                                    ],
+                                    [
+                                        2.350113,
+                                        48.875183
+                                    ],
+                                    [
+                                        2.349828,
+                                        48.874855
+                                    ],
+                                    [
+                                        2.346189,
+                                        48.86967
+                                    ],
+                                    [
+                                        2.345965,
+                                        48.869286
+                                    ],
+                                    [
+                                        2.345798,
+                                        48.868942
+                                    ],
+                                    [
+                                        2.345666,
+                                        48.868618
+                                    ],
+                                    [
+                                        2.345553,
+                                        48.868244
+                                    ],
+                                    [
+                                        2.34546,
+                                        48.86787
+                                    ],
+                                    [
+                                        2.345434,
+                                        48.867733
+                                    ],
+                                    [
+                                        2.3454,
+                                        48.86741
+                                    ],
+                                    [
+                                        2.345376,
+                                        48.866932
+                                    ],
+                                    [
+                                        2.345413,
+                                        48.86647
+                                    ],
+                                    [
+                                        2.345491,
+                                        48.865997
+                                    ],
+                                    [
+                                        2.34559,
+                                        48.865646
+                                    ],
+                                    [
+                                        2.34614,
+                                        48.864204
+                                    ],
+                                    [
+                                        2.346438,
+                                        48.863586
+                                    ],
+                                    [
+                                        2.347191,
+                                        48.861835
+                                    ],
+                                    [
+                                        2.346977,
+                                        48.861744
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2026-08-27T10:48:00Z",
+                    "notes": [
+                        "<b>RER B : Châtelet <-> Aéroport CDG2 - Mitry - Claye 01/06-31/12</b><p>P&#233;riode : en semaine &#224; partir de 22h45.<br/>Dates : du lundi 1er juin au jeudi 31 d&#233;cembre<br/>Le trafic est interrompu entre Ch&#226;telet Les Halles et A&#233;rop. C De Gaulle 2 et entre Ch&#226;telet Les Halles et Mitry - Claye.<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Pour plus d'informations, consultez le site du RER B<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>"
+                    ],
+                    "scheduledArrivalTime": "2026-08-27T10:48:00Z",
+                    "stopPoint": {
+                        "country": "FR",
+                        "floorLevel": -5,
+                        "identifier": {
+                            "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:45102"
+                        },
+                        "latitude": 48.861743999999995,
+                        "longitude": 2.3469765,
+                        "name": "Châtelet - Les Halles",
+                        "region": "FR-IDF",
+                        "stopInformation": {
+                            "lines": [
+                                {
+                                    "mode": "LocalTrain"
+                                }
+                            ]
+                        },
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
+                },
+                "bookingUrl": "https://app.idf-mobilites.fr/gtfs?service_date=%5B%2220260827%22%5D&ticketing_trip_id=%5B%22IDFM:TN:SNCF:8e41cb1a-a346-46a1-991b-4c724c49ba81%22%5D&from_ticketing_stop_time_id=%5B%227%22%5D&to_ticketing_stop_time_id=%5B%227%22%5D&boarding_time=%5B%222026-08-27T10:45:00%2B00:00%22%5D&arrival_time=%5B%222026-08-27T10:48:00%2B00:00%22%5D",
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2026-08-27T10:45:00Z",
+                    "notes": [
+                        "<b>RER B : Châtelet <-> Aéroport CDG2 - Mitry - Claye 01/06-31/12</b><p>P&#233;riode : en semaine &#224; partir de 22h45.<br/>Dates : du lundi 1er juin au jeudi 31 d&#233;cembre<br/>Le trafic est interrompu entre Ch&#226;telet Les Halles et A&#233;rop. C De Gaulle 2 et entre Ch&#226;telet Les Halles et Mitry - Claye.<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Pour plus d'informations, consultez le site du RER B<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                        "<b>Grands Travaux d'été 2026 : week-end du 12 et 13/09</b><p><b>P&#233;riode : </b>toute la journ&#233;e<br/><b>Dates :</b> les samedi 12 et dimanche 13 septembre<br/><b>- Gare du Nord &lt;&gt; Paris Gare de Lyon : </b>trafic interrompu<br/><b>- Creil &lt;&gt; Gare du Nord :</b> offre de transport r&#233;duite<br/><b>- Corbeil Essonnes &lt;&gt; Paris Gare de Lyon :</b> offre de transport r&#233;duite<br/><b>- Melun &lt;&gt; Paris Gare de Lyon :</b> offre de transport r&#233;duite<br/><b>Itin&#233;raires recommand&#233;s depuis Gare du Nord :</b><br/>- Pour Ch&#226;telet-les-Halles et Paris Gare de Lyon : M&#233;tro 5 jusqu&#8217;&#224; Bastille puis M&#233;tro 1 jusqu&#8217;&#224; Ch&#226;telet-les-Halles ou Paris Gare de Lyon.<br/><b>Itin&#233;raires recommand&#233;s depuis Paris Gare de Lyon :</b><br/>- Pour Ch&#226;telet-les-Halles : M&#233;tro 1<br/>- Pour Paris Nord : M&#233;tro 1 jusqu&#8217;&#224; Bastille puis M&#233;tro 5 jusqu&#8217;&#224; Paris Nord.<br/><b>Durant toute la p&#233;riode :</b><br/>- A Gare du Nord : trains au d&#233;part des voies Grandes Lignes<br/>- A Paris Gare de Lyon : trains au d&#233;part des voies Grandes Lignes</p><p><b>A noter :</b><br/><b>- Stade de France St Denis :</b> la gare n&#8217;est pas desservie dans les deux sens de circulation.<br/>Pour rejoindre Paris depuis cette gare, veuillez emprunter le m&#233;tro 14 &#224; Saint Denis Pleyel.<br/>Pour rejoindre cette gare depuis le nord de la ligne, veuillez descendre &#224; Paris Nord, puis emprunter le RER B jusqu&#8217;&#224; la Plaine Stade de France.</p><p>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Pour plus d'informations sur ces travaux, consultez le <a href=\"https://maligned.transilien.com/\">blog du RER D</a>.<br/><b>Motif :</b> Travaux sur le r&#233;seau ferr&#233;.</p>",
+                        "<b>RER B : Aér. CDG2/Mitry - Claye <-> Châtelet interrompu en soirée</b><p>P&#233;riode : les week-ends de 22h45 &#224; Fin de service<br/>Dates : Les samedi 25, dimanche 26 juillet et samedi 1er, dimanche 2, samedi 8, dimanche 9, samedi 15, dimanche 16 aout</p><p>Le trafic est interrompu entre Ch&#226;telet les Halles et A&#233;roport Charles de Gaulle/Mitry-Claye<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire</p>",
+                        "<b>RER D : Paris Nord <-> Paris Lyon 29-30/08, le week-end</b><p><b>P&#233;riode :</b> toute la journ&#233;e<br><b>Dates :</b> les samedi 29 et dimanche 30 ao&#251;t<br/><b>- Paris Gare du Nord &lt;&gt; Paris Gare de Lyon : </b>trafic interrompu<br><b>- Creil &lt;&gt; Paris Gare du Nord : </b>offre de transport r&#233;duite<br><b>- Corbeil Essonnes &lt;&gt; Paris Gare de Lyon : </b>offre de transport r&#233;duite<br><b>- Melun &lt;&gt; Paris Gare de Lyon : </b>offre de transport r&#233;duite<br/><b>Itin&#233;raires recommand&#233;s depuis Gare du Nord :</b><br/>- Pour rejoindre Ch&#226;telet-les-Halles et Paris Gare de Lyon : M&#233;tro 5 jusqu&#8217;&#224; Bastille puis M&#233;tro 1 jusqu&#8217;&#224; Ch&#226;telet-les-Halles ou Paris Gare de Lyon.</p><p><b>Itin&#233;raires recommand&#233;s depuis Paris Gare de Lyon :</b><br/>- Pour rejoindre Ch&#226;telet-les-Halles : M&#233;tro 1<br/>- Pour rejoindre Paris Gare du Nord : M&#233;tro 1 jusqu&#8217;&#224; Bastille puis M&#233;tro 5 jusqu&#8217;&#224; Paris Nord.<br/><b>Durant toute la p&#233;riode :</b><br/>- A Paris Gare du Nord : trains au d&#233;part des voies Grandes Lignes<br/>- A Paris Gare de Lyon : trains au d&#233;part des voies Grandes Lignes<br/><b>A noter :</b><br/><b>- Stade de France St Denis : </b>la gare n&#8217;est pas desservie dans les deux sens de circulation.<br/>Pour rejoindre Paris depuis cette gare, veuillez emprunter le m&#233;tro 14 &#224; Saint Denis Pleyel.<br/>Pour rejoindre cette gare depuis le nord de la ligne, veuillez descendre &#224; Paris Nord, puis emprunter le RER B jusqu&#8217;&#224; la Plaine Stade de France.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Pour plus d'informations sur ces travaux, consultez <a href=\"https://maligned.transilien.com/\">le blog du RER D.</a><br/><b>Motif : </b>Travaux sur le r&#233;seau ferr&#233;.</p>",
+                        "<b>1 ascenseur hors service — Gare du Nord</b><br/>1 ascenseur sur 8 est actuellement hors service dans cette station."
+                    ],
+                    "route": {
+                        "destination": {
+                            "country": "FR",
+                            "floorLevel": 0,
+                            "identifier": {
+                                "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:471708"
+                            },
+                            "latitude": 48.5276,
+                            "longitude": 2.6541016,
+                            "name": "Melun",
+                            "region": "FR-IDF",
+                            "stopInformation": {
+                                "lines": [
+                                    {
+                                        "mode": "LocalTrain"
+                                    },
+                                    {
+                                        "mode": "Bus"
+                                    }
+                                ]
+                            },
+                            "timezone": "Europe/Paris",
+                            "type": "Stop"
+                        },
+                        "direction": "ZECO",
+                        "line": {
+                            "color": "#008b5b",
+                            "mode": "Train",
+                            "name": "D",
+                            "operatorName": "RER",
+                            "operatorUrl": "https://www.iledefrance-mobilites.fr",
+                            "textColor": "#ffffff"
+                        },
+                        "name": "153654-153655"
+                    },
+                    "scheduledDepartureTime": "2026-08-27T10:45:00Z",
+                    "stopPoint": {
+                        "country": "FR",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:462394"
+                        },
+                        "latitude": 48.882305,
+                        "longitude": 2.3566934999999996,
+                        "name": "Gare du Nord",
+                        "region": "FR-IDF",
+                        "stopInformation": {
+                            "lines": [
+                                {
+                                    "mode": "LocalTrain"
+                                },
+                                {
+                                    "mode": "Metro"
+                                },
+                                {
+                                    "mode": "Bus"
+                                }
+                            ]
+                        },
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "type": "WheelchairAccessible"
+                            }
+                        ]
+                    }
+                },
+                "identifiers": {
+                    "motis": "20260827_12:19_fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:TN:SNCF:8e41cb1a-a346-46a1-991b-4c724c49ba81"
+                },
+                "mode": "PublicTransport",
+                "notes": [
+                    "<b>RER D : Paris Lyon <-> Villeneuve St-G non desservi 31/08-18/09</b><p>P&#233;riode : en semaine &#224; partir de 22h30.<br/>Dates : du lundi 31 ao&#251;t au vendredi 18 septembre.<br/>Les gares entre Paris Gare de Lyon et Villeneuve Saint Georges ne sont pas desservies.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D - Stade de France - Concert (PLK) - vendredi 4 septembre</b><p>Date : le vendredi 4 septembre<br/><b>Concert au Stade de France</b> (PLK)<br/>Risque de forte affluence sur les RER B, RER D et m&#233;tro 13. <b>Aucun RER D apr&#232;s le concert.</b> Privil&#233;giez le m&#233;tro 14 &#224; l'aller et au retour.<br/>Bon concert &#224; toutes et tous.</p>",
+                    "<b>RER D : Paris Lyon <> Villeneuve StG non desservis du 24 au 28/08</b><p>P&#233;riode : en semaine &#224; partir de 22h30.<br/>Dates : du lundi 24 au vendredi 28 ao&#251;t.<br/>Les gares entre Paris Gare de Lyon et Villeneuve Saint Georges ne sont pas desservies.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Nord <-> Paris Lyon 29-30/08, le week-end</b><p><b>P&#233;riode :</b> toute la journ&#233;e<br><b>Dates :</b> les samedi 29 et dimanche 30 ao&#251;t<br/><b>- Paris Gare du Nord &lt;&gt; Paris Gare de Lyon : </b>trafic interrompu<br><b>- Creil &lt;&gt; Paris Gare du Nord : </b>offre de transport r&#233;duite<br><b>- Corbeil Essonnes &lt;&gt; Paris Gare de Lyon : </b>offre de transport r&#233;duite<br><b>- Melun &lt;&gt; Paris Gare de Lyon : </b>offre de transport r&#233;duite<br/><b>Itin&#233;raires recommand&#233;s depuis Gare du Nord :</b><br/>- Pour rejoindre Ch&#226;telet-les-Halles et Paris Gare de Lyon : M&#233;tro 5 jusqu&#8217;&#224; Bastille puis M&#233;tro 1 jusqu&#8217;&#224; Ch&#226;telet-les-Halles ou Paris Gare de Lyon.</p><p><b>Itin&#233;raires recommand&#233;s depuis Paris Gare de Lyon :</b><br/>- Pour rejoindre Ch&#226;telet-les-Halles : M&#233;tro 1<br/>- Pour rejoindre Paris Gare du Nord : M&#233;tro 1 jusqu&#8217;&#224; Bastille puis M&#233;tro 5 jusqu&#8217;&#224; Paris Nord.<br/><b>Durant toute la p&#233;riode :</b><br/>- A Paris Gare du Nord : trains au d&#233;part des voies Grandes Lignes<br/>- A Paris Gare de Lyon : trains au d&#233;part des voies Grandes Lignes<br/><b>A noter :</b><br/><b>- Stade de France St Denis : </b>la gare n&#8217;est pas desservie dans les deux sens de circulation.<br/>Pour rejoindre Paris depuis cette gare, veuillez emprunter le m&#233;tro 14 &#224; Saint Denis Pleyel.<br/>Pour rejoindre cette gare depuis le nord de la ligne, veuillez descendre &#224; Paris Nord, puis emprunter le RER B jusqu&#8217;&#224; la Plaine Stade de France.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Pour plus d'informations sur ces travaux, consultez <a href=\"https://maligned.transilien.com/\">le blog du RER D.</a><br/><b>Motif : </b>Travaux sur le r&#233;seau ferr&#233;.</p>",
+                    "<b>RER D : allègement de l’offre de transport</b><p>&#192; partir du 24 ao&#251;t, l&#8217;offre de transport est r&#233;duite sur votre ligne.<br/>Pour pr&#233;parer votre trajet et avant de vous rendre en gare, v&#233;rifiez les horaires des trains sur l&#8217;appli Ile-de-France Mobilit&#233;s, le site <a href=\"https://Transilien.com\">Transilien.com</a>, SNCF Connect ou votre appli de mobilit&#233;.<br/>Motif : capacit&#233; de maintenance des trains temporairement r&#233;duite (cr&#233;ation de nouveaux ateliers de maintenance)</p>",
+                    "<b>RER D : Paris Lyon <-> Melun / Corbeil interrompu du 14 au 25/09</b><p>P&#233;riode : en semaine &#224; partir de 23h15.<br/>Dates : du lundi 14 au vendredi 25 septembre.<br/>Le trafic est interrompu entre Paris Gare de Lyon et Melun et entre Paris Gare de Lyon et Corbeil-Essonnes.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.</p>",
+                    "<b>Grands Travaux d'été 2026 : week-end du 12 et 13/09</b><p><b>P&#233;riode : </b>toute la journ&#233;e<br/><b>Dates :</b> les samedi 12 et dimanche 13 septembre<br/><b>- Gare du Nord &lt;&gt; Paris Gare de Lyon : </b>trafic interrompu<br/><b>- Creil &lt;&gt; Gare du Nord :</b> offre de transport r&#233;duite<br/><b>- Corbeil Essonnes &lt;&gt; Paris Gare de Lyon :</b> offre de transport r&#233;duite<br/><b>- Melun &lt;&gt; Paris Gare de Lyon :</b> offre de transport r&#233;duite<br/><b>Itin&#233;raires recommand&#233;s depuis Gare du Nord :</b><br/>- Pour Ch&#226;telet-les-Halles et Paris Gare de Lyon : M&#233;tro 5 jusqu&#8217;&#224; Bastille puis M&#233;tro 1 jusqu&#8217;&#224; Ch&#226;telet-les-Halles ou Paris Gare de Lyon.<br/><b>Itin&#233;raires recommand&#233;s depuis Paris Gare de Lyon :</b><br/>- Pour Ch&#226;telet-les-Halles : M&#233;tro 1<br/>- Pour Paris Nord : M&#233;tro 1 jusqu&#8217;&#224; Bastille puis M&#233;tro 5 jusqu&#8217;&#224; Paris Nord.<br/><b>Durant toute la p&#233;riode :</b><br/>- A Gare du Nord : trains au d&#233;part des voies Grandes Lignes<br/>- A Paris Gare de Lyon : trains au d&#233;part des voies Grandes Lignes</p><p><b>A noter :</b><br/><b>- Stade de France St Denis :</b> la gare n&#8217;est pas desservie dans les deux sens de circulation.<br/>Pour rejoindre Paris depuis cette gare, veuillez emprunter le m&#233;tro 14 &#224; Saint Denis Pleyel.<br/>Pour rejoindre cette gare depuis le nord de la ligne, veuillez descendre &#224; Paris Nord, puis emprunter le RER B jusqu&#8217;&#224; la Plaine Stade de France.</p><p>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Pour plus d'informations sur ces travaux, consultez le <a href=\"https://maligned.transilien.com/\">blog du RER D</a>.<br/><b>Motif :</b> Travaux sur le r&#233;seau ferr&#233;.</p>",
+                    "<b>RER D : Paris Lyon <> Paris Nord interrompu du 24 au 28/08.</b><p>P&#233;riode : en semaine &#224; partir de 23h15.<br/>Dates : du lundi 24 au vendredi 28 ao&#251;t.<br/>Le trafic est interrompu entre Paris Gare de Lyon et Paris Gare du Nord.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Lyon <> Corbeil et Melun interrompu du 21 au 25/09.</b><p>P&#233;riode : en semaine &#224; partir de 23h15.<br/>Dates : du lundi 21 au vendredi 25 septembre.<br/>Le trafic est interrompu entre Paris Gare de Lyon et Corbeil-Essonnes et entre Paris Gare de Lyon et Melun.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Nord <> Paris Lyon interrompu 12-13/09, le week-end</b><p>P&#233;riode : le week-end, toute la journ&#233;e.<br/>Dates : du samedi 12 au dimanche 13 septembre.<br/>Le trafic est interrompu entre Paris Gare du Nord et Paris Gare de Lyon.</p><p>&#192; noter : Les trains seront au d&#233;part et &#224; l'arriv&#233;e de Paris Lyon Surface.</p><p>P&#233;riode : le week-end, &#224; partir de 22h25.</p><p>Dates : du samedi 12 au dimanche 13 septembre.</p><p>L'arr&#234;t Maisons-Alfort Alfortville n'est pas desservi en direction du sud de la ligne et l'arr&#234;t Vert-de-Maisons n'est pas desservi dans les deux sens de circulation.</p><p>A noter : </p><p>- Le train SOPA d&#233;part Corbeil-Essonnes 04h25, arriv&#233;e Creil 06h20 ne marquera pas l'arr&#234;t &#224; Vert-de-Maisons les samedi 12 et dimanche 13 septembre.<br/>- Le train DOCA d&#233;part Melun 04h04, arriv&#233;e Paris Lyon 05h03 ne marquera pas l'arr&#234;t &#224; Vert-de-Maisons le samedi 12 septembre.</p><p>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Corbeil <-> Malesherbes interrompu du 21 au 25/09</b><p>P&#233;riode : en semaine de 10h11 &#224; 14h18.<br/>Dates : du lundi 21 au vendredi 25 septembre.<br/>Le trafic est interrompu entre Corbeil-Essonnes et Malesherbes.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Nord <> Creil interrompu du 03 au 28/08.</b><p>P&#233;riode : en semaine &#224; partir de 23h35.<br/>Dates : du lundi 03 au vendredi 28 ao&#251;t.<br/>Le trafic est interrompu entre Paris Gare du Nord et Creil.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Melun <-> Combs-la-Ville allégé 12-13/09, le week-end</b><p>P&#233;riode : le week-end, toute la journ&#233;e.<br/>Dates : du samedi 12 au dimanche 13 septembre.<br/>Le trafic est all&#233;g&#233; entre Melun et Combs-la-Ville - Quincy, pr&#233;voir 1 train sur 2.</p><p>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D - Stade de France - Concert (PLK) - samedi 5 septembre</b><p>Date : le samedi 5 septembre<br/><b>Concert au Stade de France</b> (PLK)<br/>Risque de forte affluence sur les RER B, RER D et m&#233;tro 13. <b>Aucun RER D apr&#232;s le concert en direction du nord de la ligne.</b> Veuillez emprunter les bus de remplacement situ&#233;s sur le parvis de la gare de la ligne 14 du m&#233;tro &#224; Saint-Denis&#8211;Pleyel.<br/>Bon concert &#224; toutes et tous.</p>",
+                    "<b>RER D : Maisons-Alfort et Vert de Maisons non desservies 29-30/08</b><p>P&#233;riode : &#224; partir de 22h25.<br/>Dates : du samedi 29 au dimanche 30 ao&#251;t.</p><p>La gare de Maisons-Alfort n'est pas desservie en direction de Corbeil et de Melun.</p><p>La gare du Vert de Maisons n'est pas desservie dans les deux sens.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Nord <> Paris Lyon interrompu 12-13/09, le week-end</b><p>P&#233;riode : le week-end, toute la journ&#233;e.<br/>Dates : du samedi 12 au dimanche 13 septembre.<br/>Le trafic est interrompu entre Paris Gare du Nord et Paris Gare de Lyon.</p><p>L'arr&#234;t Stade de France est &#233;galement non desservi dans les deux sens de circulation.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Corbeil-Essonnes <> Malesherbes interrompu du 03 au 28/08</b><p>P&#233;riode : en semaine &#224; partir de 23h00.<br/>Dates : du lundi 03 au vendredi 28 ao&#251;t.<br/>Le trafic est interrompu entre Corbeil-Essonnes et Malesherbes.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Combs-la-Ville <-> Melun interrompu du 31/08-18/09</b><p>P&#233;riode : en semaine &#224; partir de 19h50.<br/>Dates : du lundi 31 ao&#251;t au vendredi 18 septembre.<br/>Le trafic est all&#233;g&#233; entre Paris gare de Lyon et Melun.</p><p>P&#233;riode : en semaine &#224; partir de 23h15.<br/>Dates : du lundi 31 ao&#251;t au vendredi 18 septembre.<br/>Le trafic est interrompu entre Combs-la-Ville - Quincy et Melun.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Nord <-> Creil 31/08-25/09, en semaine dès 23h35</b><p>P&#233;riode : en semaine &#224; partir de 23h35.<br/>Dates : du lundi 31 ao&#251;t au vendredi 25 septembre.<br/>Le trafic est interrompu entre Paris Gare du Nord et Creil.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Juvisy <-> Corbeil-Essonnes interrompu 24-28/08</b><p>Période : en semaine à partir de 23h15.<br/>Dates : du lundi 24 au vendredi 28 août.<br/>Le trafic est interrompu entre Juvisy et Corbeil-Essonnes via Ris-Orangis.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br/>Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br/>Motif : travaux sur le réseau ferroviaire.</p>",
+                    "<b>RER D : Stade de France <> Creil interrompu 05-06/09, le week-end</b><p>P&#233;riode : le week-end, toute la journ&#233;e.<br/>Dates : du samedi 05 au dimanche 06 septembre.<br/>Le trafic est interrompu entre Stade France St-Denis et Creil.</p><p>La gare de Saint Denis n'est pas desservie par les bus de remplacement dans le deux sens de circulation.</p><p><b>Depuis la gare de Saint Denis :</b></p><p>- Pour rejoindre Pierrefitte Stains empruntez la ligne H jusqu'&#224; Epinay Villetaneuse, puis le T11.<br/>- Pour rejoindre Stade de France St Denis empruntez le T8 jusque Saint Denis Porte de Paris puis le m&#233;tro 13.</p><p>- Pour rejoindre Paris Nord empruntez la ligne H.<br>- Pour rejoindre Stade de France empruntez la ligne H jusque Paris Nord puis le RER D.</p><p>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Combs-la-Ville <-> Melun 24-28/08, en semaine dès 23h15</b><p>P&#233;riode : en semaine d&#232;s 23h15 <br/>Dates : du lundi 24 au vendredi 28 ao&#251;t.<br/>Le trafic est interrompu entre Combs-la-Ville - Quincy et Melun.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Lyon <-> Combs-la-Ville trafic allégé du 05-06/09</b><p>P&#233;riode : le week-end, toute la journ&#233;e.<br/>Dates : du samedi 05 au dimanche 06 septembre.<br/>Le trafic est all&#233;g&#233; entre Paris Gare de Lyon et Combs-la-Ville - Quincy.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : 3 gares non desservies en direction de Paris 05- 06/09.</b><p>P&#233;riode : le week-end, toute la journ&#233;e.<br/>Dates : du samedi 05 au dimanche 06 septembre.<br/>Les gares de Cr&#233;teil Pompadour, Villeneuve Triage et Le Vert de Maisons en direction de Paris ne sont pas desservies.<br/><b>A partir de 23h59 les gares de Cr&#233;teil Pompadour et Villeneuve Triage ne sont pas desservies dans les deux sens de circulation.</b></p><p>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.</p><p>Motif : travaux sur le r&#233;seau f&#233;roviaire. </p>",
+                    "<b>RER D : Paris Lyon <-> Combs / Juvisy interrompu 19-26/09</b><p>P&#233;riode : &#224; partir de 23h15.<br/>Dates : les samedis 19 et 26 septembre.<br/>Le trafic est interrompu entre Paris Gare de Lyon et Combs-la-Ville - Quincy et entre Paris Gare de Lyon et Juvisy.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>"
+                ],
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.356693,
+                                        48.882305
+                                    ],
+                                    [
+                                        2.357795,
+                                        48.882133
+                                    ],
+                                    [
+                                        2.357732,
+                                        48.88197
+                                    ],
+                                    [
+                                        2.357473,
+                                        48.881393
+                                    ],
+                                    [
+                                        2.35715,
+                                        48.8807
+                                    ],
+                                    [
+                                        2.35706,
+                                        48.880535
+                                    ],
+                                    [
+                                        2.356844,
+                                        48.880222
+                                    ],
+                                    [
+                                        2.356627,
+                                        48.879974
+                                    ],
+                                    [
+                                        2.356249,
+                                        48.87965
+                                    ],
+                                    [
+                                        2.354796,
+                                        48.87828
+                                    ],
+                                    [
+                                        2.354237,
+                                        48.87782
+                                    ],
+                                    [
+                                        2.353615,
+                                        48.87741
+                                    ],
+                                    [
+                                        2.351202,
+                                        48.876026
+                                    ],
+                                    [
+                                        2.350754,
+                                        48.875736
+                                    ],
+                                    [
+                                        2.350455,
+                                        48.8755
+                                    ],
+                                    [
+                                        2.350113,
+                                        48.875183
+                                    ],
+                                    [
+                                        2.349828,
+                                        48.874855
+                                    ],
+                                    [
+                                        2.346189,
+                                        48.86967
+                                    ],
+                                    [
+                                        2.345965,
+                                        48.869286
+                                    ],
+                                    [
+                                        2.345798,
+                                        48.868942
+                                    ],
+                                    [
+                                        2.345666,
+                                        48.868618
+                                    ],
+                                    [
+                                        2.345553,
+                                        48.868244
+                                    ],
+                                    [
+                                        2.34546,
+                                        48.86787
+                                    ],
+                                    [
+                                        2.345434,
+                                        48.867733
+                                    ],
+                                    [
+                                        2.3454,
+                                        48.86741
+                                    ],
+                                    [
+                                        2.345376,
+                                        48.866932
+                                    ],
+                                    [
+                                        2.345413,
+                                        48.86647
+                                    ],
+                                    [
+                                        2.345491,
+                                        48.865997
+                                    ],
+                                    [
+                                        2.34559,
+                                        48.865646
+                                    ],
+                                    [
+                                        2.345706,
+                                        48.865044
+                                    ],
+                                    [
+                                        2.346371,
+                                        48.86324
+                                    ],
+                                    [
+                                        2.347002,
+                                        48.861755
+                                    ],
+                                    [
+                                        2.346977,
+                                        48.861744
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2026-08-27T10:50:00Z",
+                    "notes": [
+                        "<b>RER B : Châtelet <-> Aéroport CDG2 - Mitry - Claye 01/06-31/12</b><p>P&#233;riode : en semaine &#224; partir de 22h45.<br/>Dates : du lundi 1er juin au jeudi 31 d&#233;cembre<br/>Le trafic est interrompu entre Ch&#226;telet Les Halles et A&#233;rop. C De Gaulle 2 et entre Ch&#226;telet Les Halles et Mitry - Claye.<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Pour plus d'informations, consultez le site du RER B<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>"
+                    ],
+                    "scheduledArrivalTime": "2026-08-27T10:50:00Z",
+                    "stopPoint": {
+                        "country": "FR",
+                        "floorLevel": -5,
+                        "identifier": {
+                            "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:45102"
+                        },
+                        "latitude": 48.861743999999995,
+                        "longitude": 2.3469765,
+                        "name": "Châtelet - Les Halles",
+                        "region": "FR-IDF",
+                        "stopInformation": {
+                            "lines": [
+                                {
+                                    "mode": "LocalTrain"
+                                }
+                            ]
+                        },
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
+                },
+                "bookingUrl": "https://app.idf-mobilites.fr/gtfs?service_date=%5B%2220260827%22%5D&ticketing_trip_id=%5B%22IDFM:TN:SNCF:cf1e8633-b2c7-4580-b901-be02f709aff0%22%5D&from_ticketing_stop_time_id=%5B%2212%22%5D&to_ticketing_stop_time_id=%5B%2212%22%5D&boarding_time=%5B%222026-08-27T10:47:00%2B00:00%22%5D&arrival_time=%5B%222026-08-27T10:50:00%2B00:00%22%5D",
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2026-08-27T10:47:00Z",
+                    "notes": [
+                        "<b>RER B : Châtelet <-> Aéroport CDG2 - Mitry - Claye 01/06-31/12</b><p>P&#233;riode : en semaine &#224; partir de 22h45.<br/>Dates : du lundi 1er juin au jeudi 31 d&#233;cembre<br/>Le trafic est interrompu entre Ch&#226;telet Les Halles et A&#233;rop. C De Gaulle 2 et entre Ch&#226;telet Les Halles et Mitry - Claye.<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Pour plus d'informations, consultez le site du RER B<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                        "<b>Grands Travaux d'été 2026 : week-end du 12 et 13/09</b><p><b>P&#233;riode : </b>toute la journ&#233;e<br/><b>Dates :</b> les samedi 12 et dimanche 13 septembre<br/><b>- Gare du Nord &lt;&gt; Paris Gare de Lyon : </b>trafic interrompu<br/><b>- Creil &lt;&gt; Gare du Nord :</b> offre de transport r&#233;duite<br/><b>- Corbeil Essonnes &lt;&gt; Paris Gare de Lyon :</b> offre de transport r&#233;duite<br/><b>- Melun &lt;&gt; Paris Gare de Lyon :</b> offre de transport r&#233;duite<br/><b>Itin&#233;raires recommand&#233;s depuis Gare du Nord :</b><br/>- Pour Ch&#226;telet-les-Halles et Paris Gare de Lyon : M&#233;tro 5 jusqu&#8217;&#224; Bastille puis M&#233;tro 1 jusqu&#8217;&#224; Ch&#226;telet-les-Halles ou Paris Gare de Lyon.<br/><b>Itin&#233;raires recommand&#233;s depuis Paris Gare de Lyon :</b><br/>- Pour Ch&#226;telet-les-Halles : M&#233;tro 1<br/>- Pour Paris Nord : M&#233;tro 1 jusqu&#8217;&#224; Bastille puis M&#233;tro 5 jusqu&#8217;&#224; Paris Nord.<br/><b>Durant toute la p&#233;riode :</b><br/>- A Gare du Nord : trains au d&#233;part des voies Grandes Lignes<br/>- A Paris Gare de Lyon : trains au d&#233;part des voies Grandes Lignes</p><p><b>A noter :</b><br/><b>- Stade de France St Denis :</b> la gare n&#8217;est pas desservie dans les deux sens de circulation.<br/>Pour rejoindre Paris depuis cette gare, veuillez emprunter le m&#233;tro 14 &#224; Saint Denis Pleyel.<br/>Pour rejoindre cette gare depuis le nord de la ligne, veuillez descendre &#224; Paris Nord, puis emprunter le RER B jusqu&#8217;&#224; la Plaine Stade de France.</p><p>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Pour plus d'informations sur ces travaux, consultez le <a href=\"https://maligned.transilien.com/\">blog du RER D</a>.<br/><b>Motif :</b> Travaux sur le r&#233;seau ferr&#233;.</p>",
+                        "<b>RER B : Aér. CDG2/Mitry - Claye <-> Châtelet interrompu en soirée</b><p>P&#233;riode : les week-ends de 22h45 &#224; Fin de service<br/>Dates : Les samedi 25, dimanche 26 juillet et samedi 1er, dimanche 2, samedi 8, dimanche 9, samedi 15, dimanche 16 aout</p><p>Le trafic est interrompu entre Ch&#226;telet les Halles et A&#233;roport Charles de Gaulle/Mitry-Claye<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire</p>",
+                        "<b>RER D : Paris Nord <-> Paris Lyon 29-30/08, le week-end</b><p><b>P&#233;riode :</b> toute la journ&#233;e<br><b>Dates :</b> les samedi 29 et dimanche 30 ao&#251;t<br/><b>- Paris Gare du Nord &lt;&gt; Paris Gare de Lyon : </b>trafic interrompu<br><b>- Creil &lt;&gt; Paris Gare du Nord : </b>offre de transport r&#233;duite<br><b>- Corbeil Essonnes &lt;&gt; Paris Gare de Lyon : </b>offre de transport r&#233;duite<br><b>- Melun &lt;&gt; Paris Gare de Lyon : </b>offre de transport r&#233;duite<br/><b>Itin&#233;raires recommand&#233;s depuis Gare du Nord :</b><br/>- Pour rejoindre Ch&#226;telet-les-Halles et Paris Gare de Lyon : M&#233;tro 5 jusqu&#8217;&#224; Bastille puis M&#233;tro 1 jusqu&#8217;&#224; Ch&#226;telet-les-Halles ou Paris Gare de Lyon.</p><p><b>Itin&#233;raires recommand&#233;s depuis Paris Gare de Lyon :</b><br/>- Pour rejoindre Ch&#226;telet-les-Halles : M&#233;tro 1<br/>- Pour rejoindre Paris Gare du Nord : M&#233;tro 1 jusqu&#8217;&#224; Bastille puis M&#233;tro 5 jusqu&#8217;&#224; Paris Nord.<br/><b>Durant toute la p&#233;riode :</b><br/>- A Paris Gare du Nord : trains au d&#233;part des voies Grandes Lignes<br/>- A Paris Gare de Lyon : trains au d&#233;part des voies Grandes Lignes<br/><b>A noter :</b><br/><b>- Stade de France St Denis : </b>la gare n&#8217;est pas desservie dans les deux sens de circulation.<br/>Pour rejoindre Paris depuis cette gare, veuillez emprunter le m&#233;tro 14 &#224; Saint Denis Pleyel.<br/>Pour rejoindre cette gare depuis le nord de la ligne, veuillez descendre &#224; Paris Nord, puis emprunter le RER B jusqu&#8217;&#224; la Plaine Stade de France.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Pour plus d'informations sur ces travaux, consultez <a href=\"https://maligned.transilien.com/\">le blog du RER D.</a><br/><b>Motif : </b>Travaux sur le r&#233;seau ferr&#233;.</p>",
+                        "<b>1 ascenseur hors service — Gare du Nord</b><br/>1 ascenseur sur 8 est actuellement hors service dans cette station."
+                    ],
+                    "route": {
+                        "destination": {
+                            "country": "FR",
+                            "floorLevel": 0,
+                            "identifier": {
+                                "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:474058"
+                            },
+                            "latitude": 48.725224000000004,
+                            "longitude": 2.2599955,
+                            "name": "Massy - Palaiseau",
+                            "region": "FR-IDF",
+                            "stopInformation": {
+                                "lines": [
+                                    {
+                                        "mode": "LongDistanceTrain"
+                                    },
+                                    {
+                                        "mode": "LocalTrain"
+                                    },
+                                    {
+                                        "mode": "Tramway"
+                                    },
+                                    {
+                                        "mode": "Bus"
+                                    }
+                                ]
+                            },
+                            "timezone": "Europe/Paris",
+                            "type": "Stop"
+                        },
+                        "direction": "KADO",
+                        "line": {
+                            "color": "#5091cb",
+                            "mode": "Train",
+                            "name": "B",
+                            "operatorName": "RER",
+                            "operatorUrl": "https://www.iledefrance-mobilites.fr",
+                            "textColor": "#ffffff"
+                        },
+                        "name": "KADO70"
+                    },
+                    "scheduledDepartureTime": "2026-08-27T10:47:00Z",
+                    "stopPoint": {
+                        "country": "FR",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:462394"
+                        },
+                        "latitude": 48.882305,
+                        "longitude": 2.3566934999999996,
+                        "name": "Gare du Nord",
+                        "region": "FR-IDF",
+                        "stopInformation": {
+                            "lines": [
+                                {
+                                    "mode": "LocalTrain"
+                                },
+                                {
+                                    "mode": "Metro"
+                                },
+                                {
+                                    "mode": "Bus"
+                                }
+                            ]
+                        },
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "type": "WheelchairAccessible"
+                            }
+                        ]
+                    }
+                },
+                "identifiers": {
+                    "motis": "20260827_12:15_fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:TN:SNCF:cf1e8633-b2c7-4580-b901-be02f709aff0"
+                },
+                "mode": "PublicTransport",
+                "notes": [
+                    "<b>RER B : Châtelet <-> Aéroport CDG2 - Mitry - Claye 01/06-31/12</b><p>P&#233;riode : en semaine &#224; partir de 22h45.<br/>Dates : du lundi 1er juin au jeudi 31 d&#233;cembre<br/>Le trafic est interrompu entre Ch&#226;telet Les Halles et A&#233;rop. C De Gaulle 2 et entre Ch&#226;telet Les Halles et Mitry - Claye.<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Pour plus d'informations, consultez le site du RER B<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER B : Aér. CDG2/Mitry - Claye <-> Châtelet interrompu en soirée</b><p>P&#233;riode : les week-ends de 22h45 &#224; Fin de service<br/>Dates : Les samedi 25, dimanche 26 juillet et samedi 1er, dimanche 2, samedi 8, dimanche 9, samedi 15, dimanche 16 aout</p><p>Le trafic est interrompu entre Ch&#226;telet les Halles et A&#233;roport Charles de Gaulle/Mitry-Claye<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire</p>",
+                    "<b>RER B : Paris Nord <-> Denfert Rochereau 29-30/08</b><p>P&#233;riode : les week-ends, toute la journ&#233;e.<br/>Dates : du samedi 29 au dimanche 30 ao&#251;t.<br/>Le trafic est interrompu entre Gare du Nord et Denfert-Rochereau <br/>Les lignes 38 et m&#233;tro 4 seront renforc&#233;es et desservent les gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>"
+                ],
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.356693,
+                                        48.882305
+                                    ],
+                                    [
+                                        2.358037,
+                                        48.882145
+                                    ],
+                                    [
+                                        2.357927,
+                                        48.881847
+                                    ],
+                                    [
+                                        2.357698,
+                                        48.881348
+                                    ],
+                                    [
+                                        2.357382,
+                                        48.88066
+                                    ],
+                                    [
+                                        2.357287,
+                                        48.88049
+                                    ],
+                                    [
+                                        2.357152,
+                                        48.880276
+                                    ],
+                                    [
+                                        2.356929,
+                                        48.880005
+                                    ],
+                                    [
+                                        2.356827,
+                                        48.879898
+                                    ],
+                                    [
+                                        2.355374,
+                                        48.8786
+                                    ],
+                                    [
+                                        2.355082,
+                                        48.87836
+                                    ],
+                                    [
+                                        2.354722,
+                                        48.878094
+                                    ],
+                                    [
+                                        2.353615,
+                                        48.87741
+                                    ],
+                                    [
+                                        2.351202,
+                                        48.876026
+                                    ],
+                                    [
+                                        2.350754,
+                                        48.875736
+                                    ],
+                                    [
+                                        2.350455,
+                                        48.8755
+                                    ],
+                                    [
+                                        2.350113,
+                                        48.875183
+                                    ],
+                                    [
+                                        2.349828,
+                                        48.874855
+                                    ],
+                                    [
+                                        2.346189,
+                                        48.86967
+                                    ],
+                                    [
+                                        2.345965,
+                                        48.869286
+                                    ],
+                                    [
+                                        2.345798,
+                                        48.868942
+                                    ],
+                                    [
+                                        2.345666,
+                                        48.868618
+                                    ],
+                                    [
+                                        2.345553,
+                                        48.868244
+                                    ],
+                                    [
+                                        2.34546,
+                                        48.86787
+                                    ],
+                                    [
+                                        2.345434,
+                                        48.867733
+                                    ],
+                                    [
+                                        2.3454,
+                                        48.86741
+                                    ],
+                                    [
+                                        2.345376,
+                                        48.866932
+                                    ],
+                                    [
+                                        2.345413,
+                                        48.86647
+                                    ],
+                                    [
+                                        2.345491,
+                                        48.865997
+                                    ],
+                                    [
+                                        2.34559,
+                                        48.865646
+                                    ],
+                                    [
+                                        2.34614,
+                                        48.864204
+                                    ],
+                                    [
+                                        2.346438,
+                                        48.863586
+                                    ],
+                                    [
+                                        2.347191,
+                                        48.861835
+                                    ],
+                                    [
+                                        2.346977,
+                                        48.861744
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2026-08-27T10:54:00Z",
+                    "notes": [
+                        "<b>RER B : Châtelet <-> Aéroport CDG2 - Mitry - Claye 01/06-31/12</b><p>P&#233;riode : en semaine &#224; partir de 22h45.<br/>Dates : du lundi 1er juin au jeudi 31 d&#233;cembre<br/>Le trafic est interrompu entre Ch&#226;telet Les Halles et A&#233;rop. C De Gaulle 2 et entre Ch&#226;telet Les Halles et Mitry - Claye.<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Pour plus d'informations, consultez le site du RER B<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>"
+                    ],
+                    "scheduledArrivalTime": "2026-08-27T10:54:00Z",
+                    "stopPoint": {
+                        "country": "FR",
+                        "floorLevel": -5,
+                        "identifier": {
+                            "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:45102"
+                        },
+                        "latitude": 48.861743999999995,
+                        "longitude": 2.3469765,
+                        "name": "Châtelet - Les Halles",
+                        "region": "FR-IDF",
+                        "stopInformation": {
+                            "lines": [
+                                {
+                                    "mode": "LocalTrain"
+                                }
+                            ]
+                        },
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
+                },
+                "bookingUrl": "https://app.idf-mobilites.fr/gtfs?service_date=%5B%2220260827%22%5D&ticketing_trip_id=%5B%22IDFM:TN:SNCF:10696e89-b0c7-4120-a990-f4efaf70743b%22%5D&from_ticketing_stop_time_id=%5B%2214%22%5D&to_ticketing_stop_time_id=%5B%2214%22%5D&boarding_time=%5B%222026-08-27T10:51:00%2B00:00%22%5D&arrival_time=%5B%222026-08-27T10:54:00%2B00:00%22%5D",
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2026-08-27T10:51:00Z",
+                    "notes": [
+                        "<b>RER B : Châtelet <-> Aéroport CDG2 - Mitry - Claye 01/06-31/12</b><p>P&#233;riode : en semaine &#224; partir de 22h45.<br/>Dates : du lundi 1er juin au jeudi 31 d&#233;cembre<br/>Le trafic est interrompu entre Ch&#226;telet Les Halles et A&#233;rop. C De Gaulle 2 et entre Ch&#226;telet Les Halles et Mitry - Claye.<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Pour plus d'informations, consultez le site du RER B<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                        "<b>Grands Travaux d'été 2026 : week-end du 12 et 13/09</b><p><b>P&#233;riode : </b>toute la journ&#233;e<br/><b>Dates :</b> les samedi 12 et dimanche 13 septembre<br/><b>- Gare du Nord &lt;&gt; Paris Gare de Lyon : </b>trafic interrompu<br/><b>- Creil &lt;&gt; Gare du Nord :</b> offre de transport r&#233;duite<br/><b>- Corbeil Essonnes &lt;&gt; Paris Gare de Lyon :</b> offre de transport r&#233;duite<br/><b>- Melun &lt;&gt; Paris Gare de Lyon :</b> offre de transport r&#233;duite<br/><b>Itin&#233;raires recommand&#233;s depuis Gare du Nord :</b><br/>- Pour Ch&#226;telet-les-Halles et Paris Gare de Lyon : M&#233;tro 5 jusqu&#8217;&#224; Bastille puis M&#233;tro 1 jusqu&#8217;&#224; Ch&#226;telet-les-Halles ou Paris Gare de Lyon.<br/><b>Itin&#233;raires recommand&#233;s depuis Paris Gare de Lyon :</b><br/>- Pour Ch&#226;telet-les-Halles : M&#233;tro 1<br/>- Pour Paris Nord : M&#233;tro 1 jusqu&#8217;&#224; Bastille puis M&#233;tro 5 jusqu&#8217;&#224; Paris Nord.<br/><b>Durant toute la p&#233;riode :</b><br/>- A Gare du Nord : trains au d&#233;part des voies Grandes Lignes<br/>- A Paris Gare de Lyon : trains au d&#233;part des voies Grandes Lignes</p><p><b>A noter :</b><br/><b>- Stade de France St Denis :</b> la gare n&#8217;est pas desservie dans les deux sens de circulation.<br/>Pour rejoindre Paris depuis cette gare, veuillez emprunter le m&#233;tro 14 &#224; Saint Denis Pleyel.<br/>Pour rejoindre cette gare depuis le nord de la ligne, veuillez descendre &#224; Paris Nord, puis emprunter le RER B jusqu&#8217;&#224; la Plaine Stade de France.</p><p>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Pour plus d'informations sur ces travaux, consultez le <a href=\"https://maligned.transilien.com/\">blog du RER D</a>.<br/><b>Motif :</b> Travaux sur le r&#233;seau ferr&#233;.</p>",
+                        "<b>RER B : Aér. CDG2/Mitry - Claye <-> Châtelet interrompu en soirée</b><p>P&#233;riode : les week-ends de 22h45 &#224; Fin de service<br/>Dates : Les samedi 25, dimanche 26 juillet et samedi 1er, dimanche 2, samedi 8, dimanche 9, samedi 15, dimanche 16 aout</p><p>Le trafic est interrompu entre Ch&#226;telet les Halles et A&#233;roport Charles de Gaulle/Mitry-Claye<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire</p>",
+                        "<b>RER D : Paris Nord <-> Paris Lyon 29-30/08, le week-end</b><p><b>P&#233;riode :</b> toute la journ&#233;e<br><b>Dates :</b> les samedi 29 et dimanche 30 ao&#251;t<br/><b>- Paris Gare du Nord &lt;&gt; Paris Gare de Lyon : </b>trafic interrompu<br><b>- Creil &lt;&gt; Paris Gare du Nord : </b>offre de transport r&#233;duite<br><b>- Corbeil Essonnes &lt;&gt; Paris Gare de Lyon : </b>offre de transport r&#233;duite<br><b>- Melun &lt;&gt; Paris Gare de Lyon : </b>offre de transport r&#233;duite<br/><b>Itin&#233;raires recommand&#233;s depuis Gare du Nord :</b><br/>- Pour rejoindre Ch&#226;telet-les-Halles et Paris Gare de Lyon : M&#233;tro 5 jusqu&#8217;&#224; Bastille puis M&#233;tro 1 jusqu&#8217;&#224; Ch&#226;telet-les-Halles ou Paris Gare de Lyon.</p><p><b>Itin&#233;raires recommand&#233;s depuis Paris Gare de Lyon :</b><br/>- Pour rejoindre Ch&#226;telet-les-Halles : M&#233;tro 1<br/>- Pour rejoindre Paris Gare du Nord : M&#233;tro 1 jusqu&#8217;&#224; Bastille puis M&#233;tro 5 jusqu&#8217;&#224; Paris Nord.<br/><b>Durant toute la p&#233;riode :</b><br/>- A Paris Gare du Nord : trains au d&#233;part des voies Grandes Lignes<br/>- A Paris Gare de Lyon : trains au d&#233;part des voies Grandes Lignes<br/><b>A noter :</b><br/><b>- Stade de France St Denis : </b>la gare n&#8217;est pas desservie dans les deux sens de circulation.<br/>Pour rejoindre Paris depuis cette gare, veuillez emprunter le m&#233;tro 14 &#224; Saint Denis Pleyel.<br/>Pour rejoindre cette gare depuis le nord de la ligne, veuillez descendre &#224; Paris Nord, puis emprunter le RER B jusqu&#8217;&#224; la Plaine Stade de France.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Pour plus d'informations sur ces travaux, consultez <a href=\"https://maligned.transilien.com/\">le blog du RER D.</a><br/><b>Motif : </b>Travaux sur le r&#233;seau ferr&#233;.</p>",
+                        "<b>1 ascenseur hors service — Gare du Nord</b><br/>1 ascenseur sur 8 est actuellement hors service dans cette station."
+                    ],
+                    "route": {
+                        "destination": {
+                            "country": "FR",
+                            "floorLevel": 0,
+                            "identifier": {
+                                "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:472720"
+                            },
+                            "latitude": 48.613235,
+                            "longitude": 2.4726373999999995,
+                            "name": "Corbeil-Essonnes",
+                            "region": "FR-IDF",
+                            "stopInformation": {
+                                "lines": [
+                                    {
+                                        "mode": "LocalTrain"
+                                    },
+                                    {
+                                        "mode": "Bus"
+                                    }
+                                ]
+                            },
+                            "timezone": "Europe/Paris",
+                            "type": "Stop"
+                        },
+                        "direction": "ROPO",
+                        "line": {
+                            "color": "#008b5b",
+                            "mode": "Train",
+                            "name": "D",
+                            "operatorName": "RER",
+                            "operatorUrl": "https://www.iledefrance-mobilites.fr",
+                            "textColor": "#ffffff"
+                        },
+                        "name": "155428-155429"
+                    },
+                    "scheduledDepartureTime": "2026-08-27T10:51:00Z",
+                    "stopPoint": {
+                        "country": "FR",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:462394"
+                        },
+                        "latitude": 48.882305,
+                        "longitude": 2.3566934999999996,
+                        "name": "Gare du Nord",
+                        "region": "FR-IDF",
+                        "stopInformation": {
+                            "lines": [
+                                {
+                                    "mode": "LocalTrain"
+                                },
+                                {
+                                    "mode": "Metro"
+                                },
+                                {
+                                    "mode": "Bus"
+                                }
+                            ]
+                        },
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "type": "WheelchairAccessible"
+                            }
+                        ]
+                    }
+                },
+                "identifiers": {
+                    "motis": "20260827_12:30_fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:TN:SNCF:10696e89-b0c7-4120-a990-f4efaf70743b"
+                },
+                "mode": "PublicTransport",
+                "notes": [
+                    "<b>RER D : Paris Lyon <-> Villeneuve St-G non desservi 31/08-18/09</b><p>P&#233;riode : en semaine &#224; partir de 22h30.<br/>Dates : du lundi 31 ao&#251;t au vendredi 18 septembre.<br/>Les gares entre Paris Gare de Lyon et Villeneuve Saint Georges ne sont pas desservies.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D - Stade de France - Concert (PLK) - vendredi 4 septembre</b><p>Date : le vendredi 4 septembre<br/><b>Concert au Stade de France</b> (PLK)<br/>Risque de forte affluence sur les RER B, RER D et m&#233;tro 13. <b>Aucun RER D apr&#232;s le concert.</b> Privil&#233;giez le m&#233;tro 14 &#224; l'aller et au retour.<br/>Bon concert &#224; toutes et tous.</p>",
+                    "<b>RER D : Paris Lyon <> Villeneuve StG non desservis du 24 au 28/08</b><p>P&#233;riode : en semaine &#224; partir de 22h30.<br/>Dates : du lundi 24 au vendredi 28 ao&#251;t.<br/>Les gares entre Paris Gare de Lyon et Villeneuve Saint Georges ne sont pas desservies.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Nord <-> Paris Lyon 29-30/08, le week-end</b><p><b>P&#233;riode :</b> toute la journ&#233;e<br><b>Dates :</b> les samedi 29 et dimanche 30 ao&#251;t<br/><b>- Paris Gare du Nord &lt;&gt; Paris Gare de Lyon : </b>trafic interrompu<br><b>- Creil &lt;&gt; Paris Gare du Nord : </b>offre de transport r&#233;duite<br><b>- Corbeil Essonnes &lt;&gt; Paris Gare de Lyon : </b>offre de transport r&#233;duite<br><b>- Melun &lt;&gt; Paris Gare de Lyon : </b>offre de transport r&#233;duite<br/><b>Itin&#233;raires recommand&#233;s depuis Gare du Nord :</b><br/>- Pour rejoindre Ch&#226;telet-les-Halles et Paris Gare de Lyon : M&#233;tro 5 jusqu&#8217;&#224; Bastille puis M&#233;tro 1 jusqu&#8217;&#224; Ch&#226;telet-les-Halles ou Paris Gare de Lyon.</p><p><b>Itin&#233;raires recommand&#233;s depuis Paris Gare de Lyon :</b><br/>- Pour rejoindre Ch&#226;telet-les-Halles : M&#233;tro 1<br/>- Pour rejoindre Paris Gare du Nord : M&#233;tro 1 jusqu&#8217;&#224; Bastille puis M&#233;tro 5 jusqu&#8217;&#224; Paris Nord.<br/><b>Durant toute la p&#233;riode :</b><br/>- A Paris Gare du Nord : trains au d&#233;part des voies Grandes Lignes<br/>- A Paris Gare de Lyon : trains au d&#233;part des voies Grandes Lignes<br/><b>A noter :</b><br/><b>- Stade de France St Denis : </b>la gare n&#8217;est pas desservie dans les deux sens de circulation.<br/>Pour rejoindre Paris depuis cette gare, veuillez emprunter le m&#233;tro 14 &#224; Saint Denis Pleyel.<br/>Pour rejoindre cette gare depuis le nord de la ligne, veuillez descendre &#224; Paris Nord, puis emprunter le RER B jusqu&#8217;&#224; la Plaine Stade de France.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Pour plus d'informations sur ces travaux, consultez <a href=\"https://maligned.transilien.com/\">le blog du RER D.</a><br/><b>Motif : </b>Travaux sur le r&#233;seau ferr&#233;.</p>",
+                    "<b>RER D : allègement de l’offre de transport</b><p>&#192; partir du 24 ao&#251;t, l&#8217;offre de transport est r&#233;duite sur votre ligne.<br/>Pour pr&#233;parer votre trajet et avant de vous rendre en gare, v&#233;rifiez les horaires des trains sur l&#8217;appli Ile-de-France Mobilit&#233;s, le site <a href=\"https://Transilien.com\">Transilien.com</a>, SNCF Connect ou votre appli de mobilit&#233;.<br/>Motif : capacit&#233; de maintenance des trains temporairement r&#233;duite (cr&#233;ation de nouveaux ateliers de maintenance)</p>",
+                    "<b>RER D : Paris Lyon <-> Melun / Corbeil interrompu du 14 au 25/09</b><p>P&#233;riode : en semaine &#224; partir de 23h15.<br/>Dates : du lundi 14 au vendredi 25 septembre.<br/>Le trafic est interrompu entre Paris Gare de Lyon et Melun et entre Paris Gare de Lyon et Corbeil-Essonnes.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.</p>",
+                    "<b>Grands Travaux d'été 2026 : week-end du 12 et 13/09</b><p><b>P&#233;riode : </b>toute la journ&#233;e<br/><b>Dates :</b> les samedi 12 et dimanche 13 septembre<br/><b>- Gare du Nord &lt;&gt; Paris Gare de Lyon : </b>trafic interrompu<br/><b>- Creil &lt;&gt; Gare du Nord :</b> offre de transport r&#233;duite<br/><b>- Corbeil Essonnes &lt;&gt; Paris Gare de Lyon :</b> offre de transport r&#233;duite<br/><b>- Melun &lt;&gt; Paris Gare de Lyon :</b> offre de transport r&#233;duite<br/><b>Itin&#233;raires recommand&#233;s depuis Gare du Nord :</b><br/>- Pour Ch&#226;telet-les-Halles et Paris Gare de Lyon : M&#233;tro 5 jusqu&#8217;&#224; Bastille puis M&#233;tro 1 jusqu&#8217;&#224; Ch&#226;telet-les-Halles ou Paris Gare de Lyon.<br/><b>Itin&#233;raires recommand&#233;s depuis Paris Gare de Lyon :</b><br/>- Pour Ch&#226;telet-les-Halles : M&#233;tro 1<br/>- Pour Paris Nord : M&#233;tro 1 jusqu&#8217;&#224; Bastille puis M&#233;tro 5 jusqu&#8217;&#224; Paris Nord.<br/><b>Durant toute la p&#233;riode :</b><br/>- A Gare du Nord : trains au d&#233;part des voies Grandes Lignes<br/>- A Paris Gare de Lyon : trains au d&#233;part des voies Grandes Lignes</p><p><b>A noter :</b><br/><b>- Stade de France St Denis :</b> la gare n&#8217;est pas desservie dans les deux sens de circulation.<br/>Pour rejoindre Paris depuis cette gare, veuillez emprunter le m&#233;tro 14 &#224; Saint Denis Pleyel.<br/>Pour rejoindre cette gare depuis le nord de la ligne, veuillez descendre &#224; Paris Nord, puis emprunter le RER B jusqu&#8217;&#224; la Plaine Stade de France.</p><p>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Pour plus d'informations sur ces travaux, consultez le <a href=\"https://maligned.transilien.com/\">blog du RER D</a>.<br/><b>Motif :</b> Travaux sur le r&#233;seau ferr&#233;.</p>",
+                    "<b>RER D : Paris Lyon <> Paris Nord interrompu du 24 au 28/08.</b><p>P&#233;riode : en semaine &#224; partir de 23h15.<br/>Dates : du lundi 24 au vendredi 28 ao&#251;t.<br/>Le trafic est interrompu entre Paris Gare de Lyon et Paris Gare du Nord.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Lyon <> Corbeil et Melun interrompu du 21 au 25/09.</b><p>P&#233;riode : en semaine &#224; partir de 23h15.<br/>Dates : du lundi 21 au vendredi 25 septembre.<br/>Le trafic est interrompu entre Paris Gare de Lyon et Corbeil-Essonnes et entre Paris Gare de Lyon et Melun.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Nord <> Paris Lyon interrompu 12-13/09, le week-end</b><p>P&#233;riode : le week-end, toute la journ&#233;e.<br/>Dates : du samedi 12 au dimanche 13 septembre.<br/>Le trafic est interrompu entre Paris Gare du Nord et Paris Gare de Lyon.</p><p>&#192; noter : Les trains seront au d&#233;part et &#224; l'arriv&#233;e de Paris Lyon Surface.</p><p>P&#233;riode : le week-end, &#224; partir de 22h25.</p><p>Dates : du samedi 12 au dimanche 13 septembre.</p><p>L'arr&#234;t Maisons-Alfort Alfortville n'est pas desservi en direction du sud de la ligne et l'arr&#234;t Vert-de-Maisons n'est pas desservi dans les deux sens de circulation.</p><p>A noter : </p><p>- Le train SOPA d&#233;part Corbeil-Essonnes 04h25, arriv&#233;e Creil 06h20 ne marquera pas l'arr&#234;t &#224; Vert-de-Maisons les samedi 12 et dimanche 13 septembre.<br/>- Le train DOCA d&#233;part Melun 04h04, arriv&#233;e Paris Lyon 05h03 ne marquera pas l'arr&#234;t &#224; Vert-de-Maisons le samedi 12 septembre.</p><p>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Corbeil <-> Malesherbes interrompu du 21 au 25/09</b><p>P&#233;riode : en semaine de 10h11 &#224; 14h18.<br/>Dates : du lundi 21 au vendredi 25 septembre.<br/>Le trafic est interrompu entre Corbeil-Essonnes et Malesherbes.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Nord <> Creil interrompu du 03 au 28/08.</b><p>P&#233;riode : en semaine &#224; partir de 23h35.<br/>Dates : du lundi 03 au vendredi 28 ao&#251;t.<br/>Le trafic est interrompu entre Paris Gare du Nord et Creil.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Melun <-> Combs-la-Ville allégé 12-13/09, le week-end</b><p>P&#233;riode : le week-end, toute la journ&#233;e.<br/>Dates : du samedi 12 au dimanche 13 septembre.<br/>Le trafic est all&#233;g&#233; entre Melun et Combs-la-Ville - Quincy, pr&#233;voir 1 train sur 2.</p><p>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D - Stade de France - Concert (PLK) - samedi 5 septembre</b><p>Date : le samedi 5 septembre<br/><b>Concert au Stade de France</b> (PLK)<br/>Risque de forte affluence sur les RER B, RER D et m&#233;tro 13. <b>Aucun RER D apr&#232;s le concert en direction du nord de la ligne.</b> Veuillez emprunter les bus de remplacement situ&#233;s sur le parvis de la gare de la ligne 14 du m&#233;tro &#224; Saint-Denis&#8211;Pleyel.<br/>Bon concert &#224; toutes et tous.</p>",
+                    "<b>RER D : Maisons-Alfort et Vert de Maisons non desservies 29-30/08</b><p>P&#233;riode : &#224; partir de 22h25.<br/>Dates : du samedi 29 au dimanche 30 ao&#251;t.</p><p>La gare de Maisons-Alfort n'est pas desservie en direction de Corbeil et de Melun.</p><p>La gare du Vert de Maisons n'est pas desservie dans les deux sens.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Nord <> Paris Lyon interrompu 12-13/09, le week-end</b><p>P&#233;riode : le week-end, toute la journ&#233;e.<br/>Dates : du samedi 12 au dimanche 13 septembre.<br/>Le trafic est interrompu entre Paris Gare du Nord et Paris Gare de Lyon.</p><p>L'arr&#234;t Stade de France est &#233;galement non desservi dans les deux sens de circulation.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Corbeil-Essonnes <> Malesherbes interrompu du 03 au 28/08</b><p>P&#233;riode : en semaine &#224; partir de 23h00.<br/>Dates : du lundi 03 au vendredi 28 ao&#251;t.<br/>Le trafic est interrompu entre Corbeil-Essonnes et Malesherbes.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Combs-la-Ville <-> Melun interrompu du 31/08-18/09</b><p>P&#233;riode : en semaine &#224; partir de 19h50.<br/>Dates : du lundi 31 ao&#251;t au vendredi 18 septembre.<br/>Le trafic est all&#233;g&#233; entre Paris gare de Lyon et Melun.</p><p>P&#233;riode : en semaine &#224; partir de 23h15.<br/>Dates : du lundi 31 ao&#251;t au vendredi 18 septembre.<br/>Le trafic est interrompu entre Combs-la-Ville - Quincy et Melun.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Nord <-> Creil 31/08-25/09, en semaine dès 23h35</b><p>P&#233;riode : en semaine &#224; partir de 23h35.<br/>Dates : du lundi 31 ao&#251;t au vendredi 25 septembre.<br/>Le trafic est interrompu entre Paris Gare du Nord et Creil.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Juvisy <-> Corbeil-Essonnes interrompu 24-28/08</b><p>Période : en semaine à partir de 23h15.<br/>Dates : du lundi 24 au vendredi 28 août.<br/>Le trafic est interrompu entre Juvisy et Corbeil-Essonnes via Ris-Orangis.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br/>Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br/>Motif : travaux sur le réseau ferroviaire.</p>",
+                    "<b>RER D : Stade de France <> Creil interrompu 05-06/09, le week-end</b><p>P&#233;riode : le week-end, toute la journ&#233;e.<br/>Dates : du samedi 05 au dimanche 06 septembre.<br/>Le trafic est interrompu entre Stade France St-Denis et Creil.</p><p>La gare de Saint Denis n'est pas desservie par les bus de remplacement dans le deux sens de circulation.</p><p><b>Depuis la gare de Saint Denis :</b></p><p>- Pour rejoindre Pierrefitte Stains empruntez la ligne H jusqu'&#224; Epinay Villetaneuse, puis le T11.<br/>- Pour rejoindre Stade de France St Denis empruntez le T8 jusque Saint Denis Porte de Paris puis le m&#233;tro 13.</p><p>- Pour rejoindre Paris Nord empruntez la ligne H.<br>- Pour rejoindre Stade de France empruntez la ligne H jusque Paris Nord puis le RER D.</p><p>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Combs-la-Ville <-> Melun 24-28/08, en semaine dès 23h15</b><p>P&#233;riode : en semaine d&#232;s 23h15 <br/>Dates : du lundi 24 au vendredi 28 ao&#251;t.<br/>Le trafic est interrompu entre Combs-la-Ville - Quincy et Melun.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Lyon <-> Combs-la-Ville trafic allégé du 05-06/09</b><p>P&#233;riode : le week-end, toute la journ&#233;e.<br/>Dates : du samedi 05 au dimanche 06 septembre.<br/>Le trafic est all&#233;g&#233; entre Paris Gare de Lyon et Combs-la-Ville - Quincy.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : 3 gares non desservies en direction de Paris 05- 06/09.</b><p>P&#233;riode : le week-end, toute la journ&#233;e.<br/>Dates : du samedi 05 au dimanche 06 septembre.<br/>Les gares de Cr&#233;teil Pompadour, Villeneuve Triage et Le Vert de Maisons en direction de Paris ne sont pas desservies.<br/><b>A partir de 23h59 les gares de Cr&#233;teil Pompadour et Villeneuve Triage ne sont pas desservies dans les deux sens de circulation.</b></p><p>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.</p><p>Motif : travaux sur le r&#233;seau f&#233;roviaire. </p>",
+                    "<b>RER D : Paris Lyon <-> Combs / Juvisy interrompu 19-26/09</b><p>P&#233;riode : &#224; partir de 23h15.<br/>Dates : les samedis 19 et 26 septembre.<br/>Le trafic est interrompu entre Paris Gare de Lyon et Combs-la-Ville - Quincy et entre Paris Gare de Lyon et Juvisy.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>"
+                ],
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.356693,
+                                        48.882305
+                                    ],
+                                    [
+                                        2.357795,
+                                        48.882133
+                                    ],
+                                    [
+                                        2.357732,
+                                        48.88197
+                                    ],
+                                    [
+                                        2.357473,
+                                        48.881393
+                                    ],
+                                    [
+                                        2.35715,
+                                        48.8807
+                                    ],
+                                    [
+                                        2.35706,
+                                        48.880535
+                                    ],
+                                    [
+                                        2.356844,
+                                        48.880222
+                                    ],
+                                    [
+                                        2.356627,
+                                        48.879974
+                                    ],
+                                    [
+                                        2.356249,
+                                        48.87965
+                                    ],
+                                    [
+                                        2.354796,
+                                        48.87828
+                                    ],
+                                    [
+                                        2.354237,
+                                        48.87782
+                                    ],
+                                    [
+                                        2.353615,
+                                        48.87741
+                                    ],
+                                    [
+                                        2.351202,
+                                        48.876026
+                                    ],
+                                    [
+                                        2.350754,
+                                        48.875736
+                                    ],
+                                    [
+                                        2.350455,
+                                        48.8755
+                                    ],
+                                    [
+                                        2.350113,
+                                        48.875183
+                                    ],
+                                    [
+                                        2.349828,
+                                        48.874855
+                                    ],
+                                    [
+                                        2.346189,
+                                        48.86967
+                                    ],
+                                    [
+                                        2.345965,
+                                        48.869286
+                                    ],
+                                    [
+                                        2.345798,
+                                        48.868942
+                                    ],
+                                    [
+                                        2.345666,
+                                        48.868618
+                                    ],
+                                    [
+                                        2.345553,
+                                        48.868244
+                                    ],
+                                    [
+                                        2.34546,
+                                        48.86787
+                                    ],
+                                    [
+                                        2.345434,
+                                        48.867733
+                                    ],
+                                    [
+                                        2.3454,
+                                        48.86741
+                                    ],
+                                    [
+                                        2.345376,
+                                        48.866932
+                                    ],
+                                    [
+                                        2.345413,
+                                        48.86647
+                                    ],
+                                    [
+                                        2.345491,
+                                        48.865997
+                                    ],
+                                    [
+                                        2.34559,
+                                        48.865646
+                                    ],
+                                    [
+                                        2.345706,
+                                        48.865044
+                                    ],
+                                    [
+                                        2.346371,
+                                        48.86324
+                                    ],
+                                    [
+                                        2.347002,
+                                        48.861755
+                                    ],
+                                    [
+                                        2.346977,
+                                        48.861744
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2026-08-27T10:56:00Z",
+                    "notes": [
+                        "<b>RER B : Châtelet <-> Aéroport CDG2 - Mitry - Claye 01/06-31/12</b><p>P&#233;riode : en semaine &#224; partir de 22h45.<br/>Dates : du lundi 1er juin au jeudi 31 d&#233;cembre<br/>Le trafic est interrompu entre Ch&#226;telet Les Halles et A&#233;rop. C De Gaulle 2 et entre Ch&#226;telet Les Halles et Mitry - Claye.<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Pour plus d'informations, consultez le site du RER B<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>"
+                    ],
+                    "scheduledArrivalTime": "2026-08-27T10:56:00Z",
+                    "stopPoint": {
+                        "country": "FR",
+                        "floorLevel": -5,
+                        "identifier": {
+                            "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:45102"
+                        },
+                        "latitude": 48.861743999999995,
+                        "longitude": 2.3469765,
+                        "name": "Châtelet - Les Halles",
+                        "region": "FR-IDF",
+                        "stopInformation": {
+                            "lines": [
+                                {
+                                    "mode": "LocalTrain"
+                                }
+                            ]
+                        },
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
+                },
+                "bookingUrl": "https://app.idf-mobilites.fr/gtfs?service_date=%5B%2220260827%22%5D&ticketing_trip_id=%5B%22IDFM:TN:SNCF:15da9a76-40dc-4b0e-bd87-f5b801051f58%22%5D&from_ticketing_stop_time_id=%5B%2211%22%5D&to_ticketing_stop_time_id=%5B%2211%22%5D&boarding_time=%5B%222026-08-27T10:53:00%2B00:00%22%5D&arrival_time=%5B%222026-08-27T10:56:00%2B00:00%22%5D",
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2026-08-27T10:53:00Z",
+                    "notes": [
+                        "<b>RER B : Châtelet <-> Aéroport CDG2 - Mitry - Claye 01/06-31/12</b><p>P&#233;riode : en semaine &#224; partir de 22h45.<br/>Dates : du lundi 1er juin au jeudi 31 d&#233;cembre<br/>Le trafic est interrompu entre Ch&#226;telet Les Halles et A&#233;rop. C De Gaulle 2 et entre Ch&#226;telet Les Halles et Mitry - Claye.<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Pour plus d'informations, consultez le site du RER B<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                        "<b>Grands Travaux d'été 2026 : week-end du 12 et 13/09</b><p><b>P&#233;riode : </b>toute la journ&#233;e<br/><b>Dates :</b> les samedi 12 et dimanche 13 septembre<br/><b>- Gare du Nord &lt;&gt; Paris Gare de Lyon : </b>trafic interrompu<br/><b>- Creil &lt;&gt; Gare du Nord :</b> offre de transport r&#233;duite<br/><b>- Corbeil Essonnes &lt;&gt; Paris Gare de Lyon :</b> offre de transport r&#233;duite<br/><b>- Melun &lt;&gt; Paris Gare de Lyon :</b> offre de transport r&#233;duite<br/><b>Itin&#233;raires recommand&#233;s depuis Gare du Nord :</b><br/>- Pour Ch&#226;telet-les-Halles et Paris Gare de Lyon : M&#233;tro 5 jusqu&#8217;&#224; Bastille puis M&#233;tro 1 jusqu&#8217;&#224; Ch&#226;telet-les-Halles ou Paris Gare de Lyon.<br/><b>Itin&#233;raires recommand&#233;s depuis Paris Gare de Lyon :</b><br/>- Pour Ch&#226;telet-les-Halles : M&#233;tro 1<br/>- Pour Paris Nord : M&#233;tro 1 jusqu&#8217;&#224; Bastille puis M&#233;tro 5 jusqu&#8217;&#224; Paris Nord.<br/><b>Durant toute la p&#233;riode :</b><br/>- A Gare du Nord : trains au d&#233;part des voies Grandes Lignes<br/>- A Paris Gare de Lyon : trains au d&#233;part des voies Grandes Lignes</p><p><b>A noter :</b><br/><b>- Stade de France St Denis :</b> la gare n&#8217;est pas desservie dans les deux sens de circulation.<br/>Pour rejoindre Paris depuis cette gare, veuillez emprunter le m&#233;tro 14 &#224; Saint Denis Pleyel.<br/>Pour rejoindre cette gare depuis le nord de la ligne, veuillez descendre &#224; Paris Nord, puis emprunter le RER B jusqu&#8217;&#224; la Plaine Stade de France.</p><p>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Pour plus d'informations sur ces travaux, consultez le <a href=\"https://maligned.transilien.com/\">blog du RER D</a>.<br/><b>Motif :</b> Travaux sur le r&#233;seau ferr&#233;.</p>",
+                        "<b>RER B : Aér. CDG2/Mitry - Claye <-> Châtelet interrompu en soirée</b><p>P&#233;riode : les week-ends de 22h45 &#224; Fin de service<br/>Dates : Les samedi 25, dimanche 26 juillet et samedi 1er, dimanche 2, samedi 8, dimanche 9, samedi 15, dimanche 16 aout</p><p>Le trafic est interrompu entre Ch&#226;telet les Halles et A&#233;roport Charles de Gaulle/Mitry-Claye<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire</p>",
+                        "<b>RER D : Paris Nord <-> Paris Lyon 29-30/08, le week-end</b><p><b>P&#233;riode :</b> toute la journ&#233;e<br><b>Dates :</b> les samedi 29 et dimanche 30 ao&#251;t<br/><b>- Paris Gare du Nord &lt;&gt; Paris Gare de Lyon : </b>trafic interrompu<br><b>- Creil &lt;&gt; Paris Gare du Nord : </b>offre de transport r&#233;duite<br><b>- Corbeil Essonnes &lt;&gt; Paris Gare de Lyon : </b>offre de transport r&#233;duite<br><b>- Melun &lt;&gt; Paris Gare de Lyon : </b>offre de transport r&#233;duite<br/><b>Itin&#233;raires recommand&#233;s depuis Gare du Nord :</b><br/>- Pour rejoindre Ch&#226;telet-les-Halles et Paris Gare de Lyon : M&#233;tro 5 jusqu&#8217;&#224; Bastille puis M&#233;tro 1 jusqu&#8217;&#224; Ch&#226;telet-les-Halles ou Paris Gare de Lyon.</p><p><b>Itin&#233;raires recommand&#233;s depuis Paris Gare de Lyon :</b><br/>- Pour rejoindre Ch&#226;telet-les-Halles : M&#233;tro 1<br/>- Pour rejoindre Paris Gare du Nord : M&#233;tro 1 jusqu&#8217;&#224; Bastille puis M&#233;tro 5 jusqu&#8217;&#224; Paris Nord.<br/><b>Durant toute la p&#233;riode :</b><br/>- A Paris Gare du Nord : trains au d&#233;part des voies Grandes Lignes<br/>- A Paris Gare de Lyon : trains au d&#233;part des voies Grandes Lignes<br/><b>A noter :</b><br/><b>- Stade de France St Denis : </b>la gare n&#8217;est pas desservie dans les deux sens de circulation.<br/>Pour rejoindre Paris depuis cette gare, veuillez emprunter le m&#233;tro 14 &#224; Saint Denis Pleyel.<br/>Pour rejoindre cette gare depuis le nord de la ligne, veuillez descendre &#224; Paris Nord, puis emprunter le RER B jusqu&#8217;&#224; la Plaine Stade de France.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Pour plus d'informations sur ces travaux, consultez <a href=\"https://maligned.transilien.com/\">le blog du RER D.</a><br/><b>Motif : </b>Travaux sur le r&#233;seau ferr&#233;.</p>",
+                        "<b>1 ascenseur hors service — Gare du Nord</b><br/>1 ascenseur sur 8 est actuellement hors service dans cette station."
+                    ],
+                    "route": {
+                        "destination": {
+                            "country": "FR",
+                            "floorLevel": 0,
+                            "identifier": {
+                                "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:474024"
+                            },
+                            "latitude": 48.780212000000006,
+                            "longitude": 2.2814536,
+                            "name": "Robinson",
+                            "region": "FR-IDF",
+                            "stopInformation": {
+                                "lines": [
+                                    {
+                                        "mode": "LocalTrain"
+                                    },
+                                    {
+                                        "mode": "Bus"
+                                    }
+                                ]
+                            },
+                            "timezone": "Europe/Paris",
+                            "type": "Stop"
+                        },
+                        "direction": "SOIE",
+                        "line": {
+                            "color": "#5091cb",
+                            "mode": "Train",
+                            "name": "B",
+                            "operatorName": "RER",
+                            "operatorUrl": "https://www.iledefrance-mobilites.fr",
+                            "textColor": "#ffffff"
+                        },
+                        "name": "SOIE72"
+                    },
+                    "scheduledDepartureTime": "2026-08-27T10:53:00Z",
+                    "stopPoint": {
+                        "country": "FR",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:462394"
+                        },
+                        "latitude": 48.882305,
+                        "longitude": 2.3566934999999996,
+                        "name": "Gare du Nord",
+                        "region": "FR-IDF",
+                        "stopInformation": {
+                            "lines": [
+                                {
+                                    "mode": "LocalTrain"
+                                },
+                                {
+                                    "mode": "Metro"
+                                },
+                                {
+                                    "mode": "Bus"
+                                }
+                            ]
+                        },
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "type": "WheelchairAccessible"
+                            }
+                        ]
+                    }
+                },
+                "identifiers": {
+                    "motis": "20260827_12:20_fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:TN:SNCF:15da9a76-40dc-4b0e-bd87-f5b801051f58"
+                },
+                "mode": "PublicTransport",
+                "notes": [
+                    "<b>RER B : Châtelet <-> Aéroport CDG2 - Mitry - Claye 01/06-31/12</b><p>P&#233;riode : en semaine &#224; partir de 22h45.<br/>Dates : du lundi 1er juin au jeudi 31 d&#233;cembre<br/>Le trafic est interrompu entre Ch&#226;telet Les Halles et A&#233;rop. C De Gaulle 2 et entre Ch&#226;telet Les Halles et Mitry - Claye.<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Pour plus d'informations, consultez le site du RER B<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER B : Aér. CDG2/Mitry - Claye <-> Châtelet interrompu en soirée</b><p>P&#233;riode : les week-ends de 22h45 &#224; Fin de service<br/>Dates : Les samedi 25, dimanche 26 juillet et samedi 1er, dimanche 2, samedi 8, dimanche 9, samedi 15, dimanche 16 aout</p><p>Le trafic est interrompu entre Ch&#226;telet les Halles et A&#233;roport Charles de Gaulle/Mitry-Claye<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire</p>",
+                    "<b>RER B : Paris Nord <-> Denfert Rochereau 29-30/08</b><p>P&#233;riode : les week-ends, toute la journ&#233;e.<br/>Dates : du samedi 29 au dimanche 30 ao&#251;t.<br/>Le trafic est interrompu entre Gare du Nord et Denfert-Rochereau <br/>Les lignes 38 et m&#233;tro 4 seront renforc&#233;es et desservent les gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>"
+                ],
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.356693,
+                                        48.882305
+                                    ],
+                                    [
+                                        2.358037,
+                                        48.882145
+                                    ],
+                                    [
+                                        2.357927,
+                                        48.881847
+                                    ],
+                                    [
+                                        2.357698,
+                                        48.881348
+                                    ],
+                                    [
+                                        2.357382,
+                                        48.88066
+                                    ],
+                                    [
+                                        2.357287,
+                                        48.88049
+                                    ],
+                                    [
+                                        2.357152,
+                                        48.880276
+                                    ],
+                                    [
+                                        2.356929,
+                                        48.880005
+                                    ],
+                                    [
+                                        2.356827,
+                                        48.879898
+                                    ],
+                                    [
+                                        2.355374,
+                                        48.8786
+                                    ],
+                                    [
+                                        2.355082,
+                                        48.87836
+                                    ],
+                                    [
+                                        2.354722,
+                                        48.878094
+                                    ],
+                                    [
+                                        2.353615,
+                                        48.87741
+                                    ],
+                                    [
+                                        2.351202,
+                                        48.876026
+                                    ],
+                                    [
+                                        2.350754,
+                                        48.875736
+                                    ],
+                                    [
+                                        2.350455,
+                                        48.8755
+                                    ],
+                                    [
+                                        2.350113,
+                                        48.875183
+                                    ],
+                                    [
+                                        2.349828,
+                                        48.874855
+                                    ],
+                                    [
+                                        2.346189,
+                                        48.86967
+                                    ],
+                                    [
+                                        2.345965,
+                                        48.869286
+                                    ],
+                                    [
+                                        2.345798,
+                                        48.868942
+                                    ],
+                                    [
+                                        2.345666,
+                                        48.868618
+                                    ],
+                                    [
+                                        2.345553,
+                                        48.868244
+                                    ],
+                                    [
+                                        2.34546,
+                                        48.86787
+                                    ],
+                                    [
+                                        2.345434,
+                                        48.867733
+                                    ],
+                                    [
+                                        2.3454,
+                                        48.86741
+                                    ],
+                                    [
+                                        2.345376,
+                                        48.866932
+                                    ],
+                                    [
+                                        2.345413,
+                                        48.86647
+                                    ],
+                                    [
+                                        2.345491,
+                                        48.865997
+                                    ],
+                                    [
+                                        2.34559,
+                                        48.865646
+                                    ],
+                                    [
+                                        2.34614,
+                                        48.864204
+                                    ],
+                                    [
+                                        2.346438,
+                                        48.863586
+                                    ],
+                                    [
+                                        2.347191,
+                                        48.861835
+                                    ],
+                                    [
+                                        2.346977,
+                                        48.861744
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2026-08-27T11:04:00Z",
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": "2026-08-27T11:03:00Z",
+                    "stopPoint": {
+                        "country": "FR",
+                        "floorLevel": -5,
+                        "identifier": {
+                            "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:472996"
+                        },
+                        "latitude": 48.861732,
+                        "longitude": 2.347147,
+                        "name": "Châtelet - Les Halles",
+                        "region": "FR-IDF",
+                        "stopInformation": {
+                            "lines": [
+                                {
+                                    "mode": "LocalTrain"
+                                }
+                            ]
+                        },
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
+                },
+                "bookingUrl": "https://app.idf-mobilites.fr/gtfs?service_date=%5B%2220260827%22%5D&ticketing_trip_id=%5B%22IDFM:TN:SNCF:a6e4428d-fe0a-4d30-a483-d8a651af41fb%22%5D&from_ticketing_stop_time_id=%5B%227%22%5D&to_ticketing_stop_time_id=%5B%227%22%5D&boarding_time=%5B%222026-08-27T11:00:00%2B00:00%22%5D&arrival_time=%5B%222026-08-27T11:03:00%2B00:00%22%5D",
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2026-08-27T11:00:00Z",
+                    "notes": [
+                        "<b>RER B : Châtelet <-> Aéroport CDG2 - Mitry - Claye 01/06-31/12</b><p>P&#233;riode : en semaine &#224; partir de 22h45.<br/>Dates : du lundi 1er juin au jeudi 31 d&#233;cembre<br/>Le trafic est interrompu entre Ch&#226;telet Les Halles et A&#233;rop. C De Gaulle 2 et entre Ch&#226;telet Les Halles et Mitry - Claye.<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Pour plus d'informations, consultez le site du RER B<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                        "<b>Grands Travaux d'été 2026 : week-end du 12 et 13/09</b><p><b>P&#233;riode : </b>toute la journ&#233;e<br/><b>Dates :</b> les samedi 12 et dimanche 13 septembre<br/><b>- Gare du Nord &lt;&gt; Paris Gare de Lyon : </b>trafic interrompu<br/><b>- Creil &lt;&gt; Gare du Nord :</b> offre de transport r&#233;duite<br/><b>- Corbeil Essonnes &lt;&gt; Paris Gare de Lyon :</b> offre de transport r&#233;duite<br/><b>- Melun &lt;&gt; Paris Gare de Lyon :</b> offre de transport r&#233;duite<br/><b>Itin&#233;raires recommand&#233;s depuis Gare du Nord :</b><br/>- Pour Ch&#226;telet-les-Halles et Paris Gare de Lyon : M&#233;tro 5 jusqu&#8217;&#224; Bastille puis M&#233;tro 1 jusqu&#8217;&#224; Ch&#226;telet-les-Halles ou Paris Gare de Lyon.<br/><b>Itin&#233;raires recommand&#233;s depuis Paris Gare de Lyon :</b><br/>- Pour Ch&#226;telet-les-Halles : M&#233;tro 1<br/>- Pour Paris Nord : M&#233;tro 1 jusqu&#8217;&#224; Bastille puis M&#233;tro 5 jusqu&#8217;&#224; Paris Nord.<br/><b>Durant toute la p&#233;riode :</b><br/>- A Gare du Nord : trains au d&#233;part des voies Grandes Lignes<br/>- A Paris Gare de Lyon : trains au d&#233;part des voies Grandes Lignes</p><p><b>A noter :</b><br/><b>- Stade de France St Denis :</b> la gare n&#8217;est pas desservie dans les deux sens de circulation.<br/>Pour rejoindre Paris depuis cette gare, veuillez emprunter le m&#233;tro 14 &#224; Saint Denis Pleyel.<br/>Pour rejoindre cette gare depuis le nord de la ligne, veuillez descendre &#224; Paris Nord, puis emprunter le RER B jusqu&#8217;&#224; la Plaine Stade de France.</p><p>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Pour plus d'informations sur ces travaux, consultez le <a href=\"https://maligned.transilien.com/\">blog du RER D</a>.<br/><b>Motif :</b> Travaux sur le r&#233;seau ferr&#233;.</p>",
+                        "<b>RER B : Aér. CDG2/Mitry - Claye <-> Châtelet interrompu en soirée</b><p>P&#233;riode : les week-ends de 22h45 &#224; Fin de service<br/>Dates : Les samedi 25, dimanche 26 juillet et samedi 1er, dimanche 2, samedi 8, dimanche 9, samedi 15, dimanche 16 aout</p><p>Le trafic est interrompu entre Ch&#226;telet les Halles et A&#233;roport Charles de Gaulle/Mitry-Claye<br/>Un dispositif de bus de remplacement sera mis en place au d&#233;part du Gare du Nord.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire</p>",
+                        "<b>RER D : Paris Nord <-> Paris Lyon 29-30/08, le week-end</b><p><b>P&#233;riode :</b> toute la journ&#233;e<br><b>Dates :</b> les samedi 29 et dimanche 30 ao&#251;t<br/><b>- Paris Gare du Nord &lt;&gt; Paris Gare de Lyon : </b>trafic interrompu<br><b>- Creil &lt;&gt; Paris Gare du Nord : </b>offre de transport r&#233;duite<br><b>- Corbeil Essonnes &lt;&gt; Paris Gare de Lyon : </b>offre de transport r&#233;duite<br><b>- Melun &lt;&gt; Paris Gare de Lyon : </b>offre de transport r&#233;duite<br/><b>Itin&#233;raires recommand&#233;s depuis Gare du Nord :</b><br/>- Pour rejoindre Ch&#226;telet-les-Halles et Paris Gare de Lyon : M&#233;tro 5 jusqu&#8217;&#224; Bastille puis M&#233;tro 1 jusqu&#8217;&#224; Ch&#226;telet-les-Halles ou Paris Gare de Lyon.</p><p><b>Itin&#233;raires recommand&#233;s depuis Paris Gare de Lyon :</b><br/>- Pour rejoindre Ch&#226;telet-les-Halles : M&#233;tro 1<br/>- Pour rejoindre Paris Gare du Nord : M&#233;tro 1 jusqu&#8217;&#224; Bastille puis M&#233;tro 5 jusqu&#8217;&#224; Paris Nord.<br/><b>Durant toute la p&#233;riode :</b><br/>- A Paris Gare du Nord : trains au d&#233;part des voies Grandes Lignes<br/>- A Paris Gare de Lyon : trains au d&#233;part des voies Grandes Lignes<br/><b>A noter :</b><br/><b>- Stade de France St Denis : </b>la gare n&#8217;est pas desservie dans les deux sens de circulation.<br/>Pour rejoindre Paris depuis cette gare, veuillez emprunter le m&#233;tro 14 &#224; Saint Denis Pleyel.<br/>Pour rejoindre cette gare depuis le nord de la ligne, veuillez descendre &#224; Paris Nord, puis emprunter le RER B jusqu&#8217;&#224; la Plaine Stade de France.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Pour plus d'informations sur ces travaux, consultez <a href=\"https://maligned.transilien.com/\">le blog du RER D.</a><br/><b>Motif : </b>Travaux sur le r&#233;seau ferr&#233;.</p>",
+                        "<b>1 ascenseur hors service — Gare du Nord</b><br/>1 ascenseur sur 8 est actuellement hors service dans cette station."
+                    ],
+                    "route": {
+                        "destination": {
+                            "country": "FR",
+                            "floorLevel": 0,
+                            "identifier": {
+                                "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:471708"
+                            },
+                            "latitude": 48.5276,
+                            "longitude": 2.6541016,
+                            "name": "Melun",
+                            "region": "FR-IDF",
+                            "stopInformation": {
+                                "lines": [
+                                    {
+                                        "mode": "LocalTrain"
+                                    },
+                                    {
+                                        "mode": "Bus"
+                                    }
+                                ]
+                            },
+                            "timezone": "Europe/Paris",
+                            "type": "Stop"
+                        },
+                        "direction": "ZECO",
+                        "line": {
+                            "color": "#008b5b",
+                            "mode": "Train",
+                            "name": "D",
+                            "operatorName": "RER",
+                            "operatorUrl": "https://www.iledefrance-mobilites.fr",
+                            "textColor": "#ffffff"
+                        },
+                        "name": "153656-153657"
+                    },
+                    "scheduledDepartureTime": "2026-08-27T11:00:00Z",
+                    "stopPoint": {
+                        "country": "FR",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:462394"
+                        },
+                        "latitude": 48.882305,
+                        "longitude": 2.3566934999999996,
+                        "name": "Gare du Nord",
+                        "region": "FR-IDF",
+                        "stopInformation": {
+                            "lines": [
+                                {
+                                    "mode": "LocalTrain"
+                                },
+                                {
+                                    "mode": "Metro"
+                                },
+                                {
+                                    "mode": "Bus"
+                                }
+                            ]
+                        },
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "type": "WheelchairAccessible"
+                            }
+                        ]
+                    }
+                },
+                "identifiers": {
+                    "motis": "20260827_12:34_fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:TN:SNCF:a6e4428d-fe0a-4d30-a483-d8a651af41fb"
+                },
+                "mode": "PublicTransport",
+                "notes": [
+                    "<b>RER D : Paris Lyon <-> Villeneuve St-G non desservi 31/08-18/09</b><p>P&#233;riode : en semaine &#224; partir de 22h30.<br/>Dates : du lundi 31 ao&#251;t au vendredi 18 septembre.<br/>Les gares entre Paris Gare de Lyon et Villeneuve Saint Georges ne sont pas desservies.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D - Stade de France - Concert (PLK) - vendredi 4 septembre</b><p>Date : le vendredi 4 septembre<br/><b>Concert au Stade de France</b> (PLK)<br/>Risque de forte affluence sur les RER B, RER D et m&#233;tro 13. <b>Aucun RER D apr&#232;s le concert.</b> Privil&#233;giez le m&#233;tro 14 &#224; l'aller et au retour.<br/>Bon concert &#224; toutes et tous.</p>",
+                    "<b>RER D : Paris Lyon <> Villeneuve StG non desservis du 24 au 28/08</b><p>P&#233;riode : en semaine &#224; partir de 22h30.<br/>Dates : du lundi 24 au vendredi 28 ao&#251;t.<br/>Les gares entre Paris Gare de Lyon et Villeneuve Saint Georges ne sont pas desservies.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Nord <-> Paris Lyon 29-30/08, le week-end</b><p><b>P&#233;riode :</b> toute la journ&#233;e<br><b>Dates :</b> les samedi 29 et dimanche 30 ao&#251;t<br/><b>- Paris Gare du Nord &lt;&gt; Paris Gare de Lyon : </b>trafic interrompu<br><b>- Creil &lt;&gt; Paris Gare du Nord : </b>offre de transport r&#233;duite<br><b>- Corbeil Essonnes &lt;&gt; Paris Gare de Lyon : </b>offre de transport r&#233;duite<br><b>- Melun &lt;&gt; Paris Gare de Lyon : </b>offre de transport r&#233;duite<br/><b>Itin&#233;raires recommand&#233;s depuis Gare du Nord :</b><br/>- Pour rejoindre Ch&#226;telet-les-Halles et Paris Gare de Lyon : M&#233;tro 5 jusqu&#8217;&#224; Bastille puis M&#233;tro 1 jusqu&#8217;&#224; Ch&#226;telet-les-Halles ou Paris Gare de Lyon.</p><p><b>Itin&#233;raires recommand&#233;s depuis Paris Gare de Lyon :</b><br/>- Pour rejoindre Ch&#226;telet-les-Halles : M&#233;tro 1<br/>- Pour rejoindre Paris Gare du Nord : M&#233;tro 1 jusqu&#8217;&#224; Bastille puis M&#233;tro 5 jusqu&#8217;&#224; Paris Nord.<br/><b>Durant toute la p&#233;riode :</b><br/>- A Paris Gare du Nord : trains au d&#233;part des voies Grandes Lignes<br/>- A Paris Gare de Lyon : trains au d&#233;part des voies Grandes Lignes<br/><b>A noter :</b><br/><b>- Stade de France St Denis : </b>la gare n&#8217;est pas desservie dans les deux sens de circulation.<br/>Pour rejoindre Paris depuis cette gare, veuillez emprunter le m&#233;tro 14 &#224; Saint Denis Pleyel.<br/>Pour rejoindre cette gare depuis le nord de la ligne, veuillez descendre &#224; Paris Nord, puis emprunter le RER B jusqu&#8217;&#224; la Plaine Stade de France.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Pour plus d'informations sur ces travaux, consultez <a href=\"https://maligned.transilien.com/\">le blog du RER D.</a><br/><b>Motif : </b>Travaux sur le r&#233;seau ferr&#233;.</p>",
+                    "<b>RER D : allègement de l’offre de transport</b><p>&#192; partir du 24 ao&#251;t, l&#8217;offre de transport est r&#233;duite sur votre ligne.<br/>Pour pr&#233;parer votre trajet et avant de vous rendre en gare, v&#233;rifiez les horaires des trains sur l&#8217;appli Ile-de-France Mobilit&#233;s, le site <a href=\"https://Transilien.com\">Transilien.com</a>, SNCF Connect ou votre appli de mobilit&#233;.<br/>Motif : capacit&#233; de maintenance des trains temporairement r&#233;duite (cr&#233;ation de nouveaux ateliers de maintenance)</p>",
+                    "<b>RER D : Paris Lyon <-> Melun / Corbeil interrompu du 14 au 25/09</b><p>P&#233;riode : en semaine &#224; partir de 23h15.<br/>Dates : du lundi 14 au vendredi 25 septembre.<br/>Le trafic est interrompu entre Paris Gare de Lyon et Melun et entre Paris Gare de Lyon et Corbeil-Essonnes.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.</p>",
+                    "<b>Grands Travaux d'été 2026 : week-end du 12 et 13/09</b><p><b>P&#233;riode : </b>toute la journ&#233;e<br/><b>Dates :</b> les samedi 12 et dimanche 13 septembre<br/><b>- Gare du Nord &lt;&gt; Paris Gare de Lyon : </b>trafic interrompu<br/><b>- Creil &lt;&gt; Gare du Nord :</b> offre de transport r&#233;duite<br/><b>- Corbeil Essonnes &lt;&gt; Paris Gare de Lyon :</b> offre de transport r&#233;duite<br/><b>- Melun &lt;&gt; Paris Gare de Lyon :</b> offre de transport r&#233;duite<br/><b>Itin&#233;raires recommand&#233;s depuis Gare du Nord :</b><br/>- Pour Ch&#226;telet-les-Halles et Paris Gare de Lyon : M&#233;tro 5 jusqu&#8217;&#224; Bastille puis M&#233;tro 1 jusqu&#8217;&#224; Ch&#226;telet-les-Halles ou Paris Gare de Lyon.<br/><b>Itin&#233;raires recommand&#233;s depuis Paris Gare de Lyon :</b><br/>- Pour Ch&#226;telet-les-Halles : M&#233;tro 1<br/>- Pour Paris Nord : M&#233;tro 1 jusqu&#8217;&#224; Bastille puis M&#233;tro 5 jusqu&#8217;&#224; Paris Nord.<br/><b>Durant toute la p&#233;riode :</b><br/>- A Gare du Nord : trains au d&#233;part des voies Grandes Lignes<br/>- A Paris Gare de Lyon : trains au d&#233;part des voies Grandes Lignes</p><p><b>A noter :</b><br/><b>- Stade de France St Denis :</b> la gare n&#8217;est pas desservie dans les deux sens de circulation.<br/>Pour rejoindre Paris depuis cette gare, veuillez emprunter le m&#233;tro 14 &#224; Saint Denis Pleyel.<br/>Pour rejoindre cette gare depuis le nord de la ligne, veuillez descendre &#224; Paris Nord, puis emprunter le RER B jusqu&#8217;&#224; la Plaine Stade de France.</p><p>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Pour plus d'informations sur ces travaux, consultez le <a href=\"https://maligned.transilien.com/\">blog du RER D</a>.<br/><b>Motif :</b> Travaux sur le r&#233;seau ferr&#233;.</p>",
+                    "<b>RER D : Paris Lyon <> Paris Nord interrompu du 24 au 28/08.</b><p>P&#233;riode : en semaine &#224; partir de 23h15.<br/>Dates : du lundi 24 au vendredi 28 ao&#251;t.<br/>Le trafic est interrompu entre Paris Gare de Lyon et Paris Gare du Nord.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Lyon <> Corbeil et Melun interrompu du 21 au 25/09.</b><p>P&#233;riode : en semaine &#224; partir de 23h15.<br/>Dates : du lundi 21 au vendredi 25 septembre.<br/>Le trafic est interrompu entre Paris Gare de Lyon et Corbeil-Essonnes et entre Paris Gare de Lyon et Melun.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Nord <> Paris Lyon interrompu 12-13/09, le week-end</b><p>P&#233;riode : le week-end, toute la journ&#233;e.<br/>Dates : du samedi 12 au dimanche 13 septembre.<br/>Le trafic est interrompu entre Paris Gare du Nord et Paris Gare de Lyon.</p><p>&#192; noter : Les trains seront au d&#233;part et &#224; l'arriv&#233;e de Paris Lyon Surface.</p><p>P&#233;riode : le week-end, &#224; partir de 22h25.</p><p>Dates : du samedi 12 au dimanche 13 septembre.</p><p>L'arr&#234;t Maisons-Alfort Alfortville n'est pas desservi en direction du sud de la ligne et l'arr&#234;t Vert-de-Maisons n'est pas desservi dans les deux sens de circulation.</p><p>A noter : </p><p>- Le train SOPA d&#233;part Corbeil-Essonnes 04h25, arriv&#233;e Creil 06h20 ne marquera pas l'arr&#234;t &#224; Vert-de-Maisons les samedi 12 et dimanche 13 septembre.<br/>- Le train DOCA d&#233;part Melun 04h04, arriv&#233;e Paris Lyon 05h03 ne marquera pas l'arr&#234;t &#224; Vert-de-Maisons le samedi 12 septembre.</p><p>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Corbeil <-> Malesherbes interrompu du 21 au 25/09</b><p>P&#233;riode : en semaine de 10h11 &#224; 14h18.<br/>Dates : du lundi 21 au vendredi 25 septembre.<br/>Le trafic est interrompu entre Corbeil-Essonnes et Malesherbes.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Nord <> Creil interrompu du 03 au 28/08.</b><p>P&#233;riode : en semaine &#224; partir de 23h35.<br/>Dates : du lundi 03 au vendredi 28 ao&#251;t.<br/>Le trafic est interrompu entre Paris Gare du Nord et Creil.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Melun <-> Combs-la-Ville allégé 12-13/09, le week-end</b><p>P&#233;riode : le week-end, toute la journ&#233;e.<br/>Dates : du samedi 12 au dimanche 13 septembre.<br/>Le trafic est all&#233;g&#233; entre Melun et Combs-la-Ville - Quincy, pr&#233;voir 1 train sur 2.</p><p>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D - Stade de France - Concert (PLK) - samedi 5 septembre</b><p>Date : le samedi 5 septembre<br/><b>Concert au Stade de France</b> (PLK)<br/>Risque de forte affluence sur les RER B, RER D et m&#233;tro 13. <b>Aucun RER D apr&#232;s le concert en direction du nord de la ligne.</b> Veuillez emprunter les bus de remplacement situ&#233;s sur le parvis de la gare de la ligne 14 du m&#233;tro &#224; Saint-Denis&#8211;Pleyel.<br/>Bon concert &#224; toutes et tous.</p>",
+                    "<b>RER D : Maisons-Alfort et Vert de Maisons non desservies 29-30/08</b><p>P&#233;riode : &#224; partir de 22h25.<br/>Dates : du samedi 29 au dimanche 30 ao&#251;t.</p><p>La gare de Maisons-Alfort n'est pas desservie en direction de Corbeil et de Melun.</p><p>La gare du Vert de Maisons n'est pas desservie dans les deux sens.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Nord <> Paris Lyon interrompu 12-13/09, le week-end</b><p>P&#233;riode : le week-end, toute la journ&#233;e.<br/>Dates : du samedi 12 au dimanche 13 septembre.<br/>Le trafic est interrompu entre Paris Gare du Nord et Paris Gare de Lyon.</p><p>L'arr&#234;t Stade de France est &#233;galement non desservi dans les deux sens de circulation.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Corbeil-Essonnes <> Malesherbes interrompu du 03 au 28/08</b><p>P&#233;riode : en semaine &#224; partir de 23h00.<br/>Dates : du lundi 03 au vendredi 28 ao&#251;t.<br/>Le trafic est interrompu entre Corbeil-Essonnes et Malesherbes.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Combs-la-Ville <-> Melun interrompu du 31/08-18/09</b><p>P&#233;riode : en semaine &#224; partir de 19h50.<br/>Dates : du lundi 31 ao&#251;t au vendredi 18 septembre.<br/>Le trafic est all&#233;g&#233; entre Paris gare de Lyon et Melun.</p><p>P&#233;riode : en semaine &#224; partir de 23h15.<br/>Dates : du lundi 31 ao&#251;t au vendredi 18 septembre.<br/>Le trafic est interrompu entre Combs-la-Ville - Quincy et Melun.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Nord <-> Creil 31/08-25/09, en semaine dès 23h35</b><p>P&#233;riode : en semaine &#224; partir de 23h35.<br/>Dates : du lundi 31 ao&#251;t au vendredi 25 septembre.<br/>Le trafic est interrompu entre Paris Gare du Nord et Creil.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Juvisy <-> Corbeil-Essonnes interrompu 24-28/08</b><p>Période : en semaine à partir de 23h15.<br/>Dates : du lundi 24 au vendredi 28 août.<br/>Le trafic est interrompu entre Juvisy et Corbeil-Essonnes via Ris-Orangis.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br/>Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br/>Motif : travaux sur le réseau ferroviaire.</p>",
+                    "<b>RER D : Stade de France <> Creil interrompu 05-06/09, le week-end</b><p>P&#233;riode : le week-end, toute la journ&#233;e.<br/>Dates : du samedi 05 au dimanche 06 septembre.<br/>Le trafic est interrompu entre Stade France St-Denis et Creil.</p><p>La gare de Saint Denis n'est pas desservie par les bus de remplacement dans le deux sens de circulation.</p><p><b>Depuis la gare de Saint Denis :</b></p><p>- Pour rejoindre Pierrefitte Stains empruntez la ligne H jusqu'&#224; Epinay Villetaneuse, puis le T11.<br/>- Pour rejoindre Stade de France St Denis empruntez le T8 jusque Saint Denis Porte de Paris puis le m&#233;tro 13.</p><p>- Pour rejoindre Paris Nord empruntez la ligne H.<br>- Pour rejoindre Stade de France empruntez la ligne H jusque Paris Nord puis le RER D.</p><p>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Combs-la-Ville <-> Melun 24-28/08, en semaine dès 23h15</b><p>P&#233;riode : en semaine d&#232;s 23h15 <br/>Dates : du lundi 24 au vendredi 28 ao&#251;t.<br/>Le trafic est interrompu entre Combs-la-Ville - Quincy et Melun.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : Paris Lyon <-> Combs-la-Ville trafic allégé du 05-06/09</b><p>P&#233;riode : le week-end, toute la journ&#233;e.<br/>Dates : du samedi 05 au dimanche 06 septembre.<br/>Le trafic est all&#233;g&#233; entre Paris Gare de Lyon et Combs-la-Ville - Quincy.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>",
+                    "<b>RER D : 3 gares non desservies en direction de Paris 05- 06/09.</b><p>P&#233;riode : le week-end, toute la journ&#233;e.<br/>Dates : du samedi 05 au dimanche 06 septembre.<br/>Les gares de Cr&#233;teil Pompadour, Villeneuve Triage et Le Vert de Maisons en direction de Paris ne sont pas desservies.<br/><b>A partir de 23h59 les gares de Cr&#233;teil Pompadour et Villeneuve Triage ne sont pas desservies dans les deux sens de circulation.</b></p><p>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.</p><p>Motif : travaux sur le r&#233;seau f&#233;roviaire. </p>",
+                    "<b>RER D : Paris Lyon <-> Combs / Juvisy interrompu 19-26/09</b><p>P&#233;riode : &#224; partir de 23h15.<br/>Dates : les samedis 19 et 26 septembre.<br/>Le trafic est interrompu entre Paris Gare de Lyon et Combs-la-Ville - Quincy et entre Paris Gare de Lyon et Juvisy.<br/>Un service de bus de remplacement est mis en place, avec desserte des gares interm&#233;diaires.<br/>Les horaires du calculateur d'itin&#233;raire tiennent compte des travaux.<br/>Motif : travaux sur le r&#233;seau ferroviaire.</p>"
+                ],
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.356693,
+                                        48.882305
+                                    ],
+                                    [
+                                        2.357795,
+                                        48.882133
+                                    ],
+                                    [
+                                        2.357732,
+                                        48.88197
+                                    ],
+                                    [
+                                        2.357473,
+                                        48.881393
+                                    ],
+                                    [
+                                        2.35715,
+                                        48.8807
+                                    ],
+                                    [
+                                        2.35706,
+                                        48.880535
+                                    ],
+                                    [
+                                        2.356844,
+                                        48.880222
+                                    ],
+                                    [
+                                        2.356627,
+                                        48.879974
+                                    ],
+                                    [
+                                        2.356249,
+                                        48.87965
+                                    ],
+                                    [
+                                        2.354796,
+                                        48.87828
+                                    ],
+                                    [
+                                        2.354237,
+                                        48.87782
+                                    ],
+                                    [
+                                        2.353615,
+                                        48.87741
+                                    ],
+                                    [
+                                        2.351202,
+                                        48.876026
+                                    ],
+                                    [
+                                        2.350754,
+                                        48.875736
+                                    ],
+                                    [
+                                        2.350455,
+                                        48.8755
+                                    ],
+                                    [
+                                        2.350113,
+                                        48.875183
+                                    ],
+                                    [
+                                        2.349828,
+                                        48.874855
+                                    ],
+                                    [
+                                        2.346189,
+                                        48.86967
+                                    ],
+                                    [
+                                        2.345965,
+                                        48.869286
+                                    ],
+                                    [
+                                        2.345798,
+                                        48.868942
+                                    ],
+                                    [
+                                        2.345666,
+                                        48.868618
+                                    ],
+                                    [
+                                        2.345553,
+                                        48.868244
+                                    ],
+                                    [
+                                        2.34546,
+                                        48.86787
+                                    ],
+                                    [
+                                        2.345434,
+                                        48.867733
+                                    ],
+                                    [
+                                        2.3454,
+                                        48.86741
+                                    ],
+                                    [
+                                        2.345376,
+                                        48.866932
+                                    ],
+                                    [
+                                        2.345413,
+                                        48.86647
+                                    ],
+                                    [
+                                        2.345491,
+                                        48.865997
+                                    ],
+                                    [
+                                        2.34559,
+                                        48.865646
+                                    ],
+                                    [
+                                        2.345706,
+                                        48.865044
+                                    ],
+                                    [
+                                        2.346371,
+                                        48.86324
+                                    ],
+                                    [
+                                        2.347002,
+                                        48.861755
+                                    ],
+                                    [
+                                        2.347147,
+                                        48.861732
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]

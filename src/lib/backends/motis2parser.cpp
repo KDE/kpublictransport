@@ -108,11 +108,47 @@ struct {
 
 constexpr inline auto PICKUP_DROPOFF_NOT_ALLED = "NOT_ALLOWED"_L1;
 
-template <typename T>
-void parseAlerts(T &elem, const QJsonArray &alerts)
+static void alertPeriodRange(const QJsonArray &periodA, QDateTime &rangeStart, QDateTime &rangeEnd)
 {
+    for (const auto &periodV : periodA) {
+        const auto period = periodV.toObject();
+        const auto s = QDateTime::fromString(period.value("start"_L1).toString(), Qt::ISODate);
+        if (s.isValid()) {
+            rangeStart = rangeStart.isValid() ? std::min(s, rangeStart) : s;
+        }
+        auto e = QDateTime::fromString(period.value("end"_L1).toString(), Qt::ISODate);
+        if (e.isValid()) {
+            if (e.toSecsSinceEpoch() == 0) {
+                e = QDateTime::currentDateTime().addDays(1000); // indefinite
+            }
+            rangeEnd = rangeEnd.isValid() ? std::max(e, rangeEnd) : e;
+        }
+    }
+}
+
+template <typename T>
+static void parseAlerts(T &elem, const QJsonArray &alerts, QDateTime relevantTimeStart, QDateTime relevantTimeEnd)
+{
+    if (relevantTimeEnd.isValid() && !relevantTimeStart.isValid()) {
+        relevantTimeStart = relevantTimeEnd;
+    } else if (relevantTimeStart.isValid() && !relevantTimeEnd.isValid()) {
+        relevantTimeEnd = relevantTimeStart;
+    }
+
     for (const auto &alertV : alerts) {
         const auto alertObj = alertV.toObject();
+
+        // discard alerts too far into the future or already in the past
+        QDateTime start, end;
+        alertPeriodRange(alertObj.value("communicationPeriod"_L1).toArray(), start, end);
+        alertPeriodRange(alertObj.value("impactPeriod"_L1).toArray(), start, end);
+        if (start.isValid() && relevantTimeEnd.date().addDays(30) < start.date()) {
+            continue;
+        }
+        if (end.isValid() && relevantTimeStart.date().addDays(-1) > end.date()) {
+            continue;
+        }
+
         const auto headline = alertObj.value("headerText"_L1).toString();
         const auto desc = alertObj.value("descriptionText"_L1).toString();
         if (!headline.isEmpty() && !desc.isEmpty()) {
@@ -193,7 +229,7 @@ Stopover Motis2Parser::parsePlace(const QJsonObject &obj, bool hasRealTime) cons
         s.setDropoffType(PickupDropoff::NotAllowed);
     }
 
-    parseAlerts(s, obj.value("alerts"_L1).toArray());
+    parseAlerts(s, obj.value("alerts"_L1).toArray(), s.scheduledArrivalTime(), s.scheduledDepartureTime());
 
     return s;
 }
@@ -377,7 +413,7 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
                 s.setDisruptionEffect(Disruption::NoService);
             }
 
-            parseAlerts(s, leg.value("alerts"_L1).toArray());
+            parseAlerts(s, leg.value("alerts"_L1).toArray(), s.scheduledDepartureTime(), s.scheduledArrivalTime());
         } else if (s.mode() == JourneySection::IndividualTransport) {
             IndividualTransport iv;
             iv.setMode((*it).ivMode);
