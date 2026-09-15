@@ -7,6 +7,7 @@
 #include "journeyrequest.h"
 #include "requestcontext_p.h"
 #include "datatypes/datatypes_p.h"
+#include "datatypes/journey.h"
 #include "datatypes/json_p.h"
 #include "datatypes/locationutil_p.h"
 
@@ -60,6 +61,19 @@ JourneyRequest::JourneyRequest(const Location &from, const Location &to)
 {
     d->from = from;
     d->to = to;
+}
+
+JourneyRequest::JourneyRequest(const Journey &journey)
+    : d(new JourneyRequestPrivate)
+{
+    if (journey.sections().empty()) {
+        return;
+    }
+    d->from = journey.sections().front().from();
+    d->to = journey.sections().back().to();
+    d->dateTime = journey.scheduledDepartureTime();
+    // TODO derive transit/access/egress modes from journey?
+    // TODO record contributing backends in result objects and forward this here?
 }
 
 bool JourneyRequest::isValid() const

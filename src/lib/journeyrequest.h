@@ -95,7 +95,11 @@ public:
 
 public:
     /** Search a journey from @p from to @p to. */
-    JourneyRequest(const Location &from, const Location &to);
+    explicit JourneyRequest(const Location &from, const Location &to);
+    /** Search the given @p journey again, e.g. to get new realtime information.
+     *  @since 26.12
+     */
+    explicit JourneyRequest(const Journey &journey);
 
     /** Returns @c true if this is a valid request, that is, it has enough parameters set to perform a query. */
     [[nodiscard]] bool isValid() const;
