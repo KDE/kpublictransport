@@ -6,7 +6,7 @@
 #ifndef KPUBLICTRANSPORT_CLASSUTIL_H
 #define KPUBLICTRANSPORT_CLASSUTIL_H
 
-#include <kpublictransport_export.h>
+#include "kpublictransport_export.h"
 
 #include "vehicle.h"
 
