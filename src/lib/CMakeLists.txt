@@ -329,3 +329,20 @@ if (BUILD_QCH)
         COMPONENT Devel
     )
 endif()
+
+if(HAVE_INSTALLEDLIBRARYCHECK)
+    ecm_add_installed_library_check(KPublicTransport
+        PACKAGE_NAME "KPublicTransport"
+        NO_PACKAGE_TARGET_NAMESPACE
+    )
+
+    ecm_installed_library_check_include_strings(KPublicTransport
+        HEADERS
+            ${KPublicTransport_FORWARDING_HEADERS}
+            ${KPublicTransport_Datatypes_FORWARDING_HEADERS}
+            ${KPublicTransport_Layout_FORWARDING_HEADERS}
+            ${KPublicTransport_Models_FORWARDING_HEADERS}
+            ${KPublicTransport_Update_FORWARDING_HEADERS}
+        PREFIX KPublicTransport
+    )
+endif()

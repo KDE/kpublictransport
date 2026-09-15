@@ -86,3 +86,16 @@ install(FILES
 if (KDE_INSTALL_QTMETATYPESDIR) # since 6.27
     install(FILES ${METATYPES_FILE} DESTINATION ${KDE_INSTALL_QTMETATYPESDIR})
 endif()
+
+if(HAVE_INSTALLEDLIBRARYCHECK)
+    ecm_add_installed_library_check(KPublicTransportOnboard
+        PACKAGE_NAME "KPublicTransport"
+        NO_PACKAGE_TARGET_NAMESPACE
+    )
+
+    ecm_installed_library_check_include_strings(KPublicTransportOnboard
+        HEADERS
+            ${KPublicTransportOnboard_FORWARDING_HEADERS}
+        PREFIX KPublicTransport
+    )
+endif()
