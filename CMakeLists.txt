@@ -26,6 +26,10 @@ include(GenerateExportHeader)
 include(ECMAddQch)
 include(ECMQmlModule)
 include(ECMFindQmlModule)
+if(${ECM_VERSION} VERSION_GREATER_EQUAL 6.30)
+    set(HAVE_INSTALLEDLIBRARYCHECK TRUE)
+    include(ECMInstalledLibraryCheck)
+endif()
 
 set(CMAKE_CXX_STANDARD 23)
 
