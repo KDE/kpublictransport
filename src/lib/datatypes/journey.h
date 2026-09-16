@@ -394,6 +394,14 @@ public:
     [[nodiscard]] int co2Emission() const;
     [[nodiscard]] Load::Category maximumOccupancy() const;
 
+    /** Backend-specific journey identifiers.
+     *  This can for example be used to efficiently refresh an previously queried journey.
+     *  @since 26.12
+     */
+    [[nodiscard]] QString identifier(QAnyStringView identifierType) const;
+    [[nodiscard]] bool hasIdentifier(QAnyStringView identifierType) const;
+    void setIdentifier(const QString &identifierType, const QString &id);
+
     /** Augment line meta data.
      *  @param download if set to @p true, trigger the download of locally missing assets.
      */

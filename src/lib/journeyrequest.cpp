@@ -7,7 +7,9 @@
 #include "journeyrequest.h"
 #include "requestcontext_p.h"
 #include "datatypes/datatypes_p.h"
+#include "datatypes/identifier_p.h"
 #include "datatypes/journey.h"
+#include "datatypes/journey_p.h"
 #include "datatypes/json_p.h"
 #include "datatypes/locationutil_p.h"
 
@@ -43,6 +45,8 @@ public:
     std::vector<IndividualTransport> egressModes = { {IndividualTransport::Walk} };
     std::vector<IndividualTransport> individualTransportModes = { {IndividualTransport::Walk} };
     std::vector<Line::Mode> lineModes;
+
+    IdentifierSet ids;
 };
 }
 
@@ -72,6 +76,7 @@ JourneyRequest::JourneyRequest(const Journey &journey)
     d->from = journey.sections().front().from();
     d->to = journey.sections().back().to();
     d->dateTime = journey.scheduledDepartureTime();
+    d->ids = JourneyPrivate::get(journey)->ids;
     // TODO derive transit/access/egress modes from journey?
     // TODO record contributing backends in result objects and forward this here?
 }
@@ -150,6 +155,7 @@ QJsonObject JourneyRequest::toJson(const KPublicTransport::JourneyRequest &req)
     obj.insert("accessModes"_L1, IndividualTransport::toJson(req.accessModes()));
     obj.insert("egressModes"_L1, IndividualTransport::toJson(req.egressModes()));
     obj.insert("individualTransportModes"_L1, IndividualTransport::toJson(req.individualTransportModes()));
+    obj.insert("identifiers"_L1, req.d->ids.toJson());
     return obj;
 }
 
@@ -298,6 +304,11 @@ void JourneyRequest::setIndividualTransportModesVariant(const QVariantList &mode
     d->individualTransportModes = IndividualTransport::fromVariant(modes);
 }
 
+QString JourneyRequest::identifier(QAnyStringView identifierType) const
+{
+    return d->ids.identifier(identifierType);
+}
+
 QString JourneyRequest::cacheKey() const
 {
     QCryptographicHash hash(QCryptographicHash::Sha1);
@@ -331,6 +342,11 @@ QString JourneyRequest::cacheKey() const
     for (const auto &it : d->individualTransportModes) {
         hash.addData(QMetaEnum::fromType<IndividualTransport::Mode>().valueToKey(it.mode()));
         hash.addData(QMetaEnum::fromType<IndividualTransport::Qualifier>().valueToKey(it.qualifier()));
+    }
+
+    for (const auto &id : d->ids.data()) {
+        hash.addData(id.type.toUtf8());
+        hash.addData(id.value.toUtf8());
     }
 
     return QString::fromUtf8(hash.result().toHex());

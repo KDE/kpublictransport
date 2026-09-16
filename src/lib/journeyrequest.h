@@ -170,6 +170,13 @@ public:
     /** Sets individual transport modes considered for direct journeys. */
     void setIndividualTransportModes(std::vector<IndividualTransport> &&modes);
 
+    /** Returns the requested journey id for a given identifier type.
+     *  This is set when updating an existing journey, for backends supporting
+     *  journey refreshing without expensive routing.
+     *  @since 25.12
+     */
+    [[nodiscard]] QString identifier(QAnyStringView identifierType) const;
+
     /** Unique string representation used for caching results. */
     [[nodiscard]] QString cacheKey() const;
 

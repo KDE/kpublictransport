@@ -5,6 +5,7 @@
 */
 
 #include "journey.h"
+#include "journey_p.h"
 
 #include "identifier_p.h"
 #include "journeyutil_p.h"
@@ -27,37 +28,6 @@
 
 using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
-
-namespace KPublicTransport {
-
-class JourneySectionPrivate : public QSharedData
-{
-public:
-    [[nodiscard]] bool isValidIndex(qsizetype idx) const;
-
-    JourneySection::Mode mode = JourneySection::Invalid;
-    Stopover departure;
-    Stopover arrival;
-    int distance = 0;
-    Disruption::Effect disruptionEffect = Disruption::NormalService;
-    QStringList notes;
-    std::vector<Stopover> intermediateStops;
-    int co2Emission = -1;
-    RentalVehicle rentalVehicle;
-    Path path;
-    IndividualTransport individualTransport;
-    IdentifierSet ids;
-    QUrl bookingUrl;
-};
-
-class JourneyPrivate : public QSharedData
-{
-public:
-    std::vector<JourneySection> sections;
-    QUrl bookingUrl;
-};
-
-}
 
 KPUBLICTRANSPORT_MAKE_GADGET(JourneySection)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, JourneySection::Mode, mode, setMode)
@@ -1165,6 +1135,22 @@ void Journey::setBookingUrl(const QUrl &value)
     d->bookingUrl = value;
 }
 
+QString Journey::identifier(QAnyStringView identifierType) const
+{
+    return d->ids.identifier(identifierType);
+}
+
+bool Journey::hasIdentifier(QAnyStringView identifierType) const
+{
+    return d->ids.hasIdentifier(identifierType);
+}
+
+void Journey::setIdentifier(const QString &identifierType, const QString &id)
+{
+    d.detach();
+    d->ids.setIdentifier(identifierType, id);
+}
+
 void Journey::applyMetaData(bool download)
 {
     for (auto &sec : d->sections) {
@@ -1183,6 +1169,14 @@ bool Journey::isSame(const Journey &lhs, const Journey &rhs)
 {
     auto lIt = lhs.sections().begin();
     auto rIt = rhs.sections().begin();
+
+    switch (lhs.d->ids.compare(rhs.d->ids)) {
+        case IdentifierSet::Equal:
+            return true;
+        case IdentifierSet::NotEqual:
+        case IdentifierSet::NoIntersection:
+            break;
+    }
 
     while (lIt != lhs.sections().end() || rIt != rhs.sections().end()) {
         // ignore non-transport sections
@@ -1237,6 +1231,8 @@ Journey Journey::merge(const Journey &lhs, const Journey &rhs)
     }
 
     Journey res;
+    res.d->ids = lhs.d->ids;
+    res.d->ids.merge(rhs.d->ids);
     res.setSections(std::move(sections));
     res.setBookingUrl(lhs.bookingUrl().isEmpty() ? rhs.bookingUrl() : lhs.bookingUrl());
     return res;
@@ -1247,6 +1243,9 @@ QJsonObject Journey::toJson(const Journey &journey)
     auto obj = Json::toJson(journey);
     if (journey.d->bookingUrl.isEmpty()) {
         obj.remove("bookingUrl"_L1);
+    }
+    if (!journey.d->ids.isEmpty()) {
+        obj.insert("identifiers"_L1, journey.d->ids.toJson());
     }
     obj.insert("sections"_L1, JourneySection::toJson(journey.sections()));
     return obj;
@@ -1260,6 +1259,7 @@ QJsonArray Journey::toJson(const std::vector<Journey> &journeys)
 Journey Journey::fromJson(const QJsonObject &obj)
 {
     auto j = Json::fromJson<Journey>(obj);
+    j.d->ids.fromJson(obj.value("identifiers"_L1).toObject());
     j.setSections(JourneySection::fromJson(obj.value("sections"_L1).toArray()));
     return j;
 }

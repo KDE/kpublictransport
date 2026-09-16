@@ -498,6 +498,7 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
     }
 
     Journey jny;
+    jny.setIdentifier(m_locIdentifierType, itinerary.value("id"_L1).toString());
     jny.setSections(std::move(sections));
     return jny;
 }

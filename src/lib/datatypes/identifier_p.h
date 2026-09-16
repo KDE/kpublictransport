@@ -20,7 +20,7 @@ public:
 
 class IdentifierSet {
 public:
-    [[nodiscard]] inline bool isEmpty() const { return m_identifiers.empty(); }
+    [[nodiscard]] bool isEmpty() const { return m_identifiers.empty(); }
     [[nodiscard]] bool hasIdentifier(QAnyStringView type) const;
     [[nodiscard]] QString identifier(QAnyStringView type) const;
     void setIdentifier(const QString &type, const QString &value);
@@ -38,6 +38,7 @@ public:
     [[nodiscard]] QJsonObject toJson() const;
     void fromJson(const QJsonObject &ids);
 
+    [[nodiscard]] const std::vector<Identifier>& data() const { return m_identifiers; };
 private:
     std::vector<Identifier> m_identifiers;
 };
