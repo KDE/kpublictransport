@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-21 00:42+0000\n"
+"POT-Creation-Date: 2026-09-17 00:42+0000\n"
 "PO-Revision-Date: 2024-08-24 12:05+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
@@ -131,13 +131,13 @@ msgctxt "mode of individual transport"
 msgid "Car"
 msgstr ""
 
-#: lib/datatypes/individualtransport.cpp:77 lib/datatypes/journey.cpp:594
+#: lib/datatypes/individualtransport.cpp:77 lib/datatypes/journey.cpp:564
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Walk"
 msgstr ""
 
-#: lib/datatypes/journey.cpp:596
+#: lib/datatypes/journey.cpp:566
 #, kde-format
 msgid "Wait"
 msgstr ""
