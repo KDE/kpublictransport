@@ -9,7 +9,7 @@ function parseRealtime(response)
         latitude: response.gpsLat,
         longitude: response.gpsLng,
         speed: response.speed,
-        altitude: response.altitude
+        altitude: response.altitude ? response.altitude : undefined
     };
 }
 
