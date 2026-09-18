@@ -11,6 +11,7 @@ import QtQuick.Controls as QQC2
 import QtQuick.Dialogs as Dialogs
 import org.kde.coreaddons as KCoreAddons
 import org.kde.kirigami as Kirigami
+import org.kde.kpublictransport as KPublicTransport
 import org.kde.kpublictransport
 import org.kde.kpublictransport.ui
 import org.kde.example
@@ -291,6 +292,38 @@ Kirigami.ApplicationWindow {
                     applicationWindow().pageStack.push(pathPage, {"path": modelData.path});
                 }
             }
+        }
+    }
+
+    Component {
+        id: refreshPage
+        Kirigami.ScrollablePage {
+            property alias request: jnyModel.request
+            KPublicTransport.JourneyQueryModel {
+                id: jnyModel
+                manager: ptMgr
+                onLoadingChanged: {
+                    if (!loading)
+                        view.model = jnyModel.data(jnyModel.index(0, 0), 256).sections;
+                }
+            }
+            ListView {
+                id: view
+                clip: true
+                delegate: journeyDelegate
+                QQC2.BusyIndicator {
+                    anchors.centerIn: parent
+                    running: jnyModel.loading
+                }
+                QQC2.Label {
+                    anchors.centerIn: parent
+                    width: parent.width
+                    text: jnyModel.errorMessage
+                    color: Kirigami.Theme.negativeTextColor
+                    wrapMode: Text.Wrap
+                }
+            }
+
         }
     }
 
@@ -689,6 +722,15 @@ Kirigami.ApplicationWindow {
                                 return jny != undefined && jny.bookingUrl != ""
                             }
                             onClicked: Qt.openUrlExternally(journeyModel.data(journeyModel.index(journeySelector.currentIndex, 0), 256).bookingUrl)
+                        }
+                        QQC2.Button {
+                            text: "Refresh"
+                            visible: journeySelector.currentIndex >= 0
+                            onClicked: {
+                                const jny = journeyModel.data(journeyModel.index(journeySelector.currentIndex, 0), 256);
+                                const req = new KPublicTransport.journeyRequest(jny);
+                                applicationWindow().pageStack.push(refreshPage, {request: req});
+                            }
                         }
                     }
                 }
