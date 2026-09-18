@@ -99,7 +99,7 @@ public:
     /** Search the given @p journey again, e.g. to get new realtime information.
      *  @since 26.12
      */
-    explicit JourneyRequest(const Journey &journey);
+    Q_INVOKABLE explicit JourneyRequest(const KPublicTransport::Journey &journey);
 
     /** Returns @c true if this is a valid request, that is, it has enough parameters set to perform a query. */
     [[nodiscard]] bool isValid() const;
