@@ -90,7 +90,7 @@ bool DeutscheBahnBackend::queryLocation(const LocationRequest &req, LocationRepl
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
-            addError(reply, Reply::NetworkError, reply->errorString());
+            addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
 
@@ -180,7 +180,7 @@ bool DeutscheBahnBackend::queryStopover(const StopoverRequest &request, Stopover
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
-            addError(reply, Reply::NetworkError, reply->errorString());
+            addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
 
@@ -257,7 +257,7 @@ bool DeutscheBahnBackend::queryJourney(const JourneyRequest &request, JourneyRep
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
-            addError(reply, Reply::NetworkError, reply->errorString());
+            addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
 
@@ -298,7 +298,7 @@ bool DeutscheBahnBackend::queryTrip(const TripRequest &request, TripReply *reply
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
-            addError(reply, Reply::NetworkError, reply->errorString());
+            addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
 
@@ -407,7 +407,7 @@ bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request
             Cache::addVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey(), res, {}, std::chrono::minutes(2));
             addResult(reply, res);
         } else {
-            addError(reply, Reply::NotFoundError, reply->errorString());
+            addError(reply, Reply::NotFoundError, netReply->errorString());
             Cache::addNegativeVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey(), std::chrono::hours(24));
         }
         netReply->deleteLater();
