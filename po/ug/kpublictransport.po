@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-17 00:42+0000\n"
-"PO-Revision-Date: 2026-05-31 19:30-0400\n"
+"PO-Revision-Date: 2026-09-22 18:03+0900\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur <kde-i18n-doc@kde.org>\n"
 "Language: ug\n"
@@ -106,7 +106,7 @@ msgstr ""
 #, kde-format
 msgctxt "train coach feature"
 msgid "Wi-Fi"
-msgstr "Wi-Fi"
+msgstr ""
 
 #: lib/datatypes/feature.cpp:76
 #, kde-format
@@ -329,7 +329,7 @@ msgstr ""
 #, kde-format
 msgctxt "emoji flag, country name"
 msgid "%1 %2"
-msgstr "%1 %2"
+msgstr ""
 
 #: quick/ExpectedTimeLabel.qml:36
 #, kde-format
