@@ -1,0 +1,859 @@
+{
+    "sections": [
+        {
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "expectedArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2026-09-24T19:44:00+02:00"
+                },
+                "expectedPlatform": "11",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2026-09-24T19:44:00+02:00"
+                },
+                "scheduledPlatform": "11",
+                "stopPoint": {
+                    "country": "DE",
+                    "identifier": {
+                        "ibnr": "8000105"
+                    },
+                    "latitude": 50.1066819,
+                    "longitude": 8.66282825,
+                    "name": "Frankfurt(Main)Hbf",
+                    "region": "DE-HE",
+                    "type": "Stop"
+                }
+            },
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "expectedDepartureTime": {
+                    "timezone": "Europe/Vienna",
+                    "value": "2026-09-24T10:03:30+02:00"
+                },
+                "expectedPlatform": "3D-E",
+                "route": {
+                    "direction": "Frankfurt(Main)Hbf",
+                    "line": {
+                        "mode": "LongDistanceTrain",
+                        "name": "ICE 116"
+                    }
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Vienna",
+                    "value": "2026-09-24T10:00:00+02:00"
+                },
+                "scheduledPlatform": "5D-F",
+                "stopPoint": {
+                    "country": "AT",
+                    "identifier": {
+                        "ibnr": "8100173"
+                    },
+                    "latitude": 47.0723999,
+                    "longitude": 15.4165193,
+                    "name": "Graz Hbf",
+                    "region": "AT-6",
+                    "type": "Stop"
+                }
+            },
+            "distance": 776730,
+            "intermediateStops": [
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T10:39:02+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T10:40:06+02:00"
+                    },
+                    "expectedPlatform": "2",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T10:36:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T10:38:00+02:00"
+                    },
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "ibnr": "8100336"
+                        },
+                        "latitude": 46.6248391,
+                        "longitude": 14.620893,
+                        "name": "Kühnsdorf-Klopeiner See",
+                        "region": "AT-2",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T10:50:28+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T10:51:33+02:00"
+                    },
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T10:48:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T10:50:00+02:00"
+                    },
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "ibnr": "8100085"
+                        },
+                        "latitude": 46.615603,
+                        "longitude": 14.313576,
+                        "name": "Klagenfurt Hbf",
+                        "region": "AT-2",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T10:59:54+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T11:00:54+02:00"
+                    },
+                    "expectedPlatform": "2",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T10:58:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T11:00:00+02:00"
+                    },
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "ibnr": "8100080"
+                        },
+                        "latitude": 46.636197,
+                        "longitude": 14.146286,
+                        "name": "Pörtschach am Wörther See",
+                        "region": "AT-2",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T11:05:39+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T11:07:10+02:00"
+                    },
+                    "expectedPlatform": "2",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T11:05:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T11:07:00+02:00"
+                    },
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "ibnr": "8100081"
+                        },
+                        "latitude": 46.620055,
+                        "longitude": 14.0447197,
+                        "name": "Velden am Wörther See",
+                        "region": "AT-2",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T11:18:31+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T11:29:30+02:00"
+                    },
+                    "expectedPlatform": "4D-F",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T11:18:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T11:28:00+02:00"
+                    },
+                    "scheduledPlatform": "4D-E",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "ibnr": "8100147"
+                        },
+                        "latitude": 46.6186144,
+                        "longitude": 13.848449,
+                        "name": "Villach Hbf",
+                        "region": "AT-2",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T11:51:59+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T11:55:03+02:00"
+                    },
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T11:50:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T11:52:00+02:00"
+                    },
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "ibnr": "8100092"
+                        },
+                        "latitude": 46.7957334,
+                        "longitude": 13.4875443,
+                        "name": "Spittal-Millstättersee",
+                        "region": "AT-2",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T12:15:14+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T12:16:23+02:00"
+                    },
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T12:13:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T12:15:00+02:00"
+                    },
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "ibnr": "8100093"
+                        },
+                        "latitude": 46.981647,
+                        "longitude": 13.176141,
+                        "name": "Mallnitz-Obervellach",
+                        "region": "AT-2",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T12:28:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T12:30:00+02:00"
+                    },
+                    "expectedPlatform": "1",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T12:28:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T12:30:00+02:00"
+                    },
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "ibnr": "8100095"
+                        },
+                        "latitude": 47.1117774,
+                        "longitude": 13.1319243,
+                        "name": "Bad Gastein",
+                        "region": "AT-5",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T12:53:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T12:55:00+02:00"
+                    },
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T12:53:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T12:55:00+02:00"
+                    },
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "ibnr": "8100044"
+                        },
+                        "latitude": 47.318534,
+                        "longitude": 13.154464,
+                        "name": "Schwarzach-St.Veit",
+                        "region": "AT-5",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T13:00:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T13:01:00+02:00"
+                    },
+                    "expectedPlatform": "2",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T13:00:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T13:01:00+02:00"
+                    },
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "ibnr": "8100043"
+                        },
+                        "latitude": 47.348379,
+                        "longitude": 13.194961,
+                        "name": "St. Johann im Pongau",
+                        "region": "AT-5",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T13:09:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T13:11:00+02:00"
+                    },
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T13:09:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T13:11:00+02:00"
+                    },
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "ibnr": "8100042"
+                        },
+                        "latitude": 47.417859,
+                        "longitude": 13.219888,
+                        "name": "Bischofshofen",
+                        "region": "AT-5",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T13:33:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T13:34:00+02:00"
+                    },
+                    "expectedPlatform": "2",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T13:33:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T13:34:00+02:00"
+                    },
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8100041"
+                        },
+                        "latitude": 47.6008099,
+                        "longitude": 13.1640539,
+                        "name": "Golling-Abtenau",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T13:53:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T14:00:00+02:00"
+                    },
+                    "expectedPlatform": "2",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T13:53:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Vienna",
+                        "value": "2026-09-24T14:00:00+02:00"
+                    },
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "AT",
+                        "identifier": {
+                            "ibnr": "8100002"
+                        },
+                        "latitude": 47.813049,
+                        "longitude": 13.04582,
+                        "name": "Salzburg Hbf",
+                        "region": "AT-5",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T14:06:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T14:08:00+02:00"
+                    },
+                    "expectedPlatform": "4",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T14:06:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T14:08:00+02:00"
+                    },
+                    "scheduledPlatform": "4",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000108"
+                        },
+                        "latitude": 47.836916,
+                        "longitude": 12.977193,
+                        "name": "Freilassing",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T14:24:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T14:26:00+02:00"
+                    },
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T14:24:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T14:26:00+02:00"
+                    },
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8000116"
+                        },
+                        "latitude": 47.869727,
+                        "longitude": 12.638801,
+                        "name": "Traunstein",
+                        "region": "DE-BY",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T14:59:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T15:01:00+02:00"
+                    },
+                    "expectedPlatform": "2",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T14:59:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T15:01:00+02:00"
+                    },
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8000320"
+                        },
+                        "latitude": 47.850018,
+                        "longitude": 12.119202,
+                        "name": "Rosenheim",
+                        "region": "DE-BY",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T15:42:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T15:48:00+02:00"
+                    },
+                    "expectedPlatform": "12",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T15:42:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T15:48:00+02:00"
+                    },
+                    "scheduledPlatform": "12",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8000261"
+                        },
+                        "latitude": 48.140232,
+                        "longitude": 11.558335,
+                        "name": "München Hbf",
+                        "region": "DE-BY",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T16:16:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T16:18:00+02:00"
+                    },
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T16:14:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T16:16:00+02:00"
+                    },
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8000013"
+                        },
+                        "latitude": 48.365441,
+                        "longitude": 10.88557,
+                        "name": "Augsburg Hbf",
+                        "region": "DE-BY",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T16:46:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T16:48:00+02:00"
+                    },
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T16:46:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T16:48:00+02:00"
+                    },
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8000139"
+                        },
+                        "latitude": 48.4605626,
+                        "longitude": 10.2792621,
+                        "name": "Günzburg",
+                        "region": "DE-BY",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T17:01:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T17:03:00+02:00"
+                    },
+                    "expectedPlatform": "1",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T17:01:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T17:03:00+02:00"
+                    },
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8000170"
+                        },
+                        "latitude": 48.3993985,
+                        "longitude": 9.98260796,
+                        "name": "Ulm Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T17:59:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T18:05:00+02:00"
+                    },
+                    "expectedPlatform": "8",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T17:59:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T18:05:00+02:00"
+                    },
+                    "scheduledPlatform": "8",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8000096"
+                        },
+                        "latitude": 48.78478,
+                        "longitude": 9.182757,
+                        "name": "Stuttgart Hbf",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T18:44:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T18:46:00+02:00"
+                    },
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T18:44:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T18:46:00+02:00"
+                    },
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8000156"
+                        },
+                        "latitude": 49.403567,
+                        "longitude": 8.675442,
+                        "name": "Heidelberg Hbf",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T19:00:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T19:02:00+02:00"
+                    },
+                    "expectedPlatform": "2",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T19:00:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T19:02:00+02:00"
+                    },
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8000377"
+                        },
+                        "latitude": 49.553302,
+                        "longitude": 8.665351,
+                        "name": "Weinheim(Bergstr)Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T19:11:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T19:13:00+02:00"
+                    },
+                    "expectedPlatform": "1",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T19:11:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T19:13:00+02:00"
+                    },
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8000031"
+                        },
+                        "latitude": 49.681329,
+                        "longitude": 8.616717,
+                        "name": "Bensheim",
+                        "region": "DE-HE",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T19:25:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T19:27:00+02:00"
+                    },
+                    "expectedPlatform": "5",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T19:25:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2026-09-24T19:27:00+02:00"
+                    },
+                    "scheduledPlatform": "5",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8000068"
+                        },
+                        "latitude": 49.872503,
+                        "longitude": 8.629636,
+                        "name": "Darmstadt Hbf",
+                        "region": "DE-HE",
+                        "type": "Stop"
+                    }
+                }
+            ],
+            "mode": "PublicTransport"
+        }
+    ]
+}

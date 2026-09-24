@@ -39,10 +39,22 @@ function parseICETrip(response)
         stop.stopPoint.identifier.ibnr = s.station.evaNr.substr(0, 7);
         stop.scheduledPlatform = s.track.scheduled;
         stop.expectedPlatform = s.track.actual;
-        stop.scheduledDepartureTime = new Date(s.timetable.scheduledDepartureTime).toISOString();
-        stop.expectedDepartureTime = new Date(s.timetable.actualDepartureTime).toISOString();
-        stop.scheduledArrivalTime = new Date(s.timetable.scheduledArrivalTime).toISOString();
-        stop.expectedArrivalTime = new Date(s.timetable.actualArrivalTime).toISOString();
+        const scheduledDepartureTime = s.timetable.scheduledDepartureTime;
+        if (scheduledDepartureTime) {
+            stop.scheduledDepartureTime = new Date(scheduledDepartureTime).toISOString();
+        }
+        const actualDepartureTime = s.timetable.actualDepartureTime;
+        if (actualDepartureTime) {
+            stop.expectedDepartureTime = new Date(actualDepartureTime).toISOString();
+        }
+        const scheduledArrivalTime = s.timetable.scheduledArrivalTime;
+        if (scheduledArrivalTime) {
+            stop.scheduledArrivalTime = new Date(scheduledArrivalTime).toISOString();
+        }
+        const actualArrivalTime = s.timetable.actualArrivalTime;
+        if (actualArrivalTime) {
+            stop.expectedArrivalTime = new Date(actualArrivalTime).toISOString();
+        }
         if (s.delayReasons) {
             stop.notes = [];
             for (d of s.delayReasons) {
