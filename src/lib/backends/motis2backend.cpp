@@ -312,7 +312,14 @@ static void mapIndividualTransportFormFactors(const std::vector<IndividualTransp
 
 bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
+    const auto jnyId = req.identifier(m_locationIdentifierType);
     QUrlQuery query;
+    if (!jnyId.isEmpty()) {
+        qDebug() << jnyId;
+        query.addQueryItem(u"itineraryId"_s, QString::fromLatin1(QUrl::toPercentEncoding(jnyId))); // TODO jnyId is base64 and thus not URL safe! -> can we fix this in MOITS?
+        // TODO how many of the normal journey query arguments to we have to add here?
+    }
+
     query.addQueryItem(u"fromPlace"_s, encodeLocation(req.from()));
     query.addQueryItem(u"toPlace"_s, encodeLocation(req.to()));
     query.addQueryItem(u"time"_s, req.dateTime().toUTC().toString(Qt::ISODate));
@@ -386,22 +393,35 @@ bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
     }
     query.addQueryItem(u"arriveBy"_s, req.dateTimeMode() == JourneyRequest::Arrival ? u"true"_s : u"false"_s);
 
-    auto netReply = makeRequest(req, reply, "v5/plan"_L1, query, nam);
-    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
+    auto netReply = jnyId.isEmpty()
+        ? makeRequest(req, reply, "v5/plan"_L1, query, nam)
+        : makeRequest(req, reply, "v6/refresh-itinerary"_L1, query, nam);
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply, jnyId]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
 
         Motis2Parser p(m_locationIdentifierType);
-        auto result = p.parseItineraries(data);
-        if (netReply->error() == QNetworkReply::NoError) {
-            setPreviousRequestContext(reply, p.m_previousPageCursor);
-            setNextRequestContext(reply, p.m_nextPageCursor);
-            addResult(reply, this, std::move(result));
+        if (jnyId.isEmpty()) {
+            auto result = p.parseItineraries(data);
+            if (netReply->error() == QNetworkReply::NoError) {
+                setPreviousRequestContext(reply, p.m_previousPageCursor);
+                setNextRequestContext(reply, p.m_nextPageCursor);
+                addResult(reply, this, std::move(result));
+            } else {
+                addError(reply, Reply::NetworkError, netReply->errorString() + ' '_L1 + QString::fromUtf8(data));
+            }
         } else {
-            addError(reply, Reply::NetworkError, netReply->errorString() + ' '_L1 + QString::fromUtf8(data));
+            const auto obj = QJsonDocument::fromJson(data).object();
+            auto result = p.parseItinerary(obj);
+            if (netReply->error() == QNetworkReply::NoError) {
+                setPreviousRequestContext(reply, p.m_previousPageCursor);
+                setNextRequestContext(reply, p.m_nextPageCursor);
+                addResult(reply, this, std::vector<Journey>({std::move(result)}));
+            } else {
+                addError(reply, Reply::NetworkError, netReply->errorString() + ' '_L1 + QString::fromUtf8(data));
+            }
         }
-
     });
 
     return true;
@@ -460,7 +480,7 @@ QNetworkReply* Motis2Backend::makeRequest(const Request &req, QObject *parent, Q
     applySslConfiguration(netReq);
     applyUserAgent(netReq);
     logRequest(req, netReq);
-    qDebug() << url;
+    qDebug() << url.toString(QUrl::FullyEncoded);
     auto netReply = nam->get(netReq);
     netReply->setParent(parent);
     return netReply;
