@@ -728,7 +728,9 @@ Kirigami.ApplicationWindow {
                             visible: journeySelector.currentIndex >= 0
                             onClicked: {
                                 const jny = journeyModel.data(journeyModel.index(journeySelector.currentIndex, 0), 256);
-                                const req = new KPublicTransport.journeyRequest(jny);
+                                let req = new KPublicTransport.journeyRequest(jny);
+                                req.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
+                                req.downloadAssets = true;
                                 applicationWindow().pageStack.push(refreshPage, {request: req});
                             }
                         }
