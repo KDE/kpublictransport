@@ -312,6 +312,34 @@ static void mapIndividualTransportFormFactors(const std::vector<IndividualTransp
 
 bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
+    if (const auto jnyId = req.identifier(m_locationIdentifierType); !jnyId.isEmpty()) {
+        QUrlQuery query;
+        qDebug() << jnyId;
+        query.addQueryItem(u"itineraryId"_s, QString::fromLatin1(QUrl::toPercentEncoding(jnyId))); // TODO jnyId is base64 and thus not URL safe! -> can we fix this in MOITS?
+        // TODO how many of the normal journey query arguments to we have to add here?
+
+        auto netReply = makeRequest(req, reply, "v6/refresh-itinerary"_L1, query, nam);
+        QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
+            netReply->deleteLater();
+            const auto data = netReply->readAll();
+            qDebug() << data;
+            logReply(reply, netReply, data);
+
+            const auto obj = QJsonDocument::fromJson(data).object();
+            Motis2Parser p(m_locationIdentifierType);
+            auto result = p.parseItinerary(obj);
+            if (netReply->error() == QNetworkReply::NoError) {
+                setPreviousRequestContext(reply, p.m_previousPageCursor);
+                setNextRequestContext(reply, p.m_nextPageCursor);
+                addResult(reply, this, std::vector<Journey>({std::move(result)}));
+            } else {
+                addError(reply, Reply::NetworkError, netReply->errorString() + ' '_L1 + QString::fromUtf8(data));
+            }
+        });
+
+        return true;
+    }
+
     QUrlQuery query;
     query.addQueryItem(u"fromPlace"_s, encodeLocation(req.from()));
     query.addQueryItem(u"toPlace"_s, encodeLocation(req.to()));
@@ -460,7 +488,7 @@ QNetworkReply* Motis2Backend::makeRequest(const Request &req, QObject *parent, Q
     applySslConfiguration(netReq);
     applyUserAgent(netReq);
     logRequest(req, netReq);
-    qDebug() << url;
+    qDebug() << url.toString(QUrl::FullyEncoded);
     auto netReply = nam->get(netReq);
     netReply->setParent(parent);
     return netReply;
