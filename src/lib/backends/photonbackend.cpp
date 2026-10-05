@@ -85,6 +85,9 @@ bool PhotonBackend::queryLocation(const LocationRequest &request,
             if (properties.contains("city"_L1)) {
                 loc.setLocality(properties.value("city"_L1).toString());
             }
+            if (const auto street = properties.value("street"_L1).toString(); !street.isEmpty()) {
+                loc.setStreetAddress(street);
+            }
 
             StopInformation stop;
             Line line;
