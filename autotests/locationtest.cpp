@@ -4,7 +4,9 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include <KPublicTransport/Line>
 #include <KPublicTransport/Location>
+#include <KPublicTransport/StopInformation>
 
 #include <QTest>
 
@@ -113,6 +115,12 @@ private Q_SLOTS:
         Location l, r;
         l.setName(QStringLiteral("Berlin"));
         r.setName(QStringLiteral("Berlin"));
+        StopInformation si;
+        Line line;
+        line.setMode(Line::Train);
+        si.setLines({line});
+        l.setData(si);
+        r.setData(si);
 
         l.setCoordinate(52.555, 13.555);
         QVERIFY(Location::isSame(l, r));

@@ -378,16 +378,19 @@ bool Location::isSame(const Location &lhs, const Location &rhs)
         return false;
     }
 
-    // name
-    if (isSameName(lhs.name(), rhs.name())) {
-        return true;
+    // check for mismatching address even if distance-based comparison below works
+    if (!lhs.streetAddress().isEmpty() && !rhs.streetAddress().isEmpty() && lhs.streetAddress() != rhs.streetAddress()) {
+        return false;
     }
 
-    // TODO consider the address properties here?
-
     // anything sufficiently close together is assumed to be the same
-    auto maxDist = std::min(isSameDistanceThreshold(lhs.type(), rhs.stopInformation()), isSameDistanceThreshold(rhs.type(),  rhs.stopInformation()));
-    if (lhs.hasCoordinate() && rhs.hasCoordinate() && dist < maxDist) {
+    const auto maxDist = std::min(isSameDistanceThreshold(lhs.type(), rhs.stopInformation()), isSameDistanceThreshold(rhs.type(),  rhs.stopInformation()));
+    if (lhs.hasCoordinate() && rhs.hasCoordinate()) {
+        return dist < maxDist;
+    }
+
+    // name: only when we don't have coordinates'
+    if (isSameName(lhs.name(), rhs.name())) {
         return true;
     }
 
