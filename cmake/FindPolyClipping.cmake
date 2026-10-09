@@ -6,8 +6,6 @@ pkg_check_modules(PolyClipping polyclipping QUIET)
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(PolyClipping
-    FOUND_VAR
-        PolyClipping_FOUND
     REQUIRED_VARS
         PolyClipping_LIBRARIES
         PolyClipping_INCLUDE_DIRS
