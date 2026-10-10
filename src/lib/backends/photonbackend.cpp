@@ -49,6 +49,7 @@ bool PhotonBackend::queryLocation(const LocationRequest &request,
     QNetworkRequest req(url);
     req.setHeader(QNetworkRequest::KnownHeaders::UserAgentHeader, Http::userAgent().toUtf8());
     logRequest(request, req);
+    qDebug() << url;
 
     auto *netReply = nam->get(req);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [=, this]() {
@@ -59,6 +60,7 @@ bool PhotonBackend::queryLocation(const LocationRequest &request,
 
         const auto body = netReply->readAll();
         logReply(reply, netReply, body);
+        qDebug() << body;
         auto locations = PhotonParser::parseLocations(body);
         addResult(reply, std::move(locations));
     });

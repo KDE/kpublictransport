@@ -55,6 +55,12 @@ std::vector<Location> PhotonParser::parseLocations(const QByteArray &data)
             auto const key = properties.value("osm_key"_L1).toStringView();
             auto const value = properties.value("osm_value"_L1).toStringView();
 
+            // drop everything referring to non-administrative boundaries
+            // (statistical/clerical/voting/police districts etc)
+            if (key == "boundary" && properties.value("type"_L1) == "other"_L1) {
+                continue;
+            }
+
             if (key == "railway") {
                 if (value == "station" || value == "halt" || value == "stop"
                     || value == "platform") {
