@@ -53,6 +53,7 @@ bool PhotonBackend::queryLocation(const LocationRequest &request,
 
     QNetworkRequest req(url);
     req.setHeader(QNetworkRequest::KnownHeaders::UserAgentHeader, Http::userAgent().toUtf8());
+    logRequest(request, req);
 
     auto *netReply = nam->get(req);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [=, this]() {
@@ -62,6 +63,7 @@ bool PhotonBackend::queryLocation(const LocationRequest &request,
         }
 
         const auto body = netReply->readAll();
+        logReply(reply, netReply, body);
         const auto geojson = QJsonDocument::fromJson(body).object();
         const auto features = geojson.value("features"_L1).toArray();
 
