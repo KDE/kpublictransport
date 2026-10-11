@@ -5,9 +5,10 @@
 */
 
 #include "journeyquerymodel.h"
-#include "abstractquerymodel_p.h"
-#include "logging.h"
 #include "../datatypes/journeyutil_p.h"
+#include "abstractquerymodel_p.h"
+#include "datatypes/location.h"
+#include "logging.h"
 
 #include <KPublicTransport/Attribution>
 #include <KPublicTransport/Journey>
@@ -15,6 +16,8 @@
 #include <KPublicTransport/Manager>
 
 #include <QDebug>
+
+#include <utility>
 
 using namespace KPublicTransport;
 
@@ -24,7 +27,7 @@ class JourneyQueryModelPrivate : public AbstractQueryModelPrivate
 public:
     void doQuery() override;
     void doClearResults() override;
-    void mergeResults(const std::vector<Journey> &newJourneys);
+    void mergeResults(std::vector<Journey> &&newJourneys);
 
     std::vector<Journey> m_journeys;
 
@@ -68,11 +71,34 @@ void JourneyQueryModelPrivate::doClearResults()
     m_journeys.clear();
 }
 
-void JourneyQueryModelPrivate::mergeResults(const std::vector<Journey> &newJourneys)
+void JourneyQueryModelPrivate::mergeResults(std::vector<Journey> &&newJourneys)
 {
     Q_Q(JourneyQueryModel);
-    for (const auto &jny : newJourneys) {
+    for (auto jny : newJourneys) {
         auto it = std::lower_bound(m_journeys.begin(), m_journeys.end(), jny, JourneyUtil::firstTransportDepartureLessThan);
+
+        // trim short legs occuring because of slightly different location from geocoding and journey planner
+        if (jny.sections().size() > 1) {
+            auto const &start = jny.sections().front();
+            const bool trimStart = Location::distance(start.from(), start.to()) < 300;
+
+            auto const &end = jny.sections().back();
+            const bool trimEnd = Location::distance(end.from(), end.to()) < 300;
+
+            if (trimStart || trimEnd) {
+                auto sections = jny.takeSections();
+
+                if (trimStart) {
+                    sections.erase(sections.begin());
+                }
+
+                if (trimEnd) {
+                    sections.pop_back();
+                }
+
+                jny.setSections(std::move(sections));
+            }
+        }
 
         bool found = false;
         while (it != m_journeys.end() && JourneyUtil::firstTransportDepartureEqual(jny, *it)) {
@@ -97,7 +123,6 @@ void JourneyQueryModelPrivate::mergeResults(const std::vector<Journey> &newJourn
         q->endInsertRows();
     }
 }
-
 
 JourneyQueryModel::JourneyQueryModel(QObject *parent)
     : AbstractQueryModel(new JourneyQueryModelPrivate, parent)
