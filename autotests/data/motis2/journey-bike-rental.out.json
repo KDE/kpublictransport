@@ -23,7 +23,6 @@
                         "floorLevel": 0,
                         "latitude": 48.78307942920833,
                         "longitude": 9.179988172389386,
-                        "name": "START",
                         "region": "DE-BW"
                     }
                 },
@@ -1011,7 +1010,6 @@
                         "floorLevel": 0,
                         "latitude": 48.77412867867625,
                         "longitude": 9.170254801374966,
-                        "name": "END",
                         "region": "DE-BW"
                     }
                 },
@@ -1217,7 +1215,6 @@
                         "floorLevel": 0,
                         "latitude": 48.77412867867625,
                         "longitude": 9.170254801374966,
-                        "name": "END",
                         "region": "DE-BW"
                     }
                 },
@@ -1229,7 +1226,6 @@
                         "floorLevel": 0,
                         "latitude": 48.78307942920833,
                         "longitude": 9.179988172389386,
-                        "name": "START",
                         "region": "DE-BW"
                     }
                 },

@@ -190,7 +190,9 @@ static void parseStopModes(Location &loc, const QJsonArray &modes)
 Stopover Motis2Parser::parsePlace(const QJsonObject &obj, bool hasRealTime) const
 {
     Location l;
-    l.setName(obj.value("name"_L1).toString());
+    if (obj.value("name"_L1).toStringView() != u"START" && obj.value("name"_L1).toStringView() != u"END") {
+        l.setName(obj.value("name"_L1).toString());
+    }
     l.setIdentifier(m_locIdentifierType, obj.value("stopId"_L1).toString());
     l.setLatitude(obj.value("lat"_L1).toDouble(NAN));
     l.setLongitude(obj.value("lon"_L1).toDouble(NAN));

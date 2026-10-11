@@ -25,7 +25,6 @@
                         "floorLevel": 0,
                         "latitude": 49.0041,
                         "longitude": 2.5711,
-                        "name": "START",
                         "region": "FR-IDF"
                     }
                 },
@@ -605,7 +604,6 @@
                         "floorLevel": 0,
                         "latitude": 48.8439,
                         "longitude": 2.37708,
-                        "name": "END",
                         "region": "FR-IDF"
                     }
                 },
