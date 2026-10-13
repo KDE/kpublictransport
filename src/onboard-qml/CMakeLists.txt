@@ -14,4 +14,4 @@ target_sources(kpublictransportonboardqmlplugin PRIVATE
 
 target_link_libraries(kpublictransportonboardqmlplugin PRIVATE Qt::Qml KPublicTransportOnboard)
 
-ecm_finalize_qml_module(kpublictransportonboardqmlplugin DESTINATION ${KDE_INSTALL_QMLDIR})
+ecm_finalize_qml_module(kpublictransportonboardqmlplugin DESTINATION ${KDE_INSTALL_QMLDIR} EXPORT KPublicTransportTargets)

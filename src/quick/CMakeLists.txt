@@ -63,4 +63,4 @@ target_link_libraries(kpublictransportquickplugin
         KF6::I18nLocaleData
 )
 
-ecm_finalize_qml_module(kpublictransportquickplugin DESTINATION ${KDE_INSTALL_QMLDIR})
+ecm_finalize_qml_module(kpublictransportquickplugin DESTINATION ${KDE_INSTALL_QMLDIR} EXPORT KPublicTransportTargets)

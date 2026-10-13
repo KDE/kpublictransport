@@ -1,7 +1,9 @@
 # SPDX-FileCopyrightText: 2018 Volker Krause <vkrause@kde.org>
 # SPDX-License-Identifier: BSD-3-Clause
 
-ecm_add_qml_module(kpublictransportqmlplugin URI "org.kde.kpublictransport" VERSION 1.0 DEPENDENCIES "QtCore" "QtQml")
+ecm_add_qml_module(kpublictransportqmlplugin URI "org.kde.kpublictransport" VERSION 1.0
+    CLASS_NAME KPublicTransportQmlPlugin
+    DEPENDENCIES "QtCore" "QtQml")
 
 target_sources(kpublictransportqmlplugin PRIVATE
     kpublictransportqmlplugin.cpp
@@ -9,4 +11,4 @@ target_sources(kpublictransportqmlplugin PRIVATE
 )
 target_link_libraries(kpublictransportqmlplugin PRIVATE Qt::Quick KPublicTransport)
 
-ecm_finalize_qml_module(kpublictransportqmlplugin DESTINATION ${KDE_INSTALL_QMLDIR})
+ecm_finalize_qml_module(kpublictransportqmlplugin DESTINATION ${KDE_INSTALL_QMLDIR} EXPORT KPublicTransportTargets)
