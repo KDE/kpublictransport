@@ -129,7 +129,7 @@ target_sources(KPublicTransport PRIVATE
 
     ifopt/ifoptutil.cpp
 
-    images/images.qrc
+    images/kpublictransport_images.qrc
 
     json/jsonp.cpp
     json/jsonpointer.cpp
