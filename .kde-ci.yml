@@ -7,7 +7,7 @@ Dependencies:
     'frameworks/extra-cmake-modules': 'Frameworks/6.24'
     'frameworks/ki18n': 'Frameworks/6.24'
     'frameworks/kitemmodels': 'Frameworks/6.24'
-    'libraries/kirigami-addons': 'v1.11.0'
+    'libraries/kirigami-addons': 'stable/1.11'
 
 - 'on': ['Linux']
   'require':
