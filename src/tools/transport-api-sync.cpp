@@ -376,7 +376,8 @@ int main(int argc, char **argv)
         QRegularExpression rx(QStringLiteral("/([a-z]{2})/([a-z-]+?)(-hafas-mgate|-hafas-query|-[^-]+)?\\.json"));
         const auto match = rx.match(fileName);
         if (!match.hasMatch()) {
-            return -1;
+            qDebug() << "skippping" << fileName << " - failed to detect protocol";
+            continue;
         }
 
         bool found = false;
