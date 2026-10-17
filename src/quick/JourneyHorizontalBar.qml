@@ -58,46 +58,82 @@ RowLayout {
         return false;
     }
 
+
     Repeater {
         id: repeater
         model: root.journey.sections
-        delegate: TransportNameControl {
-            id: delegateRoot
-            clip: false
-
-            visible: modelData.mode != KPublicTransport.JourneySection.Walking || modelData.duration > 120 // seconds
-
+        delegate: Loader {
+            id: nameControlLoader
+            active: modelData.mode != KPublicTransport.JourneySection.Walking || modelData.duration > 120 // seconds
             required property KPublicTransport.journeySection modelData
-            journeySection: modelData
+            Layout.fillWidth: nameControlLoader.modelData.mode === KPublicTransport.JourneySection.PublicTransport
 
-            Layout.fillWidth: delegateRoot.modelData.mode === KPublicTransport.JourneySection.PublicTransport
+            Component {
+                id: transportLegComponent
 
-            squashToFit: true
+                TransportNameControl {
+                    id: delegateRoot
+                    clip: false
 
-            // ### enabled: false for cancelled sections? needs the below icon moved out of the hierarchy though
+                    journeySection: nameControlLoader.modelData
 
-            readonly property bool isFull: delegateRoot.journeySection.maximumOccupancy == KPublicTransport.Load.Full;
+                    squashToFit: true
 
-            Kirigami.Icon  {
-                anchors.right: delegateRoot.right
-                anchors.bottom: delegateRoot.bottom
-                anchors.bottomMargin: -Kirigami.Units.smallSpacing
-                anchors.rightMargin: -Kirigami.Units.smallSpacing
-                width: Kirigami.Units.iconSizes.small
-                height: width
-                source: {
-                    if (delegateRoot.journeySection.disruptionEffect === KPublicTransport.Disruption.NoService)
-                        return "emblem-error";
-                    if (root.warnAboutSection(delegateRoot.journeySection))
-                        return "emblem-warning";
-                    if (delegateRoot.isFull)
-                        return "qrc:///org.kde.kpublictransport/ui/assets/occupancy-full.svg";
-                    return "";
+                    // ### enabled: false for cancelled sections? needs the below icon moved out of the hierarchy though
+
+                    readonly property bool isFull: nameControlLoader.modelData.maximumOccupancy == KPublicTransport.Load.Full;
+
+                    Loader {
+                        id: iconLoader
+
+                        readonly property string icon: {
+                            if (nameControlLoader.modelData.disruptionEffect === KPublicTransport.Disruption.NoService)
+                                return "emblem-error";
+                            if (root.warnAboutSection(nameControlLoader.modelData))
+                                return "emblem-warning";
+                            if (delegateRoot.isFull)
+                                return "qrc:///org.kde.kpublictransport/ui/assets/occupancy-full.svg";
+                            return "";
+                        }
+
+                        active: icon != ""
+
+                        anchors.right: delegateRoot.right
+                        anchors.bottom: delegateRoot.bottom
+                        anchors.bottomMargin: -Kirigami.Units.smallSpacing
+                        anchors.rightMargin: -Kirigami.Units.smallSpacing
+                        width: Kirigami.Units.iconSizes.small
+                        height: width
+
+                        Kirigami.Icon  {
+                            width: iconLoader.width
+                            height: width
+                            source: iconLoader.icon
+                            isMask: delegateRoot.isFull
+                            color: delegateRoot.isFull ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.textColor
+                            visible: source !== "" && delegateRoot.width > width
+                        }
+                    }
                 }
-                isMask: delegateRoot.isFull
-                color: delegateRoot.isFull ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.textColor
-                visible: source !== "" && delegateRoot.width > width
             }
+
+            Component {
+                id: otherLegComponent
+
+                TransportIcon {
+                    color: Kirigami.Theme.textColor
+
+                    isMask: true
+                    iconHeight: Kirigami.Units.iconSizes.smallMedium
+                    source: nameControlLoader.modelData.iconName
+                    Accessible.name: nameControlLoader.modelData.label
+
+                    width: Kirigami.Units.iconSizes.smallMedium
+                    height: Kirigami.Units.iconSizes.smallMedium
+                }
+            }
+
+            sourceComponent: modelData.mode === KPublicTransport.JourneySection.PublicTransport ? transportLegComponent : otherLegComponent
         }
     }
 }
