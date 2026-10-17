@@ -57,9 +57,6 @@ Kirigami.Padding {
     topPadding: Kirigami.Units.smallSpacing
     bottomPadding: Kirigami.Units.smallSpacing
 
-
-    clip: true
-
     Rectangle {
         id: background
 
@@ -72,30 +69,34 @@ Kirigami.Padding {
         z: -1
     }
 
-    contentItem: RowLayout {
-        spacing: 0
-
-        Item {
-            Layout.fillWidth: true
-            Layout.horizontalStretchFactor: 5
-        }
+    contentItem: Item {
+        implicitWidth: Kirigami.Units.iconSizes.smallMedium
+            + (lineName.visible
+                ? Kirigami.Units.smallSpacing + lineName.implicitWidth
+                : 0)
+        implicitHeight: Kirigami.Units.iconSizes.smallMedium
 
         KPublicTransport.TransportIcon {
             id: transportIcon
-            color: if (background.visible) {
-                return lineName.color;
-            } else {
-                Kirigami.Theme.textColor
-            }
+
+            color: background.visible
+                ? lineName.color
+                : Kirigami.Theme.textColor
+
             isMask: true
             iconHeight: Kirigami.Units.iconSizes.smallMedium
             source: root.iconName
             Accessible.name: root.modeName
 
-            Layout.rightMargin: lineName.visible ? Kirigami.Units.smallSpacing : 0
-            Layout.fillWidth: true
+            width: Kirigami.Units.iconSizes.smallMedium
+            height: Kirigami.Units.iconSizes.smallMedium
 
-            Layout.minimumWidth: Kirigami.Units.iconSizes.smallMedium
+            anchors.verticalCenter: parent.verticalCenter
+
+            x: lineName.visible
+                ? (parent.width - width - Kirigami.Units.smallSpacing
+                    - lineName.width) / 2
+                : (parent.width - width) / 2
         }
 
         Kirigami.Heading {
@@ -105,6 +106,7 @@ Kirigami.Padding {
 
             color: {
                 const backgroundIsDark = background.color.hslLightness < 0.4;
+
                 if (root.line.hasTextColor) {
                     const foregroundIsLight = root.line.textColor.hslLightness >= 0.4;
                     if (foregroundIsLight === backgroundIsDark) {
@@ -118,22 +120,31 @@ Kirigami.Padding {
                     return isDarkTheme ? Kirigami.Theme.textColor : Kirigami.Theme.backgroundColor;
                 return isDarkTheme ? Kirigami.Theme.backgroundColor : Kirigami.Theme.textColor;
             }
+
             level: 4
             text: root.lineName
             visible: text.length > 0 && root.journeySectionMode === KPublicTransport.JourneySection.PublicTransport && !root.line.hasLogo &&
                     !(squashToFit && lineName.contentWidth > lineName.width)
+
             font.weight: Font.DemiBold
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
+            elide: Text.ElideRight
 
-            Layout.minimumHeight: Kirigami.Units.iconSizes.smallMedium
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-        }
+            width: visible
+                ? Math.min(implicitWidth,
+                    Math.max(0, parent.width
+                        - transportIcon.width
+                        - Kirigami.Units.smallSpacing))
+                : 0
 
-        Item {
-            Layout.fillWidth: true
-            Layout.horizontalStretchFactor: 5
+            height: Kirigami.Units.iconSizes.smallMedium
+
+            anchors.verticalCenter: parent.verticalCenter
+
+            x: transportIcon.x + transportIcon.width
+                + (visible ? Kirigami.Units.smallSpacing : 0)
         }
     }
+
 }
