@@ -113,7 +113,12 @@ Kirigami.Page {
             KPublicTransport.TransportNameControl {
                 journeySection: ({
                     mode: KPublicTransport.JourneySection.RentedVehicle,
-                    rentalVehicle: { type: KPublicTransport.RentalVehicle.ElectricKickScooter }
+                    rentalVehicle: {
+                        vehicleType: {
+                            formFactor: KPublicTransport.RentalVehicleType.FormFactor.ScooterStanding,
+                            propulsionType: KPublicTransport.RentalVehicleType.PropulsionType.Electric
+                        }
+                    }
                 })
             }
         }
@@ -156,7 +161,12 @@ Kirigami.Page {
                     },
                     {
                         mode: KPublicTransport.JourneySection.RentedVehicle,
-                        rentalVehicle: { type: KPublicTransport.RentalVehicle.Bicycle },
+                        rentalVehicle: {
+                            vehicleType: {
+                                formFactor: KPublicTransport.RentalVehicleType.FormFactor.Bicycle,
+                                propulsionType: KPublicTransport.RentalVehicleType.PropulsionType.Human
+                            }
+                        },
                         scheduledDepartureTime: "2024-12-13T22:10:00",
                         scheduledArrivalTime: "2024-12-13T22:30:00"
                     }

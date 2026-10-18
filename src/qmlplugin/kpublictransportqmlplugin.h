@@ -284,6 +284,7 @@ struct RentalVehicleTypeForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::RentalVehicleType)
     QML_VALUE_TYPE(rentalVehicleType)
+    QML_STRUCTURED_VALUE
 };
 FOREIGN_ENUM_GADGET(RentalVehicleType)
 
