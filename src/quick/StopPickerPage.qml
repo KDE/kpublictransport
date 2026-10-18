@@ -20,9 +20,9 @@ Kirigami.ScrollablePage {
 
     /**
      * Initially selected country.
-     * Default: Worldwide
+     * Only used if no worldwide geocoding backend is available
      */
-    property string initialCountry
+    property string initialCountry: Qt.locale().name.match(/_([A-Z]{2})/)[1]
 
     required property PublicTransport.Manager publicTransportManager
     property PublicTransport.location location
@@ -39,6 +39,9 @@ Kirigami.ScrollablePage {
      * @since 25.12
     */
     property bool showUseCurrentLocationButton: false
+
+    property bool showCountryComboBox: root.publicTransportManager.disabledBackends.indexOf("un_transitous") !== -1 && root.publicTransportManager.disabledBackends.indexOf("un_photon") !== -1
+    property Private.CountryComboBox countryCombo: header.comboLoader.item
 
     Component {
         id: clearConfirmDialogComponent
@@ -100,38 +103,50 @@ Kirigami.ScrollablePage {
             locationQueryModel.request = {
                 location: {
                     name: queryTextField.text,
-                    country: countryCombo.currentIndex != -1 ? countryCombo.currentValue : null
+                    country: root.showCountryComboBox && root.countryCombo.currentIndex != -1 ? root.countryCombo.currentValue : null
                 },
                 types: PublicTransport.Location.Stop | PublicTransport.Location.Address,
                 downloadAssets: root.downloadAssets,
-                // If no country is selected, use Photon and Transitous, they should work everywhere
-                backends: countryCombo.currentIndex == -1 ? ["un_photon", "un_transitous"] : []
+                backends: root.showCountryComboBox ? [] : ["un_photon", "un_transitous"]
             };
         }
     }
 
     header: ColumnLayout {
+        id: headerLayout
+
         spacing: Kirigami.Units.smallSpacing
 
-        Private.CountryComboBox {
-            id: countryCombo
+        readonly property Loader comboLoader: comboLoader
+
+        Loader {
+            id: comboLoader
+
+            // Load country selector as fallback if we have no global geocoding backend
+            active: root.showCountryComboBox
+            visible: status === Loader.Ready
+
+            Layout.fillWidth: true
             Layout.topMargin: Kirigami.Units.smallSpacing
             Layout.leftMargin: Kirigami.Units.smallSpacing
             Layout.rightMargin: Kirigami.Units.smallSpacing
-            Layout.fillWidth: true
-            model: PublicTransport.CoverageCountryModel {
-                manager: root.publicTransportManager
+
+            sourceComponent: Private.CountryComboBox {
+                model: PublicTransport.CoverageCountryModel {
+                    manager: root.publicTransportManager
+                }
+                initialCountry: root.initialCountry
+                enabled: !currentLocationDelegate.checked
+                onCurrentValueChanged: root.updateQuery();
             }
-            initialCountry: root.initialCountry
-            enabled: !currentLocationDelegate.checked
-            onCurrentValueChanged: root.updateQuery();
         }
 
         Kirigami.SearchField {
             id: queryTextField
+            Layout.fillWidth: true
+            Layout.topMargin: root.showCountryComboBox ? 0 : Kirigami.Units.smallSpacing
             Layout.leftMargin: Kirigami.Units.smallSpacing
             Layout.rightMargin: Kirigami.Units.smallSpacing
-            Layout.fillWidth: true
             onAccepted: root.updateQuery();
             enabled: !currentLocationDelegate.checked
         }

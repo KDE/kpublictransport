@@ -19,12 +19,7 @@ QQC2.ComboBox {
     /** Initially selected country. */
     property string initialCountry
 
-    // No country selected by default
-    currentIndex: -1
-
-    displayText: currentCountry
-                 ? (currentCountry.emojiFlag + ' ' + currentCountry.name)
-                 : i18nd("kpublictransport", "Worldwide")
+    displayText: currentCountry.emojiFlag + ' ' + currentCountry.name
     valueRole: "code"
 
     delegate: QQC2.ItemDelegate {
@@ -46,7 +41,7 @@ QQC2.ComboBox {
         }
     }
 
-    Accessible.name: currentCountry ? currentCountry.name : i18nd("kpublictransport", "Worldwide")
+    Accessible.name: currentCountry.name
     Accessible.description: i18nd("kpublictransport", "Select country")
     Accessible.onPressAction: root.popup.open()
 }
