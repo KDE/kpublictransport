@@ -74,7 +74,7 @@ QNetworkAccessManager* QueryManager::nam()
         m_nam->enableStrictTransportSecurityStore(true, QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "/org.kde.wikidata/hsts/"_L1);
 
         auto diskCache = new QNetworkDiskCache;
-        diskCache->setCacheDirectory(QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "org.kde.wikidata/http-cache/"_L1);
+        diskCache->setCacheDirectory(QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "/org.kde.wikidata/http-cache/"_L1);
 #ifndef Q_OS_ANDROID
         diskCache->setMaximumCacheSize(1'000'000'000); // 1GB, when it's actually a user-wide shared cache
 #endif
