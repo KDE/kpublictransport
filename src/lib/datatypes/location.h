@@ -40,7 +40,8 @@ public:
         RentedVehicle = 4, ///< a free-floating rental bike/scooter
         Equipment = 8, ///< elevator/escalator
         CarpoolPickupDropoff = 16, ///< a pickup or dropoff location for a carpool trip
-        Address = 32 ///< postal addresses
+        Address = 32, ///< postal addresses
+        Area = 64 ///< city/village
     };
     Q_ENUM(Type)
     Q_DECLARE_FLAGS(Types, Type)
@@ -89,6 +90,8 @@ public:
     Q_PROPERTY(KPublicTransport::RentalVehicle rentalVehicle READ rentalVehicle STORED false)
     /** Equipment information, if applicable for this location. */
     Q_PROPERTY(KPublicTransport::Equipment equipment READ equipment STORED false)
+    /** Polygon of the area */
+    Q_PROPERTY(std::vector<QPolygonF> polygons READ polygons STORED false)
 
     /** Icon representing the location type.
      *  Can be a qrc: URL or an XDG icon name.
@@ -139,6 +142,7 @@ public:
     [[nodiscard]] RentalVehicleStation rentalVehicleStation() const;
     [[nodiscard]] RentalVehicle rentalVehicle() const;
     [[nodiscard]] KPublicTransport::Equipment equipment() const;
+    [[nodiscard]] std::vector<QPolygonF> polygons() const;
 
     [[nodiscard]] QString iconName() const;
 

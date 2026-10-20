@@ -9,14 +9,15 @@
 #include "datatypes_p.h"
 #include "equipment.h"
 #include "equipmentutil.h"
+#include "geo/geojson_p.h"
 #include "identifier_p.h"
+#include "ifopt/ifoptutil.h"
 #include "json_p.h"
 #include "line.h"
 #include "mergeutil_p.h"
 #include "rentalvehicle.h"
 #include "rentalvehicleutil_p.h"
 #include "stopinformation.h"
-#include "ifopt/ifoptutil.h"
 
 #include <KTimeZone>
 #include <KCountry>
@@ -26,6 +27,7 @@
 #include <QHash>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QPolygonF>
 #include <QRegularExpression>
 #include <QTimeZone>
 
@@ -199,6 +201,11 @@ KPublicTransport::Equipment Location::equipment() const
     return d->data.value<KPublicTransport::Equipment>();
 }
 
+std::vector<QPolygonF> Location::polygons() const
+{
+    return d->data.value<std::vector<QPolygonF>>();
+}
+
 // keep this sorted by key
 struct {
     const char *key;
@@ -343,7 +350,9 @@ static int isSameDistanceThreshold(Location::Type type, const StopInformation &s
         case Location::Equipment:
         case Location::RentedVehicle:
             return 3;
-    }
+        case Location::Area:
+            return 1000;
+        }
     Q_UNREACHABLE();
 }
 
@@ -498,7 +507,10 @@ Location Location::merge(const Location &lhs, const Location &rhs)
         case Equipment:
             l.setData(EquipmentUtil::merge(lhs.equipment(), rhs.equipment()));
             break;
-    }
+        case Area:
+            l.setData(QVariant::fromValue(lhs.polygons()));
+            break;
+        }
 
     return l;
 }
@@ -561,7 +573,10 @@ QJsonObject Location::toJson(const Location &loc)
         case Equipment:
             obj.insert("equipment"_L1, Equipment::toJson(loc.equipment()));
             break;
-    }
+        case Area:
+            obj.insert("polygons"_L1, GeoJson::writePolygons(loc.polygons()));
+            break;
+        }
 
     return obj;
 }
@@ -584,6 +599,8 @@ QString Location::iconName() const
             return equipment().iconName();
         case Location::CarpoolPickupDropoff:
             return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-car.svg"_s;
+        case Location::Area:
+            return u"map-flat"_s;
         case Location::Address:
         case Location::Place:
             break;
@@ -618,7 +635,9 @@ Location Location::fromJson(const QJsonObject &obj)
         case Equipment:
             loc.setData(Equipment::fromJson(obj.value("equipment"_L1).toObject()));
             break;
-    }
+        case Area:
+            loc.setData(QVariant::fromValue(GeoJson::readOuterPolygons(obj.value("polygons"_L1).toObject())));
+        }
 
     return loc;
 }

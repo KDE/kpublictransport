@@ -15,6 +15,8 @@
 #include <QJsonObject>
 #include <QPointF>
 
+#include <utility>
+
 using namespace Qt::Literals;
 using namespace KPublicTransport;
 
@@ -86,6 +88,9 @@ std::vector<Location> PhotonParser::parseLocations(const QByteArray &data)
             } else if (key == "aeroway" && value == "terminal") {
                 loc.setType(Location::Stop);
                 line.setMode(Line::Mode::Air);
+            } else if (key == "place" && value == "city" && properties.value("osm_type"_L1).toStringView() == "R") {
+                loc.setType(Location::Area);
+                loc.setIdentifier(u"osm"_s, QString::number(properties.value("osm_id"_L1).toInt()));
             } else if (loc.type() == Location::Place && properties.contains("housenumber"_L1)) {
                 loc.setType(Location::Address);
             }

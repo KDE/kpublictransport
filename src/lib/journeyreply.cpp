@@ -39,6 +39,7 @@ public:
     void finalizeResult() override;
     bool needToWaitForAssets() const override;
     static void postProcessJourneys(std::vector<Journey> &journeys);
+    static void postProcessAreaQuery(const Location &from, const Location &to, std::vector<Journey> &journeys);
 
     JourneyRequest request;
     JourneyRequest nextRequest;
@@ -212,6 +213,35 @@ void JourneyReplyPrivate::postProcessJourneys(std::vector<Journey> &journeys)
     }), journeys.end());
 }
 
+void JourneyReplyPrivate::postProcessAreaQuery(const Location &from, const Location &to, std::vector<Journey> &journeys)
+{
+    auto const pointInMultiPolygon = [](const std::vector<QPolygonF> &polys, double lat, double lon) {
+        return std::ranges::any_of(polys, [lat, lon](const QPolygonF &poly) {
+            return poly.containsPoint(QPointF(lon, lat), Qt::FillRule::OddEvenFill);
+        });
+    };
+
+    auto const removeLegsInArea = [&](std::vector<QPolygonF> area) {
+        for (auto &journey : journeys) {
+            auto sections = journey.takeSections();
+            auto [first, last] = std::ranges::remove_if(sections, [&](const auto &leg) {
+                return pointInMultiPolygon(area, leg.from().latitude(), leg.from().longitude())
+                    && pointInMultiPolygon(area, leg.to().latitude(), leg.to().longitude());
+            });
+            sections.erase(first, last);
+            journey.setSections(std::move(sections));
+        }
+    };
+
+    if (from.type() == Location::Area) {
+        removeLegsInArea(from.polygons());
+    }
+
+    if (to.type() == Location::Area) {
+        removeLegsInArea(to.polygons());
+    }
+}
+
 JourneyReply::JourneyReply(const JourneyRequest &req, QObject *parent)
     : Reply(new JourneyReplyPrivate, parent)
 {
@@ -263,6 +293,7 @@ void JourneyReply::addResult(const AbstractBackend *backend, std::vector<Journey
 {
     Q_D(JourneyReply);
     d->postProcessJourneys(res);
+    d->postProcessAreaQuery(d->request.from(), d->request.to(), res);
 
     // update context for next/prev requests
     // do this first, before res gets moved from below

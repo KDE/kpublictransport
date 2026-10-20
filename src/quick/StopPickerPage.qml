@@ -102,7 +102,7 @@ Kirigami.ScrollablePage {
                     name: queryTextField.text,
                     country: countryCombo.currentIndex != -1 ? countryCombo.currentValue : null
                 },
-                types: PublicTransport.Location.Stop | PublicTransport.Location.Address,
+                types: PublicTransport.Location.Stop | PublicTransport.Location.Address | PublicTransport.Location.Area,
                 downloadAssets: root.downloadAssets,
                 // If no country is selected, use Photon and Transitous, they should work everywhere
                 backends: countryCombo.currentIndex == -1 ? ["un_photon", "un_transitous"] : []
