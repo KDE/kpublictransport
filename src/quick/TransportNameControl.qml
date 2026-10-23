@@ -60,6 +60,12 @@ Kirigami.Padding {
     Rectangle {
         id: background
 
+        function isDark(color) {
+            return color.hslLightness < 0.5
+        }
+
+        border.color: isDark(background.color) == isDark(Kirigami.Theme.backgroundColor) ? lineName.color : background.color
+
         radius: Kirigami.Units.cornerRadius
         color: root.line.hasColor ? root.line.color : Kirigami.Theme.textColor
         visible: root.journeySectionMode === KPublicTransport.JourneySection.PublicTransport
