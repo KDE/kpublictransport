@@ -1,0 +1,183 @@
+[
+    {
+        "country": "AT",
+        "identifier": {
+            "motis": "at-PTA-Styria-Flex-2026_at:46:528:0:2"
+        },
+        "latitude": 47.13439248,
+        "locality": "Gratwein-Straßengel",
+        "longitude": 15.30210916,
+        "name": "Rein Zotter",
+        "postalCode": "8103",
+        "region": "AT-6",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
+        "timezone": "Europe/Vienna",
+        "type": "Stop"
+    },
+    {
+        "country": "AT",
+        "identifier": {
+            "motis": "node/9405066243"
+        },
+        "latitude": 48.2146745,
+        "locality": "Leopoldstadt",
+        "longitude": 16.3794626,
+        "name": "Zotter",
+        "postalCode": "1020",
+        "region": "Vienna",
+        "tags": {
+            "shop": "confectionery"
+        },
+        "timezone": "Europe/Vienna"
+    },
+    {
+        "country": "AT",
+        "identifier": {
+            "motis": "at-PTA-Styria-Flex-2026_at:46:2926:0:1"
+        },
+        "latitude": 46.99152595,
+        "locality": "Riegersburg",
+        "longitude": 15.907196370000001,
+        "name": "Altenmarkt Zotter",
+        "postalCode": "8333",
+        "region": "AT-6",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
+        "timezone": "Europe/Vienna",
+        "type": "Stop"
+    },
+    {
+        "country": "AT",
+        "identifier": {
+            "motis": "way/572759312"
+        },
+        "latitude": 47.2917906,
+        "locality": "Stuhlfelden",
+        "longitude": 12.4960121,
+        "name": "Haus Zotter",
+        "postalCode": "5724",
+        "region": "AT-5",
+        "tags": {
+            "tourism": "guest_house"
+        },
+        "timezone": "Europe/Vienna"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "node/4028973329"
+        },
+        "latitude": 53.5819759,
+        "locality": "Hamburg-Nord",
+        "longitude": 10.0675283,
+        "name": "Paula Zotter",
+        "postalCode": "22049",
+        "region": "Hamburg",
+        "tags": {
+            "amenity": "doctors"
+        },
+        "timezone": "Europe/Berlin"
+    },
+    {
+        "country": "AT",
+        "identifier": {
+            "motis": "node/4976789981"
+        },
+        "latitude": 46.7879147,
+        "locality": "Leibnitz",
+        "longitude": 15.540709,
+        "name": "Dacar-Zotter",
+        "postalCode": "8430",
+        "region": "AT-6",
+        "tags": {
+            "amenity": "dentist"
+        },
+        "timezone": "Europe/Vienna"
+    },
+    {
+        "country": "AT",
+        "identifier": {
+            "motis": "node/2469976394"
+        },
+        "latitude": 47.0594328,
+        "locality": "Sankt Peter",
+        "longitude": 15.4710636,
+        "name": "Dr. Heinz Zotter",
+        "postalCode": "8042",
+        "region": "AT-6",
+        "tags": {
+            "amenity": "doctors"
+        },
+        "timezone": "Europe/Vienna"
+    },
+    {
+        "country": "AT",
+        "identifier": {
+            "motis": "node/4024187300"
+        },
+        "latitude": 46.9201999,
+        "locality": "Feldbach",
+        "longitude": 15.8726815,
+        "name": "Ferienhaus Zotter",
+        "postalCode": "8330",
+        "region": "AT-6",
+        "tags": {
+            "tourism": "hotel"
+        },
+        "timezone": "Europe/Vienna"
+    },
+    {
+        "country": "BE",
+        "identifier": {
+            "motis": "be-sncb_S8895208"
+        },
+        "latitude": 50.8691,
+        "locality": "Zottegem",
+        "longitude": 3.8144099999999996,
+        "name": "Zottegem",
+        "postalCode": "9620",
+        "region": "BE-VLG",
+        "stopInformation": {
+            "lines": [
+                {
+                    "mode": "LocalTrain"
+                },
+                {
+                    "mode": "RapidTransit"
+                },
+                {
+                    "mode": "Bus"
+                }
+            ]
+        },
+        "timezone": "Europe/Brussels",
+        "type": "Stop"
+    },
+    {
+        "country": "AT",
+        "identifier": {
+            "motis": "node/11758289842"
+        },
+        "latitude": 47.0148008,
+        "locality": "Riegersburg",
+        "longitude": 15.9414441,
+        "name": "Buschenschank Zotter",
+        "postalCode": "8333",
+        "region": "AT-6",
+        "tags": {
+            "amenity": "restaurant"
+        },
+        "timezone": "Europe/Vienna"
+    }
+]

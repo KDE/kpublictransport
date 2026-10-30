@@ -48,6 +48,9 @@ private Q_SLOTS:
         QTest::newRow("address")
             << QStringLiteral(SOURCE_DIR "/data/motis2/location-addresses.in.json")
             << QStringLiteral(SOURCE_DIR "/data/motis2/location-addresses.out.json");
+        QTest::newRow("poi")
+            << QStringLiteral(SOURCE_DIR "/data/motis2/location-poi.in.json")
+            << QStringLiteral(SOURCE_DIR "/data/motis2/location-poi.out.json");
     }
 
     void testParseLocation()
