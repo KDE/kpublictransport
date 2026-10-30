@@ -11,7 +11,6 @@
         "name": "Karlsruhe Hbf",
         "postalCode": "76137",
         "region": "Baden-Württemberg",
-        "streetAddress": "",
         "type": "Stop"
     },
     {
@@ -26,7 +25,6 @@
         "name": "Karlsruhe Hbf",
         "postalCode": "76137",
         "region": "Baden-Württemberg",
-        "streetAddress": "",
         "type": "Stop"
     },
     {
@@ -41,7 +39,6 @@
         "name": "Karlsruhe Hbf",
         "postalCode": "76137",
         "region": "Baden-Württemberg",
-        "streetAddress": "",
         "type": "Stop"
     },
     {
@@ -56,7 +53,6 @@
         "name": "Karlsruhe Hbf",
         "postalCode": "76137",
         "region": "Baden-Württemberg",
-        "streetAddress": "",
         "type": "Stop"
     },
     {
@@ -68,8 +64,7 @@
         "latitude": 52.945417,
         "longitude": -1.1485075,
         "name": "Karlsruhe House",
-        "region": "GB-ENG",
-        "streetAddress": ""
+        "region": "GB-ENG"
     },
     {
         "country": "DE",
@@ -82,8 +77,7 @@
         "longitude": 8.3335171,
         "name": "Karlsruher Hof",
         "postalCode": "76189",
-        "region": "Baden-Württemberg",
-        "streetAddress": ""
+        "region": "Baden-Württemberg"
     },
     {
         "country": "DE",
@@ -96,8 +90,7 @@
         "longitude": 13.1329952,
         "name": "Karlsruher Feld",
         "postalCode": "16727",
-        "region": "DE-BB",
-        "streetAddress": ""
+        "region": "DE-BB"
     },
     {
         "country": "DE",
@@ -110,8 +103,7 @@
         "longitude": 13.1108933,
         "name": "Karlsruher Feld",
         "postalCode": "16727",
-        "region": "DE-BB",
-        "streetAddress": ""
+        "region": "DE-BB"
     },
     {
         "country": "DE",
@@ -124,8 +116,7 @@
         "longitude": 13.1184815,
         "name": "Karlsruher Feld",
         "postalCode": "16727",
-        "region": "DE-BB",
-        "streetAddress": ""
+        "region": "DE-BB"
     },
     {
         "country": "DE",
@@ -138,7 +129,6 @@
         "longitude": 13.122589,
         "name": "Karlsruher Feld",
         "postalCode": "16727",
-        "region": "DE-BB",
-        "streetAddress": ""
+        "region": "DE-BB"
     }
 ]
