@@ -4,7 +4,10 @@
         "latitude": 51.0493286,
         "longitude": 13.7381437,
         "name": "Dresden",
-        "region": "DE-SN"
+        "region": "DE-SN",
+        "tags": {
+            "place": "city"
+        }
     },
     {
         "country": "US",
@@ -12,27 +15,39 @@
         "longitude": -100.4223636,
         "name": "Dresden",
         "postalCode": "67635",
-        "region": "US-KS"
+        "region": "US-KS",
+        "tags": {
+            "place": "hamlet"
+        }
     },
     {
         "country": "US",
         "latitude": 42.6839586,
         "longitude": -76.9557968,
         "name": "Dresden",
-        "region": "US-NY"
+        "region": "US-NY",
+        "tags": {
+            "place": "village"
+        }
     },
     {
         "country": "US",
         "latitude": 43.672564,
         "longitude": -73.4106709,
-        "name": "Dresden"
+        "name": "Dresden",
+        "tags": {
+            "place": "hamlet"
+        }
     },
     {
         "country": "US",
         "latitude": 36.2914648,
         "longitude": -88.7086635,
         "name": "Dresden",
-        "region": "US-TN"
+        "region": "US-TN",
+        "tags": {
+            "place": "town"
+        }
     },
     {
         "country": "US",
@@ -40,7 +55,10 @@
         "longitude": -69.7244484,
         "name": "Dresden",
         "postalCode": "04342",
-        "region": "US-ME"
+        "region": "US-ME",
+        "tags": {
+            "place": "village"
+        }
     },
     {
         "country": "US",
@@ -48,7 +66,10 @@
         "longitude": -82.0106918,
         "name": "Dresden",
         "postalCode": "43821",
-        "region": "US-OH"
+        "region": "US-OH",
+        "tags": {
+            "place": "village"
+        }
     },
     {
         "country": "GB",
@@ -57,7 +78,10 @@
         "longitude": -2.1436974,
         "name": "Dresden",
         "postalCode": "ST3 4BB",
-        "region": "GB-ENG"
+        "region": "GB-ENG",
+        "tags": {
+            "place": "hamlet"
+        }
     },
     {
         "country": "CA",
@@ -65,21 +89,30 @@
         "longitude": -82.1795314,
         "name": "Dresden",
         "postalCode": "N0P 1M0",
-        "region": "CA-ON"
+        "region": "CA-ON",
+        "tags": {
+            "place": "town"
+        }
     },
     {
         "country": "US",
         "latitude": 33.3515055,
         "longitude": -84.918549,
         "name": "Dresden",
-        "region": "US-GA"
+        "region": "US-GA",
+        "tags": {
+            "place": "hamlet"
+        }
     },
     {
         "country": "US",
         "latitude": 48.827503,
         "longitude": -98.4812299,
         "name": "Dresden",
-        "region": "US-ND"
+        "region": "US-ND",
+        "tags": {
+            "place": "hamlet"
+        }
     },
     {
         "country": "US",
@@ -87,14 +120,20 @@
         "longitude": -81.5456631,
         "name": "Dresden",
         "postalCode": "28693",
-        "region": "US-NC"
+        "region": "US-NC",
+        "tags": {
+            "place": "hamlet"
+        }
     },
     {
         "country": "US",
         "latitude": 42.9791431,
         "longitude": -92.3185113,
         "name": "Dresden",
-        "region": "US-IA"
+        "region": "US-IA",
+        "tags": {
+            "place": "hamlet"
+        }
     },
     {
         "country": "US",
@@ -103,6 +142,9 @@
         "longitude": -92.3557397,
         "name": "Dresden",
         "postalCode": "52222",
-        "region": "US-IA"
+        "region": "US-IA",
+        "tags": {
+            "place": "hamlet"
+        }
     }
 ]
