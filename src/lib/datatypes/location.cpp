@@ -56,6 +56,7 @@ public:
 
     int floorLevel = std::numeric_limits<int>::lowest();
 
+    QHash<QString, QString> tags;
     QVariant data;
 };
 
@@ -177,6 +178,16 @@ bool Location::hasIdentifier(QAnyStringView identifierType) const
 QStringList Location::identifierTypes() const
 {
     return d->ids.identifierTypes();
+}
+
+QString Location::tagValue(const QString& tagKey) const
+{
+    return d->tags.value(tagKey);
+}
+
+void Location::setTagValue(const QString &tagKey, const QString &tagValue)
+{
+    d->tags[tagKey] = tagValue;
 }
 
 StopInformation Location::stopInformation() const
@@ -500,6 +511,7 @@ Location Location::merge(const Location &lhs, const Location &rhs)
             break;
     }
 
+    l.d->tags.insert(rhs.d->tags);
     return l;
 }
 
@@ -536,6 +548,14 @@ QJsonObject Location::toJson(const Location &loc)
 
     if (!loc.d->ids.isEmpty()) {
         obj.insert("identifier"_L1, loc.d->ids.toJson());
+    }
+
+    if (!loc.d->tags.empty()) {
+        QJsonObject tags;
+        for (const auto& [key, value] : loc.d->tags.asKeyValueRange()) {
+            tags.insert(key, value);
+        }
+        obj.insert("tags"_L1, tags);
     }
 
     switch (loc.type()) {
@@ -600,6 +620,11 @@ Location Location::fromJson(const QJsonObject &obj)
     }
 
     loc.d->ids.fromJson(obj.value("identifier"_L1).toObject());
+
+    const auto tags = obj.value("tags"_L1).toObject();
+    for (const auto &[key, value]: tags.asKeyValueRange()) {
+        loc.d->tags.insert(key.toString(), value.toString());
+    }
 
     switch (loc.type()) {
         case Place:
