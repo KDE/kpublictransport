@@ -11,7 +11,6 @@
         "name": "Leipzig Hbf",
         "postalCode": "04109",
         "region": "DE-SN",
-        "streetAddress": "",
         "type": "Stop"
     },
     {
@@ -26,7 +25,6 @@
         "name": "Leipzig Hbf",
         "postalCode": "04109",
         "region": "DE-SN",
-        "streetAddress": "",
         "type": "Stop"
     },
     {
@@ -40,8 +38,7 @@
         "longitude": 12.3817197,
         "name": "Deutsche Bahn",
         "postalCode": "04109",
-        "region": "DE-SN",
-        "streetAddress": ""
+        "region": "DE-SN"
     },
     {
         "country": "DE",
@@ -54,8 +51,7 @@
         "longitude": 12.3816896,
         "name": "Deutsche Bahn",
         "postalCode": "04109",
-        "region": "DE-SN",
-        "streetAddress": ""
+        "region": "DE-SN"
     },
     {
         "country": "DE",
@@ -68,8 +64,7 @@
         "longitude": 12.3819165,
         "name": "Deutsche Bahn",
         "postalCode": "04109",
-        "region": "DE-SN",
-        "streetAddress": ""
+        "region": "DE-SN"
     },
     {
         "country": "DE",
@@ -82,8 +77,7 @@
         "longitude": 12.3815594,
         "name": "Thüringer Grill",
         "postalCode": "04109",
-        "region": "DE-SN",
-        "streetAddress": ""
+        "region": "DE-SN"
     },
     {
         "country": "DE",
@@ -96,8 +90,7 @@
         "longitude": 12.3811144,
         "name": "Deutsche Bahn",
         "postalCode": "04109",
-        "region": "DE-SN",
-        "streetAddress": ""
+        "region": "DE-SN"
     },
     {
         "country": "DE",
@@ -110,8 +103,7 @@
         "longitude": 12.3812945,
         "name": "Crepes-Express",
         "postalCode": "04109",
-        "region": "DE-SN",
-        "streetAddress": ""
+        "region": "DE-SN"
     },
     {
         "country": "DE",
@@ -124,8 +116,7 @@
         "longitude": 12.3810763,
         "name": "Deutsche Bahn",
         "postalCode": "04109",
-        "region": "DE-SN",
-        "streetAddress": ""
+        "region": "DE-SN"
     },
     {
         "country": "DE",
@@ -138,7 +129,6 @@
         "longitude": 12.3814312,
         "name": "Bäcker Lukas",
         "postalCode": "04109",
-        "region": "DE-SN",
-        "streetAddress": ""
+        "region": "DE-SN"
     }
 ]
