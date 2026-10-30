@@ -5,13 +5,19 @@
         "longitude": 18.0155756,
         "name": "Balatonalmádi",
         "postalCode": "8220",
-        "region": "HU-VE"
+        "region": "HU-VE",
+        "tags": {
+            "place": "town"
+        }
     },
     {
         "country": "HU",
         "latitude": 47.038183,
         "longitude": 18.1100269,
-        "name": "Balatonalmádi járás"
+        "name": "Balatonalmádi járás",
+        "tags": {
+            "boundary": "administrative"
+        }
     },
     {
         "country": "HU",
@@ -29,6 +35,9 @@
             ]
         },
         "streetAddress": "VasútARTjáró",
+        "tags": {
+            "railway": "station"
+        },
         "type": "Stop"
     },
     {
@@ -47,6 +56,9 @@
             ]
         },
         "streetAddress": "Baross Gábor út",
+        "tags": {
+            "highway": "bus_stop"
+        },
         "type": "Stop"
     },
     {
@@ -65,6 +77,9 @@
             ]
         },
         "streetAddress": "Csillag tér",
+        "tags": {
+            "highway": "bus_stop"
+        },
         "type": "Stop"
     },
     {
@@ -83,6 +98,9 @@
             ]
         },
         "streetAddress": "József Attila út",
+        "tags": {
+            "highway": "bus_stop"
+        },
         "type": "Stop"
     },
     {
@@ -101,6 +119,9 @@
             ]
         },
         "streetAddress": "Jókai Mór utca",
+        "tags": {
+            "highway": "bus_stop"
+        },
         "type": "Stop"
     },
     {
@@ -119,6 +140,9 @@
             ]
         },
         "streetAddress": "Balatonfüredi út",
+        "tags": {
+            "highway": "bus_stop"
+        },
         "type": "Stop"
     },
     {
@@ -137,6 +161,9 @@
             ]
         },
         "streetAddress": "Balatonfűzfői út",
+        "tags": {
+            "highway": "bus_stop"
+        },
         "type": "Stop"
     },
     {
@@ -155,6 +182,9 @@
             ]
         },
         "streetAddress": "Veszprémi út",
+        "tags": {
+            "highway": "bus_stop"
+        },
         "type": "Stop"
     },
     {
@@ -173,6 +203,9 @@
             ]
         },
         "streetAddress": "Véghely Dezső utca",
+        "tags": {
+            "railway": "stop"
+        },
         "type": "Stop"
     },
     {
@@ -184,6 +217,9 @@
         "postalCode": "8220",
         "region": "HU-VE",
         "streetAddress": "Baross Gábor út",
+        "tags": {
+            "amenity": "social_facility"
+        },
         "type": "Address"
     },
     {
@@ -195,6 +231,9 @@
         "postalCode": "8220",
         "region": "HU-VE",
         "streetAddress": "Ady Endre utca",
+        "tags": {
+            "amenity": "community_centre"
+        },
         "type": "Address"
     },
     {
@@ -213,6 +252,9 @@
             ]
         },
         "streetAddress": "Rákóczi Ferenc utca",
+        "tags": {
+            "highway": "bus_stop"
+        },
         "type": "Stop"
     }
 ]

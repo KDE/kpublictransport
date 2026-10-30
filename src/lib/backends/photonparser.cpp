@@ -89,6 +89,8 @@ std::vector<Location> PhotonParser::parseLocations(const QByteArray &data)
             } else if (loc.type() == Location::Place && properties.contains("housenumber"_L1)) {
                 loc.setType(Location::Address);
             }
+
+            loc.setTagValue(key.toString(), value.toString());
         }
 
         if (loc.type() == Location::Stop) {
