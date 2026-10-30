@@ -118,6 +118,10 @@ public:
     [[nodiscard]] bool hasIdentifier(QAnyStringView identifierType) const;
     [[nodiscard]] QStringList identifierTypes() const;
 
+    /** OSM tags. */
+    [[nodiscard]] QString tagValue(const QString& tagKey) const;
+    Q_INVOKABLE void setTagValue(const QString &tagKey, const QString &tagValue);
+
     /** Checks if to instances refer to the same location (which does not necessarily mean they are exactly equal). */
     [[nodiscard]] static bool isSame(const Location &lhs, const Location &rhs);
     /** Checks if two location names refer to the same location. */
