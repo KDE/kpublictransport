@@ -622,7 +622,9 @@ std::vector<Location> Motis2Parser::parseLocations(const QByteArray &data) const
         }
 
         l.setPostalCode(locObj.value("zip"_L1).toString());
-        l.setStreetAddress(QString(locObj.value("street"_L1).toString() + ' '_L1 + locObj.value("houseNumber"_L1).toString()).trimmed());
+        if (const auto street = locObj.value("street"_L1).toString(); !street.isEmpty()) {
+            l.setStreetAddress(QString(street + ' '_L1 + locObj.value("houseNumber"_L1).toString()).trimmed());
+        }
 
         parseTimeZone(locObj, l);
 
