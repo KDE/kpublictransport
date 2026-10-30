@@ -44,10 +44,12 @@ bool PhotonBackend::queryLocation(const LocationRequest &request,
         query.addQueryItem(u"lat"_s, QString::number(request.location().latitude()));
         query.addQueryItem(u"lon"_s, QString::number(request.location().longitude()));
     }
+    query.addQueryItem(u"limit"_s, QString::number(request.maximumResults()));
     url.setQuery(query);
 
     QNetworkRequest req(url);
-    req.setHeader(QNetworkRequest::KnownHeaders::UserAgentHeader, Http::userAgent().toUtf8());
+    applyUserAgent(req);
+    req.setRawHeader("Accept-Language", preferredLanguages().join(", "_L1).toUtf8());
     logRequest(request, req);
     qDebug() << url;
 
