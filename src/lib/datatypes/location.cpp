@@ -23,6 +23,7 @@
 #include <KCountrySubdivision>
 
 #include <QDebug>
+#include <QFile>
 #include <QHash>
 #include <QJsonArray>
 #include <QJsonObject>
@@ -606,7 +607,18 @@ QString Location::iconName() const
             return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-car.svg"_s;
         case Location::Address:
         case Location::Place:
+        {
+            static bool hasKosm = QFile::exists(u":/org.kde.kosmindoormap/assets/icons"_s);
+            if (hasKosm) {
+                for (const auto key : {"amenity"_L1, "shop"_L1, "tourism"_L1, "historic"_L1}) {
+                    const auto value = tagValue(key);
+                    if (const auto name = ":/org.kde.kosmindoormap/assets/icons/"_L1 + value + ".svg"_L1; QFile::exists(name)) {
+                        return name;
+                    }
+                }
+            }
             break;
+        }
     }
     return u"map-symbolic"_s;
 }
