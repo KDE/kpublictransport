@@ -104,6 +104,7 @@ std::vector<Location> PhotonParser::parseLocations(const QByteArray &data)
             loc.setCoordinate(point.y(), point.x());
         }
 
+        loc.setIdentifier(u"osm"_s, properties.value("osm_type"_L1).toString().toLower() + QString::number(properties.value("osm_id"_L1).toInteger()));
         locations.push_back(std::move(loc));
     }
 

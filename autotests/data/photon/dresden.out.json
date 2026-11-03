@@ -1,6 +1,9 @@
 [
     {
         "country": "DE",
+        "identifier": {
+            "osm": "r191645"
+        },
         "latitude": 51.0493286,
         "longitude": 13.7381437,
         "name": "Dresden",
@@ -11,6 +14,9 @@
     },
     {
         "country": "US",
+        "identifier": {
+            "osm": "r130085"
+        },
         "latitude": 39.6241709,
         "longitude": -100.4223636,
         "name": "Dresden",
@@ -22,6 +28,9 @@
     },
     {
         "country": "US",
+        "identifier": {
+            "osm": "r175837"
+        },
         "latitude": 42.6839586,
         "longitude": -76.9557968,
         "name": "Dresden",
@@ -32,6 +41,9 @@
     },
     {
         "country": "US",
+        "identifier": {
+            "osm": "r3158639"
+        },
         "latitude": 43.672564,
         "longitude": -73.4106709,
         "name": "Dresden",
@@ -41,6 +53,9 @@
     },
     {
         "country": "US",
+        "identifier": {
+            "osm": "r197222"
+        },
         "latitude": 36.2914648,
         "longitude": -88.7086635,
         "name": "Dresden",
@@ -51,6 +66,9 @@
     },
     {
         "country": "US",
+        "identifier": {
+            "osm": "r12194303"
+        },
         "latitude": 44.1076042,
         "longitude": -69.7244484,
         "name": "Dresden",
@@ -62,6 +80,9 @@
     },
     {
         "country": "US",
+        "identifier": {
+            "osm": "r182449"
+        },
         "latitude": 40.1214579,
         "longitude": -82.0106918,
         "name": "Dresden",
@@ -73,6 +94,9 @@
     },
     {
         "country": "GB",
+        "identifier": {
+            "osm": "n610966349"
+        },
         "latitude": 52.9794681,
         "locality": "Stoke-on-Trent",
         "longitude": -2.1436974,
@@ -85,6 +109,9 @@
     },
     {
         "country": "CA",
+        "identifier": {
+            "osm": "n309029892"
+        },
         "latitude": 42.5909853,
         "longitude": -82.1795314,
         "name": "Dresden",
@@ -96,6 +123,9 @@
     },
     {
         "country": "US",
+        "identifier": {
+            "osm": "n154157137"
+        },
         "latitude": 33.3515055,
         "longitude": -84.918549,
         "name": "Dresden",
@@ -106,6 +136,9 @@
     },
     {
         "country": "US",
+        "identifier": {
+            "osm": "n151787675"
+        },
         "latitude": 48.827503,
         "longitude": -98.4812299,
         "name": "Dresden",
@@ -116,6 +149,9 @@
     },
     {
         "country": "US",
+        "identifier": {
+            "osm": "n154210084"
+        },
         "latitude": 36.458179,
         "longitude": -81.5456631,
         "name": "Dresden",
@@ -127,6 +163,9 @@
     },
     {
         "country": "US",
+        "identifier": {
+            "osm": "n151335049"
+        },
         "latitude": 42.9791431,
         "longitude": -92.3185113,
         "name": "Dresden",
@@ -137,6 +176,9 @@
     },
     {
         "country": "US",
+        "identifier": {
+            "osm": "n151327223"
+        },
         "latitude": 41.5777815,
         "locality": "Deep River Township",
         "longitude": -92.3557397,
