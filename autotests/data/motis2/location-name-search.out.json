@@ -59,7 +59,8 @@
         "country": "GB",
         "floorLevel": 0,
         "identifier": {
-            "motis": "way/61739387"
+            "motis": "way/61739387",
+            "osm": "w61739387"
         },
         "latitude": 52.945417,
         "longitude": -1.1485075,
@@ -70,7 +71,8 @@
         "country": "DE",
         "floorLevel": 0,
         "identifier": {
-            "motis": "node/5876433289"
+            "motis": "node/5876433289",
+            "osm": "n5876433289"
         },
         "latitude": 49.0053102,
         "locality": "Daxlanden",
@@ -83,7 +85,8 @@
         "country": "DE",
         "floorLevel": 0,
         "identifier": {
-            "motis": "way/483431081"
+            "motis": "way/483431081",
+            "osm": "w483431081"
         },
         "latitude": 52.7029911,
         "locality": "Oberkrämer",
@@ -96,7 +99,8 @@
         "country": "DE",
         "floorLevel": 0,
         "identifier": {
-            "motis": "way/137200489"
+            "motis": "way/137200489",
+            "osm": "w137200489"
         },
         "latitude": 52.7017056,
         "locality": "Oberkrämer",
@@ -109,7 +113,8 @@
         "country": "DE",
         "floorLevel": 0,
         "identifier": {
-            "motis": "way/483431086"
+            "motis": "way/483431086",
+            "osm": "w483431086"
         },
         "latitude": 52.7055211,
         "locality": "Oberkrämer",
@@ -122,7 +127,8 @@
         "country": "DE",
         "floorLevel": 0,
         "identifier": {
-            "motis": "way/483431082"
+            "motis": "way/483431082",
+            "osm": "w483431082"
         },
         "latitude": 52.7021982,
         "locality": "Oberkrämer",

@@ -863,7 +863,13 @@ std::vector<Location> Motis2Parser::parseLocations(const QByteArray &data) const
             }
         }
         l.setName(locObj.value("name"_L1).toString());
-        l.setIdentifier(m_locIdentifierType, locObj.value("id"_L1).toString());
+        const auto id = locObj.value("id"_L1).toString();
+        l.setIdentifier(m_locIdentifierType, id);
+        for (const auto prefix : { "node/"_L1, "way/"_L1, "relation/"_L1}) {
+            if (id.startsWith(prefix)) {
+                l.setIdentifier(u"osm"_s, prefix[0] + QStringView(id).mid(prefix.size()));
+            }
+        }
         l.setLatitude(locObj.value("lat"_L1).toDouble());
         l.setLongitude(locObj.value("lon"_L1).toDouble());
         l.setFloorLevel(locObj.value("level"_L1).toInt(std::numeric_limits<int>::lowest()));
