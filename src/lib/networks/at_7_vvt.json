@@ -93,7 +93,7 @@
             "l": "vs_vvt",
             "type": "AND"
         },
-        "endpoint": "https://fahrplan.vvt.at/bin/mgate.exe",
+        "endpoint": "https://smartride.vvt.at/hamm/gate/",
         "locationIdentifierType": "vao",
         "micMacSalt": "6633673735743766726667323938336A",
         "products": [
