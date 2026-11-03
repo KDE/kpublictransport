@@ -1,6 +1,9 @@
 [
     {
         "country": "HU",
+        "identifier": {
+            "osm": "r1078573"
+        },
         "latitude": 47.030277,
         "longitude": 18.0155756,
         "name": "Balatonalmádi",
@@ -12,6 +15,9 @@
     },
     {
         "country": "HU",
+        "identifier": {
+            "osm": "r2376975"
+        },
         "latitude": 47.038183,
         "longitude": 18.1100269,
         "name": "Balatonalmádi járás",
@@ -21,6 +27,9 @@
     },
     {
         "country": "HU",
+        "identifier": {
+            "osm": "n9023154312"
+        },
         "latitude": 47.0283061,
         "locality": "Balatonalmádi",
         "longitude": 18.0154241,
@@ -42,6 +51,9 @@
     },
     {
         "country": "HU",
+        "identifier": {
+            "osm": "n1878998599"
+        },
         "latitude": 47.0327711,
         "locality": "Balatonalmádi",
         "longitude": 18.01304,
@@ -63,6 +75,9 @@
     },
     {
         "country": "HU",
+        "identifier": {
+            "osm": "n3469997388"
+        },
         "latitude": 47.014797,
         "locality": "Balatonalmádi",
         "longitude": 18.000245,
@@ -84,6 +99,9 @@
     },
     {
         "country": "HU",
+        "identifier": {
+            "osm": "n1684495248"
+        },
         "latitude": 47.026925,
         "locality": "Balatonalmádi",
         "longitude": 18.0108735,
@@ -105,6 +123,9 @@
     },
     {
         "country": "HU",
+        "identifier": {
+            "osm": "n13905951276"
+        },
         "latitude": 47.030356,
         "locality": "Balatonalmádi",
         "longitude": 18.015303,
@@ -126,6 +147,9 @@
     },
     {
         "country": "HU",
+        "identifier": {
+            "osm": "n10857534819"
+        },
         "latitude": 47.0116741,
         "locality": "Balatonalmádi",
         "longitude": 18.0040129,
@@ -147,6 +171,9 @@
     },
     {
         "country": "HU",
+        "identifier": {
+            "osm": "n1878998604"
+        },
         "latitude": 47.0364286,
         "locality": "Balatonalmádi",
         "longitude": 18.021507,
@@ -168,6 +195,9 @@
     },
     {
         "country": "HU",
+        "identifier": {
+            "osm": "n4478691442"
+        },
         "latitude": 47.0406017,
         "locality": "Balatonalmádi",
         "longitude": 18.0082637,
@@ -189,6 +219,9 @@
     },
     {
         "country": "HU",
+        "identifier": {
+            "osm": "n3277701214"
+        },
         "latitude": 47.0283255,
         "locality": "Balatonalmádi",
         "longitude": 18.0157713,
@@ -210,6 +243,9 @@
     },
     {
         "country": "HU",
+        "identifier": {
+            "osm": "n10003774753"
+        },
         "latitude": 47.0313929,
         "locality": "Balatonalmádi",
         "longitude": 18.010705,
@@ -224,6 +260,9 @@
     },
     {
         "country": "HU",
+        "identifier": {
+            "osm": "n10225421320"
+        },
         "latitude": 47.0457294,
         "locality": "Balatonalmádi",
         "longitude": 18.0080536,
@@ -238,6 +277,9 @@
     },
     {
         "country": "HU",
+        "identifier": {
+            "osm": "n3470011815"
+        },
         "latitude": 47.0403941,
         "locality": "Balatonalmádi",
         "longitude": 18.0200932,
