@@ -23,7 +23,8 @@
     {
         "country": "AT",
         "identifier": {
-            "motis": "node/9405066243"
+            "motis": "node/9405066243",
+            "osm": "n9405066243"
         },
         "latitude": 48.2146745,
         "locality": "Leopoldstadt",
@@ -60,7 +61,8 @@
     {
         "country": "AT",
         "identifier": {
-            "motis": "way/572759312"
+            "motis": "way/572759312",
+            "osm": "w572759312"
         },
         "latitude": 47.2917906,
         "locality": "Stuhlfelden",
@@ -76,7 +78,8 @@
     {
         "country": "DE",
         "identifier": {
-            "motis": "node/4028973329"
+            "motis": "node/4028973329",
+            "osm": "n4028973329"
         },
         "latitude": 53.5819759,
         "locality": "Hamburg-Nord",
@@ -92,7 +95,8 @@
     {
         "country": "AT",
         "identifier": {
-            "motis": "node/4976789981"
+            "motis": "node/4976789981",
+            "osm": "n4976789981"
         },
         "latitude": 46.7879147,
         "locality": "Leibnitz",
@@ -108,7 +112,8 @@
     {
         "country": "AT",
         "identifier": {
-            "motis": "node/2469976394"
+            "motis": "node/2469976394",
+            "osm": "n2469976394"
         },
         "latitude": 47.0594328,
         "locality": "Sankt Peter",
@@ -124,7 +129,8 @@
     {
         "country": "AT",
         "identifier": {
-            "motis": "node/4024187300"
+            "motis": "node/4024187300",
+            "osm": "n4024187300"
         },
         "latitude": 46.9201999,
         "locality": "Feldbach",
@@ -167,7 +173,8 @@
     {
         "country": "AT",
         "identifier": {
-            "motis": "node/11758289842"
+            "motis": "node/11758289842",
+            "osm": "n11758289842"
         },
         "latitude": 47.0148008,
         "locality": "Riegersburg",

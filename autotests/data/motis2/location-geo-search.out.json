@@ -31,7 +31,8 @@
         "country": "DE",
         "floorLevel": 0,
         "identifier": {
-            "motis": "node/3575061420"
+            "motis": "node/3575061420",
+            "osm": "n3575061420"
         },
         "latitude": 51.3450271,
         "locality": "Mitte",
@@ -44,7 +45,8 @@
         "country": "DE",
         "floorLevel": 0,
         "identifier": {
-            "motis": "node/3575061421"
+            "motis": "node/3575061421",
+            "osm": "n3575061421"
         },
         "latitude": 51.3450365,
         "locality": "Mitte",
@@ -57,7 +59,8 @@
         "country": "DE",
         "floorLevel": 0,
         "identifier": {
-            "motis": "node/2202309900"
+            "motis": "node/2202309900",
+            "osm": "n2202309900"
         },
         "latitude": 51.3448745,
         "locality": "Mitte",
@@ -70,7 +73,8 @@
         "country": "DE",
         "floorLevel": 0,
         "identifier": {
-            "motis": "node/6510099866"
+            "motis": "node/6510099866",
+            "osm": "n6510099866"
         },
         "latitude": 51.3449263,
         "locality": "Mitte",
@@ -83,7 +87,8 @@
         "country": "DE",
         "floorLevel": 0,
         "identifier": {
-            "motis": "node/2140362880"
+            "motis": "node/2140362880",
+            "osm": "n2140362880"
         },
         "latitude": 51.3452195,
         "locality": "Mitte",
@@ -96,7 +101,8 @@
         "country": "DE",
         "floorLevel": 0,
         "identifier": {
-            "motis": "node/6510099867"
+            "motis": "node/6510099867",
+            "osm": "n6510099867"
         },
         "latitude": 51.3450387,
         "locality": "Mitte",
@@ -109,7 +115,8 @@
         "country": "DE",
         "floorLevel": 0,
         "identifier": {
-            "motis": "node/2140362881"
+            "motis": "node/2140362881",
+            "osm": "n2140362881"
         },
         "latitude": 51.3452333,
         "locality": "Mitte",
@@ -122,7 +129,8 @@
         "country": "DE",
         "floorLevel": 0,
         "identifier": {
-            "motis": "node/6510099869"
+            "motis": "node/6510099869",
+            "osm": "n6510099869"
         },
         "latitude": 51.344935,
         "locality": "Mitte",
