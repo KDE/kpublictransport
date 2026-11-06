@@ -76,7 +76,7 @@ Kirigami.Padding {
     }
 
     contentItem: Item {
-        implicitWidth: Kirigami.Units.iconSizes.smallMedium
+        implicitWidth: transportIcon.width
             + (lineName.visible
                 ? Kirigami.Units.smallSpacing + lineName.implicitWidth
                 : 0)
@@ -94,7 +94,7 @@ Kirigami.Padding {
             source: root.iconName
             Accessible.name: root.modeName
 
-            width: Kirigami.Units.iconSizes.smallMedium
+            width: implicitWidth
             height: Kirigami.Units.iconSizes.smallMedium
 
             anchors.verticalCenter: parent.verticalCenter
