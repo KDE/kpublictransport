@@ -6,6 +6,7 @@ import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import org.kde.kpublictransport as KPublicTransport
 import org.kde.kpublictransport.ui as KPublicTransport
+import 'private/colorutil.js' as ColorUtil
 
 /** Visual representation of a journey section in a horizontal bar display.
  *  Also usable as a stand-alone transport line indicator.
@@ -58,13 +59,9 @@ Kirigami.Padding {
     bottomPadding: Kirigami.Units.smallSpacing
 
     Rectangle {
-        id: background
+        id: lineBackground
 
-        function isDark(color) {
-            return color.hslLightness < 0.5
-        }
-
-        border.color: isDark(background.color) == isDark(Kirigami.Theme.backgroundColor) ? lineName.color : background.color
+        border.color: ColorUtil.relativeContrast(lineBackground.color, Kirigami.Theme.backgroundColor) < 2.0 ? lineName.color : lineBackground.color
 
         radius: Kirigami.Units.cornerRadius
         color: root.line.hasColor ? root.line.color : Kirigami.Theme.textColor
@@ -85,7 +82,7 @@ Kirigami.Padding {
         KPublicTransport.TransportIcon {
             id: transportIcon
 
-            color: background.visible
+            color: lineBackground.visible
                 ? lineName.color
                 : Kirigami.Theme.textColor
 
@@ -108,29 +105,24 @@ Kirigami.Padding {
         Kirigami.Heading {
             id: lineName
 
-            readonly property bool isDarkTheme: Kirigami.Theme.backgroundColor.hslLightness < 0.4
-
             color: {
-                const backgroundIsDark = background.color.hslLightness < 0.4;
-
                 if (root.line.hasTextColor) {
-                    const foregroundIsLight = root.line.textColor.hslLightness >= 0.4;
-                    if (foregroundIsLight === backgroundIsDark) {
+                    if (ColorUtil.relativeContrast(root.line.textColor, lineBackground.color) > 2.0) {
                         return root.line.textColor;
                     }
                     // fallthrough and use our own color has the line text color doesn't offer enough contrast
                     // Test case U4 in Berlin
                 }
 
-                if (backgroundIsDark)
-                    return isDarkTheme ? Kirigami.Theme.textColor : Kirigami.Theme.backgroundColor;
-                return isDarkTheme ? Kirigami.Theme.backgroundColor : Kirigami.Theme.textColor;
+                const fgContrast = ColorUtil.relativeContrast(lineBackground.color, Kirigami.Theme.textColor);
+                const bgContrast = ColorUtil.relativeContrast(lineBackground.color, Kirigami.Theme.backgroundColor);
+                return fgContrast < bgContrast ? Kirigami.Theme.backgroundColor : Kirigami.Theme.textColor;
             }
 
             level: 4
             text: root.lineName
             visible: text.length > 0 && root.journeySectionMode === KPublicTransport.JourneySection.PublicTransport && !root.line.hasLogo &&
-                    !(squashToFit && lineName.contentWidth > lineName.width)
+                    !(root.squashToFit && lineName.contentWidth > lineName.width)
 
             font.weight: Font.DemiBold
             horizontalAlignment: Text.AlignHCenter

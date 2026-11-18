@@ -52,6 +52,7 @@ ecm_target_qml_sources(kpublictransportquickplugin
     SOURCES
         private/CountryComboBox.qml
         private/CurrentLocationDelegate.qml
+        private/colorutil.js
         private/globals.js
 )
 
