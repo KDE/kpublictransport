@@ -17,7 +17,6 @@
 
 #include "datatypes/journey.h"
 #include "datatypes/stopover.h"
-#include "geomath.h"
 #include "journeyreply.h"
 #include "journeyrequest.h"
 #include "locationreply.h"
@@ -267,7 +266,7 @@ bool LTGLinkBackend::queryLocation(const LocationRequest &req, LocationReply *re
     const LTGLink::Station *best_station = nullptr;
     if (req.location().hasCoordinate()) {
         for (auto &[id, station] : std::as_const(m_stations)) {
-            auto dist = OSM ::distance(station.latitude,
+            auto dist = Location::distance(station.latitude,
                                        station.longitude,
                                        req.location().latitude(),
                                        req.location().longitude());

@@ -43,7 +43,10 @@ public:
     bool intersects(ZTile other) const;
 
     /** The parent tile in a quad tree. */
-    ZTile parent() const;
+    [[nodiscard]] constexpr ZTile parent() const
+    {
+        return ZTile{z >> 2, (uint8_t)(depth + 1)};
+    }
     /** Split into four sub-tiles on one level below. */
     std::array<ZTile, 4> quadSplit() const;
 

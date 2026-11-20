@@ -9,8 +9,8 @@
 #include "datatypes/lineutil_p.h"
 #include "logging.h"
 
-#include <osm/datatypes.h>
-#include <osm/ztile.h>
+#include "../../osm/datatypes.h"
+#include "../../osm/ztile.h"
 
 #include <QColor>
 #include <QDebug>

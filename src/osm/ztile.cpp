@@ -29,11 +29,6 @@ bool ZTile::intersects(ZTile other) const
     return z1 == z2;
 }
 
-ZTile ZTile::parent() const
-{
-    return ZTile{z >> 2, (uint8_t)(depth + 1)};
-}
-
 std::array<ZTile, 4> ZTile::quadSplit() const
 {
     if (depth == 0) {
