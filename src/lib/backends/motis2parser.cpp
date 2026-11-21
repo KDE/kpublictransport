@@ -20,6 +20,8 @@
 #include <KCountry>
 #include <KCountrySubdivision>
 
+#include <KLocalizedString>
+
 #include <QColor>
 #include <QDebug>
 #include <QJsonArray>
@@ -381,6 +383,13 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
 
         if (leg["wheelchairAccessible"_L1] == "ACCESSIBLE"_L1) {
             features.emplace_back(Feature::WheelchairAccessible);
+        }
+
+        if (leg.contains(u"loopedCalendarSince")) {
+            auto const loopedSince = QDateTime::fromString(leg[u"loopedCalendarSince"].toString(), Qt::ISODate);
+            if (loopedSince < QDateTime::currentDateTime()) {
+                s.addNote(i18n("The timetable is outdated since %1", QLocale().toString(loopedSince)));
+            }
         }
 
         from.setFeatures(std::move(features));
