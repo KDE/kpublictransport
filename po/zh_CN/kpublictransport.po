@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-10-24 00:48+0000\n"
+"POT-Creation-Date: 2026-11-21 10:38+0000\n"
 "PO-Revision-Date: 2024-05-07 19:27\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -16,6 +16,11 @@ msgstr ""
 "X-Crowdin-Language: zh-CN\n"
 "X-Crowdin-File: /kf6-trunk/messages/kpublictransport/kpublictransport.pot\n"
 "X-Crowdin-File-ID: 53614\n"
+
+#: lib/backends/motis2parser.cpp:391
+#, kde-format
+msgid "The timetable is outdated since %1"
+msgstr ""
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format

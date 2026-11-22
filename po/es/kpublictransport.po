@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-10-24 00:48+0000\n"
+"POT-Creation-Date: 2026-11-21 10:38+0000\n"
 "PO-Revision-Date: 2026-06-06 22:43+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -18,6 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 26.04.1\n"
+
+#: lib/backends/motis2parser.cpp:391
+#, kde-format
+msgid "The timetable is outdated since %1"
+msgstr ""
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
