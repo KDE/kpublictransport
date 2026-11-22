@@ -81,6 +81,10 @@ void BackendModelPrivate::repopulateGrouped()
                 continue;
             }
 
+            if (b.identifier().startsWith("un_"_L1)) { // treat backends covering many countries as having global coverage
+                rows.push_back({ b, u"UN"_s, true, type});
+                continue;
+            }
             for (const auto &region: c.regions()) {
                 const auto country = region.left(2);
                 if (!rows.empty() && rows.back().backend.identifier() == b.identifier() && rows.back().country == country) {
