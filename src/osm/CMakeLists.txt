@@ -29,8 +29,4 @@ target_compile_definitions(KOSM PUBLIC "-DKOSM_STATIC_DEFINE=1")
 target_link_libraries(KOSM PUBLIC Qt::Core PRIVATE Qt::Network)
 set_target_properties(KOSM PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
-if (NOT BUILD_SHARED_LIBS)
-    install(TARGETS KOSM EXPORT KPublicTransportTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
-endif()
-
 add_subdirectory(io)
