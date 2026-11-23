@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-11-21 10:38+0000\n"
-"PO-Revision-Date: 2026-08-02 00:38+0200\n"
+"POT-Creation-Date: 2026-11-22 16:33+0000\n"
+"PO-Revision-Date: 2026-11-22 12:19+0100\n"
 "Last-Translator: Libor Filípek <libor.filipek@gmail.com>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -16,12 +16,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Lokalize 26.08.3\n"
 
 #: lib/backends/motis2parser.cpp:391
 #, kde-format
 msgid "The timetable is outdated since %1"
-msgstr ""
+msgstr "Jízdní řád je zastaralý od %1"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
@@ -280,12 +280,12 @@ msgctxt "train coach type"
 msgid "Car transport car"
 msgstr "Autobusová doprava"
 
-#: lib/models/backendmodel.cpp:99 quick/BackendPage.qml:146
+#: lib/models/backendmodel.cpp:103 quick/BackendPage.qml:146
 #, kde-format
 msgid "European Union"
 msgstr "Evropská unie"
 
-#: lib/models/backendmodel.cpp:102 quick/BackendPage.qml:148
+#: lib/models/backendmodel.cpp:106 quick/BackendPage.qml:148
 #, kde-format
 msgid "Kosovo"
 msgstr "Kosovo"

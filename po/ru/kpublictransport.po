@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-11-21 10:38+0000\n"
-"PO-Revision-Date: 2026-06-27 15:46+0200\n"
-"Last-Translator: Alexander Yavorskiy <kekcuha@gmail.com>\n"
+"POT-Creation-Date: 2026-11-22 16:33+0000\n"
+"PO-Revision-Date: 2026-11-22 07:37+0200\n"
+"Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: lib/backends/motis2parser.cpp:391
 #, kde-format
 msgid "The timetable is outdated since %1"
-msgstr ""
+msgstr "Расписание устарело с %1"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
@@ -281,12 +281,12 @@ msgctxt "train coach type"
 msgid "Car transport car"
 msgstr "Вагон для перевозки автомобилей"
 
-#: lib/models/backendmodel.cpp:99 quick/BackendPage.qml:146
+#: lib/models/backendmodel.cpp:103 quick/BackendPage.qml:146
 #, kde-format
 msgid "European Union"
 msgstr "Европейский союз"
 
-#: lib/models/backendmodel.cpp:102 quick/BackendPage.qml:148
+#: lib/models/backendmodel.cpp:106 quick/BackendPage.qml:148
 #, kde-format
 msgid "Kosovo"
 msgstr "Косово"

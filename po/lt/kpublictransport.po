@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-11-21 10:38+0000\n"
+"POT-Creation-Date: 2026-11-22 16:33+0000\n"
 "PO-Revision-Date: 2025-08-24 00:41+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -280,12 +280,12 @@ msgctxt "train coach type"
 msgid "Car transport car"
 msgstr ""
 
-#: lib/models/backendmodel.cpp:99 quick/BackendPage.qml:146
+#: lib/models/backendmodel.cpp:103 quick/BackendPage.qml:146
 #, kde-format
 msgid "European Union"
 msgstr ""
 
-#: lib/models/backendmodel.cpp:102 quick/BackendPage.qml:148
+#: lib/models/backendmodel.cpp:106 quick/BackendPage.qml:148
 #, kde-format
 msgid "Kosovo"
 msgstr ""
