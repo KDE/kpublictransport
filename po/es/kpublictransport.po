@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-11-22 16:33+0000\n"
-"PO-Revision-Date: 2026-06-06 22:43+0100\n"
+"PO-Revision-Date: 2026-11-23 18:05+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 26.04.1\n"
+"X-Generator: Lokalize 26.08.3\n"
 
 #: lib/backends/motis2parser.cpp:391
 #, kde-format
 msgid "The timetable is outdated since %1"
-msgstr ""
+msgstr "El horario está desactualizado desde el %1"
 
 #: lib/datatypes/classutil.cpp:29
 #, kde-format
@@ -590,6 +590,3 @@ msgstr "Eliminar entrada del historial"
 msgctxt "@info:placeholder"
 msgid "No locations found"
 msgstr "No se ha encontrado ninguna ubicación"
-
-#~ msgid "Worldwide"
-#~ msgstr "Todo el mundo"
